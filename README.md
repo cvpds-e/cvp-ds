@@ -1,7 +1,5 @@
 # CVP Design System
 
-The CVP Design System is a React and Vite reference application for broadcast and OTT product components, design tokens, interaction patterns, and engineering handoff guidance.
-
 ## Get started
 
 ```bash

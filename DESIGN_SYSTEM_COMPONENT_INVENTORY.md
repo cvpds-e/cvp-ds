@@ -7,13 +7,11 @@
 
 ---
 
-## Preface — Cross-Cutting Gaps
+## Preface — Handoff Baseline
 
-Two gaps apply universally and are not repeated in every row below.
+The approved scope has been migrated to the CVP primitive → semantic → component token architecture and verified through its live documentation pages. Deferred and internal components remain outside that guarantee and are identified explicitly below.
 
-**Storybook: zero stories exist.** `src/stories/` does not exist. No `.stories.tsx` or `.stories.ts` files are present anywhere in the repository. Every component listed below has implementation code and no Storybook story. This is blocking the arg-table generation, visual regression suite, and WCAG spot-check workflows described in `TOKEN_GOVERNANCE.md` and `IMPLEMENTATION_STATUS.md`. Phase 0–3 remediation requires Storybook before Phase 2 begins.
-
-**Token migration: Phase 0–3 not started.** Most component implementations reference a mix of old shorthand tokens (`--bg-page`, `--text-primary`, `--input-border`) and component-specific custom tokens (`--primary-button-*`, `--toggle-*`, `--segmented-*`) that are not registered in `cvp-component-tokens.css`. The three-tier CVP token architecture is specified in the CSS files but the component `.tsx` implementations have not been migrated to consume it. Token coverage ratings below reflect this gap.
+**Storybook remains an engineering-infrastructure gap.** `src/stories/` does not exist, so isolated prop fixtures and automated visual regression are not yet part of the repository. The documentation application is the current visual review surface; `ENGINEERING_HANDOFF_INDEX.md` is the authoritative implementation entry point.
 
 ---
 
@@ -41,7 +39,7 @@ Two gaps apply universally and are not repeated in every row below.
 
 | Component | Family | Implementation | Storybook | Token coverage | Behaviour documented | Status |
 |---|---|---|---|---|---|---|
-| PrimaryButton | Actions | `src/app/components/PrimaryButton.tsx` | None | `unregistered` (`--primary-button-*`) | `PrimaryButtonDocumentation.tsx` | Complete — Missing Story |
+| PrimaryButton | Actions | `src/app/components/PrimaryButton.tsx` | `PrimaryButton.css` | `--cvp-button-primary-*` | `PrimaryButtonDocumentation.tsx` | Standardized — Visual + Handoff |
 | SecondaryButton | Actions | `src/app/components/SecondaryButton.tsx` | `SecondaryButton.css` | `--cvp-button-secondary-*` | `SecondaryButtonDocumentation.tsx` | Standardized — Visual + Handoff |
 | OutlineButton | Actions | `src/app/components/OutlineButton.tsx` | `OutlineButton.css` | `--cvp-button-outline-*` | `OutlineButtonDocumentation.tsx` | Standardized — Visual + Handoff |
 | TextButton | Actions | `src/app/components/TextButton.tsx` | `TextButton.css` | `--cvp-button-text-*` | `TextButtonDocumentation.tsx` | Standardized — Visual + Handoff |
@@ -57,14 +55,14 @@ Two gaps apply universally and are not repeated in every row below.
 
 | Component | Family | Implementation | Storybook | Token coverage | Behaviour documented | Status |
 |---|---|---|---|---|---|---|
-| TextInput | Form Controls | `src/app/components/TextInput.tsx` | None | `unregistered` (`--text-input-*`) | `TextInputDocumentation.tsx` | Complete — Missing Story |
-| TextArea | Form Controls | `src/app/components/TextArea.tsx` | None | `unregistered` | `TextAreaDocumentation.tsx` | Partial — Missing Story |
+| TextInput | Form Controls | `src/app/components/TextInput.tsx` | `TextInput.css` | `--cvp-input-*` | `TextInputDocumentation.tsx` | Standardized — reference form contract |
+| TextArea | Form Controls | `src/app/components/TextArea.tsx` | `TextArea.css` | `--cvp-textarea-*` → shared input semantics | `TextAreaDocumentation.tsx` | Standardized — Visual + Handoff |
 | MiscInput | Form Controls | `src/app/components/MiscInput.tsx` | `MiscInput.css` | `--cvp-misc-input-*` → `--cvp-input-*` | `MiscInputDocumentation.tsx` | Standardized — Visual + Handoff |
-| Select | Form Controls | `src/app/components/Select.tsx` | None | `unregistered` | `SelectDocumentation.tsx` | Complete — Missing Story |
-| MultiSelect | Form Controls | `src/app/components/MultiSelect.tsx` | None | `unregistered` | `MultiSelectDocumentation.tsx` | Partial — Missing Story |
+| Select | Form Controls | `src/app/components/Select.tsx` | `Select.css` | `--cvp-select-*` → shared input/menu semantics | `SelectDocumentation.tsx` | Standardized — Visual + Handoff |
+| MultiSelect | Form Controls | `src/app/components/MultiSelect.tsx` | Label + combobox + multi-select listbox | `--cvp-multi-select-*` registered Tier 3 contract | `MultiSelectDocumentation.tsx`, `MULTI_SELECT_STANDARDIZATION.md` | Standardized — Visual + engineering handoff |
 | Checkbox | Form Controls | `src/app/components/Checkbox.tsx` | Native input + label; fieldset/legend for groups | `--cvp-checkbox-*` registered Tier 3 contract | `CheckboxDocumentation.tsx`, `CHECKBOX_STANDARDIZATION.md` | Standardized — Visual + engineering handoff |
-| Toggle | Form Controls | `src/app/components/Toggle.tsx` | None | `unregistered` (`--toggle-*`) | `ToggleDocumentation.tsx` | Complete — Missing Story |
-| Segmented | Form Controls | `src/app/components/Segmented.tsx` | None | `unregistered` (`--segmented-*`) | `SegmentedDocumentation.tsx` | Complete — Missing Story |
+| Toggle | Form Controls | `src/app/components/Toggle.tsx` | None | Deferred | `ToggleDocumentation.tsx` | Deferred — hidden from navigation |
+| Segmented | Form Controls | `src/app/components/Segmented.tsx` | `Segmented.css` | `--cvp-segmented-*` | `SegmentedDocumentation.tsx`, `SEGMENTED_STANDARDIZATION.md` | Standardized — Visual + Handoff |
 
 **Aliases / naming notes:** `TextInput` is the canonical single-line input. `MiscInput` is a richer variant with prefix/suffix slots, character count, copy button, and four validation states — it is not an alias; it is a distinct, more capable component. These two should be reconciled: either `MiscInput` supersedes `TextInput` or they occupy different complexity tiers. `Segmented` is the component name in code; `SegmentedControl` appears in some documentation — canonical name is `Segmented`. `Toggle` maps to what `cvp-component-tokens.css` does not yet cover; the shadcn/ui layer has a separate `ui/switch.tsx` and `ui/toggle.tsx` — these are primitives, not CVP-styled components.
 
@@ -74,10 +72,10 @@ Two gaps apply universally and are not repeated in every row below.
 
 | Component | Family | Implementation | Storybook | Token coverage | Behaviour documented | Status |
 |---|---|---|---|---|---|---|
-| HeaderNavigation | Navigation | `src/app/components/HeaderNavigation.tsx` | None | `cvp-comp` (partially, via `--cvp-color-nav-*`) | `HeaderNavigationDocumentation.tsx` | Complete — Missing Story |
-| PageSideNav | Navigation | `src/app/components/PageSideNav.tsx` | None | `unregistered` (`--page-side-nav-*`) | `PageSideNavDocumentation.tsx` | Partial — Missing Story |
-| Breadcrumbs | Navigation | `src/app/components/Breadcrumbs.tsx` | None | `unregistered` (`--breadcrumb-*`) | `BreadcrumbsDocumentation.tsx` | Complete — Missing Story |
-| Tabs | Navigation | `src/app/components/Tabs.tsx` | None | `unregistered` (`--tabs-*`) | `TabsDocumentation.tsx` | Complete — Missing Story |
+| HeaderNavigation | Navigation | `src/app/components/HeaderNavigation.tsx` | `HeaderNavigation.css` | `--cvp-header-*` | `HeaderNavigationDocumentation.tsx` | Standardized — Visual + Handoff |
+| PageSideNav | Navigation | `src/app/components/PageSideNav.tsx` | None | Deferred | `PageSideNavDocumentation.tsx` | Deferred — hidden from navigation |
+| Breadcrumbs | Navigation | `src/app/components/Breadcrumbs.tsx` | `Breadcrumbs.css` | `--cvp-breadcrumb-*` | `BreadcrumbsDocumentation.tsx`, `BREADCRUMBS_STANDARDIZATION.md` | Standardized — Visual + Handoff |
+| Tabs | Navigation | `src/app/components/Tabs.tsx` | `Tabs.css` | `--cvp-tabs-*` | `TabsDocumentation.tsx`, `TABS_STANDARDIZATION.md` | Standardized — Visual + Handoff |
 | DesignSystemNav | Navigation | `src/app/components/DesignSystemNav.tsx` | None | Unknown | None | Unclear — internal use only |
 
 **Aliases / naming notes:** `PageSideNav` is the CVP custom sidebar; `ui/sidebar.tsx` is the shadcn/ui primitive. These are distinct. `Breadcrumbs` (CVP) vs `ui/breadcrumb.tsx` (shadcn) — same distinction. `DesignSystemNav` appears to be an internal demo/navigation component, not a publishable design system component.
@@ -88,10 +86,10 @@ Two gaps apply universally and are not repeated in every row below.
 
 | Component | Family | Implementation | Storybook | Token coverage | Behaviour documented | Status |
 |---|---|---|---|---|---|---|
-| Modal | Overlays | `src/app/components/Modal.tsx` | None | `unregistered` (`--modal-*`) | `ModalDocumentation.tsx` | Complete — Missing Story |
-| ContentBrowserModal | Overlays | `src/app/components/ContentBrowserModal.tsx` | None | Unknown | `ContentBrowserModalDocumentation.tsx` | Partial — Missing Story |
+| Modal | Overlays | `src/app/components/Modal.tsx` | None | Canonical Tier 3 (`--cvp-modal-*`) | `ModalDocumentation.tsx` | Standardized — Missing Story |
+| ContentBrowserModal | Overlays | `src/app/components/ContentBrowserModal.tsx` | None | Canonical Tier 3 (`--cvp-content-browser-*`, composed with Modal) | `ContentBrowserModalDocumentation.tsx` | Standardized — Missing Story |
 
-**Aliases / naming notes:** `Modal` is the general-purpose overlay; `ContentBrowserModal` is a product-specific specialisation with a file/content-tree structure. They share the modal shell. `cvp-component-tokens.css` covers `--cvp-modal-*` tokens for the base Modal only. `ui/dialog.tsx` and `ui/drawer.tsx` are the shadcn/ui primitives that `Modal` may or may not delegate to — this is an open question (see §6).
+**Aliases / naming notes:** `Modal` is the general-purpose overlay; `ContentBrowserModal` is a product-specific specialisation with a file/content-tree structure. They share the canonical Modal shell and theme-aware token chain. `ui/dialog.tsx` and `ui/drawer.tsx` remain separate shadcn/ui primitives.
 
 ---
 
@@ -99,8 +97,8 @@ Two gaps apply universally and are not repeated in every row below.
 
 | Component | Family | Implementation | Storybook | Token coverage | Behaviour documented | Status |
 |---|---|---|---|---|---|---|
-| Toast | Feedback | `src/app/components/Toast.tsx` | None | `unregistered` (`--toast-*`) | `ToastDocumentation.tsx` | Complete — Missing Story |
-| NotificationBanner | Feedback | `src/app/components/NotificationBanner.tsx` | None | `unregistered` (`--notification-banner--*`) | `NotificationBannerDocumentation.tsx` | Complete — Missing Story |
+| Toast | Feedback | `src/app/components/Toast.tsx` | None | Canonical Tier 3 (`--cvp-toast-*`) | `ToastDocumentation.tsx` | Standardized — Missing Story |
+| NotificationBanner | Feedback | `src/app/components/NotificationBanner.tsx` | None | Canonical Tier 3 (`--cvp-notification-banner-*`) | `NotificationBannerDocumentation.tsx` | Standardized — Missing Story |
 
 **Aliases / naming notes:** `Toast` is the transient, auto-dismissing notification. `NotificationBanner` is the persistent, full-width contextual message — these are distinct patterns. `ui/sonner.tsx` is a third-party toast primitive also present; the relationship between it and the CVP `Toast` component is unclear (see §6).
 
@@ -110,11 +108,11 @@ Two gaps apply universally and are not repeated in every row below.
 
 | Component | Family | Implementation | Storybook | Token coverage | Behaviour documented | Status |
 |---|---|---|---|---|---|---|
-| Table | Data Display | `src/app/components/Table.tsx` | None | `unregistered` (`--table-*`) | `TableDocumentation.tsx`, `TableSpecifications.tsx` | Complete — Missing Story |
-| Accordion | Data Display | `src/app/components/Accordion.tsx` | None | `unregistered` (`--accordion-*`) | `AccordionDocumentation.tsx` | Complete — Missing Story |
-| Tree | Data Display | `src/app/components/Tree.tsx` + 4 sub-files | None | Unknown | `TreeDocumentation.tsx` | Partial — Missing Story |
+| Table | Data Display | `src/app/components/Table.tsx` | `Table.css` | `--cvp-table-*` | `TableDocumentation.tsx`, `TABLE_COMPONENT_DEV_HANDOFF.md` | Standardized — Visual + Handoff |
+| Accordion | Data Display | `src/app/components/Accordion.tsx` | `Accordion.css` | `--cvp-accordion-*` | `AccordionDocumentation.tsx`, `ACCORDION_STANDARDIZATION.md` | Standardized — Visual + Handoff |
+| Tree | Data Display | `src/app/components/Tree.tsx` | `Tree.css` | `--cvp-tree-*` | `TreeDocumentation.tsx`, `TREE_COMPONENT_DEV_HANDOFF.md` | Standardized — Visual + Handoff |
 
-**Tree sub-components:** `TreeNode.tsx`, `TreeItem.tsx`, `TreeGroup.tsx`, `TreeGroupHeader.tsx`. These are compound parts of the `Tree` component. `cvp-component-tokens.css` does not yet define `--cvp-tree-*` tokens.
+**Tree note:** `Tree.tsx` is the canonical compound implementation and consumes the registered `--cvp-tree-*` contract. Older sub-component files are not the documented integration target.
 
 ---
 
@@ -122,11 +120,12 @@ Two gaps apply universally and are not repeated in every row below.
 
 | Component | Family | Implementation | Storybook | Token coverage | Behaviour documented | Status |
 |---|---|---|---|---|---|---|
-| Filter | Filtering | `src/app/components/Filter.tsx` | None | `unregistered` (`--filter-*`) + `hardcoded` | `FilterDocumentation.tsx` | Complete — Missing Story |
-| FilterGroup | Filtering | `src/app/components/FilterGroup.tsx` | None | Unknown | `FilterGroupDocumentation.tsx` | Partial — Missing Story |
-| TagFilter | Filtering | `src/app/components/TagFilter.tsx` | None | `unregistered` (`--tag-filter-*`) | `TagFilterDocumentation.tsx` | Complete — Missing Story |
+| Filter | Filtering | `src/app/components/Filter.tsx` | Native buttons, labelled dialog, menu items and inputs | `--cvp-filter-*` registered Tier 3 contract | `FilterDocumentation.tsx`, `FILTER_DATE_PICKER_STANDARDIZATION.md` | Standardized — Visual + engineering handoff |
+| DatePicker | Form Controls | `src/app/components/DatePicker.tsx` | Labelled calendar region, native day/navigation/time controls | `--cvp-date-picker-*` registered Tier 3 contract | `DatePickerDocumentation.tsx`, `FILTER_DATE_PICKER_STANDARDIZATION.md` | Extracted and standardized |
+| FilterGroup | Filtering | `src/app/components/FilterGroup.tsx` | None | Deferred | `FilterGroupDocumentation.tsx` | Deferred — hidden from navigation |
+| TagFilter | Filtering | `src/app/components/TagFilter.tsx` | `TagFilter.css` | `--cvp-tag-filter-*` | `TagFilterDocumentation.tsx`, `TAG_FILTER_STANDARDIZATION.md` | Standardized — Visual + Handoff |
 
-**Aliases / naming notes:** `Filter` is the advanced multi-type query filter (text, select, date, multiselect, boolean) with a dropdown menu UI. `FilterGroup` groups multiple `Filter` instances. `TagFilter` is a tag-cloud selection pattern — distinct from `Filter` in interaction model and data shape. None of these three have corresponding tokens in `cvp-component-tokens.css`.
+**Aliases / naming notes:** `Filter` is the advanced multi-type query filter. `TagFilter` is a distinct tag-cloud selection pattern. `FilterGroup` remains deferred and is excluded from the active navigation.
 
 ---
 
@@ -134,10 +133,10 @@ Two gaps apply universally and are not repeated in every row below.
 
 | Component | Family | Implementation | Storybook | Token coverage | Behaviour documented | Status |
 |---|---|---|---|---|---|---|
-| RailContentGallery | Media | `src/app/components/RailContentGallery.tsx` | None | `cvp-comp` (partially, via `--cvp-rail-*` in token file) | `RailContentGalleryDocumentation.tsx` | Partial — Missing Story |
-| RailDetails | Media | `src/app/components/RailDetails.tsx` | None | `legacy` (`--bg-page`, `--border-default`, etc.) | None | Legacy — Missing Story |
+| RailContentGallery | Media | `src/app/components/RailContentGallery.tsx` | `RailContentGallery.css` | `--cvp-gallery-*` | `RailContentGalleryDocumentation.tsx`, `RAIL_CONTENT_GALLERY_DEV_HANDOFF.md` | Standardized — Visual + Handoff |
+| RailDetails | Media | `src/app/components/RailDetails.tsx` | `RailDetails.css` | Composes canonical child contracts | `RailDetailsDocumentation.tsx` | Integration audit page |
 
-**Aliases / naming notes:** `RailContentGallery` and `RailDetails` are product-specific editorial workflow components. `RailContentGallery` has 4 variants: `management`, `display`, `display-grid`, `display-grid-selectable`. `cvp-component-tokens.css` defines `--cvp-rail-*` tokens but the component implementation still uses the old names. `RailDetails` has no documentation component; its behaviour is embedded in the component itself.
+**Aliases / naming notes:** `RailContentGallery` and `RailDetails` are product-specific editorial workflow components. Rail Details intentionally acts as the composed-page audit and does not create a parallel page token contract.
 
 ---
 
@@ -153,10 +152,10 @@ Two gaps apply universally and are not repeated in every row below.
 
 | Component | Family | Implementation | Storybook | Token coverage | Behaviour documented | Status |
 |---|---|---|---|---|---|---|
-| LoginSignUp | Authentication | `src/app/components/LoginSignUp.tsx` | None | Unknown | `LoginSignUpDocumentation.tsx` | Partial — Missing Story |
-| LoginSignUpLight | Authentication | `src/app/components/LoginSignUpLight.tsx` | None | Unknown | (shared with above) | Partial — Missing Story |
+| LoginSignUp | Authentication | `src/app/components/LoginSignUp.tsx` | None | Canonical Tier 3 (`--cvp-login-*`) | `LoginSignUpDocumentation.tsx`, `LOGIN_SIGN_UP_DEV_HANDOFF.md` | Standardized — Missing Story |
+| LoginSignUpLight | Authentication | `src/app/components/LoginSignUpLight.tsx` | None | Composes `LoginSignUp` | (shared with above) | Deprecated compatibility wrapper |
 
-**Aliases / naming notes:** `LoginSignUp` is the dark-theme variant; `LoginSignUpLight` is the light-theme variant. These should be unified into a single `LoginSignUp` component with theme-aware tokens rather than two separate files. Both are product-specific, not generic design system primitives.
+**Aliases / naming notes:** `LoginSignUp` is the canonical theme-aware page component. `LoginSignUpLight` now delegates directly to it and remains temporarily available only to avoid breaking existing imports.
 
 ---
 
@@ -164,7 +163,7 @@ Two gaps apply universally and are not repeated in every row below.
 
 | Component | Family | Implementation | Storybook | Token coverage | Behaviour documented | Status |
 |---|---|---|---|---|---|---|
-| SegmentQueryConfiguration | Product | `src/app/components/SegmentQueryConfiguration.tsx` | None | Unknown | `SegmentQueryConfigurationDocumentation.tsx` | Partial — Missing Story |
+| SegmentQueryConfiguration | Product | `src/app/components/SegmentQueryConfiguration.tsx` | None | Deferred | `SegmentQueryConfigurationDocumentation.tsx` | Deferred — hidden from navigation |
 
 **Notes:** This is a domain-specific query builder for editorial content segments. It composes `Filter`, `Modal`, and form controls. It is not a generic design system component but is part of the CVP product layer. It should be documented in the specification as a product pattern, not a base component.
 
@@ -200,7 +199,7 @@ The following 46 components live in `src/app/components/ui/` and are unmodified 
 | Filtering and Search | Filter, FilterGroup, TagFilter | 3 components; all unregistered in token files |
 | Media and Editorial | RailContentGallery, RailDetails | 2 product-specific components |
 | Layout | Layout | 1 component; partially documented |
-| Authentication | LoginSignUp, LoginSignUpLight | 2 files; should be unified |
+| Authentication | LoginSignUp | 1 canonical component; legacy light export is a wrapper |
 | Product Patterns | SegmentQueryConfiguration | 1 product-specific query builder |
 | Utility / Internal | ThemeSwitcher, ImageWithFallback | Not publishable design system components |
 
@@ -341,7 +340,7 @@ The following 46 components live in `src/app/components/ui/` and are unmodified 
 | Slots | `title` · `description` · `children` · `header` · `footer` · close button |
 | Tabbed extras | `tabs[]` · `defaultActiveTab` · `onTabChange` |
 | Features | Portal rendering · escape key close · body scroll lock · backdrop click close |
-| Theme behaviour | Partial — unregistered `--modal-*` tokens |
+| Theme behaviour | Complete — Tier 3 contract resolves through theme-aware semantic tokens |
 
 ### Overlays — ContentBrowserModal
 
@@ -351,6 +350,7 @@ The following 46 components live in `src/app/components/ui/` and are unmodified 
 | Slots | `contentItems` (tree structure) · `title` |
 | Selection | single or `multiple` |
 | Callback | `onSelect` |
+| Theme behaviour | Complete — composes the canonical Modal contract and registered content-browser tokens |
 
 ### Feedback — Toast
 
@@ -358,7 +358,7 @@ The following 46 components live in `src/app/components/ui/` and are unmodified 
 |---|---|
 | Variant | `success` · `error` · `warning` · `info` |
 | Features | auto-dismiss (`duration`) · manual close (`onClose`) |
-| Theme behaviour | Partial — unregistered tokens |
+| Theme behaviour | Complete — registered Tier 3 variant tokens for both themes |
 
 ### Feedback — NotificationBanner
 
@@ -367,7 +367,7 @@ The following 46 components live in `src/app/components/ui/` and are unmodified 
 | Variant | `info` · `warning` · `success` · `error` |
 | Slots | `title` · `message` · `icon` (custom) |
 | Dismissible | Yes (`onDismiss`) |
-| Theme behaviour | Partial — gradient backgrounds, some hardcoded |
+| Theme behaviour | Complete — registered Tier 3 variant tokens; no component hardcoded colours |
 
 ### Data Display — Table
 
@@ -427,15 +427,16 @@ The following 46 components live in `src/app/components/ui/` and are unmodified 
 | Controlled | Yes (`selectedItems` + `onSelectionChange`) |
 | Token coverage | Partially `cvp-comp` (`--cvp-rail-*` in token file, legacy names in component) |
 
-### Authentication — LoginSignUp / LoginSignUpLight
+### Authentication — LoginSignUp
 
 | Dimension | Values |
 |---|---|
-| Fields | email · password (with show/hide toggle) |
-| States | loading · error |
+| Flows | sign in · sign up · optional in-page switching |
+| Fields | full name (sign up) · email · password (with show/hide toggle) |
+| States | default · loading · error |
 | Slots | `logoUrl` · `platformName` |
-| Actions | `onSignIn` · `onSSOSignIn` · `onForgotPassword` |
-| Theme | LoginSignUp = dark; LoginSignUpLight = light — should be unified |
+| Actions | `onSignIn` · `onSignUp` · `onSSOSignIn` · `onForgotPassword` |
+| Theme | One semantic token contract resolves light and dark |
 
 ---
 
@@ -630,11 +631,9 @@ Proposed sequence for `DESIGN_SYSTEM_SPECIFICATION.md`. Groups are ordered to mi
 **Where it should come from:** Design lead decision.  
 **Engineering assumption for now:** `TextInput` = simple, no slots, minimal variants. `MiscInput` = advanced, slots, four validation states. Document both; note that teams building simple forms should default to `TextInput`.
 
-### OQ-4 — LoginSignUp light/dark unification
+### OQ-4 — LoginSignUp light/dark unification — resolved
 
-**What is missing:** Two separate files exist. It is unclear whether the intent is to keep them as separate export targets or to unify under a single component with a `theme` prop or CSS `data-theme` attribute.  
-**Where it should come from:** Design Systems team decision before specification is written.  
-**Engineering assumption for now:** Specify as a single `LoginSignUp` component. Note that light-theme rendering is achieved via `data-theme="light"` on the wrapper, not a prop. `LoginSignUpLight.tsx` will be deprecated.
+`LoginSignUp` is the single canonical component and follows the global semantic theme. `LoginSignUpLight.tsx` is a deprecated compatibility wrapper and can be removed after consumers migrate.
 
 ### OQ-5 — Filter token registration
 

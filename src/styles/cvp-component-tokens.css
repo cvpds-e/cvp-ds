@@ -419,9 +419,178 @@
   --cvp-select-popup-shadow:     var(--cvp-menu-shadow);
   --cvp-select-popup-min-width:  var(--cvp-layout-pane-nav-width);
   --cvp-select-popup-max-width:  var(--cvp-layout-pane-supporting-min-width);
+  --cvp-select-popup-max-height: calc(var(--cvp-space-12) * 6.25);          /* 300px */
   --cvp-select-option-hover:     var(--cvp-menu-item-bg-hover);
   --cvp-select-option-selected:  var(--cvp-menu-item-bg-active);
   --cvp-select-option-selected-text: var(--cvp-menu-item-text-active);
+
+  /* Multi Select extends the shared input and menu contracts. */
+  --cvp-multi-select-bg:                 var(--cvp-input-bg);
+  --cvp-multi-select-bg-disabled:        var(--cvp-input-bg-disabled);
+  --cvp-multi-select-border:             var(--cvp-input-border);
+  --cvp-multi-select-border-width:       var(--cvp-input-border-width);
+  --cvp-multi-select-border-hover:       var(--cvp-input-border-hover);
+  --cvp-multi-select-border-focus:       var(--cvp-input-border-focus);
+  --cvp-multi-select-border-disabled:    var(--cvp-input-border-disabled);
+  --cvp-multi-select-focus-ring:         var(--cvp-input-focus-ring);
+  --cvp-multi-select-text:               var(--cvp-input-text);
+  --cvp-multi-select-text-disabled:      var(--cvp-input-text-disabled);
+  --cvp-multi-select-placeholder:        var(--cvp-input-placeholder);
+  --cvp-multi-select-label:              var(--cvp-color-text-primary);
+  --cvp-multi-select-support:            var(--cvp-color-text-muted);
+  --cvp-multi-select-error:              var(--cvp-input-border-error);
+  --cvp-multi-select-error-text:         var(--cvp-color-text-error);
+  --cvp-multi-select-icon:               var(--cvp-color-icon-subtle);
+  --cvp-multi-select-min-height:         var(--cvp-input-height);
+  --cvp-multi-select-padding-x:          var(--cvp-input-padding-x);
+  --cvp-multi-select-padding-y:          var(--cvp-space-1);
+  --cvp-multi-select-radius:             var(--cvp-input-radius);
+  --cvp-multi-select-font-size:          var(--cvp-input-font-size);
+  --cvp-multi-select-line-height:        var(--cvp-input-line-height);
+  --cvp-multi-select-label-size:         var(--cvp-input-label-size);
+  --cvp-multi-select-label-weight:       var(--cvp-input-label-weight);
+  --cvp-multi-select-support-size:       var(--cvp-input-support-size);
+  --cvp-multi-select-field-gap:          var(--cvp-input-field-gap);
+  --cvp-multi-select-transition:         var(--cvp-input-transition);
+  --cvp-multi-select-tag-bg:             var(--cvp-color-brand-default);
+  --cvp-multi-select-tag-text:           var(--cvp-color-text-on-brand);
+  --cvp-multi-select-tag-radius:         var(--cvp-shape-control-compact);
+  --cvp-multi-select-tag-height:         var(--cvp-space-6);
+  --cvp-multi-select-tag-padding-x:      var(--cvp-space-2);
+  --cvp-multi-select-tag-gap:            var(--cvp-space-1);
+  --cvp-multi-select-tag-max-width:      calc(var(--cvp-space-12) * 4);
+  --cvp-multi-select-tag-remove-hover:   var(--cvp-color-interactive-overlay);
+  --cvp-multi-select-tag-remove-active:  var(--cvp-color-interactive-overlay-strong);
+  --cvp-multi-select-icon-size:          var(--cvp-space-4);
+  --cvp-multi-select-icon-target:        var(--cvp-space-6);
+  --cvp-multi-select-clear-icon:         var(--cvp-color-icon-default);
+  --cvp-multi-select-clear-icon-hover:   var(--cvp-color-text-primary);
+  --cvp-multi-select-clear-icon-active:  var(--cvp-color-text-primary);
+  --cvp-multi-select-clear-bg:           transparent;
+  --cvp-multi-select-clear-bg-hover:     var(--cvp-color-surface-hover);
+  --cvp-multi-select-clear-bg-active:    var(--cvp-color-surface-active);
+  --cvp-multi-select-clear-border:       transparent;
+  --cvp-multi-select-clear-border-hover: var(--cvp-color-border-strong);
+  --cvp-multi-select-search-min-width:   calc(var(--cvp-space-12) * 2);
+  --cvp-multi-select-popup-bg:           var(--cvp-menu-bg);
+  --cvp-multi-select-popup-text:         var(--cvp-menu-item-text);
+  --cvp-multi-select-popup-border:       var(--cvp-menu-border);
+  --cvp-multi-select-popup-radius:       var(--cvp-menu-radius);
+  --cvp-multi-select-popup-shadow:       var(--cvp-menu-shadow);
+  --cvp-multi-select-popup-max-height:   calc(var(--cvp-space-12) * 5);
+  --cvp-multi-select-option-hover:       var(--cvp-menu-item-bg-hover);
+  --cvp-multi-select-option-selected:    var(--cvp-menu-item-bg-active);
+  --cvp-multi-select-option-selected-text: var(--cvp-menu-item-text-active);
+  --cvp-multi-select-option-padding-x:   var(--cvp-space-3);
+  --cvp-multi-select-option-padding-y:   var(--cvp-space-2);
+  --cvp-multi-select-option-radius:      var(--cvp-shape-control-compact);
+  --cvp-multi-select-meta:               var(--cvp-color-text-muted);
+  --cvp-multi-select-action:             var(--cvp-color-text-link-default);
+  --cvp-multi-select-action-hover:       var(--cvp-color-text-link-hover);
+
+  /* Filter composes input, menu, and removable clause roles. */
+  --cvp-filter-bg:                  var(--cvp-input-bg);
+  --cvp-filter-bg-disabled:         var(--cvp-input-bg-disabled);
+  --cvp-filter-border:              var(--cvp-input-border);
+  --cvp-filter-border-width:        var(--cvp-input-border-width);
+  --cvp-filter-border-hover:        var(--cvp-input-border-hover);
+  --cvp-filter-border-focus:        var(--cvp-input-border-focus);
+  --cvp-filter-border-disabled:     var(--cvp-input-border-disabled);
+  --cvp-filter-focus-ring:          var(--cvp-input-focus-ring);
+  --cvp-filter-text:                var(--cvp-input-text);
+  --cvp-filter-text-disabled:       var(--cvp-input-text-disabled);
+  --cvp-filter-placeholder:         var(--cvp-input-placeholder);
+  --cvp-filter-icon:                var(--cvp-color-icon-subtle);
+  --cvp-filter-height:              var(--cvp-input-height);
+  --cvp-filter-padding:             var(--cvp-space-1) var(--cvp-space-2);
+  --cvp-filter-gap:                 var(--cvp-space-2);
+  --cvp-filter-field-gap:           var(--cvp-input-field-gap);
+  --cvp-filter-radius:              var(--cvp-input-radius);
+  --cvp-filter-font-size:           var(--cvp-input-font-size);
+  --cvp-filter-support-size:        var(--cvp-input-support-size);
+  --cvp-filter-transition:          var(--cvp-input-transition);
+  --cvp-filter-inner-shadow:        inset 0 1px 0 color-mix(in srgb, var(--cvp-color-text-primary) 3%, transparent);
+  --cvp-filter-chip-bg:             var(--cvp-color-surface-subtle);
+  --cvp-filter-chip-bg-hover:       var(--cvp-color-surface-hover);
+  --cvp-filter-chip-text:           var(--cvp-color-text-primary);
+  --cvp-filter-chip-label:          var(--cvp-color-text-muted);
+  --cvp-filter-chip-label-size:     var(--cvp-font-size-xs);
+  --cvp-filter-chip-separator:      var(--cvp-color-text-subtle);
+  --cvp-filter-chip-icon:           var(--cvp-color-icon-subtle);
+  --cvp-filter-chip-icon-hover:     var(--cvp-color-text-primary);
+  --cvp-filter-chip-remove-hover:   var(--cvp-color-surface-hover);
+  --cvp-filter-chip-border:         var(--cvp-border-base);
+  --cvp-filter-chip-border-hover:   var(--cvp-color-border-strong);
+  --cvp-filter-chip-height:         var(--cvp-space-8);
+  --cvp-filter-chip-padding-x:      var(--cvp-space-2);
+  --cvp-filter-chip-radius:         var(--cvp-shape-control-compact);
+  --cvp-filter-icon-size:           var(--cvp-space-4);
+  --cvp-filter-icon-target:         var(--cvp-space-6);
+  --cvp-filter-trigger-padding-x:   var(--cvp-space-2);
+  --cvp-filter-trigger-hover:       var(--cvp-color-surface-hover);
+  --cvp-filter-trigger-border-hover: var(--cvp-color-border-default);
+  --cvp-filter-menu-bg:             var(--cvp-menu-bg);
+  --cvp-filter-menu-text:           var(--cvp-menu-item-text);
+  --cvp-filter-menu-border:         var(--cvp-menu-border);
+  --cvp-filter-menu-radius:         var(--cvp-menu-radius);
+  --cvp-filter-menu-shadow:         var(--cvp-menu-shadow);
+  --cvp-filter-menu-width:          calc(var(--cvp-space-8) * 10);
+  --cvp-filter-menu-max-height:     calc(var(--cvp-space-12) * 6);
+  --cvp-filter-menu-padding:        var(--cvp-space-3);
+  --cvp-filter-search-bg:           var(--cvp-input-bg);
+  --cvp-filter-search-border:       var(--cvp-input-border);
+  --cvp-filter-search-height:       var(--cvp-input-height);
+  --cvp-filter-search-input-height: var(--cvp-space-8);
+  --cvp-filter-search-padding-x:    var(--cvp-input-padding-x);
+  --cvp-filter-count-size:          var(--cvp-space-5);
+  --cvp-filter-count-bg:            var(--cvp-color-brand-default);
+  --cvp-filter-count-text:          var(--cvp-color-text-on-brand);
+  --cvp-filter-count-border:        var(--cvp-color-surface-page);
+  --cvp-filter-option-hover:        var(--cvp-menu-item-bg-hover);
+  --cvp-filter-option-padding:      var(--cvp-space-2) var(--cvp-space-3);
+  --cvp-filter-option-height:       var(--cvp-input-height);
+  --cvp-filter-option-gap:          var(--cvp-space-0);
+  --cvp-filter-options-padding:     var(--cvp-space-1);
+  --cvp-filter-value-step-gap:      var(--cvp-space-1);
+  --cvp-filter-option-radius:       var(--cvp-shape-control-compact);
+  --cvp-filter-meta:                var(--cvp-color-text-muted);
+
+  /* Date Picker calendar and range roles. */
+  --cvp-date-picker-bg:                 var(--cvp-color-surface-overlay);
+  --cvp-date-picker-text:               var(--cvp-color-text-primary);
+  --cvp-date-picker-muted:              var(--cvp-color-text-muted);
+  --cvp-date-picker-border:             var(--cvp-color-border-strong);
+  --cvp-date-picker-radius:             var(--cvp-shape-overlay-base);
+  --cvp-date-picker-shadow:             var(--cvp-shadow-md);
+  --cvp-date-picker-padding:            var(--cvp-space-4);
+  --cvp-date-picker-gap:                var(--cvp-space-3);
+  --cvp-date-picker-day-size:           var(--cvp-space-8);
+  --cvp-date-picker-day-radius:         var(--cvp-shape-control-compact);
+  --cvp-date-picker-day-hover:          var(--cvp-color-surface-hover);
+  --cvp-date-picker-day-selected-bg:    var(--cvp-color-brand-default);
+  --cvp-date-picker-day-selected-text:  var(--cvp-color-text-on-brand);
+  --cvp-date-picker-range-bg:           var(--cvp-color-menu-item-active-bg);
+  --cvp-date-picker-range-text:         var(--cvp-color-menu-item-active-text);
+  --cvp-date-picker-today-border:       var(--cvp-focus-border-color);
+  --cvp-date-picker-focus-ring:         var(--cvp-border-focus-ring);
+  --cvp-date-picker-nav-size:           var(--cvp-space-8);
+  --cvp-date-picker-font-size:          var(--cvp-font-size-sm);
+  --cvp-date-picker-weekday-size:       var(--cvp-font-size-xs);
+  --cvp-date-picker-transition:         background-color var(--cvp-motion-duration-fast) var(--cvp-motion-easing-standard), color var(--cvp-motion-duration-fast) var(--cvp-motion-easing-standard);
+  --cvp-date-picker-time-bg:            var(--cvp-input-bg);
+  --cvp-date-picker-time-bg-hover:      var(--cvp-color-surface-hover);
+  --cvp-date-picker-time-border:        var(--cvp-input-border);
+  --cvp-date-picker-time-border-hover:  var(--cvp-input-border-hover);
+  --cvp-date-picker-time-dialog-bg:     var(--cvp-color-surface-overlay);
+  --cvp-date-picker-time-dialog-text:   var(--cvp-color-text-primary);
+  --cvp-date-picker-time-dialog-border: var(--cvp-color-border-strong);
+  --cvp-date-picker-time-dialog-radius: var(--cvp-shape-overlay-base);
+  --cvp-date-picker-time-dialog-shadow: var(--cvp-shadow-lg);
+  --cvp-date-picker-time-dialog-width:  calc(var(--cvp-space-12) * 6);
+  --cvp-date-picker-time-options-height: calc(var(--cvp-space-12) * 3);
+  --cvp-date-picker-time-selected-bg:   var(--cvp-color-brand-default);
+  --cvp-date-picker-time-selected-text: var(--cvp-color-text-on-brand);
+  --cvp-date-picker-time-selected-border: var(--cvp-color-brand-hover);
 
   /* ===========================================================================
      CHECKBOX
@@ -431,7 +600,7 @@
   --cvp-checkbox-size:            var(--cvp-space-4);                     /* 16px */
   --cvp-checkbox-target-size:     var(--cvp-space-6);                     /* 24px */
   --cvp-checkbox-radius:          var(--cvp-shape-control-compact);        /* 4px */
-  --cvp-checkbox-border:          var(--cvp-color-text-muted);
+  --cvp-checkbox-border:          var(--cvp-input-border);
   --cvp-checkbox-border-width:    var(--cvp-border-base-width);
   --cvp-checkbox-border-hover:    var(--cvp-focus-border-color);
   --cvp-checkbox-border-error:    var(--cvp-color-border-error);
@@ -482,6 +651,108 @@
   --cvp-modal-backdrop-blur: blur(8px);
   --cvp-modal-header-font-size:    var(--cvp-font-size-xl);                /* 18px */
   --cvp-modal-header-font-weight:  var(--cvp-font-weight-semibold);        /* 600 */
+  --cvp-modal-width-small:    400px;
+  --cvp-modal-width-medium:   var(--cvp-modal-max-width);
+  --cvp-modal-width-large:    800px;
+  --cvp-modal-viewport-inset: var(--cvp-space-8);
+  --cvp-modal-viewport-inset-mobile: var(--cvp-space-2);
+  --cvp-modal-header-padding-y: var(--cvp-space-5);
+  --cvp-modal-header-close-space: calc(var(--cvp-modal-padding) + var(--cvp-modal-close-size));
+  --cvp-modal-heading-gap:     var(--cvp-space-2);
+  --cvp-modal-header-line-height: var(--cvp-line-height-relaxed);
+  --cvp-modal-description-text: var(--cvp-color-text-muted);
+  --cvp-modal-description-font-size: var(--cvp-font-size-md);
+  --cvp-modal-description-line-height: var(--cvp-line-height-snug);
+  --cvp-modal-body-font-size:  var(--cvp-font-size-md);
+  --cvp-modal-body-line-height:var(--cvp-line-height-normal);
+  --cvp-modal-close-size:      var(--cvp-space-8);
+  --cvp-modal-close-offset:    var(--cvp-space-4);
+  --cvp-modal-close-radius:    var(--cvp-radius-sm);
+  --cvp-modal-close-color:     var(--cvp-color-icon-subtle);
+  --cvp-modal-close-color-hover: var(--cvp-color-icon-default);
+  --cvp-modal-close-bg-hover:  var(--cvp-color-surface-hover);
+  --cvp-modal-focus-ring:      var(--cvp-border-focus-ring);
+  --cvp-modal-footer-bg:       var(--cvp-modal-bg);
+  --cvp-modal-footer-gap:      var(--cvp-space-2);
+  --cvp-modal-footer-padding-y:var(--cvp-space-4);
+  --cvp-modal-danger-title:    var(--cvp-color-text-danger);
+  --cvp-modal-tab-gap:         var(--cvp-space-1);
+  --cvp-modal-tab-height:      var(--cvp-space-900);
+  --cvp-modal-tab-padding-x:   var(--cvp-space-3);
+  --cvp-modal-tab-padding-y:   var(--cvp-space-2);
+  --cvp-modal-tab-font-size:   var(--cvp-font-size-md);
+  --cvp-modal-tab-font-weight: var(--cvp-font-weight-medium);
+  --cvp-modal-tab-text:        var(--cvp-color-text-muted);
+  --cvp-modal-tab-text-hover:  var(--cvp-color-text-primary);
+  --cvp-modal-tab-text-selected: var(--cvp-color-text-primary);
+  --cvp-modal-tab-text-disabled: var(--cvp-color-text-disabled);
+  --cvp-modal-tab-bg-hover:    var(--cvp-color-surface-hover);
+  --cvp-modal-tab-indicator:   var(--cvp-color-brand-default);
+  --cvp-modal-tab-indicator-height: var(--cvp-border-strong-width);
+  --cvp-modal-tab-indicator-radius: var(--cvp-radius-full);
+  --cvp-modal-scrollbar-track: var(--cvp-color-surface-sunken);
+  --cvp-modal-scrollbar-thumb: var(--cvp-color-border-strong);
+  --cvp-modal-backdrop-duration: var(--cvp-motion-duration-fast);
+  --cvp-modal-content-duration: var(--cvp-motion-duration-base);
+  --cvp-modal-easing:          var(--cvp-motion-easing-standard);
+  --cvp-modal-enter-offset:    var(--cvp-space-2);
+  --cvp-modal-enter-scale:     0.98;
+
+  /* ===========================================================================
+     CONTENT BROWSER MODAL
+     Public: result/item surfaces, selection, controls and placeholder treatment.
+     Internal: composed layout, filtering, pagination and metadata geometry.
+  =========================================================================== */
+  --cvp-content-browser-text:            var(--cvp-color-text-primary);
+  --cvp-content-browser-text-muted:      var(--cvp-color-text-muted);
+  --cvp-content-browser-placeholder-text:var(--cvp-color-text-placeholder);
+  --cvp-content-browser-icon:            var(--cvp-color-icon-default);
+  --cvp-content-browser-icon-disabled:   var(--cvp-color-icon-disabled);
+  --cvp-content-browser-divider:         var(--cvp-modal-divider);
+  --cvp-content-browser-border-width:    var(--cvp-border-base-width);
+  --cvp-content-browser-control-bg:      var(--cvp-input-bg);
+  --cvp-content-browser-control-bg-hover:var(--cvp-color-surface-hover);
+  --cvp-content-browser-control-border:  var(--cvp-input-border);
+  --cvp-content-browser-control-border-focus: var(--cvp-input-border-focus);
+  --cvp-content-browser-focus-ring:      var(--cvp-border-focus-ring);
+  --cvp-content-browser-filter-bg:       var(--cvp-color-surface-subtle);
+  --cvp-content-browser-filter-active:   var(--cvp-color-brand-default);
+  --cvp-content-browser-selection-bg:    var(--cvp-color-surface-subtle);
+  --cvp-content-browser-chip-bg:         var(--cvp-chip-bg);
+  --cvp-content-browser-chip-border:     var(--cvp-chip-border);
+  --cvp-content-browser-item-bg:         var(--cvp-color-surface-default);
+  --cvp-content-browser-item-bg-hover:   var(--cvp-color-surface-hover);
+  --cvp-content-browser-item-bg-selected:var(--cvp-color-menu-item-active-bg);
+  --cvp-content-browser-item-border:     var(--cvp-color-border-subtle);
+  --cvp-content-browser-item-border-hover: var(--cvp-color-border-default);
+  --cvp-content-browser-item-border-selected: var(--cvp-color-brand-default);
+  --cvp-content-browser-placeholder-bg:  var(--cvp-color-surface-sunken);
+  --cvp-content-browser-placeholder-icon:var(--cvp-color-icon-subtle);
+  --cvp-content-browser-checkbox-scrim:  var(--cvp-color-surface-overlay);
+  --cvp-content-browser-gap:             var(--cvp-space-3);
+  --cvp-content-browser-control-gap:     var(--cvp-space-1);
+  --cvp-content-browser-toolbar-padding: var(--cvp-space-4) var(--cvp-space-6);
+  --cvp-content-browser-filter-padding:  var(--cvp-space-4) var(--cvp-space-6);
+  --cvp-content-browser-selection-padding: var(--cvp-space-3) var(--cvp-space-6);
+  --cvp-content-browser-content-padding: var(--cvp-space-4);
+  --cvp-content-browser-control-height:  var(--cvp-space-8);
+  --cvp-content-browser-control-padding-x: var(--cvp-space-3);
+  --cvp-content-browser-control-radius:  var(--cvp-radius-sm);
+  --cvp-content-browser-search-max-width: 420px;
+  --cvp-content-browser-filter-dot-size: var(--cvp-space-2);
+  --cvp-content-browser-results-bar-height: var(--cvp-space-900);
+  --cvp-content-browser-card-min-width:  150px;
+  --cvp-content-browser-list-image-width: 120px;
+  --cvp-content-browser-item-gap:        var(--cvp-space-3);
+  --cvp-content-browser-item-padding:    var(--cvp-space-3);
+  --cvp-content-browser-item-radius:     var(--cvp-radius-md);
+  --cvp-content-browser-chip-height:     var(--cvp-space-6);
+  --cvp-content-browser-chip-radius:     var(--cvp-radius-full);
+  --cvp-content-browser-font-size:       var(--cvp-font-size-md);
+  --cvp-content-browser-meta-font-size:  var(--cvp-font-size-sm);
+  --cvp-content-browser-state-min-height: 280px;
+  --cvp-content-browser-pagination-height: var(--cvp-space-900);
+  --cvp-content-browser-pagination-control-size: var(--cvp-space-8);
 
   /* ===========================================================================
      DROPDOWN MENU
@@ -531,30 +802,343 @@
 
   /* ===========================================================================
      NAVIGATION — HEADER
-     Public:   btn-bg-hover, border-bottom
-     Internal: separator-color, z-index
-     Local:    height, padding-x, separator-height
+     Public:   bg, text, border, interaction, avatar
+     Internal: focus, menu composition, typography, elevation
+     Local:    height, spacing, responsive widths
   =========================================================================== */
-  --cvp-header-height:            45px;
-  --cvp-header-padding-x:         var(--cvp-space-4);                       /* 16px desktop */
-  --cvp-header-border-bottom:     var(--cvp-color-border-subtle);
-  --cvp-header-separator-color:   var(--cvp-color-border-default);
-  --cvp-header-separator-height:  16px;
-  --cvp-header-btn-bg-hover:      var(--cvp-color-interactive-overlay);
-  --cvp-header-btn-bg-focus:      var(--cvp-color-interactive-overlay);
-  --cvp-header-z-index:           var(--cvp-z-overlay);                     /* 1000 */
+  --cvp-header-bg:                         var(--cvp-color-nav-bg);
+  --cvp-header-text:                       var(--cvp-color-text-primary);
+  --cvp-header-brand-text:                 var(--cvp-color-text-primary);
+  --cvp-header-control-text:               var(--cvp-color-text-muted);
+  --cvp-header-control-text-hover:         var(--cvp-color-text-primary);
+  --cvp-header-border-bottom:              var(--cvp-color-border-subtle);
+  --cvp-header-border-width:               var(--cvp-border-base-width);
+  --cvp-header-separator-color:            var(--cvp-color-border-default);
+  --cvp-header-divider-width:              var(--cvp-border-divider-width);
+  --cvp-header-btn-bg-hover:               var(--cvp-color-surface-hover);
+  --cvp-header-focus-ring:                 var(--cvp-border-focus-ring);
+  --cvp-header-height:                     var(--cvp-space-900);
+  --cvp-header-padding-x:                  var(--cvp-space-4);
+  --cvp-header-padding-x-compact:          var(--cvp-space-3);
+  --cvp-header-gap:                        var(--cvp-space-2);
+  --cvp-header-brand-gap:                  var(--cvp-space-2);
+  --cvp-header-control-gap:                var(--cvp-space-2);
+  --cvp-header-control-height:             var(--cvp-space-8);
+  --cvp-header-control-padding-x:          var(--cvp-space-2);
+  --cvp-header-control-radius:             var(--cvp-shape-control-compact);
+  --cvp-header-logo-size:                  var(--cvp-space-6);
+  --cvp-header-logo-stroke:                var(--cvp-border-strong-width);
+  --cvp-header-logo-type-size:             var(--cvp-font-size-xs);
+  --cvp-header-icon-size:                  var(--cvp-space-4);
+  --cvp-header-separator-height:           var(--cvp-space-4);
+  --cvp-header-selector-max-width:         calc(var(--cvp-space-12) * 5);
+  --cvp-header-selector-max-width-compact: calc(var(--cvp-space-12) * 3);
+  --cvp-header-selector-max-width-mobile:  calc(var(--cvp-space-12) * 2);
+  --cvp-header-font-family:                var(--cvp-font-family-sans);
+  --cvp-header-font-size:                  var(--cvp-font-size-sm);
+  --cvp-header-font-weight:                var(--cvp-font-weight-regular);
+  --cvp-header-brand-weight:               var(--cvp-font-weight-medium);
+  --cvp-header-line-height:                var(--cvp-line-height-snug);
+  --cvp-header-letter-spacing:             var(--cvp-letter-spacing-normal);
+  --cvp-header-transition-duration:        var(--cvp-motion-duration-fast);
+  --cvp-header-transition-easing:          var(--cvp-motion-easing-standard);
+  --cvp-header-transition:                 color var(--cvp-header-transition-duration) var(--cvp-header-transition-easing), background-color var(--cvp-header-transition-duration) var(--cvp-header-transition-easing), box-shadow var(--cvp-header-transition-duration) var(--cvp-header-transition-easing);
+  --cvp-header-avatar-bg:                  var(--cvp-color-brand-default);
+  --cvp-header-avatar-text:                var(--cvp-color-text-on-brand);
+  --cvp-header-avatar-size:                var(--cvp-space-6);
+  --cvp-header-avatar-target:              var(--cvp-space-8);
+  --cvp-header-avatar-font-size:           var(--cvp-font-size-xs);
+  --cvp-header-menu-bg:                    var(--cvp-menu-bg);
+  --cvp-header-menu-text:                  var(--cvp-menu-item-text);
+  --cvp-header-menu-text-active:           var(--cvp-menu-item-text-active);
+  --cvp-header-menu-border:                var(--cvp-menu-border);
+  --cvp-header-menu-border-width:          var(--cvp-border-base-width);
+  --cvp-header-menu-radius:                var(--cvp-menu-radius);
+  --cvp-header-menu-shadow:                var(--cvp-menu-shadow);
+  --cvp-header-menu-item-bg-hover:         var(--cvp-menu-item-bg-hover);
+  --cvp-header-menu-item-bg-active:        var(--cvp-menu-item-bg-active);
+  --cvp-header-menu-item-radius:           var(--cvp-menu-item-radius);
+  --cvp-header-menu-item-height:           var(--cvp-input-height);
+  --cvp-header-menu-item-padding-x:        var(--cvp-menu-item-padding-x);
+  --cvp-header-menu-item-padding-y:        var(--cvp-menu-item-padding-y);
+  --cvp-header-menu-item-gap:              var(--cvp-space-2);
+  --cvp-header-menu-icon:                  var(--cvp-color-icon-default);
+  --cvp-header-menu-min-width:             calc(var(--cvp-space-12) * 4);
+  --cvp-header-menu-max-width:             calc(var(--cvp-space-12) * 7);
+  --cvp-header-menu-max-height:            calc(var(--cvp-space-12) * 6);
+  --cvp-header-user-menu-width:            calc(var(--cvp-space-12) * 5);
+  --cvp-header-menu-padding:               var(--cvp-menu-padding);
+  --cvp-header-menu-offset:                var(--cvp-space-1);
+  --cvp-header-menu-z:                     var(--cvp-z-dropdown);
+  --cvp-header-identity-padding:           var(--cvp-space-3);
+  --cvp-header-meta-text:                  var(--cvp-color-text-muted);
+  --cvp-header-danger-text:                var(--cvp-color-text-danger);
+  --cvp-header-z-index:                    var(--cvp-z-overlay);
 
   /* ===========================================================================
      BREADCRUMBS
-     Public:   bg, text, text-active, sep
-     Internal: font-size, font-weight
+     Public:   bg, text, text-active, separator, radius
+     Internal: interaction, focus, menu, typography
+     Local:    spacing, targets, truncation
   =========================================================================== */
-  --cvp-breadcrumb-bg:             var(--cvp-color-breadcrumb-bg);
-  --cvp-breadcrumb-text:           var(--cvp-color-text-muted);
-  --cvp-breadcrumb-text-active:    var(--cvp-color-text-primary);
-  --cvp-breadcrumb-sep:            var(--cvp-color-border-strong);
-  --cvp-breadcrumb-font-size:      var(--cvp-font-size-sm);                 /* 13px */
-  --cvp-breadcrumb-font-weight:    var(--cvp-font-weight-regular);          /* 400 */
+  --cvp-breadcrumb-bg:                       var(--cvp-color-breadcrumb-bg);
+  --cvp-breadcrumb-border:                   var(--cvp-color-border-subtle);
+  --cvp-breadcrumb-border-width:             var(--cvp-border-base-width);
+  --cvp-breadcrumb-text:                     var(--cvp-color-text-muted);
+  --cvp-breadcrumb-text-hover:               var(--cvp-color-text-primary);
+  --cvp-breadcrumb-text-active:              var(--cvp-color-text-primary);
+  --cvp-breadcrumb-text-current-hover:        var(--cvp-color-text-muted);
+  --cvp-breadcrumb-text-disabled:            var(--cvp-color-text-disabled);
+  --cvp-breadcrumb-sep:                      var(--cvp-color-icon-muted);
+  --cvp-breadcrumb-focus-ring:               var(--cvp-border-focus-ring);
+  --cvp-breadcrumb-radius:                   var(--cvp-shape-control-compact);
+  --cvp-breadcrumb-font-family:              var(--cvp-font-family-sans);
+  --cvp-breadcrumb-font-size:                var(--cvp-font-size-md);
+  --cvp-breadcrumb-font-weight:              var(--cvp-font-weight-regular);
+  --cvp-breadcrumb-font-weight-active:       var(--cvp-font-weight-medium);
+  --cvp-breadcrumb-line-height:              var(--cvp-line-height-snug);
+  --cvp-breadcrumb-letter-spacing:           var(--cvp-letter-spacing-normal);
+  --cvp-breadcrumb-padding-x:                var(--cvp-space-6);
+  --cvp-breadcrumb-padding-x-compact:        var(--cvp-space-3);
+  --cvp-breadcrumb-padding-y:                var(--cvp-space-2);
+  --cvp-breadcrumb-gap:                      var(--cvp-space-1);
+  --cvp-breadcrumb-gap-compact:              calc(var(--cvp-space-1) / 2);
+  --cvp-breadcrumb-item-gap:                 var(--cvp-space-1);
+  --cvp-breadcrumb-action-padding-x:         var(--cvp-space-1);
+  --cvp-breadcrumb-target-height:            var(--cvp-space-8);
+  --cvp-breadcrumb-icon-size:                var(--cvp-space-4);
+  --cvp-breadcrumb-separator-size:           var(--cvp-space-4);
+  --cvp-breadcrumb-current-max-width:        calc(var(--cvp-space-12) * 6);
+  --cvp-breadcrumb-current-max-width-compact:calc(var(--cvp-space-12) * 3);
+  --cvp-breadcrumb-transition-duration:      var(--cvp-motion-duration-fast);
+  --cvp-breadcrumb-transition-easing:        var(--cvp-motion-easing-standard);
+  --cvp-breadcrumb-menu-bg:                  var(--cvp-menu-bg);
+  --cvp-breadcrumb-menu-text:                var(--cvp-menu-item-text);
+  --cvp-breadcrumb-menu-text-hover:          var(--cvp-menu-item-text-active);
+  --cvp-breadcrumb-menu-bg-hover:            var(--cvp-menu-item-bg-hover);
+  --cvp-breadcrumb-menu-border:              var(--cvp-menu-border);
+  --cvp-breadcrumb-menu-border-width:        var(--cvp-border-base-width);
+  --cvp-breadcrumb-menu-radius:              var(--cvp-menu-radius);
+  --cvp-breadcrumb-menu-shadow:              var(--cvp-menu-shadow);
+  --cvp-breadcrumb-menu-z:                   var(--cvp-z-dropdown);
+  --cvp-breadcrumb-menu-min-width:           calc(var(--cvp-space-12) * 4);
+  --cvp-breadcrumb-menu-max-height:          calc(var(--cvp-space-12) * 5);
+  --cvp-breadcrumb-menu-offset:              var(--cvp-space-1);
+  --cvp-breadcrumb-menu-padding:             var(--cvp-menu-padding);
+  --cvp-breadcrumb-menu-item-height:         var(--cvp-input-height);
+  --cvp-breadcrumb-menu-item-padding-x:      var(--cvp-menu-item-padding-x);
+  --cvp-breadcrumb-menu-item-padding-y:      var(--cvp-menu-item-padding-y);
+  --cvp-breadcrumb-menu-item-gap:            var(--cvp-space-2);
+  --cvp-breadcrumb-menu-item-radius:         var(--cvp-menu-item-radius);
+  --cvp-breadcrumb-menu-icon:                var(--cvp-color-icon-default);
+  --cvp-breadcrumb-menu-icon-size:           var(--cvp-space-4);
+  --cvp-breadcrumb-menu-divider:             var(--cvp-color-border-subtle);
+  --cvp-breadcrumb-menu-divider-margin:      var(--cvp-space-1);
+  --cvp-breadcrumb-divider-width:            var(--cvp-border-divider-width);
+
+  /* ===========================================================================
+     TABS
+     Public:   text, active text, indicator, list border, radius
+     Internal: interaction, focus, disabled, typography, motion
+     Local:    spacing, dimensions, vertical layout
+  =========================================================================== */
+  --cvp-tabs-list-bg:              transparent;
+  --cvp-tabs-list-border:          var(--cvp-color-border-default);
+  --cvp-tabs-list-border-width:    var(--cvp-border-base-width);
+  --cvp-tabs-tab-bg:               transparent;
+  --cvp-tabs-tab-bg-hover:         var(--cvp-color-surface-hover);
+  --cvp-tabs-tab-bg-active:        transparent;
+  --cvp-tabs-text:                 var(--cvp-color-text-muted);
+  --cvp-tabs-text-hover:           var(--cvp-color-text-primary);
+  --cvp-tabs-text-active:          var(--cvp-color-text-primary);
+  --cvp-tabs-text-disabled:        var(--cvp-color-text-disabled);
+  --cvp-tabs-panel-text:           var(--cvp-color-text-primary);
+  --cvp-tabs-indicator:            var(--cvp-color-brand-default);
+  --cvp-tabs-focus-ring:           var(--cvp-border-focus-ring);
+  --cvp-tabs-disabled-opacity:     var(--cvp-opacity-disabled);
+  --cvp-tabs-tab-radius:           var(--cvp-shape-control-compact);
+  --cvp-tabs-panel-radius:         var(--cvp-radius-sm);
+  --cvp-tabs-tab-height:           var(--cvp-space-900);
+  --cvp-tabs-tab-padding-x:        var(--cvp-space-4);
+  --cvp-tabs-tab-padding-y:        var(--cvp-space-2);
+  --cvp-tabs-indicator-size:       var(--cvp-border-strong-width);
+  --cvp-tabs-indicator-inset:      var(--cvp-space-4);
+  --cvp-tabs-label-gap:            var(--cvp-space-2);
+  --cvp-tabs-icon-size:            var(--cvp-space-4);
+  --cvp-tabs-panel-gap:            var(--cvp-space-6);
+  --cvp-tabs-vertical-gap:         var(--cvp-space-6);
+  --cvp-tabs-font-family:          var(--cvp-font-family-sans);
+  --cvp-tabs-font-size:            var(--cvp-font-size-sm);
+  --cvp-tabs-font-weight:          var(--cvp-font-weight-medium);
+  --cvp-tabs-font-weight-active:   var(--cvp-font-weight-semibold);
+  --cvp-tabs-line-height:          var(--cvp-line-height-snug);
+  --cvp-tabs-letter-spacing:       var(--cvp-letter-spacing-normal);
+  --cvp-tabs-transition-duration:  var(--cvp-motion-duration-fast);
+  --cvp-tabs-indicator-duration:   var(--cvp-motion-duration-base);
+  --cvp-tabs-panel-duration:       var(--cvp-motion-duration-fast);
+  --cvp-tabs-transition-easing:    var(--cvp-motion-easing-standard);
+  --cvp-tabs-transition:           color var(--cvp-tabs-transition-duration) var(--cvp-tabs-transition-easing), background-color var(--cvp-tabs-transition-duration) var(--cvp-tabs-transition-easing), box-shadow var(--cvp-tabs-transition-duration) var(--cvp-tabs-transition-easing);
+
+  /* ===========================================================================
+     ACCORDION
+     Public:   bg, border, text, hover, active, radius
+     Internal: focus, disabled, icons, content, typography, motion
+     Local:    trigger/content spacing and dimensions
+  =========================================================================== */
+  --cvp-accordion-bg:                    var(--cvp-color-surface-default);
+  --cvp-accordion-border:                var(--cvp-color-border-default);
+  --cvp-accordion-border-width:          var(--cvp-border-base-width);
+  --cvp-accordion-divider:               var(--cvp-color-border-subtle);
+  --cvp-accordion-divider-width:         var(--cvp-border-divider-width);
+  --cvp-accordion-radius:                var(--cvp-shape-surface-subtle);
+  --cvp-accordion-text:                  var(--cvp-color-text-primary);
+  --cvp-accordion-text-disabled:         var(--cvp-color-text-disabled);
+  --cvp-accordion-trigger-bg:            transparent;
+  --cvp-accordion-trigger-bg-hover:      var(--cvp-color-surface-hover);
+  --cvp-accordion-trigger-bg-active:     var(--cvp-color-surface-subtle);
+  --cvp-accordion-trigger-text:          var(--cvp-color-text-secondary);
+  --cvp-accordion-trigger-text-hover:    var(--cvp-color-text-primary);
+  --cvp-accordion-trigger-text-active:   var(--cvp-color-text-primary);
+  --cvp-accordion-content-bg:            var(--cvp-color-surface-default);
+  --cvp-accordion-content-text:          var(--cvp-color-text-secondary);
+  --cvp-accordion-chevron:               var(--cvp-color-icon-muted);
+  --cvp-accordion-leading-icon:          var(--cvp-color-icon-default);
+  --cvp-accordion-leading-icon-primary:  var(--cvp-color-icon-brand);
+  --cvp-accordion-focus-ring:            inset 0 0 0 var(--cvp-border-focus-width) var(--cvp-focus-border-color);
+  --cvp-accordion-disabled-opacity:      var(--cvp-opacity-disabled);
+  --cvp-accordion-trigger-height:        var(--cvp-space-900);
+  --cvp-accordion-trigger-padding-x:     var(--cvp-space-4);
+  --cvp-accordion-trigger-padding-y:     var(--cvp-space-2);
+  --cvp-accordion-trigger-gap:           var(--cvp-space-3);
+  --cvp-accordion-title-gap:             var(--cvp-space-2);
+  --cvp-accordion-content-padding-x:     var(--cvp-space-4);
+  --cvp-accordion-content-padding-y:     var(--cvp-space-4);
+  --cvp-accordion-icon-size:             var(--cvp-space-4);
+  --cvp-accordion-font-family:           var(--cvp-font-family-sans);
+  --cvp-accordion-font-size:             var(--cvp-font-size-md);
+  --cvp-accordion-font-weight:           var(--cvp-font-weight-medium);
+  --cvp-accordion-line-height:           var(--cvp-line-height-snug);
+  --cvp-accordion-letter-spacing:        var(--cvp-letter-spacing-normal);
+  --cvp-accordion-content-font-size:     var(--cvp-font-size-sm);
+  --cvp-accordion-content-line-height:   var(--cvp-line-height-normal);
+  --cvp-accordion-transition-duration:   var(--cvp-motion-duration-fast);
+  --cvp-accordion-content-duration:      var(--cvp-motion-duration-base);
+  --cvp-accordion-transition-easing:     var(--cvp-motion-easing-standard);
+  --cvp-accordion-transition:            color var(--cvp-accordion-transition-duration) var(--cvp-accordion-transition-easing), background-color var(--cvp-accordion-transition-duration) var(--cvp-accordion-transition-easing), box-shadow var(--cvp-accordion-transition-duration) var(--cvp-accordion-transition-easing);
+
+  /* ===========================================================================
+     SEGMENTED CONTROL
+     Public:   bg, text, selected bg/text, radius, color variant
+     Internal: focus, disabled, elevation, typography, motion
+     Local:    size-specific height and spacing
+  =========================================================================== */
+  --cvp-segmented-bg:                    var(--cvp-color-surface-sunken);
+  --cvp-segmented-border:                var(--cvp-color-border-subtle);
+  --cvp-segmented-border-width:          var(--cvp-border-base-width);
+  --cvp-segmented-text:                  var(--cvp-color-text-muted);
+  --cvp-segmented-text-hover:            var(--cvp-color-text-primary);
+  --cvp-segmented-text-selected:         var(--cvp-color-text-primary);
+  --cvp-segmented-text-disabled:         var(--cvp-color-text-disabled);
+  --cvp-segmented-bg-hover:              var(--cvp-color-surface-hover);
+  --cvp-segmented-bg-active:             var(--cvp-color-surface-active);
+  --cvp-segmented-bg-selected:           var(--cvp-color-surface-raised);
+  --cvp-segmented-color-bg:              var(--cvp-color-surface-subtle);
+  --cvp-segmented-color-border:          var(--cvp-color-border-default);
+  --cvp-segmented-color-bg-hover:        var(--cvp-color-interactive-overlay);
+  --cvp-segmented-color-bg-active:       var(--cvp-color-interactive-overlay-medium);
+  --cvp-segmented-color-bg-selected:     var(--cvp-color-brand-default);
+  --cvp-segmented-color-text-selected:   var(--cvp-color-text-on-brand);
+  --cvp-segmented-focus-ring:            var(--cvp-border-focus-ring);
+  --cvp-segmented-selected-shadow:       var(--cvp-shadow-sm);
+  --cvp-segmented-color-selected-shadow: var(--cvp-shadow-sm);
+  --cvp-segmented-disabled-opacity:      var(--cvp-opacity-disabled);
+  --cvp-segmented-container-radius:      var(--cvp-radius-md);
+  --cvp-segmented-item-radius:           var(--cvp-shape-control-compact);
+  --cvp-segmented-container-padding:     var(--cvp-space-1);
+  --cvp-segmented-gap:                   calc(var(--cvp-space-1) / 2);
+  --cvp-segmented-option-gap:            var(--cvp-space-2);
+  --cvp-segmented-icon-size:             var(--cvp-space-4);
+  --cvp-segmented-height-small:          var(--cvp-space-8);
+  --cvp-segmented-height-medium:         var(--cvp-space-900);
+  --cvp-segmented-height-large:          calc(var(--cvp-space-8) + var(--cvp-space-2));
+  --cvp-segmented-padding-x-small:       var(--cvp-space-3);
+  --cvp-segmented-padding-y-small:       var(--cvp-space-1);
+  --cvp-segmented-padding-x-medium:      var(--cvp-space-4);
+  --cvp-segmented-padding-y-medium:      var(--cvp-space-2);
+  --cvp-segmented-padding-x-large:       var(--cvp-space-5);
+  --cvp-segmented-padding-y-large:       var(--cvp-space-3);
+  --cvp-segmented-font-family:           var(--cvp-font-family-sans);
+  --cvp-segmented-font-size-small:       var(--cvp-font-size-sm);
+  --cvp-segmented-font-size-medium:      var(--cvp-font-size-md);
+  --cvp-segmented-font-size-large:       var(--cvp-font-size-lg);
+  --cvp-segmented-font-weight:           var(--cvp-font-weight-regular);
+  --cvp-segmented-font-weight-selected:  var(--cvp-font-weight-medium);
+  --cvp-segmented-line-height-small:     var(--cvp-line-height-tight);
+  --cvp-segmented-line-height-medium:    var(--cvp-line-height-snug);
+  --cvp-segmented-line-height-large:     var(--cvp-line-height-normal);
+  --cvp-segmented-letter-spacing:        var(--cvp-letter-spacing-normal);
+  --cvp-segmented-transition-duration:   var(--cvp-motion-duration-fast);
+  --cvp-segmented-transition-easing:     var(--cvp-motion-easing-standard);
+  --cvp-segmented-transition:            color var(--cvp-segmented-transition-duration) var(--cvp-segmented-transition-easing), background-color var(--cvp-segmented-transition-duration) var(--cvp-segmented-transition-easing), box-shadow var(--cvp-segmented-transition-duration) var(--cvp-segmented-transition-easing);
+
+  /* ===========================================================================
+     TAG FILTER
+     Public:   option, selected, disabled, border, radius
+     Internal: section hierarchy, focus, remove cue, typography, motion
+     Local:    wrapping, dimensions, spacing
+  =========================================================================== */
+  --cvp-tag-filter-text:                  var(--cvp-color-text-primary);
+  --cvp-tag-filter-title-text:            var(--cvp-color-text-primary);
+  --cvp-tag-filter-summary-text:          var(--cvp-color-text-muted);
+  --cvp-tag-filter-option-bg:             transparent;
+  --cvp-tag-filter-option-text:           var(--cvp-color-text-secondary);
+  --cvp-tag-filter-option-border:         var(--cvp-color-border-default);
+  --cvp-tag-filter-option-bg-hover:       var(--cvp-color-surface-hover);
+  --cvp-tag-filter-option-text-hover:     var(--cvp-color-text-primary);
+  --cvp-tag-filter-option-border-hover:   var(--cvp-color-border-strong);
+  --cvp-tag-filter-option-bg-active:      var(--cvp-color-surface-active);
+  --cvp-tag-filter-selected-bg:           var(--cvp-color-brand-default);
+  --cvp-tag-filter-selected-bg-hover:     var(--cvp-color-brand-hover);
+  --cvp-tag-filter-selected-text:         var(--cvp-color-text-on-brand);
+  --cvp-tag-filter-selected-icon:         var(--cvp-color-text-on-brand);
+  --cvp-tag-filter-selected-border:       var(--cvp-color-brand-default);
+  --cvp-tag-filter-selected-border-hover: var(--cvp-color-brand-hover);
+  --cvp-tag-filter-remove-bg-hover:       var(--cvp-color-interactive-overlay-strong);
+  --cvp-tag-filter-disabled-bg:           transparent;
+  --cvp-tag-filter-disabled-text:         var(--cvp-color-text-disabled);
+  --cvp-tag-filter-disabled-border:       var(--cvp-color-border-disabled);
+  --cvp-tag-filter-disabled-selected-bg:  var(--cvp-color-surface-active);
+  --cvp-tag-filter-disabled-selected-text:var(--cvp-color-text-disabled);
+  --cvp-tag-filter-disabled-selected-border: var(--cvp-color-border-disabled);
+  --cvp-tag-filter-disabled-opacity:      var(--cvp-opacity-disabled);
+  --cvp-tag-filter-focus-ring:            var(--cvp-border-focus-ring);
+  --cvp-tag-filter-border-width:          var(--cvp-border-base-width);
+  --cvp-tag-filter-radius:                var(--cvp-shape-control-compact);
+  --cvp-tag-filter-section-gap:           var(--cvp-space-8);
+  --cvp-tag-filter-title-gap:             var(--cvp-space-3);
+  --cvp-tag-filter-gap:                   var(--cvp-space-2);
+  --cvp-tag-filter-option-gap:            var(--cvp-space-2);
+  --cvp-tag-filter-height:                var(--cvp-space-8);
+  --cvp-tag-filter-padding-x:             var(--cvp-space-3);
+  --cvp-tag-filter-padding-y:             var(--cvp-space-1);
+  --cvp-tag-filter-remove-target:         var(--cvp-space-5);
+  --cvp-tag-filter-remove-icon-size:      var(--cvp-space-3);
+  --cvp-tag-filter-remove-radius:         var(--cvp-radius-sm);
+  --cvp-tag-filter-font-family:           var(--cvp-font-family-sans);
+  --cvp-tag-filter-font-size:             var(--cvp-font-size-sm);
+  --cvp-tag-filter-font-weight:           var(--cvp-font-weight-regular);
+  --cvp-tag-filter-font-weight-selected:  var(--cvp-font-weight-medium);
+  --cvp-tag-filter-line-height:           var(--cvp-line-height-snug);
+  --cvp-tag-filter-letter-spacing:        var(--cvp-letter-spacing-normal);
+  --cvp-tag-filter-title-size:            var(--cvp-font-size-lg);
+  --cvp-tag-filter-title-weight:          var(--cvp-font-weight-medium);
+  --cvp-tag-filter-title-line-height:     var(--cvp-line-height-normal);
+  --cvp-tag-filter-title-letter-spacing:  var(--cvp-letter-spacing-normal);
+  --cvp-tag-filter-summary-size:          var(--cvp-font-size-xs);
+  --cvp-tag-filter-summary-line-height:   var(--cvp-line-height-tight);
+  --cvp-tag-filter-transition-duration:   var(--cvp-motion-duration-fast);
+  --cvp-tag-filter-transition-easing:     var(--cvp-motion-easing-standard);
+  --cvp-tag-filter-transition:            color var(--cvp-tag-filter-transition-duration) var(--cvp-tag-filter-transition-easing), background-color var(--cvp-tag-filter-transition-duration) var(--cvp-tag-filter-transition-easing), border-color var(--cvp-tag-filter-transition-duration) var(--cvp-tag-filter-transition-easing), box-shadow var(--cvp-tag-filter-transition-duration) var(--cvp-tag-filter-transition-easing);
 
   /* ===========================================================================
      CHIP / TAG
@@ -600,6 +1184,90 @@
   --cvp-table-body-font-weight: var(--cvp-font-weight-regular);             /* 400 */
   /* Expanded row */
   --cvp-table-expanded-bg:      var(--cvp-color-surface-sunken);
+  --cvp-table-container-border: var(--cvp-color-border-subtle);
+  --cvp-table-container-border-width: var(--cvp-border-base-width);
+  --cvp-table-container-radius: 0;
+  --cvp-table-toolbar-bg:       var(--cvp-color-surface-default);
+  --cvp-table-toolbar-height:   var(--cvp-space-900);
+  --cvp-table-toolbar-padding-x:var(--cvp-space-3);
+  --cvp-table-header-height:    var(--cvp-space-800);
+  --cvp-table-header-line-height: var(--cvp-line-height-snug);
+  --cvp-table-body-line-height: var(--cvp-line-height-snug);
+  --cvp-table-meta-font-size:   var(--cvp-font-size-sm);
+  --cvp-table-meta-line-height: var(--cvp-line-height-snug);
+  --cvp-table-row-height-compact: var(--cvp-space-900);
+  --cvp-table-row-height-comfortable: calc(var(--cvp-space-900) + var(--cvp-space-2));
+  --cvp-table-group-height:     var(--cvp-space-900);
+  --cvp-table-group-bg:         var(--cvp-color-surface-subtle);
+  --cvp-table-expanded-padding: var(--cvp-space-4);
+  --cvp-table-empty-height:     calc(var(--cvp-space-900) * 3);
+  --cvp-table-control-size:     var(--cvp-space-8);
+  --cvp-table-control-size-small: calc(var(--cvp-space-8) - var(--cvp-space-1));
+  --cvp-table-control-radius:   var(--cvp-radius-sm);
+  --cvp-table-control-gap:      var(--cvp-space-2);
+  --cvp-table-control-color:    var(--cvp-color-icon-subtle);
+  --cvp-table-control-color-hover: var(--cvp-color-icon-default);
+  --cvp-table-control-color-disabled: var(--cvp-color-icon-disabled);
+  --cvp-table-control-bg-hover: var(--cvp-color-surface-hover);
+  --cvp-table-sort-neutral:     var(--cvp-color-icon-subtle);
+  --cvp-table-resize-handle:    var(--cvp-color-border-strong);
+  --cvp-table-utility-column-width: var(--cvp-space-900);
+  --cvp-table-actions-column-width: calc(var(--cvp-space-900) * 2);
+  --cvp-table-checkbox-size:    var(--cvp-space-4);
+  --cvp-table-checkbox-accent:  var(--cvp-color-brand-default);
+  --cvp-table-page-current-bg:  var(--cvp-color-surface-active);
+  --cvp-table-link-color:       var(--cvp-color-text-link-default);
+  --cvp-table-link-color-hover: var(--cvp-color-text-link-hover);
+  --cvp-table-danger-color:     var(--cvp-color-icon-danger);
+  --cvp-table-danger-color-hover: var(--cvp-color-icon-danger);
+  --cvp-table-danger-bg-hover:  var(--cvp-color-state-danger-bg);
+  --cvp-table-focus-ring:       var(--cvp-border-focus-ring);
+  --cvp-table-drag-opacity:     0.56;
+
+  /* ===========================================================================
+     TREE
+     Public: surfaces, selection, text, status, metadata and density.
+     Internal: hierarchy geometry, controls and focus treatment.
+  =========================================================================== */
+  --cvp-tree-bg:                transparent;
+  --cvp-tree-text:              var(--cvp-color-text-primary);
+  --cvp-tree-text-muted:        var(--cvp-color-text-muted);
+  --cvp-tree-icon:              var(--cvp-color-icon-subtle);
+  --cvp-tree-icon-strong:       var(--cvp-color-icon-default);
+  --cvp-tree-row-bg-hover:      var(--cvp-color-surface-hover);
+  --cvp-tree-row-bg-selected:   var(--cvp-color-surface-active);
+  --cvp-tree-selection-indicator: var(--cvp-color-brand-default);
+  --cvp-tree-control-bg-hover:  var(--cvp-color-interactive-overlay);
+  --cvp-tree-focus-ring:        var(--cvp-border-focus-ring);
+  --cvp-tree-status-active:     var(--cvp-color-icon-success);
+  --cvp-tree-status-inactive:   var(--cvp-color-icon-subtle);
+  --cvp-tree-status-warning:    var(--cvp-color-icon-warning);
+  --cvp-tree-tag-recommended:   var(--cvp-color-text-link-default);
+  --cvp-tree-tag-editorial:     var(--cvp-color-brand-accent);
+  --cvp-tree-min-width:         280px;
+  --cvp-tree-padding-x:         var(--cvp-space-2);
+  --cvp-tree-padding-y:         var(--cvp-space-2);
+  --cvp-tree-indent:            var(--cvp-space-4);
+  --cvp-tree-row-height-compact: var(--cvp-space-8);
+  --cvp-tree-row-height-comfortable: var(--cvp-space-900);
+  --cvp-tree-row-gap:           calc(var(--cvp-space-1) / 2);
+  --cvp-tree-row-radius:        var(--cvp-radius-sm);
+  --cvp-tree-radius:            var(--cvp-radius-md);
+  --cvp-tree-control-size:      var(--cvp-space-6);
+  --cvp-tree-control-radius:    var(--cvp-radius-sm);
+  --cvp-tree-content-gap:       var(--cvp-space-2);
+  --cvp-tree-leading-gap:       var(--cvp-space-2);
+  --cvp-tree-selection-indicator-width: var(--cvp-border-strong-width);
+  --cvp-tree-font-size:         var(--cvp-font-size-md);
+  --cvp-tree-font-weight:       var(--cvp-font-weight-regular);
+  --cvp-tree-line-height:       var(--cvp-line-height-snug);
+  --cvp-tree-meta-font-size:    var(--cvp-font-size-sm);
+  --cvp-tree-tag-font-size:     var(--cvp-font-size-xs);
+  --cvp-tree-tag-font-weight:   var(--cvp-font-weight-medium);
+  --cvp-tree-tag-line-height:   var(--cvp-line-height-tight);
+  --cvp-tree-status-size:       var(--cvp-space-2);
+  --cvp-tree-icon-slot-size:    var(--cvp-font-size-md);
+  --cvp-tree-disabled-opacity:  0.48;
 
   /* ===========================================================================
      RAIL CONTENT GALLERY
@@ -612,6 +1280,29 @@
   --cvp-gallery-item-width:    120px;
   --cvp-gallery-item-radius:   var(--cvp-radius-md);                        /* 6px */
   --cvp-gallery-item-gap:      var(--cvp-space-4);                          /* 16px */
+  --cvp-gallery-grid-gap:      var(--cvp-space-4);
+  --cvp-gallery-grid-min-width: 152px;
+  --cvp-gallery-header-gap:    var(--cvp-space-4);
+  --cvp-gallery-focus-inset:   var(--cvp-space-1);
+  --cvp-gallery-text:          var(--cvp-color-text-primary);
+  --cvp-gallery-count-bg:      var(--cvp-color-surface-subtle);
+  --cvp-gallery-border-width:  var(--cvp-border-base-width);
+  --cvp-gallery-item-border:   var(--cvp-color-border-subtle);
+  --cvp-gallery-item-border-hover: var(--cvp-color-border-default);
+  --cvp-gallery-item-border-selected: var(--cvp-color-brand-default);
+  --cvp-gallery-selection-ring: var(--cvp-border-focus-ring);
+  --cvp-gallery-focus-ring:    var(--cvp-border-focus-ring);
+  --cvp-gallery-image-aspect-ratio: 2 / 3;
+  --cvp-gallery-placeholder-bg: var(--cvp-color-surface-sunken);
+  --cvp-gallery-placeholder-icon-color: var(--cvp-color-icon-subtle);
+  --cvp-gallery-overlay-bg:    var(--cvp-color-gallery-overlay);
+  --cvp-gallery-overlay-text:  var(--cvp-color-text-on-brand);
+  --cvp-gallery-overlay-size:  var(--cvp-space-6);
+  --cvp-gallery-control-radius: var(--cvp-radius-sm);
+  --cvp-gallery-drag-opacity:  0.56;
+  --cvp-gallery-hover-scale:   1.03;
+  --cvp-gallery-motion-duration: var(--cvp-motion-duration-base);
+  --cvp-gallery-motion-easing: var(--cvp-motion-easing-standard);
   --cvp-gallery-title-font-size:   var(--cvp-font-size-sm);                 /* 13px */
   --cvp-gallery-title-font-weight: var(--cvp-font-weight-medium);           /* 500 */
   --cvp-gallery-meta-font-size:    var(--cvp-font-size-sm);                 /* 13px */
@@ -627,12 +1318,45 @@
   --cvp-gallery-empty-icon-size:  48px;
   --cvp-gallery-empty-icon-color: var(--cvp-primitive-neutral-170);         /* #6b6b78 */
   --cvp-gallery-empty-icon-opacity: var(--cvp-opacity-placeholder);         /* 0.6 */
-  --cvp-gallery-empty-text-color: var(--cvp-primitive-neutral-175);         /* #9b9ba5 */
+  --cvp-gallery-empty-text-color: var(--cvp-color-text-muted);
   --cvp-gallery-empty-font-size:  var(--cvp-font-size-md);                  /* 14px */
   --cvp-gallery-empty-font-weight:var(--cvp-font-weight-regular);           /* 400 */
 
   /* ===========================================================================
-     TOAST / NOTIFICATION
+     NOTIFICATION BANNER
+     Persistent, in-flow feedback. Theme values resolve through state semantics.
+  =========================================================================== */
+  --cvp-notification-banner-padding-x: var(--cvp-space-4);
+  --cvp-notification-banner-padding-y: var(--cvp-space-3);
+  --cvp-notification-banner-padding-mobile: var(--cvp-space-3);
+  --cvp-notification-banner-gap: var(--cvp-space-3);
+  --cvp-notification-banner-radius: var(--cvp-radius-md);
+  --cvp-notification-banner-border-width: var(--cvp-border-base-width);
+  --cvp-notification-banner-title-font-size: var(--cvp-font-size-md);
+  --cvp-notification-banner-message-font-size: var(--cvp-font-size-sm);
+  --cvp-notification-banner-dismiss-size: var(--cvp-space-6);
+  --cvp-notification-banner-control-radius: var(--cvp-radius-sm);
+  --cvp-notification-banner-control-bg-hover: var(--cvp-color-surface-hover);
+  --cvp-notification-banner-focus-ring: var(--cvp-border-focus-ring);
+  --cvp-notification-banner-info-bg: var(--cvp-color-state-info-bg);
+  --cvp-notification-banner-info-border: var(--cvp-color-state-info-border);
+  --cvp-notification-banner-info-text: var(--cvp-color-state-info-text);
+  --cvp-notification-banner-info-icon: var(--cvp-color-icon-default);
+  --cvp-notification-banner-success-bg: var(--cvp-color-state-success-bg);
+  --cvp-notification-banner-success-border: var(--cvp-color-state-success-border);
+  --cvp-notification-banner-success-text: var(--cvp-color-state-success-text);
+  --cvp-notification-banner-success-icon: var(--cvp-color-icon-success);
+  --cvp-notification-banner-warning-bg: var(--cvp-color-state-warning-bg);
+  --cvp-notification-banner-warning-border: var(--cvp-color-state-warning-border);
+  --cvp-notification-banner-warning-text: var(--cvp-color-state-warning-text);
+  --cvp-notification-banner-warning-icon: var(--cvp-color-icon-warning);
+  --cvp-notification-banner-error-bg: var(--cvp-color-state-error-bg);
+  --cvp-notification-banner-error-border: var(--cvp-color-state-error-border);
+  --cvp-notification-banner-error-text: var(--cvp-color-state-error-text);
+  --cvp-notification-banner-error-icon: var(--cvp-color-icon-danger);
+
+  /* ===========================================================================
+     TOAST
      Public:   success/error/warning/info bg, border, text
      Internal: shadow, z-index, radius, font-size
      Local:    min-width, max-width, padding-x, padding-y
@@ -645,21 +1369,95 @@
   --cvp-toast-shadow:       var(--cvp-shadow-lg);
   --cvp-toast-z-index:      var(--cvp-z-toast);                             /* 2000 */
   --cvp-toast-font-size:    var(--cvp-font-size-md);                        /* 14px */
+  --cvp-toast-title-font-size: var(--cvp-font-size-md);
+  --cvp-toast-description-font-size: var(--cvp-font-size-sm);
+  --cvp-toast-border-width: var(--cvp-border-base-width);
+  --cvp-toast-gap:          var(--cvp-space-3);
+  --cvp-toast-region-gap:   var(--cvp-space-3);
+  --cvp-toast-region-inset: var(--cvp-space-6);
+  --cvp-toast-region-inset-mobile: var(--cvp-space-4);
+  --cvp-toast-dismiss-size: var(--cvp-space-6);
+  --cvp-toast-dismiss-radius: var(--cvp-radius-sm);
+  --cvp-toast-dismiss-bg-hover: var(--cvp-color-surface-hover);
+  --cvp-toast-focus-ring:   var(--cvp-border-focus-ring);
+  --cvp-toast-motion-duration: var(--cvp-motion-duration-base);
+  --cvp-toast-motion-easing: var(--cvp-motion-easing-standard);
 
   /* Toast type colours reference the state semantic layer */
   --cvp-toast-success-bg:     var(--cvp-color-state-success-bg);
   --cvp-toast-success-border: var(--cvp-color-state-success-border);
   --cvp-toast-success-text:   var(--cvp-color-state-success-text);
+  --cvp-toast-success-icon:   var(--cvp-color-icon-success);
 
   --cvp-toast-error-bg:       var(--cvp-color-state-error-bg);
   --cvp-toast-error-border:   var(--cvp-color-state-error-border);
   --cvp-toast-error-text:     var(--cvp-color-state-error-text);
+  --cvp-toast-error-icon:     var(--cvp-color-icon-danger);
 
   --cvp-toast-warning-bg:     var(--cvp-color-state-warning-bg);
   --cvp-toast-warning-border: var(--cvp-color-state-warning-border);
   --cvp-toast-warning-text:   var(--cvp-color-state-warning-text);
+  --cvp-toast-warning-icon:   var(--cvp-color-icon-warning);
 
   --cvp-toast-info-bg:        var(--cvp-color-state-info-bg);
   --cvp-toast-info-border:    var(--cvp-color-state-info-border);
   --cvp-toast-info-text:      var(--cvp-color-state-info-text);
+  --cvp-toast-info-icon:      var(--cvp-color-icon-default);
+
+  /* ===========================================================================
+     LOGIN / SIGN UP PAGE
+     Theme-aware product composition using canonical form and action contracts.
+  =========================================================================== */
+  --cvp-login-page-padding: var(--cvp-spacing-container-md);
+  --cvp-login-page-bg: linear-gradient(145deg, var(--cvp-color-surface-page) 15%, var(--cvp-color-surface-sunken) 62%, var(--cvp-color-surface-subtle) 140%);
+  --cvp-login-text: var(--cvp-color-text-primary);
+  --cvp-login-muted: var(--cvp-color-text-muted);
+  --cvp-login-title: var(--cvp-color-text-primary);
+  --cvp-login-eyebrow: var(--cvp-color-text-link-default);
+  --cvp-login-link: var(--cvp-color-text-link-default);
+  --cvp-login-link-hover: var(--cvp-color-text-link-hover);
+  --cvp-login-card-bg: var(--cvp-color-surface-default);
+  --cvp-login-card-border: var(--cvp-border-container);
+  --cvp-login-card-shadow: var(--cvp-plane-raised-shadow);
+  --cvp-login-card-width: 440px;
+  --cvp-login-card-padding: var(--cvp-spacing-inset-lg);
+  --cvp-login-card-padding-mobile: var(--cvp-spacing-inset-md);
+  --cvp-login-card-radius: var(--cvp-shape-overlay-base);
+  --cvp-login-brand-gap: var(--cvp-spacing-stack-lg);
+  --cvp-login-logo-width: 260px;
+  --cvp-login-logo-height: 48px;
+  --cvp-login-heading-gap: var(--cvp-spacing-stack-xs);
+  --cvp-login-section-gap: var(--cvp-spacing-stack-lg);
+  --cvp-login-context-gap: var(--cvp-spacing-inline-sm);
+  --cvp-login-account-width: 160px;
+  --cvp-login-field-gap: var(--cvp-spacing-stack-md);
+  --cvp-login-password-padding-end: 48px;
+  --cvp-login-password-toggle-top: 28px;
+  --cvp-login-password-toggle-right: var(--cvp-space-1);
+  --cvp-login-recovery-offset: calc(var(--cvp-spacing-stack-xs) * -1);
+  --cvp-login-error-padding: var(--cvp-spacing-inset-sm);
+  --cvp-login-error-bg: var(--cvp-color-state-error-bg);
+  --cvp-login-error-border: var(--cvp-border-base-width) solid var(--cvp-color-state-error-border);
+  --cvp-login-error-text: var(--cvp-color-state-error-text);
+  --cvp-login-error-radius: var(--cvp-shape-control-base);
+  --cvp-login-divider-gap: var(--cvp-spacing-inline-md);
+  --cvp-login-divider-border: var(--cvp-border-divider);
+  --cvp-login-footer-margin: var(--cvp-spacing-stack-xl);
+  --cvp-login-footer-gap: var(--cvp-spacing-stack-sm);
+  --cvp-login-footer-text: var(--cvp-color-text-muted);
+  --cvp-login-footer-logo-width: 280px;
+  --cvp-login-footer-logo-height: 28px;
+  --cvp-login-footer-logo-opacity: var(--cvp-opacity-placeholder);
+  --cvp-login-footer-link-gap: var(--cvp-spacing-inline-sm);
+}
+
+:root,
+[data-theme="dark"] {
+  --cvp-login-brand-logo-filter: none;
+  --cvp-login-footer-logo-filter: none;
+}
+
+[data-theme="light"] {
+  --cvp-login-brand-logo-filter: brightness(0) saturate(100%);
+  --cvp-login-footer-logo-filter: brightness(0) saturate(100%) opacity(.66);
 }

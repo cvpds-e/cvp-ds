@@ -22,7 +22,7 @@
    Applied when: [data-theme="dark"] or .dark-theme
    This is the current production baseline.
    ============================================================================= */
-:root,
+:root:not([data-theme]),
 [data-theme="dark"],
 .dark-theme {
 
@@ -173,7 +173,7 @@
   --cvp-color-chip-bg:      var(--cvp-primitive-neutral-650); /* #1f1f28 — chip default surface; distinct from surface-hover intent */
 
   /* Inputs — border differs from border-default in light theme (uses border-strong step) */
-  --cvp-color-input-border:       var(--cvp-primitive-neutral-500); /* #2a2a36 */
+  --cvp-color-input-border:       var(--cvp-color-border-default);  /* quiet at rest; focus and validation retain strong state boundaries */
   --cvp-color-input-prefix-bg:    var(--cvp-primitive-neutral-650); /* #1f1f28 — surface-raised in dark, surface-subtle in light */
 }
 
@@ -236,14 +236,14 @@
   --cvp-color-text-accent-secondary: var(--cvp-primitive-blue-900);         /* #2d4a8e */
 
   /* Link */
-  --cvp-color-text-link-default: var(--cvp-primitive-sky-500);  /* #2563eb */
+  --cvp-color-text-link-default: var(--cvp-primitive-sky-600);  /* #1d4ed8 */
   --cvp-color-text-link-hover:   var(--cvp-primitive-sky-600);  /* #1d4ed8 */
 
   /* State text */
   --cvp-color-text-danger:  var(--cvp-primitive-red-600);      /* #dc2626 */
-  --cvp-color-text-success: var(--cvp-primitive-green-500);    /* #16a34a */
+  --cvp-color-text-success: var(--cvp-primitive-green-600);    /* #15803d */
   --cvp-color-text-warning: var(--cvp-primitive-yellow-500);   /* #d97706 */
-  --cvp-color-text-error:   var(--cvp-primitive-red-600);      /* #dc2626 */
+  --cvp-color-text-error:   var(--cvp-primitive-red-700);      /* #991b1b */
 
   /* ── Borders ───────────────────────────────────────────────────────────── */
   --cvp-color-border-subtle:   var(--cvp-primitive-neutral-5);   /* #f3f4f6 */
@@ -274,7 +274,7 @@
   --cvp-color-brand-default: var(--cvp-primitive-blue-600);    /* #3d63dd */
   --cvp-color-brand-hover:   var(--cvp-primitive-blue-700);    /* #244cce */
   --cvp-color-brand-active:  var(--cvp-primitive-blue-700);    /* #244cce */
-  --cvp-color-brand-accent:  var(--cvp-primitive-purple-400);  /* #c084fc */
+  --cvp-color-brand-accent:  var(--cvp-primitive-purple-700);  /* #7e22ce */
 
   /* ── Secondary Brand ───────────────────────────────────────────────────── */
   --cvp-color-secondary-default: var(--cvp-primitive-blue-900);  /* #2d4a8e */
@@ -288,7 +288,7 @@
 
   --cvp-color-state-success-bg:     var(--cvp-primitive-green-50);    /* #f0fdf4 */
   --cvp-color-state-success-border: var(--cvp-primitive-green-200);   /* #86efac */
-  --cvp-color-state-success-text:   var(--cvp-primitive-green-600);   /* #15803d */
+  --cvp-color-state-success-text:   var(--cvp-primitive-green-700);   /* #14532d */
 
   --cvp-color-state-warning-bg:     var(--cvp-primitive-yellow-100);  /* #fffbeb */
   --cvp-color-state-warning-border: var(--cvp-primitive-yellow-200);  /* #fcd34d */
@@ -331,7 +331,7 @@
   --cvp-color-chip-bg:       var(--cvp-primitive-neutral-5);   /* #f3f4f6 */
 
   /* Inputs */
-  --cvp-color-input-border:       var(--cvp-primitive-neutral-25);  /* #d1d5db — border-strong step; distinct from border-default in light */
+  --cvp-color-input-border:       var(--cvp-color-border-default);  /* quiet at rest; focus and validation retain strong state boundaries */
   --cvp-color-input-prefix-bg:    var(--cvp-primitive-neutral-5);   /* #f3f4f6 */
 }
 
@@ -408,8 +408,8 @@
   --cvp-border-color-subtle: var(--cvp-color-border-subtle);
   --cvp-border-color-base: var(--cvp-color-border-default);
   --cvp-border-color-divider: var(--cvp-color-border-subtle);
-  --cvp-border-color-container: var(--cvp-color-border-strong);
-  --cvp-border-color-strong: var(--cvp-color-border-bold);
+  --cvp-border-color-container: var(--cvp-color-border-default);
+  --cvp-border-color-strong: var(--cvp-color-border-strong);
   --cvp-border-color-selected: var(--cvp-focus-border-color);
   --cvp-border-color-focus: var(--cvp-focus-ring-color);
   --cvp-border-color-disabled: var(--cvp-color-border-disabled);

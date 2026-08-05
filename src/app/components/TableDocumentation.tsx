@@ -1,512 +1,138 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
+import { Database, Rows3, SlidersHorizontal } from 'lucide-react';
 import { Table, TableRow } from './Table';
-import { User, Calendar, Star, Eye, ChevronDown, Settings } from 'lucide-react';
-import { sampleColumns, createSampleData } from './TableSampleData';
-import { TableSpecifications } from './TableSpecifications';
+import { createSampleData, sampleColumns } from './TableSampleData';
+import './TableDocumentation.css';
+
+const groupedRows: TableRow[] = [
+  { id: 'group-home', kind: 'group', groupLabel: 'Home', groupCount: 3 },
+  ...createSampleData().slice(0, 3),
+  { id: 'group-drama', kind: 'group', groupLabel: 'Drama', groupCount: 3 },
+  ...createSampleData().slice(3, 6).map((row, index) => ({
+    ...row,
+    id: `drama-${row.id}`,
+    title: ['Drama Collection 1', 'Drama Collection 2', 'Drama Collection 3'][index],
+    collection: 'DRAMA',
+    updated: 'Aug 4, 2026',
+  })),
+];
+
+const tokenRows = [
+  ['Surface', '--cvp-table-row-bg', '--cvp-color-surface-default', 'Theme resolved', 'Base rows'],
+  ['Header', '--cvp-table-header-bg', '--cvp-color-surface-raised', 'Theme resolved', 'Sticky header'],
+  ['Subtle boundary', '--cvp-table-row-border', '--cvp-color-border-subtle', '1px divider', 'Rows / footer'],
+  ['Row hover', '--cvp-table-row-bg-hover', '--cvp-color-surface-hover', 'Theme resolved', ':hover'],
+  ['Selected row', '--cvp-table-row-bg-selected', '--cvp-color-menu-item-active-bg', 'Theme resolved', 'Selection present'],
+  ['Primary text', '--cvp-table-cell-text', '--cvp-color-text-primary', '14px / 20px', 'Primary cells'],
+  ['Muted text', '--cvp-table-cell-text-muted', '--cvp-color-text-muted', 'AA pairing', 'Secondary cells'],
+  ['Selection control', '--cvp-checkbox-border', '--cvp-input-border', 'Shared Checkbox contract', 'selectable=true'],
+  ['Focus', '--cvp-table-focus-ring', '--cvp-border-focus-ring', 'Border + halo', ':focus-visible'],
+  ['Compact row', '--cvp-table-row-height-compact', '--cvp-space-900', '48px', 'density="compact"'],
+  ['Comfortable row', '--cvp-table-row-height-comfortable', '--cvp-space-900 + --cvp-space-2', '56px', 'density="comfortable"'],
+];
 
 export function TableDocumentation() {
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedRows, setSelectedRows] = useState<string[]>([]);
+  const [sortState, setSortState] = useState('No active sort');
+  const [selection, setSelection] = useState<string[]>([]);
+  const rows = useMemo(() => groupedRows, []);
 
-  const sampleData = createSampleData();
-
-  const handleSort = (columnId: string, direction: 'asc' | 'desc') => {
-    console.log(`Sorting ${columnId} in ${direction} direction`);
-  };
-
-  const handleSelectionChange = (selectedIds: string[]) => {
-    setSelectedRows(selectedIds);
-  };
-
-  const renderCell = (columnId: string, value: any, row: TableRow) => {
-    switch (columnId) {
-      case 'collection':
-        return (
-          <span className="table-collection-tag">
-            {value}
-          </span>
-        );
-      case 'type':
-        return value;
-      default:
-        return value;
-    }
+  const renderCell = (columnId: string, value: unknown) => {
+    if (columnId === 'collection') return <span className="table-collection-tag">{String(value)}</span>;
+    if (columnId === 'type') return <span className={`table-type table-type--${String(value).toLowerCase()}`}>{String(value)}</span>;
+    return String(value ?? '');
   };
 
   return (
-    <>
-      <style>{`
-        .table-docs {
-          --table-docs-padding: var(--doc-padding);
-          --table-docs-max-width: var(--doc-max-width);
-          --table-docs-font-family: var(--doc-font-family);
-          --table-docs-section-spacing: var(--doc-section-spacing);
-          --table-docs-item-spacing: var(--doc-item-spacing);
-
-          padding: var(--table-docs-padding);
-          max-width: var(--table-docs-max-width);
-          margin: 0 auto;
-          font-family: var(--table-docs-font-family);
-          box-sizing: border-box;
-        }
-
-        .table-docs__title {
-          font-size: var(--text-3xl);
-          font-weight: var(--font-weight-bold);
-          color: var(--foreground);
-          margin-bottom: var(--table-docs-section-spacing);
-        }
-
-        .table-docs__section {
-          margin-bottom: var(--table-docs-section-spacing);
-        }
-
-        .table-docs__section-title {
-          font-size: var(--text-2xl);
-          font-weight: var(--font-weight-semibold);
-          color: var(--foreground);
-          margin-bottom: var(--table-docs-item-spacing);
-          border-bottom: 1px solid var(--border-default);
-          padding-bottom: 8px;
-        }
-
-        .table-docs__subsection-title {
-          font-size: var(--text-xl);
-          font-weight: var(--font-weight-medium);
-          color: var(--foreground);
-          margin-bottom: 16px;
-          margin-top: 32px;
-        }
-
-        .table-docs__description {
-          font-size: var(--text-base);
-          color: var(--muted-foreground);
-          margin-bottom: var(--table-docs-item-spacing);
-          line-height: var(--leading-relaxed);
-        }
-
-        .table-docs__example {
-          background: var(--card);
-          border: 1px solid var(--border-default);
-          border-radius: 8px;
-          padding: var(--table-docs-item-spacing);
-          margin-bottom: var(--table-docs-item-spacing);
-        }
-
-        .table-docs__example-title {
-          font-size: var(--text-lg);
-          font-weight: var(--font-weight-medium);
-          color: var(--foreground);
-          margin-bottom: 12px;
-        }
-
-        .table-docs__example-description {
-          font-size: var(--text-sm);
-          color: var(--muted-foreground);
-          margin-bottom: 16px;
-        }
-
-        .table-docs__table {
-          width: 100%;
-          border-collapse: collapse;
-          border: var(--table-border);
-          border-radius: 8px;
-          overflow: hidden;
-          margin-bottom: var(--table-docs-item-spacing);
-        }
-
-        .table-docs__table th {
-          background: var(--table-header-bg);
-          padding: var(--table-header-padding);
-          text-align: left;
-          font-weight: var(--table-header-font-weight);
-          font-size: var(--table-font-size);
-          color: var(--foreground);
-          border-bottom: var(--table-border);
-        }
-
-        .table-docs__table td {
-          padding: var(--table-cell-padding);
-          font-size: var(--table-font-size);
-          color: var(--foreground);
-          border-bottom: var(--table-border);
-          vertical-align: top;
-        }
-
-        .table-docs__table tr:last-child td {
-          border-bottom: none;
-        }
-
-        .table-docs__feature-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-          gap: var(--table-docs-item-spacing);
-          margin-bottom: var(--table-docs-item-spacing);
-        }
-
-        .table-docs__feature {
-          background: var(--card);
-          border: 1px solid var(--border-default);
-          border-radius: 8px;
-          padding: 20px;
-        }
-
-        .table-docs__feature-title {
-          font-size: var(--text-lg);
-          font-weight: var(--font-weight-medium);
-          color: var(--foreground);
-          margin-bottom: 8px;
-          display: flex;
-          align-items: center;
-          gap: 8px;
-        }
-
-        .table-docs__feature-description {
-          font-size: var(--text-sm);
-          color: var(--muted-foreground);
-          line-height: var(--leading-relaxed);
-        }
-
-        .table-collection-tag {
-          font-family: var(--collection-tag-font-family);
-          font-size: var(--collection-tag-font-size);
-          font-weight: var(--collection-tag-font-weight);
-          line-height: var(--collection-tag-line-height);
-          letter-spacing: var(--collection-tag-letter-spacing);
-          color: var(--collection-tag-text-color);
-          background-color: var(--collection-tag-bg-color);
-          border: var(--collection-tag-border);
-          border-radius: var(--collection-tag-border-radius);
-          padding: var(--collection-tag-padding);
-          display: inline-block;
-        }
-
-        .table-docs__todo-block {
-          background: var(--color-blue-950);
-          border: 1px solid var(--color-blue-800);
-          border-radius: 8px;
-          padding: var(--table-docs-item-spacing);
-          margin-bottom: var(--table-docs-section-spacing);
-          border-left: 4px solid var(--color-blue-600);
-        }
-
-        .table-docs__todo-title {
-          font-size: var(--text-lg);
-          font-weight: var(--font-weight-semibold);
-          color: var(--color-blue-300);
-          margin-bottom: 12px;
-          display: flex;
-          align-items: center;
-          gap: 8px;
-        }
-
-        .table-docs__todo-title::before {
-          content: "📋";
-          font-size: 16px;
-        }
-
-        .table-docs__todo-content {
-          display: flex;
-          flex-direction: column;
-          gap: 16px;
-        }
-
-        .table-docs__todo-item {
-          font-size: var(--text-sm);
-          color: var(--color-blue-200);
-          line-height: var(--leading-relaxed);
-          padding-left: 16px;
-          position: relative;
-        }
-
-        .table-docs__todo-item::before {
-          content: "•";
-          color: var(--color-blue-300);
-          font-size: 16px;
-          position: absolute;
-          left: 0;
-          top: 0;
-        }
-
-        .table-docs__todo-item strong {
-          color: var(--color-blue-100);
-          font-weight: var(--font-weight-medium);
-        }
-      `}</style>
-
-      <div className="table-docs documentation-container">
-        <h1 className="table-docs__title">Table</h1>
-        
-        <p className="table-docs__description">
-          The Table component provides a comprehensive data display solution with sticky headers, 
-          pagination, sorting, selection, and expandable rows. Designed for complex data management 
-          interfaces with full keyboard navigation and accessibility support.
+    <main className="table-docs documentation-container">
+      <header className="table-docs__hero">
+        <span className="table-docs__eyebrow">Navigation & data display</span>
+        <h1>Table</h1>
+        <p>
+          A dense operator table for scanning, sorting, selecting, grouping, and acting on structured records.
+          It preserves the CVP Rails List character while making states, semantics, and token ownership explicit.
         </p>
+      </header>
 
-        {/* Todo Info Block */}
-        <div className="table-docs__todo-block">
-          <h3 className="table-docs__todo-title">To Do</h3>
-          <div className="table-docs__todo-content">
-            <div className="table-docs__todo-item">
-              <strong>Pagination Component:</strong> The current pagination implementation is a sample.
-            </div>
-            <div className="table-docs__todo-item">
-              <strong>Row Grouping:</strong> Table row grouping functionality will be added in a future release to support hierarchical data organization.
-            </div>
-          </div>
+      <section className="table-docs__section" aria-labelledby="table-product-example">
+        <div className="table-docs__section-heading">
+          <div><span>01</span><h2 id="table-product-example">Product example</h2></div>
+          <p>Compact by default for operational interfaces; horizontal overflow preserves column integrity.</p>
         </div>
-
-        {/* Variants */}
-        <section className="table-docs__section">
-          <h2 className="table-docs__section-title">Variants</h2>
-          
-          <div className="table-docs__example">
-            <h3 className="table-docs__example-title">Basic Table</h3>
-            <p className="table-docs__example-description">
-              Simple data display with sorting and pagination functionality.
-            </p>
-            <Table
-              columns={sampleColumns}
-              data={sampleData}
-              sortable={true}
-              resizable={true}
-              height="300px"
-              currentPage={currentPage}
-              onPageChange={setCurrentPage}
-              onSort={handleSort}
-            />
+        <div className="table-docs__example-shell">
+          <div className="table-docs__context-bar">
+            <div><Database size={16} /><strong>Rails list</strong></div>
+            <span>{sortState} · {selection.length ? `${selection.length} selected` : 'No selection'}</span>
           </div>
+          <Table
+            ariaLabel="Rails list"
+            caption="Rails grouped by collection"
+            columns={sampleColumns}
+            data={rows}
+            selectable
+            expandable
+            sortable
+            resizable
+            density="compact"
+            height="480px"
+            pageSize={20}
+            currentPage={currentPage}
+            onPageChange={setCurrentPage}
+            onSelectionChange={setSelection}
+            onSort={(column, direction) => setSortState(`${column}: ${direction}`)}
+            renderCell={renderCell}
+          />
+        </div>
+      </section>
 
-          <div className="table-docs__example">
-            <h3 className="table-docs__example-title">Selectable Table</h3>
-            <p className="table-docs__example-description">
-              Table with row selection, bulk actions, and selection counter.
-            </p>
-            <Table
-              columns={sampleColumns}
-              data={sampleData}
-              selectable={true}
-              sortable={true}
-              resizable={true}
-              height="300px"
-              currentPage={currentPage}
-              onPageChange={setCurrentPage}
-              onSelectionChange={handleSelectionChange}
-              renderCell={renderCell}
-            />
-          </div>
+      <section className="table-docs__section" aria-labelledby="table-variants">
+        <div className="table-docs__section-heading">
+          <div><span>02</span><h2 id="table-variants">Density and system states</h2></div>
+          <p>Density changes geometry only. Color, hierarchy, focus, and interaction behavior remain stable.</p>
+        </div>
+        <div className="table-docs__variant-grid">
+          <article>
+            <div className="table-docs__card-heading"><Rows3 size={17} /><div><h3>Compact</h3><p>High-volume management views</p></div></div>
+            <Table columns={sampleColumns.slice(0, 3)} data={createSampleData().slice(0, 3)} density="compact" height="220px" showSettings={false} showPagination={false} showActions={false} sortable renderCell={renderCell} />
+          </article>
+          <article>
+            <div className="table-docs__card-heading"><SlidersHorizontal size={17} /><div><h3>Comfortable</h3><p>Lower-density review workflows</p></div></div>
+            <Table columns={sampleColumns.slice(0, 3)} data={createSampleData().slice(0, 3)} density="comfortable" height="240px" showSettings={false} showPagination={false} showActions={false} selectable renderCell={renderCell} />
+          </article>
+        </div>
+        <div className="table-docs__state-strip">
+          <div><span className="table-docs__state-swatch" /><strong>Default</strong><small>Quiet surface and subtle divider</small></div>
+          <div><span className="table-docs__state-swatch table-docs__state-swatch--hover" /><strong>Hover</strong><small>Row affordance without border noise</small></div>
+          <div><span className="table-docs__state-swatch table-docs__state-swatch--selected" /><strong>Selected</strong><small>Surface cue plus native checkbox</small></div>
+          <div><span className="table-docs__focus-demo" tabIndex={0}>Focus target</span><strong>Focus</strong><small>Shared CVP focus ring</small></div>
+        </div>
+      </section>
 
-          <div className="table-docs__example">
-            <h3 className="table-docs__example-title">Expandable Table</h3>
-            <p className="table-docs__example-description">
-              Table with expandable rows showing additional details and custom content.
-            </p>
-            <Table
-              columns={sampleColumns}
-              data={sampleData}
-              expandable={true}
-              selectable={true}
-              sortable={true}
-              resizable={true}
-              height="400px"
-              currentPage={currentPage}
-              onPageChange={setCurrentPage}
-              renderCell={renderCell}
-            />
-          </div>
-        </section>
+      <section className="table-docs__section" aria-labelledby="table-contract">
+        <div className="table-docs__section-heading">
+          <div><span>03</span><h2 id="table-contract">Token contract</h2></div>
+          <p>Component CSS consumes Tier 3 table tokens only; themes resolve through Tier 2 semantic aliases.</p>
+        </div>
+        <div className="table-docs__contract-wrap">
+          <table className="table-docs__contract">
+            <thead><tr><th>Role</th><th>Tier 3 token</th><th>Canonical source</th><th>Resolved contract</th><th>Activation</th></tr></thead>
+            <tbody>{tokenRows.map(([role, token, source, resolved, activation]) => <tr key={token}><td>{role}</td><td><code>{token}</code></td><td><code>{source}</code></td><td>{resolved}</td><td>{activation}</td></tr>)}</tbody>
+          </table>
+        </div>
+      </section>
 
-        {/* Features */}
-        <section className="table-docs__section">
-          <h2 className="table-docs__section-title">Features</h2>
-          
-          <div className="table-docs__feature-grid">
-            <div className="table-docs__feature">
-              <h3 className="table-docs__feature-title">
-                <Calendar size={20} />
-                Dynamic Layout
-              </h3>
-              <p className="table-docs__feature-description">
-                Adapts to container size with sticky header and footer, scrollable body, and flexible column sizing.
-              </p>
-            </div>
-
-            <div className="table-docs__feature">
-              <h3 className="table-docs__feature-title">
-                <User size={20} />
-                Row Selection
-              </h3>
-              <p className="table-docs__feature-description">
-                Multi-select with checkboxes, select all functionality, and batch actions support.
-              </p>
-            </div>
-
-            <div className="table-docs__feature">
-              <h3 className="table-docs__feature-title">
-                <ChevronDown size={20} />
-                Expandable Rows
-              </h3>
-              <p className="table-docs__feature-description">
-                Collapsible row details with custom content for additional information display.
-              </p>
-            </div>
-
-            <div className="table-docs__feature">
-              <h3 className="table-docs__feature-title">
-                <Star size={20} />
-                Column Sorting
-              </h3>
-              <p className="table-docs__feature-description">
-                Click-to-sort headers with visual indicators for ascending and descending order.
-              </p>
-            </div>
-
-            <div className="table-docs__feature">
-              <h3 className="table-docs__feature-title">
-                <Eye size={20} />
-                Responsive Design
-              </h3>
-              <p className="table-docs__feature-description">
-                Mobile-friendly layout with touch interactions and optimized spacing for smaller screens.
-              </p>
-            </div>
-
-            <div className="table-docs__feature">
-              <h3 className="table-docs__feature-title">
-                <User size={20} />
-                Column Resizing
-              </h3>
-              <p className="table-docs__feature-description">
-                Interactive column width adjustment with slim line indicators and visual feedback during resize operations.
-              </p>
-            </div>
-
-            <div className="table-docs__feature">
-              <h3 className="table-docs__feature-title">
-                <Settings size={20} />
-                Table Controls
-              </h3>
-              <p className="table-docs__feature-description">
-                Settings, group/ungroup toggle, and view action buttons provide comprehensive table management options.
-              </p>
-            </div>
-
-            <div className="table-docs__feature">
-              <h3 className="table-docs__feature-title">
-                <User size={20} />
-                Advanced Features
-              </h3>
-              <p className="table-docs__feature-description">
-                Drag & drop reordering, virtual scrolling, and custom cell renderers for complex data presentation.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* States */}
-        <section className="table-docs__section">
-          <h2 className="table-docs__section-title">States</h2>
-          
-          <div className="doc-grid-states">
-            <div className="table-docs__example">
-              <h3 className="table-docs__example-title">Default</h3>
-              <div style={{ padding: '16px', background: '#19191a', borderRadius: '6px' }}>
-                <div style={{ 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  minHeight: '40px',
-                  padding: '8px 12px',
-                  borderBottom: '1px solid rgba(212, 228, 254, 0.1)',
-                  color: '#fff',
-                  fontSize: '14px'
-                }}>
-                  Spotlight
-                </div>
-              </div>
-            </div>
-
-            <div className="table-docs__example">
-              <h3 className="table-docs__example-title">Hover</h3>
-              <div style={{ padding: '16px', background: '#19191a', borderRadius: '6px' }}>
-                <div style={{ 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  minHeight: '40px',
-                  padding: '8px 12px',
-                  borderBottom: '1px solid rgba(212, 228, 254, 0.1)',
-                  background: '#292a2e',
-                  color: '#fff',
-                  fontSize: '14px'
-                }}>
-                  Spotlight
-                </div>
-              </div>
-            </div>
-
-            <div className="table-docs__example">
-              <h3 className="table-docs__example-title">Selected</h3>
-              <div style={{ padding: '16px', background: '#19191a', borderRadius: '6px' }}>
-                <div style={{ 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  minHeight: '40px',
-                  padding: '8px 12px',
-                  borderBottom: '1px solid rgba(212, 228, 254, 0.1)',
-                  color: '#fff',
-                  fontSize: '14px',
-                  gap: '12px'
-                }}>
-                  <input 
-                    type="checkbox" 
-                    checked 
-                    readOnly
-                    style={{
-                      width: '16px',
-                      height: '16px',
-                      background: '#3d63dd',
-                      border: '1px solid #3d63dd',
-                      borderRadius: '3px'
-                    }}
-                  />
-                  Spotlight
-                </div>
-              </div>
-            </div>
-
-            <div className="table-docs__example">
-              <h3 className="table-docs__example-title">Expanded</h3>
-              <div style={{ padding: '16px', background: '#19191a', borderRadius: '6px' }}>
-                <div style={{ 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  minHeight: '40px',
-                  padding: '8px 12px',
-                  color: '#fff',
-                  fontSize: '14px',
-                  gap: '8px'
-                }}>
-                  <ChevronDown size={14} />
-                  Spotlight
-                </div>
-                <div style={{
-                  background: '#292a2e',
-                  padding: '16px',
-                  fontSize: '13px',
-                  color: '#bbb'
-                }}>
-                  Featured content highlighting the best recommendations
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Specifications */}
-        <section className="table-docs__section">
-          <h2 className="table-docs__section-title">Specifications</h2>
-          <TableSpecifications />
-        </section>
-      </div>
-    </>
+      <section className="table-docs__section" aria-labelledby="table-implementation">
+        <div className="table-docs__section-heading">
+          <div><span>04</span><h2 id="table-implementation">Implementation contract</h2></div>
+        </div>
+        <div className="table-docs__implementation-grid">
+          <article><strong>Use native semantics</strong><p>The component renders table, thead, tbody, th, caption, and aria-sort. Keep interactive behavior inside buttons and inputs.</p></article>
+          <article><strong>Preserve scan paths</strong><p>Do not wrap cell values by default. Use explicit widths and horizontal scrolling for dense operational content.</p></article>
+          <article><strong>Expose real actions</strong><p>Wire onSort, onSelectionChange, onRowAction, and onPageChange. Do not ship controls that only appear actionable.</p></article>
+          <article><strong>Handle every data state</strong><p>Provide loading and empty states, disabled rows where needed, and an accessible label or visible caption.</p></article>
+        </div>
+        <p className="table-docs__handoff-note">Full engineering guidance: <code>TABLE_COMPONENT_DEV_HANDOFF.md</code></p>
+      </section>
+    </main>
   );
 }

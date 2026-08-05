@@ -1,270 +1,38 @@
-import React, { useState } from 'react';
+import React, { KeyboardEvent, useEffect, useId, useRef, useState } from 'react';
+import { ChevronDown } from 'lucide-react';
+import './Accordion.css';
 
-export interface AccordionItem {
-  id: string;
-  title: string;
-  content: React.ReactNode;
-  disabled?: boolean;
-  icon?: React.ReactNode;
-  iconColor?: 'default' | 'primary';
-}
-
+export interface AccordionItem { id:string; title:React.ReactNode; content:React.ReactNode; disabled?:boolean; icon?:React.ReactNode; iconColor?:'default'|'primary' }
 export interface AccordionProps {
-  /** Array of accordion items */
-  items: AccordionItem[];
-  /** Type of accordion - single allows only one open at a time, multiple allows multiple */
-  type?: 'single' | 'multiple';
-  /** Initially expanded items (IDs) */
-  defaultExpanded?: string[];
-  /** Callback when accordion item is expanded/collapsed */
-  onExpandedChange?: (expandedItems: string[]) => void;
-  /** Whether the accordion is disabled */
-  disabled?: boolean;
-  /** Additional CSS class name */
-  className?: string;
+ items:AccordionItem[]; type?:'single'|'multiple'; defaultExpanded?:string[]; expandedItems?:string[];
+ onExpandedChange?:(expandedItems:string[])=>void; disabled?:boolean; className?:string; headingLevel?:2|3|4|5|6;
 }
 
-export function Accordion({
-  items,
-  type = 'single',
-  defaultExpanded = [],
-  onExpandedChange,
-  disabled = false,
-  className = '',
-}: AccordionProps) {
-  const [expandedItems, setExpandedItems] = useState<string[]>(defaultExpanded);
+export function Accordion({items,type='single',defaultExpanded=[],expandedItems:controlled,onExpandedChange,disabled=false,className='',headingLevel=3}:AccordionProps){
+ const validDefaults=defaultExpanded.filter(id=>items.some(item=>item.id===id&&!item.disabled));
+ const[internal,setInternal]=useState<string[]>(type==='single'?validDefaults.slice(0,1):validDefaults);
+ const expanded=controlled??internal;
+ const refs=useRef<Record<string,HTMLButtonElement|null>>({});
+ const instanceId=useId().replace(/:/g,'');
+ const Heading=`h${headingLevel}` as keyof React.JSX.IntrinsicElements;
 
-  const handleToggle = (itemId: string) => {
-    if (disabled) return;
+ useEffect(()=>{
+  if(controlled!==undefined)return;
+  setInternal(current=>current.filter(id=>items.some(item=>item.id===id&&!item.disabled)).slice(0,type==='single'?1:undefined));
+ },[items,type,controlled]);
 
-    const item = items.find(item => item.id === itemId);
-    if (item?.disabled) return;
+ const toggle=(id:string)=>{const item=items.find(entry=>entry.id===id);if(disabled||!item||item.disabled)return;const next=type==='single'?(expanded.includes(id)?[]:[id]):expanded.includes(id)?expanded.filter(value=>value!==id):[...expanded,id];if(controlled===undefined)setInternal(next);onExpandedChange?.(next)};
+ const move=(event:KeyboardEvent<HTMLButtonElement>,index:number)=>{
+  const enabled=items.filter(item=>!disabled&&!item.disabled);if(!enabled.length)return;const current=enabled.findIndex(item=>item.id===items[index]?.id);let target:number|undefined;
+  if(event.key==='ArrowDown')target=(current+1)%enabled.length;else if(event.key==='ArrowUp')target=(current-1+enabled.length)%enabled.length;else if(event.key==='Home')target=0;else if(event.key==='End')target=enabled.length-1;else return;
+  event.preventDefault();refs.current[enabled[target].id]?.focus();
+ };
 
-    let newExpandedItems: string[];
-
-    if (type === 'single') {
-      // Single type: only one item can be expanded at a time
-      newExpandedItems = expandedItems.includes(itemId) ? [] : [itemId];
-    } else {
-      // Multiple type: multiple items can be expanded
-      newExpandedItems = expandedItems.includes(itemId)
-        ? expandedItems.filter(id => id !== itemId)
-        : [...expandedItems, itemId];
-    }
-
-    setExpandedItems(newExpandedItems);
-    onExpandedChange?.(newExpandedItems);
-  };
-
-  return (
-    <>
-      <style>{`
-        .accordion {
-          /* Design System Tokens */
-          --accordion-item-radius: 0;
-          --accordion-header-padding: 12px 15px;
-          --accordion-content-padding: 16px;
-          --accordion-border-width: 1px;
-          --accordion-transition-duration: 0.2s;
-          --accordion-icon-size: 16px;
-
-          /* Accordion Styles */
-          background-color: var(--background);
-          border-radius: var(--accordion-item-radius);
-          font-family: var(--font-family);
-          width: 100%;
-          overflow: hidden;
-        }
-
-        .accordion--disabled {
-          opacity: 0.6;
-          pointer-events: none;
-        }
-
-        .accordion-item {
-          border-bottom: var(--accordion-border-width) solid var(--border-default);
-        }
-
-        .accordion-item:last-child {
-          border-bottom: none;
-        }
-
-        .accordion-item:first-child .accordion-header {
-          border-top-left-radius: 0;
-          border-top-right-radius: 0;
-        }
-
-        .accordion-item:last-child .accordion-header {
-          border-bottom-left-radius: 0;
-          border-bottom-right-radius: 0;
-        }
-
-        .accordion-item:first-child .accordion-content {
-          border-top-left-radius: 0;
-          border-top-right-radius: 0;
-        }
-
-        .accordion-item:last-child .accordion-content {
-          border-bottom-left-radius: 0;
-          border-bottom-right-radius: 0;
-        }
-
-        .accordion-header {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: var(--accordion-header-padding);
-          background-color: var(--card);
-          border: none;
-          cursor: pointer;
-          font-size: var(--type-scale-m-size);
-          font-weight: var(--type-scale-m-weight);
-          color: var(--foreground);
-          transition: background-color var(--accordion-transition-duration) var(--default-transition-timing-function);
-          width: 100%;
-          text-align: left;
-          user-select: none;
-        }
-
-        .accordion-header:hover:not(.accordion-header--disabled) {
-          background-color: var(--muted);
-        }
-
-        .accordion-header:focus-visible {
-          outline: 2px solid var(--focus-ring);
-          outline-offset: -2px;
-        }
-
-        .accordion-header--disabled {
-          opacity: 0.5;
-          cursor: not-allowed;
-        }
-
-        .accordion-title {
-          flex: 1;
-          font-size: var(--type-scale-m-size);
-          font-weight: var(--type-scale-m-weight);
-          color: var(--foreground);
-          display: flex;
-          align-items: center;
-          gap: 8px;
-        }
-
-        .accordion-title-icon {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 16px;
-          height: 16px;
-          color: var(--foreground);
-        }
-
-        .accordion-title-icon--primary {
-          color: var(--primary);
-        }
-
-        .accordion-icon {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: var(--accordion-icon-size);
-          height: var(--accordion-icon-size);
-          transition: transform var(--accordion-transition-duration) var(--default-transition-timing-function);
-          color: var(--muted-foreground);
-        }
-
-        .accordion-icon--expanded {
-          transform: rotate(180deg);
-        }
-
-        .accordion-content {
-          overflow: hidden;
-          background-color: var(--card);
-          transition: height var(--accordion-transition-duration) var(--default-transition-timing-function);
-        }
-
-        .accordion-content--expanded {
-          height: auto;
-        }
-
-        .accordion-content--collapsed {
-          height: 0;
-        }
-
-        .accordion-content-inner {
-          padding: var(--accordion-content-padding);
-          color: var(--foreground);
-        }
-
-        .accordion-content-inner > *:first-child {
-          margin-top: 0;
-        }
-
-        .accordion-content-inner > *:last-child {
-          margin-bottom: 0;
-        }
-
-        /* Full width support for panel layouts */
-        .accordion.panel-full-width-horizontal {
-          width: 100%;
-        }
-      `}</style>
-
-      <div className={`accordion ${disabled ? 'accordion--disabled' : ''} ${className}`}>
-        {items.map((item) => {
-          const isExpanded = expandedItems.includes(item.id);
-          const isDisabled = disabled || item.disabled;
-
-          return (
-            <div key={item.id} className="accordion-item">
-              <button
-                className={`accordion-header ${isDisabled ? 'accordion-header--disabled' : ''}`}
-                onClick={() => handleToggle(item.id)}
-                disabled={isDisabled}
-                aria-expanded={isExpanded}
-                aria-controls={`accordion-content-${item.id}`}
-                id={`accordion-header-${item.id}`}
-              >
-                <span className="accordion-title">
-                  {item.icon && <span className={`accordion-title-icon ${item.iconColor === 'primary' ? 'accordion-title-icon--primary' : ''}`}>{item.icon}</span>}
-                  {item.title}
-                </span>
-                <span className={`accordion-icon ${isExpanded ? 'accordion-icon--expanded' : ''}`}>
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M4 6L8 10L12 6"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </span>
-              </button>
-              
-              <div
-                className={`accordion-content ${isExpanded ? 'accordion-content--expanded' : 'accordion-content--collapsed'}`}
-                id={`accordion-content-${item.id}`}
-                aria-labelledby={`accordion-header-${item.id}`}
-                role="region"
-                style={{
-                  display: isExpanded ? 'block' : 'none'
-                }}
-              >
-                <div className="accordion-content-inner">
-                  {item.content}
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    </>
-  );
+ if(!items.length)return null;
+ return <div className={`cvp-accordion ${className}`.trim()} data-disabled={disabled||undefined} data-type={type}>
+  {items.map((item,index)=>{const open=expanded.includes(item.id),unavailable=disabled||item.disabled,buttonId=`${instanceId}-trigger-${item.id}`,panelId=`${instanceId}-panel-${item.id}`;return <section key={item.id} className="cvp-accordion__item" data-expanded={open||undefined} data-disabled={unavailable||undefined}>
+   <Heading className="cvp-accordion__heading"><button ref={node=>{refs.current[item.id]=node}} type="button" className="cvp-accordion__trigger" id={buttonId} aria-expanded={open} aria-controls={panelId} disabled={unavailable} onClick={()=>toggle(item.id)} onKeyDown={event=>move(event,index)}><span className="cvp-accordion__title">{item.icon&&<span className="cvp-accordion__leading" data-color={item.iconColor||'default'} aria-hidden="true">{item.icon}</span>}<span>{item.title}</span></span><ChevronDown className="cvp-accordion__chevron" aria-hidden="true"/></button></Heading>
+   {open&&<div className="cvp-accordion__panel" id={panelId} role="region" aria-labelledby={buttonId}><div className="cvp-accordion__content">{item.content}</div></div>}
+  </section>})}
+ </div>;
 }

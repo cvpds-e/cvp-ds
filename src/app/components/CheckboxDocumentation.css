@@ -1,5 +1,5 @@
 .cvp-checkbox-doc__states{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--cvp-spacing-gap-md)}
-.cvp-checkbox-doc__states article{display:grid;align-content:start;gap:var(--cvp-spacing-stack-md);min-height:var(--cvp-space-20);padding:var(--cvp-spacing-inset-md);background:var(--cvp-color-surface-sunken);border:var(--cvp-border-base);border-radius:var(--cvp-shape-surface-subtle)}
+.cvp-checkbox-doc__states article{display:grid;align-content:start;gap:var(--cvp-spacing-stack-md);min-height:var(--cvp-space-1200);padding:var(--cvp-spacing-inset-md);background:var(--cvp-color-surface-sunken);border:var(--cvp-border-base);border-radius:var(--cvp-shape-surface-subtle)}
 .cvp-checkbox-doc__states article>span{color:var(--cvp-color-text-muted);font-size:var(--cvp-font-size-xs);font-weight:var(--cvp-font-weight-bold);letter-spacing:var(--cvp-letter-spacing-wide);text-transform:uppercase}
 .cvp-checkbox-doc__fieldset{display:grid;gap:var(--cvp-spacing-stack-md);margin:0;padding:var(--cvp-spacing-inset-lg);background:var(--cvp-color-surface-sunken);border:var(--cvp-border-base);border-radius:var(--cvp-shape-surface-subtle)}
 .cvp-checkbox-doc__fieldset legend{padding-inline:var(--cvp-spacing-inline-xs);color:var(--cvp-color-text-primary);font-size:var(--cvp-font-size-md);font-weight:var(--cvp-font-weight-semibold)}

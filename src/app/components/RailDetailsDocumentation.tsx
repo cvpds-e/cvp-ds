@@ -1,111 +1,13 @@
 import React from 'react';
-import { Maximize2 } from 'lucide-react';
+import { Maximize2, PanelLeft, Rows3, Save } from 'lucide-react';
+import { PrimaryButton } from './PrimaryButton';
+import './RailDetailsDocumentation.css';
 
 export function RailDetailsDocumentation() {
-  const openFullPage = () => {
-    window.open(`${window.location.pathname}?page=rail-details-full`, '_blank');
-  };
-
-  return (
-    <>
-      <style>{`
-        .rail-details-docs {
-          padding: 48px 0;
-          font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-        }
-
-        .rail-details-docs__header {
-          margin-bottom: 48px;
-        }
-
-        .rail-details-docs__title {
-          font-size: 32px;
-          font-weight: 700;
-          line-height: 40px;
-          color: var(--text-primary);
-          margin-bottom: 12px;
-        }
-
-        .rail-details-docs__description {
-          font-size: var(--type-scale-l-size);
-          line-height: var(--type-scale-l-line-height);
-          color: var(--text-muted);
-          margin-bottom: 24px;
-        }
-
-        .rail-details-docs__section {
-          margin-bottom: 48px;
-        }
-
-        .rail-details-docs__section h2 {
-          font-size: 24px;
-          font-weight: 600;
-          line-height: 32px;
-          color: var(--text-primary);
-          margin-bottom: 16px;
-        }
-
-        .rail-details-docs__section p {
-          font-size: var(--type-scale-m-size);
-          line-height: var(--type-scale-m-line-height);
-          color: var(--text-secondary);
-          margin-bottom: 16px;
-        }
-
-        .rail-details-docs__preview-bar {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          margin-bottom: 12px;
-        }
-
-        .rail-details-docs__open-btn {
-          display: inline-flex;
-          align-items: center;
-          gap: 6px;
-          padding: 6px 14px;
-          font-size: 13px;
-          font-weight: 500;
-          color: var(--foreground);
-          background: var(--secondary);
-          border: 1px solid var(--border-default);
-          border-radius: 6px;
-          cursor: pointer;
-          transition: background 0.15s ease;
-          font-family: inherit;
-        }
-
-        .rail-details-docs__open-btn:hover {
-          background: var(--bg-hover);
-        }
-
-      `}</style>
-
-      <div className="rail-details-docs">
-        <div className="rail-details-docs__header">
-          <h1 className="rail-details-docs__title">Rail Details Page</h1>
-          <p className="rail-details-docs__description">
-            A professional content rail management interface for broadcast and OTT operators. Configure collections, manage metadata, and preview content with status tracking, position controls, and streamlined editing workflows.
-          </p>
-        </div>
-
-        {/* Preview */}
-        <div className="rail-details-docs__section">
-          <div className="rail-details-docs__preview-bar">
-            <h2 style={{ margin: 0 }}>Preview</h2>
-            <button
-              className="rail-details-docs__open-btn"
-              onClick={openFullPage}
-            >
-              <Maximize2 size={13} />
-              Open full page
-            </button>
-          </div>
-          <p>
-            The Rail Details page provides broadcast and OTT operators with a dedicated workspace for managing content rails. The layout combines a compact sidebar for configuration with a main content area for preview and management.
-          </p>
-        </div>
-      </div>
-    </>
-  );
+  const openFullPage = () => window.open(`${window.location.pathname}?page=rail-details-full`, '_blank');
+  return <main className="rail-details-docs documentation-container">
+    <header className="rail-details-docs__hero"><span className="rail-details-docs__eyebrow">Pages</span><h1>Rail Details</h1><p>An integration workspace for configuring a content rail and reviewing its live composition. This page demonstrates how the standardized foundations and components behave together under production-like density.</p><PrimaryButton onClick={openFullPage}><Maximize2 size={15} /> Open full-page preview</PrimaryButton></header>
+    <section className="rail-details-docs__section" aria-labelledby="rail-details-composition"><div className="rail-details-docs__section-heading"><span>Integration composition</span><h2 id="rail-details-composition">Built from the system</h2></div><div className="rail-details-docs__grid"><article><PanelLeft size={20} /><strong>Configuration pane</strong><p>Tabs, Text Input, Select, Text Area, Checkbox and Segmented controls share one compact form rhythm.</p></article><article><Rows3 size={20} /><strong>Content workspace</strong><p>Header Navigation, Breadcrumbs, Rail Content Gallery and Notification Banner establish the page hierarchy.</p></article><article><Save size={20} /><strong>Workflow feedback</strong><p>Content Browser Modal, buttons and Toast complete add, preview, duplicate and save interactions.</p></article></div></section>
+    <section className="rail-details-docs__section rail-details-docs__note"><strong>Review intent</strong><p>This page intentionally has no additional token contract. It is the natural integration audit for the component contracts already documented on their individual pages.</p></section>
+  </main>;
 }

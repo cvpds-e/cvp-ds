@@ -6,6 +6,7 @@ import { OutlineButtonDocumentation } from './OutlineButtonDocumentation';
 import { TreeDocumentation } from './TreeDocumentation';
 import { TokensDocumentation } from './TokensDocumentation';
 import { ComponentsOverview } from './ComponentsOverview';
+import './ComponentDocumentation.css';
 
 export interface ComponentDocumentationProps {
   activeComponent: string;
@@ -36,39 +37,10 @@ export function ComponentDocumentation({ activeComponent }: ComponentDocumentati
   };
 
   return (
-    <>
-      <style>{`
-        .component-documentation {
-          /* Design System Tokens */
-          --component-documentation-flex: 1;
-          --component-documentation-overflow-y: auto;
-          --component-documentation-bg: #0a0a0f;
-          --component-documentation-color: #ffffff;
-          --component-documentation-font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-
-          /* Component Styles */
-          flex: var(--component-documentation-flex);
-          overflow-y: var(--component-documentation-overflow-y);
-          background-color: var(--component-documentation-bg);
-          color: var(--component-documentation-color);
-          font-family: var(--component-documentation-font-family);
-          box-sizing: border-box;
-        }
-
-        .component-documentation__content {
-          /* Design System Tokens */
-          --documentation-content-min-height: 100vh;
-
-          /* Component Styles */
-          min-height: var(--documentation-content-min-height);
-        }
-      `}</style>
-
       <div className="component-documentation">
         <div className="component-documentation__content">
           {renderComponent()}
         </div>
       </div>
-    </>
   );
 }

@@ -21,7 +21,10 @@ export function AccessibilityAuditProbe() {
         nodes: item.nodes.map(node => node.target.join(' ')),
       }));
       setResult({ violations: compact(results.violations), incomplete: compact(results.incomplete), passes: results.passes.length });
-    }, 350);
+    // Theme persistence is applied by the shell after mount. Wait until the
+    // selected theme has settled so contrast is measured against the rendered
+    // palette rather than the initial fallback palette.
+    }, 750);
     return () => window.clearTimeout(timer);
   }, []);
 

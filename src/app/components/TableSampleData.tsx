@@ -141,10 +141,10 @@ export const emptyContentItems: RailContentItem[] = [];
 
 // Sample columns configuration
 export const sampleColumns: TableColumn[] = [
-  { id: 'title', label: 'Title', width: '200px', sortable: true },
-  { id: 'collection', label: 'Collection', width: '150px', sortable: true },
-  { id: 'order', label: 'Order', width: '100px', sortable: true },
-  { id: 'type', label: 'Type', width: '120px', sortable: true },
+  { id: 'title', label: 'Title', width: '180px', sortable: true },
+  { id: 'collection', label: 'Collection', width: '120px', sortable: true },
+  { id: 'order', label: 'Order', width: '80px', sortable: true },
+  { id: 'type', label: 'Type', width: '110px', sortable: true },
   { id: 'updated', label: 'Updated', width: '120px', sortable: true }
 ];
 

@@ -1,216 +1,39 @@
-import React, { useState, useRef, useEffect, KeyboardEvent } from 'react';
+import React, { KeyboardEvent, useEffect, useId, useRef, useState } from 'react';
+import './Tabs.css';
 
-export interface TabItem {
-  id: string;
-  label: string;
-  content: React.ReactNode;
-  disabled?: boolean;
-}
-
+export interface TabItem { id:string; label:React.ReactNode; content:React.ReactNode; disabled?:boolean }
 export interface TabsProps {
-  tabs: TabItem[];
-  defaultTab?: string;
-  onTabChange?: (tabId: string) => void;
-  className?: string;
+  tabs:TabItem[]; defaultTab?:string; activeTab?:string; onTabChange?:(tabId:string)=>void;
+  className?:string; ariaLabel?:string; activationMode?:'automatic'|'manual'; orientation?:'horizontal'|'vertical';
 }
 
-export function Tabs({ tabs, defaultTab, onTabChange, className = '' }: TabsProps) {
-  const [activeTab, setActiveTab] = useState(defaultTab || tabs[0]?.id);
-  const [contentKey, setContentKey] = useState(0);
-  const tabRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
+export function Tabs({tabs,defaultTab,activeTab:controlledTab,onTabChange,className='',ariaLabel='Content sections',activationMode='automatic',orientation='horizontal'}:TabsProps){
+ const firstEnabled=tabs.find(tab=>!tab.disabled)?.id;
+ const[internalTab,setInternalTab]=useState(defaultTab&&tabs.some(tab=>tab.id===defaultTab&&!tab.disabled)?defaultTab:firstEnabled);
+ const selectedId=controlledTab??internalTab;
+ const refs=useRef<Record<string,HTMLButtonElement|null>>({});
+ const instanceId=useId().replace(/:/g,'');
 
-  const handleTabClick = (tabId: string, disabled?: boolean) => {
-    if (disabled) return;
-    
-    setActiveTab(tabId);
-    setContentKey(prev => prev + 1);
-    onTabChange?.(tabId);
-  };
+ useEffect(()=>{
+  if(selectedId&&tabs.some(tab=>tab.id===selectedId&&!tab.disabled))return;
+  if(controlledTab===undefined)setInternalTab(firstEnabled);
+ },[tabs,selectedId,controlledTab,firstEnabled]);
 
-  const handleKeyDown = (e: KeyboardEvent<HTMLButtonElement>, currentIndex: number) => {
-    const enabledTabs = tabs.filter(tab => !tab.disabled);
-    const currentEnabledIndex = enabledTabs.findIndex(tab => tab.id === tabs[currentIndex].id);
-    
-    let nextIndex = currentEnabledIndex;
+ const select=(id:string)=>{const tab=tabs.find(item=>item.id===id);if(!tab||tab.disabled)return;if(controlledTab===undefined)setInternalTab(id);onTabChange?.(id)};
+ const move=(event:KeyboardEvent<HTMLButtonElement>,index:number)=>{
+  const enabled=tabs.filter(tab=>!tab.disabled);if(!enabled.length)return;
+  const current=enabled.findIndex(tab=>tab.id===tabs[index]?.id);
+  const previousKey=orientation==='horizontal'?'ArrowLeft':'ArrowUp',nextKey=orientation==='horizontal'?'ArrowRight':'ArrowDown';
+  let target:number|undefined;
+  if(event.key===nextKey)target=(current+1)%enabled.length;else if(event.key===previousKey)target=(current-1+enabled.length)%enabled.length;else if(event.key==='Home')target=0;else if(event.key==='End')target=enabled.length-1;else if(activationMode==='manual'&&(event.key==='Enter'||event.key===' ')){event.preventDefault();select(tabs[index].id);return}else return;
+  event.preventDefault();const next=enabled[target];refs.current[next.id]?.focus();if(activationMode==='automatic')select(next.id);
+ };
 
-    switch (e.key) {
-      case 'ArrowRight':
-        e.preventDefault();
-        nextIndex = (currentEnabledIndex + 1) % enabledTabs.length;
-        break;
-      case 'ArrowLeft':
-        e.preventDefault();
-        nextIndex = (currentEnabledIndex - 1 + enabledTabs.length) % enabledTabs.length;
-        break;
-      case 'Home':
-        e.preventDefault();
-        nextIndex = 0;
-        break;
-      case 'End':
-        e.preventDefault();
-        nextIndex = enabledTabs.length - 1;
-        break;
-      default:
-        return;
-    }
-
-    const nextTab = enabledTabs[nextIndex];
-    if (nextTab) {
-      setActiveTab(nextTab.id);
-      setContentKey(prev => prev + 1);
-      onTabChange?.(nextTab.id);
-      tabRefs.current[nextTab.id]?.focus();
-    }
-  };
-
-  const activeTabContent = tabs.find(tab => tab.id === activeTab)?.content;
-
-  return (
-    <>
-      <style>{`
-        .tabs {
-          width: 100%;
-        }
-
-        .tabs-list {
-          display: flex;
-          gap: 0;
-          padding: 0;
-          background: transparent;
-          border-bottom: 1px solid var(--border-default);
-          margin: 0;
-          list-style: none;
-          overflow-x: auto;
-          overflow-y: hidden;
-          scrollbar-width: thin;
-        }
-
-        .tabs-trigger {
-          padding: 12px 16px;
-          background: transparent;
-          font-family: Inter, sans-serif;
-          font-size: 13px;
-          font-weight: 500;
-          line-height: 18px;
-          border: none;
-          border-bottom: 2px solid transparent;
-          color: var(--text-muted);
-          cursor: pointer;
-          transition: all 150ms ease;
-          white-space: nowrap;
-          position: relative;
-          outline: none;
-        }
-
-        .tabs-trigger:hover:not(:disabled) {
-          color: var(--text-primary);
-          background: var(--bg-hover);
-        }
-
-        .tabs-trigger[aria-selected="true"] {
-          color: var(--text-primary);
-          background: transparent;
-          border-bottom-color: transparent;
-        }
-
-        .tabs-trigger:focus-visible {
-          outline: none;
-          z-index: 1;
-          box-shadow: 0 0 0 2px rgba(111, 139, 230, 0.25); /* Dark theme default */
-        }
-
-        [data-theme="light"] .tabs-trigger:focus-visible {
-          box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.20);
-        }
-
-        .tabs-trigger:disabled {
-          color: #a1a1a8;
-          opacity: 0.5;
-          cursor: not-allowed;
-        }
-
-        .tabs-trigger[aria-selected="true"]::after {
-          content: '';
-          position: absolute;
-          bottom: -2px;
-          left: 20px;
-          right: 20px;
-          height: 2px;
-          background: #3d63dd;
-          animation: slideIn 200ms ease;
-        }
-
-        [data-theme="light"] .tabs-trigger[aria-selected="true"]::after {
-          background: #2563eb;
-        }
-
-        @keyframes slideIn {
-          from {
-            transform: scaleX(0);
-          }
-          to {
-            transform: scaleX(1);
-          }
-        }
-
-        .tabs-content {
-          padding-top: 24px;
-          animation: fadeIn 150ms ease;
-        }
-
-        /* Remove padding for panel navigation tabs */
-        .tabs.panel-nav-tabs .tabs-content {
-          padding-top: 0;
-        }
-
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
-        }
-      `}</style>
-
-      <div className={`tabs ${className}`}>
-        <div 
-          role="tablist" 
-          className="tabs-list"
-          aria-label="Tabs"
-        >
-          {tabs.map((tab, index) => (
-            <button
-              key={tab.id}
-              ref={el => tabRefs.current[tab.id] = el}
-              role="tab"
-              aria-selected={activeTab === tab.id}
-              aria-controls={`panel-${tab.id}`}
-              id={`tab-${tab.id}`}
-              tabIndex={activeTab === tab.id ? 0 : -1}
-              className="tabs-trigger"
-              onClick={() => handleTabClick(tab.id, tab.disabled)}
-              onKeyDown={(e) => handleKeyDown(e, index)}
-              disabled={tab.disabled}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
-
-        {tabs.map((tab) => (
-          <div
-            key={`${tab.id}-${contentKey}`}
-            role="tabpanel"
-            id={`panel-${tab.id}`}
-            aria-labelledby={`tab-${tab.id}`}
-            hidden={activeTab !== tab.id}
-            className="tabs-content"
-          >
-            {activeTab === tab.id && tab.content}
-          </div>
-        ))}
-      </div>
-    </>
-  );
+ if(!tabs.length)return null;
+ return <div className={`cvp-tabs cvp-tabs--${orientation} ${className}`.trim()}>
+  <div role="tablist" className="cvp-tabs__list" aria-label={ariaLabel} aria-orientation={orientation}>
+   {tabs.map((tab,index)=>{const selected=selectedId===tab.id;return <button key={tab.id} ref={node=>{refs.current[tab.id]=node}} type="button" role="tab" id={`${instanceId}-tab-${tab.id}`} aria-selected={selected} aria-controls={`${instanceId}-panel-${tab.id}`} tabIndex={selected?0:-1} className="cvp-tabs__tab" disabled={tab.disabled} onClick={()=>select(tab.id)} onKeyDown={event=>move(event,index)}><span className="cvp-tabs__label">{tab.label}</span></button>})}
+  </div>
+  {tabs.map(tab=><div key={tab.id} role="tabpanel" id={`${instanceId}-panel-${tab.id}`} aria-labelledby={`${instanceId}-tab-${tab.id}`} hidden={selectedId!==tab.id} tabIndex={0} className="cvp-tabs__panel">{tab.content}</div>)}
+ </div>;
 }

@@ -54,14 +54,6 @@ button:focus-visible:not(.primary-button):not(.segmented-segment):not(.multi-sel
   box-shadow: var(--cvp-border-focus-ring);
 }
 
-/* Multi Select focus styles - Matching Text Input focus properties exactly */
-.multi-select__trigger:focus-visible,
-.multi-select__trigger--open {
-  border: 1px solid var(--input-focus-border) !important;
-  box-shadow: 0 0 0 1px var(--input-focus-border), var(--input-focus-glow) !important;
-  outline: none !important;
-}
-
 /* Select focus styles - Matching Text Input focus properties exactly */
 .select:not(.select--button) .select__trigger:focus-visible,
 .select:not(.select--button) .select__trigger--open {

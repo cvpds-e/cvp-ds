@@ -15,6 +15,7 @@ import { MiscInputDocumentation } from './components/MiscInputDocumentation';
 import { CheckboxDocumentation } from './components/CheckboxDocumentation';
 import { ToggleDocumentation } from './components/ToggleDocumentation';
 import { FilterDocumentation } from './components/FilterDocumentation';
+import { DatePickerDocumentation } from './components/DatePickerDocumentation';
 import { FilterGroupDocumentation } from './components/FilterGroupDocumentation';
 import { TreeDocumentation } from './components/TreeDocumentation';
 import { TableDocumentation } from './components/TableDocumentation';
@@ -48,6 +49,7 @@ import { NotificationBannerDocumentation } from './components/NotificationBanner
 import { AccessibilityAuditProbe } from './components/AccessibilityAuditProbe';
 import cvpLogoWhite from '../imports/NEW__DARK_.png';
 import cvpLogoBlack from '../imports/NEW__LIGHT_.png';
+import './App.css';
 
 function OverviewSection() {
   return (
@@ -538,6 +540,8 @@ export default function App() {
         return <ToggleDocumentation />;
       case 'filter':
         return <FilterDocumentation />;
+      case 'date-picker':
+        return <DatePickerDocumentation />;
       case 'filter-group':
         return <FilterGroupDocumentation />;
       case 'breadcrumbs':
@@ -589,95 +593,6 @@ export default function App() {
 
   return (
     <>
-      <style>{`
-        .app {
-          /* Design System Tokens */
-          --app-display: flex;
-          --app-min-height: 100vh;
-          --app-bg: var(--background);
-          --app-color: var(--foreground);
-          --app-font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-
-          /* Component Styles */
-          display: var(--app-display);
-          min-height: var(--app-min-height);
-          background-color: var(--app-bg);
-          color: var(--app-color);
-          font-family: var(--app-font-family);
-        }
-
-        .app__main {
-          /* Design System Tokens */
-          --app-main-sidebar-width: 240px;
-          --app-main-flex: 1;
-          --app-main-overflow-y: auto;
-          --app-main-overflow-x: hidden;
-          --app-main-max-width: 1200px;
-          --app-main-padding-desktop: 0 var(--spacing-8);
-          --app-main-padding-tablet: 0 var(--spacing-6);
-          --app-main-padding-mobile: 0 var(--spacing-4);
-
-          /* Component Styles */
-          flex: var(--app-main-flex);
-          overflow-y: var(--app-main-overflow-y);
-          overflow-x: var(--app-main-overflow-x);
-          box-sizing: border-box;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          
-          /* Default desktop layout */
-          margin-left: var(--app-main-sidebar-width);
-          width: calc(100% - var(--app-main-sidebar-width));
-          padding: var(--app-main-padding-desktop);
-        }
-
-        /* Tablet responsiveness */
-        @media (max-width: 1024px) {
-          .app__main {
-            padding: var(--app-main-padding-tablet);
-          }
-        }
-
-        /* Small tablet/large mobile responsiveness */
-        @media (max-width: 768px) {
-          .app__main {
-            margin-left: 0;
-            width: 100%;
-            padding: var(--app-main-padding-mobile);
-          }
-        }
-
-        /* Mobile responsiveness */
-        @media (max-width: 640px) {
-          .app__main {
-            padding: 0 var(--spacing-3);
-          }
-        }
-
-        .app__main > * {
-          width: 100%;
-          max-width: var(--app-main-max-width);
-          margin: 0 auto;
-        }
-
-        /* Ensure sidebar is responsive too */
-        .design-system-nav {
-          position: fixed;
-          left: 0;
-          top: 0;
-          height: 100vh;
-          z-index: 100;
-        }
-
-        @media (max-width: 768px) {
-          .design-system-nav {
-            transform: translateX(-100%);
-            transition: transform 0.3s ease;
-          }
-        }
-      `}</style>
-
       {activeSection === 'rail-details-full' ? (
         <RailDetails />
       ) : (

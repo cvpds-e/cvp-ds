@@ -4,6 +4,21 @@
 
 This document tracks implementation progress. For stable architecture documentation see `CVP_TOKEN_ARCHITECTURE.md`.
 
+## Latest delivery — Filter and Date Picker
+
+- Rebuilt Filter as a focused clause composer using the canonical input and menu contracts.
+- Removed the embedded calendar implementation and extracted Date Picker into its own component, navigation page, token contract, and visual review surface.
+- Standardized single, range, optional-time, bounded, disabled, clause, search, value-editor, and dual-theme states.
+- Refined Filter clause readability and introduced a theme-safe Date Picker time-selection dialog for consistent hour/minute selection.
+- Added `FILTER_DATE_PICKER_STANDARDIZATION.md` engineering handoff.
+
+## Latest delivery — Multi Select
+
+- Rebuilt Multi Select on the canonical input and menu token contracts, removing embedded styles and global legacy focus overrides.
+- Standardized labels, descriptions, errors, tags, search, listbox states, limits, creation, bulk actions, hidden form values, and keyboard focus behavior.
+- Rebalanced the shared semantic input-border role to remain subtle in both themes while retaining strong focus and validation state boundaries.
+- Added complete dual-theme visual documentation and `MULTI_SELECT_STANDARDIZATION.md` engineering handoff.
+
 ## Latest delivery — Checkbox
 
 - Replaced embedded legacy styling with the registered `--cvp-checkbox-*` Tier 3 contract.

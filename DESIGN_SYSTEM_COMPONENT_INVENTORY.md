@@ -62,7 +62,7 @@ Two gaps apply universally and are not repeated in every row below.
 | MiscInput | Form Controls | `src/app/components/MiscInput.tsx` | `MiscInput.css` | `--cvp-misc-input-*` → `--cvp-input-*` | `MiscInputDocumentation.tsx` | Standardized — Visual + Handoff |
 | Select | Form Controls | `src/app/components/Select.tsx` | None | `unregistered` | `SelectDocumentation.tsx` | Complete — Missing Story |
 | MultiSelect | Form Controls | `src/app/components/MultiSelect.tsx` | None | `unregistered` | `MultiSelectDocumentation.tsx` | Partial — Missing Story |
-| Checkbox | Form Controls | `src/app/components/Checkbox.tsx` | None | `unregistered` (`--checkbox-*`) | `CheckboxDocumentation.tsx` | Complete — Missing Story |
+| Checkbox | Form Controls | `src/app/components/Checkbox.tsx` | Native input + label; fieldset/legend for groups | `--cvp-checkbox-*` registered Tier 3 contract | `CheckboxDocumentation.tsx`, `CHECKBOX_STANDARDIZATION.md` | Standardized — Visual + engineering handoff |
 | Toggle | Form Controls | `src/app/components/Toggle.tsx` | None | `unregistered` (`--toggle-*`) | `ToggleDocumentation.tsx` | Complete — Missing Story |
 | Segmented | Form Controls | `src/app/components/Segmented.tsx` | None | `unregistered` (`--segmented-*`) | `SegmentedDocumentation.tsx` | Complete — Missing Story |
 

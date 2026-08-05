@@ -4,6 +4,12 @@
 
 This document tracks implementation progress. For stable architecture documentation see `CVP_TOKEN_ARCHITECTURE.md`.
 
+## Latest delivery — Checkbox
+
+- Replaced embedded legacy styling with the registered `--cvp-checkbox-*` Tier 3 contract.
+- Restored native binary activation, deterministic IDs, DOM indeterminate state, composed descriptions, errors, and grouped-form semantics.
+- Added complete light/dark visual documentation and `CHECKBOX_STANDARDIZATION.md` engineering handoff.
+
 ## Latest delivery — Misc Input
 
 - Defined Misc Input as the advanced single-line field above the canonical Text Input base.

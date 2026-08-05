@@ -431,7 +431,7 @@
   --cvp-checkbox-size:            var(--cvp-space-4);                     /* 16px */
   --cvp-checkbox-target-size:     var(--cvp-space-6);                     /* 24px */
   --cvp-checkbox-radius:          var(--cvp-shape-control-compact);        /* 4px */
-  --cvp-checkbox-border:          var(--cvp-color-border-strong);
+  --cvp-checkbox-border:          var(--cvp-color-text-muted);
   --cvp-checkbox-border-width:    var(--cvp-border-base-width);
   --cvp-checkbox-border-hover:    var(--cvp-focus-border-color);
   --cvp-checkbox-border-error:    var(--cvp-color-border-error);
@@ -453,7 +453,7 @@
   --cvp-checkbox-label-disabled:  var(--cvp-color-text-disabled);
   --cvp-checkbox-description:     var(--cvp-color-text-muted);
   --cvp-checkbox-description-disabled: var(--cvp-color-text-disabled);
-  --cvp-checkbox-error-text:      var(--cvp-color-state-danger-text);
+  --cvp-checkbox-error-text:      var(--cvp-color-text-error);
   --cvp-checkbox-font-size:       var(--cvp-font-size-md);
   --cvp-checkbox-font-weight:     var(--cvp-font-weight-regular);
   --cvp-checkbox-line-height:     var(--cvp-line-height-snug);

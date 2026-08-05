@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Copy, Eye, PanelLeftClose, PanelLeftOpen, Plus, Save, Sparkles } from 'lucide-react';
+import { Copy, Eye, PanelLeftClose, PanelLeftOpen, Save, Sparkles } from 'lucide-react';
 import { Breadcrumbs } from './Breadcrumbs';
 import { Checkbox } from './Checkbox';
 import { ContentBrowserModal } from './ContentBrowserModal';
@@ -36,6 +36,7 @@ function RailDetailsWorkspace({ railName = 'Trending' }: RailDetailsProps) {
   const [status, setStatus] = useState('active');
   const [collection, setCollection] = useState('home');
   const [queryMode, setQueryMode] = useState('base');
+  const [mediaFormat, setMediaFormat] = useState('');
   const [autoRefresh, setAutoRefresh] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [browserOpen, setBrowserOpen] = useState(false);
@@ -49,12 +50,14 @@ function RailDetailsWorkspace({ railName = 'Trending' }: RailDetailsProps) {
   };
   const save = () => addToast({ variant: 'success', title: 'Rail saved', description: `${name} and its ${items.length} content items are up to date.` });
   const duplicate = () => addToast({ variant: 'info', title: 'Rail duplicated', description: `A draft copy of ${name} was created.` });
+  const queriedItems = mediaFormat === 'movie' ? [] : items;
+  const hasEmptyQuery = mediaFormat === 'movie';
 
   const basePanel = <div className="rail-details__form">
     <div className="rail-details__form-section"><span>Settings</span><TextInput label="Rail name" value={name} onChange={(event) => setName(event.target.value)} /><Select label="Rail status" value={status} onChange={setStatus} options={[{ value: 'active', label: 'Active' }, { value: 'draft', label: 'Draft' }, { value: 'inactive', label: 'Inactive' }]} /><Select label="Rail collection" value={collection} onChange={setCollection} options={[{ value: 'home', label: 'Home' }, { value: 'drama', label: 'Drama' }, { value: 'kids', label: 'Kids' }]} /><div className="rail-details__form-grid"><TextInput label="Rail position" type="number" defaultValue="2" min="1" /><TextInput label="Content slots" type="number" defaultValue="24" min="1" /></div><Select label="Assign to page" defaultValue="home" options={[{ value: 'home', label: 'Home' }, { value: 'discover', label: 'Discover' }, { value: 'kids', label: 'Kids' }]} /></div>
     <div className="rail-details__form-section"><span>Personalisation</span><Select label="Configuration" defaultValue="general" options={[{ value: 'general', label: 'General recommendations' }, { value: 'genre', label: 'Genre affinity' }, { value: 'recent', label: 'Recent activity' }]} helperText="The recommendation model used to populate this rail." /><Checkbox checked={autoRefresh} onChange={() => setAutoRefresh((value) => !value)} label="Automatically refresh content" /></div>
   </div>;
-  const queryPanel = <div className="rail-details__form"><div className="rail-details__form-section"><span>Content query</span><Segmented fullWidth size="small" ariaLabel="Query mode" value={queryMode} onChange={setQueryMode} options={[{ value: 'base', label: 'Base' }, { value: 'segment', label: 'Segment' }, { value: 'group', label: 'Group' }]} /><TextInput label="Search filters" placeholder="Title, genre or provider…" /><Select label="Airing type" defaultValue="all" options={[{ value: 'all', label: 'All airing types' }, { value: 'new', label: 'New' }, { value: 'repeat', label: 'Repeat' }, { value: 'live', label: 'Live' }]} /><Select label="Media format" placeholder="Select format…" options={[{ value: 'movie', label: 'Movie' }, { value: 'series', label: 'Series' }, { value: 'clip', label: 'Clip' }]} /><TextArea label="Query notes" placeholder="Optional notes for editors…" /></div></div>;
+  const queryPanel = <div className="rail-details__form"><div className="rail-details__form-section"><span>Content query</span><Segmented fullWidth size="small" ariaLabel="Query mode" value={queryMode} onChange={setQueryMode} options={[{ value: 'base', label: 'Base' }, { value: 'segment', label: 'Segment' }, { value: 'group', label: 'Group' }]} /><TextInput label="Search filters" placeholder="Title, genre or provider…" /><Select label="Airing type" defaultValue="all" options={[{ value: 'all', label: 'All airing types' }, { value: 'new', label: 'New' }, { value: 'repeat', label: 'Repeat' }, { value: 'live', label: 'Live' }]} /><Select label="Media format" value={mediaFormat} onChange={setMediaFormat} placeholder="Select format…" options={[{ value: 'movie', label: 'Movie' }, { value: 'series', label: 'Series' }, { value: 'clip', label: 'Clip' }]} /><TextArea label="Query notes" placeholder="Optional notes for editors…" /></div></div>;
 
   return <div className="rail-details-page">
     <HeaderNavigation variant="static" brandName="Rail Manager" userName="Jane Doe" userEmail="jane@cvp.example" teams={[{ id: 'editorial', name: 'Editorial Team' }]} selectedTeamId="editorial" onThemeSwitch={toggleTheme} />
@@ -63,8 +66,9 @@ function RailDetailsWorkspace({ railName = 'Trending' }: RailDetailsProps) {
       <aside className={`rail-details__sidebar ${sidebarOpen ? '' : 'rail-details__sidebar--closed'}`} aria-label="Rail configuration"><div className="rail-details__panel-title"><strong>Rail Manager</strong></div><Tabs ariaLabel="Rail settings" defaultTab="base" tabs={[{ id: 'base', label: 'Base', content: basePanel }, { id: 'query', label: 'Content Query', content: queryPanel }]} /></aside>
       <main className="rail-details__main">
         <div className="rail-details__preview-bar"><IconButton aria-label={sidebarOpen ? 'Collapse configuration' : 'Open configuration'} aria-expanded={sidebarOpen} onClick={() => setSidebarOpen((value) => !value)}>{sidebarOpen ? <PanelLeftClose size={16} /> : <PanelLeftOpen size={16} />}</IconButton><strong>Content Preview</strong><div><span className="rail-details__type">Editorial</span><span>{name}</span></div></div>
-        <div className="rail-details__content"><div className="rail-details__content-heading"><div><h1>{name}</h1><p>{collection === 'home' ? 'Home' : collection} collection · Position 2 · {items.length} of 24 slots</p></div><OutlineButton onClick={() => setBrowserOpen(true)}><Plus size={15} /> Add content</OutlineButton></div>
-          <RailContentGallery title={name} hideHeader items={items} variant="management" onEdit={(item) => addToast({ variant: 'info', title: 'Edit content', description: item.title })} onPin={(item) => addToast({ variant: 'info', title: 'Pin updated', description: item.title })} onDrag={(id, position) => addToast({ variant: 'info', title: 'Order changed', description: `Item ${id} moved to position ${position + 1}.` })} />
+        <div className="rail-details__content">
+          {hasEmptyQuery && <NotificationBanner title="No content found" message="No content matches the current query criteria for Movie media format." variant="warning" />}
+          <RailContentGallery title={name} showItemCount={false} items={queriedItems} variant="management" emptyMessage={hasEmptyQuery ? 'Try a different media format or adjust the query criteria.' : undefined} emptySlotCount={hasEmptyQuery ? 10 : 0} onAddToEmptySlot={() => setBrowserOpen(true)} onEdit={(item) => addToast({ variant: 'info', title: 'Edit content', description: item.title })} onPin={(item) => addToast({ variant: 'info', title: 'Pin updated', description: item.title })} onDrag={(id, position) => addToast({ variant: 'info', title: 'Order changed', description: `Item ${id} moved to position ${position + 1}.` })} />
           <NotificationBanner title="Preview guide" message="This preview reflects the current rail configuration. Reorder or pin content, then save to publish your changes." variant="info" icon={Sparkles} actionLabel="Review query" onAction={() => setSidebarOpen(true)} />
         </div>
       </main>

@@ -19,7 +19,6 @@ Use this directory as the entry point for design-system decisions and engineerin
 | `tokens/` | Architecture, contracts, governance, reconciliation, and decision framework |
 | `handoffs/components/` | Component-specific standards and developer handoffs |
 | `handoffs/checkpoints/` | Family-level completion checkpoints and readiness reviews |
-| `handoffs/tickets/` | Implementation-ready engineering tickets |
 | `assessments/foundations/` | Foundation assessments and visual preview assets |
 | `assessments/accessibility/` | Accessibility and contrast audits |
 | `figma/` | Figma design-system guidance |

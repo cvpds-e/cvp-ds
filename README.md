@@ -22,7 +22,7 @@ npm run build
 | [`src/styles/themes`](src/styles/themes) | Active light/dark theme mappings and framework theme defaults |
 | [`docs/specifications`](docs/specifications) | Canonical design-system specifications and component inventory |
 | [`docs/tokens`](docs/tokens) | Token architecture, contracts, governance, and decision guidance |
-| [`docs/handoffs`](docs/handoffs) | Engineering entry point, component handoffs, checkpoints, and implementation tickets |
+| [`docs/handoffs`](docs/handoffs) | Engineering entry point, component handoffs, and readiness checkpoints |
 | [`docs/assessments`](docs/assessments) | Foundation and accessibility assessments with visual previews |
 | [`docs/figma`](docs/figma) | Figma implementation guidance |
 | [`docs/project`](docs/project) | Project implementation status |

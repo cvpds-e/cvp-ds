@@ -1,0 +1,102 @@
+import React, { useEffect, useId, useRef, useState } from 'react';
+import './Select.css';
+
+export interface SelectOption { value: string; label: string; disabled?: boolean; }
+export interface SelectProps {
+  options: SelectOption[];
+  value?: string;
+  defaultValue?: string;
+  onChange?: (value: string) => void;
+  placeholder?: string;
+  disabled?: boolean;
+  required?: boolean;
+  error?: boolean | string;
+  helperText?: string;
+  label?: string;
+  optionalText?: string;
+  name?: string;
+  id?: string;
+  size?: 'compact' | 'default';
+  variant?: 'default' | 'button';
+  icon?: React.ComponentType<{ className?: string }>;
+  className?: string;
+}
+
+export function Select({ options, value, defaultValue = '', onChange, placeholder = 'Select an option…', disabled = false,
+  required = false, error = false, helperText, label, optionalText, name, id, size = 'default', variant = 'default', icon: Icon, className = '' }: SelectProps) {
+  const generatedId = useId().replace(/:/g, '');
+  const selectId = id ?? `select-${generatedId}`;
+  const listboxId = `${selectId}-listbox`;
+  const labelId = label ? `${selectId}-label` : undefined;
+  const errorMessage = typeof error === 'string' ? error : undefined;
+  const supportId = errorMessage ? `${selectId}-error` : helperText ? `${selectId}-helper` : undefined;
+  const [internalValue, setInternalValue] = useState(defaultValue);
+  const [isOpen, setIsOpen] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(-1);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const currentValue = value !== undefined ? value : internalValue;
+  const selectedIndex = options.findIndex(option => option.value === currentValue);
+  const selectedOption = options[selectedIndex];
+  const enabledIndices = options.map((option, index) => option.disabled ? -1 : index).filter(index => index >= 0);
+
+  const open = () => {
+    if (disabled) return;
+    setIsOpen(true);
+    setActiveIndex(selectedIndex >= 0 && !options[selectedIndex]?.disabled ? selectedIndex : (enabledIndices[0] ?? -1));
+  };
+  const commit = (index: number) => {
+    const option = options[index];
+    if (!option || option.disabled) return;
+    if (value === undefined) setInternalValue(option.value);
+    onChange?.(option.value);
+    setIsOpen(false);
+    triggerRef.current?.focus();
+  };
+  const move = (direction: 1 | -1) => {
+    if (!enabledIndices.length) return;
+    const position = enabledIndices.indexOf(activeIndex);
+    const nextPosition = position < 0 ? 0 : (position + direction + enabledIndices.length) % enabledIndices.length;
+    setActiveIndex(enabledIndices[nextPosition]);
+  };
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (event.key === 'Escape') { setIsOpen(false); return; }
+    if (event.key === 'Tab') { setIsOpen(false); return; }
+    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') { event.preventDefault(); if (!isOpen) open(); else move(event.key === 'ArrowDown' ? 1 : -1); return; }
+    if (event.key === 'Home' && isOpen) { event.preventDefault(); setActiveIndex(enabledIndices[0] ?? -1); return; }
+    if (event.key === 'End' && isOpen) { event.preventDefault(); setActiveIndex(enabledIndices.at(-1) ?? -1); return; }
+    if ((event.key === 'Enter' || event.key === ' ') && isOpen) { event.preventDefault(); commit(activeIndex); return; }
+    if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); open(); return; }
+    if (event.key.length === 1 && /\S/.test(event.key)) {
+      const match = options.findIndex(option => !option.disabled && option.label.toLocaleLowerCase().startsWith(event.key.toLocaleLowerCase()));
+      if (match >= 0) { event.preventDefault(); if (isOpen) setActiveIndex(match); else commit(match); }
+    }
+  };
+
+  useEffect(() => {
+    const closeOutside = (event: PointerEvent) => { if (!rootRef.current?.contains(event.target as Node)) setIsOpen(false); };
+    document.addEventListener('pointerdown', closeOutside);
+    return () => document.removeEventListener('pointerdown', closeOutside);
+  }, []);
+
+  return <div ref={rootRef} className={['cvp-select', `cvp-select--${size}`, variant === 'button' && 'cvp-select--button', className].filter(Boolean).join(' ')} data-invalid={Boolean(error) || undefined} data-disabled={disabled || undefined}>
+    {label && <div className="cvp-select__label-row"><label id={labelId} htmlFor={selectId} className="cvp-select__label">{label}{required && <span aria-hidden="true">*</span>}</label>{optionalText && <span>{optionalText}</span>}</div>}
+    {name && <input type="hidden" name={name} value={currentValue} />}
+    <button ref={triggerRef} id={selectId} type="button" className="cvp-select__trigger" disabled={disabled} onClick={() => isOpen ? setIsOpen(false) : open()} onKeyDown={handleKeyDown}
+      role="combobox" aria-controls={isOpen ? listboxId : undefined} aria-expanded={isOpen} aria-haspopup="listbox" aria-labelledby={labelId} aria-label={label ? undefined : selectedOption?.label ?? placeholder}
+      aria-activedescendant={isOpen && activeIndex >= 0 ? `${selectId}-option-${activeIndex}` : undefined} aria-invalid={Boolean(error) || undefined} aria-required={required || undefined} aria-describedby={supportId}>
+      {variant === 'button' && Icon && <Icon className="cvp-select__icon" />}
+      <span className={selectedOption ? 'cvp-select__value' : 'cvp-select__placeholder'}>{selectedOption?.label ?? placeholder}</span>
+      <svg className="cvp-select__chevron" aria-hidden="true" viewBox="0 0 12 12"><path d="M3 4.5 6 7.5 9 4.5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+    </button>
+    {isOpen && <div className="cvp-select__popup"><ul id={listboxId} className="cvp-select__listbox" role="listbox" aria-labelledby={labelId}>
+      {options.length ? options.map((option, index) => <li id={`${selectId}-option-${index}`} key={option.value} role="option" aria-selected={index === selectedIndex} aria-disabled={option.disabled || undefined}
+        className="cvp-select__option" data-active={index === activeIndex || undefined} data-selected={index === selectedIndex || undefined} data-disabled={option.disabled || undefined}
+        onMouseEnter={() => !option.disabled && setActiveIndex(index)} onMouseDown={event => { event.preventDefault(); commit(index); }}>
+        <span>{option.label}</span>{index === selectedIndex && <span aria-hidden="true">✓</span>}
+      </li>) : <li className="cvp-select__empty">No options available</li>}
+    </ul></div>}
+    {errorMessage ? <p id={supportId} className="cvp-select__support cvp-select__support--error" role="alert">{errorMessage}</p>
+      : helperText ? <p id={supportId} className="cvp-select__support">{helperText}</p> : null}
+  </div>;
+}

@@ -1,0 +1,255 @@
+/* =============================================================================
+   CVP DESIGN SYSTEM — PHASE 1 ALIAS BRIDGE
+   Version 1.1
+
+   MIGRATION SHIM: --tc-* → --cvp-*
+
+   Every existing production token is aliased here to its proposed replacement.
+   Production components continue to resolve correctly with zero changes.
+   This file is the ONLY place --tc-* tokens are defined going forward.
+
+   Deprecation timeline:
+   - Phase 1 (now):    All --tc-* tokens aliased here. Lint warns on new usage.
+   - Phase 3 (week 10–19): Components migrated to --cvp-*. Lint errors on --tc-*.
+   - Phase 4 (week 20–22): This file deleted. --tc-* removed entirely.
+
+   Do not add new --tc-* tokens. Use --cvp-* from day one for any new work.
+
+   Status legend (matches migration table in CVP_TOKEN_ARCHITECTURE.md):
+     Keep      — semantically correct, aliased as-is
+     Rename    — purpose correct, name changed to match convention
+     Split     — one old token mapped to the best-fit new token (see notes)
+     Merge     — old token absorbed into a unified category
+     Deprecate — no replacement; token removed after Phase 4
+   ============================================================================= */
+
+@import './cvp-component-tokens.css';
+
+:root {
+
+  /* ---------------------------------------------------------------------------
+     BACKGROUND TOKENS  (--tc-bg-*)
+  --------------------------------------------------------------------------- */
+
+  /* Rename: "purple" colour name removed; mapped to brand accent role */
+  /* @deprecated — use --cvp-color-brand-accent instead. Removed in Phase 4. */
+  --tc-bg-accent-purple: var(--cvp-color-brand-accent);
+
+  /* Rename: surface-bold replaces bg-bold */
+  /* @deprecated — use --cvp-color-surface-bold instead. Removed in Phase 4. */
+  --tc-bg-bold: var(--cvp-color-surface-bold);
+
+  /* Rename: brand fill is not a surface; moved to brand category */
+  /* @deprecated — use --cvp-color-brand-default instead. Removed in Phase 4. */
+  --tc-bg-brand: var(--cvp-color-brand-default);
+
+  /* Rename: state suffix standardised to -hover */
+  /* @deprecated — use --cvp-color-brand-hover instead. Removed in Phase 4. */
+  --tc-bg-brand-hovered: var(--cvp-color-brand-hover);
+
+  /* Rename: danger bg mapped to state triplet */
+  /* @deprecated — use --cvp-color-state-danger-bg instead. Removed in Phase 4. */
+  --tc-bg-danger: var(--cvp-color-state-danger-bg);
+
+  /* Rename: danger hover */
+  /* @deprecated — use --cvp-color-state-danger-bg-hover instead. Removed in Phase 4. */
+  --tc-bg-danger-hovered: var(--cvp-color-state-danger-bg-hover);
+
+  /* Split: #a1a1a8 is a foreground colour misused as a background.
+     Mapped to text-disabled (its correct role). Surface-disabled is separate.
+     @deprecated — use --cvp-color-text-disabled or --cvp-color-surface-disabled.
+     Removed in Phase 4. */
+  --tc-bg-disabled: var(--cvp-color-text-disabled);
+
+  /* Rename: generic hover fill → surface-hover */
+  /* @deprecated — use --cvp-color-surface-hover instead. Removed in Phase 4. */
+  --tc-bg-hovered: var(--cvp-color-surface-hover);
+
+  /* Rename: inverse background */
+  /* @deprecated — use --cvp-color-surface-inverse instead. Removed in Phase 4. */
+  --tc-bg-inverse: var(--cvp-color-surface-inverse);
+
+  /* Rename: secondary brand fill is not a surface */
+  /* @deprecated — use --cvp-color-secondary-default instead. Removed in Phase 4. */
+  --tc-bg-secondary: var(--cvp-color-secondary-default);
+
+  /* Rename: secondary hover */
+  /* @deprecated — use --cvp-color-secondary-hover instead. Removed in Phase 4. */
+  --tc-bg-secondary-hovered: var(--cvp-color-secondary-hover);
+
+  /* Rename: subtle fill */
+  /* @deprecated — use --cvp-color-surface-subtle instead. Removed in Phase 4. */
+  --tc-bg-subtle: var(--cvp-color-surface-subtle);
+
+  /* ---------------------------------------------------------------------------
+     BLANKET / SCRIM  (orphan token)
+  --------------------------------------------------------------------------- */
+
+  /* Rename: orphan given a category */
+  /* @deprecated — use --cvp-color-overlay-scrim instead. Removed in Phase 4. */
+  --tc-blanket: var(--cvp-color-overlay-scrim);
+
+  /* ---------------------------------------------------------------------------
+     BORDER TOKENS  (--tc-border-*)
+  --------------------------------------------------------------------------- */
+
+  /* Keep: --tc-border-bold maps to --cvp-color-border-bold (same semantic weight).
+     Note: --cvp-color-border-strong is a lighter step — bold and strong are distinct tiers. */
+  /* @deprecated — use --cvp-color-border-bold instead. Removed in Phase 4. */
+  --tc-border-bold: var(--cvp-color-border-bold);
+
+  /* Keep: semantically correct */
+  /* @deprecated — use --cvp-color-border-brand instead. Removed in Phase 4. */
+  --tc-border-brand: var(--cvp-color-border-brand);
+
+  /* Keep: semantically correct */
+  /* @deprecated — use --cvp-color-border-danger instead. Removed in Phase 4. */
+  --tc-border-danger: var(--cvp-color-border-danger);
+
+  /* Split: computed color-mix() replaced with static theme-aware value.
+     In dark theme: resolves to --cvp-color-border-default (#2a2a36).
+     In light theme: resolves to --cvp-color-border-default (#e5e7eb).
+     The color-mix() function cannot be used in SVG, native, or Storybook args.
+     @deprecated — use --cvp-color-border-default instead. Removed in Phase 4. */
+  --tc-border-default: var(--cvp-color-border-default);
+
+  /* Rename: focus tokens are their own category */
+  /* @deprecated — use --cvp-focus-ring-color instead. Removed in Phase 4. */
+  --tc-border-focused: var(--cvp-focus-ring-color);
+
+  /* Rename: second part of the two-part focus pattern */
+  /* @deprecated — use --cvp-focus-border-color instead. Removed in Phase 4. */
+  --tc-border-selected: var(--cvp-focus-border-color);
+
+  /* Rename: align category */
+  /* @deprecated — use --cvp-color-border-subtle instead. Removed in Phase 4. */
+  --tc-border-subtle: var(--cvp-color-border-subtle);
+
+  /* Keep: semantically correct */
+  /* @deprecated — use --cvp-color-border-success instead. Removed in Phase 4. */
+  --tc-border-success: var(--cvp-color-border-success);
+
+  /* Keep: semantically correct */
+  /* @deprecated — use --cvp-color-border-warning instead. Removed in Phase 4. */
+  --tc-border-warning: var(--cvp-color-border-warning);
+
+  /* ---------------------------------------------------------------------------
+     ICON TOKENS  (--tc-icon-*)
+  --------------------------------------------------------------------------- */
+
+  /* Rename: align namespace */
+  /* @deprecated — use --cvp-color-icon-brand instead. Removed in Phase 4. */
+  --tc-icon-brand: var(--cvp-color-icon-brand);
+
+  /* Rename: align namespace */
+  /* @deprecated — use --cvp-color-icon-danger instead. Removed in Phase 4. */
+  --tc-icon-danger: var(--cvp-color-icon-danger);
+
+  /* Rename: align namespace */
+  /* @deprecated — use --cvp-color-icon-default instead. Removed in Phase 4. */
+  --tc-icon-default: var(--cvp-color-icon-default);
+
+  /* Rename: align namespace */
+  /* @deprecated — use --cvp-color-icon-success instead. Removed in Phase 4. */
+  --tc-icon-success: var(--cvp-color-icon-success);
+
+  /* Rename: align namespace */
+  /* @deprecated — use --cvp-color-icon-warning instead. Removed in Phase 4. */
+  --tc-icon-warning: var(--cvp-color-icon-warning);
+
+  /* ---------------------------------------------------------------------------
+     SURFACE TOKENS  (--tc-surface-*)
+     Merged: --tc-bg-* and --tc-surface-* unified under --cvp-color-surface-*
+  --------------------------------------------------------------------------- */
+
+  /* Merge: base dark surface */
+  /* @deprecated — use --cvp-color-surface-default instead. Removed in Phase 4. */
+  --tc-surface-default: var(--cvp-color-surface-default);
+
+  /* Rename: overlay surface */
+  /* @deprecated — use --cvp-color-surface-overlay instead. Removed in Phase 4. */
+  --tc-surface-overlay-default: var(--cvp-color-surface-overlay);
+
+  /* Rename: suffix standardised */
+  /* @deprecated — use --cvp-color-surface-overlay-hover instead. Removed in Phase 4. */
+  --tc-surface-overlay-hovered: var(--cvp-color-surface-overlay-hover);
+
+  /* Keep: semantically clear */
+  /* @deprecated — use --cvp-color-surface-overlay-selected instead. Removed in Phase 4. */
+  --tc-surface-overlay-selected: var(--cvp-color-surface-overlay-selected);
+
+  /* ---------------------------------------------------------------------------
+     TEXT TOKENS  (--tc-text-*)
+  --------------------------------------------------------------------------- */
+
+  /* Rename: colour name removed; mapped to accent role levels */
+  /* @deprecated — use --cvp-color-text-accent-subtle instead. Removed in Phase 4. */
+  --tc-text-accent-blue-subtle: var(--cvp-color-text-accent-subtle);
+
+  /* Rename: colour name removed */
+  /* @deprecated — use --cvp-color-text-accent-subtlest instead. Removed in Phase 4. */
+  --tc-text-accent-blue-subtlest: var(--cvp-color-text-accent-subtlest);
+
+  /* Rename: mapped to purpose level (muted = darkest accent) */
+  /* @deprecated — use --cvp-color-text-accent-muted instead. Removed in Phase 4. */
+  --tc-text-accent-indigo-default: var(--cvp-color-text-accent-muted);
+
+  /* Rename: secondary accent */
+  /* @deprecated — use --cvp-color-text-accent-secondary instead. Removed in Phase 4. */
+  --tc-text-accent-indigo-subtle: var(--cvp-color-text-accent-secondary);
+
+  /* Rename: primary accent text colour */
+  /* @deprecated — use --cvp-color-text-accent-default instead. Removed in Phase 4. */
+  --tc-text-accent-indigo-subtlest: var(--cvp-color-text-accent-default);
+
+  /* Rename: purpose is link hover */
+  /* @deprecated — use --cvp-color-text-link-hover instead. Removed in Phase 4. */
+  --tc-text-accent-sky-default: var(--cvp-color-text-link-hover);
+
+  /* Rename: standard link / accent text */
+  /* @deprecated — use --cvp-color-text-link-default instead. Removed in Phase 4. */
+  --tc-text-accent-sky-subtle: var(--cvp-color-text-link-default);
+
+  /* Rename: "bold" here means secondary brightness; aligned to design.md */
+  /* @deprecated — use --cvp-color-text-secondary instead. Removed in Phase 4. */
+  --tc-text-bold: var(--cvp-color-text-secondary);
+
+  /* Keep: semantically correct */
+  /* @deprecated — use --cvp-color-text-brand instead. Removed in Phase 4. */
+  --tc-text-brand: var(--cvp-color-text-brand);
+
+  /* Keep: semantically correct */
+  /* @deprecated — use --cvp-color-text-danger instead. Removed in Phase 4. */
+  --tc-text-danger: var(--cvp-color-text-danger);
+
+  /* Rename: default → primary aligns with design.md */
+  /* @deprecated — use --cvp-color-text-primary instead. Removed in Phase 4. */
+  --tc-text-default: var(--cvp-color-text-primary);
+
+  /* Keep: semantically correct */
+  /* @deprecated — use --cvp-color-text-disabled instead. Removed in Phase 4. */
+  --tc-text-disabled: var(--cvp-color-text-disabled);
+
+  /* Deprecate: no documented use case. If re-introduced, name as
+     --cvp-color-text-on-disabled-bg with a documented contrast pairing.
+     Aliased to surface-hover as closest available value to avoid hard failures.
+     @deprecated — no replacement. Removed in Phase 4. */
+  --tc-text-disabled-bold: var(--cvp-color-surface-hover);
+
+  /* Rename: align namespace */
+  /* @deprecated — use --cvp-color-text-inverse instead. Removed in Phase 4. */
+  --tc-text-inverse: var(--cvp-color-text-inverse);
+
+  /* Rename: subtle → muted aligns with design.md */
+  /* @deprecated — use --cvp-color-text-muted instead. Removed in Phase 4. */
+  --tc-text-subtle: var(--cvp-color-text-muted);
+
+  /* Keep: semantically correct */
+  /* @deprecated — use --cvp-color-text-success instead. Removed in Phase 4. */
+  --tc-text-success: var(--cvp-color-text-success);
+
+  /* Keep: semantically correct */
+  /* @deprecated — use --cvp-color-text-warning instead. Removed in Phase 4. */
+  --tc-text-warning: var(--cvp-color-text-warning);
+
+}

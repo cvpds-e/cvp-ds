@@ -1,0 +1,352 @@
+# 🎨 EPG Planner - Modern Color System
+
+## Overview
+A comprehensive, timeless color palette built around **#3d63dd** (Royal Blue) as the primary brand color, with carefully selected complementary colors and semantic variations.
+
+---
+
+## 🎯 Core Brand Colors
+
+### Primary - Royal Blue (#3d63dd)
+**Main action color** - Used for primary buttons, links, and key interactive elements.
+
+```css
+/* Direct usage */
+background: var(--color-primary);              /* #3d63dd */
+background: var(--color-primary-hover);        /* #3451b2 - Hover state */
+background: var(--color-primary-active);       /* #2d4291 - Active/pressed */
+background: var(--color-primary-disabled);     /* rgba(61, 99, 221, 0.4) */
+
+/* Backgrounds & Overlays */
+background: var(--color-primary-bg);           /* rgba(61, 99, 221, 0.1) - Light bg */
+background: var(--color-primary-bg-hover);     /* rgba(61, 99, 221, 0.15) - Hover bg */
+
+/* Borders */
+border-color: var(--color-primary-border);     /* rgba(61, 99, 221, 0.5) */
+border-color: var(--color-primary-border-hover); /* rgba(61, 99, 221, 0.7) */
+
+/* Palette Scale (50-950) */
+var(--color-primary-50)   to  var(--color-primary-950)
+```
+
+**Usage Examples:**
+- ✅ Primary CTAs (Save, Create, Submit)
+- ✅ Active navigation items
+- ✅ Important links
+- ✅ Focus states
+
+---
+
+### Secondary - Purple (#9333ea)
+**Complementary accent** - Pairs beautifully with primary, used for secondary actions.
+
+```css
+background: var(--color-secondary);            /* #9333ea */
+background: var(--color-secondary-hover);      /* #7e22ce */
+background: var(--color-secondary-active);     /* #6b21a8 */
+background: var(--color-secondary-bg);         /* rgba(147, 51, 234, 0.1) */
+```
+
+**Usage Examples:**
+- ✅ Secondary buttons
+- ✅ Feature highlights
+- ✅ Decorative accents
+- ✅ Premium features
+
+---
+
+### Accent - Cyan (#06b6d4)
+**High contrast accent** - For information and highlights.
+
+```css
+background: var(--color-accent);               /* #06b6d4 */
+background: var(--color-accent-hover);         /* #0891b2 */
+background: var(--color-accent-active);        /* #0e7490 */
+background: var(--color-accent-bg);            /* rgba(6, 182, 212, 0.1) */
+```
+
+**Usage Examples:**
+- ✅ Informational badges
+- ✅ Callouts
+- ✅ Data visualization highlights
+
+---
+
+## ✅ Semantic Colors
+
+### Success - Emerald (#10b981)
+```css
+background: var(--color-success);              /* #10b981 */
+background: var(--color-success-hover);        /* #059669 */
+background: var(--color-success-active);       /* #047857 */
+border-color: var(--color-success-border);     /* rgba(16, 185, 129, 0.5) */
+background: var(--color-success-bg);           /* rgba(16, 185, 129, 0.1) */
+```
+
+**Usage:** Success messages, completed states, live indicators
+
+---
+
+### Warning - Amber (#f59e0b)
+```css
+background: var(--color-warning);              /* #f59e0b */
+background: var(--color-warning-hover);        /* #d97706 */
+background: var(--color-warning-active);       /* #b45309 */
+border-color: var(--color-warning-border);     /* rgba(245, 158, 11, 0.5) */
+background: var(--color-warning-bg);           /* rgba(245, 158, 11, 0.1) */
+```
+
+**Usage:** Warnings, alerts, pending states
+
+---
+
+### Error/Danger - Red (#ef4444)
+```css
+background: var(--color-error);                /* #ef4444 */
+background: var(--color-error-hover);          /* #dc2626 */
+background: var(--color-error-active);         /* #b91c1c */
+border-color: var(--color-error-border);       /* rgba(239, 68, 68, 0.5) */
+background: var(--color-error-bg);             /* rgba(239, 68, 68, 0.1) */
+```
+
+**Usage:** Errors, destructive actions, validation failures
+
+---
+
+### Info - Blue (#3b82f6)
+```css
+background: var(--color-info);                 /* #3b82f6 */
+background: var(--color-info-hover);           /* #2563eb */
+background: var(--color-info-active);          /* #1d4ed8 */
+border-color: var(--color-info-border);        /* rgba(59, 130, 246, 0.5) */
+background: var(--color-info-bg);              /* rgba(59, 130, 246, 0.1) */
+```
+
+**Usage:** Information messages, help text, tooltips
+
+---
+
+## 🌑 Surfaces & Backgrounds
+
+```css
+/* Surface Hierarchy */
+background: var(--color-surface-base);         /* #0a0a0f - App background */
+background: var(--color-surface-raised);       /* #14141a - Cards, panels */
+background: var(--color-surface-overlay);      /* #1f1f28 - Hover states */
+background: var(--color-surface-elevated);     /* #2a2a35 - Modals, dropdowns */
+```
+
+**Usage Guide:**
+- **Base**: Page background
+- **Raised**: Cards, panels, containers
+- **Overlay**: Hover states, secondary surfaces
+- **Elevated**: Modals, popovers, dropdowns
+
+---
+
+## 📝 Text Colors
+
+```css
+color: var(--color-text-primary);              /* #ffffff - Headings, important */
+color: var(--color-text-secondary);            /* #b4b4ba - Body text */
+color: var(--color-text-tertiary);             /* #6b6b78 - Captions, labels */
+color: var(--color-text-quaternary);           /* #4a4a54 - Placeholder text */
+color: var(--color-text-disabled);             /* #3a3a44 - Disabled text */
+```
+
+---
+
+## 🔲 Borders
+
+```css
+border-color: var(--border-subtle);            /* rgba(255, 255, 255, 0.05) */
+border-color: var(--border-default);           /* rgba(255, 255, 255, 0.08) */
+border-color: var(--border-emphasis);          /* rgba(255, 255, 255, 0.12) */
+border-color: var(--border-strong);            /* rgba(255, 255, 255, 0.18) */
+border-color: var(--border-primary);           /* rgba(61, 99, 221, 0.5) */
+border-color: var(--border-primary-hover);     /* rgba(61, 99, 221, 0.7) */
+```
+
+---
+
+## ✨ Effects
+
+### Elevation (Shadows)
+```css
+box-shadow: var(--elevation-sm);               /* Subtle lift */
+box-shadow: var(--elevation-md);               /* Card elevation */
+box-shadow: var(--elevation-lg);               /* Hover elevation */
+box-shadow: var(--elevation-xl);               /* Modal elevation */
+box-shadow: var(--elevation-2xl);              /* Maximum elevation */
+```
+
+### Glow Effects
+```css
+box-shadow: var(--glow-primary);               /* Primary glow */
+box-shadow: var(--glow-primary-hover);         /* Hover glow */
+box-shadow: var(--glow-primary-strong);        /* Strong glow */
+box-shadow: var(--glow-secondary);             /* Secondary glow */
+box-shadow: var(--glow-success);               /* Success glow */
+box-shadow: var(--glow-warning);               /* Warning glow */
+box-shadow: var(--glow-error);                 /* Error glow */
+box-shadow: var(--glow-accent);                /* Accent glow */
+```
+
+### Gradients
+```css
+background: var(--gradient-primary);           /* Primary gradient overlay */
+background: var(--gradient-primary-strong);    /* Stronger primary gradient */
+background: var(--gradient-overlay);           /* Subtle overlay */
+background: var(--gradient-shimmer);           /* Loading shimmer */
+background: var(--gradient-accent);            /* Accent gradient */
+```
+
+### Glassmorphism
+```css
+background: var(--glass-background);           /* rgba(20, 20, 26, 0.7) */
+border: 1px solid var(--glass-border);         /* rgba(255, 255, 255, 0.1) */
+backdrop-filter: var(--glass-backdrop);        /* blur(12px) */
+```
+
+---
+
+## ⏱️ Transitions
+
+```css
+transition: all var(--transition-fast);        /* 150ms - Instant feedback */
+transition: all var(--transition-base);        /* 250ms - Standard */
+transition: all var(--transition-slow);        /* 350ms - Deliberate */
+transition: all var(--transition-bounce);      /* 500ms - Playful bounce */
+```
+
+---
+
+## 🎨 Utility Classes
+
+### Pre-built Components
+
+```html
+<!-- Elevated Card -->
+<div class="card-elevated">Hover me!</div>
+
+<!-- Glass Panel -->
+<div class="glass-panel">Frosted glass effect</div>
+
+<!-- Primary Glow -->
+<button class="glow-primary">Glowing button</button>
+
+<!-- Secondary Glow -->
+<button class="glow-secondary">Secondary glow</button>
+
+<!-- Interactive Border -->
+<input class="border-interactive" />
+
+<!-- Custom Scrollbar -->
+<div class="custom-scrollbar overflow-auto">...</div>
+
+<!-- Shimmer Loading -->
+<div class="shimmer">Loading...</div>
+
+<!-- Subtle Pulse -->
+<div class="pulse-subtle">Notification</div>
+
+<!-- Fade In Animation -->
+<div class="fade-in">Content appears smoothly</div>
+```
+
+---
+
+## 🚀 Button Variants
+
+Using the updated Button component:
+
+```tsx
+import { Button } from "@/components/ui/button";
+
+// Primary (Royal Blue #3d63dd)
+<Button>Primary Action</Button>
+
+// Secondary (Purple)
+<Button variant="secondary">Secondary Action</Button>
+
+// Destructive (Red)
+<Button variant="destructive">Delete</Button>
+
+// Outline
+<Button variant="outline">Outline</Button>
+
+// Ghost
+<Button variant="ghost">Ghost</Button>
+
+// Link
+<Button variant="link">Link Style</Button>
+```
+
+**All buttons include:**
+- ✅ Subtle glow effects
+- ✅ Smooth transitions
+- ✅ Proper hover/active states
+- ✅ Disabled states with reduced opacity
+- ✅ Focus rings for accessibility
+
+---
+
+## 🎯 Color Principles
+
+### 1. **Hierarchy Through Contrast**
+- Primary actions use high-contrast colors
+- Secondary elements use muted tones
+- Text hierarchy uses opacity variations
+
+### 2. **Consistency is Key**
+- Always use semantic colors for their intended purpose
+- Maintain the 5-level surface hierarchy
+- Use state variations (hover, active, disabled) consistently
+
+### 3. **Accessibility First**
+- All color combinations meet WCAG AA standards
+- Focus states are highly visible
+- Disabled states are clearly distinguishable
+
+### 4. **Timeless Design**
+- Avoid trendy color combinations
+- Stick to classic blue-purple-cyan palette
+- Use subtle variations instead of dramatic changes
+
+---
+
+## 📋 Quick Reference
+
+| Purpose | Color Variable | Hex Value |
+|---------|---------------|-----------|
+| **Primary Button** | `--color-primary` | #3d63dd |
+| **Primary Hover** | `--color-primary-hover` | #3451b2 |
+| **Secondary Button** | `--color-secondary` | #9333ea |
+| **Success** | `--color-success` | #10b981 |
+| **Warning** | `--color-warning` | #f59e0b |
+| **Error** | `--color-error` | #ef4444 |
+| **Info** | `--color-info` | #3b82f6 |
+| **Accent** | `--color-accent` | #06b6d4 |
+| **Background** | `--color-surface-base` | #0a0a0f |
+| **Card** | `--color-surface-raised` | #14141a |
+| **Text Primary** | `--color-text-primary` | #ffffff |
+| **Text Secondary** | `--color-text-secondary` | #b4b4ba |
+| **Border** | `--border-default` | rgba(255,255,255,0.08) |
+
+---
+
+## 💡 Best Practices
+
+1. **Always use CSS variables** - Never hardcode color values
+2. **Test in dark mode** - All colors are optimized for dark backgrounds
+3. **Use semantic colors** - Don't use `--color-success` for warnings
+4. **Layer surfaces properly** - Respect the base → raised → overlay → elevated hierarchy
+5. **Animate thoughtfully** - Use appropriate transition speeds
+6. **Glow sparingly** - Reserve for primary actions and important elements
+7. **Maintain consistency** - Stick to the defined palette
+
+---
+
+**Last Updated:** February 2026  
+**Primary Color:** #3d63dd (Royal Blue)  
+**Design Philosophy:** Modern, timeless, accessible

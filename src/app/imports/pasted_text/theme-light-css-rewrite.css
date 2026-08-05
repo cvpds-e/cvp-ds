@@ -1,0 +1,111 @@
+I need you to perform a complete, exhaustive rewrite of all color-related CSS in this design system. Do not make incremental changes. Go through every single file, every component, every style — and apply the rules below without exception.
+Think of this as: "If a human designer was handed this codebase and told to make it fully light theme, what would they change in every single file?" That is the level of completeness required.
+
+THE MASTER RULE
+Every color value in this entire codebase must be evaluated. If it was chosen for a dark background context, it must be replaced with its light background equivalent.
+There are no exceptions. No component is exempt. No file is skipped.
+
+FIND AND REPLACE — Run these substitutions globally across all files
+Backgrounds
+#0d0d14 → #ffffff
+#14141a → #ffffff
+#1a1a24 → #ffffff
+#141420 → #ffffff
+#1f1f28 → #f8f9fa
+#2a2a36 → #f3f4f6
+#0a0a10 → #ffffff
+rgba(0,0,0,0.9) [used as bg] → #ffffff
+rgba(0,0,0,0.85) [used as bg] → #ffffff
+Text colors — this is the #1 cause of unreadable text
+color: #ffffff → color: #111827
+color: white → color: #111827
+color: #fff → color: #111827
+color: rgba(255,255,255,1.0) → color: #111827
+color: rgba(255,255,255,0.9) → color: #111827
+color: rgba(255,255,255,0.7) → color: #374151
+color: rgba(255,255,255,0.6) → color: #374151
+color: rgba(255,255,255,0.5) → color: #6b7280
+color: rgba(255,255,255,0.4) → color: #6b7280
+color: rgba(255,255,255,0.3) → color: #9ca3af
+color: rgba(255,255,255,0.2) → color: #9ca3af
+Exception: Do NOT change color: #ffffff when it is inside a component that has a dark/colored filled background — e.g. inside .btn-primary, .badge-dark, .active-nav-pill. White text on a colored button is correct and must stay.
+Borders
+border: 1px solid #1f1f28 → border: 1px solid #e5e7eb
+border: 1px solid #2a2a36 → border: 1px solid #e5e7eb
+border-color: #1f1f28 → border-color: #e5e7eb
+border-color: rgba(255,255,255,0.1) → border-color: #e5e7eb
+border-color: rgba(255,255,255,0.08) → border-color: #e5e7eb
+Icons and SVGs
+fill: #ffffff → fill: #6b7280
+fill: rgba(255,255,255,0.5) → fill: #9ca3af
+stroke: #ffffff → stroke: #6b7280
+color on icon elements: white → #6b7280
+Exception: Icons that sit inside filled colored buttons (primary, danger) keep white fill.
+Shadows and overlays
+box-shadow: * rgba(0,0,0,0.8) → box-shadow: equivalent rgba(0,0,0,0.1)
+box-shadow: * rgba(0,0,0,0.6) → box-shadow: equivalent rgba(0,0,0,0.08)
+background-color on scrim/overlay → rgba(0,0,0,0.45)
+
+SPECIFIC COMPONENTS THAT NEED SPECIAL ATTENTION
+Filter chips — the entire chip must be rewritten:
+
+Remove all dark background values from .filter-chip, .active-filter, .filter-tag
+Set: background: #f3f4f6, border: 1px solid #d1d5db, color: #374151
+Chip icon and dismiss ×: color: #6b7280
+
+Filter dropdown menu — completely rewrite the panel:
+
+.filter-menu, .filter-dropdown, .filter-popover: background: #ffffff, border: 1px solid #e5e7eb
+All menu row text: color: #374151
+Menu row icons: color: #6b7280
+Search bar inside: background: #f8f9fa, border-bottom: 1px solid #e5e7eb
+Search input text: color: #111827, placeholder: color: #9ca3af
+
+"Minimalistic (Inverted)" Text Button — this variant is described as "white text that becomes muted gray on hover" — this is a dark-background-only variant. For the light theme documentation preview:
+
+Wrap this variant's preview card in a dark background swatch (#1f1f28) so the white button is actually visible
+Add a label: "This variant is intended for dark backgrounds only"
+Do not change the button itself — the component is correct, only the preview context needs fixing
+
+"Nav (Icon + Text)" active pill — the active state dark pill:
+
+Active item background: #eff6ff (light blue tint)
+Active item text: brand blue (keep existing blue)
+Active item icon: brand blue
+Inactive items: color: #374151, icon #6b7280
+Nav panel background: #f8f9fa
+
+"Add Manually" icon box (Icon Button with Text, Size M variant):
+
+The icon square background: #f3f4f6
+Icon inside: color: #374151
+Dashed border: 2px dashed #d1d5db
+
+Breadcrumb bars — fully rewrite breadcrumb track:
+
+Track/bar background: #f3f4f6
+All crumb text: color: #6b7280
+Current page crumb: color: #111827
+Separators: color: #d1d5db
+Back arrow: color: #6b7280
+
+
+CONTRAST FLOOR — enforce this after every change
+After applying all changes, scan every text element. If any text color combined with its background produces a contrast ratio below 4.5:1, darken the text until it passes. Use this simple decision tree:
+
+On #ffffff background → minimum text color is #767676 (4.54:1). Prefer #374151 or darker.
+On #f8f9fa background → minimum text color is #767676. Prefer #374151.
+On #f3f4f6 background → minimum text color is #737373. Prefer #374151.
+Any text currently using a gray lighter than #767676 on a white/near-white background → darken it.
+
+
+WHAT NOT TO CHANGE
+
+Brand green (the "Stable" badge, primary CTA backgrounds) — keep as-is
+Brand blue used for links, checked states, active states — keep as-is
+Error red (#dc2626) — keep as-is
+White text inside filled colored buttons (primary blue, danger red) — keep as-is
+Spec/documentation table layout and structure — only fix colors inside them
+Any component that is already visually correct and readable in light mode
+
+

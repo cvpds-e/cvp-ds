@@ -1,0 +1,288 @@
+/* Foundation pages are live consumers of the production token graph.
+   These late-cascade rules replace preview-era visual constants while the
+   component-by-component migration removes their original fallback CSS. */
+:is(.cvp-color-preview,.cvp-type-preview,.cvp-spacing-preview,.cvp-radius-preview,.cvp-border-preview,.cvp-elevation-preview) {
+  padding: var(--cvp-layout-page-gap) var(--cvp-layout-page-margin);
+  color: var(--cvp-color-text-primary);
+  background: var(--cvp-color-surface-page);
+  font-family: var(--cvp-font-family-sans);
+}
+
+:is(.cvp-color-preview__hero,.cvp-brand-ramp,.cvp-palette-section,.cvp-color-preview__themes,.cvp-color-preview__footer,.cvp-type-hero,.cvp-type-panel,.cvp-type-footer,.cvp-spacing-hero,.cvp-spacing-panel,.cvp-spacing-footer,.cvp-radius-hero,.cvp-radius-panel,.cvp-radius-footer,.cvp-border-hero,.cvp-border-panel,.cvp-border-footer,.cvp-elevation-hero,.cvp-elevation-panel,.cvp-elevation-footer) {
+  width: 100%;
+  max-width: var(--cvp-layout-page-container);
+  margin-inline: auto;
+}
+
+:is(.cvp-brand-ramp,.cvp-palette-section,.cvp-type-panel,.cvp-spacing-panel,.cvp-radius-panel,.cvp-border-panel,.cvp-elevation-panel) {
+  background: var(--cvp-color-surface-default);
+  border: var(--cvp-border-container);
+  border-radius: var(--cvp-shape-surface-base);
+  box-shadow: var(--cvp-plane-surface-shadow);
+}
+
+:is(.cvp-color-preview__phase,.cvp-type-eyebrow,.cvp-spacing-eyebrow,.cvp-radius-hero>div>span,.cvp-border-hero>div>span,.cvp-elevation-hero>div>span) {
+  color: var(--cvp-color-text-link-default);
+  font-family: var(--cvp-font-family-sans);
+}
+
+:is(.cvp-color-preview__hero,.cvp-type-hero,.cvp-spacing-hero,.cvp-radius-hero,.cvp-border-hero,.cvp-elevation-hero)>p,
+:is(.cvp-color-section__heading,.cvp-type-panel__header,.cvp-spacing-panel__head,.cvp-radius-panel,.cvp-border-panel,.cvp-elevation-panel) p,
+:is(.cvp-color-preview__footer,.cvp-type-footer,.cvp-spacing-footer,.cvp-radius-footer,.cvp-border-footer,.cvp-elevation-footer) p {
+  color: var(--cvp-color-text-muted);
+}
+
+:is(.cvp-color-preview__footer,.cvp-type-footer,.cvp-spacing-footer,.cvp-radius-footer,.cvp-border-footer,.cvp-elevation-footer) {
+  border-color: var(--cvp-color-border-subtle);
+}
+
+.cvp-color-theme {
+  --c-canvas: var(--cvp-color-surface-page);
+  --c-section: var(--cvp-color-surface-sunken);
+  --c-surface: var(--cvp-color-surface-default);
+  --c-raised: var(--cvp-color-surface-raised);
+  --c-overlay: var(--cvp-color-surface-overlay);
+  --c-elevated: var(--cvp-color-surface-raised);
+  --c-text: var(--cvp-color-text-primary);
+  --c-secondary: var(--cvp-color-text-secondary);
+  --c-muted: var(--cvp-color-text-muted);
+  --c-border: var(--cvp-color-border-default);
+  --c-border-strong: var(--cvp-color-border-strong);
+  --c-field: var(--cvp-color-surface-default);
+  --c-inverse: var(--cvp-color-surface-inverse);
+  --c-on-inverse: var(--cvp-color-text-inverse);
+  --c-accent: var(--cvp-color-brand-default);
+  --c-accent-hover: var(--cvp-color-brand-hover);
+  --c-focus: var(--cvp-focus-ring-color);
+  --c-positive: var(--cvp-color-text-success);
+  --c-warning: var(--cvp-color-text-warning);
+  --c-negative: var(--cvp-color-text-error);
+  --c-info: var(--cvp-color-text-link-default);
+  color: var(--cvp-color-text-primary);
+  background: var(--cvp-color-surface-page);
+  border-color: var(--cvp-color-border-default);
+}
+
+.cvp-radius-workflow {
+  --rw-bg: var(--cvp-color-surface-default);
+  --rw-field: var(--cvp-color-surface-raised);
+  --rw-border: var(--cvp-color-border-strong);
+  --rw-text: var(--cvp-color-text-primary);
+  --rw-muted: var(--cvp-color-text-muted);
+}
+
+.cvp-border-state {
+  --bs-bg: var(--cvp-color-surface-default);
+  --bs-field: var(--cvp-color-surface-raised);
+  --bs-text: var(--cvp-color-text-primary);
+  --bs-muted: var(--cvp-color-text-muted);
+  --bs-base: var(--cvp-color-border-default);
+  --bs-hover: var(--cvp-color-border-strong);
+  --bs-focus: var(--cvp-focus-ring-color);
+  --bs-halo: var(--cvp-focus-glow-color);
+  --bs-error: var(--cvp-color-border-error);
+  --bs-disabled: var(--cvp-color-border-disabled);
+}
+
+.cvp-elevation-stack {
+  --es-canvas: var(--cvp-color-surface-page);
+  --es-section: var(--cvp-color-surface-sunken);
+  --es-surface: var(--cvp-color-surface-default);
+  --es-raised: var(--cvp-color-surface-raised);
+  --es-text: var(--cvp-color-text-primary);
+  --es-muted: var(--cvp-color-text-muted);
+  --es-border: var(--cvp-color-border-default);
+  --es-shadow1: var(--cvp-elevation-1);
+  --es-shadow2: var(--cvp-elevation-2);
+  --es-shadow4: var(--cvp-elevation-4);
+  color: var(--cvp-color-text-primary);
+  background: var(--cvp-color-surface-page);
+}
+
+/* Small labels in the original previews used display greys below 4.5:1.
+   Documentation labels remain normal text, so they use the accessible
+   semantic muted foreground in both the root and nested theme scopes. */
+:is(
+  .cvp-color-section__heading > span,
+  .cvp-type-hero__summary dt,
+  .cvp-type-panel__header > span,
+  .cvp-type-form__meta,
+  .cvp-spacing-panel__head > span,
+  .cvp-spacing-scale code,
+  .cvp-spacing-density header span,
+  .cvp-radius-panel > header > b,
+  .cvp-border-panel > header > b,
+  .cvp-elevation-panel > header > b,
+  .cvp-elevation-stack small,
+  .cvp-elevation-stack__menu span
+) {
+  color: var(--cvp-color-text-muted);
+}
+
+.cvp-brand-ramp__swatches > div:nth-child(n + 5) {
+  color: var(--cvp-primitive-neutral-0);
+}
+
+.cvp-surface-card {
+  color: var(--cvp-color-text-primary);
+}
+
+.cvp-surface-card :is(.cvp-surface-card__depth, small, code),
+.cvp-color-theme__header p,
+.cvp-color-section__heading p {
+  color: var(--cvp-color-text-muted);
+}
+
+.cvp-pairing-card--inverse :is(.cvp-kicker, p, small) {
+  color: var(--cvp-color-text-inverse);
+}
+
+.cvp-intent__badge {
+  color: var(--cvp-color-text-primary);
+}
+
+.cvp-color-theme .cvp-color-theme__eyebrow,
+.cvp-color-theme .cvp-kicker {
+  color: var(--cvp-color-text-link-default);
+}
+
+.cvp-color-theme .cvp-color-theme__header p,
+.cvp-color-theme .cvp-surface-card :is(.cvp-surface-card__depth, small, code) {
+  color: var(--cvp-color-text-secondary);
+}
+
+.cvp-color-theme .cvp-pairing-card--inverse :is(.cvp-kicker, p, small) {
+  color: var(--cvp-color-text-inverse);
+}
+
+.cvp-radius-roles article > div,
+.cvp-elevation-blocking > article {
+  position: relative;
+  z-index: 1;
+}
+
+.cvp-elevation-stack .cvp-elevation-stack__section > small {
+  color: var(--cvp-color-text-secondary);
+}
+
+/* The source previews pre-date root theme switching. This migration layer
+   makes their remaining foreground constants follow the active light theme
+   while the component-by-component conversion continues. */
+[data-theme="light"] :is(
+  .cvp-type-preview,
+  .cvp-spacing-preview,
+  .cvp-radius-preview,
+  .cvp-border-preview,
+  .cvp-elevation-preview
+) :is(p, small, dt, dd) {
+  color: var(--cvp-color-text-secondary);
+}
+
+[data-theme="light"] :is(
+  .cvp-type-preview,
+  .cvp-spacing-preview,
+  .cvp-radius-preview,
+  .cvp-border-preview,
+  .cvp-elevation-preview
+) code {
+  color: var(--cvp-color-text-link-default);
+}
+
+[data-theme="light"] :is(
+  .cvp-color-preview__phase,
+  .cvp-type-eyebrow,
+  .cvp-spacing-eyebrow,
+  .cvp-radius-hero > div > span,
+  .cvp-border-hero > div > span,
+  .cvp-elevation-hero > div > span,
+  .cvp-color-preview__footer > span,
+  .cvp-type-footer > span,
+  .cvp-spacing-footer > span,
+  .cvp-radius-footer > span,
+  .cvp-border-footer > span,
+  .cvp-elevation-footer > span
+) {
+  color: var(--cvp-color-text-link-default);
+}
+
+[data-theme="light"] .cvp-color-preview__hero h1,
+[data-theme="light"] .cvp-type-role p {
+  color: var(--cvp-color-text-primary);
+}
+
+[data-theme="light"] :is(
+  .cvp-color-preview__hero > div > p,
+  .cvp-brand-ramp > div > p,
+  .cvp-palette-section__header > p,
+  .cvp-color-preview__footer > p
+) {
+  color: var(--cvp-color-text-secondary);
+}
+
+[data-theme="light"] .cvp-accent-families article {
+  background: var(--cvp-color-surface-sunken);
+  border-color: var(--cvp-color-border-default);
+}
+
+[data-theme="light"] .cvp-accent-families article > header small {
+  color: var(--cvp-color-text-muted);
+}
+
+[data-theme="light"] .cvp-data-table .is-published {
+  color: var(--cvp-color-state-success-text);
+}
+
+[data-theme="light"] .cvp-data-table .is-draft {
+  color: var(--cvp-color-state-warning-text);
+}
+
+[data-theme="light"] .cvp-type-hero__summary dl,
+[data-theme="light"] .cvp-type-hero__summary dl > div,
+[data-theme="light"] .cvp-data-table__row--head,
+[data-theme="light"] .cvp-type-responsive__scale > div,
+[data-theme="light"] .cvp-spacing-density__panel {
+  background: var(--cvp-color-surface-sunken);
+}
+
+[data-theme="light"] .cvp-elevation-states i {
+  color: var(--cvp-color-text-link-default);
+}
+
+[data-theme="light"] .cvp-data-table__row--head span,
+[data-theme="light"] .cvp-type-responsive__scale span,
+[data-theme="light"] .cvp-spacing-density__title span {
+  color: var(--cvp-color-text-secondary);
+}
+
+[data-theme="light"] .cvp-type-responsive__scale strong {
+  color: var(--cvp-color-text-link-default);
+}
+
+[data-theme="light"] .cvp-spacing-density button:not(:last-child) {
+  color: var(--cvp-color-text-primary);
+  border-color: var(--cvp-color-border-strong);
+}
+
+.cvp-layout-widths article {
+  grid-template-columns: minmax(0, 1fr) 130px minmax(140px, .45fr);
+}
+
+.cvp-layout-widths i {
+  width: var(--width);
+}
+
+.cvp-type-preview :is(.cvp-type-role,.cvp-type-form,.cvp-type-reading,.cvp-data-table),
+.cvp-spacing-preview :is(.cvp-spacing-families article,.cvp-spacing-density),
+.cvp-radius-preview :is(.cvp-radius-roles article,.cvp-radius-rules article),
+.cvp-border-preview :is(.cvp-border-widths article,.cvp-border-roles article,.cvp-border-decisions article),
+.cvp-elevation-preview :is(.cvp-elevation-states article) {
+  background: var(--cvp-color-surface-sunken);
+  border-color: var(--cvp-color-border-default);
+  border-radius: var(--cvp-shape-surface-subtle);
+}
+
+@media (max-width: 599px) {
+  :is(.cvp-color-preview,.cvp-type-preview,.cvp-spacing-preview,.cvp-radius-preview,.cvp-border-preview,.cvp-elevation-preview) {
+    padding: var(--cvp-layout-page-gap) var(--cvp-layout-page-margin);
+  }
+}

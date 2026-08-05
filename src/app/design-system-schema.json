@@ -1,0 +1,1114 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Design System Component Schema",
+  "version": "1.0.0",
+  "description": "JSON schema definitions for all UI components in the design system",
+  "definitions": {
+    "typography": {
+      "type": "object",
+      "properties": {
+        "fontSize": { "type": "string", "pattern": "^\\d+px$" },
+        "fontWeight": { "type": "number", "enum": [400, 500, 600, 700] },
+        "lineHeight": { "type": "string", "pattern": "^\\d+px$" },
+        "letterSpacing": { "type": "string", "pattern": "^-?\\d+(\\.\\d+)?px$" },
+        "fontFamily": { "type": "string" }
+      }
+    },
+    "spacing": {
+      "type": "string",
+      "pattern": "^\\d+(px|rem|em)( \\d+(px|rem|em))?( \\d+(px|rem|em))?( \\d+(px|rem|em))?$"
+    },
+    "color": {
+      "type": "string",
+      "pattern": "^(#[0-9A-Fa-f]{6}|#[0-9A-Fa-f]{3}|rgb\\(.*\\)|rgba\\(.*\\))$"
+    },
+    "borderRadius": {
+      "type": "string",
+      "pattern": "^\\d+(px|rem|em)$"
+    },
+    "focusState": {
+      "type": "object",
+      "properties": {
+        "border": { "$ref": "#/definitions/color" },
+        "boxShadow": { "type": "string" },
+        "outline": { "type": "string" },
+        "outlineOffset": { "type": "string" }
+      }
+    }
+  },
+  "components": {
+    "PrimaryButton": {
+      "type": "object",
+      "description": "Primary action button component",
+      "properties": {
+        "label": {
+          "type": "string",
+          "description": "Button text label"
+        },
+        "onClick": {
+          "type": "function",
+          "description": "Click handler function"
+        },
+        "disabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether button is disabled"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["button", "submit", "reset"],
+          "default": "button",
+          "description": "HTML button type"
+        },
+        "className": {
+          "type": "string",
+          "description": "Additional CSS classes"
+        }
+      },
+      "required": ["label"],
+      "visualSpec": {
+        "default": {
+          "backgroundColor": "#3d63dd",
+          "color": "#ffffff",
+          "border": "transparent",
+          "borderRadius": "6px",
+          "padding": "6px 16px",
+          "typography": {
+            "fontSize": "13px",
+            "fontWeight": 500,
+            "lineHeight": "20px",
+            "letterSpacing": "0.1px"
+          }
+        },
+        "hover": {
+          "backgroundColor": "#244cce"
+        },
+        "active": {
+          "backgroundColor": "#244cce"
+        },
+        "disabled": {
+          "backgroundColor": "#a1a1a8",
+          "color": "#292a2e",
+          "cursor": "not-allowed"
+        },
+        "focus": {
+          "outline": "2px solid #6f8be6",
+          "outlineOffset": "2px"
+        }
+      }
+    },
+    "SecondaryButton": {
+      "type": "object",
+      "description": "Secondary action button component",
+      "properties": {
+        "label": { "type": "string" },
+        "onClick": { "type": "function" },
+        "disabled": { "type": "boolean", "default": false },
+        "type": { "type": "string", "enum": ["button", "submit", "reset"], "default": "button" },
+        "className": { "type": "string" }
+      },
+      "required": ["label"],
+      "visualSpec": {
+        "default": {
+          "backgroundColor": "#2d4a8e",
+          "color": "#ffffff",
+          "border": "transparent",
+          "borderRadius": "6px",
+          "padding": "6px 16px",
+          "typography": {
+            "fontSize": "13px",
+            "fontWeight": 500,
+            "lineHeight": "20px",
+            "letterSpacing": "0.1px"
+          }
+        },
+        "hover": {
+          "backgroundColor": "#1f3566"
+        },
+        "disabled": {
+          "backgroundColor": "#a1a1a8",
+          "color": "#292a2e"
+        },
+        "focus": {
+          "boxShadow": "0 0 0 2px #67b3fb"
+        }
+      }
+    },
+    "OutlineButton": {
+      "type": "object",
+      "description": "Outline/ghost button component",
+      "properties": {
+        "label": { "type": "string" },
+        "onClick": { "type": "function" },
+        "disabled": { "type": "boolean", "default": false },
+        "type": { "type": "string", "enum": ["button", "submit", "reset"], "default": "button" },
+        "className": { "type": "string" }
+      },
+      "required": ["label"],
+      "visualSpec": {
+        "default": {
+          "backgroundColor": "transparent",
+          "color": "#ffffff",
+          "border": "1px solid #292a2e",
+          "borderRadius": "6px",
+          "padding": "6px 16px",
+          "typography": {
+            "fontSize": "13px",
+            "fontWeight": 500,
+            "lineHeight": "20px",
+            "letterSpacing": "0.1px"
+          }
+        },
+        "hover": {
+          "backgroundColor": "#292a2e",
+          "borderColor": "#4a4a4a"
+        },
+        "active": {
+          "backgroundColor": "#333336"
+        },
+        "focus": {
+          "boxShadow": "0 0 0 2px #67b3fb"
+        }
+      }
+    },
+    "TextButton": {
+      "type": "object",
+      "description": "Text-only button component",
+      "properties": {
+        "label": { "type": "string" },
+        "onClick": { "type": "function" },
+        "disabled": { "type": "boolean", "default": false },
+        "className": { "type": "string" }
+      },
+      "required": ["label"],
+      "visualSpec": {
+        "default": {
+          "backgroundColor": "transparent",
+          "color": "#97a9de",
+          "border": "none",
+          "padding": "2px 4px",
+          "typography": {
+            "fontSize": "14px",
+            "fontWeight": 500,
+            "lineHeight": "20px",
+            "letterSpacing": "0.15px"
+          }
+        },
+        "hover": {
+          "color": "#cdd7f6"
+        },
+        "disabled": {
+          "color": "#a1a1a8"
+        },
+        "focus": {
+          "boxShadow": "0 0 0 2px #67b3fb"
+        }
+      }
+    },
+    "IconButton": {
+      "type": "object",
+      "description": "Icon-only button component (32px)",
+      "properties": {
+        "icon": {
+          "type": "string",
+          "description": "Icon name or component"
+        },
+        "onClick": { "type": "function" },
+        "disabled": { "type": "boolean", "default": false },
+        "ariaLabel": {
+          "type": "string",
+          "description": "Accessible label for screen readers"
+        },
+        "className": { "type": "string" }
+      },
+      "required": ["icon", "ariaLabel"],
+      "visualSpec": {
+        "default": {
+          "size": "32px",
+          "iconSize": "16px",
+          "backgroundColor": "transparent",
+          "color": "#bbbbbb",
+          "borderRadius": "4px"
+        },
+        "hover": {
+          "backgroundColor": "#292a2e",
+          "color": "#ffffff"
+        },
+        "active": {
+          "backgroundColor": "#333336"
+        },
+        "focus": {
+          "boxShadow": "0 0 0 2px #67b3fb"
+        }
+      }
+    },
+    "IconSmallButton": {
+      "type": "object",
+      "description": "Small icon button component (24px)",
+      "properties": {
+        "icon": { "type": "string" },
+        "onClick": { "type": "function" },
+        "disabled": { "type": "boolean", "default": false },
+        "ariaLabel": { "type": "string" },
+        "className": { "type": "string" }
+      },
+      "required": ["icon", "ariaLabel"],
+      "visualSpec": {
+        "default": {
+          "size": "24px",
+          "iconSize": "14px",
+          "backgroundColor": "transparent",
+          "color": "#bbbbbb",
+          "borderRadius": "4px"
+        },
+        "hover": {
+          "backgroundColor": "#292a2e",
+          "color": "#ffffff"
+        },
+        "focus": {
+          "boxShadow": "0 0 0 2px #67b3fb"
+        }
+      }
+    },
+    "TextInput": {
+      "type": "object",
+      "description": "Single-line text input field",
+      "properties": {
+        "value": { "type": "string" },
+        "onChange": { "type": "function" },
+        "placeholder": { "type": "string" },
+        "disabled": { "type": "boolean", "default": false },
+        "error": { "type": "boolean", "default": false },
+        "label": { "type": "string" },
+        "helperText": { "type": "string" },
+        "type": {
+          "type": "string",
+          "enum": ["text", "email", "password", "number", "tel", "url"],
+          "default": "text"
+        },
+        "className": { "type": "string" }
+      },
+      "visualSpec": {
+        "default": {
+          "backgroundColor": "#212123",
+          "color": "#ffffff",
+          "border": "1px solid #45454a",
+          "borderRadius": "3.2px",
+          "minHeight": "32px",
+          "padding": "6px 4px 6px 10px",
+          "placeholderColor": "#bbbbbb",
+          "typography": {
+            "fontSize": "14px",
+            "fontWeight": 400,
+            "lineHeight": "20px",
+            "letterSpacing": "0.15px"
+          }
+        },
+        "hover": {
+          "borderColor": "#6f8be6"
+        },
+        "focus": {
+          "borderColor": "#6f8be6",
+          "boxShadow": "0 0 0 1px #6f8be6, 0 0 0 3px rgba(111, 139, 230, 0.25)"
+        },
+        "error": {
+          "borderColor": "#e6494e"
+        },
+        "disabled": {
+          "backgroundColor": "#d0d0d3",
+          "color": "#4a4a4a",
+          "borderColor": "#bbb",
+          "cursor": "not-allowed"
+        }
+      }
+    },
+    "Select": {
+      "type": "object",
+      "description": "Dropdown select component",
+      "properties": {
+        "value": { "type": "string" },
+        "onChange": { "type": "function" },
+        "options": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "value": { "type": "string" },
+              "label": { "type": "string" }
+            },
+            "required": ["value", "label"]
+          }
+        },
+        "placeholder": { "type": "string" },
+        "disabled": { "type": "boolean", "default": false },
+        "variant": {
+          "type": "string",
+          "enum": ["default", "button"],
+          "default": "default"
+        },
+        "label": { "type": "string" },
+        "className": { "type": "string" }
+      },
+      "required": ["options"],
+      "visualSpec": {
+        "trigger": {
+          "default": {
+            "backgroundColor": "#212123",
+            "color": "#ffffff",
+            "border": "1px solid #45454a",
+            "borderRadius": "3.2px",
+            "minHeight": "32px",
+            "padding": "6px 10px",
+            "typography": {
+              "fontSize": "14px",
+              "fontWeight": 400,
+              "lineHeight": "20px",
+              "letterSpacing": "0.15px"
+            }
+          },
+          "hover": {
+            "borderColor": "#6f8be6"
+          },
+          "focus": {
+            "borderColor": "#6f8be6",
+            "boxShadow": "0 0 0 1px #6f8be6, 0 0 0 3px rgba(111, 139, 230, 0.25)"
+          },
+          "disabled": {
+            "backgroundColor": "#d0d0d3",
+            "color": "#a1a1a8",
+            "borderColor": "#bbb"
+          }
+        },
+        "buttonVariant": {
+          "focus": {
+            "backgroundColor": "rgba(255, 255, 255, 0.1)",
+            "borderColor": "transparent",
+            "boxShadow": "0 0 0 2px #67b3fb"
+          }
+        },
+        "dropdown": {
+          "backgroundColor": "#292a2e",
+          "border": "1px solid #45454a",
+          "borderRadius": "6px",
+          "boxShadow": "0 4px 12px rgba(0, 0, 0, 0.4)"
+        },
+        "option": {
+          "padding": "8px 12px",
+          "hover": {
+            "backgroundColor": "#333336"
+          },
+          "selected": {
+            "backgroundColor": "#3d63dd"
+          }
+        }
+      }
+    },
+    "MultiSelect": {
+      "type": "object",
+      "description": "Multi-select dropdown component",
+      "properties": {
+        "value": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "onChange": { "type": "function" },
+        "options": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "value": { "type": "string" },
+              "label": { "type": "string" }
+            }
+          }
+        },
+        "placeholder": { "type": "string" },
+        "disabled": { "type": "boolean", "default": false },
+        "label": { "type": "string" },
+        "className": { "type": "string" }
+      },
+      "required": ["options"],
+      "visualSpec": {
+        "trigger": {
+          "default": {
+            "backgroundColor": "#212123",
+            "color": "#ffffff",
+            "border": "1px solid #45454a",
+            "borderRadius": "3.2px",
+            "minHeight": "32px",
+            "padding": "4px 10px",
+            "typography": {
+              "fontSize": "14px",
+              "fontWeight": 400,
+              "lineHeight": "20px",
+              "letterSpacing": "0.15px"
+            }
+          },
+          "focus": {
+            "borderColor": "#6f8be6",
+            "boxShadow": "0 0 0 1px #6f8be6, 0 0 0 3px rgba(111, 139, 230, 0.25)"
+          },
+          "disabled": {
+            "backgroundColor": "#d0d0d3",
+            "color": "#a1a1a8",
+            "borderColor": "#bbb"
+          }
+        },
+        "tag": {
+          "backgroundColor": "#292a2e",
+          "color": "#ffffff",
+          "borderRadius": "4px",
+          "padding": "2px 6px",
+          "typography": {
+            "fontSize": "13px",
+            "fontWeight": 400,
+            "lineHeight": "20px"
+          }
+        },
+        "dropdown": {
+          "backgroundColor": "#292a2e",
+          "border": "1px solid #45454a",
+          "borderRadius": "6px"
+        }
+      }
+    },
+    "Checkbox": {
+      "type": "object",
+      "description": "Checkbox input component",
+      "properties": {
+        "checked": { "type": "boolean" },
+        "onChange": { "type": "function" },
+        "indeterminate": { "type": "boolean", "default": false },
+        "disabled": { "type": "boolean", "default": false },
+        "label": { "type": "string" },
+        "description": { "type": "string" },
+        "className": { "type": "string" }
+      },
+      "visualSpec": {
+        "default": {
+          "size": "16px",
+          "backgroundColor": "#212123",
+          "border": "1px solid #45454a",
+          "borderRadius": "3px",
+          "checkmarkColor": "#ffffff",
+          "labelTypography": {
+            "fontSize": "14px",
+            "fontWeight": 400,
+            "lineHeight": "20px",
+            "letterSpacing": "0.15px"
+          }
+        },
+        "checked": {
+          "backgroundColor": "#3d63dd",
+          "borderColor": "#3d63dd"
+        },
+        "indeterminate": {
+          "backgroundColor": "#3d63dd",
+          "borderColor": "#3d63dd",
+          "icon": "dash"
+        },
+        "focus": {
+          "borderColor": "#6f8be6",
+          "boxShadow": "0 0 0 1px #6f8be6, 0 0 0 3px rgba(111, 139, 230, 0.25)"
+        },
+        "disabled": {
+          "backgroundColor": "#4a4a4a",
+          "borderColor": "#4a4a4a",
+          "checkmarkColor": "#a1a1a8",
+          "labelColor": "#a1a1a8"
+        }
+      }
+    },
+    "Toggle": {
+      "type": "object",
+      "description": "Toggle switch component",
+      "properties": {
+        "checked": { "type": "boolean" },
+        "onChange": { "type": "function" },
+        "indeterminate": { "type": "boolean", "default": false },
+        "disabled": { "type": "boolean", "default": false },
+        "label": { "type": "string" },
+        "description": { "type": "string" },
+        "size": {
+          "type": "string",
+          "enum": ["default", "small"],
+          "default": "default"
+        },
+        "className": { "type": "string" }
+      },
+      "visualSpec": {
+        "default": {
+          "width": "36px",
+          "height": "20px",
+          "thumbSize": "16px",
+          "borderRadius": "10px",
+          "backgroundOff": "#45454a",
+          "backgroundOn": "#3d63dd",
+          "thumbColor": "#ffffff",
+          "labelTypography": {
+            "fontSize": "14px",
+            "fontWeight": 400,
+            "lineHeight": "20px",
+            "letterSpacing": "0.15px"
+          }
+        },
+        "small": {
+          "width": "28px",
+          "height": "16px",
+          "thumbSize": "12px",
+          "borderRadius": "8px"
+        },
+        "hover": {
+          "backgroundColor": "#6f8be6"
+        },
+        "indeterminate": {
+          "backgroundColor": "#3d63dd",
+          "icon": "dash (10px × 2px, centered)",
+          "ariaChecked": "mixed",
+          "clickBehavior": "transitions to checked (true)"
+        },
+        "focus": {
+          "boxShadow": "0 0 0 2px #67b3fb"
+        },
+        "disabled": {
+          "backgroundOff": "#4a4a4a",
+          "backgroundOn": "#a1a1a8",
+          "thumbColorOff": "#a1a1a8",
+          "thumbColorOn": "#333333",
+          "labelColor": "#a1a1a8"
+        },
+        "animation": {
+          "click": {
+            "keyframes": "scale(1) → scale(0.95) → scale(1)",
+            "duration": "200ms",
+            "timing": "ease-out"
+          }
+        }
+      }
+    },
+    "Modal": {
+      "type": "object",
+      "description": "Modal dialog component",
+      "properties": {
+        "isOpen": { "type": "boolean" },
+        "onClose": { "type": "function" },
+        "title": { "type": "string" },
+        "children": { "type": "node" },
+        "footer": { "type": "node" },
+        "variant": {
+          "type": "string",
+          "enum": ["default", "tabbed"],
+          "default": "default"
+        },
+        "maxWidth": { "type": "string", "default": "600px" },
+        "className": { "type": "string" }
+      },
+      "required": ["isOpen", "onClose"],
+      "visualSpec": {
+        "container": {
+          "backgroundColor": "#252528",
+          "border": "1px solid #19191b",
+          "borderRadius": "3.2px",
+          "maxWidth": "600px",
+          "boxShadow": "0 4px 12px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.05)"
+        },
+        "backdrop": {
+          "backgroundColor": "rgba(0, 0, 0, 0.8)"
+        },
+        "header": {
+          "padding": "13px 19px",
+          "borderBottom": "0.5px solid #45454a",
+          "titleTypography": {
+            "fontSize": "13px",
+            "fontWeight": 500,
+            "lineHeight": "20px",
+            "textTransform": "uppercase"
+          },
+          "closeButtonSize": "28px"
+        },
+        "content": {
+          "padding": "16px"
+        },
+        "footer": {
+          "padding": "13px 19px",
+          "borderTop": "0.5px solid #45454a"
+        },
+        "tabbedVariant": {
+          "tabContainer": {
+            "backgroundColor": "#18181A",
+            "border": "0.5px solid #45454a",
+            "padding": "0px 19px"
+          },
+          "tab": {
+            "padding": "8px 16px",
+            "activeIndicator": "2px solid #45454a"
+          }
+        }
+      }
+    },
+    "Toast": {
+      "type": "object",
+      "description": "Toast notification component",
+      "properties": {
+        "message": { "type": "string" },
+        "variant": {
+          "type": "string",
+          "enum": ["default", "success", "error", "warning", "info"],
+          "default": "default"
+        },
+        "duration": { "type": "number", "default": 3000 },
+        "onClose": { "type": "function" },
+        "className": { "type": "string" }
+      },
+      "required": ["message"],
+      "visualSpec": {
+        "default": {
+          "backgroundColor": "rgba(33, 33, 35, 0.95)",
+          "color": "#ffffff",
+          "border": "1px solid #45454a",
+          "borderRadius": "6px",
+          "padding": "16px",
+          "minWidth": "320px",
+          "iconColor": "#bbbbbb",
+          "boxShadow": "0 4px 12px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.05)",
+          "backdropFilter": "blur(8px)"
+        },
+        "animation": {
+          "duration": "300ms",
+          "timing": "cubic-bezier(0.4, 0, 0.2, 1)"
+        }
+      }
+    },
+    "Accordion": {
+      "type": "object",
+      "description": "Expandable accordion component",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "title": { "type": "string" },
+              "content": { "type": "node" }
+            }
+          }
+        },
+        "allowMultiple": { "type": "boolean", "default": false },
+        "defaultExpanded": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "className": { "type": "string" }
+      },
+      "required": ["items"],
+      "visualSpec": {
+        "container": {
+          "backgroundColor": "#19191a",
+          "border": "1px solid rgba(212, 228, 254, 0.1)"
+        },
+        "header": {
+          "padding": "12px 16px",
+          "hover": {
+            "backgroundColor": "#292a2e"
+          },
+          "typography": {
+            "fontSize": "14px",
+            "fontWeight": 400,
+            "lineHeight": "20px",
+            "letterSpacing": "0.15px"
+          },
+          "iconSize": "16px"
+        },
+        "content": {
+          "padding": "16px"
+        },
+        "animation": {
+          "duration": "200ms",
+          "timing": "ease"
+        }
+      }
+    },
+    "SegmentedControl": {
+      "type": "object",
+      "description": "Segmented control component",
+      "properties": {
+        "value": { "type": "string" },
+        "onChange": { "type": "function" },
+        "options": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "value": { "type": "string" },
+              "label": { "type": "string" }
+            }
+          }
+        },
+        "size": {
+          "type": "string",
+          "enum": ["small", "medium", "large"],
+          "default": "medium"
+        },
+        "variant": {
+          "type": "string",
+          "enum": ["default", "color"],
+          "default": "default"
+        },
+        "disabled": { "type": "boolean", "default": false },
+        "className": { "type": "string" }
+      },
+      "required": ["options"],
+      "visualSpec": {
+        "default": {
+          "containerBackground": "transparent",
+          "selectedBackground": "#292a2e",
+          "textColor": "#bbbbbb",
+          "selectedTextColor": "#ffffff",
+          "borderRadius": "6px",
+          "gap": "2px",
+          "padding": {
+            "small": "4px 12px",
+            "medium": "6px 16px",
+            "large": "12px 20px"
+          }
+        },
+        "colorVariant": {
+          "containerBackground": "#252528",
+          "selectedBackground": "#3d63dd",
+          "selectedTextColor": "#ffffff",
+          "hoverBackground": "rgba(61, 99, 221, 0.1)"
+        }
+      }
+    },
+    "Table": {
+      "type": "object",
+      "description": "Data table component",
+      "properties": {
+        "columns": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "key": { "type": "string" },
+              "label": { "type": "string" },
+              "sortable": { "type": "boolean" }
+            }
+          }
+        },
+        "data": {
+          "type": "array",
+          "items": { "type": "object" }
+        },
+        "pagination": { "type": "boolean", "default": false },
+        "rowsPerPage": { "type": "number", "default": 10 },
+        "onRowClick": { "type": "function" },
+        "className": { "type": "string" }
+      },
+      "required": ["columns", "data"],
+      "visualSpec": {
+        "container": {
+          "backgroundColor": "#19191a",
+          "border": "1px solid rgba(212, 228, 254, 0.1)"
+        },
+        "header": {
+          "backgroundColor": "#333333",
+          "padding": "16px",
+          "typography": {
+            "fontSize": "13px",
+            "fontWeight": 500,
+            "lineHeight": "20px"
+          }
+        },
+        "cell": {
+          "padding": "12px 16px",
+          "typography": {
+            "fontSize": "13px",
+            "fontWeight": 400,
+            "lineHeight": "20px"
+          }
+        },
+        "row": {
+          "minHeight": "40px",
+          "hover": {
+            "backgroundColor": "#292a2e"
+          }
+        }
+      }
+    },
+    "Tree": {
+      "type": "object",
+      "description": "Hierarchical tree component",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "label": { "type": "string" },
+              "children": { "type": "array" },
+              "metadata": { "type": "object" }
+            }
+          }
+        },
+        "onNodeClick": { "type": "function" },
+        "onNodeExpand": { "type": "function" },
+        "selectedId": { "type": "string" },
+        "expandedIds": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "className": { "type": "string" }
+      },
+      "required": ["data"],
+      "visualSpec": {
+        "item": {
+          "padding": "8px 12px",
+          "indent": "20px",
+          "hover": {
+            "backgroundColor": "#292a2e"
+          },
+          "typography": {
+            "fontSize": "14px",
+            "fontWeight": 400,
+            "lineHeight": "20px",
+            "letterSpacing": "0.15px"
+          },
+          "iconSize": "16px"
+        },
+        "statusDot": {
+          "size": "6px",
+          "colors": {
+            "active": "#10b981",
+            "inactive": "#6b7280"
+          }
+        },
+        "tag": {
+          "typography": {
+            "fontSize": "12px",
+            "fontWeight": 400,
+            "lineHeight": "16px"
+          },
+          "padding": "2px 6px",
+          "borderRadius": "4px",
+          "colors": {
+            "recommended": "#60a5fa",
+            "editorial": "#c084fc"
+          }
+        }
+      }
+    },
+    "Filter": {
+      "type": "object",
+      "description": "Filter menu component",
+      "properties": {
+        "options": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "value": { "type": "string" },
+              "label": { "type": "string" }
+            }
+          }
+        },
+        "value": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "onChange": { "type": "function" },
+        "label": { "type": "string" },
+        "className": { "type": "string" }
+      },
+      "required": ["options"],
+      "visualSpec": {
+        "menu": {
+          "backgroundColor": "#292a2e",
+          "border": "1px solid #45454a",
+          "borderRadius": "6px",
+          "padding": "8px",
+          "boxShadow": "0 4px 12px rgba(0, 0, 0, 0.4)",
+          "minWidth": "200px"
+        },
+        "item": {
+          "padding": "8px 12px",
+          "borderRadius": "4px",
+          "hover": {
+            "backgroundColor": "#333336"
+          },
+          "selected": {
+            "backgroundColor": "#3d63dd"
+          },
+          "typography": {
+            "fontSize": "14px",
+            "fontWeight": 400,
+            "lineHeight": "20px",
+            "letterSpacing": "0.15px"
+          }
+        }
+      }
+    },
+    "Breadcrumbs": {
+      "type": "object",
+      "description": "Breadcrumb navigation component",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": { "type": "string" },
+              "href": { "type": "string" }
+            }
+          }
+        },
+        "separator": { "type": "string", "default": "/" },
+        "className": { "type": "string" }
+      },
+      "required": ["items"],
+      "visualSpec": {
+        "default": {
+          "typography": {
+            "fontSize": "14px",
+            "fontWeight": 400,
+            "lineHeight": "20px",
+            "letterSpacing": "0.15px"
+          },
+          "linkColor": "#97a9de",
+          "linkHoverColor": "#cdd7f6",
+          "currentColor": "#ffffff",
+          "separatorColor": "#bbbbbb",
+          "gap": "8px"
+        }
+      }
+    }
+  },
+  "tokens": {
+    "colors": {
+      "background": {
+        "primary": "#19191a",
+        "secondary": "#292a2e",
+        "modal": "#252528",
+        "input": "#212123",
+        "card": "#19191a"
+      },
+      "text": {
+        "primary": "#ffffff",
+        "muted": "#bbbbbb",
+        "disabled": "#a1a1a8",
+        "placeholder": "#bbbbbb"
+      },
+      "border": {
+        "default": "#45454a",
+        "hover": "#6f8be6",
+        "focus": "#6f8be6",
+        "error": "#e6494e"
+      },
+      "interactive": {
+        "primaryBlue": "#3d63dd",
+        "primaryBlueHover": "#244cce",
+        "secondaryBlue": "#2d4a8e",
+        "focusRing": "#67b3fb",
+        "linkBlue": "#97a9de"
+      },
+      "status": {
+        "error": "#e6494e",
+        "success": "#10b981",
+        "warning": "#ffb723",
+        "info": "#5675ff"
+      }
+    },
+    "typography": {
+      "fontFamily": {
+        "primary": "\"Inter\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Oxygen, Ubuntu, Cantarell, \"Open Sans\", \"Helvetica Neue\", sans-serif",
+        "monospace": "\"Inconsolata\", monospace"
+      },
+      "scale": {
+        "xs": {
+          "size": "12px",
+          "weight": 400,
+          "lineHeight": "16px",
+          "letterSpacing": "0.1px"
+        },
+        "s": {
+          "size": "13px",
+          "weight": 400,
+          "lineHeight": "20px",
+          "letterSpacing": "0.1px",
+          "mediumWeight": 500
+        },
+        "m": {
+          "size": "14px",
+          "weight": 400,
+          "lineHeight": "20px",
+          "letterSpacing": "0.15px",
+          "mediumWeight": 500
+        },
+        "l": {
+          "size": "15px",
+          "weight": 400,
+          "lineHeight": "22px",
+          "letterSpacing": "0px"
+        }
+      }
+    },
+    "spacing": {
+      "0": "0px",
+      "1": "4px",
+      "2": "8px",
+      "3": "12px",
+      "4": "16px",
+      "5": "20px",
+      "6": "24px",
+      "8": "32px",
+      "12": "48px"
+    },
+    "borderRadius": {
+      "xs": "2px",
+      "sm": "4px",
+      "md": "6px",
+      "default": "10px"
+    },
+    "focusStates": {
+      "standard": {
+        "boxShadow": "0 0 0 2px #67b3fb"
+      },
+      "input": {
+        "border": "1px solid #6f8be6",
+        "boxShadow": "0 0 0 1px #6f8be6, 0 0 0 3px rgba(111, 139, 230, 0.25)"
+      },
+      "primaryButton": {
+        "outline": "2px solid #6f8be6",
+        "outlineOffset": "2px"
+      }
+    },
+    "transitions": {
+      "button": "all 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+      "input": "border-color 0.2s ease, box-shadow 0.2s ease",
+      "modal": "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+    }
+  },
+  "patterns": {
+    "disabledState": {
+      "description": "Standardized disabled state across all form components",
+      "color": "#a1a1a8",
+      "cursor": "not-allowed"
+    },
+    "focusManagement": {
+      "description": "Focus ring patterns for accessibility",
+      "keyboardNavigation": ["Tab", "Shift+Tab", "Enter", "Space", "Escape", "ArrowUp", "ArrowDown"]
+    },
+    "animations": {
+      "togglePulse": {
+        "keyframes": [
+          { "offset": 0, "transform": "scale(1)" },
+          { "offset": 0.5, "transform": "scale(0.95)" },
+          { "offset": 1, "transform": "scale(1)" }
+        ],
+        "duration": "200ms",
+        "timing": "ease-out"
+      }
+    }
+  }
+}

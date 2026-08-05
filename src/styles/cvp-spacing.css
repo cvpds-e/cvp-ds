@@ -1,0 +1,15 @@
+/* Phase 2 compatibility bridge.
+   Canonical spacing tokens live in cvp-primitives.css and cvp-semantic-tokens.css. */
+:root {
+  --spacing-0: var(--cvp-space-0);
+  --spacing-1: var(--cvp-space-1);
+  --spacing-2: var(--cvp-space-2);
+  --spacing-3: var(--cvp-space-3);
+  --spacing-4: var(--cvp-space-4);
+  --spacing-5: var(--cvp-space-5);
+  --spacing-6: var(--cvp-space-6);
+  --spacing-8: var(--cvp-space-8);
+  --spacing-12: var(--cvp-space-12);
+  --spacing: var(--cvp-space-1);
+  --spacing-gap: var(--cvp-space-100);
+}

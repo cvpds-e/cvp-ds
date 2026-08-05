@@ -1,0 +1,320 @@
+/* =============================================================================
+   CVP DESIGN SYSTEM — TIER 1: PRIMITIVE TOKENS
+   Version 1.1
+
+   RAW VALUES ONLY. These tokens are never consumed directly by components.
+   They are referenced exclusively by Tier 2 semantic tokens.
+
+   The only place a hex value, px value, or raw number lives is here.
+   Changing a primitive propagates automatically through the entire token graph.
+   ============================================================================= */
+
+:root {
+
+  /* ---------------------------------------------------------------------------
+     BRAND BLUE
+     Primary interactive colour for buttons, links, focus rings, and brand fills.
+     600 = primary brand
+     700 = primary hover / active
+     800 = secondary hover
+     900 = secondary default
+  --------------------------------------------------------------------------- */
+  --cvp-primitive-blue-50:  #eef2ff;
+  --cvp-primitive-blue-100: #e0e7ff;
+  --cvp-primitive-blue-200: #c7d2fe;
+  --cvp-primitive-blue-300: #a5b4fc;
+  --cvp-primitive-blue-400: #818cf8;
+  --cvp-primitive-blue-500: #6366f1;
+  --cvp-primitive-blue-600: #3d63dd;  /* primary brand */
+  --cvp-primitive-blue-700: #244cce;  /* primary hover */
+  --cvp-primitive-blue-800: #1f3566;  /* secondary hover */
+  --cvp-primitive-blue-900: #2d4a8e;  /* secondary default */
+  --cvp-primitive-blue-950: #172554;
+
+  /* Presentation ramp retained from the original CVP Royal Blue × Periwinkle
+     foundation. Semantic brand roles continue to select from this palette. */
+  --cvp-primitive-royal-100: #b4c7ff;
+  --cvp-primitive-royal-200: #9cb3ff;
+  --cvp-primitive-royal-300: #7287db;
+  --cvp-primitive-royal-400: #4b76ff;
+  --cvp-primitive-royal-500: #3d63dd;
+  --cvp-primitive-royal-600: #274ddb;
+  --cvp-primitive-royal-800: #1f3566;
+
+  /* Focus ring colours — derived from the blue scale but named separately
+     because they carry a distinct accessibility role */
+  --cvp-primitive-focus-ring:   #67b3fb;  /* outer glow / box-shadow */
+  --cvp-primitive-focus-border: #6f8be6;  /* inner border on focus */
+  --cvp-primitive-focus-glow:   rgba(111, 139, 230, 0.25); /* spread glow */
+
+  /* Accent text scale — lightest step is the primary accent text colour */
+  --cvp-primitive-accent-default:   #97a9de;
+  --cvp-primitive-accent-subtle:    #6f8be6;
+  --cvp-primitive-accent-subtlest:  #cdd7f6;
+
+  /* Link colours */
+  --cvp-primitive-link-default: #67b3fb;
+  --cvp-primitive-link-hover:   #359afa;
+
+  /* ---------------------------------------------------------------------------
+     NEUTRALS — DARK SURFACE SCALE
+     Numbers run 900 (darkest) → 0 (white).
+     Dark theme surfaces are drawn from 900–350.
+     Light theme surfaces are drawn from 10–0.
+  --------------------------------------------------------------------------- */
+  --cvp-primitive-neutral-900: #0a0a10;
+  --cvp-primitive-neutral-850: #0d0d14;
+  --cvp-primitive-neutral-800: #14141a;
+  --cvp-primitive-neutral-750: #19191b;
+  --cvp-primitive-neutral-700: #1a1a24;
+  --cvp-primitive-neutral-650: #1f1f28;
+  --cvp-primitive-neutral-600: #252528;
+  --cvp-primitive-neutral-550: #292a2e;
+  --cvp-primitive-neutral-500: #2a2a36;
+  --cvp-primitive-neutral-450: #333333;
+  --cvp-primitive-neutral-400: #374151;
+  --cvp-primitive-neutral-350: #45454a;
+  --cvp-primitive-neutral-300: #4b5563;
+  --cvp-primitive-neutral-250: #606060;
+  --cvp-primitive-neutral-200: #6b7280;
+  --cvp-primitive-neutral-175: #9b9ba5;
+  --cvp-primitive-neutral-170: #6b6b78;
+  --cvp-primitive-neutral-150: #9ca3af;
+  --cvp-primitive-neutral-100: #a1a1a8;
+  --cvp-primitive-neutral-75:  #afafb5;
+  --cvp-primitive-neutral-50:  #bbbbbb;
+  --cvp-primitive-neutral-30:  #d0d0d3;
+  --cvp-primitive-neutral-25:  #d1d5db;
+  --cvp-primitive-neutral-10:  #e5e7eb;
+  --cvp-primitive-neutral-5:   #f3f4f6;
+  --cvp-primitive-neutral-2:   #f8f9fa;
+  --cvp-primitive-neutral-0:   #ffffff;
+
+  /* ---------------------------------------------------------------------------
+     GRAY — LIGHT THEME TEXT
+     Warm near-black values for light theme primary and secondary text.
+     Distinct from the cool-toned neutral scale above.
+  --------------------------------------------------------------------------- */
+  --cvp-primitive-gray-900: #111827;  /* light theme primary text */
+
+  /* ---------------------------------------------------------------------------
+     RED — ERROR / DANGER
+  --------------------------------------------------------------------------- */
+  --cvp-primitive-red-950: #2d1515;  /* dark theme error bg */
+  --cvp-primitive-red-700: #991b1b;
+  --cvp-primitive-red-600: #dc2626;
+  --cvp-primitive-red-500: #ef4444;
+  --cvp-primitive-red-400: #f87171;
+  --cvp-primitive-red-300: #fca5a5;
+  --cvp-primitive-red-200: #fee2e2;
+  --cvp-primitive-red-100: #fef2f2;
+  /* Production danger colours (slightly different hue) */
+  --cvp-primitive-danger-700: #a8171b;
+  --cvp-primitive-danger-600: #c51b20;
+  --cvp-primitive-danger-500: #e6494e;
+
+  /* ---------------------------------------------------------------------------
+     GREEN — SUCCESS
+  --------------------------------------------------------------------------- */
+  --cvp-primitive-green-800: #052e16;  /* dark theme success bg */
+  --cvp-primitive-green-700: #14532d;
+  --cvp-primitive-green-600: #15803d;
+  --cvp-primitive-green-500: #16a34a;
+  --cvp-primitive-green-400: #3dc155;  /* production success green */
+  --cvp-primitive-green-300: #4ade80;
+  --cvp-primitive-green-200: #86efac;
+  --cvp-primitive-green-50:  #f0fdf4;
+
+  /* ---------------------------------------------------------------------------
+     YELLOW / AMBER — WARNING
+  --------------------------------------------------------------------------- */
+  --cvp-primitive-yellow-900: #2d1f05;  /* dark theme warning bg */
+  --cvp-primitive-yellow-800: #78350f;
+  --cvp-primitive-yellow-700: #92400e;
+  --cvp-primitive-yellow-600: #b45309;
+  --cvp-primitive-yellow-500: #d97706;
+  --cvp-primitive-yellow-400: #f4983b;  /* production warning */
+  --cvp-primitive-yellow-300: #fbbf24;
+  --cvp-primitive-yellow-200: #fcd34d;
+  --cvp-primitive-yellow-100: #fffbeb;
+
+  /* ---------------------------------------------------------------------------
+     SKY BLUE — INFO / LINK
+  --------------------------------------------------------------------------- */
+  --cvp-primitive-sky-900:  #0f172a;  /* dark theme info bg */
+  --cvp-primitive-sky-800:  #1e3a5f;
+  --cvp-primitive-sky-700:  #1e40af;  /* light theme info text */
+  --cvp-primitive-sky-600:  #1d4ed8;
+  --cvp-primitive-sky-500:  #2563eb;
+  --cvp-primitive-sky-400:  #60a5fa;
+  --cvp-primitive-sky-300:  #93c5fd;
+  --cvp-primitive-sky-200:  #bfdbfe;
+  --cvp-primitive-sky-50:   #eff6ff;
+
+  /* ---------------------------------------------------------------------------
+     PURPLE — ACCENT
+     Used for special accent callouts; not a primary interactive colour.
+  --------------------------------------------------------------------------- */
+  --cvp-primitive-purple-400: #c084fc;
+  --cvp-primitive-purple-200: #e9d5ff;
+
+  /* ---------------------------------------------------------------------------
+     SPACING
+     Base unit: 8px. All values are multiples of 4px.
+     Components should reference --cvp-space-* tokens, not these primitives.
+  --------------------------------------------------------------------------- */
+  --cvp-primitive-space-0:  0px;
+  --cvp-primitive-space-1:  4px;
+  --cvp-primitive-space-2:  8px;
+  --cvp-primitive-space-3:  12px;
+  --cvp-primitive-space-4:  16px;
+  --cvp-primitive-space-5:  20px;
+  --cvp-primitive-space-6:  24px;
+  --cvp-primitive-space-8:  32px;
+  --cvp-primitive-space-12: 48px;
+
+  /* Numbered foundation scale — canonical raw spacing values. */
+  --cvp-primitive-space-100:  2px;
+  --cvp-primitive-space-200:  4px;
+  --cvp-primitive-space-300:  8px;
+  --cvp-primitive-space-400:  12px;
+  --cvp-primitive-space-500:  16px;
+  --cvp-primitive-space-600:  24px;
+  --cvp-primitive-space-700:  32px;
+  --cvp-primitive-space-800:  40px;
+  --cvp-primitive-space-900:  48px;
+  --cvp-primitive-space-1000: 64px;
+  --cvp-primitive-space-1100: 80px;
+  --cvp-primitive-space-1200: 96px;
+  --cvp-primitive-space-1300: 128px;
+
+  /* ---------------------------------------------------------------------------
+     BORDER RADIUS
+  --------------------------------------------------------------------------- */
+  --cvp-primitive-radius-none: 0px;
+  --cvp-primitive-radius-xs:   2px;
+  --cvp-primitive-radius-sm:   4px;
+  --cvp-primitive-radius-md:   6px;
+  --cvp-primitive-radius-lg:   8px;
+  --cvp-primitive-radius-xl:   12px;
+  --cvp-primitive-radius-2xl:  16px;
+  --cvp-primitive-radius-3xl:  24px;
+  --cvp-primitive-radius-full: 9999px;
+
+  /* Border width */
+  --cvp-primitive-border-none: 0px;
+  --cvp-primitive-border-xs:   0.5px;
+  --cvp-primitive-border-sm:   1px;
+  --cvp-primitive-border-md:   2px;
+  --cvp-primitive-border-lg:   4px;
+
+  /* Elevation dimensions */
+  --cvp-primitive-depth-0: 0;
+  --cvp-primitive-depth-1: 1;
+  --cvp-primitive-depth-2: 2;
+  --cvp-primitive-depth-3: 3;
+  --cvp-primitive-depth-4: 4;
+  --cvp-primitive-shadow-y-1: 1px;
+  --cvp-primitive-shadow-y-2: 2px;
+  --cvp-primitive-shadow-y-4: 4px;
+  --cvp-primitive-shadow-y-8: 8px;
+  --cvp-primitive-shadow-y-12: 12px;
+  --cvp-primitive-shadow-blur-2: 2px;
+  --cvp-primitive-shadow-blur-6: 6px;
+  --cvp-primitive-shadow-blur-16: 16px;
+  --cvp-primitive-shadow-blur-24: 24px;
+  --cvp-primitive-shadow-spread-0: 0px;
+  --cvp-primitive-shadow-spread-n1: -1px;
+  --cvp-primitive-shadow-spread-n4: -4px;
+  --cvp-primitive-shadow-spread-n6: -6px;
+
+  /* ---------------------------------------------------------------------------
+     TYPOGRAPHY
+  --------------------------------------------------------------------------- */
+  --cvp-primitive-font-family-sans: Inter, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
+    sans-serif;
+  --cvp-primitive-font-family-mono: Inconsolata, monospace;
+
+  --cvp-primitive-font-size-xs:  12px;
+  --cvp-primitive-font-size-sm:  13px;
+  --cvp-primitive-font-size-md:  14px;
+  --cvp-primitive-font-size-lg:  15px;
+  --cvp-primitive-font-size-xl:  18px;
+  --cvp-primitive-font-size-2xl: 24px;
+  --cvp-primitive-font-size-3xl: 32px;
+  --cvp-primitive-font-size-display: 44px;
+  --cvp-primitive-font-size-title: 20px;
+
+  --cvp-primitive-font-weight-regular:  400;
+  --cvp-primitive-font-weight-medium:   500;
+  --cvp-primitive-font-weight-semibold: 600;
+  --cvp-primitive-font-weight-bold:     700;
+
+  --cvp-primitive-line-height-tight:   16px;
+  --cvp-primitive-line-height-snug:    20px;
+  --cvp-primitive-line-height-normal:  22px;
+  --cvp-primitive-line-height-relaxed: 28px;
+  --cvp-primitive-line-height-loose:   32px;
+  --cvp-primitive-line-height-xl:      40px;
+  --cvp-primitive-line-height-display: 48px;
+
+  --cvp-primitive-letter-spacing-tight:  0.1px;
+  --cvp-primitive-letter-spacing-normal: 0.15px;
+  --cvp-primitive-letter-spacing-none:   0px;
+  --cvp-primitive-letter-spacing-wide:   0.5px;
+
+  /* ---------------------------------------------------------------------------
+     MOTION
+  --------------------------------------------------------------------------- */
+  --cvp-primitive-duration-fast:   150ms;
+  --cvp-primitive-duration-base:   250ms;
+  --cvp-primitive-duration-slow:   350ms;
+  --cvp-primitive-duration-bounce: 500ms;
+
+  --cvp-primitive-easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --cvp-primitive-easing-bounce:   cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ---------------------------------------------------------------------------
+     OPACITY
+  --------------------------------------------------------------------------- */
+  --cvp-primitive-opacity-disabled:    0.5;
+  --cvp-primitive-opacity-placeholder: 0.6;
+  --cvp-primitive-opacity-scrim-light: 0.45;
+  --cvp-primitive-opacity-scrim-dark:  0.75;
+
+  /* ---------------------------------------------------------------------------
+     Z-INDEX
+  --------------------------------------------------------------------------- */
+  --cvp-primitive-z-base:     0;
+  --cvp-primitive-z-sticky:   10;
+  --cvp-primitive-z-navigation:100;
+  --cvp-primitive-z-dropdown: 400;
+  --cvp-primitive-z-overlay:  800;
+  --cvp-primitive-z-modal:    900;
+  --cvp-primitive-z-toast:    1000;
+
+  /* ---------------------------------------------------------------------------
+     LAYOUT
+  --------------------------------------------------------------------------- */
+  --cvp-primitive-layout-width-240: 240px;
+  --cvp-primitive-layout-width-280: 280px;
+  --cvp-primitive-layout-width-320: 320px;
+  --cvp-primitive-layout-width-360: 360px;
+  --cvp-primitive-layout-width-400: 400px;
+  --cvp-primitive-layout-width-480: 480px;
+  --cvp-primitive-layout-width-560: 560px;
+  --cvp-primitive-layout-width-640: 640px;
+  --cvp-primitive-layout-width-720: 720px;
+  --cvp-primitive-layout-width-960: 960px;
+  --cvp-primitive-layout-width-1200: 1200px;
+  --cvp-primitive-layout-width-1440: 1440px;
+  --cvp-primitive-layout-width-1600: 1600px;
+  --cvp-primitive-layout-breakpoint-sm: 320px;
+  --cvp-primitive-layout-breakpoint-md: 600px;
+  --cvp-primitive-layout-breakpoint-lg: 1024px;
+  --cvp-primitive-layout-breakpoint-xl: 1440px;
+  --cvp-primitive-layout-columns-sm: 4;
+  --cvp-primitive-layout-columns-md: 8;
+  --cvp-primitive-layout-columns-lg: 12;
+}

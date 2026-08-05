@@ -1,0 +1,206 @@
+/* ============================================
+   DESIGN SYSTEM THEME - Single Source of Truth
+   All color values are defined here and only here
+   ============================================ */
+
+/* ============================================
+   LIGHT THEME
+   ============================================ */
+[data-theme="light"], .light-theme {
+
+  /* Page & Layout */
+  --bg-page:            #ffffff;
+  --bg-surface:         #ffffff;
+  --bg-surface-raised:  #f8f9fa;
+  --bg-surface-sunken:  #f3f4f6;
+  --bg-overlay:         #ffffff;
+  --bg-disabled:        #f3f4f6;
+  --bg-hover:           #f3f4f6;
+  --bg-active:          #e5e7eb;
+  --bg-scrim:           rgba(0, 0, 0, 0.45);
+
+  /* Text */
+  --text-primary:       #111827;
+  --text-secondary:     #374151;
+  --text-muted:         #6b7280;
+  --text-placeholder:   #9ca3af;
+  --text-disabled:      #9ca3af;
+  --text-inverse:       #ffffff;
+  --text-link:          #2563eb;
+  --text-error:         #dc2626;
+  --text-success:       #16a34a;
+  --text-warning:       #d97706;
+
+  /* Borders */
+  --border-subtle:      #f3f4f6;
+  --border-default:     #e5e7eb;
+  --border-strong:      #d1d5db;
+  --border-focus:       #2563eb;
+  --border-error:       #dc2626;
+  --border-disabled:    #e5e7eb;
+
+  /* Icons */
+  --icon-default:       #6b7280;
+  --icon-strong:        #374151;
+  --icon-muted:         #9ca3af;
+  --icon-disabled:      #d1d5db;
+  --icon-inverse:       #ffffff;
+  --icon-error:         #dc2626;
+
+  /* Shadows */
+  --shadow-sm:          0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md:          0 4px 12px rgba(0,0,0,0.08);
+  --shadow-lg:          0 8px 32px rgba(0,0,0,0.10);
+  --shadow-modal:       0 8px 32px rgba(0,0,0,0.12);
+
+  /* Interactive: Chips & Tags */
+  --chip-bg:            #f3f4f6;
+  --chip-bg-hover:      #e5e7eb;
+  --chip-border:        #d1d5db;
+  --chip-text:          #374151;
+  --chip-icon:          #6b7280;
+
+  /* Interactive: Inputs */
+  --input-bg:           #ffffff;
+  --input-border:       #d1d5db;
+  --input-border-hover: #6b7280;
+  --input-border-focus: #2563eb;
+  --input-border-error: #dc2626;
+  --input-text:         #111827;
+  --input-placeholder:  #9ca3af;
+  --input-prefix-bg:    #f3f4f6;
+
+  /* Interactive: Dropdowns & Menus */
+  --menu-bg:            #ffffff;
+  --menu-border:        #e5e7eb;
+  --menu-item-text:     #374151;
+  --menu-item-hover-bg: #f3f4f6;
+  --menu-item-active-bg:#eff6ff;
+  --menu-item-active-text: #2563eb;
+  --menu-icon:          #6b7280;
+  --menu-separator:     #f3f4f6;
+
+  /* Interactive: Navigation */
+  --nav-bg:             #f8f9fa;
+  --nav-border:         #e5e7eb;
+  --nav-text:           #374151;
+  --nav-text-active:    #111827;
+  --nav-item-hover-bg:  #f3f4f6;
+  --nav-item-active-bg: #e5e7eb;
+  --nav-section-label:  #9ca3af;
+
+  /* Interactive: Breadcrumbs */
+  --breadcrumb-bg:      #f3f4f6;
+  --breadcrumb-text:    #6b7280;
+  --breadcrumb-active:  #111827;
+  --breadcrumb-sep:     #d1d5db;
+
+  /* Interactive: Modals */
+  --modal-bg:           #ffffff;
+  --modal-border:       #e5e7eb;
+  --modal-header-text:  #111827;
+  --modal-body-text:    #374151;
+
+  /* States */
+  --state-error-bg:     #fef2f2;
+  --state-error-border: #fca5a5;
+  --state-error-text:   #991b1b;
+  --state-success-bg:   #f0fdf4;
+  --state-success-border:#86efac;
+  --state-success-text: #166534;
+  --state-warning-bg:   #fffbeb;
+  --state-warning-border:#fcd34d;
+  --state-warning-text: #92400e;
+  --state-info-bg:      #eff6ff;
+  --state-info-border:  #93c5fd;
+  --state-info-text:    #1e40af;
+}
+
+/* ============================================
+   DARK THEME
+   ============================================ */
+[data-theme="dark"], .dark-theme {
+  --bg-page:            #0d0d14;
+  --bg-surface:         #14141a;
+  --bg-surface-raised:  #1f1f28;
+  --bg-surface-sunken:  #0a0a10;
+  --bg-overlay:         #1a1a24;
+  --bg-disabled:        #2a2a36;
+  --bg-hover:           #1f1f28;
+  --bg-active:          #2a2a36;
+  --bg-scrim:           rgba(0, 0, 0, 0.75);
+  --text-primary:       #ffffff;
+  --text-secondary:     #e5e7eb;
+  --text-muted:         #9ca3af;
+  --text-placeholder:   #6b7280;
+  --text-disabled:      #a1a1a8;
+  --text-inverse:       #111827;
+  --text-link:          #60a5fa;
+  --text-error:         #f87171;
+  --text-success:       #4ade80;
+  --text-warning:       #fbbf24;
+  --border-subtle:      #1f1f28;
+  --border-default:     #2a2a36;
+  --border-strong:      #374151;
+  --border-focus:       #3b82f6;
+  --border-error:       #f87171;
+  --border-disabled:    #1f1f28;
+  --icon-default:       #9ca3af;
+  --icon-strong:        #e5e7eb;
+  --icon-muted:         #6b7280;
+  --icon-disabled:      #4b5563;
+  --icon-inverse:       #111827;
+  --icon-error:         #f87171;
+  --shadow-sm:          0 1px 3px rgba(0,0,0,0.4);
+  --shadow-md:          0 4px 12px rgba(0,0,0,0.4);
+  --shadow-lg:          0 8px 32px rgba(0,0,0,0.5);
+  --shadow-modal:       0 8px 32px rgba(0,0,0,0.6);
+  --chip-bg:            #1f1f28;
+  --chip-bg-hover:      #2a2a36;
+  --chip-border:        #374151;
+  --chip-text:          #e5e7eb;
+  --chip-icon:          #9ca3af;
+  --input-bg:           #14141a;
+  --input-border:       #2a2a36;
+  --input-border-hover: #6b7280;
+  --input-border-focus: #3b82f6;
+  --input-border-error: #f87171;
+  --input-text:         #ffffff;
+  --input-placeholder:  #6b7280;
+  --input-prefix-bg:    #1f1f28;
+  --menu-bg:            #1a1a24;
+  --menu-border:        #2a2a36;
+  --menu-item-text:     #e5e7eb;
+  --menu-item-hover-bg: #1f1f28;
+  --menu-item-active-bg:#1e3a5f;
+  --menu-item-active-text: #60a5fa;
+  --menu-icon:          #9ca3af;
+  --menu-separator:     #1f1f28;
+  --nav-bg:             #0d0d14;
+  --nav-border:         #1f1f28;
+  --nav-text:           #9ca3af;
+  --nav-text-active:    #ffffff;
+  --nav-item-hover-bg:  #1f1f28;
+  --nav-item-active-bg: #1f1f28;
+  --nav-section-label:  #4b5563;
+  --breadcrumb-bg:      #1f1f28;
+  --breadcrumb-text:    #9ca3af;
+  --breadcrumb-active:  #ffffff;
+  --breadcrumb-sep:     #374151;
+  --modal-bg:           #14141a;
+  --modal-border:       #2a2a36;
+  --modal-header-text:  #ffffff;
+  --modal-body-text:    #e5e7eb;
+  --state-error-bg:     #2d1515;
+  --state-error-border: #7f1d1d;
+  --state-error-text:   #fca5a5;
+  --state-success-bg:   #052e16;
+  --state-success-border:#14532d;
+  --state-success-text: #86efac;
+  --state-warning-bg:   #2d1f05;
+  --state-warning-border:#78350f;
+  --state-warning-text: #fcd34d;
+  --state-info-bg:      #0f172a;
+  --state-info-border:  #1e3a5f;
+  --state-info-text:    #93c5fd;
+}

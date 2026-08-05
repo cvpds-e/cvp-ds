@@ -1,0 +1,10 @@
+/* Phase 2 compatibility bridge.
+   Canonical radius tokens live in cvp-primitives.css and cvp-semantic-tokens.css. */
+:root {
+  --radius-xs: var(--cvp-radius-xs);
+  --radius-sm: var(--cvp-radius-sm);
+  --radius-md: var(--cvp-radius-md);
+  --radius-lg: var(--cvp-radius-lg);
+  --radius-xl: var(--cvp-radius-xl);
+  --radius: var(--cvp-shape-surface-base);
+}

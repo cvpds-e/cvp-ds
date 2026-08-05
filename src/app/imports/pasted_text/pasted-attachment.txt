@@ -1,0 +1,102 @@
+We are in the final stage of light theme migration. Below is a precise per-component audit of everything still broken. Fix each item exactly as described.
+
+🔴 1. Primary Button page — entire page background is still dark
+The Primary Button documentation page has a black/near-black page background (#0d0d14 or similar). This is the most severe remaining issue because it affects the entire page shell, not just component previews.
+
+Page background: #ffffff
+Page text (headings, body): #111827
+Section headers ("Example", "States", "Specifications"): #111827
+State cards (Default, Hover, Active, Focus, Disabled): white background #ffffff, border 1px solid #e5e7eb, label text #111827, description text #6b7280
+Spec table: white rows, #f8f9fa header row, #e5e7eb row dividers, all text #374151
+The sidebar navigation on this page is also dark — fix sidebar to: background #f9fafb, text #374151, active item #111827 with left border accent, section labels (BUTTONS, FORMS, NAVIGATION) #9ca3af uppercase
+
+
+🟠 2. Breadcrumbs — breadcrumb bars are still dark
+The breadcrumb component examples render as full-width black bars. Fix all breadcrumb variants:
+
+Breadcrumb bar background: #f3f4f6 (light gray pill/bar) or transparent
+Breadcrumb text (inactive items): #6b7280
+Breadcrumb text (current/active page): #111827, not bold
+Separator chevrons (>): #9ca3af
+Back arrow icon: #6b7280
+Hover state on clickable crumbs: #111827 text, #f3f4f6 background tint
+Apply this to all variants: Default, With Icons, Simple Text, With Dropdown, Single Item
+The "Current interaction" status bar below the example: #f3f4f6 background, #374151 monospace text
+
+
+🟠 3. Filter component — filter chips and dropdown menu are still dark
+The Active Filters State chips and the Filter Option Menu (Step 1 dropdown) are still rendering dark:
+Filter chips (active filter tags):
+
+Chip background: #f3f4f6
+Chip border: 1px solid #d1d5db
+Chip text: #374151
+Chip label (bold part e.g. "Rail type"): #111827
+Chip value (e.g. "2 types"): #374151
+Chip dismiss (×) icon: #9ca3af, hover #374151
+Chip icon (filter/calendar): #6b7280
+
+Filter Option Menu dropdown panel:
+
+Dropdown background: #ffffff
+Dropdown border: 1px solid #e5e7eb
+Dropdown shadow: 0 4px 16px rgba(0,0,0,0.08)
+Search input inside dropdown: white bg, #d1d5db border, #111827 text, #9ca3af placeholder
+Menu row background: #ffffff
+Menu row hover: #f3f4f6
+Menu row icon: #6b7280
+Menu row text: #374151
+Chevron (›) on rows: #9ca3af
+Clear/reset button inside search: #6b7280
+
+
+🟡 4. Text Button — "Nav (Icon + Text)" variant card is dark
+All Text Button variant cards are correctly light except the "Nav (Icon + Text)" card which shows a dark navigation panel inside it:
+
+Nav panel background: #f8f9fa
+Nav item text: #374151
+Active nav item: brand blue text (keep existing), #eff6ff or #f0f4ff background tint
+Nav item icon: #6b7280
+The "Minimalistic (Inverted)" card white button box is correct — do not change it
+
+
+🟡 5. Icon Button with Text — one icon variant card has a dark background
+In the Icon Button with Text page, the "Size M (208px × 160px, Dashed Border)" variant card shows a dark background square for the icon preview:
+
+Icon preview box background: #f8f9fa
+Dashed border: 2px dashed #d1d5db
+Icon color: #6b7280
+All other cards on this page appear correct — do not change them
+
+
+🟡 6. Header Navigation — component example canvas is nearly invisible
+The Header Navigation example area shows a very faint/empty canvas. The header bar itself appears to have near-invisible colors on white:
+
+Header bar background: #f8f9fa with border-bottom: 1px solid #e5e7eb
+Header text/brand label: #111827
+Header icons (help, dividers): #6b7280
+User avatar badge: keep green brand color
+Dropdown menu items (Help, Account Details, Theme Switch, Log Out): #ffffff background, #374151 text, #f3f4f6 hover
+Dropdown border: 1px solid #e5e7eb, shadow 0 4px 12px rgba(0,0,0,0.08)
+
+
+🟢 7. Checkbox — disabled state checkboxes have dark fills
+The Checkbox component is mostly correct in light mode, but the "Disabled States" column shows checkboxes with dark/black fills:
+
+Disabled unchecked checkbox: #ffffff background, 1px solid #d1d5db border, no fill
+Disabled checked checkbox: #e5e7eb background (light gray fill), #9ca3af checkmark, 1px solid #d1d5db border
+Disabled indeterminate: same as disabled checked — light gray fill, gray dash icon
+Disabled label text: #9ca3af
+Do not change the active/enabled checkbox states — blue checked and indeterminate states are correct
+
+
+🟢 8. Select — bottom two example cards are missing labels/content
+The Select component page has two example cards near the bottom that appear completely empty (no visible label or select trigger). Ensure:
+
+All Select example cards have a visible label above the trigger if one exists in the component definition
+The select trigger in those cards is visible: white bg, #d1d5db border, placeholder text #9ca3af
+Preview card background: #f8f9fa, border 1px solid #e5e7eb
+
+
+General instruction:
+Do not modify any component that is already rendering correctly in light mode. Apply only the fixes listed above. After applying all fixes, verify that the sidebar navigation (left panel) is consistently light across all pages — it should never be dark regardless of which component page is active.

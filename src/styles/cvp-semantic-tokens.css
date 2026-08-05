@@ -1,0 +1,626 @@
+/* =============================================================================
+   CVP DESIGN SYSTEM — TIER 2: SEMANTIC TOKENS
+   Version 1.1
+
+   PURPOSE-NAMED ALIASES that resolve to Tier 1 primitive values.
+   These tokens are theme-switchable: the same name resolves to different
+   values under [data-theme="light"] and [data-theme="dark"].
+
+   Rules:
+   - No bare hex values — every discrete colour is var(--cvp-primitive-*)
+   - Composite values (shadows, rgba overlays, opacity compositions) may be
+     defined here directly when the full expression varies by theme
+   - Every colour token must have both a light and a dark definition
+   - Components reference these tokens via component tokens or directly
+     when no customer override surface is needed
+   ============================================================================= */
+
+@import './cvp-primitives.css';
+
+/* =============================================================================
+   DARK THEME
+   Applied when: [data-theme="dark"] or .dark-theme
+   This is the current production baseline.
+   ============================================================================= */
+:root,
+[data-theme="dark"],
+.dark-theme {
+
+  --cvp-focus-ring-color:   var(--cvp-primitive-focus-ring);
+  --cvp-focus-border-color: var(--cvp-primitive-focus-border);
+
+  /* ── Surfaces ──────────────────────────────────────────────────────────── */
+  --cvp-color-surface-page:     var(--cvp-primitive-neutral-850);  /* #0d0d14 */
+  --cvp-color-surface-default:  var(--cvp-primitive-neutral-800);  /* #14141a */
+  --cvp-color-surface-raised:   var(--cvp-primitive-neutral-650);  /* #1f1f28 */
+  --cvp-color-surface-sunken:   var(--cvp-primitive-neutral-900);  /* #0a0a10 */
+  --cvp-color-surface-overlay:  var(--cvp-primitive-neutral-700);  /* #1a1a24 */
+  --cvp-color-surface-subtle:   var(--cvp-primitive-neutral-600);  /* #252528 */
+  --cvp-color-surface-disabled: var(--cvp-primitive-neutral-500);  /* #2a2a36 */
+  --cvp-color-surface-hover:    var(--cvp-primitive-neutral-650);  /* #1f1f28 */
+  --cvp-color-surface-active:   var(--cvp-primitive-neutral-500);  /* #2a2a36 */
+  --cvp-color-surface-inverse:  var(--cvp-primitive-neutral-0);    /* #ffffff */
+  --cvp-color-surface-bold:     var(--cvp-primitive-neutral-30);   /* #d0d0d3 */
+
+  /* Overlay surface states — list items, sidebar rows, etc. */
+  --cvp-color-surface-overlay-hover:    var(--cvp-primitive-neutral-450);  /* #333333 */
+  --cvp-color-surface-overlay-selected: var(--cvp-primitive-neutral-350);  /* #45454a */
+
+  --cvp-color-overlay-scrim: rgb(0 0 0 / var(--cvp-primitive-opacity-scrim-dark));  /* 75% */
+
+  /* ── Interactive overlays (translucent layers on dark surfaces) ─────────── */
+  --cvp-color-interactive-overlay:        rgba(255, 255, 255, 0.10);
+  --cvp-color-interactive-overlay-medium: rgba(255, 255, 255, 0.15);
+  --cvp-color-interactive-overlay-strong: rgba(255, 255, 255, 0.30);
+
+  /* ── Gallery overlays ──────────────────────────────────────────────────── */
+  --cvp-color-gallery-overlay:      rgba(25, 25, 27, 0.75);
+  --cvp-color-gallery-empty-border: rgba(255, 255, 255, 0.10);
+
+  /* ── Text ──────────────────────────────────────────────────────────────── */
+  --cvp-color-text-primary:     var(--cvp-primitive-neutral-0);    /* #ffffff */
+  --cvp-color-text-secondary:   var(--cvp-primitive-neutral-10);   /* #e5e7eb */
+  --cvp-color-text-muted:       var(--cvp-primitive-neutral-150);  /* #9ca3af */
+  --cvp-color-text-subtle:      var(--cvp-primitive-neutral-250);  /* #606060 */
+  --cvp-color-text-placeholder: var(--cvp-primitive-neutral-150);  /* #9ca3af — 6.8:1 on the dark field surface */
+  --cvp-color-text-disabled:    var(--cvp-primitive-neutral-100);  /* #a1a1a8 */
+  --cvp-color-text-inverse:     var(--cvp-primitive-neutral-750);  /* #19191b */
+  --cvp-color-text-on-brand:    var(--cvp-primitive-neutral-0);    /* #ffffff */
+  --cvp-color-text-on-dark:     var(--cvp-primitive-neutral-0);    /* theme-independent swatch pairing */
+  --cvp-color-text-on-light:    var(--cvp-primitive-neutral-900);  /* theme-independent swatch pairing */
+  --cvp-color-text-brand:       var(--cvp-primitive-blue-600);     /* #3d63dd */
+
+  /* Accent text — brand-role names, not colour names */
+  --cvp-color-text-accent-default:   var(--cvp-primitive-accent-default);   /* #97a9de */
+  --cvp-color-text-accent-subtle:    var(--cvp-primitive-accent-subtle);    /* #6f8be6 */
+  --cvp-color-text-accent-subtlest:  var(--cvp-primitive-accent-subtlest);  /* #cdd7f6 */
+  --cvp-color-text-accent-muted:     var(--cvp-primitive-blue-800);         /* #1f3566 */
+  --cvp-color-text-accent-secondary: var(--cvp-primitive-blue-900);         /* #2d4a8e */
+
+  /* Link */
+  --cvp-color-text-link-default: var(--cvp-primitive-link-default); /* #67b3fb */
+  --cvp-color-text-link-hover:   var(--cvp-primitive-link-hover);   /* #359afa */
+
+  /* State text */
+  --cvp-color-text-danger:  var(--cvp-primitive-danger-500);  /* #e6494e */
+  --cvp-color-text-success: var(--cvp-primitive-green-400);   /* #3dc155 */
+  --cvp-color-text-warning: var(--cvp-primitive-yellow-400);  /* #f4983b */
+  --cvp-color-text-error:   var(--cvp-primitive-red-400);     /* #f87171 */
+
+  /* ── Borders ───────────────────────────────────────────────────────────── */
+  --cvp-color-border-subtle:   var(--cvp-primitive-neutral-650);  /* #1f1f28 */
+  --cvp-color-border-default:  var(--cvp-primitive-neutral-500);  /* #2a2a36 */
+  --cvp-color-border-strong:   var(--cvp-primitive-neutral-400);  /* #374151 */
+  --cvp-color-border-bold:     var(--cvp-primitive-neutral-50);   /* #bbbbbb */
+  --cvp-color-border-disabled: var(--cvp-primitive-neutral-650);  /* #1f1f28 */
+  --cvp-color-border-error:    var(--cvp-primitive-red-400);      /* #f87171 */
+  --cvp-color-border-brand:    var(--cvp-primitive-blue-600);     /* #3d63dd */
+  --cvp-color-border-success:  var(--cvp-primitive-green-400);    /* #3dc155 */
+  --cvp-color-border-warning:  var(--cvp-primitive-yellow-400);   /* #f4983b */
+  --cvp-color-border-danger:   var(--cvp-primitive-danger-500);   /* #e6494e */
+
+  /* ── Icons ─────────────────────────────────────────────────────────────── */
+  --cvp-color-icon-default:  var(--cvp-primitive-neutral-150);  /* #9ca3af */
+  --cvp-color-icon-strong:   var(--cvp-primitive-neutral-10);   /* #e5e7eb */
+  --cvp-color-icon-muted:    var(--cvp-primitive-neutral-200);  /* #6b7280 */
+  --cvp-color-icon-subtle:   var(--cvp-primitive-neutral-75);   /* #AFAFB5 */
+  --cvp-color-icon-disabled: var(--cvp-primitive-neutral-300);  /* #4b5563 */
+  --cvp-color-icon-inverse:  var(--cvp-primitive-neutral-750);  /* #19191b */
+  --cvp-color-icon-brand:    var(--cvp-primitive-blue-600);     /* #3d63dd */
+  --cvp-color-icon-error:    var(--cvp-primitive-red-400);      /* #f87171 */
+  --cvp-color-icon-danger:   var(--cvp-primitive-danger-500);   /* #e6494e */
+  --cvp-color-icon-success:  var(--cvp-primitive-green-400);    /* #3dc155 */
+  --cvp-color-icon-warning:  var(--cvp-primitive-yellow-400);   /* #f4983b */
+
+  /* ── Brand ─────────────────────────────────────────────────────────────── */
+  --cvp-color-brand-default: var(--cvp-primitive-blue-600);  /* #3d63dd */
+  --cvp-color-brand-hover:   var(--cvp-primitive-blue-700);  /* #244cce */
+  --cvp-color-brand-active:  var(--cvp-primitive-blue-700);  /* #244cce */
+  --cvp-color-brand-accent:  var(--cvp-primitive-purple-400);/* #c084fc */
+
+  /* ── Secondary Brand ───────────────────────────────────────────────────── */
+  --cvp-color-secondary-default: var(--cvp-primitive-blue-900);  /* #2d4a8e */
+  --cvp-color-secondary-hover:   var(--cvp-primitive-blue-800);  /* #1f3566 */
+  --cvp-color-secondary-active:  var(--cvp-primitive-blue-800);  /* #1f3566 */
+
+  /* ── State Triplets (bg + border + text) ───────────────────────────────── */
+  --cvp-color-state-error-bg:     var(--cvp-primitive-red-950);      /* #2d1515 */
+  --cvp-color-state-error-border: var(--cvp-primitive-red-700);      /* #991b1b */
+  --cvp-color-state-error-text:   var(--cvp-primitive-red-300);     /* #fca5a5 */
+
+  --cvp-color-state-success-bg:     var(--cvp-primitive-green-800);  /* #052e16 */
+  --cvp-color-state-success-border: var(--cvp-primitive-green-700);  /* #14532d */
+  --cvp-color-state-success-text:   var(--cvp-primitive-green-200);  /* #86efac */
+
+  --cvp-color-state-warning-bg:     var(--cvp-primitive-yellow-900); /* #2d1f05 */
+  --cvp-color-state-warning-border: var(--cvp-primitive-yellow-800); /* #78350f */
+  --cvp-color-state-warning-text:   var(--cvp-primitive-yellow-200); /* #fcd34d */
+
+  --cvp-color-state-info-bg:     var(--cvp-primitive-sky-900);  /* #0f172a */
+  --cvp-color-state-info-border: var(--cvp-primitive-sky-800);  /* #1e3a5f */
+  --cvp-color-state-info-text:   var(--cvp-primitive-sky-300);  /* #93c5fd */
+
+  --cvp-color-state-danger-bg:       var(--cvp-primitive-danger-600);  /* #c51b20 */
+  --cvp-color-state-danger-bg-hover: var(--cvp-primitive-danger-700);  /* #a8171b */
+  --cvp-color-state-danger-text:     var(--cvp-primitive-neutral-0);   /* #ffffff */
+  --cvp-color-state-danger-border:   var(--cvp-primitive-danger-500);  /* #e6494e */
+
+  /* ── Shadows ───────────────────────────────────────────────────────────── */
+  --cvp-shadow-color-soft: rgba(0, 0, 0, 0.22);
+  --cvp-shadow-color-base: rgba(0, 0, 0, 0.34);
+  --cvp-shadow-color-strong: rgba(0, 0, 0, 0.52);
+  --cvp-shadow-sm: var(--cvp-elevation-1);
+  --cvp-shadow-md: var(--cvp-elevation-2);
+  --cvp-shadow-lg: var(--cvp-elevation-3);
+  --cvp-shadow-modal: var(--cvp-elevation-4);
+
+  /* ── Component-context colours (navigation, inputs, etc.) ─────────────── */
+  /* Navigation — only tokens whose dark/light values differ from a general semantic */
+  --cvp-color-nav-bg:             var(--cvp-primitive-neutral-850); /* #0d0d14 — surface-page in dark, surface-raised in light */
+  --cvp-color-nav-border:         var(--cvp-primitive-neutral-650); /* #1f1f28 — border-subtle in dark, border-default in light */
+  --cvp-color-nav-text:           var(--cvp-primitive-neutral-150); /* #9ca3af — text-muted in dark, text-secondary in light */
+  --cvp-color-nav-item-active-bg: var(--cvp-primitive-neutral-650); /* #1f1f28 — surface-hover in dark, surface-active in light */
+  --cvp-color-nav-section-label:  var(--cvp-primitive-neutral-300); /* #4b5563 */
+
+  /* Breadcrumbs */
+  --cvp-color-breadcrumb-bg:     var(--cvp-primitive-neutral-650); /* #1f1f28 — surface-hover in dark, surface-subtle in light */
+
+  /* Menus & Dropdowns — active-state colours have no general semantic equivalent */
+  --cvp-color-menu-item-active-bg:  var(--cvp-primitive-sky-800);  /* #1e3a5f */
+  --cvp-color-menu-item-active-text:var(--cvp-primitive-sky-400);  /* #60a5fa */
+
+  /* Chips & Tags */
+  --cvp-color-chip-bg:      var(--cvp-primitive-neutral-650); /* #1f1f28 — chip default surface; distinct from surface-hover intent */
+
+  /* Inputs — border differs from border-default in light theme (uses border-strong step) */
+  --cvp-color-input-border:       var(--cvp-primitive-neutral-500); /* #2a2a36 */
+  --cvp-color-input-prefix-bg:    var(--cvp-primitive-neutral-650); /* #1f1f28 — surface-raised in dark, surface-subtle in light */
+}
+
+/* =============================================================================
+   LIGHT THEME
+   Applied when: [data-theme="light"] or .light-theme
+   ============================================================================= */
+[data-theme="light"],
+.light-theme {
+
+  --cvp-focus-ring-color:   var(--cvp-primitive-sky-500);
+  --cvp-focus-border-color: var(--cvp-primitive-sky-500);
+
+  /* ── Surfaces ──────────────────────────────────────────────────────────── */
+  --cvp-color-surface-page:     var(--cvp-primitive-neutral-0);    /* #ffffff */
+  --cvp-color-surface-default:  var(--cvp-primitive-neutral-0);    /* #ffffff */
+  --cvp-color-surface-raised:   var(--cvp-primitive-neutral-2);    /* #f8f9fa */
+  --cvp-color-surface-sunken:   var(--cvp-primitive-neutral-5);    /* #f3f4f6 */
+  --cvp-color-surface-overlay:  var(--cvp-primitive-neutral-0);    /* #ffffff */
+  --cvp-color-surface-subtle:   var(--cvp-primitive-neutral-5);    /* #f3f4f6 */
+  --cvp-color-surface-disabled: var(--cvp-primitive-neutral-5);    /* #f3f4f6 */
+  --cvp-color-surface-hover:    var(--cvp-primitive-neutral-5);    /* #f3f4f6 */
+  --cvp-color-surface-active:   var(--cvp-primitive-neutral-10);   /* #e5e7eb */
+  --cvp-color-surface-inverse:  var(--cvp-primitive-neutral-750);  /* #19191b */
+  --cvp-color-surface-bold:     var(--cvp-primitive-neutral-30);   /* #d0d0d3 */
+
+  /* Overlay surface states — list items, sidebar rows, etc. */
+  --cvp-color-surface-overlay-hover:    var(--cvp-primitive-neutral-5);   /* #f3f4f6 */
+  --cvp-color-surface-overlay-selected: var(--cvp-primitive-neutral-10);  /* #e5e7eb */
+
+  --cvp-color-overlay-scrim: rgb(0 0 0 / var(--cvp-primitive-opacity-scrim-light));  /* 45% */
+
+  /* ── Interactive overlays (translucent layers on light surfaces) ─────────── */
+  --cvp-color-interactive-overlay:        rgba(0, 0, 0, 0.04);
+  --cvp-color-interactive-overlay-medium: rgba(0, 0, 0, 0.08);
+  --cvp-color-interactive-overlay-strong: rgba(0, 0, 0, 0.15);
+
+  /* ── Gallery overlays ──────────────────────────────────────────────────── */
+  --cvp-color-gallery-overlay:      rgba(0, 0, 0, 0.50);
+  --cvp-color-gallery-empty-border: rgba(0, 0, 0, 0.10);
+
+  /* ── Text ──────────────────────────────────────────────────────────────── */
+  --cvp-color-text-primary:     var(--cvp-primitive-gray-900);     /* #111827 */
+  --cvp-color-text-secondary:   var(--cvp-primitive-neutral-400);  /* #374151 */
+  --cvp-color-text-muted:       var(--cvp-primitive-neutral-300);  /* #4b5563 — 7.2:1 on white; safe on light sunken surfaces */
+  --cvp-color-text-subtle:      var(--cvp-primitive-neutral-200);  /* #6b7280 */
+  --cvp-color-text-placeholder: var(--cvp-primitive-neutral-200);  /* #6b7280 — 4.8:1 on white */
+  --cvp-color-text-disabled:    var(--cvp-primitive-neutral-150);  /* #9ca3af */
+  --cvp-color-text-inverse:     var(--cvp-primitive-neutral-0);    /* #ffffff */
+  --cvp-color-text-on-brand:    var(--cvp-primitive-neutral-0);    /* #ffffff */
+  --cvp-color-text-on-dark:     var(--cvp-primitive-neutral-0);    /* theme-independent swatch pairing */
+  --cvp-color-text-on-light:    var(--cvp-primitive-neutral-900);  /* theme-independent swatch pairing */
+  --cvp-color-text-brand:       var(--cvp-primitive-blue-600);     /* #3d63dd */
+
+  /* Accent text */
+  --cvp-color-text-accent-default:   var(--cvp-primitive-accent-default);   /* #97a9de */
+  --cvp-color-text-accent-subtle:    var(--cvp-primitive-accent-subtle);    /* #6f8be6 */
+  --cvp-color-text-accent-subtlest:  var(--cvp-primitive-accent-subtlest);  /* #cdd7f6 */
+  --cvp-color-text-accent-muted:     var(--cvp-primitive-blue-800);         /* #1f3566 */
+  --cvp-color-text-accent-secondary: var(--cvp-primitive-blue-900);         /* #2d4a8e */
+
+  /* Link */
+  --cvp-color-text-link-default: var(--cvp-primitive-sky-500);  /* #2563eb */
+  --cvp-color-text-link-hover:   var(--cvp-primitive-sky-600);  /* #1d4ed8 */
+
+  /* State text */
+  --cvp-color-text-danger:  var(--cvp-primitive-red-600);      /* #dc2626 */
+  --cvp-color-text-success: var(--cvp-primitive-green-500);    /* #16a34a */
+  --cvp-color-text-warning: var(--cvp-primitive-yellow-500);   /* #d97706 */
+  --cvp-color-text-error:   var(--cvp-primitive-red-600);      /* #dc2626 */
+
+  /* ── Borders ───────────────────────────────────────────────────────────── */
+  --cvp-color-border-subtle:   var(--cvp-primitive-neutral-5);   /* #f3f4f6 */
+  --cvp-color-border-default:  var(--cvp-primitive-neutral-10);  /* #e5e7eb */
+  --cvp-color-border-strong:   var(--cvp-primitive-neutral-25);  /* #d1d5db */
+  --cvp-color-border-bold:     var(--cvp-primitive-neutral-50);  /* #bbbbbb */
+  --cvp-color-border-disabled: var(--cvp-primitive-neutral-10);  /* #e5e7eb */
+  --cvp-color-border-error:    var(--cvp-primitive-red-600);     /* #dc2626 */
+  --cvp-color-border-brand:    var(--cvp-primitive-blue-600);    /* #3d63dd */
+  --cvp-color-border-success:  var(--cvp-primitive-green-500);   /* #16a34a */
+  --cvp-color-border-warning:  var(--cvp-primitive-yellow-500);  /* #d97706 */
+  --cvp-color-border-danger:   var(--cvp-primitive-red-600);     /* #dc2626 */
+
+  /* ── Icons ─────────────────────────────────────────────────────────────── */
+  --cvp-color-icon-default:  var(--cvp-primitive-neutral-200);  /* #6b7280 */
+  --cvp-color-icon-strong:   var(--cvp-primitive-neutral-400);  /* #374151 */
+  --cvp-color-icon-muted:    var(--cvp-primitive-neutral-150);  /* #9ca3af */
+  --cvp-color-icon-subtle:   var(--cvp-primitive-neutral-150);  /* #9ca3af */
+  --cvp-color-icon-disabled: var(--cvp-primitive-neutral-25);   /* #d1d5db */
+  --cvp-color-icon-inverse:  var(--cvp-primitive-neutral-0);    /* #ffffff */
+  --cvp-color-icon-brand:    var(--cvp-primitive-blue-600);     /* #3d63dd */
+  --cvp-color-icon-error:    var(--cvp-primitive-red-600);      /* #dc2626 */
+  --cvp-color-icon-danger:   var(--cvp-primitive-red-600);      /* #dc2626 */
+  --cvp-color-icon-success:  var(--cvp-primitive-green-500);    /* #16a34a */
+  --cvp-color-icon-warning:  var(--cvp-primitive-yellow-500);   /* #d97706 */
+
+  /* ── Brand ─────────────────────────────────────────────────────────────── */
+  --cvp-color-brand-default: var(--cvp-primitive-blue-600);    /* #3d63dd */
+  --cvp-color-brand-hover:   var(--cvp-primitive-blue-700);    /* #244cce */
+  --cvp-color-brand-active:  var(--cvp-primitive-blue-700);    /* #244cce */
+  --cvp-color-brand-accent:  var(--cvp-primitive-purple-400);  /* #c084fc */
+
+  /* ── Secondary Brand ───────────────────────────────────────────────────── */
+  --cvp-color-secondary-default: var(--cvp-primitive-blue-900);  /* #2d4a8e */
+  --cvp-color-secondary-hover:   var(--cvp-primitive-blue-800);  /* #1f3566 */
+  --cvp-color-secondary-active:  var(--cvp-primitive-blue-800);  /* #1f3566 */
+
+  /* ── State Triplets ────────────────────────────────────────────────────── */
+  --cvp-color-state-error-bg:     var(--cvp-primitive-red-100);      /* #fef2f2 */
+  --cvp-color-state-error-border: var(--cvp-primitive-red-300);      /* #fca5a5 */
+  --cvp-color-state-error-text:   var(--cvp-primitive-red-700);      /* #991b1b */
+
+  --cvp-color-state-success-bg:     var(--cvp-primitive-green-50);    /* #f0fdf4 */
+  --cvp-color-state-success-border: var(--cvp-primitive-green-200);   /* #86efac */
+  --cvp-color-state-success-text:   var(--cvp-primitive-green-600);   /* #15803d */
+
+  --cvp-color-state-warning-bg:     var(--cvp-primitive-yellow-100);  /* #fffbeb */
+  --cvp-color-state-warning-border: var(--cvp-primitive-yellow-200);  /* #fcd34d */
+  --cvp-color-state-warning-text:   var(--cvp-primitive-yellow-700);  /* #92400e */
+
+  --cvp-color-state-info-bg:     var(--cvp-primitive-sky-50);   /* #eff6ff */
+  --cvp-color-state-info-border: var(--cvp-primitive-sky-300);  /* #93c5fd */
+  --cvp-color-state-info-text:   var(--cvp-primitive-sky-700);  /* #1e40af */
+
+  --cvp-color-state-danger-bg:       var(--cvp-primitive-red-100);     /* #fef2f2 */
+  --cvp-color-state-danger-bg-hover: var(--cvp-primitive-red-200);     /* #fee2e2 */
+  --cvp-color-state-danger-text:     var(--cvp-primitive-red-700);     /* #b91c1c */
+  --cvp-color-state-danger-border:   var(--cvp-primitive-red-600);     /* #dc2626 */
+
+  /* ── Shadows ───────────────────────────────────────────────────────────── */
+  --cvp-shadow-color-soft: rgba(15, 23, 42, 0.07);
+  --cvp-shadow-color-base: rgba(15, 23, 42, 0.12);
+  --cvp-shadow-color-strong: rgba(15, 23, 42, 0.20);
+  --cvp-shadow-sm: var(--cvp-elevation-1);
+  --cvp-shadow-md: var(--cvp-elevation-2);
+  --cvp-shadow-lg: var(--cvp-elevation-3);
+  --cvp-shadow-modal: var(--cvp-elevation-4);
+
+  /* ── Component-context colours ─────────────────────────────────────────── */
+  /* Navigation */
+  --cvp-color-nav-bg:             var(--cvp-primitive-neutral-2);   /* #f8f9fa */
+  --cvp-color-nav-border:         var(--cvp-primitive-neutral-10);  /* #e5e7eb */
+  --cvp-color-nav-text:           var(--cvp-primitive-neutral-400); /* #374151 */
+  --cvp-color-nav-item-active-bg: var(--cvp-primitive-neutral-10);  /* #e5e7eb */
+  --cvp-color-nav-section-label:  var(--cvp-primitive-neutral-150); /* #9ca3af */
+
+  /* Breadcrumbs */
+  --cvp-color-breadcrumb-bg:     var(--cvp-primitive-neutral-5);   /* #f3f4f6 */
+
+  /* Menus & Dropdowns */
+  --cvp-color-menu-item-active-bg:  var(--cvp-primitive-sky-50);   /* #eff6ff */
+  --cvp-color-menu-item-active-text:var(--cvp-primitive-sky-500);  /* #2563eb */
+
+  /* Chips & Tags */
+  --cvp-color-chip-bg:       var(--cvp-primitive-neutral-5);   /* #f3f4f6 */
+
+  /* Inputs */
+  --cvp-color-input-border:       var(--cvp-primitive-neutral-25);  /* #d1d5db — border-strong step; distinct from border-default in light */
+  --cvp-color-input-prefix-bg:    var(--cvp-primitive-neutral-5);   /* #f3f4f6 */
+}
+
+/* =============================================================================
+   THEME-INDEPENDENT SEMANTIC TOKENS
+   These never change between light and dark. Defined on :root.
+   ============================================================================= */
+:root {
+
+  /* ── Focus geometry; color resolves in each theme above ───────────────── */
+  --cvp-focus-glow-color:   var(--cvp-primitive-focus-glow);   /* rgba(111,139,230,0.25) */
+  --cvp-focus-ring-width:   2px;
+  --cvp-focus-glow-spread:  3px;
+
+  /* ── Spacing ───────────────────────────────────────────────────────────── */
+  --cvp-space-0:  var(--cvp-primitive-space-0);   /* 0px  */
+  --cvp-space-1:  var(--cvp-primitive-space-1);   /* 4px  */
+  --cvp-space-2:  var(--cvp-primitive-space-2);   /* 8px  */
+  --cvp-space-3:  var(--cvp-primitive-space-3);   /* 12px */
+  --cvp-space-4:  var(--cvp-primitive-space-4);   /* 16px */
+  --cvp-space-5:  var(--cvp-primitive-space-5);   /* 20px */
+  --cvp-space-6:  var(--cvp-primitive-space-6);   /* 24px */
+  --cvp-space-8:  var(--cvp-primitive-space-8);   /* 32px */
+  --cvp-space-12: var(--cvp-primitive-space-12);  /* 48px */
+  --cvp-space-100: var(--cvp-primitive-space-100);
+  --cvp-space-200: var(--cvp-primitive-space-200);
+  --cvp-space-300: var(--cvp-primitive-space-300);
+  --cvp-space-400: var(--cvp-primitive-space-400);
+  --cvp-space-500: var(--cvp-primitive-space-500);
+  --cvp-space-600: var(--cvp-primitive-space-600);
+  --cvp-space-700: var(--cvp-primitive-space-700);
+  --cvp-space-800: var(--cvp-primitive-space-800);
+  --cvp-space-900: var(--cvp-primitive-space-900);
+  --cvp-space-1000: var(--cvp-primitive-space-1000);
+  --cvp-space-1100: var(--cvp-primitive-space-1100);
+  --cvp-space-1200: var(--cvp-primitive-space-1200);
+  --cvp-space-1300: var(--cvp-primitive-space-1300);
+
+  /* ── Radius ────────────────────────────────────────────────────────────── */
+  --cvp-radius-xs:   var(--cvp-primitive-radius-xs);    /* 2px    */
+  --cvp-radius-sm:   var(--cvp-primitive-radius-sm);    /* 4px    */
+  --cvp-radius-md:   var(--cvp-primitive-radius-md);    /* 6px    */
+  --cvp-radius-lg:   var(--cvp-primitive-radius-lg);    /* 8px    */
+  --cvp-radius-xl:   var(--cvp-primitive-radius-xl);    /* 12px   */
+  --cvp-radius-2xl:  var(--cvp-primitive-radius-2xl);
+  --cvp-radius-3xl:  var(--cvp-primitive-radius-3xl);
+  --cvp-radius-full: var(--cvp-primitive-radius-full);  /* 9999px */
+
+  --cvp-shape-edge-hard: var(--cvp-primitive-radius-none, 0px);
+  --cvp-shape-edge-soft: var(--cvp-radius-xs);
+  --cvp-shape-control-compact: var(--cvp-radius-sm);
+  --cvp-shape-control-base: var(--cvp-radius-md);
+  --cvp-shape-control-soft: var(--cvp-radius-lg);
+  --cvp-shape-surface-subtle: var(--cvp-radius-sm);
+  --cvp-shape-surface-base: var(--cvp-radius-lg);
+  --cvp-shape-surface-raised: var(--cvp-radius-xl);
+  --cvp-shape-surface-soft: var(--cvp-radius-2xl);
+  --cvp-shape-surface-expressive: var(--cvp-radius-3xl);
+  --cvp-shape-overlay-base: var(--cvp-radius-xl);
+  --cvp-shape-overlay-soft: var(--cvp-radius-2xl);
+  --cvp-shape-rounded: var(--cvp-radius-full);
+
+  /* ── Border functions ─────────────────────────────────────────────────── */
+  --cvp-border-none-width: var(--cvp-primitive-border-none);
+  --cvp-border-subtle-width: var(--cvp-primitive-border-xs);
+  --cvp-border-base-width: var(--cvp-primitive-border-sm);
+  --cvp-border-divider-width: var(--cvp-primitive-border-sm);
+  --cvp-border-container-width: var(--cvp-primitive-border-sm);
+  --cvp-border-strong-width: var(--cvp-primitive-border-md);
+  --cvp-border-section-width: var(--cvp-primitive-border-md);
+  --cvp-border-selected-width: var(--cvp-primitive-border-md);
+  --cvp-border-focus-width: var(--cvp-primitive-border-md);
+  --cvp-border-heavy-width: var(--cvp-primitive-border-lg);
+  --cvp-border-color-subtle: var(--cvp-color-border-subtle);
+  --cvp-border-color-base: var(--cvp-color-border-default);
+  --cvp-border-color-divider: var(--cvp-color-border-subtle);
+  --cvp-border-color-container: var(--cvp-color-border-strong);
+  --cvp-border-color-strong: var(--cvp-color-border-bold);
+  --cvp-border-color-selected: var(--cvp-focus-border-color);
+  --cvp-border-color-focus: var(--cvp-focus-ring-color);
+  --cvp-border-color-disabled: var(--cvp-color-border-disabled);
+  --cvp-border-color-error: var(--cvp-color-border-error);
+  --cvp-border-color-warning: var(--cvp-color-border-warning);
+  --cvp-border-color-success: var(--cvp-color-border-success);
+  --cvp-border-focus-halo: var(--cvp-focus-glow-color);
+  --cvp-border-subtle: var(--cvp-border-subtle-width) solid var(--cvp-border-color-subtle);
+  --cvp-border-base: var(--cvp-border-base-width) solid var(--cvp-border-color-base);
+  --cvp-border-divider: var(--cvp-border-divider-width) solid var(--cvp-border-color-divider);
+  --cvp-border-container: var(--cvp-border-container-width) solid var(--cvp-border-color-container);
+  --cvp-border-strong: var(--cvp-border-strong-width) solid var(--cvp-border-color-strong);
+  --cvp-border-section: var(--cvp-border-section-width) solid var(--cvp-border-color-strong);
+  --cvp-border-selected: var(--cvp-border-selected-width) solid var(--cvp-border-color-selected);
+  --cvp-border-focus: var(--cvp-border-focus-width) solid var(--cvp-border-color-focus);
+  --cvp-border-focus-ring: 0 0 0 var(--cvp-border-focus-width) var(--cvp-border-color-focus), 0 0 0 4px var(--cvp-border-focus-halo);
+  --cvp-border-error-ring: 0 0 0 var(--cvp-border-focus-width) var(--cvp-border-color-error), 0 0 0 var(--cvp-space-1) color-mix(in srgb, var(--cvp-border-color-error) 20%, transparent);
+  --cvp-border-error: var(--cvp-border-base-width) solid var(--cvp-border-color-error);
+  --cvp-border-warning: var(--cvp-border-base-width) solid var(--cvp-border-color-warning);
+  --cvp-border-success: var(--cvp-border-base-width) solid var(--cvp-border-color-success);
+
+  /* ── Elevation planes ─────────────────────────────────────────────────── */
+  --cvp-depth-0: var(--cvp-primitive-depth-0);
+  --cvp-depth-1: var(--cvp-primitive-depth-1);
+  --cvp-depth-2: var(--cvp-primitive-depth-2);
+  --cvp-depth-3: var(--cvp-primitive-depth-3);
+  --cvp-depth-4: var(--cvp-primitive-depth-4);
+  --cvp-elevation-0: none;
+  --cvp-elevation-1: 0 var(--cvp-primitive-shadow-y-1) var(--cvp-primitive-shadow-blur-2) var(--cvp-primitive-shadow-spread-0) var(--cvp-shadow-color-soft);
+  --cvp-elevation-2: 0 var(--cvp-primitive-shadow-y-2) var(--cvp-primitive-shadow-blur-6) var(--cvp-primitive-shadow-spread-n1) var(--cvp-shadow-color-base);
+  --cvp-elevation-3: 0 var(--cvp-primitive-shadow-y-8) var(--cvp-primitive-shadow-blur-16) var(--cvp-primitive-shadow-spread-n4) var(--cvp-shadow-color-base);
+  --cvp-elevation-4: 0 var(--cvp-primitive-shadow-y-12) var(--cvp-primitive-shadow-blur-24) var(--cvp-primitive-shadow-spread-n6) var(--cvp-shadow-color-strong);
+  --cvp-plane-canvas-shadow: var(--cvp-elevation-0);
+  --cvp-plane-section-shadow: var(--cvp-elevation-0);
+  --cvp-plane-surface-shadow: var(--cvp-elevation-1);
+  --cvp-plane-raised-shadow: var(--cvp-elevation-2);
+  --cvp-plane-overlay-shadow: none;
+  --cvp-plane-elevated-shadow: var(--cvp-elevation-4);
+  --cvp-overlay-scrim: var(--cvp-color-overlay-scrim);
+
+  /* ── Typography ────────────────────────────────────────────────────────── */
+  --cvp-font-family-sans: var(--cvp-primitive-font-family-sans);
+  --cvp-font-family-mono: var(--cvp-primitive-font-family-mono);
+
+  --cvp-font-size-xs:  var(--cvp-primitive-font-size-xs);   /* 12px */
+  --cvp-font-size-sm:  var(--cvp-primitive-font-size-sm);   /* 13px */
+  --cvp-font-size-md:  var(--cvp-primitive-font-size-md);   /* 14px */
+  --cvp-font-size-lg:  var(--cvp-primitive-font-size-lg);   /* 15px */
+  --cvp-font-size-xl:  var(--cvp-primitive-font-size-xl);   /* 18px */
+  --cvp-font-size-2xl: var(--cvp-primitive-font-size-2xl);  /* 24px */
+  --cvp-font-size-3xl: var(--cvp-primitive-font-size-3xl);  /* 32px */
+
+  --cvp-font-weight-regular:  var(--cvp-primitive-font-weight-regular);   /* 400 */
+  --cvp-font-weight-medium:   var(--cvp-primitive-font-weight-medium);    /* 500 */
+  --cvp-font-weight-semibold: var(--cvp-primitive-font-weight-semibold);  /* 600 */
+  --cvp-font-weight-bold:     var(--cvp-primitive-font-weight-bold);      /* 700 */
+
+  --cvp-line-height-tight:   var(--cvp-primitive-line-height-tight);    /* 16px */
+  --cvp-line-height-snug:    var(--cvp-primitive-line-height-snug);     /* 20px */
+  --cvp-line-height-normal:  var(--cvp-primitive-line-height-normal);   /* 22px */
+  --cvp-line-height-relaxed: var(--cvp-primitive-line-height-relaxed);  /* 28px */
+  --cvp-line-height-loose:   var(--cvp-primitive-line-height-loose);    /* 32px */
+  --cvp-line-height-xl:      var(--cvp-primitive-line-height-xl);       /* 40px */
+
+  --cvp-letter-spacing-tight:  var(--cvp-primitive-letter-spacing-tight);   /* 0.1px  */
+  --cvp-letter-spacing-normal: var(--cvp-primitive-letter-spacing-normal);  /* 0.15px */
+  --cvp-letter-spacing-none:   var(--cvp-primitive-letter-spacing-none);    /* 0px    */
+  --cvp-letter-spacing-wide:   var(--cvp-primitive-letter-spacing-wide);    /* 0.5px  */
+
+  /* Semantic typography roles — the stable contract consumed by components. */
+  --cvp-type-display-size: var(--cvp-primitive-font-size-display);
+  --cvp-type-display-line-height: var(--cvp-primitive-line-height-display);
+  --cvp-type-display-weight: var(--cvp-font-weight-semibold);
+  --cvp-type-headline-size: var(--cvp-font-size-3xl);
+  --cvp-type-headline-line-height: var(--cvp-line-height-xl);
+  --cvp-type-headline-weight: var(--cvp-font-weight-semibold);
+  --cvp-type-title-size: var(--cvp-primitive-font-size-title);
+  --cvp-type-title-line-height: var(--cvp-line-height-relaxed);
+  --cvp-type-title-weight: var(--cvp-font-weight-semibold);
+  --cvp-type-body-size: var(--cvp-font-size-md);
+  --cvp-type-body-line-height: var(--cvp-line-height-snug);
+  --cvp-type-label-size: var(--cvp-font-size-sm);
+  --cvp-type-label-line-height: var(--cvp-line-height-snug);
+  --cvp-type-label-weight: var(--cvp-font-weight-semibold);
+  --cvp-type-caption-size: var(--cvp-font-size-xs);
+  --cvp-type-caption-line-height: var(--cvp-line-height-tight);
+  --cvp-type-mono-size: var(--cvp-font-size-sm);
+  --cvp-type-mono-line-height: var(--cvp-line-height-snug);
+
+  /* ── Motion ────────────────────────────────────────────────────────────── */
+  --cvp-motion-duration-fast:   var(--cvp-primitive-duration-fast);    /* 150ms */
+  --cvp-motion-duration-base:   var(--cvp-primitive-duration-base);    /* 250ms */
+  --cvp-motion-duration-slow:   var(--cvp-primitive-duration-slow);    /* 350ms */
+  --cvp-motion-duration-bounce: var(--cvp-primitive-duration-bounce);  /* 500ms */
+
+  --cvp-motion-easing-standard: var(--cvp-primitive-easing-standard);  /* cubic-bezier(0.4,0,0.2,1)      */
+  --cvp-motion-easing-bounce:   var(--cvp-primitive-easing-bounce);    /* cubic-bezier(0.34,1.56,0.64,1) */
+
+  /* ── Opacity ───────────────────────────────────────────────────────────── */
+  --cvp-opacity-disabled:    var(--cvp-primitive-opacity-disabled);     /* 0.5  */
+  --cvp-opacity-placeholder: var(--cvp-primitive-opacity-placeholder);  /* 0.6  */
+  --cvp-opacity-scrim-light: var(--cvp-primitive-opacity-scrim-light);  /* 0.45 */
+  --cvp-opacity-scrim-dark:  var(--cvp-primitive-opacity-scrim-dark);   /* 0.75 */
+
+  /* ── Z-Index ───────────────────────────────────────────────────────────── */
+  --cvp-z-base:     var(--cvp-primitive-z-base);      /* 0    */
+  --cvp-z-sticky:   var(--cvp-primitive-z-sticky);    /* 10   */
+  --cvp-z-navigation:var(--cvp-primitive-z-navigation);
+  --cvp-z-dropdown: var(--cvp-primitive-z-dropdown);
+  --cvp-z-overlay:  var(--cvp-primitive-z-overlay);
+  --cvp-z-modal:    var(--cvp-primitive-z-modal);
+  --cvp-z-toast:    var(--cvp-primitive-z-toast);
+}
+
+/* ── Semantic spacing relationships and density modes ───────────────────── */
+:root,
+[data-density="default"] {
+  --cvp-spacing-stack-xs: var(--cvp-space-200);
+  --cvp-spacing-stack-sm: var(--cvp-space-300);
+  --cvp-spacing-stack-md: var(--cvp-space-500);
+  --cvp-spacing-stack-lg: var(--cvp-space-700);
+  --cvp-spacing-stack-xl: var(--cvp-space-900);
+  --cvp-spacing-inline-xs: var(--cvp-space-100);
+  --cvp-spacing-inline-sm: var(--cvp-space-200);
+  --cvp-spacing-inline-md: var(--cvp-space-300);
+  --cvp-spacing-inline-lg: var(--cvp-space-500);
+  --cvp-spacing-inline-xl: var(--cvp-space-700);
+  --cvp-spacing-inset-xs: var(--cvp-space-300);
+  --cvp-spacing-inset-sm: var(--cvp-space-400);
+  --cvp-spacing-inset-md: var(--cvp-space-500);
+  --cvp-spacing-inset-lg: var(--cvp-space-700);
+  --cvp-spacing-inset-xl: var(--cvp-space-900);
+  --cvp-spacing-gap-xs: var(--cvp-space-200);
+  --cvp-spacing-gap-sm: var(--cvp-space-300);
+  --cvp-spacing-gap-md: var(--cvp-space-500);
+  --cvp-spacing-gap-lg: var(--cvp-space-700);
+  --cvp-spacing-gap-xl: var(--cvp-space-900);
+  --cvp-spacing-section-xs: var(--cvp-space-500);
+  --cvp-spacing-section-sm: var(--cvp-space-700);
+  --cvp-spacing-section-md: var(--cvp-space-900);
+  --cvp-spacing-section-lg: var(--cvp-space-1100);
+  --cvp-spacing-section-xl: var(--cvp-space-1200);
+  --cvp-spacing-container-xs: var(--cvp-space-300);
+  --cvp-spacing-container-sm: var(--cvp-space-500);
+  --cvp-spacing-container-md: var(--cvp-space-700);
+  --cvp-spacing-container-lg: var(--cvp-space-900);
+  --cvp-spacing-container-xl: var(--cvp-space-1100);
+}
+
+[data-density="compact"] {
+  --cvp-spacing-stack-xs: var(--cvp-space-100); --cvp-spacing-stack-sm: var(--cvp-space-200); --cvp-spacing-stack-md: var(--cvp-space-300); --cvp-spacing-stack-lg: var(--cvp-space-500); --cvp-spacing-stack-xl: var(--cvp-space-700);
+  --cvp-spacing-inline-xs: var(--cvp-space-0); --cvp-spacing-inline-sm: var(--cvp-space-100); --cvp-spacing-inline-md: var(--cvp-space-200); --cvp-spacing-inline-lg: var(--cvp-space-300); --cvp-spacing-inline-xl: var(--cvp-space-500);
+  --cvp-spacing-inset-xs: var(--cvp-space-200); --cvp-spacing-inset-sm: var(--cvp-space-300); --cvp-spacing-inset-md: var(--cvp-space-400); --cvp-spacing-inset-lg: var(--cvp-space-500); --cvp-spacing-inset-xl: var(--cvp-space-700);
+  --cvp-spacing-gap-xs: var(--cvp-space-100); --cvp-spacing-gap-sm: var(--cvp-space-200); --cvp-spacing-gap-md: var(--cvp-space-300); --cvp-spacing-gap-lg: var(--cvp-space-500); --cvp-spacing-gap-xl: var(--cvp-space-700);
+  --cvp-spacing-section-xs: var(--cvp-space-400); --cvp-spacing-section-sm: var(--cvp-space-600); --cvp-spacing-section-md: var(--cvp-space-800); --cvp-spacing-section-lg: var(--cvp-space-1000); --cvp-spacing-section-xl: var(--cvp-space-1100);
+  --cvp-spacing-container-xs: var(--cvp-space-200); --cvp-spacing-container-sm: var(--cvp-space-400); --cvp-spacing-container-md: var(--cvp-space-600); --cvp-spacing-container-lg: var(--cvp-space-800); --cvp-spacing-container-xl: var(--cvp-space-1000);
+}
+
+[data-density="comfortable"] {
+  --cvp-spacing-stack-xs: var(--cvp-space-300); --cvp-spacing-stack-sm: var(--cvp-space-500); --cvp-spacing-stack-md: var(--cvp-space-700); --cvp-spacing-stack-lg: var(--cvp-space-900); --cvp-spacing-stack-xl: var(--cvp-space-1000);
+  --cvp-spacing-inline-xs: var(--cvp-space-200); --cvp-spacing-inline-sm: var(--cvp-space-300); --cvp-spacing-inline-md: var(--cvp-space-500); --cvp-spacing-inline-lg: var(--cvp-space-700); --cvp-spacing-inline-xl: var(--cvp-space-900);
+  --cvp-spacing-inset-xs: var(--cvp-space-400); --cvp-spacing-inset-sm: var(--cvp-space-500); --cvp-spacing-inset-md: var(--cvp-space-700); --cvp-spacing-inset-lg: var(--cvp-space-900); --cvp-spacing-inset-xl: var(--cvp-space-1000);
+  --cvp-spacing-gap-xs: var(--cvp-space-300); --cvp-spacing-gap-sm: var(--cvp-space-500); --cvp-spacing-gap-md: var(--cvp-space-700); --cvp-spacing-gap-lg: var(--cvp-space-900); --cvp-spacing-gap-xl: var(--cvp-space-1000);
+  --cvp-spacing-section-xs: var(--cvp-space-600); --cvp-spacing-section-sm: var(--cvp-space-800); --cvp-spacing-section-md: var(--cvp-space-1000); --cvp-spacing-section-lg: var(--cvp-space-1200); --cvp-spacing-section-xl: var(--cvp-space-1300);
+  --cvp-spacing-container-xs: var(--cvp-space-400); --cvp-spacing-container-sm: var(--cvp-space-600); --cvp-spacing-container-md: var(--cvp-space-800); --cvp-spacing-container-lg: var(--cvp-space-1000); --cvp-spacing-container-xl: var(--cvp-space-1200);
+}
+
+/* ── Responsive layout roles — mobile first ─────────────────────────────── */
+:root {
+  --cvp-layout-page-columns: var(--cvp-primitive-layout-columns-sm);
+  --cvp-layout-page-gutter: var(--cvp-space-4);
+  --cvp-layout-page-margin: var(--cvp-space-4);
+  --cvp-layout-page-container: 100%;
+  --cvp-layout-page-gap: var(--cvp-space-6);
+  --cvp-layout-pane-nav-width: var(--cvp-primitive-layout-width-240);
+  --cvp-layout-pane-supporting-min-width: var(--cvp-primitive-layout-width-320);
+  --cvp-layout-pane-supporting-max-width: var(--cvp-primitive-layout-width-480);
+  --cvp-layout-pane-work-base-width: var(--cvp-primitive-layout-width-400);
+  --cvp-layout-pane-work-max-width: var(--cvp-primitive-layout-width-640);
+  --cvp-layout-content-reading-max-width: var(--cvp-primitive-layout-width-480);
+  --cvp-layout-content-constrained-max-width: 100%;
+}
+
+@media (min-width: 600px) {
+  :root {
+    --cvp-layout-page-columns: var(--cvp-primitive-layout-columns-md);
+    --cvp-layout-page-gutter: var(--cvp-space-6);
+    --cvp-layout-page-margin: var(--cvp-space-6);
+    --cvp-layout-page-container: var(--cvp-primitive-layout-width-960);
+    --cvp-layout-page-gap: var(--cvp-space-8);
+    --cvp-layout-content-reading-max-width: var(--cvp-primitive-layout-width-560);
+    --cvp-layout-content-constrained-max-width: var(--cvp-primitive-layout-width-560);
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --cvp-layout-page-columns: var(--cvp-primitive-layout-columns-lg);
+    --cvp-layout-page-gutter: var(--cvp-space-8);
+    --cvp-layout-page-margin: var(--cvp-space-8);
+    --cvp-layout-page-container: var(--cvp-primitive-layout-width-1200);
+    --cvp-layout-pane-nav-width: var(--cvp-primitive-layout-width-240);
+    --cvp-layout-content-reading-max-width: var(--cvp-primitive-layout-width-640);
+    --cvp-layout-content-constrained-max-width: var(--cvp-primitive-layout-width-640);
+  }
+}
+
+@media (min-width: 1440px) {
+  :root {
+    --cvp-layout-page-container: var(--cvp-primitive-layout-width-1440);
+    --cvp-layout-page-gap: var(--cvp-space-12);
+    --cvp-layout-content-constrained-max-width: var(--cvp-primitive-layout-width-720);
+  }
+}

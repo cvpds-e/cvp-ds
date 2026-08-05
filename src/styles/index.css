@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import 'tailwindcss' source(none);
+@source '../../**/*.{js,ts,jsx,tsx}';
+@import 'tw-animate-css';
+@import './default_theme.css';
+@import './globals.css';
+@import './cvp-alias-bridge.css';
+@import './cvp-spacing.css';
+@import './cvp-radius.css';
+@import './foundation-preview-audit.css';

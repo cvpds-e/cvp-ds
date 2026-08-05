@@ -1,7 +1,5 @@
 
-  # CVP Design System (Jul '26)
-
-  This is a code bundle for CVP Design System (Jul '26). The original project is available at https://www.figma.com/design/atYrVZpZ9JeHzelwSM99Tk/CVP-Design-System--Jul--26-.
+  # CVP Design System (Aug '26)
 
   ## Running the code
 

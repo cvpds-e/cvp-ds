@@ -1,5 +1,5 @@
-@import './theme.css';
-@import './light-theme.css';
+@import './themes/theme.css';
+@import './themes/light-theme.css';
 @import './theme-switcher.css';
 
 /* Reset and base styles */

@@ -4,7 +4,7 @@
 
 - Component and provider: `src/app/components/Toast.tsx`
 - Component styles: `src/app/components/Toast.css`
-- Tier 3 aliases: `src/styles/cvp-component-tokens.css`
+- Tier 3 aliases: `src/styles/tokens/cvp-component-tokens.css`
 - Visual audit: `src/app/components/ToastDocumentation.tsx`
 
 Wrap the application once with `ToastProvider`, then call `useToast().addToast(...)` inside descendants. Do not create additional toast regions or duplicate status colours locally.

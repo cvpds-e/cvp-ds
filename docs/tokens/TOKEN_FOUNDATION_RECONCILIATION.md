@@ -29,7 +29,7 @@ The bridge is intentionally retained during migration. New component work should
 4. Keep `cvp-alias-bridge.css` until Phase 3 reaches zero direct `--tc-*` usage.
 5. Generic `--spacing-*` and `--radius-*` aliases are temporary and must shrink during component migration.
 6. A foundation preview may demonstrate semantic roles but must consume the same production token graph.
-7. Layout and Motion additions must extend the canonical files and update `IMPLEMENTATION_STATUS.md`.
+7. Layout and Motion additions must extend the canonical files and update `docs/project/IMPLEMENTATION_STATUS.md`.
 
 ## Next migration checkpoint
 

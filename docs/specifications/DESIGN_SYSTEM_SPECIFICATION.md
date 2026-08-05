@@ -61,7 +61,7 @@ This document does **not** prescribe internal engineering tooling, test framewor
 - Engineering tooling decisions (Storybook configuration, test framework, CI pipeline, component bundler)
 - Internal utilities: `ThemeSwitcher`, `DesignSystemNav`, `ImageWithFallback` — classified and excluded from the publishable package
 - Figma design files — Figma is the visual source of truth for geometry and colour decisions; this document captures decisions made there, not the files themselves
-- `TOKEN_GOVERNANCE.md` process rules — the governance process is defined there, not here
+- `docs/tokens/TOKEN_GOVERNANCE.md` process rules — the governance process is defined there, not here
 - Typography, Layout, and Theming as standalone component families — these are addressed via global rules (§§3–4) and the `Layout` component section (Part G); a dedicated typography component (e.g. Text, Heading, Body) does not exist in the repository
 
 ### EH.6 How Engineers Should Use This Document
@@ -71,7 +71,7 @@ This document does **not** prescribe internal engineering tooling, test framewor
 3. **Implementing a pattern:** Open the Design Patterns section. The pattern section explains composition and state coordination; individual component behaviour is in the relevant component section.
 4. **Validating a component:** Use the States table as a checklist. Use the Accessibility sub-section for AT requirements. Use the Storybook requirements list to identify required test cases.
 5. **Raising a gap:** If behaviour is unresolved, mark it with the correct label from §EH.11 and open a discussion with the appropriate owner (see Appendix B for owner types).
-6. **Token questions:** Consult `CVP_TOKEN_ARCHITECTURE.md` for architecture rules and `TOKEN_GOVERNANCE.md` for the proposal process. Do not create tokens during implementation without following governance.
+6. **Token questions:** Consult `docs/tokens/CVP_TOKEN_ARCHITECTURE.md` for architecture rules and `docs/tokens/TOKEN_GOVERNANCE.md` for the proposal process. Do not create tokens during implementation without following governance.
 
 ### EH.7 Source-of-Truth Precedence
 
@@ -79,8 +79,8 @@ When sources disagree, resolve in this order:
 
 1. **This document** (after Design Systems team approval)
 2. **Figma** (visual design intent; overrides text description where they conflict)
-3. **`CVP_TOKEN_ARCHITECTURE.md`** (token naming, tier rules, and architecture)
-4. **`TOKEN_GOVERNANCE.md`** (process rules)
+3. **`docs/tokens/CVP_TOKEN_ARCHITECTURE.md`** (token naming, tier rules, and architecture)
+4. **`docs/tokens/TOKEN_GOVERNANCE.md`** (process rules)
 5. **Current production behaviour** (may reflect a known gap, not the specification)
 
 ### EH.8 First Recommended Implementation Sequence
@@ -146,8 +146,8 @@ Storybook setup and visual regression tooling (Chromatic or Percy) are prerequis
 ### EH.12 Known Architectural Constraints
 
 1. **Alias bridge is the compatibility layer.** `cvp-alias-bridge.css` aliases all 53 `--tc-*` tokens to their `--cvp-*` equivalents. This means existing components work today without changes. The bridge will be removed in Phase 4 — any component not migrated by then will break.
-2. **Tailwind shorthand tokens.** The components' CSS uses `--background`, `--foreground`, `--border`, and `--muted` — Tailwind CSS custom properties defined in `src/styles/index.css`. These are not CVP tokens. They happen to resolve to similar values because `src/styles/theme.css` maps them to compatible colours. This equivalence is accidental, not architecturally guaranteed, and will diverge after Phase 2 migration.
-3. **No `token-registry.json` exists.** The Stylelint plugin described in `TOKEN_GOVERNANCE.md` requires a registry file generated from the CSS source files. This script (`scripts/build-token-registry.js`) is referenced in governance docs but does not exist in the repository. Enforcement cannot be enabled until this script is created.
+2. **Tailwind shorthand tokens.** The components' CSS uses `--background`, `--foreground`, `--border`, and `--muted` — Tailwind CSS custom properties defined in `src/styles/index.css`. These are not CVP tokens. They happen to resolve to similar values because `src/styles/themes/theme.css` maps them to compatible colours. This equivalence is accidental, not architecturally guaranteed, and will diverge after Phase 2 migration.
+3. **No `token-registry.json` exists.** The Stylelint plugin described in `docs/tokens/TOKEN_GOVERNANCE.md` requires a registry file generated from the CSS source files. This script (`scripts/build-token-registry.js`) is referenced in governance docs but does not exist in the repository. Enforcement cannot be enabled until this script is created.
 4. **`LoginSignUp` and `LoginSignUpLight` are two separate files.** Theme duality should be expressed via `data-theme` tokens. Unification is pending a Design Systems decision (OQ-4).
 5. **`CHANGELOG.md` does not exist.** Token governance requires it for every token change. Until it exists, version history is untracked.
 
@@ -242,7 +242,7 @@ It is the reference that lets an engineer build a component correctly the first 
 
 ### 1.2 Scope
 
-This document covers every component listed in `DESIGN_SYSTEM_COMPONENT_INVENTORY.md`. It does not cover the 46 shadcn/ui primitives in `src/app/components/ui/` unless a primitive has been styled with CVP tokens and promoted to a CVP component.
+This document covers every component listed in `docs/specifications/DESIGN_SYSTEM_COMPONENT_INVENTORY.md`. It does not cover the 46 shadcn/ui primitives in `src/app/components/ui/` unless a primitive has been styled with CVP tokens and promoted to a CVP component.
 
 ### 1.3 Relationship Between Sources
 
@@ -250,14 +250,14 @@ The CVP Design System spans several artefacts that must be kept in agreement. Th
 
 | Artefact | Role | Who updates it |
 |---|---|---|
-| **This document** (`DESIGN_SYSTEM_SPECIFICATION.md`) | Canonical engineering specification. Defines correct behaviour and appearance. | Design Systems team |
-| `DESIGN.md` | Design-facing token specification. Pre-dates the `--cvp-*` namespace; retained as historical reference. Not authoritative for token names. | Design Systems team (on deprecation) |
-| Figma (via `FIGMA_DESIGN_SYSTEM_GUIDE.md`) | Visual design source of truth for geometry, spacing, and colour decisions. | Design lead |
-| `CVP_TOKEN_ARCHITECTURE.md` | Token system architecture, tier definitions, layering rules, and governance. | Design Systems Engineering |
-| `TOKEN_GOVERNANCE.md` | Ownership, proposal process, versioning, deprecation, lint rules, WCAG compliance thresholds. | Design Systems lead |
-| `TOKEN_DECISION_FRAMEWORK.md` | Decision tree for creating vs. reusing tokens. | Design Systems Engineering |
-| `IMPLEMENTATION_STATUS.md` | Phase progress, outstanding work, and architectural decisions made during implementation. | Design Systems Engineering |
-| `src/styles/cvp-*.css` | Authoritative source of actual token values (Tier 1–3). | Design Systems Engineering |
+| **This document** (`docs/specifications/DESIGN_SYSTEM_SPECIFICATION.md`) | Canonical engineering specification. Defines correct behaviour and appearance. | Design Systems team |
+| `docs/specifications/DESIGN.md` | Design-facing token specification. Pre-dates the `--cvp-*` namespace; retained as historical reference. Not authoritative for token names. | Design Systems team (on deprecation) |
+| Figma (via `docs/figma/FIGMA_DESIGN_SYSTEM_GUIDE.md`) | Visual design source of truth for geometry, spacing, and colour decisions. | Design lead |
+| `docs/tokens/CVP_TOKEN_ARCHITECTURE.md` | Token system architecture, tier definitions, layering rules, and governance. | Design Systems Engineering |
+| `docs/tokens/TOKEN_GOVERNANCE.md` | Ownership, proposal process, versioning, deprecation, lint rules, WCAG compliance thresholds. | Design Systems lead |
+| `docs/tokens/TOKEN_DECISION_FRAMEWORK.md` | Decision tree for creating vs. reusing tokens. | Design Systems Engineering |
+| `docs/project/IMPLEMENTATION_STATUS.md` | Phase progress, outstanding work, and architectural decisions made during implementation. | Design Systems Engineering |
+| `src/styles/tokens/cvp-*.css` | Authoritative source of actual token values (Tier 1–3). | Design Systems Engineering |
 | Storybook | Live catalogue of implemented states. Downstream of this spec — it validates, not defines. | Component authors |
 | Component contracts (JSON) | Machine-readable token surface for AI tooling and automated audits. | Component authors |
 
@@ -266,8 +266,8 @@ The CVP Design System spans several artefacts that must be kept in agreement. Th
 When sources disagree, resolve conflicts in this order:
 
 1. **Approved component specification** (this document, after Design Systems team approval)
-2. **Figma design + `DESIGN.md`** (design intent; Figma takes precedence over `DESIGN.md` where they conflict)
-3. **Token architecture and governance** (`CVP_TOKEN_ARCHITECTURE.md`, `TOKEN_GOVERNANCE.md`)
+2. **Figma design + `docs/specifications/DESIGN.md`** (design intent; Figma takes precedence over `docs/specifications/DESIGN.md` where they conflict)
+3. **Token architecture and governance** (`docs/tokens/CVP_TOKEN_ARCHITECTURE.md`, `docs/tokens/TOKEN_GOVERNANCE.md`)
 4. **Current production behaviour** (what ships; may be a known gap, not the definition of correct)
 5. **Storybook implementation** (reflects what was built, not necessarily what was specified)
 
@@ -275,8 +275,8 @@ When sources disagree, resolve conflicts in this order:
 
 ### 1.5 What This Document Does Not Replace
 
-- `CVP_TOKEN_ARCHITECTURE.md` — do not duplicate token architecture rules here; link to them.
-- `TOKEN_GOVERNANCE.md` — do not duplicate governance process; link to it.
+- `docs/tokens/CVP_TOKEN_ARCHITECTURE.md` — do not duplicate token architecture rules here; link to them.
+- `docs/tokens/TOKEN_GOVERNANCE.md` — do not duplicate governance process; link to it.
 - Figma — this document captures decisions made in Figma; it does not replace Figma as the design tool.
 
 ---
@@ -285,10 +285,10 @@ When sources disagree, resolve conflicts in this order:
 
 ### 2.1 Implementing a New Component
 
-1. Find the component in `DESIGN_SYSTEM_COMPONENT_INVENTORY.md` and confirm it is in scope.
+1. Find the component in `docs/specifications/DESIGN_SYSTEM_COMPONENT_INVENTORY.md` and confirm it is in scope.
 2. Read §3 (Engineering Principles), §4 (Visual Rules), §5 (Behaviour Rules), §6 (Accessibility), §7 (Motion), §8 (Responsive) before writing any code.
 3. Open the component's section in this document. If the section does not yet exist, request it or write it using the template in §10.
-4. Identify all required tokens from the component's Visual Specification table. Confirm they exist in `cvp-component-tokens.css` before consuming them. If a token is missing, follow the proposal process in `TOKEN_GOVERNANCE.md` before writing a component-specific custom property.
+4. Identify all required tokens from the component's Visual Specification table. Confirm they exist in `cvp-component-tokens.css` before consuming them. If a token is missing, follow the proposal process in `docs/tokens/TOKEN_GOVERNANCE.md` before writing a component-specific custom property.
 5. Implement states in the order: default → hover → focus → active → disabled → error → loading → empty.
 6. Validate accessibility using the checklist in §6.
 7. Write Storybook stories following §9 before marking implementation complete.
@@ -316,10 +316,10 @@ When sources disagree, resolve conflicts in this order:
 ### 2.4 Proposing a New Variant
 
 1. Check the component's Variants section. Confirm the variant does not already exist under a different name.
-2. Check `TOKEN_DECISION_FRAMEWORK.md` to determine whether a new token is required.
+2. Check `docs/tokens/TOKEN_DECISION_FRAMEWORK.md` to determine whether a new token is required.
 3. Open a design review with a Figma frame showing the variant in both themes.
 4. Once design is approved, add the variant to the component section of this document before writing code.
-5. Follow the token proposal process in `TOKEN_GOVERNANCE.md` if new tokens are required.
+5. Follow the token proposal process in `docs/tokens/TOKEN_GOVERNANCE.md` if new tokens are required.
 6. Implement, add Storybook stories, update the JSON contract, update the PR checklist.
 
 ### 2.5 Fixing a Token Mismatch
@@ -353,9 +353,9 @@ These principles apply to every component without exception. Exceptions require 
 
 **No direct primitive consumption.** Component CSS must never reference `--cvp-primitive-*` tokens. Primitives are for the semantic layer only. See `CVP_TOKEN_ARCHITECTURE.md §3` for the tier contract.
 
-**No legacy token consumption.** Component CSS must not reference `--tc-*` tokens. These are aliases that will be removed in a future major version. Use `--cvp-*` tokens only. Migration is tracked in `IMPLEMENTATION_STATUS.md`.
+**No legacy token consumption.** Component CSS must not reference `--tc-*` tokens. These are aliases that will be removed in a future major version. Use `--cvp-*` tokens only. Migration is tracked in `docs/project/IMPLEMENTATION_STATUS.md`.
 
-**No shorthand token consumption.** The old shorthand names (`--bg-page`, `--text-primary`, `--border-default`, `--input-border`, etc.) from `DESIGN.md` are not valid token names in the current architecture. They have no corresponding CSS custom property in the CVP token files. Do not use them in new code.
+**No shorthand token consumption.** The old shorthand names (`--bg-page`, `--text-primary`, `--border-default`, `--input-border`, etc.) from `docs/specifications/DESIGN.md` are not valid token names in the current architecture. They have no corresponding CSS custom property in the CVP token files. Do not use them in new code.
 
 **Semantic vs. component token consumption.** Components consume Tier 3 component tokens for every value that is a customer override surface. Components consume Tier 2 semantic tokens directly for values where a pass-through component token would add zero value (no override hook needed). See `TOKEN_DECISION_FRAMEWORK.md §3 Example A` for a concrete case. Components never skip Tier 2 and Tier 3 to reference Tier 1 directly.
 
@@ -616,7 +616,7 @@ Scrim opacity must come from `--cvp-opacity-scrim-dark` (dark theme) or `--cvp-o
 
 ### 4.13 Light and Dark Themes
 
-Both themes are supported. Dark theme is the production baseline. Light theme is defined in `src/styles/light-theme.css`.
+Both themes are supported. Dark theme is the production baseline. Light theme is defined in `src/styles/themes/light-theme.css`.
 
 Theme is activated via `data-theme` on a root element:
 
@@ -1474,9 +1474,9 @@ The component's JSON contract must include the following fields:
 
 Before writing any component CSS, identify every value the component needs. For each value:
 
-1. Open `TOKEN_DECISION_FRAMEWORK.md` and walk the decision tree.
-2. Search `src/styles/cvp-component-tokens.css` for an existing component token that matches the intent.
-3. If none exists, search `src/styles/cvp-semantic-tokens.css`.
+1. Open `docs/tokens/TOKEN_DECISION_FRAMEWORK.md` and walk the decision tree.
+2. Search `src/styles/tokens/cvp-component-tokens.css` for an existing component token that matches the intent.
+3. If none exists, search `src/styles/tokens/cvp-semantic-tokens.css`.
 4. If a semantic token matches the intent exactly and no override surface is needed, reference it directly from component CSS.
 5. If a component token is warranted, add it to `cvp-component-tokens.css` referencing the semantic token, following the naming pattern: `--cvp-[component]-[element]-[property]-[state]`.
 6. If neither semantic nor component tokens cover the value, follow the token proposal process in `TOKEN_GOVERNANCE.md §Introducing New Tokens`.
@@ -1758,7 +1758,7 @@ The primary call-to-action button. Expresses the single most important action on
 | Active transform | `translateY(1px)` | — | Local (fixed) |
 | Transition | `all 0.2s cubic-bezier(0.4, 0, 0.2, 1)` | — | **Gap:** must be specific properties |
 
-**WCAG note (from `DESIGN.md`):** White (`#ffffff`) on `#3d63dd` = 8.6:1 (AAA). White on disabled background `#1f1f28` — must be verified; current disabled text `#333333` may fail against `#1f1f28`.
+**WCAG note (from `docs/specifications/DESIGN.md`):** White (`#ffffff`) on `#3d63dd` = 8.6:1 (AAA). White on disabled background `#1f1f28` — must be verified; current disabled text `#333333` may fail against `#1f1f28`.
 
 ---
 
@@ -7612,7 +7612,7 @@ The complete absence of tree roles means screen readers announce the tree as a s
 
 ## Part F — Media, Editorial and CVP Domain-Specific Components
 
-> **Family scope and authority.** This pass documents all domain-specific CVP components found in the repository. The authoritative list is derived from `DESIGN_SYSTEM_COMPONENT_INVENTORY.md` and direct code inspection. Components listed in the brief's potential list that are **not found** in the repository are documented in the closing specification-gap table.
+> **Family scope and authority.** This pass documents all domain-specific CVP components found in the repository. The authoritative list is derived from `docs/specifications/DESIGN_SYSTEM_COMPONENT_INVENTORY.md` and direct code inspection. Components listed in the brief's potential list that are **not found** in the repository are documented in the closing specification-gap table.
 >
 > **CVP publishable domain components (full spec):**
 > - `RailContentGallery` — editorial rail with 4 variants; the central media display primitive
@@ -9139,7 +9139,7 @@ This recommendation requires a Phase 2 migration task. Until migration, both fil
 
 ## Appendix A — Component Coverage Matrix
 
-> This matrix is the single source of truth for what is and is not documented. Every component in `DESIGN_SYSTEM_COMPONENT_INVENTORY.md` must appear here. **Legend:** ✓ = present / complete; ✗ = absent; ~ = partial; — = not applicable.
+> This matrix is the single source of truth for what is and is not documented. Every component in `docs/specifications/DESIGN_SYSTEM_COMPONENT_INVENTORY.md` must appear here. **Legend:** ✓ = present / complete; ✗ = absent; ~ = partial; — = not applicable.
 
 ### A.1 CVP Publishable Components
 
@@ -9276,7 +9276,7 @@ These 46 primitives live in `src/app/components/ui/`. They are available as buil
 | OQ-7 | DesignSystemNav role | Resolved — internal documentation utility; exclude from CVP package |
 | OQ-8 | shadcn/ui integration policy | Unresolved — treated as internal scaffolding; catalogued in §A.3 |
 | OQ-9 | Storybook setup | Unresolved — no `.storybook/` exists; universal gap for all components |
-| OQ-10 | DESIGN.md role going forward | Unresolved — `DESIGN_SYSTEM_SPECIFICATION.md` is now canonical; `DESIGN.md` retained as historical reference |
+| OQ-10 | DESIGN.md role going forward | Unresolved — `docs/specifications/DESIGN_SYSTEM_SPECIFICATION.md` is now canonical; `docs/specifications/DESIGN.md` retained as historical reference |
 
 ---
 

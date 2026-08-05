@@ -36,7 +36,7 @@ The component defaults to `type="button"`. Loading exposes `aria-busy="true"`, u
 
 ## Token ownership
 
-All component decisions use `--cvp-button-secondary-*` Tier 3 tokens in `src/styles/cvp-component-tokens.css`. They alias semantic color, typography, spacing, radius, border, and motion foundations; component CSS contains no raw visual values.
+All component decisions use `--cvp-button-secondary-*` Tier 3 tokens in `src/styles/tokens/cvp-component-tokens.css`. They alias semantic color, typography, spacing, radius, border, and motion foundations; component CSS contains no raw visual values.
 
 ## Acceptance criteria
 

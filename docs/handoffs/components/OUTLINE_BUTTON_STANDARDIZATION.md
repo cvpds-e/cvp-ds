@@ -20,7 +20,7 @@ Small and compact are 32px, medium is 40px, and large is 48px. Required states a
 
 ## Token ownership
 
-All visual decisions resolve through `--cvp-button-outline-*` Tier 3 tokens in `src/styles/cvp-component-tokens.css`. Component CSS must not introduce raw colors, spacing, radii, typography, timing, shadows, or easing.
+All visual decisions resolve through `--cvp-button-outline-*` Tier 3 tokens in `src/styles/tokens/cvp-component-tokens.css`. Component CSS must not introduce raw colors, spacing, radii, typography, timing, shadows, or easing.
 
 ## Acceptance criteria
 

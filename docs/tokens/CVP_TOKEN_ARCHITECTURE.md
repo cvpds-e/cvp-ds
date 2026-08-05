@@ -1,6 +1,6 @@
 # CVP Token Architecture
 **Cloud Video Platform — Design Systems**
-Version 2.0 · Living document — see [IMPLEMENTATION_STATUS.md](IMPLEMENTATION_STATUS.md) for progress
+Version 2.0 · Living document — see [IMPLEMENTATION_STATUS.md](../project/IMPLEMENTATION_STATUS.md) for progress
 
 ---
 
@@ -10,7 +10,7 @@ The CVP token architecture establishes a three-tier CSS custom property system �
 
 It was introduced to replace an organic `--tc-*` token set that covered only colour, lacked light-theme support, mixed semantic and implementation concerns, and could not scale to white-label customer requirements. The architecture is backwards-compatible: all 53 original `--tc-*` tokens continue to resolve correctly via an alias bridge during migration.
 
-This document is the architectural reference. For governance see [TOKEN_GOVERNANCE.md](TOKEN_GOVERNANCE.md). For the engineer decision guide see [TOKEN_DECISION_FRAMEWORK.md](TOKEN_DECISION_FRAMEWORK.md). For current implementation status see [IMPLEMENTATION_STATUS.md](IMPLEMENTATION_STATUS.md).
+This document is the architectural reference. For governance see [TOKEN_GOVERNANCE.md](TOKEN_GOVERNANCE.md). For the engineer decision guide see [TOKEN_DECISION_FRAMEWORK.md](TOKEN_DECISION_FRAMEWORK.md). For current implementation status see [IMPLEMENTATION_STATUS.md](../project/IMPLEMENTATION_STATUS.md).
 
 ---
 
@@ -75,9 +75,9 @@ Token Architecture is one capability within the broader CVP Experience Infrastru
 ┌──────────────▼───────────────────────────────────▼──────────────┐
 │  TOKEN ARCHITECTURE  ◀──── THIS DOCUMENT                        │
 │  Tier 1 Primitives → Tier 2 Semantic → Tier 3 Component         │
-│  src/styles/cvp-primitives.css                                   │
-│  src/styles/cvp-semantic-tokens.css                              │
-│  src/styles/cvp-component-tokens.css                             │
+│  src/styles/tokens/cvp-primitives.css                                   │
+│  src/styles/tokens/cvp-semantic-tokens.css                              │
+│  src/styles/tokens/cvp-component-tokens.css                             │
 └─────────────────────────┬────────────────────────────────────────┘
                           │
 ┌─────────────────────────▼────────────────────────────────────────┐
@@ -682,9 +682,9 @@ Each phase ships independently. Production is never blocked.
 | [EXPERIENCE_INFRASTRUCTURE.md](EXPERIENCE_INFRASTRUCTURE.md) | Platform vision — token architecture in broader context |
 | [TOKEN_GOVERNANCE.md](TOKEN_GOVERNANCE.md) | Ownership, versioning, review process, deprecation |
 | [TOKEN_DECISION_FRAMEWORK.md](TOKEN_DECISION_FRAMEWORK.md) | Practical engineer guide — when to create which token type |
-| [IMPLEMENTATION_STATUS.md](IMPLEMENTATION_STATUS.md) | Current phase progress and outstanding work |
-| [DESIGN.md](DESIGN.md) | Colour specifications, component specs, WCAG validation |
-| `src/styles/cvp-primitives.css` | Tier 1: all raw values |
-| `src/styles/cvp-semantic-tokens.css` | Tier 2: theme-switchable semantic tokens |
-| `src/styles/cvp-component-tokens.css` | Tier 3: component override surface |
-| `src/styles/cvp-alias-bridge.css` | Migration shim — `--tc-*` aliases for `--cvp-*` |
+| [IMPLEMENTATION_STATUS.md](../project/IMPLEMENTATION_STATUS.md) | Current phase progress and outstanding work |
+| [DESIGN.md](../specifications/DESIGN.md) | Colour specifications, component specs, WCAG validation |
+| `src/styles/tokens/cvp-primitives.css` | Tier 1: all raw values |
+| `src/styles/tokens/cvp-semantic-tokens.css` | Tier 2: theme-switchable semantic tokens |
+| `src/styles/tokens/cvp-component-tokens.css` | Tier 3: component override surface |
+| `src/styles/tokens/cvp-alias-bridge.css` | Migration shim — `--tc-*` aliases for `--cvp-*` |

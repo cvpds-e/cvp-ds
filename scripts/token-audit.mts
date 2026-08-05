@@ -2,8 +2,8 @@
 /**
  * CVP Design System — Phase 0 Token Audit
  * Static analysis script: finds every design-token-like value across all source files.
- * Run: npx tsx token-audit.mts
- * Output: token-audit-results.csv + console summary
+ * Run: npx tsx scripts/token-audit.mts
+ * Output: reports/token-audit-results.csv + console summary
  */
 
 import fs from 'fs';
@@ -11,17 +11,18 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const PROJECT_ROOT = path.resolve(__dirname, '..');
 
 // ---------------------------------------------------------------------------
 // Config
 // ---------------------------------------------------------------------------
 
 const SOURCE_ROOTS = [
-  path.join(__dirname, 'src'),
+  path.join(PROJECT_ROOT, 'src'),
 ];
 
 const ROOT_LEVEL_EXTRAS = [
-  'default_shadcn_theme.css',
+  'src/styles/themes/default_shadcn_theme.css',
   '__figma__entrypoint__.ts',
   'vite.config.ts',
 ];
@@ -126,7 +127,7 @@ function collectFiles(): string[] {
   }
 
   for (const name of ROOT_LEVEL_EXTRAS) {
-    const p = path.join(__dirname, name);
+    const p = path.join(PROJECT_ROOT, name);
     if (fs.existsSync(p) && !seen.has(p)) {
       seen.add(p);
       files.push(p);
@@ -292,8 +293,8 @@ function writeCSV(rows: AuditRow[], outputPath: string) {
 // ---------------------------------------------------------------------------
 
 function main() {
-  const projectRoot = __dirname;
-  const outputCSV = path.join(projectRoot, 'token-audit-results.csv');
+  const projectRoot = PROJECT_ROOT;
+  const outputCSV = path.join(projectRoot, 'reports', 'token-audit-results.csv');
 
   console.log('CVP Phase 0 Token Audit');
   console.log('='.repeat(50));

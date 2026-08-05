@@ -1363,7 +1363,7 @@ export default {
 2. **Include theme.css** in preview:
 ```tsx
 // .storybook/preview.tsx
-import '../src/styles/theme.css';
+import '../src/styles/themes/theme.css';
 ```
 
 3. **Document all variants** in stories:

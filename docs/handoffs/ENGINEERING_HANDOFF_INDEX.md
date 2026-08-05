@@ -12,12 +12,12 @@ This is the engineering entry point for the standardized CVP design system. It l
 
 | Foundation | Preview route | Canonical implementation |
 |---|---|---|
-| Color | `?page=colors` | `src/styles/cvp-primitives.css`, `src/styles/cvp-semantic-tokens.css` |
-| Typography | `?page=typography` | `src/styles/cvp-primitives.css`, `src/styles/cvp-semantic-tokens.css` |
-| Spacing and density | `?page=spacing` | `src/styles/cvp-spacing.css`, canonical values in the three-tier token graph |
-| Radius | `?page=radius` | `src/styles/cvp-radius.css`, canonical values in the three-tier token graph |
-| Border | `?page=border` | `src/styles/cvp-semantic-tokens.css`, `src/styles/cvp-component-tokens.css` |
-| Elevation | `?page=elevation` | `src/styles/cvp-semantic-tokens.css` |
+| Color | `?page=colors` | `src/styles/tokens/cvp-primitives.css`, `src/styles/tokens/cvp-semantic-tokens.css` |
+| Typography | `?page=typography` | `src/styles/tokens/cvp-primitives.css`, `src/styles/tokens/cvp-semantic-tokens.css` |
+| Spacing and density | `?page=spacing` | `src/styles/tokens/cvp-spacing.css`, canonical values in the three-tier token graph |
+| Radius | `?page=radius` | `src/styles/tokens/cvp-radius.css`, canonical values in the three-tier token graph |
+| Border | `?page=border` | `src/styles/tokens/cvp-semantic-tokens.css`, `src/styles/tokens/cvp-component-tokens.css` |
+| Elevation | `?page=elevation` | `src/styles/tokens/cvp-semantic-tokens.css` |
 | Layout foundation | `?page=layout-foundation` | canonical layout roles in the token files and foundation preview |
 
 Motion is governed by the supplied foundation specification and reduced-motion behavior in component CSS. It does not currently have a separate active preview route.
@@ -26,13 +26,13 @@ Motion is governed by the supplied foundation specification and reduced-motion b
 
 | Component | Preview | Canonical source | Handoff |
 |---|---|---|---|
-| Primary Button | `?page=primary-button` | `PrimaryButton.tsx` / `PrimaryButton.css` / `--cvp-button-primary-*` | `PRIMARY_BUTTON_STANDARDIZATION.md` |
-| Secondary Button | `?page=secondary-button` | `SecondaryButton.tsx` / `SecondaryButton.css` / `--cvp-button-secondary-*` | `SECONDARY_BUTTON_STANDARDIZATION.md` |
-| Outline Button | `?page=outline-button` | `OutlineButton.tsx` / `OutlineButton.css` / `--cvp-button-outline-*` | `OUTLINE_BUTTON_STANDARDIZATION.md` |
-| Icon Button | `?page=icon-button` | `IconButton.tsx` / `IconButton.css` / `--cvp-button-icon-*` | `ICON_BUTTON_STANDARDIZATION.md` |
-| Icon Small Button | `?page=icon-small-button` | compatibility wrapper over `IconButton` | `ICON_SMALL_BUTTON_STANDARDIZATION.md` |
-| Icon Button with Text | `?page=icon-button-with-text` | `IconButtonWithText.tsx` / `IconButtonWithText.css` | `ICON_BUTTON_WITH_TEXT_STANDARDIZATION.md` |
-| Text Button | `?page=text-button` | `TextButton.tsx` / `TextButton.css` / `--cvp-button-text-*` | `TEXT_BUTTON_STANDARDIZATION.md` |
+| Primary Button | `?page=primary-button` | `PrimaryButton.tsx` / `PrimaryButton.css` / `--cvp-button-primary-*` | `docs/handoffs/components/PRIMARY_BUTTON_STANDARDIZATION.md` |
+| Secondary Button | `?page=secondary-button` | `SecondaryButton.tsx` / `SecondaryButton.css` / `--cvp-button-secondary-*` | `docs/handoffs/components/SECONDARY_BUTTON_STANDARDIZATION.md` |
+| Outline Button | `?page=outline-button` | `OutlineButton.tsx` / `OutlineButton.css` / `--cvp-button-outline-*` | `docs/handoffs/components/OUTLINE_BUTTON_STANDARDIZATION.md` |
+| Icon Button | `?page=icon-button` | `IconButton.tsx` / `IconButton.css` / `--cvp-button-icon-*` | `docs/handoffs/components/ICON_BUTTON_STANDARDIZATION.md` |
+| Icon Small Button | `?page=icon-small-button` | compatibility wrapper over `IconButton` | `docs/handoffs/components/ICON_SMALL_BUTTON_STANDARDIZATION.md` |
+| Icon Button with Text | `?page=icon-button-with-text` | `IconButtonWithText.tsx` / `IconButtonWithText.css` | `docs/handoffs/components/ICON_BUTTON_WITH_TEXT_STANDARDIZATION.md` |
+| Text Button | `?page=text-button` | `TextButton.tsx` / `TextButton.css` / `--cvp-button-text-*` | `docs/handoffs/components/TEXT_BUTTON_STANDARDIZATION.md` |
 
 All implementation paths in this document are relative to `src/app/components/` unless otherwise stated.
 
@@ -40,14 +40,14 @@ All implementation paths in this document are relative to `src/app/components/` 
 
 | Component | Preview | Canonical source | Handoff |
 |---|---|---|---|
-| Text Input | `?page=text-input` | `TextInput.tsx` / `TextInput.css` / `--cvp-input-*` | `TEXT_INPUT_STANDARDIZATION.md` |
-| Text Area | `?page=text-area` | `TextArea.tsx` / `TextArea.css` / `--cvp-textarea-*` | `TEXT_AREA_SELECT_STANDARDIZATION.md` |
-| Misc Input | `?page=misc-input` | `MiscInput.tsx` / `MiscInput.css` / `--cvp-misc-input-*` | `MISC_INPUT_STANDARDIZATION.md` |
-| Checkbox | `?page=checkbox` | `Checkbox.tsx` / `Checkbox.css` / `--cvp-checkbox-*` | `CHECKBOX_STANDARDIZATION.md` |
-| Select | `?page=select` | `Select.tsx` / `Select.css` / `--cvp-select-*` | `TEXT_AREA_SELECT_STANDARDIZATION.md` |
-| Multi Select | `?page=multi-select` | `MultiSelect.tsx` / `MultiSelect.css` / `--cvp-multi-select-*` | `MULTI_SELECT_STANDARDIZATION.md` |
-| Filter | `?page=filter` | `Filter.tsx` / `Filter.css` / `--cvp-filter-*` | `FILTER_DATE_PICKER_STANDARDIZATION.md` |
-| Date Picker | `?page=date-picker` | `DatePicker.tsx` / `DatePicker.css` / `--cvp-date-picker-*` | `FILTER_DATE_PICKER_STANDARDIZATION.md` |
+| Text Input | `?page=text-input` | `TextInput.tsx` / `TextInput.css` / `--cvp-input-*` | `docs/handoffs/components/TEXT_INPUT_STANDARDIZATION.md` |
+| Text Area | `?page=text-area` | `TextArea.tsx` / `TextArea.css` / `--cvp-textarea-*` | `docs/handoffs/components/TEXT_AREA_SELECT_STANDARDIZATION.md` |
+| Misc Input | `?page=misc-input` | `MiscInput.tsx` / `MiscInput.css` / `--cvp-misc-input-*` | `docs/handoffs/components/MISC_INPUT_STANDARDIZATION.md` |
+| Checkbox | `?page=checkbox` | `Checkbox.tsx` / `Checkbox.css` / `--cvp-checkbox-*` | `docs/handoffs/components/CHECKBOX_STANDARDIZATION.md` |
+| Select | `?page=select` | `Select.tsx` / `Select.css` / `--cvp-select-*` | `docs/handoffs/components/TEXT_AREA_SELECT_STANDARDIZATION.md` |
+| Multi Select | `?page=multi-select` | `MultiSelect.tsx` / `MultiSelect.css` / `--cvp-multi-select-*` | `docs/handoffs/components/MULTI_SELECT_STANDARDIZATION.md` |
+| Filter | `?page=filter` | `Filter.tsx` / `Filter.css` / `--cvp-filter-*` | `docs/handoffs/components/FILTER_DATE_PICKER_STANDARDIZATION.md` |
+| Date Picker | `?page=date-picker` | `DatePicker.tsx` / `DatePicker.css` / `--cvp-date-picker-*` | `docs/handoffs/components/FILTER_DATE_PICKER_STANDARDIZATION.md` |
 
 Text Input is the reference field anatomy. Text Area, Select, Misc Input, Multi Select, Filter, and Date Picker must preserve its label, description, validation, border, focus, density, and theme conventions unless their documented interaction model requires an explicit specialization.
 
@@ -55,25 +55,25 @@ Text Input is the reference field anatomy. Text Area, Select, Misc Input, Multi 
 
 | Component | Preview | Canonical source | Handoff |
 |---|---|---|---|
-| Breadcrumbs | `?page=breadcrumbs` | `Breadcrumbs.tsx` / `Breadcrumbs.css` / `--cvp-breadcrumb-*` | `BREADCRUMBS_STANDARDIZATION.md` |
-| Header Navigation | `?page=header-navigation` | `HeaderNavigation.tsx` / `HeaderNavigation.css` / `--cvp-header-*` | `HEADER_NAVIGATION_STANDARDIZATION.md` |
-| Tabs | `?page=tabs` | `Tabs.tsx` / `Tabs.css` / `--cvp-tabs-*` | `TABS_STANDARDIZATION.md` |
-| Tree | `?page=tree` | `Tree.tsx` / `Tree.css` / `--cvp-tree-*` | `TREE_COMPONENT_DEV_HANDOFF.md` |
-| Table | `?page=table` | `Table.tsx` / `Table.css` / `--cvp-table-*` | `TABLE_COMPONENT_DEV_HANDOFF.md` |
-| Segmented | `?page=segmented` | `Segmented.tsx` / `Segmented.css` / `--cvp-segmented-*` | `SEGMENTED_STANDARDIZATION.md` |
-| Accordion | `?page=accordion` | `Accordion.tsx` / `Accordion.css` / `--cvp-accordion-*` | `ACCORDION_STANDARDIZATION.md` |
-| Tag Filter | `?page=tag-filter` | `TagFilter.tsx` / `TagFilter.css` / `--cvp-tag-filter-*` | `TAG_FILTER_STANDARDIZATION.md` |
+| Breadcrumbs | `?page=breadcrumbs` | `Breadcrumbs.tsx` / `Breadcrumbs.css` / `--cvp-breadcrumb-*` | `docs/handoffs/components/BREADCRUMBS_STANDARDIZATION.md` |
+| Header Navigation | `?page=header-navigation` | `HeaderNavigation.tsx` / `HeaderNavigation.css` / `--cvp-header-*` | `docs/handoffs/components/HEADER_NAVIGATION_STANDARDIZATION.md` |
+| Tabs | `?page=tabs` | `Tabs.tsx` / `Tabs.css` / `--cvp-tabs-*` | `docs/handoffs/components/TABS_STANDARDIZATION.md` |
+| Tree | `?page=tree` | `Tree.tsx` / `Tree.css` / `--cvp-tree-*` | `docs/handoffs/components/TREE_COMPONENT_DEV_HANDOFF.md` |
+| Table | `?page=table` | `Table.tsx` / `Table.css` / `--cvp-table-*` | `docs/handoffs/components/TABLE_COMPONENT_DEV_HANDOFF.md` |
+| Segmented | `?page=segmented` | `Segmented.tsx` / `Segmented.css` / `--cvp-segmented-*` | `docs/handoffs/components/SEGMENTED_STANDARDIZATION.md` |
+| Accordion | `?page=accordion` | `Accordion.tsx` / `Accordion.css` / `--cvp-accordion-*` | `docs/handoffs/components/ACCORDION_STANDARDIZATION.md` |
+| Tag Filter | `?page=tag-filter` | `TagFilter.tsx` / `TagFilter.css` / `--cvp-tag-filter-*` | `docs/handoffs/components/TAG_FILTER_STANDARDIZATION.md` |
 
 ### Overlays, feedback, product components, and integration
 
 | Component | Preview | Canonical source | Handoff |
 |---|---|---|---|
-| Modal | `?page=modal` | `Modal.tsx` / `Modal.css` / `--cvp-modal-*` | `MODAL_COMPONENT_DEV_HANDOFF.md` |
-| Content Browser Modal | `?page=content-browser-modal` | `ContentBrowserModal.tsx` / CSS / `--cvp-content-browser-*` | `CONTENT_BROWSER_MODAL_DEV_HANDOFF.md` |
-| Toast | `?page=toast` | `Toast.tsx` / `Toast.css` / `--cvp-toast-*` | `TOAST_COMPONENT_DEV_HANDOFF.md` |
-| Notification Banner | `?page=notification-banner` | `NotificationBanner.tsx` / CSS / `--cvp-notification-banner-*` | `NOTIFICATION_BANNER_DEV_HANDOFF.md` |
-| Rail Content Gallery | `?page=rail-content-gallery` | `RailContentGallery.tsx` / CSS / `--cvp-gallery-*` | `RAIL_CONTENT_GALLERY_DEV_HANDOFF.md` |
-| Login / Sign Up | `?page=login-signup` | `LoginSignUp.tsx` / CSS / `--cvp-login-*` | `LOGIN_SIGN_UP_DEV_HANDOFF.md` |
+| Modal | `?page=modal` | `Modal.tsx` / `Modal.css` / `--cvp-modal-*` | `docs/handoffs/components/MODAL_COMPONENT_DEV_HANDOFF.md` |
+| Content Browser Modal | `?page=content-browser-modal` | `ContentBrowserModal.tsx` / CSS / `--cvp-content-browser-*` | `docs/handoffs/components/CONTENT_BROWSER_MODAL_DEV_HANDOFF.md` |
+| Toast | `?page=toast` | `Toast.tsx` / `Toast.css` / `--cvp-toast-*` | `docs/handoffs/components/TOAST_COMPONENT_DEV_HANDOFF.md` |
+| Notification Banner | `?page=notification-banner` | `NotificationBanner.tsx` / CSS / `--cvp-notification-banner-*` | `docs/handoffs/components/NOTIFICATION_BANNER_DEV_HANDOFF.md` |
+| Rail Content Gallery | `?page=rail-content-gallery` | `RailContentGallery.tsx` / CSS / `--cvp-gallery-*` | `docs/handoffs/components/RAIL_CONTENT_GALLERY_DEV_HANDOFF.md` |
+| Login / Sign Up | `?page=login-signup` | `LoginSignUp.tsx` / CSS / `--cvp-login-*` | `docs/handoffs/components/LOGIN_SIGN_UP_DEV_HANDOFF.md` |
 | Rail Details | `?page=rail-details` | `RailDetails.tsx` / `RailDetails.css` | composed-page visual acceptance reference |
 
 Rail Details intentionally has no page-level Token Contract. It proves that the approved child components and foundation contracts work together in a production-shaped workflow.
@@ -94,9 +94,9 @@ Their existing source is retained for later evaluation. Engineers must not treat
 
 Use this precedence order:
 
-1. `src/styles/cvp-primitives.css` — Tier 1 raw values
-2. `src/styles/cvp-semantic-tokens.css` — Tier 2 theme-aware roles
-3. `src/styles/cvp-component-tokens.css` — Tier 3 component contracts
+1. `src/styles/tokens/cvp-primitives.css` — Tier 1 raw values
+2. `src/styles/tokens/cvp-semantic-tokens.css` — Tier 2 theme-aware roles
+3. `src/styles/tokens/cvp-component-tokens.css` — Tier 3 component contracts
 4. Canonical component TSX and CSS
 5. The matching documentation page and handoff Markdown
 6. Rail Details for composed-page behavior
@@ -109,13 +109,13 @@ Do not copy a resolved hex value from the browser into component CSS. Resolve th
 Existing migrated applications should import:
 
 ```css
-@import 'src/styles/cvp-alias-bridge.css';
+@import 'src/styles/tokens/cvp-alias-bridge.css';
 ```
 
 New applications with no legacy `--tc-*` dependency should import:
 
 ```css
-@import 'src/styles/cvp-component-tokens.css';
+@import 'src/styles/tokens/cvp-component-tokens.css';
 ```
 
 The alias bridge is transitional and must not be expanded with new product tokens.
@@ -181,7 +181,7 @@ Every component is accepted only when all applicable items pass.
 - Deferred pages are excluded from active navigation.
 - Rail Details validates the composed component language.
 
-See `ENGINEERING_HANDOFF_READINESS.md` for the final audit summary and known infrastructure follow-ups.
+See `docs/handoffs/checkpoints/ENGINEERING_HANDOFF_READINESS.md` for the final audit summary and known infrastructure follow-ups.
 
 ## 7. Engineering follow-ups
 
@@ -198,11 +198,11 @@ These do not block the design handoff, but they are required before treating the
 
 ## 8. Supporting checkpoints
 
-- `FORM_COMPONENTS_CHECKPOINT.md`
-- `NAVIGATION_COMPONENTS_CHECKPOINT.md`
-- `OVERLAYS_FEEDBACK_COMPLEX_CHECKPOINT.md`
-- `BORDER_REFINEMENT_CHECKPOINT.md`
-- `ENGINEERING_HANDOFF_READINESS.md`
-- `DESIGN_SYSTEM_COMPONENT_INVENTORY.md`
-- `IMPLEMENTATION_STATUS.md`
+- `docs/handoffs/checkpoints/FORM_COMPONENTS_CHECKPOINT.md`
+- `docs/handoffs/checkpoints/NAVIGATION_COMPONENTS_CHECKPOINT.md`
+- `docs/handoffs/checkpoints/OVERLAYS_FEEDBACK_COMPLEX_CHECKPOINT.md`
+- `docs/handoffs/checkpoints/BORDER_REFINEMENT_CHECKPOINT.md`
+- `docs/handoffs/checkpoints/ENGINEERING_HANDOFF_READINESS.md`
+- `docs/specifications/DESIGN_SYSTEM_COMPONENT_INVENTORY.md`
+- `docs/project/IMPLEMENTATION_STATUS.md`
 

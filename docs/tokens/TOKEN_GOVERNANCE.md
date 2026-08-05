@@ -2,7 +2,7 @@
 
 Operational handbook for the CVP (Cloud Video Platform) design token system. Covers ownership, proposal and review process, versioning, deprecation, lint enforcement, and compliance requirements.
 
-Implementation files: `src/styles/cvp-primitives.css`, `src/styles/cvp-semantic-tokens.css`, `src/styles/cvp-component-tokens.css`.
+Implementation files: `src/styles/tokens/cvp-primitives.css`, `src/styles/tokens/cvp-semantic-tokens.css`, `src/styles/tokens/cvp-component-tokens.css`.
 
 ---
 
@@ -25,13 +25,13 @@ Every proposal must be submitted as a PR that satisfies all six gates before a r
 
 1. **Justification.** Explain specifically why no existing token satisfies the requirement. Reference the token registry search you performed and the nearest candidate you considered.
 
-2. **Category placement.** State the tier (primitive / semantic / component) and the category within that tier (e.g., `color.surface`, `spacing`, `typography.size`). Placement must be consistent with the architectural rationale in `CVP_TOKEN_ARCHITECTURE.md`.
+2. **Category placement.** State the tier (primitive / semantic / component) and the category within that tier (e.g., `color.surface`, `spacing`, `typography.size`). Placement must be consistent with the architectural rationale in `docs/tokens/CVP_TOKEN_ARCHITECTURE.md`.
 
 3. **Both-theme values.** Light and dark values must both be defined and committed before the PR is eligible for merge. A token that exists in one theme but not the other is a blocking defect.
 
 4. **WCAG validation.** Provide a contrast ratio table covering every token pair where this token will appear as foreground-on-background or vice versa. See the WCAG Compliance Requirements section for thresholds.
 
-5. **Documentation.** An entry in `DESIGN.md` (name, tier, intended usage, do/do-not examples) and a Storybook story demonstrating the token in context must both be present before the PR ships.
+5. **Documentation.** An entry in `docs/specifications/DESIGN.md` (name, tier, intended usage, do/do-not examples) and a Storybook story demonstrating the token in context must both be present before the PR ships.
 
 6. **Migration note.** If the new token supersedes an existing token, include: the name of the deprecated token, the replacement mapping, and the target release for removal.
 
@@ -79,7 +79,7 @@ A migration guide for a major release must be committed to the repository before
    --cvp-color-brand-legacy: #0057ff; /* @deprecated use --cvp-color-interactive-primary; removal in v4.0.0 */
    ```
 
-2. The deprecated token remains in `src/styles/cvp-semantic-tokens.css` (or its originating file) for a minimum of two minor releases, equivalent to approximately six to eight weeks under the standard release cadence.
+2. The deprecated token remains in `src/styles/tokens/cvp-semantic-tokens.css` (or its originating file) for a minimum of two minor releases, equivalent to approximately six to eight weeks under the standard release cadence.
 
 3. A custom Stylelint rule (see Lint Enforcement) emits a warning for any usage of the deprecated token in the codebase. The warning is non-blocking during the grace period and becomes an error after the grace period closes.
 
@@ -147,9 +147,9 @@ The Stylelint `cvp-tokens/no-unregistered-token` rule is the automated backstop:
 
 | Artifact | Purpose | Updated by |
 |---|---|---|
-| `DESIGN.md` | Single source of truth for token specifications and usage guidance | Token author, required before merge |
+| `docs/specifications/DESIGN.md` | Single source of truth for token specifications and usage guidance | Token author, required before merge |
 | Storybook | Live catalogue with token arg tables and theme switching | Token author, required before merge |
 | `CHANGELOG.md` | Version history for every token change | Token author, required before merge |
-| `CVP_TOKEN_ARCHITECTURE.md` | Architectural rationale and tier definitions | Design Systems team on structural changes |
+| `docs/tokens/CVP_TOKEN_ARCHITECTURE.md` | Architectural rationale and tier definitions | Design Systems team on structural changes |
 
-`DESIGN.md` and Storybook are co-equal requirements. A token that is specified but not demonstrable, or demonstrable but not specified, is considered incomplete.
+`docs/specifications/DESIGN.md` and Storybook are co-equal requirements. A token that is specified but not demonstrable, or demonstrable but not specified, is considered incomplete.

@@ -2,7 +2,7 @@
 
 **Prepared by:** Design Systems Engineering  
 **Date:** 2026-07-23  
-**Purpose:** Engineering handoff — coverage checklist for `DESIGN_SYSTEM_SPECIFICATION.md`  
+**Purpose:** Engineering handoff — coverage checklist for `docs/specifications/DESIGN_SYSTEM_SPECIFICATION.md`
 **Scope:** All components with evidence in the repository. No invented components.
 
 ---
@@ -11,7 +11,7 @@
 
 The approved scope has been migrated to the CVP primitive → semantic → component token architecture and verified through its live documentation pages. Deferred and internal components remain outside that guarantee and are identified explicitly below.
 
-**Storybook remains an engineering-infrastructure gap.** `src/stories/` does not exist, so isolated prop fixtures and automated visual regression are not yet part of the repository. The documentation application is the current visual review surface; `ENGINEERING_HANDOFF_INDEX.md` is the authoritative implementation entry point.
+**Storybook remains an engineering-infrastructure gap.** `src/stories/` does not exist, so isolated prop fixtures and automated visual regression are not yet part of the repository. The documentation application is the current visual review surface; `docs/handoffs/ENGINEERING_HANDOFF_INDEX.md` is the authoritative implementation entry point.
 
 ---
 
@@ -59,10 +59,10 @@ The approved scope has been migrated to the CVP primitive → semantic → compo
 | TextArea | Form Controls | `src/app/components/TextArea.tsx` | `TextArea.css` | `--cvp-textarea-*` → shared input semantics | `TextAreaDocumentation.tsx` | Standardized — Visual + Handoff |
 | MiscInput | Form Controls | `src/app/components/MiscInput.tsx` | `MiscInput.css` | `--cvp-misc-input-*` → `--cvp-input-*` | `MiscInputDocumentation.tsx` | Standardized — Visual + Handoff |
 | Select | Form Controls | `src/app/components/Select.tsx` | `Select.css` | `--cvp-select-*` → shared input/menu semantics | `SelectDocumentation.tsx` | Standardized — Visual + Handoff |
-| MultiSelect | Form Controls | `src/app/components/MultiSelect.tsx` | Label + combobox + multi-select listbox | `--cvp-multi-select-*` registered Tier 3 contract | `MultiSelectDocumentation.tsx`, `MULTI_SELECT_STANDARDIZATION.md` | Standardized — Visual + engineering handoff |
-| Checkbox | Form Controls | `src/app/components/Checkbox.tsx` | Native input + label; fieldset/legend for groups | `--cvp-checkbox-*` registered Tier 3 contract | `CheckboxDocumentation.tsx`, `CHECKBOX_STANDARDIZATION.md` | Standardized — Visual + engineering handoff |
+| MultiSelect | Form Controls | `src/app/components/MultiSelect.tsx` | Label + combobox + multi-select listbox | `--cvp-multi-select-*` registered Tier 3 contract | `MultiSelectDocumentation.tsx`, `docs/handoffs/components/MULTI_SELECT_STANDARDIZATION.md` | Standardized — Visual + engineering handoff |
+| Checkbox | Form Controls | `src/app/components/Checkbox.tsx` | Native input + label; fieldset/legend for groups | `--cvp-checkbox-*` registered Tier 3 contract | `CheckboxDocumentation.tsx`, `docs/handoffs/components/CHECKBOX_STANDARDIZATION.md` | Standardized — Visual + engineering handoff |
 | Toggle | Form Controls | `src/app/components/Toggle.tsx` | None | Deferred | `ToggleDocumentation.tsx` | Deferred — hidden from navigation |
-| Segmented | Form Controls | `src/app/components/Segmented.tsx` | `Segmented.css` | `--cvp-segmented-*` | `SegmentedDocumentation.tsx`, `SEGMENTED_STANDARDIZATION.md` | Standardized — Visual + Handoff |
+| Segmented | Form Controls | `src/app/components/Segmented.tsx` | `Segmented.css` | `--cvp-segmented-*` | `SegmentedDocumentation.tsx`, `docs/handoffs/components/SEGMENTED_STANDARDIZATION.md` | Standardized — Visual + Handoff |
 
 **Aliases / naming notes:** `TextInput` is the canonical single-line input. `MiscInput` is a richer variant with prefix/suffix slots, character count, copy button, and four validation states — it is not an alias; it is a distinct, more capable component. These two should be reconciled: either `MiscInput` supersedes `TextInput` or they occupy different complexity tiers. `Segmented` is the component name in code; `SegmentedControl` appears in some documentation — canonical name is `Segmented`. `Toggle` maps to what `cvp-component-tokens.css` does not yet cover; the shadcn/ui layer has a separate `ui/switch.tsx` and `ui/toggle.tsx` — these are primitives, not CVP-styled components.
 
@@ -74,8 +74,8 @@ The approved scope has been migrated to the CVP primitive → semantic → compo
 |---|---|---|---|---|---|---|
 | HeaderNavigation | Navigation | `src/app/components/HeaderNavigation.tsx` | `HeaderNavigation.css` | `--cvp-header-*` | `HeaderNavigationDocumentation.tsx` | Standardized — Visual + Handoff |
 | PageSideNav | Navigation | `src/app/components/PageSideNav.tsx` | None | Deferred | `PageSideNavDocumentation.tsx` | Deferred — hidden from navigation |
-| Breadcrumbs | Navigation | `src/app/components/Breadcrumbs.tsx` | `Breadcrumbs.css` | `--cvp-breadcrumb-*` | `BreadcrumbsDocumentation.tsx`, `BREADCRUMBS_STANDARDIZATION.md` | Standardized — Visual + Handoff |
-| Tabs | Navigation | `src/app/components/Tabs.tsx` | `Tabs.css` | `--cvp-tabs-*` | `TabsDocumentation.tsx`, `TABS_STANDARDIZATION.md` | Standardized — Visual + Handoff |
+| Breadcrumbs | Navigation | `src/app/components/Breadcrumbs.tsx` | `Breadcrumbs.css` | `--cvp-breadcrumb-*` | `BreadcrumbsDocumentation.tsx`, `docs/handoffs/components/BREADCRUMBS_STANDARDIZATION.md` | Standardized — Visual + Handoff |
+| Tabs | Navigation | `src/app/components/Tabs.tsx` | `Tabs.css` | `--cvp-tabs-*` | `TabsDocumentation.tsx`, `docs/handoffs/components/TABS_STANDARDIZATION.md` | Standardized — Visual + Handoff |
 | DesignSystemNav | Navigation | `src/app/components/DesignSystemNav.tsx` | None | Unknown | None | Unclear — internal use only |
 
 **Aliases / naming notes:** `PageSideNav` is the CVP custom sidebar; `ui/sidebar.tsx` is the shadcn/ui primitive. These are distinct. `Breadcrumbs` (CVP) vs `ui/breadcrumb.tsx` (shadcn) — same distinction. `DesignSystemNav` appears to be an internal demo/navigation component, not a publishable design system component.
@@ -108,9 +108,9 @@ The approved scope has been migrated to the CVP primitive → semantic → compo
 
 | Component | Family | Implementation | Storybook | Token coverage | Behaviour documented | Status |
 |---|---|---|---|---|---|---|
-| Table | Data Display | `src/app/components/Table.tsx` | `Table.css` | `--cvp-table-*` | `TableDocumentation.tsx`, `TABLE_COMPONENT_DEV_HANDOFF.md` | Standardized — Visual + Handoff |
-| Accordion | Data Display | `src/app/components/Accordion.tsx` | `Accordion.css` | `--cvp-accordion-*` | `AccordionDocumentation.tsx`, `ACCORDION_STANDARDIZATION.md` | Standardized — Visual + Handoff |
-| Tree | Data Display | `src/app/components/Tree.tsx` | `Tree.css` | `--cvp-tree-*` | `TreeDocumentation.tsx`, `TREE_COMPONENT_DEV_HANDOFF.md` | Standardized — Visual + Handoff |
+| Table | Data Display | `src/app/components/Table.tsx` | `Table.css` | `--cvp-table-*` | `TableDocumentation.tsx`, `docs/handoffs/components/TABLE_COMPONENT_DEV_HANDOFF.md` | Standardized — Visual + Handoff |
+| Accordion | Data Display | `src/app/components/Accordion.tsx` | `Accordion.css` | `--cvp-accordion-*` | `AccordionDocumentation.tsx`, `docs/handoffs/components/ACCORDION_STANDARDIZATION.md` | Standardized — Visual + Handoff |
+| Tree | Data Display | `src/app/components/Tree.tsx` | `Tree.css` | `--cvp-tree-*` | `TreeDocumentation.tsx`, `docs/handoffs/components/TREE_COMPONENT_DEV_HANDOFF.md` | Standardized — Visual + Handoff |
 
 **Tree note:** `Tree.tsx` is the canonical compound implementation and consumes the registered `--cvp-tree-*` contract. Older sub-component files are not the documented integration target.
 
@@ -120,10 +120,10 @@ The approved scope has been migrated to the CVP primitive → semantic → compo
 
 | Component | Family | Implementation | Storybook | Token coverage | Behaviour documented | Status |
 |---|---|---|---|---|---|---|
-| Filter | Filtering | `src/app/components/Filter.tsx` | Native buttons, labelled dialog, menu items and inputs | `--cvp-filter-*` registered Tier 3 contract | `FilterDocumentation.tsx`, `FILTER_DATE_PICKER_STANDARDIZATION.md` | Standardized — Visual + engineering handoff |
-| DatePicker | Form Controls | `src/app/components/DatePicker.tsx` | Labelled calendar region, native day/navigation/time controls | `--cvp-date-picker-*` registered Tier 3 contract | `DatePickerDocumentation.tsx`, `FILTER_DATE_PICKER_STANDARDIZATION.md` | Extracted and standardized |
+| Filter | Filtering | `src/app/components/Filter.tsx` | Native buttons, labelled dialog, menu items and inputs | `--cvp-filter-*` registered Tier 3 contract | `FilterDocumentation.tsx`, `docs/handoffs/components/FILTER_DATE_PICKER_STANDARDIZATION.md` | Standardized — Visual + engineering handoff |
+| DatePicker | Form Controls | `src/app/components/DatePicker.tsx` | Labelled calendar region, native day/navigation/time controls | `--cvp-date-picker-*` registered Tier 3 contract | `DatePickerDocumentation.tsx`, `docs/handoffs/components/FILTER_DATE_PICKER_STANDARDIZATION.md` | Extracted and standardized |
 | FilterGroup | Filtering | `src/app/components/FilterGroup.tsx` | None | Deferred | `FilterGroupDocumentation.tsx` | Deferred — hidden from navigation |
-| TagFilter | Filtering | `src/app/components/TagFilter.tsx` | `TagFilter.css` | `--cvp-tag-filter-*` | `TagFilterDocumentation.tsx`, `TAG_FILTER_STANDARDIZATION.md` | Standardized — Visual + Handoff |
+| TagFilter | Filtering | `src/app/components/TagFilter.tsx` | `TagFilter.css` | `--cvp-tag-filter-*` | `TagFilterDocumentation.tsx`, `docs/handoffs/components/TAG_FILTER_STANDARDIZATION.md` | Standardized — Visual + Handoff |
 
 **Aliases / naming notes:** `Filter` is the advanced multi-type query filter. `TagFilter` is a distinct tag-cloud selection pattern. `FilterGroup` remains deferred and is excluded from the active navigation.
 
@@ -133,7 +133,7 @@ The approved scope has been migrated to the CVP primitive → semantic → compo
 
 | Component | Family | Implementation | Storybook | Token coverage | Behaviour documented | Status |
 |---|---|---|---|---|---|---|
-| RailContentGallery | Media | `src/app/components/RailContentGallery.tsx` | `RailContentGallery.css` | `--cvp-gallery-*` | `RailContentGalleryDocumentation.tsx`, `RAIL_CONTENT_GALLERY_DEV_HANDOFF.md` | Standardized — Visual + Handoff |
+| RailContentGallery | Media | `src/app/components/RailContentGallery.tsx` | `RailContentGallery.css` | `--cvp-gallery-*` | `RailContentGalleryDocumentation.tsx`, `docs/handoffs/components/RAIL_CONTENT_GALLERY_DEV_HANDOFF.md` | Standardized — Visual + Handoff |
 | RailDetails | Media | `src/app/components/RailDetails.tsx` | `RailDetails.css` | Composes canonical child contracts | `RailDetailsDocumentation.tsx` | Integration audit page |
 
 **Aliases / naming notes:** `RailContentGallery` and `RailDetails` are product-specific editorial workflow components. Rail Details intentionally acts as the composed-page audit and does not create a parallel page token contract.
@@ -152,7 +152,7 @@ The approved scope has been migrated to the CVP primitive → semantic → compo
 
 | Component | Family | Implementation | Storybook | Token coverage | Behaviour documented | Status |
 |---|---|---|---|---|---|---|
-| LoginSignUp | Authentication | `src/app/components/LoginSignUp.tsx` | None | Canonical Tier 3 (`--cvp-login-*`) | `LoginSignUpDocumentation.tsx`, `LOGIN_SIGN_UP_DEV_HANDOFF.md` | Standardized — Missing Story |
+| LoginSignUp | Authentication | `src/app/components/LoginSignUp.tsx` | None | Canonical Tier 3 (`--cvp-login-*`) | `LoginSignUpDocumentation.tsx`, `docs/handoffs/components/LOGIN_SIGN_UP_DEV_HANDOFF.md` | Standardized — Missing Story |
 | LoginSignUpLight | Authentication | `src/app/components/LoginSignUpLight.tsx` | None | Composes `LoginSignUp` | (shared with above) | Deprecated compatibility wrapper |
 
 **Aliases / naming notes:** `LoginSignUp` is the canonical theme-aware page component. `LoginSignUpLight` now delegates directly to it and remains temporarily available only to avoid breaking existing imports.
@@ -180,7 +180,7 @@ The approved scope has been migrated to the CVP primitive → semantic → compo
 
 ### 1.13 shadcn/ui Primitive Layer (not CVP-authored)
 
-The following 46 components live in `src/app/components/ui/` and are unmodified shadcn/ui primitives. They are available as building blocks but carry no CVP token coverage, no CVP documentation, and no Storybook stories. They are listed for inventory completeness. They should **not** appear as CVP design system components in `DESIGN_SYSTEM_SPECIFICATION.md` unless they have been styled with CVP tokens and documented.
+The following 46 components live in `src/app/components/ui/` and are unmodified shadcn/ui primitives. They are available as building blocks but carry no CVP token coverage, no CVP documentation, and no Storybook stories. They are listed for inventory completeness. They should **not** appear as CVP design system components in `docs/specifications/DESIGN_SYSTEM_SPECIFICATION.md` unless they have been styled with CVP tokens and documented.
 
 `accordion` · `alert` · `alert-dialog` · `aspect-ratio` · `avatar` · `badge` · `breadcrumb` · `button` · `calendar` · `card` · `carousel` · `chart` · `checkbox` · `collapsible` · `command` · `context-menu` · `dialog` · `drawer` · `dropdown-menu` · `form` · `hover-card` · `input` · `input-otp` · `label` · `menubar` · `navigation-menu` · `pagination` · `popover` · `progress` · `radio-group` · `resizable` · `scroll-area` · `select` · `separator` · `sheet` · `sidebar` · `skeleton` · `slider` · `sonner` · `switch` · `table` · `tabs` · `textarea` · `toggle` · `toggle-group` · `tooltip`
 
@@ -442,7 +442,7 @@ The following 46 components live in `src/app/components/ui/` and are unmodified 
 
 ## 4. Shared Patterns
 
-The following patterns appear across multiple components and should be specified once in `DESIGN_SYSTEM_SPECIFICATION.md` rather than duplicated per-component.
+The following patterns appear across multiple components and should be specified once in `docs/specifications/DESIGN_SYSTEM_SPECIFICATION.md` rather than duplicated per-component.
 
 ### 4.1 Focus Treatment
 
@@ -521,12 +521,12 @@ The following patterns appear across multiple components and should be specified
 
 ## 5. Documentation Coverage Plan
 
-Proposed sequence for `DESIGN_SYSTEM_SPECIFICATION.md`. Groups are ordered to minimise forward references — foundational patterns before composed components, shared patterns before component-specific variants.
+Proposed sequence for `docs/specifications/DESIGN_SYSTEM_SPECIFICATION.md`. Groups are ordered to minimise forward references — foundational patterns before composed components, shared patterns before component-specific variants.
 
 ### Pass 1 — Foundation (no component dependencies)
 
 1. **Introduction and Scope** — what the spec covers, versioning, how to read it
-2. **Token Architecture Summary** — pointer to `CVP_TOKEN_ARCHITECTURE.md`; three-tier model; how to look up a token
+2. **Token Architecture Summary** — pointer to `docs/tokens/CVP_TOKEN_ARCHITECTURE.md`; three-tier model; how to look up a token
 3. **Shared Patterns: Focus Treatment** — applies universally; document once, reference everywhere
 4. **Shared Patterns: Disabled States** — same rationale
 5. **Shared Patterns: Validation States** — required before any form control
@@ -639,7 +639,7 @@ Proposed sequence for `DESIGN_SYSTEM_SPECIFICATION.md`. Groups are ordered to mi
 
 **What is missing:** `Filter.tsx`, `FilterGroup.tsx`, and `TagFilter.tsx` use custom tokens (`--filter-*`, `--tag-filter-*`) that are not present in `cvp-component-tokens.css`. These tokens are also not in `cvp-alias-bridge.css` or any documented token file.  
 **Where it should come from:** A Phase 2 token migration task; or confirmation that these components are intentionally outside the CVP token system for now.  
-**Engineering assumption for now:** Mark as `unregistered`. Include a note in the specification that these components require token registration before they are production-ready under the governance rules in `TOKEN_GOVERNANCE.md`.
+**Engineering assumption for now:** Mark as `unregistered`. Include a note in the specification that these components require token registration before they are production-ready under the governance rules in `docs/tokens/TOKEN_GOVERNANCE.md`.
 
 ### OQ-6 — Tree component token coverage
 
@@ -651,26 +651,26 @@ Proposed sequence for `DESIGN_SYSTEM_SPECIFICATION.md`. Groups are ordered to mi
 
 **What is missing:** `DesignSystemNav.tsx` has no documentation and its scope is unclear. It may be the internal navigation shell for the component documentation site, not a publishable component.  
 **Where it should come from:** Code inspection or team confirmation.  
-**Engineering assumption for now:** Exclude from `DESIGN_SYSTEM_SPECIFICATION.md`. Mark as internal utility.
+**Engineering assumption for now:** Exclude from `docs/specifications/DESIGN_SYSTEM_SPECIFICATION.md`. Mark as internal utility.
 
 ### OQ-8 — shadcn/ui integration policy
 
 **What is missing:** The repository contains 46 shadcn/ui primitives in `ui/`. It is unclear whether these are intended to be styled with CVP tokens and published as part of the design system, or whether they are internal development conveniences.  
 **Where it should come from:** Architecture decision from Design Systems team.  
-**Engineering assumption for now:** shadcn/ui primitives are internal scaffolding only. Do not specify them in `DESIGN_SYSTEM_SPECIFICATION.md`. If any are to be CVP-styled and published, they require a full token migration and Storybook story before inclusion.
+**Engineering assumption for now:** shadcn/ui primitives are internal scaffolding only. Do not specify them in `docs/specifications/DESIGN_SYSTEM_SPECIFICATION.md`. If any are to be CVP-styled and published, they require a full token migration and Storybook story before inclusion.
 
 ### OQ-9 — Storybook setup
 
-**What is missing:** `.storybook/` does not exist. No Storybook configuration is present. `IMPLEMENTATION_STATUS.md` lists Storybook arg table generation as an outstanding task but does not specify the target Storybook version.  
+**What is missing:** `.storybook/` does not exist. No Storybook configuration is present. `docs/project/IMPLEMENTATION_STATUS.md` lists Storybook arg table generation as an outstanding task but does not specify the target Storybook version.
 **Where it should come from:** Engineering decision.  
 **Engineering assumption for now:** Cannot block specification writing on Storybook setup. Write specification first; Storybook stories are a parallel deliverable. Token arg tables will be generated from the `--cvp-component-*` tokens documented in the spec.
 
 ### OQ-10 — DESIGN.md role going forward
 
-**What is missing:** `DESIGN.md` (v2.0, 2026-06-25) uses old shorthand token names without the `--cvp-` namespace. `TOKEN_GOVERNANCE.md` states that `DESIGN.md` is the required documentation artifact for every token — but the file predates the current architecture. It is unclear whether `DESIGN.md` should be updated to use `--cvp-*` token names or superseded by `DESIGN_SYSTEM_SPECIFICATION.md`.  
+**What is missing:** `docs/specifications/DESIGN.md` (v2.0, 2026-06-25) uses old shorthand token names without the `--cvp-` namespace. `docs/tokens/TOKEN_GOVERNANCE.md` states that `docs/specifications/DESIGN.md` is the required documentation artifact for every token — but the file predates the current architecture. It is unclear whether `docs/specifications/DESIGN.md` should be updated to use `--cvp-*` token names or superseded by `docs/specifications/DESIGN_SYSTEM_SPECIFICATION.md`.
 **Where it should come from:** Design Systems team decision.  
-**Engineering assumption for now:** `DESIGN_SYSTEM_SPECIFICATION.md` (to be created) becomes the canonical specification. `DESIGN.md` is retained as a historical reference but is not updated. `TOKEN_GOVERNANCE.md` documentation requirements should reference the new spec file.
+**Engineering assumption for now:** `docs/specifications/DESIGN_SYSTEM_SPECIFICATION.md` (to be created) becomes the canonical specification. `docs/specifications/DESIGN.md` is retained as a historical reference but is not updated. `docs/tokens/TOKEN_GOVERNANCE.md` documentation requirements should reference the new spec file.
 
 ---
 
-*This inventory is the coverage checklist for all subsequent specification passes. No component should appear in `DESIGN_SYSTEM_SPECIFICATION.md` that is not listed here. No component listed here should be omitted from `DESIGN_SYSTEM_SPECIFICATION.md` without an explicit decision recorded in §6.*
+*This inventory is the coverage checklist for all subsequent specification passes. No component should appear in `docs/specifications/DESIGN_SYSTEM_SPECIFICATION.md` that is not listed here. No component listed here should be omitted from `docs/specifications/DESIGN_SYSTEM_SPECIFICATION.md` without an explicit decision recorded in §6.*

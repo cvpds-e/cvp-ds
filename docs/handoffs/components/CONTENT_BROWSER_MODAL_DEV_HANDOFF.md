@@ -4,7 +4,7 @@
 
 - Component: `src/app/components/ContentBrowserModal.tsx`
 - Component styles: `src/app/components/ContentBrowserModal.css`
-- Tier 3 aliases: `src/styles/cvp-component-tokens.css`
+- Tier 3 aliases: `src/styles/tokens/cvp-component-tokens.css`
 - Visual and contract audit: `src/app/components/ContentBrowserModalDocumentation.tsx`
 
 The component is a composition of the canonical `Modal`, `Checkbox`, `PrimaryButton`, `OutlineButton`, `TextButton`, and `IconButton`. Do not recreate their surfaces, focus rings, disabled states, or theme values locally.

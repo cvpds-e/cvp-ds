@@ -4,7 +4,7 @@
 
 - Component: `src/app/components/NotificationBanner.tsx`
 - Component styles: `src/app/components/NotificationBanner.css`
-- Tier 3 aliases: `src/styles/cvp-component-tokens.css`
+- Tier 3 aliases: `src/styles/tokens/cvp-component-tokens.css`
 - Visual audit: `src/app/components/NotificationBannerDocumentation.tsx`
 
 Notification Banner is persistent and remains in document flow. Use Toast for brief action feedback and Modal for blocking decisions.

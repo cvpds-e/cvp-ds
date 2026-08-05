@@ -10,11 +10,11 @@ This story formalizes the token architecture now present in the design-system pr
 
 The CVP Design System now uses a three-tier token architecture:
 
-1. **Primitive tokens** — raw design values in `src/styles/cvp-primitives.css`.
-2. **Semantic tokens** — purpose-based, theme-aware roles in `src/styles/cvp-semantic-tokens.css`.
-3. **Component tokens** — component-level contracts and supported override surfaces in `src/styles/cvp-component-tokens.css`.
+1. **Primitive tokens** — raw design values in `src/styles/tokens/cvp-primitives.css`.
+2. **Semantic tokens** — purpose-based, theme-aware roles in `src/styles/tokens/cvp-semantic-tokens.css`.
+3. **Component tokens** — component-level contracts and supported override surfaces in `src/styles/tokens/cvp-component-tokens.css`.
 
-Legacy `--tc-*` tokens remain available through `src/styles/cvp-alias-bridge.css`. The bridge prevents breaking changes while components and consuming products move to `--cvp-*` tokens.
+Legacy `--tc-*` tokens remain available through `src/styles/tokens/cvp-alias-bridge.css`. The bridge prevents breaking changes while components and consuming products move to `--cvp-*` tokens.
 
 The canonical production import chain is:
 
@@ -126,7 +126,7 @@ Approval must be recorded in the pull request or linked design decision. A token
 - Add lint or CI checks that fail on new direct `--tc-*` usage outside the bridge.
 - Add checks for unregistered CSS custom properties in migrated component code.
 - Report hardcoded-value violations separately from the legacy-token migration so the two measures are not conflated.
-- Update `IMPLEMENTATION_STATUS.md` when a component family or migration phase changes state.
+- Update `docs/project/IMPLEMENTATION_STATUS.md` when a component family or migration phase changes state.
 - Record approved exceptions with an owner, rationale, and intended resolution.
 
 ## Acceptance criteria
@@ -140,7 +140,7 @@ Approval must be recorded in the pull request or linked design decision. A token
 7. Mappings that alter rendered appearance have recorded Design Systems approval before merge.
 8. Deprecated tokens without direct replacements have a usage-by-usage migration decision; they do not silently rely on a fallback alias.
 9. The compatibility bridge remains in place until downstream audits confirm zero consumers; its removal is not required for this story to complete.
-10. `IMPLEMENTATION_STATUS.md` accurately distinguishes complete, in-progress, blocked, and follow-on work.
+10. `docs/project/IMPLEMENTATION_STATUS.md` accurately distinguishes complete, in-progress, blocked, and follow-on work.
 11. Documentation identifies the `--cvp-*` system as canonical and does not present legacy `--tc-*` tokens as valid choices for new work.
 12. Build and token-audit checks pass with no unresolved missing-token references.
 
@@ -174,14 +174,14 @@ Approval must be recorded in the pull request or linked design decision. A token
 
 ## Reference files
 
-- `CVP_TOKEN_ARCHITECTURE.md`
-- `TOKEN_DECISION_FRAMEWORK.md`
-- `TOKEN_GOVERNANCE.md`
-- `TOKEN_FOUNDATION_RECONCILIATION.md`
-- `IMPLEMENTATION_STATUS.md`
-- `DESIGN_SYSTEM_COMPONENT_INVENTORY.md`
-- `src/styles/cvp-primitives.css`
-- `src/styles/cvp-semantic-tokens.css`
-- `src/styles/cvp-component-tokens.css`
-- `src/styles/cvp-alias-bridge.css`
+- `docs/tokens/CVP_TOKEN_ARCHITECTURE.md`
+- `docs/tokens/TOKEN_DECISION_FRAMEWORK.md`
+- `docs/tokens/TOKEN_GOVERNANCE.md`
+- `docs/tokens/TOKEN_FOUNDATION_RECONCILIATION.md`
+- `docs/project/IMPLEMENTATION_STATUS.md`
+- `docs/specifications/DESIGN_SYSTEM_COMPONENT_INVENTORY.md`
+- `src/styles/tokens/cvp-primitives.css`
+- `src/styles/tokens/cvp-semantic-tokens.css`
+- `src/styles/tokens/cvp-component-tokens.css`
+- `src/styles/tokens/cvp-alias-bridge.css`
 

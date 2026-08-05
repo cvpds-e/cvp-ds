@@ -2,7 +2,7 @@
 
 Date: 2026-08-05
 
-Start implementation from `ENGINEERING_HANDOFF_INDEX.md`, which consolidates the approved scope, preview routes, source priority, component handoffs, and acceptance checklist.
+Start implementation from `docs/handoffs/ENGINEERING_HANDOFF_INDEX.md`, which consolidates the approved scope, preview routes, source priority, component handoffs, and acceptance checklist.
 
 ## Handoff status
 
@@ -48,9 +48,9 @@ The in-app audit intentionally reports manual-review items separately from viola
 
 ## Source priority for implementation
 
-1. `src/styles/cvp-primitives.css`
-2. `src/styles/cvp-semantic-tokens.css`
-3. `src/styles/cvp-component-tokens.css`
+1. `src/styles/tokens/cvp-primitives.css`
+2. `src/styles/tokens/cvp-semantic-tokens.css`
+3. `src/styles/tokens/cvp-component-tokens.css`
 4. Component CSS and TSX
 5. Component documentation page and matching `*_DEV_HANDOFF.md` / `*_STANDARDIZATION.md`
 6. Rail Details for composed-page behavior

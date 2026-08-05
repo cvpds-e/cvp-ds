@@ -4,7 +4,7 @@
 
 - Component: `src/app/components/RailContentGallery.tsx`
 - Component styles: `src/app/components/RailContentGallery.css`
-- Tier 3 aliases: `src/styles/cvp-component-tokens.css`
+- Tier 3 aliases: `src/styles/tokens/cvp-component-tokens.css`
 - Visual audit: `src/app/components/RailContentGalleryDocumentation.tsx`
 
 The gallery composes canonical Checkbox, IconButton, and IconSmallButton components. Do not duplicate their input borders, focus states, disabled treatment, or media-control surfaces.

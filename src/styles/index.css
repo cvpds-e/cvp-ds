@@ -2,9 +2,9 @@
 @import 'tailwindcss' source(none);
 @source '../../**/*.{js,ts,jsx,tsx}';
 @import 'tw-animate-css';
-@import './default_theme.css';
+@import './themes/default_theme.css';
 @import './globals.css';
-@import './cvp-alias-bridge.css';
-@import './cvp-spacing.css';
-@import './cvp-radius.css';
+@import './tokens/cvp-alias-bridge.css';
+@import './tokens/cvp-spacing.css';
+@import './tokens/cvp-radius.css';
 @import './foundation-preview-audit.css';

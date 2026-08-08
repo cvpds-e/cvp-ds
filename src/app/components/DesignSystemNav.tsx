@@ -56,6 +56,7 @@ const NAV_ITEMS = [
   
   // Pages
   { id: 'login-signup', label: 'Login / Sign Up', category: 'Pages' },
+  { id: 'rails-list', label: 'Rails List', category: 'Pages' },
   { id: 'rail-details', label: 'Rail Details', category: 'Pages' }
 ];
 

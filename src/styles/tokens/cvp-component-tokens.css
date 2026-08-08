@@ -1167,10 +1167,10 @@
                header-font-size/weight, body-font-size/weight
      Local:    cell-padding-x, cell-padding-y
   =========================================================================== */
-  --cvp-table-header-bg:        var(--cvp-color-surface-raised);
+  --cvp-table-header-bg:        var(--cvp-color-surface-page);
   --cvp-table-header-text:      var(--cvp-color-text-secondary);
   --cvp-table-header-border:    var(--cvp-color-border-default);
-  --cvp-table-row-bg:           var(--cvp-color-surface-default);
+  --cvp-table-row-bg:           var(--cvp-color-surface-page);
   --cvp-table-row-bg-hover:     var(--cvp-color-surface-hover);
   --cvp-table-row-bg-selected:  var(--cvp-color-menu-item-active-bg);
   --cvp-table-row-border:       var(--cvp-color-border-subtle);
@@ -1183,11 +1183,11 @@
   --cvp-table-body-font-size:   var(--cvp-font-size-md);                    /* 14px */
   --cvp-table-body-font-weight: var(--cvp-font-weight-regular);             /* 400 */
   /* Expanded row */
-  --cvp-table-expanded-bg:      var(--cvp-color-surface-sunken);
+  --cvp-table-expanded-bg:      var(--cvp-color-surface-page);
   --cvp-table-container-border: var(--cvp-color-border-subtle);
   --cvp-table-container-border-width: var(--cvp-border-base-width);
   --cvp-table-container-radius: 0;
-  --cvp-table-toolbar-bg:       var(--cvp-color-surface-default);
+  --cvp-table-toolbar-bg:       var(--cvp-color-surface-page);
   --cvp-table-toolbar-height:   var(--cvp-space-900);
   --cvp-table-toolbar-padding-x:var(--cvp-space-3);
   --cvp-table-header-height:    var(--cvp-space-800);
@@ -1198,7 +1198,7 @@
   --cvp-table-row-height-compact: var(--cvp-space-900);
   --cvp-table-row-height-comfortable: calc(var(--cvp-space-900) + var(--cvp-space-2));
   --cvp-table-group-height:     var(--cvp-space-900);
-  --cvp-table-group-bg:         var(--cvp-color-surface-subtle);
+  --cvp-table-group-bg:         var(--cvp-color-surface-page);
   --cvp-table-expanded-padding: var(--cvp-space-4);
   --cvp-table-empty-height:     calc(var(--cvp-space-900) * 3);
   --cvp-table-control-size:     var(--cvp-space-8);
@@ -1409,7 +1409,7 @@
      Theme-aware product composition using canonical form and action contracts.
   =========================================================================== */
   --cvp-login-page-padding: var(--cvp-spacing-container-md);
-  --cvp-login-page-bg: linear-gradient(145deg, var(--cvp-color-surface-page) 15%, var(--cvp-color-surface-sunken) 62%, var(--cvp-color-surface-subtle) 140%);
+  --cvp-login-page-bg: linear-gradient(135deg, var(--login-bg-gradient-start), var(--login-bg-gradient-end));
   --cvp-login-text: var(--cvp-color-text-primary);
   --cvp-login-muted: var(--cvp-color-text-muted);
   --cvp-login-title: var(--cvp-color-text-primary);

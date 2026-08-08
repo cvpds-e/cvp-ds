@@ -45,6 +45,7 @@ import { LayoutFoundationPreview } from './components/LayoutFoundationPreview';
 import { PageSideNavDocumentation } from './components/PageSideNavDocumentation';
 import { RailDetailsDocumentation } from './components/RailDetailsDocumentation';
 import { RailDetails } from './components/RailDetails';
+import { RailsList } from './components/RailsList';
 import { NotificationBannerDocumentation } from './components/NotificationBannerDocumentation';
 import { AccessibilityAuditProbe } from './components/AccessibilityAuditProbe';
 import cvpLogoWhite from '../imports/NEW__DARK_.png';
@@ -584,6 +585,8 @@ export default function App() {
         return <PageSideNavDocumentation />;
       case 'rail-details':
         return <RailDetailsDocumentation />;
+      case 'rails-list':
+        return null; // handled below as full-page
       case 'rail-details-full':
         return null; // handled below as full-page
       default:
@@ -595,6 +598,8 @@ export default function App() {
     <>
       {activeSection === 'rail-details-full' ? (
         <RailDetails />
+      ) : activeSection === 'rails-list' ? (
+        <RailsList />
       ) : (
         <div className="app">
           <DesignSystemNav

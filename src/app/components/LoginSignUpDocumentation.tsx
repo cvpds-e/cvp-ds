@@ -5,7 +5,7 @@ import { Segmented } from './Segmented';
 import './LoginSignUpDocumentation.css';
 
 const tokenRows = [
-  ['Page surface', '--cvp-login-page-bg', '--cvp-color-surface-page / sunken / subtle', 'Theme-aware background', 'Always'],
+  ['Page surface', '--cvp-login-page-bg', '--login-bg-gradient-start / end', 'Original product gradient', 'Always'],
   ['Card surface', '--cvp-login-card-bg', '--cvp-color-surface-default', 'Authentication card', 'Always'],
   ['Card boundary', '--cvp-login-card-border', '--cvp-border-container', 'Subtle perimeter', 'Always'],
   ['Card elevation', '--cvp-login-card-shadow', '--cvp-plane-raised-shadow', 'Raised plane', 'Always'],

@@ -60,6 +60,8 @@
 .cvp-tree__toggle:focus-visible { outline: none; box-shadow: var(--cvp-tree-focus-ring); }
 .cvp-tree__content:disabled,
 .cvp-tree__toggle:disabled { cursor: not-allowed; }
+.cvp-tree__actions { display: inline-flex; flex: 0 0 auto; align-items: center; gap: var(--cvp-space-1); margin-inline-start: var(--cvp-space-1); opacity: 0; transition: opacity var(--cvp-motion-duration-fast) var(--cvp-motion-easing-standard); }
+.cvp-tree__row:hover .cvp-tree__actions { opacity: 1; }
 .cvp-tree__leading { display: inline-flex; flex: 0 0 auto; align-items: center; gap: var(--cvp-tree-leading-gap); }
 .cvp-tree__icon { display: inline-flex; flex: 0 0 var(--cvp-tree-icon-slot-size); align-items: center; justify-content: center; width: var(--cvp-tree-icon-slot-size); color: var(--cvp-tree-icon); }
 .cvp-tree__label { min-width: 0; overflow: hidden; color: var(--cvp-tree-text); font-size: var(--cvp-tree-font-size); font-weight: var(--cvp-tree-font-weight); line-height: var(--cvp-tree-line-height); text-overflow: ellipsis; white-space: nowrap; }

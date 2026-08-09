@@ -1,0 +1,6 @@
+.cvp-sort-control { container-type: inline-size; display: grid; grid-template-columns: max-content minmax(0, 1fr) max-content; align-items: center; gap: var(--cvp-space-2); box-sizing: border-box; width: 100%; }
+.cvp-sort-control__label { color: var(--cvp-color-text-muted); font-size: var(--cvp-font-size-sm); font-weight: var(--cvp-font-weight-medium); }
+.cvp-sort-control__select { min-width: 0; width: auto; }
+.cvp-sort-control__direction { white-space: nowrap; }
+@container (max-width: 34rem) { .cvp-sort-control__label { grid-column: 1 / -1; } .cvp-sort-control__select { grid-column: 1 / 3; } .cvp-sort-control__direction { grid-column: 3; } }
+@container (max-width: 26rem) { .cvp-sort-control__select, .cvp-sort-control__direction { grid-column: 1 / -1; } .cvp-sort-control__direction { justify-self: start; } }

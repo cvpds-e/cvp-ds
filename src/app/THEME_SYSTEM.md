@@ -223,7 +223,7 @@ Always use semantic tokens, never hardcoded colors:
 - [x] Theme switcher appears in top-right corner
 - [x] Theme switcher saves preference to localStorage
 - [x] Theme switches smoothly with transitions
-- [x] All text meets WCAG AA contrast requirements
+- [ ] Verify WCAG AA contrast for every rendered text, state, and theme pairing before release (tracked in `ACCESSIBILITY_AUDIT.md`)
 - [x] Keyboard navigation works in theme switcher
 - [x] ARIA labels present for accessibility
 - [x] Mobile responsive design

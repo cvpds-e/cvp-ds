@@ -15,6 +15,7 @@ import { MiscInputDocumentation } from './components/MiscInputDocumentation';
 import { CheckboxDocumentation } from './components/CheckboxDocumentation';
 import { ToggleDocumentation } from './components/ToggleDocumentation';
 import { FilterDocumentation } from './components/FilterDocumentation';
+import { QueryControlsDocumentation } from './components/QueryControlsDocumentation';
 import { DatePickerDocumentation } from './components/DatePickerDocumentation';
 import { FilterGroupDocumentation } from './components/FilterGroupDocumentation';
 import { TreeDocumentation } from './components/TreeDocumentation';
@@ -46,8 +47,11 @@ import { PageSideNavDocumentation } from './components/PageSideNavDocumentation'
 import { RailDetailsDocumentation } from './components/RailDetailsDocumentation';
 import { RailDetails } from './components/RailDetails';
 import { RailsList } from './components/RailsList';
+import { RailsListDocumentation } from './components/RailsListDocumentation';
 import { NotificationBannerDocumentation } from './components/NotificationBannerDocumentation';
 import { AccessibilityAuditProbe } from './components/AccessibilityAuditProbe';
+import { AccessibilityDocumentation } from './components/AccessibilityDocumentation';
+import { TokenArchitectureDocumentation } from './components/TokenArchitectureDocumentation';
 import cvpLogoWhite from '../imports/NEW__DARK_.png';
 import cvpLogoBlack from '../imports/NEW__LIGHT_.png';
 import './App.css';
@@ -470,6 +474,14 @@ export default function App() {
     return page || 'overview';
   });
 
+  useEffect(() => {
+    if (activeSection !== 'rails-list-full' && activeSection !== 'rail-details-full') return;
+    const theme = new URLSearchParams(window.location.search).get('theme');
+    const resolvedTheme = theme === 'light' ? 'light' : 'dark';
+    document.documentElement.toggleAttribute('data-theme', resolvedTheme === 'light');
+    document.body.toggleAttribute('data-theme', resolvedTheme === 'light');
+  }, [activeSection]);
+
   // Listen for URL changes (browser back/forward)
   useEffect(() => {
     const handlePopState = () => {
@@ -513,6 +525,10 @@ export default function App() {
         return <ElevationFoundationPreview />;
       case 'layout-foundation':
         return <LayoutFoundationPreview />;
+      case 'accessibility':
+        return <AccessibilityDocumentation />;
+      case 'token-architecture':
+        return <TokenArchitectureDocumentation />;
       case 'components':
         return <ComponentsOverview />;
       case 'primary-button':
@@ -541,6 +557,8 @@ export default function App() {
         return <ToggleDocumentation />;
       case 'filter':
         return <FilterDocumentation />;
+      case 'query-controls':
+        return <QueryControlsDocumentation />;
       case 'date-picker':
         return <DatePickerDocumentation />;
       case 'filter-group':
@@ -586,6 +604,8 @@ export default function App() {
       case 'rail-details':
         return <RailDetailsDocumentation />;
       case 'rails-list':
+        return <RailsListDocumentation />;
+      case 'rails-list-full':
         return null; // handled below as full-page
       case 'rail-details-full':
         return null; // handled below as full-page
@@ -598,7 +618,7 @@ export default function App() {
     <>
       {activeSection === 'rail-details-full' ? (
         <RailDetails />
-      ) : activeSection === 'rails-list' ? (
+      ) : activeSection === 'rails-list-full' ? (
         <RailsList />
       ) : (
         <div className="app">
@@ -610,9 +630,9 @@ export default function App() {
           <main className="app__main">
             {renderContent()}
           </main>
-          {auditEnabled && <AccessibilityAuditProbe />}
         </div>
       )}
+      {auditEnabled && <AccessibilityAuditProbe />}
     </>
   );
 }

@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
-import { ListFilter, Plus, Search } from 'lucide-react';
+import { ChevronLeft, ListFilter, Pencil, Plus, Search, Trash2 } from 'lucide-react';
 import { Filter, ActiveFilter } from './Filter';
 import { HeaderNavigation } from './HeaderNavigation';
 import { IconButton } from './IconButton';
 import { PrimaryButton } from './PrimaryButton';
 import { Table, TableColumn, TableRow } from './Table';
-import { Tabs } from './Tabs';
 import { TextButton } from './TextButton';
+import { TextArea } from './TextArea';
+import { TextInput } from './TextInput';
+import { Select } from './Select';
+import { OutlineButton } from './OutlineButton';
 import { Tree, TreeItem } from './Tree';
 import './RailsList.css';
 
@@ -45,25 +48,56 @@ export function RailsList() {
   const [filters, setFilters] = useState<ActiveFilter[]>([]);
   const [matchAllFilters, setMatchAllFilters] = useState(true);
   const [selectedCollection, setSelectedCollection] = useState('home');
+  const [editingCollection, setEditingCollection] = useState<string | null>(null);
+  const [collectionName, setCollectionName] = useState('');
+  const [collectionDescription, setCollectionDescription] = useState('');
+  const [collectionStatus, setCollectionStatus] = useState('enabled');
+  const [collectionReference, setCollectionReference] = useState('');
+  const [collectionLabels, setCollectionLabels] = useState<Record<string, string>>({});
   const toggleTheme = () => {
     const root = document.documentElement;
     root.setAttribute('data-theme', root.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
   };
-  const tree = <Tree data={collections} selectedId={selectedCollection} initialExpanded={['home', 'drama', 'kids']} ariaLabel="Rail collections" onSelect={(item) => setSelectedCollection(item.id)} />;
+  const openCollectionEditor = (item?: TreeItem) => {
+    const isNew = !item;
+    setEditingCollection(isNew ? 'new' : item.id);
+    setCollectionName(isNew ? '' : collectionLabels[item.id] ?? item.label);
+    setCollectionDescription(isNew ? '' : `${item.label} rail collection for curated programming.`);
+    setCollectionStatus('enabled');
+    setCollectionReference(isNew ? '' : `65cdc98c9-e1fdcc7931968-${item.id}`);
+  };
+  const tree = <Tree data={collections.map((item) => ({ ...item, label: collectionLabels[item.id] ?? item.label }))} selectedId={selectedCollection} initialExpanded={['home', 'drama', 'kids']} ariaLabel="Rail collections" onSelect={(item) => { setSelectedCollection(item.id); if (item.type === 'category') openCollectionEditor(item); }} renderActions={(item) => item.type === 'category' ? <IconButton variant="ghost" size="small" aria-label={`Edit ${item.label} rail collection`} onClick={(event) => { event.stopPropagation(); openCollectionEditor(item); }}><Pencil size={15} /></IconButton> : null} />;
+  const isNewCollection = editingCollection === 'new';
+  const saveCollection = () => {
+    if (editingCollection && editingCollection !== 'new' && collectionName.trim()) setCollectionLabels((current) => ({ ...current, [editingCollection]: collectionName.trim() }));
+    setEditingCollection(null);
+  };
+  const collectionEditor = <div className="rails-list-page__collection-editor">
+    <div className="rails-list-page__collection-editor-body">
+      <TextButton variant="secondary" className="rails-list-page__back-to-collections" icon={<ChevronLeft size={16} />} onClick={() => setEditingCollection(null)}>Back to Rail Collections</TextButton>
+      <div className="rails-list-page__collection-form">
+        <TextInput label="Title" value={collectionName} onChange={(event) => setCollectionName(event.target.value)} required />
+        <TextArea label="Description" value={collectionDescription} onChange={(event) => setCollectionDescription(event.target.value)} rows={4} resize="vertical" />
+        <Select label="Status" value={collectionStatus} onChange={setCollectionStatus} options={[{ value: 'enabled', label: 'Enabled' }, { value: 'disabled', label: 'Disabled' }]} />
+        <TextInput label="External Reference ID" optionalText="Advanced" value={collectionReference} onChange={(event) => setCollectionReference(event.target.value)} />
+      </div>
+    </div>
+    <footer className="rails-list-page__collection-editor-footer">
+      {!isNewCollection && <IconButton variant="danger" size="small" aria-label={`Delete ${collectionName || 'rail collection'}`} onClick={() => setEditingCollection(null)}><Trash2 size={16} /></IconButton>}
+      <div><OutlineButton onClick={() => setEditingCollection(null)}>Cancel</OutlineButton><PrimaryButton onClick={saveCollection} disabled={!collectionName.trim()}>Save</PrimaryButton></div>
+    </footer>
+  </div>;
 
   return <div className="rails-list-page">
     <HeaderNavigation variant="static" brandName="Rail Manager" userName="Jane Doe" userEmail="jane@cvp.example" teams={[{ id: 'content-team', name: 'Content Team' }]} selectedTeamId="content-team" onThemeSwitch={toggleTheme} />
     <div className="rails-list-page__workspace">
       <aside className="rails-list-page__sidebar" aria-label="Rail collections navigation">
         <div className="rails-list-page__sidebar-label">Overview</div>
-        <Tabs className="rails-list-page__tabs" ariaLabel="Rail manager navigation" defaultTab="collections" tabs={[
-          { id: 'collections', label: 'Rail Collections', content: <div className="rails-list-page__tree-panel"><div className="rails-list-page__tree-actions"><button type="button" className="rails-list-page__add-collection"><Plus size={18} aria-hidden="true" /> Add new rail collection</button><IconButton variant="ghost" size="small" aria-label="Search rail collections"><Search size={16} /></IconButton></div>{tree}</div> },
-          { id: 'pages', label: 'Pages', content: <div className="rails-list-page__empty-panel">No pages configured.</div> },
-        ]} />
+        {editingCollection ? collectionEditor : <div className="rails-list-page__tree-panel"><div className="rails-list-page__tree-actions"><TextButton variant="secondary" className="rails-list-page__add-collection" icon={<Plus size={18} />} onClick={() => openCollectionEditor()}>Add new rail collection</TextButton><IconButton variant="ghost" size="small" aria-label="Search rail collections"><Search size={16} /></IconButton></div>{tree}</div>}
       </aside>
       <main className="rails-list-page__main">
         <header className="rails-list-page__titlebar"><div><ListFilter size={20} aria-hidden="true" /><h1>Rails List</h1></div><PrimaryButton><Plus size={16} /> Create rail</PrimaryButton></header>
-        <div className="rails-list-page__filters"><Filter triggerVariant="icon-seamless" options={[{ id: 'title', label: 'Title', type: 'text' }, { id: 'rail-type', label: 'Rail type', type: 'multiselect', options: [{ value: 'editorial', label: 'Editorial' }, { value: 'recommended', label: 'Recommended' }] }, { id: 'collection', label: 'Collection', type: 'select', options: [{ value: 'home', label: 'Home' }, { value: 'drama', label: 'Drama' }, { value: 'kids', label: 'Kids' }] }]} activeFilters={filters} onChange={(nextFilters) => { setFilters(nextFilters); if (nextFilters.length <= 2) setMatchAllFilters(true); }} placeholder="Add filter" />{filters.length > 2 && <TextButton className="rails-list-page__match" variant="minimal" aria-label={`Switch to match ${matchAllFilters ? 'any' : 'all'} filters`} onClick={() => setMatchAllFilters((value) => !value)}>{matchAllFilters ? 'Match all filters' : 'Match any filter'}</TextButton>}</div>
+        <div className="rails-list-page__filters"><Filter triggerVariant="icon-seamless" options={[{ id: 'title', label: 'Title', type: 'text' }, { id: 'rail-type', label: 'Rail type', type: 'multiselect', options: [{ value: 'editorial', label: 'Editorial' }, { value: 'recommended', label: 'Recommended' }] }, { id: 'collection', label: 'Collection', type: 'select', options: [{ value: 'home', label: 'Home' }, { value: 'drama', label: 'Drama' }, { value: 'kids', label: 'Kids' }] }]} activeFilters={filters} onChange={(nextFilters) => { setFilters(nextFilters); if (nextFilters.length <= 2) setMatchAllFilters(true); }} placeholder="Add filter" />{filters.length > 2 && <TextButton className="rails-list-page__match" variant="secondary" aria-label={`Switch to match ${matchAllFilters ? 'any' : 'all'} filters`} onClick={() => setMatchAllFilters((value) => !value)}>{matchAllFilters ? 'Match all filters' : 'Match any filter'}</TextButton>}</div>
         <Table className="rails-list-page__table" ariaLabel="Rails list" columns={columns} data={rows} selectable expandable sortable showActions={false} totalItems={38} pageSize={38} height="calc(100dvh - 246px)" renderCell={(column, value) => column === 'collection' ? <span className="rails-list-page__collection-tag">{value}</span> : value} />
       </main>
     </div>

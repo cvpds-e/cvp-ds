@@ -95,8 +95,8 @@ export function FilterGroup({
       <style>{`
         .filter-group {
           /* Design System Tokens */
-          --filter-group-bg: #1a1a1f;
-          --filter-group-border: 1px solid var(--border-default);
+          --filter-group-bg: var(--cvp-color-surface-overlay);
+          --filter-group-border: var(--cvp-border-container);
           --filter-group-border-radius: 8px;
           --filter-group-padding: 16px;
           --filter-group-gap: 12px;
@@ -114,8 +114,8 @@ export function FilterGroup({
 
         /* Light theme overrides */
         [data-theme="light"] .filter-group {
-          --filter-group-bg: #f8f9fa;
-          --filter-group-border: 1px solid var(--border-default);
+          --filter-group-bg: var(--cvp-color-surface-overlay);
+          --filter-group-border: var(--cvp-border-container);
         }
 
         .filter-group__header {
@@ -130,12 +130,12 @@ export function FilterGroup({
           font-size: 14px;
           font-weight: 500;
           line-height: 20px;
-          color: #b4b4ba;
+          color: var(--cvp-color-text-secondary);
           margin: 0;
         }
 
         [data-theme="light"] .filter-group__title {
-          color: #6b7280;
+          color: var(--cvp-color-text-secondary);
         }
 
         .filter-group__operator-select {
@@ -145,16 +145,16 @@ export function FilterGroup({
         .filter-group__operator-button {
           /* Design System Tokens - matching Segment Query Configuration */
           --logical-op-bg: transparent;
-          --logical-op-hover-bg: var(--outline-btn-hover-bg, rgba(255, 255, 255, 0.05));
-          --logical-op-active-bg: var(--outline-btn-active-bg, rgba(255, 255, 255, 0.1));
-          --logical-op-text: var(--muted-foreground);
-          --logical-op-hover-text: var(--foreground);
-          --logical-op-active-text: var(--foreground);
-          --logical-op-border: 1px solid var(--border-default);
-          --logical-op-border-radius: var(--radius-sm, 4px);
+          --logical-op-hover-bg: var(--cvp-color-surface-hover);
+          --logical-op-active-bg: var(--cvp-color-surface-active);
+          --logical-op-text: var(--cvp-color-text-muted);
+          --logical-op-hover-text: var(--cvp-color-text-primary);
+          --logical-op-active-text: var(--cvp-color-text-primary);
+          --logical-op-border: var(--cvp-border-control);
+          --logical-op-border-radius: var(--cvp-shape-control-base);
           --logical-op-padding: 4px 10px;
-          --logical-op-font-size: var(--type-scale-s-size, 13px);
-          --logical-op-font-weight: var(--type-scale-s-medium-weight, 500);
+          --logical-op-font-size: var(--cvp-font-size-sm);
+          --logical-op-font-weight: var(--cvp-font-weight-medium);
 
           background: var(--logical-op-bg);
           border: var(--logical-op-border);
@@ -162,7 +162,7 @@ export function FilterGroup({
           color: var(--logical-op-text);
           padding: var(--logical-op-padding);
           cursor: pointer;
-          transition: var(--btn-transition, all 0.2s cubic-bezier(0.4, 0, 0.2, 1));
+          transition: background-color var(--cvp-motion-duration-fast) var(--cvp-motion-easing-standard), color var(--cvp-motion-duration-fast) var(--cvp-motion-easing-standard), border-color var(--cvp-motion-duration-fast) var(--cvp-motion-easing-standard);
           font-size: var(--logical-op-font-size);
           font-weight: var(--logical-op-font-weight);
           font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -185,7 +185,7 @@ export function FilterGroup({
         }
 
         .filter-group__operator-button:focus-visible {
-          outline: 2px solid var(--focus-ring, var(--border-focus));
+          outline: var(--cvp-focus-ring-width) solid var(--cvp-color-border-brand);
           outline-offset: 2px;
         }
 
@@ -197,8 +197,8 @@ export function FilterGroup({
 
         .filter-condition {
           /* Design System Tokens */
-          --filter-condition-bg: #14141a;
-          --filter-condition-border: 1px solid var(--border-default);
+          --filter-condition-bg: var(--cvp-color-surface-default);
+          --filter-condition-border: var(--cvp-border-container);
           --filter-condition-border-radius: 6px;
           --filter-condition-padding: 12px;
           --filter-condition-gap: 8px;
@@ -215,8 +215,8 @@ export function FilterGroup({
         }
 
         [data-theme="light"] .filter-condition {
-          --filter-condition-bg: #ffffff;
-          --filter-condition-border: 1px solid var(--border-default);
+          --filter-condition-bg: var(--cvp-color-surface-default);
+          --filter-condition-border: var(--cvp-border-container);
         }
 
         .filter-condition__header {
@@ -227,13 +227,13 @@ export function FilterGroup({
         }
 
         .filter-condition__drag-handle {
-          color: #6b6b78;
+          color: var(--cvp-color-icon-muted);
           cursor: grab;
           flex-shrink: 0;
         }
 
         [data-theme="light"] .filter-condition__drag-handle {
-          color: #9ca3af;
+          color: var(--cvp-color-icon-muted);
         }
 
         .filter-condition__drag-handle:active {
@@ -246,18 +246,18 @@ export function FilterGroup({
           font-weight: 400;
           line-height: 20px;
           letter-spacing: 0.15px;
-          color: #9b9ba5;
+          color: var(--cvp-color-text-muted);
           flex: 1;
         }
 
         [data-theme="light"] .filter-condition__label {
-          color: #6b7280;
+          color: var(--cvp-color-text-muted);
         }
 
         .filter-condition__remove {
           background: none;
           border: none;
-          color: #6b6b78;
+          color: var(--cvp-color-icon-muted);
           cursor: pointer;
           padding: 4px;
           display: flex;
@@ -269,16 +269,16 @@ export function FilterGroup({
         }
 
         [data-theme="light"] .filter-condition__remove {
-          color: #6b7280;
+          color: var(--cvp-color-icon-muted);
         }
 
         .filter-condition__remove:hover {
-          background-color: rgba(111, 139, 230, 0.08);
-          color: var(--border-focus);
+          background-color: var(--cvp-color-surface-hover);
+          color: var(--cvp-color-icon-brand);
         }
 
         .filter-condition__remove:focus-visible {
-          outline: 2px solid var(--border-focus);
+          outline: var(--cvp-focus-ring-width) solid var(--cvp-color-border-brand);
           outline-offset: 2px;
         }
 
@@ -297,54 +297,54 @@ export function FilterGroup({
           letter-spacing: 0.15px;
 
           /* Input Styles */
-          background-color: #212123;
-          border: 1px solid var(--border-strong);
+          background-color: var(--cvp-color-surface-raised);
+          border: var(--cvp-border-control);
           border-radius: 4px;
           padding: 8px 12px;
-          color: #ffffff;
+          color: var(--cvp-color-text-primary);
           width: 100%;
           box-sizing: border-box;
           transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         [data-theme="light"] .filter-condition__input {
-          background-color: #ffffff;
-          border: 1px solid var(--border-strong);
-          color: #111827;
+          background-color: var(--cvp-color-surface-raised);
+          border: var(--cvp-border-control);
+          color: var(--cvp-color-text-primary);
         }
 
         .filter-condition__input::placeholder {
-          color: #6b6b78;
+          color: var(--cvp-color-text-placeholder);
         }
 
         [data-theme="light"] .filter-condition__input::placeholder {
-          color: #9ca3af;
+          color: var(--cvp-color-text-placeholder);
         }
 
         .filter-condition__input:hover {
-          border-color: var(--border-focus);
+          border-color: var(--cvp-color-border-brand);
         }
 
         .filter-condition__input:focus {
           outline: none;
-          border: 2px solid var(--border-focus);
-          box-shadow: 0 0 0 3px rgba(111, 139, 230, 0.25);
-          padding: 7px 11px; /* Adjust for 2px border */
+          border-color: var(--cvp-color-border-brand);
+          box-shadow: var(--cvp-border-focus-ring);
+          padding: 8px 12px;
         }
 
         [data-theme="light"] .filter-condition__input:focus {
-          border: 2px solid var(--border-focus);
-          box-shadow: 0 0 0 3px rgba(111, 139, 230, 0.25);
+          border-color: var(--cvp-color-border-brand);
+          box-shadow: var(--cvp-border-focus-ring);
         }
 
         .filter-condition__input:disabled {
           opacity: 0.5;
           cursor: not-allowed;
-          color: #A1A1A8;
+          color: var(--cvp-color-text-disabled);
         }
 
         [data-theme="light"] .filter-condition__input:disabled {
-          color: #9ca3af;
+          color: var(--cvp-color-text-disabled);
         }
 
         .filter-group__actions {
@@ -362,9 +362,9 @@ export function FilterGroup({
           line-height: 20px;
 
           background: none;
-          border: 1px dashed var(--border-strong);
+          border: 1px dashed var(--cvp-color-border-strong);
           border-radius: 4px;
-          color: #b4b4ba;
+          color: var(--cvp-color-text-secondary);
           padding: 10px 16px;
           cursor: pointer;
           display: flex;
@@ -377,22 +377,22 @@ export function FilterGroup({
         }
 
         [data-theme="light"] .filter-group__action-button {
-          border-color: var(--border-strong);
-          color: #374151;
+          border-color: var(--cvp-color-border-strong);
+          color: var(--cvp-color-text-secondary);
         }
 
         .filter-group__action-button:hover {
-          border-color: var(--border-focus);
+          border-color: var(--cvp-color-border-brand);
           border-style: solid;
-          color: var(--border-focus);
-          background-color: rgba(111, 139, 230, 0.04);
+          color: var(--cvp-color-text-brand);
+          background-color: var(--cvp-color-surface-hover);
         }
 
         .filter-group__action-button:focus-visible {
           outline: none;
-          border: 2px solid var(--border-focus);
-          box-shadow: 0 0 0 3px rgba(111, 139, 230, 0.25);
-          padding: 9px 15px; /* Adjust for 2px border */
+          border-color: var(--cvp-color-border-brand);
+          box-shadow: var(--cvp-border-focus-ring);
+          padding: 10px 16px;
         }
 
         .filter-group__action-button-icon {

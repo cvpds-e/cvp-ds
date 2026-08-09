@@ -3,7 +3,6 @@ import './SecondaryButton.css';
 
 export interface SecondaryButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
-  size?: 'small' | 'medium' | 'large';
   variant?: 'default' | 'compact';
   loading?: boolean;
   loadingText?: string;
@@ -11,7 +10,6 @@ export interface SecondaryButtonProps extends React.ButtonHTMLAttributes<HTMLBut
 
 export function SecondaryButton({
   children,
-  size = 'medium',
   variant = 'default',
   loading = false,
   loadingText = 'Loading',
@@ -24,7 +22,6 @@ export function SecondaryButton({
   const classNames = [
     'secondary-button',
     'cvp-secondary-button',
-    `cvp-secondary-button--${size}`,
     `cvp-secondary-button--${variant}`,
     className,
   ].filter(Boolean).join(' ');

@@ -3,8 +3,6 @@
 .cvp-outline-button:active:not(:disabled),.cvp-outline-button[data-preview-state="active"]{background:var(--cvp-button-outline-bg-active);border-color:var(--cvp-button-outline-border-active);transform:translateY(var(--cvp-button-outline-press-offset))}
 .cvp-outline-button:focus-visible,.cvp-outline-button[data-preview-state="focus"]{border-color:var(--cvp-button-outline-border-focus);box-shadow:var(--cvp-button-outline-focus-ring)}
 .cvp-outline-button:disabled{color:var(--cvp-button-outline-text-disabled);background:var(--cvp-button-outline-bg-disabled);border-color:var(--cvp-button-outline-border-disabled);cursor:not-allowed;transform:none}
-.cvp-outline-button--small{min-height:var(--cvp-button-outline-height-small);padding-inline:var(--cvp-button-outline-padding-x-small);font-size:var(--cvp-button-outline-font-size-small);line-height:var(--cvp-button-outline-line-height-small)}
-.cvp-outline-button--large{min-height:var(--cvp-button-outline-height-large);padding-inline:var(--cvp-button-outline-padding-x-large);font-size:var(--cvp-button-outline-font-size-large);line-height:var(--cvp-button-outline-line-height-large);border-radius:var(--cvp-button-outline-radius-large)}
 .cvp-outline-button--compact{min-height:var(--cvp-button-outline-height-compact);padding-inline:var(--cvp-button-outline-padding-x-compact)}
 .cvp-outline-button--dotted{border-style:dashed}
 .cvp-outline-button__label{display:inline-flex;align-items:center;gap:var(--cvp-button-outline-gap)}

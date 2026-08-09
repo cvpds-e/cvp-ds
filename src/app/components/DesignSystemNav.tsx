@@ -15,6 +15,7 @@ const NAV_ITEMS = [
   { id: 'border', label: 'Border', category: 'Foundations' },
   { id: 'elevation', label: 'Elevation', category: 'Foundations' },
   { id: 'layout-foundation', label: 'Layout', category: 'Foundations' },
+  { id: 'token-architecture', label: 'Token Architecture', category: 'Foundations' },
 
   // Core Components
   { id: 'primary-button', label: 'Primary Button', category: 'Buttons' },
@@ -33,6 +34,7 @@ const NAV_ITEMS = [
   { id: 'select', label: 'Select', category: 'Forms' },
   { id: 'multi-select', label: 'Multi Select', category: 'Forms' },
   { id: 'filter', label: 'Filter', category: 'Forms' },
+  { id: 'query-controls', label: 'Query Controls', category: 'Forms' },
   { id: 'date-picker', label: 'Date Picker', category: 'Forms' },
   
   // Navigation & Layout

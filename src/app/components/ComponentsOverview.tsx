@@ -144,7 +144,7 @@ export function ComponentsOverview() {
           width: 28px;
           height: 28px;
           background: var(--primary);
-          color: #ffffff;
+          color: var(--cvp-color-text-on-brand);
           border-radius: 50%;
           display: flex;
           align-items: center;
@@ -220,7 +220,7 @@ export function ComponentsOverview() {
           display: inline-block;
           padding: 2px 8px;
           background: var(--primary);
-          color: #ffffff;
+          color: var(--cvp-color-text-on-brand);
           border-radius: 3px;
           font-size: 11px;
           font-weight: 500;
@@ -923,12 +923,12 @@ export function ComponentsOverview() {
             </div>
             <div className="component-preview">
               <div style={{
-                backgroundImage: 'linear-gradient(to right, #182848, #4b6cb7)',
-                border: '1px solid #2c3250',
+                backgroundImage: 'linear-gradient(to right, var(--cvp-color-secondary-default), var(--cvp-color-brand-default))',
+                border: 'var(--cvp-border-container)',
                 borderRadius: '4px',
                 padding: '16px 24px',
                 fontSize: 'var(--type-scale-s-size)',
-                color: '#fff',
+                color: 'var(--cvp-color-text-on-brand)',
                 textAlign: 'center',
                 fontWeight: 'var(--font-weight-medium)'
               }}>

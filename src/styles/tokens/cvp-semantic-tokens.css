@@ -325,7 +325,7 @@
 
   /* Menus & Dropdowns */
   --cvp-color-menu-item-active-bg:  var(--cvp-primitive-sky-50);   /* #eff6ff */
-  --cvp-color-menu-item-active-text:var(--cvp-primitive-sky-500);  /* #2563eb */
+  --cvp-color-menu-item-active-text:var(--cvp-primitive-sky-700);  /* #1e40af — stronger selected-value contrast on light surfaces */
 
   /* Chips & Tags */
   --cvp-color-chip-bg:       var(--cvp-primitive-neutral-5);   /* #f3f4f6 */

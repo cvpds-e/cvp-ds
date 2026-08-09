@@ -49,7 +49,7 @@ export function TreeItem({
     if (tag === 'EDITORIAL') {
       return 'var(--a11y-rail-editorial)';
     }
-    return 'var(--muted-foreground)';
+    return 'var(--cvp-color-text-muted)';
   };
 
   return (
@@ -60,23 +60,23 @@ export function TreeItem({
           --tree-item-padding-left: ${paddingLeft}px;
           --tree-item-padding-right: 16px;
           --tree-item-padding-vertical: 4px;
-          --tree-item-font-size: var(--type-scale-m-size);
-          --tree-item-font-family: var(--font-family);
-          --tree-item-font-weight: var(--type-scale-m-weight);
-          --tree-item-line-height: var(--type-scale-m-line-height);
+          --tree-item-font-size: var(--cvp-font-size-md);
+          --tree-item-font-family: var(--cvp-font-family-sans);
+          --tree-item-font-weight: var(--cvp-font-weight-regular);
+          --tree-item-line-height: var(--cvp-line-height-snug);
           --tree-item-min-height: 28px;
           --tree-item-transition: all var(--default-transition-duration) var(--default-transition-timing-function);
-          --tree-item-bg-selected: var(--secondary);
-          --tree-item-bg-hover: var(--muted);
-          --tree-item-text-color: var(--foreground);
+          --tree-item-bg-selected: var(--cvp-color-surface-active);
+          --tree-item-bg-hover: var(--cvp-color-surface-hover);
+          --tree-item-text-color: var(--cvp-color-text-primary);
           --tree-item-icon-size: ${iconSize}px;
           --tree-item-status-dot-size: 8px;
           --tree-item-icon-spacing: 8px;
-          --tree-item-tag-font-size: var(--type-scale-s-regular-size);
-          --tree-item-tag-font-family: var(--font-family-mono);
-          --tree-item-tag-font-weight: var(--type-scale-s-regular-weight);
-          --tree-item-tag-line-height: var(--type-scale-s-regular-line-height);
-          --tree-item-tag-letter-spacing: var(--type-scale-s-regular-letter-spacing);
+          --tree-item-tag-font-size: var(--cvp-font-size-sm);
+          --tree-item-tag-font-family: var(--cvp-font-family-mono);
+          --tree-item-tag-font-weight: var(--cvp-font-weight-regular);
+          --tree-item-tag-line-height: var(--cvp-line-height-snug);
+          --tree-item-tag-letter-spacing: var(--cvp-letter-spacing-normal);
           --tree-item-tag-margin-left: 16px;
 
           /* Component Styles */
@@ -130,7 +130,7 @@ export function TreeItem({
           align-items: center;
           justify-content: center;
           margin-right: var(--tree-item-icon-spacing);
-          color: var(--muted-foreground);
+          color: var(--cvp-color-text-muted);
         }
 
         .tree-item__label {

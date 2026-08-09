@@ -24,6 +24,7 @@ export interface TreeProps {
   showTags?: boolean;
   className?: string;
   style?: React.CSSProperties;
+  renderActions?: (item: TreeItem) => React.ReactNode;
 }
 
 interface BranchProps {
@@ -35,14 +36,16 @@ interface BranchProps {
   showTags: boolean;
   onToggle: (id: string) => void;
   onSelect?: (item: TreeItem) => void;
+  renderActions?: (item: TreeItem) => React.ReactNode;
 }
 
-function TreeBranch({ item, level, expandedIds, selectedId, showStatus, showTags, onToggle, onSelect }: BranchProps) {
+function TreeBranch({ item, level, expandedIds, selectedId, showStatus, showTags, onToggle, onSelect, renderActions }: BranchProps) {
   const hasChildren = Boolean(item.children?.length);
   const isExpanded = hasChildren && expandedIds.has(item.id);
   const isSelected = selectedId === item.id;
   const isCategory = item.type === 'category' || item.type === 'subcategory' || hasChildren;
   const tagTone = item.tag === 'EDITORIAL' ? 'editorial' : item.tag === 'RECOMMENDED' ? 'recommended' : 'neutral';
+  const actions = renderActions?.(item);
 
   const activate = () => {
     if (item.disabled) return;
@@ -84,11 +87,12 @@ function TreeBranch({ item, level, expandedIds, selectedId, showStatus, showTags
           {typeof item.count === 'number' && <span className="cvp-tree__count">({item.count})</span>}
           {showTags && item.tag && <span className={`cvp-tree__tag cvp-tree__tag--${tagTone}`}>{item.tag}</span>}
         </button>
+        {actions && <span className="cvp-tree__actions">{actions}</span>}
       </div>
       {hasChildren && isExpanded && (
         <ul className="cvp-tree__group">
           {item.children!.map((child) => (
-            <TreeBranch key={child.id} item={child} level={level + 1} expandedIds={expandedIds} selectedId={selectedId} showStatus={showStatus} showTags={showTags} onToggle={onToggle} onSelect={onSelect} />
+            <TreeBranch key={child.id} item={child} level={level + 1} expandedIds={expandedIds} selectedId={selectedId} showStatus={showStatus} showTags={showTags} onToggle={onToggle} onSelect={onSelect} renderActions={renderActions} />
           ))}
         </ul>
       )}
@@ -107,6 +111,7 @@ export function Tree({
   showTags = true,
   className = '',
   style,
+  renderActions,
 }: TreeProps) {
   const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set(initialExpanded));
   const handleToggle = (id: string) => setExpandedIds((current) => {
@@ -119,7 +124,7 @@ export function Tree({
     <div className={`cvp-tree cvp-tree--${density} ${className}`} style={style}>
       {data.length ? (
         <ul className="cvp-tree__root" aria-label={ariaLabel}>
-          {data.map((item) => <TreeBranch key={item.id} item={item} level={0} expandedIds={expandedIds} selectedId={selectedId} showStatus={showStatus} showTags={showTags} onToggle={handleToggle} onSelect={onSelect} />)}
+          {data.map((item) => <TreeBranch key={item.id} item={item} level={0} expandedIds={expandedIds} selectedId={selectedId} showStatus={showStatus} showTags={showTags} onToggle={handleToggle} onSelect={onSelect} renderActions={renderActions} />)}
         </ul>
       ) : <div className="cvp-tree__empty">No items</div>}
     </div>

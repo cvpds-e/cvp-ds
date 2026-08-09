@@ -11,9 +11,7 @@ const tokenRows: ComponentTokenContractRow[] = [
   { role:'Label', token:'--cvp-button-primary-text', source:'--cvp-color-text-on-brand', contract:'AA/AAA pairing', activation:'Available' },
   { role:'Focus', token:'--cvp-button-primary-focus-ring', source:'--cvp-border-focus-ring', contract:'Border + outer halo', activation:':focus-visible' },
   { role:'Disabled surface', token:'--cvp-button-primary-bg-disabled', source:'--cvp-color-surface-disabled', contract:'Theme resolved', activation:':disabled' },
-  { role:'Default height', token:'--cvp-button-primary-height', source:'--cvp-space-800', contract:'40px', activation:'size="medium"' },
-  { role:'Small height', token:'--cvp-button-primary-height-small', source:'--cvp-space-8', contract:'32px', activation:'size="small"' },
-  { role:'Large height', token:'--cvp-button-primary-height-large', source:'--cvp-space-900', contract:'48px', activation:'size="large"' },
+  { role:'Standard height', token:'--cvp-button-primary-height', source:'--cvp-space-8', contract:'32px', activation:'All Primary Buttons' },
   { role:'Shape', token:'--cvp-button-primary-radius', source:'--cvp-shape-control-compact', contract:'4px', activation:'Small / medium' },
   { role:'Motion', token:'--cvp-motion-duration-fast', source:'--cvp-primitive-duration-fast', contract:'150ms standard easing', activation:'Interactive state change' },
   { role:'Loading indicator', token:'--cvp-button-primary-spinner-size', source:'--cvp-space-4', contract:'16px / 2px stroke', activation:'loading={true}' },
@@ -49,8 +47,8 @@ export function PrimaryButtonDocumentation() {
     </section>
 
     <section className="cvp-input-doc__panel">
-      <header><b>03</b><div><h2>Sizes and density</h2><p>Medium is the default; small and compact are reserved for dense desktop tooling.</p></div></header>
-      <div className="cvp-button-doc__sizes"><article><span>Small · 32px</span><PrimaryButton size="small">Add item</PrimaryButton></article><article><span>Medium · 40px</span><PrimaryButton>Save changes</PrimaryButton></article><article><span>Large · 48px</span><PrimaryButton size="large">Continue</PrimaryButton></article><article><span>Compact · 32px</span><PrimaryButton variant="compact">Apply</PrimaryButton></article></div>
+      <header><b>03</b><div><h2>Standard size</h2><p>Primary Button has one 32px size. Additional sizes will be introduced only when a distinct need is established.</p></div></header>
+      <div className="cvp-button-doc__sizes"><article><span>Standard · 32px</span><PrimaryButton>Save changes</PrimaryButton></article></div>
     </section>
 
     <section className="cvp-input-doc__panel">

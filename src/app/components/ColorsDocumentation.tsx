@@ -256,7 +256,7 @@ export function ColorsDocumentation() {
           <h1 className="colors-docs__title">Color System</h1>
           <p className="colors-docs__description">
             A comprehensive dual-theme color palette built around <strong>#6f8be6</strong> (Periwinkle Blue) and <strong>#3d63dd</strong> (Royal Blue).
-            All colors adapt seamlessly between dark and light themes for optimal readability and WCAG AA compliance.
+            Semantic tokens adapt between dark and light themes for consistent readability. WCAG AA compliance is verified per rendered component, state, and theme as part of the accessibility audit.
           </p>
         </div>
 
@@ -1141,9 +1141,9 @@ export function ColorsDocumentation() {
         <div className="colors-docs__note">
           <strong>Usage Guidelines:</strong>
           <ul style={{ marginTop: '12px', paddingLeft: '20px', lineHeight: '1.8' }}>
-            <li>Always use CSS variables (e.g., <span className="colors-docs__code">var(--text-primary)</span>) instead of hardcoded values</li>
+            <li>Use semantic CVP tokens (e.g., <span className="colors-docs__code">var(--cvp-color-text-primary)</span>) instead of hardcoded values</li>
             <li>The active theme (dark/light) is indicated by a highlighted border on the color swatch</li>
-            <li>All color combinations meet WCAG AA accessibility standards for contrast</li>
+            <li>Core semantic text, surface, border, and focus pairings are designed for WCAG AA contrast; each rendered component and theme is verified through the accessibility audit before release</li>
             <li>Focus states use 2px borders + 3px glow for maximum visibility</li>
             <li>Hover states use 1px border with the primary brand color</li>
           </ul>

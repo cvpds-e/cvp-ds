@@ -75,12 +75,12 @@ export function Toggle({
       <style>{`
         .toggle {
           /* Toggle Design Tokens */
-          --toggle-font-family: var(--font-family);
-          --toggle-font-size: var(--type-scale-m-size);
-          --toggle-font-weight: var(--type-scale-m-weight);
-          --toggle-line-height: var(--type-scale-m-line-height);
-          --toggle-letter-spacing: var(--type-scale-m-letter-spacing);
-          --toggle-transition: var(--btn-transition);
+          --toggle-font-family: var(--cvp-font-family-sans);
+          --toggle-font-size: var(--cvp-font-size-md);
+          --toggle-font-weight: var(--cvp-font-weight-regular);
+          --toggle-line-height: var(--cvp-line-height-normal);
+          --toggle-letter-spacing: var(--cvp-letter-spacing-normal);
+          --toggle-transition: background-color var(--cvp-motion-duration-fast) var(--cvp-motion-easing-standard), border-color var(--cvp-motion-duration-fast) var(--cvp-motion-easing-standard), transform var(--cvp-motion-duration-fast) var(--cvp-motion-easing-standard);
           
           /* Toggle switch tokens - default size */
           --toggle-width: 36px;
@@ -91,33 +91,33 @@ export function Toggle({
           --toggle-gap: 8px;
           
           /* Toggle states */
-          --toggle-bg: #45454a;
-          --toggle-border: var(--border-strong);
-          --toggle-thumb-bg: #fff;
-          --toggle-hover-bg: #6f8be6;
-          --toggle-hover-border: var(--border-focus);
-          --toggle-checked-bg: #3d63dd;
-          --toggle-checked-border: var(--border-focus);
-          --toggle-checked-thumb-bg: #fff;
-          --toggle-disabled-bg: #4a4a4a;
-          --toggle-disabled-border: #4a4a4a;
-          --toggle-disabled-thumb-bg: #A1A1A8;
-          --toggle-disabled-checked-bg: #A1A1A8;
-          --toggle-disabled-checked-border: #A1A1A8;
-          --toggle-disabled-checked-thumb-bg: #333;
+          --toggle-bg: var(--cvp-color-surface-active);
+          --toggle-border: var(--cvp-color-border-strong);
+          --toggle-thumb-bg: var(--cvp-color-text-on-brand);
+          --toggle-hover-bg: var(--cvp-color-brand-hover);
+          --toggle-hover-border: var(--cvp-color-border-brand);
+          --toggle-checked-bg: var(--cvp-color-brand-default);
+          --toggle-checked-border: var(--cvp-color-border-brand);
+          --toggle-checked-thumb-bg: var(--cvp-color-text-on-brand);
+          --toggle-disabled-bg: var(--cvp-color-surface-disabled);
+          --toggle-disabled-border: var(--cvp-color-border-disabled);
+          --toggle-disabled-thumb-bg: var(--cvp-color-text-disabled);
+          --toggle-disabled-checked-bg: var(--cvp-color-surface-disabled);
+          --toggle-disabled-checked-border: var(--cvp-color-border-disabled);
+          --toggle-disabled-checked-thumb-bg: var(--cvp-color-icon-disabled);
           
           /* Focus styles */
-          --toggle-focus-ring: 0 0 0 2px var(--focus-ring);
+          --toggle-focus-ring: var(--cvp-border-focus-ring);
           
           /* Cursor styles */
           --toggle-cursor: pointer;
           --toggle-disabled-cursor: not-allowed;
           
           /* Label tokens */
-          --toggle-label-color: var(--foreground);
-          --toggle-description-color: var(--muted-foreground);
-          --toggle-description-font-size: var(--type-scale-s-size);
-          --toggle-description-line-height: var(--type-scale-s-line-height);
+          --toggle-label-color: var(--cvp-color-text-primary);
+          --toggle-description-color: var(--cvp-color-text-muted);
+          --toggle-description-font-size: var(--cvp-font-size-sm);
+          --toggle-description-line-height: var(--cvp-line-height-normal);
           --toggle-description-margin-top: 2px;
           
           /* Component styles */
@@ -226,7 +226,7 @@ export function Toggle({
           transform: translate(-50%, -50%);
           width: 10px;
           height: 2px;
-          background-color: #fff;
+          background-color: var(--cvp-color-text-on-brand);
           border-radius: 1px;
         }
 

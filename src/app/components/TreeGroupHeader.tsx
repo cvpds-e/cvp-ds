@@ -52,21 +52,21 @@ export function TreeGroupHeader({
           --tree-group-header-padding-left: ${paddingLeft}px;
           --tree-group-header-padding-right: 16px;
           --tree-group-header-padding-vertical: 4px;
-          --tree-group-header-font-size: var(--type-scale-m-size);
-          --tree-group-header-font-family: var(--font-family);
-          --tree-group-header-font-weight: var(--type-scale-m-weight);
-          --tree-group-header-line-height: var(--type-scale-m-line-height);
+          --tree-group-header-font-size: var(--cvp-font-size-md);
+          --tree-group-header-font-family: var(--cvp-font-family-sans);
+          --tree-group-header-font-weight: var(--cvp-font-weight-regular);
+          --tree-group-header-line-height: var(--cvp-line-height-snug);
           --tree-group-header-min-height: 28px;
           --tree-group-header-transition: all var(--default-transition-duration) var(--default-transition-timing-function);
-          --tree-group-header-bg-selected: var(--secondary);
-          --tree-group-header-bg-hover: var(--muted);
-          --tree-group-header-text-color: var(--foreground);
+          --tree-group-header-bg-selected: var(--cvp-color-surface-active);
+          --tree-group-header-bg-hover: var(--cvp-color-surface-hover);
+          --tree-group-header-text-color: var(--cvp-color-text-primary);
           --tree-group-header-icon-size: ${iconSize}px;
           --tree-group-header-chevron-size: ${chevronSize}px;
           --tree-group-header-icon-spacing: 8px;
-          --tree-group-header-count-color: var(--muted-foreground);
-          --tree-group-header-count-font-size: var(--type-scale-m-size);
-          --tree-group-header-count-font-weight: var(--type-scale-m-weight);
+          --tree-group-header-count-color: var(--cvp-color-text-muted);
+          --tree-group-header-count-font-size: var(--cvp-font-size-md);
+          --tree-group-header-count-font-weight: var(--cvp-font-weight-regular);
           --tree-group-header-count-margin-left: 8px;
 
           /* Component Styles */
@@ -109,7 +109,7 @@ export function TreeGroupHeader({
           align-items: center;
           justify-content: center;
           margin-right: var(--tree-group-header-icon-spacing);
-          color: var(--foreground);
+          color: var(--cvp-color-text-primary);
         }
 
         .tree-group-header__icon-container {
@@ -119,7 +119,7 @@ export function TreeGroupHeader({
           align-items: center;
           justify-content: center;
           margin-right: var(--tree-group-header-icon-spacing);
-          color: var(--foreground);
+          color: var(--cvp-color-text-primary);
         }
 
         .tree-group-header__content {

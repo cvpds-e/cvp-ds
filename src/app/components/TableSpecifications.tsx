@@ -56,7 +56,8 @@ export function TableSpecifications() {
     { property: 'Cell Padding', value: '12px 16px', token: 'table-cell-padding' },
     { property: 'Settings Row Padding', value: '8px 12px', token: 'table-settings-padding' },
     { property: 'Pagination Padding', value: '16px 24px', token: 'table-pagination-padding' },
-    { property: 'Expandable Content Padding', value: '16px 24px', token: 'table-expanded-padding' }
+    { property: 'Expandable Content Padding', value: '16px 24px', token: 'table-expanded-padding' },
+    { property: 'Table Control Gap', value: '2px', token: '--cvp-table-control-gap → --cvp-space-100' }
   ];
 
   const bordersData = [
@@ -68,7 +69,7 @@ export function TableSpecifications() {
 
   const statesData = [
     { property: 'Row Hover Background', value: '#f3f4f6', token: 'table-row-hover' },
-    { property: 'Row Selected Background', value: 'rgba(61, 99, 221, 0.1)', token: 'table-row-selected' },
+    { property: 'Row Selected Background', value: 'Neutral active surface', token: '--cvp-table-row-bg-selected → --cvp-color-surface-active' },
     { property: 'Header Hover Background', value: '#e5e7eb', token: 'table-header-hover' },
     { property: 'Button Hover Background', value: '#f3f4f6', token: 'table-icon-btn-hover' }
   ];
@@ -80,7 +81,7 @@ export function TableSpecifications() {
     { property: 'Background', value: '#dcfce7', token: 'collection-tag-bg-color' },
     { property: 'Border', value: '1px solid #86efac', token: 'collection-tag-border' },
     { property: 'Border Radius', value: '4px', token: 'collection-tag-border-radius' },
-    { property: 'Padding', value: '1px 6px', token: 'collection-tag-padding' }
+    { property: 'Padding', value: '0 4px', token: '--cvp-space-1' }
   ];
 
   const colorsData = [

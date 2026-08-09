@@ -2,6 +2,7 @@
 .rail-details-docs__hero { display: flex; max-width: 760px; flex-direction: column; align-items: flex-start; gap: var(--cvp-space-3); margin-bottom: var(--cvp-space-1000); }
 .rail-details-docs__eyebrow { color: var(--cvp-color-text-link-default); font-size: var(--cvp-font-size-sm); font-weight: var(--cvp-font-weight-semibold); letter-spacing: var(--cvp-letter-spacing-wide); text-transform: uppercase; }
 .rail-details-docs__hero h1 { margin: 0; font-size: var(--cvp-font-size-2xl); }
+.rail-details-docs__preview-actions { display: flex; flex-wrap: wrap; gap: var(--cvp-space-2); }
 .rail-details-docs__hero p, .rail-details-docs__grid p, .rail-details-docs__note p { margin: 0; color: var(--cvp-color-text-muted); line-height: var(--cvp-line-height-relaxed); }
 .rail-details-docs__section { margin-bottom: var(--cvp-space-1000); }
 .rail-details-docs__section-heading { margin-bottom: var(--cvp-space-4); }

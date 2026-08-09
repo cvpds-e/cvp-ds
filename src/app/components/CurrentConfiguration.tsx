@@ -55,10 +55,10 @@ export function CurrentConfiguration({
       <style>{`
         .current-configuration {
           /* Design System Tokens */
-          --current-config-bg: var(--current-config-bg);
+          --current-config-bg: var(--cvp-color-surface-subtle);
           --current-config-border-radius: 8px;
-          --current-config-padding: var(--spacing-4);
-          --current-config-font-family: var(--font-family);
+          --current-config-padding: var(--cvp-space-4);
+          --current-config-font-family: var(--cvp-font-family-sans);
           
           /* Component Styles */
           background-color: var(--current-config-bg);
@@ -68,19 +68,19 @@ export function CurrentConfiguration({
         }
 
         .current-configuration__title {
-          font-size: var(--type-scale-s-size);
-          font-weight: var(--type-scale-s-medium-weight);
-          line-height: var(--type-scale-s-line-height);
-          letter-spacing: var(--type-scale-s-letter-spacing);
-          color: var(--foreground);
-          margin-bottom: var(--spacing-3);
+          font-size: var(--cvp-font-size-sm);
+          font-weight: var(--cvp-font-weight-medium);
+          line-height: var(--cvp-line-height-snug);
+          letter-spacing: var(--cvp-letter-spacing-normal);
+          color: var(--cvp-color-text-primary);
+          margin-bottom: var(--cvp-space-3);
           text-transform: uppercase;
         }
 
         .current-configuration__summary {
           display: flex;
-          gap: var(--spacing-6);
-          margin-bottom: var(--spacing-4);
+          gap: var(--cvp-space-6);
+          margin-bottom: var(--cvp-space-4);
         }
 
         .current-configuration__summary-item {
@@ -90,93 +90,93 @@ export function CurrentConfiguration({
         }
 
         .current-configuration__summary-label {
-          font-size: var(--type-scale-s-size);
-          font-weight: var(--type-scale-s-weight);
-          line-height: var(--type-scale-s-line-height);
-          letter-spacing: var(--type-scale-s-letter-spacing);
-          color: var(--muted-foreground);
+          font-size: var(--cvp-font-size-sm);
+          font-weight: var(--cvp-font-weight-regular);
+          line-height: var(--cvp-line-height-snug);
+          letter-spacing: var(--cvp-letter-spacing-normal);
+          color: var(--cvp-color-text-muted);
         }
 
         .current-configuration__summary-value {
-          font-size: var(--type-scale-s-size);
-          font-weight: var(--type-scale-s-weight);
-          line-height: var(--type-scale-s-line-height);
-          letter-spacing: var(--type-scale-s-letter-spacing);
-          color: var(--foreground);
+          font-size: var(--cvp-font-size-sm);
+          font-weight: var(--cvp-font-weight-regular);
+          line-height: var(--cvp-line-height-snug);
+          letter-spacing: var(--cvp-letter-spacing-normal);
+          color: var(--cvp-color-text-primary);
         }
 
         .current-configuration__sort-value {
           background: var(--current-config-summary-value-bg);
           border-radius: 4px;
           padding: 2px 8px;
-          font-family: var(--font-family-mono);
+          font-family: var(--cvp-font-family-mono);
         }
 
         .current-configuration__filters-count {
           background: var(--current-config-summary-value-bg);
           border-radius: 4px;
           padding: 2px 8px;
-          font-family: var(--font-family-mono);
-          font-size: var(--type-scale-s-size);
-          font-weight: var(--type-scale-s-weight);
-          line-height: var(--type-scale-s-line-height);
-          letter-spacing: var(--type-scale-s-letter-spacing);
+          font-family: var(--cvp-font-family-mono);
+          font-size: var(--cvp-font-size-sm);
+          font-weight: var(--cvp-font-weight-regular);
+          line-height: var(--cvp-line-height-snug);
+          letter-spacing: var(--cvp-letter-spacing-normal);
         }
 
         .current-configuration__active-filters {
-          margin-bottom: var(--spacing-4);
+          margin-bottom: var(--cvp-space-4);
         }
 
         .current-configuration__active-filters-title {
-          font-size: var(--type-scale-s-size);
+          font-size: var(--cvp-font-size-sm);
           font-weight: 500;
-          line-height: var(--type-scale-s-line-height);
-          letter-spacing: var(--type-scale-s-letter-spacing);
-          color: var(--muted-foreground);
-          margin-bottom: var(--spacing-2);
+          line-height: var(--cvp-line-height-snug);
+          letter-spacing: var(--cvp-letter-spacing-normal);
+          color: var(--cvp-color-text-muted);
+          margin-bottom: var(--cvp-space-2);
         }
 
         .current-configuration__filter-list {
           display: flex;
           flex-direction: column;
-          gap: var(--spacing-1);
+          gap: var(--cvp-space-1);
         }
 
         .current-configuration__filter-item {
           background: transparent;
-          border: 1px solid var(--border-default);
+          border: var(--cvp-border-control);
           border-radius: 4px;
           padding: 6px 12px;
-          font-family: var(--font-family);
-          font-size: var(--type-scale-s-size);
-          font-weight: var(--type-scale-s-weight);
-          line-height: var(--type-scale-s-line-height);
-          letter-spacing: var(--type-scale-s-letter-spacing);
-          color: var(--foreground);
+          font-family: var(--cvp-font-family-sans);
+          font-size: var(--cvp-font-size-sm);
+          font-weight: var(--cvp-font-weight-regular);
+          line-height: var(--cvp-line-height-snug);
+          letter-spacing: var(--cvp-letter-spacing-normal);
+          color: var(--cvp-color-text-primary);
           display: flex;
           align-items: center;
           gap: 6px;
         }
 
         .current-configuration__filter-field {
-          font-weight: var(--type-scale-s-medium-weight);
+          font-weight: var(--cvp-font-weight-medium);
         }
 
         .current-configuration__filter-operator {
           font-style: italic;
-          color: var(--muted-foreground);
+          color: var(--cvp-color-text-muted);
         }
 
         .current-configuration__filter-value {
-          font-family: var(--font-family-mono);
-          color: var(--foreground);
+          font-family: var(--cvp-font-family-mono);
+          color: var(--cvp-color-text-primary);
         }
 
         .current-configuration__logical-operator {
           background: transparent;
-          color: var(--muted-foreground);
-          font-size: var(--type-scale-xs-size);
-          font-weight: var(--type-scale-s-medium-weight);
+          color: var(--cvp-color-text-muted);
+          font-size: var(--cvp-font-size-xs);
+          font-weight: var(--cvp-font-weight-medium);
           padding: 2px 6px;
           border-radius: 2px;
           margin: 0 4px;

@@ -28,15 +28,15 @@ export function PageSideNav({ sections, className = '' }: PageSideNavProps) {
         .page-side-nav {
           /* Design System Tokens */
           --page-side-nav-width: 224px;
-          --page-side-nav-bg: var(--bg-base);
-          --page-side-nav-border: 1px solid var(--border-default);
+          --page-side-nav-bg: var(--cvp-color-surface-page);
+          --page-side-nav-border: var(--cvp-border-divider);
           --page-side-nav-padding: 16px;
           --page-side-nav-section-gap: 24px;
           
           /* Section Title */
           --page-side-nav-section-title-size: 10px;
           --page-side-nav-section-title-weight: 600;
-          --page-side-nav-section-title-color: var(--text-tertiary);
+          --page-side-nav-section-title-color: var(--cvp-color-text-muted);
           --page-side-nav-section-title-spacing: 0.05em;
           --page-side-nav-section-title-margin: 12px;
           --page-side-nav-section-title-padding: 0 8px;
@@ -46,30 +46,30 @@ export function PageSideNav({ sections, className = '' }: PageSideNavProps) {
           --page-side-nav-item-size: 14px;
           --page-side-nav-item-radius: 6px;
           --page-side-nav-item-gap: 2px;
-          --page-side-nav-item-color: var(--text-secondary);
-          --page-side-nav-item-hover-bg: var(--bg-hover);
-          --page-side-nav-item-hover-color: var(--text-primary);
-          --page-side-nav-item-active-bg: rgba(111, 139, 230, 0.08);
-          --page-side-nav-item-active-color: #6f8be6;
+          --page-side-nav-item-color: var(--cvp-color-text-secondary);
+          --page-side-nav-item-hover-bg: var(--cvp-color-surface-hover);
+          --page-side-nav-item-hover-color: var(--cvp-color-text-primary);
+          --page-side-nav-item-active-bg: var(--cvp-color-surface-active);
+          --page-side-nav-item-active-color: var(--cvp-color-text-brand);
           --page-side-nav-item-transition: all 150ms ease;
           
           /* Icon */
-          --page-side-nav-icon-color: var(--icon-muted);
-          --page-side-nav-icon-active-color: #6f8be6;
-          --page-side-nav-icon-hover-color: var(--icon-strong);
+          --page-side-nav-icon-color: var(--cvp-color-icon-muted);
+          --page-side-nav-icon-active-color: var(--cvp-color-icon-brand);
+          --page-side-nav-icon-hover-color: var(--cvp-color-icon-strong);
           --page-side-nav-icon-size: 16px;
           
           /* Badge */
           --page-side-nav-badge-size: 10px;
           --page-side-nav-badge-weight: 500;
-          --page-side-nav-badge-bg: var(--bg-surface-raised);
-          --page-side-nav-badge-color: var(--text-secondary);
+          --page-side-nav-badge-bg: var(--cvp-color-surface-raised);
+          --page-side-nav-badge-color: var(--cvp-color-text-secondary);
           --page-side-nav-badge-padding: 2px 6px;
           --page-side-nav-badge-radius: 4px;
           
           /* Active Indicator */
           --page-side-nav-indicator-size: 14px;
-          --page-side-nav-indicator-color: #6f8be6;
+          --page-side-nav-indicator-color: var(--cvp-color-icon-brand);
           
           /* Component Styles */
           width: var(--page-side-nav-width);
@@ -123,7 +123,7 @@ export function PageSideNav({ sections, className = '' }: PageSideNavProps) {
           text-decoration: none;
           width: 100%;
           text-align: left;
-          font-family: var(--font-family);
+          font-family: var(--cvp-font-family-sans);
         }
         
         .page-side-nav__item:hover:not(.page-side-nav__item--active) {

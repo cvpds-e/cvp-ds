@@ -231,7 +231,7 @@ export function SegmentQueryConfiguration({
         }
 
         .segment-query-config__empty-state-link {
-          color: #67b3fb !important;
+          color: var(--cvp-color-text-link-default) !important;
           text-decoration: none !important;
           display: inline-flex !important;
           align-items: center !important;
@@ -253,7 +253,7 @@ export function SegmentQueryConfiguration({
         }
 
         .segment-query-config__empty-state-link:hover {
-          color: #359afa !important;
+          color: var(--cvp-color-text-link-hover) !important;
           text-decoration: none !important;
           font-weight: inherit !important;
           text-decoration-line: none !important;
@@ -268,7 +268,7 @@ export function SegmentQueryConfiguration({
 
         .segment-query-config__empty-state-link:focus,
         .segment-query-config__empty-state-link:active {
-          color: #359afa !important;
+          color: var(--cvp-color-text-link-hover) !important;
           text-decoration: none !important;
           font-weight: inherit !important;
           text-decoration-line: none !important;
@@ -418,7 +418,7 @@ export function SegmentQueryConfiguration({
         .segment-query-config__remove-filter {
           background: transparent;
           border: none;
-          color: #e6494e;
+          color: var(--cvp-color-text-danger);
           cursor: pointer;
           padding: 6px;
           border-radius: var(--radius-sm);
@@ -430,7 +430,7 @@ export function SegmentQueryConfiguration({
         }
 
         .segment-query-config__remove-filter:hover {
-          background: rgba(230, 73, 78, 0.1);
+          background: var(--cvp-color-state-error-bg);
         }
 
         .segment-query-config__remove-filter:focus-visible {

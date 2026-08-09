@@ -3,7 +3,6 @@ import './PrimaryButton.css';
 
 export interface PrimaryButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
-  size?: 'small' | 'medium' | 'large';
   variant?: 'default' | 'compact';
   loading?: boolean;
   loadingText?: string;
@@ -11,7 +10,6 @@ export interface PrimaryButtonProps extends React.ButtonHTMLAttributes<HTMLButto
 
 export function PrimaryButton({
   children,
-  size = 'medium',
   variant = 'default',
   loading = false,
   loadingText = 'Loading',
@@ -24,7 +22,6 @@ export function PrimaryButton({
   const classNames = [
     'primary-button',
     'cvp-primary-button',
-    `cvp-primary-button--${size}`,
     `cvp-primary-button--${variant}`,
     className,
   ].filter(Boolean).join(' ');

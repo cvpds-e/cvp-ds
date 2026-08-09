@@ -1,27 +1,32 @@
-.rails-list-page { display: flex; min-height: 100dvh; flex-direction: column; color: var(--cvp-color-text-primary); background: var(--cvp-color-surface-page); font-family: var(--cvp-font-family-sans); }
+.rails-list-page { display: flex; height: 100dvh; min-height: 0; overflow: hidden; flex-direction: column; color: var(--cvp-color-text-primary); background: var(--cvp-color-surface-page); font-family: var(--cvp-font-family-sans); }
 .rails-list-page .cvp-header { flex: 0 0 auto; background: inherit; }
-.rails-list-page__workspace { display: grid; grid-template-columns: minmax(280px, 30vw) minmax(0, 1fr); flex: 1; min-height: 0; }
-.rails-list-page__sidebar { min-width: 0; overflow: auto; background: inherit; border-inline-end: var(--cvp-border-base-width) solid var(--cvp-color-border-subtle); }
-.rails-list-page__sidebar-label { padding: var(--cvp-space-4); color: var(--cvp-color-text-muted); border-bottom: var(--cvp-border-base-width) solid var(--cvp-color-border-subtle); font-size: var(--cvp-font-size-sm); font-weight: var(--cvp-font-weight-semibold); letter-spacing: var(--cvp-letter-spacing-wide); text-transform: uppercase; }
-.rails-list-page__tabs .cvp-tabs__list { padding-inline: var(--cvp-space-4); background: transparent; border-bottom: var(--cvp-border-base-width) solid var(--cvp-color-border-subtle); }
-.rails-list-page__tabs .cvp-tabs__panel { padding: 0; background: transparent; }
-.rails-list-page__tree-panel { display: grid; gap: var(--cvp-space-3); padding: var(--cvp-space-4); }
+.rails-list-page__workspace { display: grid; grid-template-columns: minmax(280px, 30vw) minmax(0, 1fr); flex: 1; min-height: 0; overflow: hidden; }
+.rails-list-page__sidebar { display: flex; min-width: 0; min-height: 0; overflow: hidden; flex-direction: column; background: inherit; border-inline-end: var(--cvp-border-base-width) solid var(--cvp-color-border-subtle); }
+.rails-list-page__sidebar-label { box-sizing: border-box; min-height: 48px; padding: var(--cvp-space-3) var(--cvp-space-4); color: var(--cvp-color-text-muted); border-bottom: var(--cvp-border-base-width) solid var(--cvp-color-border-subtle); font-size: var(--cvp-font-size-sm); font-weight: var(--cvp-font-weight-semibold); letter-spacing: var(--cvp-letter-spacing-wide); text-transform: uppercase; }
+.rails-list-page__tree-panel { display: grid; flex: 1 1 auto; min-height: 0; gap: var(--cvp-space-3); overflow: auto; padding: var(--cvp-space-4); }
 .rails-list-page__tree-actions { display: flex; align-items: center; gap: var(--cvp-space-2); }
-.rails-list-page__add-collection { display: inline-flex; flex: 1; align-items: center; gap: var(--cvp-space-2); min-height: var(--cvp-button-icon-size-md); padding: 0; color: var(--cvp-color-text-muted); background: transparent; border: 0; border-radius: var(--cvp-radius-sm); font: inherit; cursor: pointer; text-align: start; }
-.rails-list-page__add-collection:hover { color: var(--cvp-color-text-primary); }
-.rails-list-page__add-collection:focus-visible { outline: none; box-shadow: var(--cvp-border-focus-ring); }
+.rails-list-page__add-collection { flex: 0 0 auto; }
+.rails-list-page__tree-actions > .cvp-icon-button { margin-inline-start: auto; }
+.rails-list-page__collection-editor { display: flex; flex: 1 1 auto; min-height: 0; flex-direction: column; overflow: hidden; }
+.rails-list-page__collection-editor-body { display: grid; flex: 1 1 auto; min-height: 0; align-content: start; gap: var(--cvp-primitive-space-3); overflow: auto; padding: var(--cvp-space-4); }
+.rails-list-page__back-to-collections { align-self: start; justify-self: start; }
+.rails-list-page__collection-form { display: grid; gap: var(--cvp-space-5); }
+.rails-list-page__collection-editor-footer { position: sticky; bottom: 0; z-index: 1; display: flex; flex: 0 0 auto; align-items: center; justify-content: space-between; gap: var(--cvp-space-3); margin-top: auto; padding: var(--cvp-space-4); background: var(--cvp-color-surface-page); border-top: var(--cvp-border-base-width) solid var(--cvp-color-border-subtle); }
+.rails-list-page__collection-editor-footer > div { display: flex; align-items: center; gap: var(--cvp-space-2); margin-inline-start: auto; }
 .rails-list-page__tree-panel .cvp-tree { min-width: 0; padding: 0; background: transparent; }
-.rails-list-page__empty-panel { padding: var(--cvp-space-6) var(--cvp-space-4); color: var(--cvp-color-text-muted); font-size: var(--cvp-font-size-sm); }
-.rails-list-page__main { display: flex; min-width: 0; min-height: 0; flex-direction: column; }
-.rails-list-page__titlebar, .rails-list-page__filters { display: flex; flex: 0 0 auto; align-items: center; gap: var(--cvp-space-3); padding-inline: var(--cvp-space-6); border-bottom: var(--cvp-border-base-width) solid var(--cvp-color-border-subtle); }
-.rails-list-page__titlebar { min-height: 60px; justify-content: space-between; }
+.rails-list-page__main { display: flex; min-width: 0; min-height: 0; overflow: hidden; flex-direction: column; }
+.rails-list-page__titlebar, .rails-list-page__filters { display: flex; flex: 0 0 auto; align-items: center; gap: var(--cvp-space-2); padding-inline: var(--cvp-space-4); }
+.rails-list-page__titlebar { border-bottom: var(--cvp-border-base-width) solid var(--cvp-color-border-subtle); }
+.rails-list-page__titlebar { box-sizing: border-box; min-height: 48px; justify-content: space-between; }
 .rails-list-page__titlebar > div { display: flex; align-items: center; gap: var(--cvp-space-3); }
 .rails-list-page__titlebar h1 { margin: 0; font-size: var(--cvp-font-size-lg); font-weight: var(--cvp-font-weight-semibold); line-height: var(--cvp-line-height-snug); }
-.rails-list-page__filters { min-height: 58px; align-items: flex-start; padding-block: var(--cvp-space-2); }
+.rails-list-page__filters { min-height: 48px; padding-block: var(--cvp-space-1); }
 .rails-list-page__filters .cvp-filter[data-trigger="icon-seamless"] { flex: 1 1 0; min-width: 0; width: auto; }
 .rails-list-page__match { align-self: center; margin-inline-start: auto; color: var(--cvp-color-text-muted); font-size: var(--cvp-font-size-sm); }
 .rails-list-page__table { flex: 1; height: auto !important; border: 0; border-radius: 0; }
-.rails-list-page__collection-tag { display: inline-flex; padding: 0 var(--cvp-space-2); color: var(--cvp-color-text-accent-default); background: var(--cvp-color-surface-subtle); border: var(--cvp-border-base-width) solid var(--cvp-color-border-default); border-radius: var(--cvp-radius-sm); font-family: var(--cvp-font-family-mono); font-size: var(--cvp-font-size-xs); font-weight: var(--cvp-font-weight-semibold); line-height: var(--cvp-line-height-tight); text-transform: uppercase; }
-.rails-list-page__table .cvp-table__toolbar { justify-content: flex-end; }
+.rails-list-page__table .cvp-table__pagination { position: sticky; bottom: 0; z-index: 3; }
+.rails-list-page__collection-tag { display: inline-flex; padding: 0 var(--cvp-space-1); color: var(--cvp-color-text-accent-default); background: var(--cvp-color-surface-subtle); border: var(--cvp-border-base-width) solid var(--cvp-color-border-default); border-radius: var(--cvp-radius-sm); font-family: var(--cvp-font-family-mono); font-size: var(--cvp-font-size-xs); font-weight: var(--cvp-font-weight-semibold); line-height: var(--cvp-line-height-tight); text-transform: uppercase; }
+.rails-list-page__table .cvp-table__toolbar { min-height: 40px; padding-inline: var(--cvp-space-4); justify-content: flex-end; }
+.rails-list-page__table .cvp-table__toolbar:has(.cvp-table__text-action) { justify-content: space-between; }
 @media (max-width: 900px) { .rails-list-page__workspace { grid-template-columns: 264px minmax(0, 1fr); } .rails-list-page__titlebar, .rails-list-page__filters { padding-inline: var(--cvp-space-4); } }
 @media (max-width: 720px) { .rails-list-page__workspace { display: block; } .rails-list-page__sidebar { max-height: 340px; border-inline-end: 0; border-bottom: var(--cvp-border-base-width) solid var(--cvp-color-border-subtle); } .rails-list-page__titlebar, .rails-list-page__filters { padding-inline: var(--cvp-space-3); } .rails-list-page__filters { flex-wrap: wrap; padding-block: var(--cvp-space-2); } .rails-list-page__match { width: 100%; margin-inline-start: 0; } }

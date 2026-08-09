@@ -60,17 +60,17 @@ function TooltipContent({
         data-slot="tooltip-content"
         sideOffset={sideOffset}
         style={{
-          backgroundColor: '#292a2e',
-          color: '#ffffff',
-          fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif',
+          backgroundColor: 'var(--cvp-color-surface-overlay)',
+          color: 'var(--cvp-color-text-primary)',
+          fontFamily: 'var(--cvp-font-family-sans)',
           fontSize: '13px',
           fontWeight: 400,
           lineHeight: '20px',
           letterSpacing: '0.1px',
           padding: '6px 12px',
-          borderRadius: '6px',
-          boxShadow: '0 2px 8px -1px rgba(0, 0, 0, 0.1), 0 1px 3px -1px rgba(0, 0, 0, 0.15)',
-          border: 'none',
+          borderRadius: 'var(--cvp-shape-control-base)',
+          boxShadow: 'var(--cvp-shadow-md)',
+          border: 'var(--cvp-border-container)',
           zIndex: 9999,
           maxWidth: 'fit-content',
           whiteSpace: 'nowrap'

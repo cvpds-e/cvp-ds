@@ -6,7 +6,7 @@
 .rail-details__workspace { display: grid; grid-template-columns: minmax(300px, 344px) minmax(0, 1fr); flex: 1 1 auto; min-height: 0; background: inherit; }
 .rail-details-page .rail-details__sidebar { min-width: 0; background: inherit; border-inline-end: var(--cvp-border-base-width) solid var(--cvp-color-border-subtle); transition: width var(--cvp-motion-duration-base) var(--cvp-motion-easing-standard); }
 .rail-details__sidebar--closed { display: none; }
-.rail-details__panel-title, .rail-details__preview-bar { display: flex; min-height: 52px; align-items: center; gap: var(--cvp-space-3); padding-inline: var(--cvp-space-4); background: inherit; border-bottom: var(--cvp-border-base-width) solid var(--cvp-color-border-subtle); }
+.rail-details__panel-title, .rail-details__preview-bar { display: flex; min-height: 48px; align-items: center; gap: var(--cvp-space-3); padding-inline: var(--cvp-space-4); background: inherit; border-bottom: var(--cvp-border-base-width) solid var(--cvp-color-border-subtle); }
 .rail-details__panel-title { justify-content: space-between; }
 .rail-details__sidebar .cvp-tabs__list { padding-inline: 0; background: transparent; }
 .rail-details__sidebar .cvp-tabs, .rail-details__sidebar .cvp-tabs__panel, .rail-details__sidebar .rail-details__form, .rail-details__sidebar .rail-details__form-section { background: transparent; }

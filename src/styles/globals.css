@@ -65,9 +65,9 @@ button:focus-visible:not(.primary-button):not(.segmented-segment):not(.multi-sel
 /* Button variant select uses different focus color */
 .select--button .select__trigger:focus-visible,
 .select--button .select__trigger--open {
-  background-color: rgba(255, 255, 255, 0.1) !important;
+  background-color: var(--cvp-color-surface-active) !important;
   border-color: transparent !important;
-  box-shadow: 0 0 0 2px #67b3fb !important;
+  box-shadow: var(--cvp-border-focus-ring) !important;
   outline: none !important;
 }
 

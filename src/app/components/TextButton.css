@@ -2,7 +2,7 @@
 .cvp-text-button:hover:not(:disabled):not([aria-disabled="true"]),.cvp-text-button[data-preview-state="hover"]{color:var(--cvp-button-text-color-hover);background:var(--cvp-button-text-bg-hover)}
 .cvp-text-button:active:not(:disabled):not([aria-disabled="true"]),.cvp-text-button[data-preview-state="active"]{color:var(--cvp-button-text-color-active);background:var(--cvp-button-text-bg-active)}
 .cvp-text-button:focus-visible,.cvp-text-button[data-preview-state="focus"]{box-shadow:var(--cvp-button-text-focus-ring)}
-.cvp-text-button:disabled,.cvp-text-button[aria-disabled="true"]{color:var(--cvp-button-text-color-disabled);background:transparent;cursor:not-allowed}
+.cvp-text-button:disabled,.cvp-text-button[aria-disabled="true"]{color:var(--cvp-button-text-color-disabled);background:var(--cvp-button-text-bg-disabled);cursor:not-allowed}
 .cvp-text-button__content{display:inline-flex;align-items:center;justify-content:center;gap:var(--cvp-button-text-gap)}
 .cvp-text-button__content>span:not(.cvp-text-button__icon):not(.cvp-text-button__spinner){display:inline-flex;align-items:center;gap:var(--cvp-button-text-toggle-icon-gap);white-space:nowrap}
 .cvp-text-button__content>span:not(.cvp-text-button__icon):not(.cvp-text-button__spinner)>svg{flex:none}
@@ -10,7 +10,7 @@
 .cvp-text-button__icon>svg{width:100%;height:100%}
 .cvp-text-button__spinner{width:var(--cvp-button-text-spinner-size);height:var(--cvp-button-text-spinner-size);border:var(--cvp-button-text-spinner-width) solid currentColor;border-right-color:transparent;border-radius:var(--cvp-shape-rounded);animation:cvp-text-button-spin var(--cvp-motion-duration-slow) linear infinite}
 .cvp-text-button--secondary{padding:var(--cvp-button-text-secondary-padding-y) var(--cvp-button-text-secondary-padding-x);color:var(--cvp-button-text-secondary-color);border-radius:var(--cvp-button-text-secondary-radius)}
-.cvp-text-button--secondary:hover:not(:disabled),.cvp-text-button--secondary[data-preview-state="hover"]{color:var(--cvp-button-text-secondary-color-hover);background:var(--cvp-button-text-secondary-bg-hover)}
+.cvp-text-button--secondary:hover:not(:disabled):not([aria-disabled="true"]),.cvp-text-button--secondary[data-preview-state="hover"]{color:var(--cvp-button-text-secondary-color-hover);background:var(--cvp-button-text-secondary-bg-hover)}
 .cvp-text-button--toggle{padding:var(--cvp-button-text-toggle-padding-y) var(--cvp-button-text-toggle-padding-x);color:var(--cvp-button-text-toggle-color);border-radius:var(--cvp-button-text-toggle-radius);font-size:var(--cvp-button-text-toggle-font-size)}
 .cvp-text-button--toggle:hover:not(:disabled),.cvp-text-button--toggle[data-preview-state="hover"],.cvp-text-button--toggle[aria-pressed="true"]{background:var(--cvp-button-text-toggle-bg-hover)}
 .cvp-text-button--minimal,.cvp-text-button--minimal-inverted{padding:0;font-size:var(--cvp-button-text-minimal-font-size)}
@@ -19,7 +19,9 @@
 .cvp-text-button--minimal-inverted{color:var(--cvp-button-text-minimal-inverted-color)}
 .cvp-text-button--minimal-inverted:hover:not(:disabled){color:var(--cvp-button-text-minimal-inverted-color-hover)}
 .cvp-text-button--nav{padding:var(--cvp-button-text-nav-padding-y) var(--cvp-button-text-nav-padding-x);color:var(--cvp-button-text-nav-color);border-radius:var(--cvp-button-text-nav-radius);white-space:nowrap}
+.cvp-text-button--nav[aria-disabled="true"]{padding:var(--cvp-button-text-secondary-padding-y) var(--cvp-button-text-secondary-padding-x);border-radius:var(--cvp-button-text-secondary-radius)}
 .cvp-text-button--nav:hover:not(:disabled),.cvp-text-button--nav[data-preview-state="hover"]{color:var(--cvp-button-text-nav-color-hover);background:var(--cvp-button-text-nav-bg-hover)}
-.cvp-text-button--nav.cvp-text-button--active{color:var(--cvp-button-text-nav-color-active);background:var(--cvp-button-text-nav-bg-active)}
+.cvp-text-button--nav.cvp-text-button--active{padding:var(--cvp-button-text-secondary-padding-y) var(--cvp-button-text-secondary-padding-x);color:var(--cvp-button-text-nav-color-active);background:var(--cvp-button-text-nav-bg-active);border-radius:var(--cvp-button-text-secondary-radius)}
+.cvp-text-button--nav.cvp-text-button--active:hover:not(:disabled):not([aria-disabled="true"]),.cvp-text-button--nav.cvp-text-button--active[data-preview-state="hover"]{color:var(--cvp-button-text-nav-color-hover);background:var(--cvp-button-text-nav-bg-hover)}
 @keyframes cvp-text-button-spin{to{transform:rotate(360deg)}}
 @media(prefers-reduced-motion:reduce){.cvp-text-button{transition:none}.cvp-text-button__spinner{animation-duration:1.2s}}

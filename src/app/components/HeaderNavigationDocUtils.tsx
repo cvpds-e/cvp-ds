@@ -25,8 +25,8 @@ export const createStatusBadge = (color: string, text: string) => (
 export const createActionIndicator = (label: string, clicked: boolean) => (
   <div style={{
     padding: '8px 12px',
-    backgroundColor: clicked ? 'var(--color-green-800)' : 'var(--muted)',
-    color: clicked ? 'var(--color-green-200)' : 'var(--muted-foreground)',
+    backgroundColor: clicked ? 'var(--cvp-color-state-success-bg)' : 'var(--cvp-color-surface-subtle)',
+    color: clicked ? 'var(--cvp-color-state-success-text)' : 'var(--cvp-color-text-muted)',
     borderRadius: '4px',
     fontSize: 'var(--type-scale-s-size)',
     textAlign: 'center' as const,
@@ -56,9 +56,9 @@ export const doAndDontItems = {
 };
 
 export const designTokensData = [
-  { property: 'Header height', value: '45px', token: '--header-height' },
-  { property: 'Background color', value: '#19191a', token: '--header-bg' },
-  { property: 'Border bottom', value: '1px solid #333', token: '--header-border-bottom' },
+  { property: 'Header height', value: '48px', token: '--cvp-header-height' },
+  { property: 'Background color', value: 'Surface page', token: '--cvp-header-bg' },
+  { property: 'Border bottom', value: 'Divider', token: '--cvp-header-border' },
   { property: 'Horizontal padding', value: '16px', token: '--spacing-4' },
   { property: 'Item gap', value: '12px', token: '--spacing-3' },
   { property: 'Brand margin-right', value: '4px', token: '--spacing-1' },
@@ -67,13 +67,13 @@ export const designTokensData = [
   { property: 'Logo font weight', value: '400', token: '--type-scale-s-weight' },
   { property: 'Logo line height', value: '20px', token: '--type-scale-s-line-height' },
   { property: 'Logo letter spacing', value: '0.1px', token: '--type-scale-s-letter-spacing' },
-  { property: 'Logo color', value: '#fff', token: '--header-logo-color' },
-  { property: 'Navigation text color', value: '#bbb', token: '--header-nav-color' },
-  { property: 'Navigation hover color', value: '#fff', token: '--header-nav-hover-color' },
-  { property: 'User text color', value: '#fff', token: '--header-user-color' },
-  { property: 'Dropdown background', value: '#292a2e', token: 'dropdown-menu-bg' },
+  { property: 'Logo color', value: 'Primary text', token: '--cvp-header-brand-text' },
+  { property: 'Navigation text color', value: 'Muted text', token: '--cvp-header-control-text' },
+  { property: 'Navigation hover color', value: 'Primary text', token: '--cvp-header-control-text-hover' },
+  { property: 'User text color', value: 'Primary text', token: '--cvp-header-text' },
+  { property: 'Dropdown background', value: 'Overlay surface', token: '--cvp-menu-bg' },
   { property: 'Dropdown border radius', value: '6px', token: '--radius-md' },
-  { property: 'Separator color', value: '#333', token: 'separator-bg' },
+  { property: 'Separator color', value: 'Divider', token: '--cvp-header-divider' },
   { property: 'Separator width', value: '1px', token: 'separator-width' },
   { property: 'Separator height', value: '16px', token: 'separator-height' },
   { property: 'Z-index (fixed)', value: '1000', token: '--header-z-index' },
@@ -81,13 +81,13 @@ export const designTokensData = [
   { property: 'Position (fixed)', value: 'fixed', token: '--header-position' },
   { property: 'Position (static)', value: 'relative', token: '--header-position' },
   { property: 'User avatar size', value: '20px', token: 'avatar-size' },
-  { property: 'User avatar background', value: '#3d63dd', token: 'avatar-bg' },
-  { property: 'User avatar text color', value: '#fff', token: 'avatar-color' },
+  { property: 'User avatar background', value: 'Brand default', token: '--cvp-color-brand-default' },
+  { property: 'User avatar text color', value: 'On brand', token: '--cvp-color-text-on-brand' },
   { property: 'User avatar border radius', value: '50%', token: 'avatar-radius' },
   { property: 'User avatar font size', value: '9px', token: 'avatar-font-size' },
   { property: 'User avatar font weight', value: '500', token: 'avatar-font-weight' },
   { property: 'User avatar letter spacing', value: '0.5px', token: 'avatar-letter-spacing' },
   { property: 'User button padding', value: '2px', token: 'user-button-padding' },
-  { property: 'User button hover bg', value: 'rgba(255, 255, 255, 0.1)', token: '--header-button-hover-bg' },
-  { property: 'User button focus ring', value: '0 0 0 2px #67b3fb', token: 'focus-ring' }
+  { property: 'User button hover bg', value: 'Hover surface', token: '--cvp-header-control-bg-hover' },
+  { property: 'User button focus ring', value: 'Shared focus ring', token: '--cvp-header-focus-ring' }
 ];

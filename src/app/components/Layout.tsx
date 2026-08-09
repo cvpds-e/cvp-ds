@@ -115,12 +115,12 @@ export function Layout({
           --panel-shadow: var(--shadow-sm);
           --panel-hover-shadow: var(--shadow-md);
           --panel-resize-indicator: transparent;
-          --panel-resize-indicator-hover: var(--focus-ring);
-          --panel-resize-indicator-active: var(--primary);
+          --panel-resize-indicator-hover: var(--cvp-color-border-brand);
+          --panel-resize-indicator-active: var(--cvp-color-brand-default);
           --collapsible-content-bg: transparent;
           
           /* Panel spacing system */
-          --panel-spacing-unit: var(--spacing);
+          --panel-spacing-unit: var(--cvp-space-1);
           --panel-header-padding: 0 15px;
           --panel-left-header-padding: 15px;
           --panel-collapsible-padding: calc(var(--panel-spacing-unit) * 4);
@@ -134,8 +134,8 @@ export function Layout({
 
         /* Unified panel container */
         .panel {
-          background: var(--card);
-          border: 1px solid var(--border-default);
+          background: var(--cvp-color-surface-default);
+          border: var(--cvp-border-container);
           border-radius: var(--panel-border-radius);
           box-shadow: var(--panel-shadow);
           transition: box-shadow var(--default-transition-duration) var(--default-transition-timing-function);
@@ -159,7 +159,7 @@ export function Layout({
             flex-shrink: 0;
             display: flex;
             flex-direction: column;
-            border-right: 1px solid var(--border-default);
+            border-right: var(--cvp-border-divider);
           }
           
           .panel-layout__right {
@@ -181,7 +181,7 @@ export function Layout({
             max-height: 500px;
             order: 1;
             border-right: none;
-            border-bottom: 1px solid var(--border-default);
+            border-bottom: var(--cvp-border-divider);
           }
           
           .panel-layout__right {
@@ -200,8 +200,8 @@ export function Layout({
           display: flex;
           align-items: center;
           justify-content: space-between;
-          border-bottom: 1px solid var(--border-default);
-          background: var(--card);
+          border-bottom: var(--cvp-border-divider);
+          background: var(--cvp-color-surface-default);
           position: relative;
         }
 
@@ -212,7 +212,7 @@ export function Layout({
         .panel-header__content {
           display: flex;
           align-items: center;
-          gap: var(--spacing-2);
+          gap: var(--cvp-space-2);
         }
 
         .panel-header__title {
@@ -220,7 +220,7 @@ export function Layout({
           font-weight: 600;
           line-height: 20px;
           letter-spacing: 0.1px;
-          color: var(--foreground);
+          color: var(--cvp-color-text-primary);
           margin: 0;
         }
 
@@ -229,7 +229,7 @@ export function Layout({
         .panel-header__actions {
           display: flex;
           align-items: center;
-          gap: var(--spacing-1);
+          gap: var(--cvp-space-1);
         }
 
         /* Panel Content Styles */
@@ -242,8 +242,8 @@ export function Layout({
 
         /* Right Panel Content Specific Styles */
         .panel-layout__right .panel__content {
-          padding-block: calc(var(--spacing) * 4);
-          padding-inline: calc(var(--spacing) * 4);
+          padding-block: var(--cvp-space-4);
+          padding-inline: var(--cvp-space-4);
         }
 
         /* Full-width component utilities */
@@ -265,7 +265,7 @@ export function Layout({
           margin-right: calc(-1 * var(--panel-collapsible-padding));
           margin-top: calc(-1 * var(--panel-collapsible-padding));
           width: calc(100% + 2 * var(--panel-collapsible-padding));
-          border-bottom: 1px solid var(--border-default);
+          border-bottom: var(--cvp-border-divider);
         }
 
         /* Navigation Tabs component styling */
@@ -277,7 +277,7 @@ export function Layout({
         }
 
         .panel__content .panel-nav-tabs .tabs-list {
-          border-bottom: 1px solid var(--border-default);
+          border-bottom: var(--cvp-border-divider);
         }
 
         /* Accordion inside panel-nav-tabs should not have full-width margins */
@@ -295,7 +295,7 @@ export function Layout({
           width: calc(100% + 2 * var(--panel-collapsible-padding));
           padding: var(--panel-collapsible-padding);
           padding-bottom: calc(var(--panel-collapsible-padding) - 1px);
-          border-bottom: 1px solid var(--border-default);
+          border-bottom: var(--cvp-border-divider);
           margin-bottom: calc(var(--panel-collapsible-padding) - 1px);
         }
 
@@ -349,19 +349,19 @@ export function Layout({
           justify-content: center;
           background: transparent;
           border: none;
-          border-radius: var(--radius-sm);
-          color: var(--muted-foreground);
+          border-radius: var(--cvp-shape-control-base);
+          color: var(--cvp-color-text-muted);
           cursor: pointer;
-          transition: var(--btn-transition);
+          transition: background-color var(--cvp-motion-duration-fast) var(--cvp-motion-easing-standard), color var(--cvp-motion-duration-fast) var(--cvp-motion-easing-standard);
         }
 
         .panel-action-btn:hover {
-          background: var(--secondary);
-          color: var(--foreground);
+          background: var(--cvp-color-surface-active);
+          color: var(--cvp-color-text-primary);
         }
 
         .panel-action-btn:focus-visible {
-          box-shadow: 0 0 0 2px var(--focus-ring);
+          box-shadow: var(--cvp-border-focus-ring);
         }
 
         /* Responsive adjustments */
@@ -371,17 +371,17 @@ export function Layout({
           }
           
           .panel-header--left {
-            padding-left: var(--spacing-3);
+            padding-left: var(--cvp-space-3);
           }
           
           .panel-layout__left .panel__content {
-            padding: var(--spacing-3);
+            padding: var(--cvp-space-3);
           }
           
           /* Ensure right panel padding is maintained on mobile */
           .panel-layout__right .panel__content {
-            padding-block: calc(var(--spacing) * 4) !important;
-            padding-inline: calc(var(--spacing) * 4) !important;
+            padding-block: var(--cvp-space-4) !important;
+            padding-inline: var(--cvp-space-4) !important;
           }
         }
 
@@ -395,7 +395,7 @@ export function Layout({
         }
 
         .panel__content::-webkit-scrollbar-thumb {
-          background: var(--muted);
+          background: var(--cvp-color-surface-subtle);
           border-radius: 3px;
         }
 

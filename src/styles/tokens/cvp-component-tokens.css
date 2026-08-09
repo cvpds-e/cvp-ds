@@ -43,23 +43,14 @@
   --cvp-button-primary-border-width:  var(--cvp-border-base-width);
   --cvp-button-primary-focus-ring:    var(--cvp-border-focus-ring);
   --cvp-button-primary-radius:        var(--cvp-shape-control-compact);     /* 4px */
-  --cvp-button-primary-radius-large:  var(--cvp-shape-control-soft);        /* 8px */
-  --cvp-button-primary-padding-x:     var(--cvp-space-4);                   /* 16px */
+  --cvp-button-primary-padding-x:     var(--cvp-space-3);                   /* 12px */
   --cvp-button-primary-padding-y:     var(--cvp-space-2);                   /* 8px */
-  --cvp-button-primary-padding-x-small: var(--cvp-space-3);                 /* 12px */
-  --cvp-button-primary-padding-x-large: var(--cvp-space-6);                 /* 24px */
   --cvp-button-primary-padding-x-compact: var(--cvp-space-2);               /* 8px */
-  --cvp-button-primary-height:        var(--cvp-space-800);                 /* 40px */
-  --cvp-button-primary-height-small:  var(--cvp-space-8);                   /* 32px */
-  --cvp-button-primary-height-large:  var(--cvp-space-900);                 /* 48px */
+  --cvp-button-primary-height:        var(--cvp-space-8);                   /* 32px */
   --cvp-button-primary-height-compact:var(--cvp-space-8);                   /* 32px */
-  --cvp-button-primary-font-size:     var(--cvp-font-size-md);              /* 14px */
-  --cvp-button-primary-font-size-small: var(--cvp-font-size-xs);            /* 12px */
-  --cvp-button-primary-font-size-large: var(--cvp-font-size-lg);            /* 15px */
+  --cvp-button-primary-font-size:     var(--cvp-font-size-xs);              /* 12px */
   --cvp-button-primary-font-weight:   var(--cvp-font-weight-medium);        /* 500 */
-  --cvp-button-primary-line-height:   var(--cvp-line-height-snug);          /* 20px */
-  --cvp-button-primary-line-height-small: var(--cvp-line-height-tight);     /* 16px */
-  --cvp-button-primary-line-height-large: var(--cvp-line-height-relaxed);   /* 28px */
+  --cvp-button-primary-line-height:   var(--cvp-line-height-tight);         /* 16px */
   --cvp-button-primary-letter-spacing:var(--cvp-letter-spacing-normal);     /* 0.15px */
   --cvp-button-primary-gap:           var(--cvp-space-2);                   /* 8px */
   --cvp-button-primary-spinner-size:  var(--cvp-space-4);                   /* 16px */
@@ -83,23 +74,14 @@
   --cvp-button-secondary-border-width:  var(--cvp-border-base-width);
   --cvp-button-secondary-focus-ring:    var(--cvp-border-focus-ring);
   --cvp-button-secondary-radius:        var(--cvp-radius-sm);               /* 4px */
-  --cvp-button-secondary-radius-large:  var(--cvp-radius-md);               /* 8px */
-  --cvp-button-secondary-padding-x:     var(--cvp-space-4);                 /* 16px */
+  --cvp-button-secondary-padding-x:     var(--cvp-space-3);                 /* 12px */
   --cvp-button-secondary-padding-y:     var(--cvp-space-2);                 /* 8px */
-  --cvp-button-secondary-padding-x-small: var(--cvp-space-3);               /* 12px */
-  --cvp-button-secondary-padding-x-large: var(--cvp-space-6);               /* 24px */
   --cvp-button-secondary-padding-x-compact: var(--cvp-space-2);             /* 8px */
-  --cvp-button-secondary-height:        var(--cvp-space-800);               /* 40px */
-  --cvp-button-secondary-height-small:  var(--cvp-space-8);                 /* 32px */
-  --cvp-button-secondary-height-large:  var(--cvp-space-900);               /* 48px */
+  --cvp-button-secondary-height:        var(--cvp-space-8);                 /* 32px */
   --cvp-button-secondary-height-compact:var(--cvp-space-8);                 /* 32px */
-  --cvp-button-secondary-font-size:     var(--cvp-font-size-md);            /* 14px */
-  --cvp-button-secondary-font-size-small: var(--cvp-font-size-sm);          /* 12px */
-  --cvp-button-secondary-font-size-large: var(--cvp-font-size-lg);          /* 15px */
+  --cvp-button-secondary-font-size:     var(--cvp-font-size-sm);            /* 12px */
   --cvp-button-secondary-font-weight:   var(--cvp-font-weight-medium);      /* 500 */
-  --cvp-button-secondary-line-height:   var(--cvp-line-height-snug);        /* 20px */
-  --cvp-button-secondary-line-height-small: var(--cvp-line-height-tight);   /* 16px */
-  --cvp-button-secondary-line-height-large: var(--cvp-line-height-relaxed); /* 28px */
+  --cvp-button-secondary-line-height:   var(--cvp-line-height-tight);       /* 16px */
   --cvp-button-secondary-letter-spacing: var(--cvp-letter-spacing-normal);
   --cvp-button-secondary-gap:           var(--cvp-space-2);                 /* 8px */
   --cvp-button-secondary-spinner-size:  var(--cvp-space-4);                 /* 16px */
@@ -125,23 +107,14 @@
   --cvp-button-outline-border-width:    var(--cvp-border-base-width);
   --cvp-button-outline-focus-ring:      var(--cvp-border-focus-ring);
   --cvp-button-outline-radius:          var(--cvp-radius-sm);               /* 4px */
-  --cvp-button-outline-radius-large:    var(--cvp-radius-md);               /* 8px */
-  --cvp-button-outline-padding-x:       var(--cvp-space-4);                 /* 16px */
+  --cvp-button-outline-padding-x:       var(--cvp-space-3);                 /* 12px */
   --cvp-button-outline-padding-y:       var(--cvp-space-2);                 /* 8px */
-  --cvp-button-outline-padding-x-small: var(--cvp-space-3);
-  --cvp-button-outline-padding-x-large: var(--cvp-space-6);
   --cvp-button-outline-padding-x-compact: var(--cvp-space-2);
-  --cvp-button-outline-height:          var(--cvp-space-800);
-  --cvp-button-outline-height-small:    var(--cvp-space-8);
-  --cvp-button-outline-height-large:    var(--cvp-space-900);
+  --cvp-button-outline-height:          var(--cvp-space-8);
   --cvp-button-outline-height-compact:  var(--cvp-space-8);
-  --cvp-button-outline-font-size:       var(--cvp-font-size-md);
-  --cvp-button-outline-font-size-small: var(--cvp-font-size-sm);
-  --cvp-button-outline-font-size-large: var(--cvp-font-size-lg);
+  --cvp-button-outline-font-size:       var(--cvp-font-size-sm);
   --cvp-button-outline-font-weight:     var(--cvp-font-weight-medium);
-  --cvp-button-outline-line-height:     var(--cvp-line-height-snug);
-  --cvp-button-outline-line-height-small: var(--cvp-line-height-tight);
-  --cvp-button-outline-line-height-large: var(--cvp-line-height-relaxed);
+  --cvp-button-outline-line-height:     var(--cvp-line-height-tight);
   --cvp-button-outline-letter-spacing:  var(--cvp-letter-spacing-normal);
   --cvp-button-outline-gap:             var(--cvp-space-2);
   --cvp-button-outline-spinner-size:    var(--cvp-space-4);
@@ -156,6 +129,7 @@
   --cvp-button-text-bg:              transparent;
   --cvp-button-text-bg-hover:        transparent;
   --cvp-button-text-bg-active:       transparent;
+  --cvp-button-text-bg-disabled:     transparent;
   --cvp-button-text-color:           var(--cvp-color-text-link-default);
   --cvp-button-text-color-hover:     var(--cvp-color-text-link-hover);
   --cvp-button-text-color-active:    var(--cvp-color-text-link-default);
@@ -1172,8 +1146,9 @@
   --cvp-table-header-border:    var(--cvp-color-border-default);
   --cvp-table-row-bg:           var(--cvp-color-surface-page);
   --cvp-table-row-bg-hover:     var(--cvp-color-surface-hover);
-  --cvp-table-row-bg-selected:  var(--cvp-color-menu-item-active-bg);
+  --cvp-table-row-bg-selected:  var(--cvp-color-surface-active);
   --cvp-table-row-border:       var(--cvp-color-border-subtle);
+  --cvp-table-row-border-selected: var(--cvp-table-row-border);
   --cvp-table-cell-text:        var(--cvp-color-text-primary);
   --cvp-table-cell-text-muted:  var(--cvp-color-text-muted);
   --cvp-table-cell-padding-x:   var(--cvp-space-3);                         /* 12px */
@@ -1204,7 +1179,13 @@
   --cvp-table-control-size:     var(--cvp-space-8);
   --cvp-table-control-size-small: calc(var(--cvp-space-8) - var(--cvp-space-1));
   --cvp-table-control-radius:   var(--cvp-radius-sm);
-  --cvp-table-control-gap:      var(--cvp-space-2);
+  --cvp-table-control-gap:      var(--cvp-space-100);                      /* 2px */
+  --cvp-table-count-bg:         var(--cvp-color-surface-subtle);
+  --cvp-table-count-border:     var(--cvp-color-border-default);
+  --cvp-table-count-text:       var(--cvp-color-text-muted);
+  --cvp-table-count-padding-x:  var(--cvp-space-1);
+  --cvp-table-count-radius:     var(--cvp-radius-sm);
+  --cvp-table-count-separation: var(--cvp-space-3);
   --cvp-table-control-color:    var(--cvp-color-icon-subtle);
   --cvp-table-control-color-hover: var(--cvp-color-icon-default);
   --cvp-table-control-color-disabled: var(--cvp-color-icon-disabled);
@@ -1457,7 +1438,16 @@
   --cvp-login-footer-logo-filter: none;
 }
 
-[data-theme="light"] {
+[data-theme="light"],
+.light-theme {
+  /* Light-theme clarity: controls retain a visible boundary and selection is
+     distinct from the neutral disabled treatment. */
+  --cvp-checkbox-border: var(--cvp-color-border-strong);
+  --cvp-menu-item-text: var(--cvp-color-text-primary);
+  --cvp-filter-menu-text: var(--cvp-color-text-primary);
+  --cvp-filter-icon: var(--cvp-color-icon-default);
+  --cvp-table-row-bg-selected: var(--cvp-color-state-info-bg);
+  --cvp-table-row-border-selected: var(--cvp-color-state-info-border);
   --cvp-login-brand-logo-filter: brightness(0) saturate(100%);
   --cvp-login-footer-logo-filter: brightness(0) saturate(100%) opacity(.66);
 }

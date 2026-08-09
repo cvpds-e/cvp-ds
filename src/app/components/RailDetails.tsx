@@ -9,8 +9,9 @@ import { NotificationBanner } from './NotificationBanner';
 import { OutlineButton } from './OutlineButton';
 import { PrimaryButton } from './PrimaryButton';
 import { RailContentGallery, RailContentItem } from './RailContentGallery';
-import { Segmented } from './Segmented';
 import { Select } from './Select';
+import { SearchField } from './SearchField';
+import { SortControl } from './SortControl';
 import { Tabs } from './Tabs';
 import { TextArea } from './TextArea';
 import { TextInput } from './TextInput';
@@ -35,8 +36,10 @@ function RailDetailsWorkspace({ railName = 'Trending' }: RailDetailsProps) {
   const [name, setName] = useState(railName);
   const [status, setStatus] = useState('active');
   const [collection, setCollection] = useState('home');
-  const [queryMode, setQueryMode] = useState('base');
   const [mediaFormat, setMediaFormat] = useState('');
+  const [querySearch, setQuerySearch] = useState('');
+  const [sortField, setSortField] = useState('title');
+  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('desc');
   const [autoRefresh, setAutoRefresh] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [browserOpen, setBrowserOpen] = useState(false);
@@ -50,14 +53,18 @@ function RailDetailsWorkspace({ railName = 'Trending' }: RailDetailsProps) {
   };
   const save = () => addToast({ variant: 'success', title: 'Rail saved', description: `${name} and its ${items.length} content items are up to date.` });
   const duplicate = () => addToast({ variant: 'info', title: 'Rail duplicated', description: `A draft copy of ${name} was created.` });
-  const queriedItems = mediaFormat === 'movie' ? [] : items;
+  const queriedItems = mediaFormat === 'movie' ? [] : items.filter((item) => item.title.toLocaleLowerCase().includes(querySearch.toLocaleLowerCase())).sort((a, b) => {
+    const valueA = sortField === 'year' ? a.year : a.title;
+    const valueB = sortField === 'year' ? b.year : b.title;
+    return valueA.localeCompare(valueB) * (sortDirection === 'asc' ? 1 : -1);
+  });
   const hasEmptyQuery = mediaFormat === 'movie';
 
   const basePanel = <div className="rail-details__form">
     <div className="rail-details__form-section"><span>Settings</span><TextInput label="Rail name" value={name} onChange={(event) => setName(event.target.value)} /><Select label="Rail status" value={status} onChange={setStatus} options={[{ value: 'active', label: 'Active' }, { value: 'draft', label: 'Draft' }, { value: 'inactive', label: 'Inactive' }]} /><Select label="Rail collection" value={collection} onChange={setCollection} options={[{ value: 'home', label: 'Home' }, { value: 'drama', label: 'Drama' }, { value: 'kids', label: 'Kids' }]} /><div className="rail-details__form-grid"><TextInput label="Rail position" type="number" defaultValue="2" min="1" /><TextInput label="Content slots" type="number" defaultValue="24" min="1" /></div><Select label="Assign to page" defaultValue="home" options={[{ value: 'home', label: 'Home' }, { value: 'discover', label: 'Discover' }, { value: 'kids', label: 'Kids' }]} /></div>
     <div className="rail-details__form-section"><span>Personalisation</span><Select label="Configuration" defaultValue="general" options={[{ value: 'general', label: 'General recommendations' }, { value: 'genre', label: 'Genre affinity' }, { value: 'recent', label: 'Recent activity' }]} helperText="The recommendation model used to populate this rail." /><Checkbox checked={autoRefresh} onChange={() => setAutoRefresh((value) => !value)} label="Automatically refresh content" /></div>
   </div>;
-  const queryPanel = <div className="rail-details__form"><div className="rail-details__form-section"><span>Content query</span><Segmented fullWidth size="small" ariaLabel="Query mode" value={queryMode} onChange={setQueryMode} options={[{ value: 'base', label: 'Base' }, { value: 'segment', label: 'Segment' }, { value: 'group', label: 'Group' }]} /><TextInput label="Search filters" placeholder="Title, genre or provider…" /><Select label="Airing type" defaultValue="all" options={[{ value: 'all', label: 'All airing types' }, { value: 'new', label: 'New' }, { value: 'repeat', label: 'Repeat' }, { value: 'live', label: 'Live' }]} /><Select label="Media format" value={mediaFormat} onChange={setMediaFormat} placeholder="Select format…" options={[{ value: 'movie', label: 'Movie' }, { value: 'series', label: 'Series' }, { value: 'clip', label: 'Clip' }]} /><TextArea label="Query notes" placeholder="Optional notes for editors…" /></div></div>;
+  const queryPanel = <div className="rail-details__form"><div className="rail-details__form-section"><span>Content query</span><SearchField label="Search content" value={querySearch} onChange={(event) => setQuerySearch(event.target.value)} onClear={() => setQuerySearch('')} placeholder="Search filters…" /><SortControl value={sortField} direction={sortDirection} onChange={setSortField} onDirectionChange={setSortDirection} options={[{ value: 'title', label: 'Title' }, { value: 'year', label: 'Release year' }]} /><Select label="Airing type" defaultValue="all" options={[{ value: 'all', label: 'All airing types' }, { value: 'new', label: 'New' }, { value: 'repeat', label: 'Repeat' }, { value: 'live', label: 'Live' }]} /><Select label="Media format" value={mediaFormat} onChange={setMediaFormat} placeholder="Select format…" options={[{ value: 'movie', label: 'Movie' }, { value: 'series', label: 'Series' }, { value: 'clip', label: 'Clip' }]} /><TextArea label="Query notes" placeholder="Optional notes for editors…" /></div></div>;
 
   return <div className="rail-details-page">
     <HeaderNavigation variant="static" brandName="Rail Manager" userName="Jane Doe" userEmail="jane@cvp.example" teams={[{ id: 'editorial', name: 'Editorial Team' }]} selectedTeamId="editorial" onThemeSwitch={toggleTheme} />

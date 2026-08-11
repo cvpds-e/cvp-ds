@@ -5,8 +5,10 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "build": "vite build",
-    "dev": "vite"
+    "build": "npm run tokens:check && vite build",
+    "dev": "vite",
+    "tokens:generate": "node scripts/generate-token-artifacts.mjs",
+    "tokens:check": "node scripts/generate-token-artifacts.mjs --check"
   },
   "dependencies": {
     "@emotion/react": "11.14.0",

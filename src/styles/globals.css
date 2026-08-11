@@ -1,3 +1,11 @@
+/*
+ * Legacy compatibility layer
+ * --------------------------
+ * These two files retain the unprefixed variables used by older documentation
+ * and imported examples. New or maintained product components must use the
+ * CVP primitive → semantic → component token path imported from index.css.
+ * Do not add new variables to these legacy theme files.
+ */
 @import './themes/theme.css';
 @import './themes/light-theme.css';
 @import './theme-switcher.css';

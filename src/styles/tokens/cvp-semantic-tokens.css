@@ -8,8 +8,7 @@
 
    Rules:
    - No bare hex values — every discrete colour is var(--cvp-primitive-*)
-   - Composite values (shadows, rgba overlays, opacity compositions) may be
-     defined here directly when the full expression varies by theme
+   - Composite colour values resolve to named Tier 1 composite primitives
    - Every colour token must have both a light and a dark definition
    - Components reference these tokens via component tokens or directly
      when no customer override surface is needed
@@ -46,16 +45,16 @@
   --cvp-color-surface-overlay-hover:    var(--cvp-primitive-neutral-450);  /* #333333 */
   --cvp-color-surface-overlay-selected: var(--cvp-primitive-neutral-350);  /* #45454a */
 
-  --cvp-color-overlay-scrim: rgb(0 0 0 / var(--cvp-primitive-opacity-scrim-dark));  /* 75% */
+  --cvp-color-overlay-scrim: var(--cvp-primitive-overlay-scrim-dark);
 
   /* ── Interactive overlays (translucent layers on dark surfaces) ─────────── */
-  --cvp-color-interactive-overlay:        rgba(255, 255, 255, 0.10);
-  --cvp-color-interactive-overlay-medium: rgba(255, 255, 255, 0.15);
-  --cvp-color-interactive-overlay-strong: rgba(255, 255, 255, 0.30);
+  --cvp-color-interactive-overlay:        var(--cvp-primitive-overlay-white-subtle);
+  --cvp-color-interactive-overlay-medium: var(--cvp-primitive-overlay-white-medium);
+  --cvp-color-interactive-overlay-strong: var(--cvp-primitive-overlay-white-strong);
 
   /* ── Gallery overlays ──────────────────────────────────────────────────── */
-  --cvp-color-gallery-overlay:      rgba(25, 25, 27, 0.75);
-  --cvp-color-gallery-empty-border: rgba(255, 255, 255, 0.10);
+  --cvp-color-gallery-overlay:      var(--cvp-primitive-overlay-gallery-dark);
+  --cvp-color-gallery-empty-border: var(--cvp-primitive-overlay-white-subtle);
 
   /* ── Text ──────────────────────────────────────────────────────────────── */
   --cvp-color-text-primary:     var(--cvp-primitive-neutral-0);    /* #ffffff */
@@ -146,9 +145,9 @@
   --cvp-color-state-danger-border:   var(--cvp-primitive-danger-500);  /* #e6494e */
 
   /* ── Shadows ───────────────────────────────────────────────────────────── */
-  --cvp-shadow-color-soft: rgba(0, 0, 0, 0.22);
-  --cvp-shadow-color-base: rgba(0, 0, 0, 0.34);
-  --cvp-shadow-color-strong: rgba(0, 0, 0, 0.52);
+  --cvp-shadow-color-soft: var(--cvp-primitive-shadow-dark-soft);
+  --cvp-shadow-color-base: var(--cvp-primitive-shadow-dark-base);
+  --cvp-shadow-color-strong: var(--cvp-primitive-shadow-dark-strong);
   --cvp-shadow-sm: var(--cvp-elevation-1);
   --cvp-shadow-md: var(--cvp-elevation-2);
   --cvp-shadow-lg: var(--cvp-elevation-3);
@@ -204,16 +203,16 @@
   --cvp-color-surface-overlay-hover:    var(--cvp-primitive-neutral-5);   /* #f3f4f6 */
   --cvp-color-surface-overlay-selected: var(--cvp-primitive-neutral-10);  /* #e5e7eb */
 
-  --cvp-color-overlay-scrim: rgb(0 0 0 / var(--cvp-primitive-opacity-scrim-light));  /* 45% */
+  --cvp-color-overlay-scrim: var(--cvp-primitive-overlay-scrim-light);
 
   /* ── Interactive overlays (translucent layers on light surfaces) ─────────── */
-  --cvp-color-interactive-overlay:        rgba(0, 0, 0, 0.04);
-  --cvp-color-interactive-overlay-medium: rgba(0, 0, 0, 0.08);
-  --cvp-color-interactive-overlay-strong: rgba(0, 0, 0, 0.15);
+  --cvp-color-interactive-overlay:        var(--cvp-primitive-overlay-black-subtle);
+  --cvp-color-interactive-overlay-medium: var(--cvp-primitive-overlay-black-medium);
+  --cvp-color-interactive-overlay-strong: var(--cvp-primitive-overlay-black-strong);
 
   /* ── Gallery overlays ──────────────────────────────────────────────────── */
-  --cvp-color-gallery-overlay:      rgba(0, 0, 0, 0.50);
-  --cvp-color-gallery-empty-border: rgba(0, 0, 0, 0.10);
+  --cvp-color-gallery-overlay:      var(--cvp-primitive-overlay-gallery-light);
+  --cvp-color-gallery-empty-border: var(--cvp-primitive-overlay-black-medium);
 
   /* ── Text ──────────────────────────────────────────────────────────────── */
   --cvp-color-text-primary:     var(--cvp-primitive-gray-900);     /* #111827 */
@@ -304,9 +303,9 @@
   --cvp-color-state-danger-border:   var(--cvp-primitive-red-600);     /* #dc2626 */
 
   /* ── Shadows ───────────────────────────────────────────────────────────── */
-  --cvp-shadow-color-soft: rgba(15, 23, 42, 0.07);
-  --cvp-shadow-color-base: rgba(15, 23, 42, 0.12);
-  --cvp-shadow-color-strong: rgba(15, 23, 42, 0.20);
+  --cvp-shadow-color-soft: var(--cvp-primitive-shadow-light-soft);
+  --cvp-shadow-color-base: var(--cvp-primitive-shadow-light-base);
+  --cvp-shadow-color-strong: var(--cvp-primitive-shadow-light-strong);
   --cvp-shadow-sm: var(--cvp-elevation-1);
   --cvp-shadow-md: var(--cvp-elevation-2);
   --cvp-shadow-lg: var(--cvp-elevation-3);

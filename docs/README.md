@@ -8,6 +8,7 @@ Use this directory as the entry point for design-system decisions and engineerin
 - [Design System Specification](specifications/DESIGN_SYSTEM_SPECIFICATION.md) — canonical component behavior and visual specification
 - [Component Inventory](specifications/DESIGN_SYSTEM_COMPONENT_INVENTORY.md) — component coverage and readiness
 - [Token Architecture](tokens/CVP_TOKEN_ARCHITECTURE.md) — token tiers, naming, and dependency rules
+- [Token Catalog](tokens/TOKEN_CATALOG.md) — complete readable inventory of active primitive, semantic, and component tokens
 - [Token Governance](tokens/TOKEN_GOVERNANCE.md) — ownership, review, deprecation, and compliance
 - [Implementation Status](project/IMPLEMENTATION_STATUS.md) — current progress and outstanding work
 

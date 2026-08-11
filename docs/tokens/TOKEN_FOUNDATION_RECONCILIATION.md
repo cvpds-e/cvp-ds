@@ -1,5 +1,7 @@
 # CVP Foundation Token Reconciliation
 
+> **Historical reconciliation record:** The completed-scope notes below describe the 4 August foundation pass. The current implementation inventory is maintained in [`TOKEN_CATALOG.md`](TOKEN_CATALOG.md); it supersedes any palette names or counts in this record.
+
 ## Decision
 
 The existing CVP three-tier architecture is authoritative. Foundation specifications refine its vocabulary and rules; they do not create parallel production token systems.

@@ -31,7 +31,7 @@ Every proposal must be submitted as a PR that satisfies all six gates before a r
 
 4. **WCAG validation.** Provide a contrast ratio table covering every token pair where this token will appear as foreground-on-background or vice versa. See the WCAG Compliance Requirements section for thresholds.
 
-5. **Documentation.** An entry in `docs/specifications/DESIGN.md` (name, tier, intended usage, do/do-not examples) and a Storybook story demonstrating the token in context must both be present before the PR ships.
+5. **Documentation.** Update `docs/tokens/TOKEN_CATALOG.md` and the relevant entry in `docs/specifications/DESIGN.md` (name, tier, intended usage, do/do-not examples). A Storybook story demonstrating the token in context must also be present before the PR ships.
 
 6. **Migration note.** If the new token supersedes an existing token, include: the name of the deprecated token, the replacement mapping, and the target release for removal.
 
@@ -42,7 +42,7 @@ Every proposal must be submitted as a PR that satisfies all six gates before a r
 ### Standard flow
 
 1. Author opens a PR against `main` targeting the appropriate implementation file.
-2. CI runs the Stylelint token registry check and WCAG contrast script automatically. Both must pass before human review begins.
+2. CI runs `npm run tokens:check` to verify that the generated registry and Markdown catalog match the CSS source. A contrast review remains required for any new foreground/background pairing.
 3. The owning team assigns at minimum one reviewer from each required-reviewer group listed in the ownership table.
 4. Reviewers check: naming consistency with the existing taxonomy, correct file placement, presence of both theme values, completeness of documentation, and accuracy of the WCAG table.
 5. Design Systems team reviewer left-approves after documentation and naming are confirmed. Engineering lead reviewer left-approves after implementation correctness is confirmed. Both approvals are required to merge.
@@ -87,29 +87,18 @@ A migration guide for a major release must be committed to the repository before
 
 ---
 
-## Lint Enforcement
+## Registry validation
 
-A Stylelint plugin enforces two invariants: all `--cvp-` custom properties must appear in the approved token registry, and deprecated tokens emit warnings (or errors, after grace period).
+The repository provides a dependency-free source-of-truth check rather than a configured Stylelint plugin:
 
-Minimal `.stylelintrc.json` configuration:
-
-```json
-{
-  "plugins": ["stylelint-plugin-cvp-tokens"],
-  "rules": {
-    "cvp-tokens/no-unregistered-token": [true, {
-      "registryPath": "src/styles/token-registry.json",
-      "severity": "error"
-    }],
-    "cvp-tokens/no-deprecated-token": [true, {
-      "registryPath": "src/styles/token-registry.json",
-      "severity": "warning"
-    }]
-  }
-}
+```bash
+npm run tokens:generate  # regenerate the registry and Markdown catalog
+npm run tokens:check     # fail if either generated artifact has drifted
 ```
 
-`token-registry.json` is generated automatically from `cvp-primitives.css`, `cvp-semantic-tokens.css`, and `cvp-component-tokens.css` by the `scripts/build-token-registry.js` script, which runs as part of CI and as a pre-commit hook. Any `--cvp-` property not present in the generated registry causes a lint error and blocks merge.
+`scripts/generate-token-artifacts.mjs` reads the three canonical CSS token files and generates both `src/styles/token-registry.json` and `docs/tokens/TOKEN_CATALOG.md`. The standard `npm run build` command runs `tokens:check` first. Add this command to CI to prevent documentation or registry drift.
+
+Stylelint enforcement for unregistered token usage is a future enhancement; it is not currently configured and must not be represented as active enforcement.
 
 ---
 
@@ -135,11 +124,11 @@ Contrast ratios must be computed against all surfaces the token is expected to a
 
 Before proposing any token:
 
-1. Search the token registry at `src/styles/token-registry.json` and the live Storybook catalogue for an existing token that meets the need.
+1. Search `docs/tokens/TOKEN_CATALOG.md` or `src/styles/token-registry.json` for an existing token that meets the need.
 2. Determine whether a component-level token override in `cvp-component-tokens.css` satisfies the requirement without promoting to a semantic token.
 3. If both checks pass and no existing token suffices, proceed to the proposal process above.
 
-The Stylelint `cvp-tokens/no-unregistered-token` rule is the automated backstop: it will reject any `--cvp-` property not in the registry, catching duplicate proposals that use novel names for existing concepts.
+`npm run tokens:check` is the current automated backstop for registry and catalog drift. Usage linting remains a planned enhancement.
 
 ---
 
@@ -148,6 +137,7 @@ The Stylelint `cvp-tokens/no-unregistered-token` rule is the automated backstop:
 | Artifact | Purpose | Updated by |
 |---|---|---|
 | `docs/specifications/DESIGN.md` | Single source of truth for token specifications and usage guidance | Token author, required before merge |
+| `docs/tokens/TOKEN_CATALOG.md` | Complete readable inventory of active token definitions and theme scopes | Token author, required before merge |
 | Storybook | Live catalogue with token arg tables and theme switching | Token author, required before merge |
 | `CHANGELOG.md` | Version history for every token change | Token author, required before merge |
 | `docs/tokens/CVP_TOKEN_ARCHITECTURE.md` | Architectural rationale and tier definitions | Design Systems team on structural changes |

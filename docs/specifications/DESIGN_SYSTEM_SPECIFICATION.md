@@ -5,6 +5,8 @@
 **Audience:** Engineers · Designers · QA · Storybook maintainers · AI tooling  
 **Last updated:** 2026-07-23
 
+> **Current implementation note (2026-08-12):** This specification includes historical readiness and migration snapshots. For the current token inventory and validation workflow, use [`TOKEN_CATALOG.md`](../tokens/TOKEN_CATALOG.md) and [`TOKEN_GOVERNANCE.md`](../tokens/TOKEN_GOVERNANCE.md). The registry now exists and `npm run tokens:check` is active; Stylelint usage enforcement remains a future enhancement.
+
 ---
 
 ## Executive Engineering Handoff
@@ -40,7 +42,7 @@ This document does **not** prescribe internal engineering tooling, test framewor
 | **Component token migration** | ✗ Phase 0 (audit) not started · Phase 2+ not started · All component implementations still reference legacy shorthand or unregistered tokens |
 | **Storybook** | ✗ No `.storybook/` directory · No stories exist for any component |
 | **Automated tests** | ✗ No unit, interaction, or accessibility tests for any CVP component |
-| **Stylelint enforcement** | ✗ `token-registry.json` not generated · `stylelint-plugin-cvp-tokens` not configured |
+| **Token registry validation** | ✓ `src/styles/token-registry.json` is generated from source and `npm run tokens:check` prevents catalog/registry drift · Stylelint usage enforcement is not configured |
 | **WCAG validation** | ✗ Accessibility validation has not been performed for any component; gaps are documented per component but not independently confirmed |
 | **Light theme** | ~ Available via `data-theme="light"` attribute; not validated in components (most use legacy tokens that bypass the theme mechanism) |
 

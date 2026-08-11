@@ -1,7 +1,9 @@
 # CVP Color Foundation Assessment
 
-Status: Approval preview  
+Status: Historical approval assessment — superseded by the active token catalog
 Date: 2026-08-04
+
+> **Historical context:** This records the direction considered during the foundation review. For the current, implementation-safe palette and token names, use [`TOKEN_CATALOG.md`](../../tokens/TOKEN_CATALOG.md) and the Foundations → Color preview. The Royal/Periwinkle language below is retained only as decision history.
 
 ## Outcome
 

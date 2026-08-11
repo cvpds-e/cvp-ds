@@ -2,7 +2,7 @@ import React from 'react';
 import './TokenArchitectureDocumentation.css';
 
 const layers = [
-  { tier: 'Tier 1', title: 'Primitives', prefix: '--cvp-primitive-*', description: 'Raw, immutable values: colour ramps, 4px spacing scale, radii, font metrics, opacity, and motion.', examples: ['--cvp-primitive-blue-600', '--cvp-primitive-space-4', '--cvp-primitive-font-size-md'], rule: 'Never use these in component CSS.' },
+  { tier: 'Tier 1', title: 'Primitives', prefix: '--cvp-primitive-*', description: 'A compact, private inventory of approved raw values: colour source steps, 4px spacing, radii, type metrics, opacity, and motion.', examples: ['--cvp-primitive-blue-600', '--cvp-primitive-space-4', '--cvp-primitive-font-size-md'], rule: 'Never use these in component CSS.' },
   { tier: 'Tier 2', title: 'Semantic roles', prefix: '--cvp-color-* / --cvp-space-*', description: 'Intent-based roles that adapt to light and dark themes. This is the shared language for surfaces, text, borders, focus, states, type, and layout.', examples: ['--cvp-color-surface-default', '--cvp-color-text-muted', '--cvp-border-focus-ring'], rule: 'Use only when a shared component contract does not already exist.' },
   { tier: 'Tier 3', title: 'Component contracts', prefix: '--cvp-[component]-*', description: 'The public and internal API for a component. It maps the design role to its element, state, geometry, and accessibility treatment.', examples: ['--cvp-button-primary-bg', '--cvp-table-row-bg-selected', '--cvp-gallery-meta-color'], rule: 'Use this tier inside component CSS.' },
 ];
@@ -30,7 +30,7 @@ const implementationRules = [
 ];
 
 const practicalExamples = {
-  primitives: ['--cvp-primitive-space-4: 16px;', '--cvp-primitive-neutral-500: #2a2a32;', '--cvp-primitive-radius-2: 4px;'].join('\n'),
+  primitives: ['--cvp-primitive-space-4: 16px;', '--cvp-primitive-neutral-500: #2a2a36;', '--cvp-primitive-radius-sm: 4px;'].join('\n'),
   semantic: ['--cvp-color-surface-active:', '  var(--cvp-primitive-neutral-500);', '', '--cvp-space-control-inset:', '  var(--cvp-primitive-space-2);'].join('\n'),
   contract: ['--cvp-table-row-bg-selected:', '  var(--cvp-color-surface-active);', '', '--cvp-input-border-focus:', '  var(--cvp-border-focus-ring);'].join('\n'),
   avoid: ['/* Usually unnecessary */', '--cvp-button-primary-icon-gap:', '  var(--cvp-space-2);'].join('\n'),
@@ -61,6 +61,15 @@ export function TokenArchitectureDocumentation() {
     <section className="token-architecture-docs__section" aria-labelledby="application-title">
       <header><div><h2 id="application-title">How to apply tokens in a component</h2><p>Start from the user-facing role, then select the narrowest appropriate token tier.</p></div></header>
       <div className="token-architecture-docs__table-wrap"><table><thead><tr><th>Decision area</th><th>Start with</th><th>Shared semantic role</th><th>Component contract</th></tr></thead><tbody>{applicationRows.map(row => <tr key={row[0]}>{row.map((cell, index) => <td key={cell}>{index > 1 ? <code>{cell}</code> : cell}</td>)}</tr>)}</tbody></table></div>
+    </section>
+
+    <section className="token-architecture-docs__section token-architecture-docs__palette-contract" aria-labelledby="palette-contract-title">
+      <header><div><h2 id="palette-contract-title">Colour choice is intentionally constrained</h2><p>Engineers do not choose from a large colour catalogue. New UI starts from semantic roles; primitives exist only to keep those roles consistent and themeable.</p></div></header>
+      <div>
+        <article><strong>Implementation source</strong><code>Blue · Neutral · Red · Danger · Green · Yellow · Sky · Purple</code><p>Only the documented steps in Foundations → Color exist. A missing numeric shade is not an invitation to create one.</p></article>
+        <article><strong>Use by role</strong><code>--cvp-color-text-* · --cvp-color-surface-* · --cvp-color-state-*</code><p>Use a semantic role for every product decision. This protects contrast and keeps light and dark themes aligned.</p></article>
+        <article><strong>Component boundary</strong><code>--cvp-[component]-*</code><p>Use a component contract only when the component needs a stable visual API or an independently controlled accessible state.</p></article>
+      </div>
     </section>
 
     <section className="token-architecture-docs__section token-architecture-docs__resolution" aria-labelledby="resolution-title">

@@ -8,7 +8,7 @@
 .rails-list-page__add-collection { flex: 0 0 auto; }
 .rails-list-page__tree-actions > .cvp-icon-button { margin-inline-start: auto; }
 .rails-list-page__collection-editor { display: flex; flex: 1 1 auto; min-height: 0; flex-direction: column; overflow: hidden; }
-.rails-list-page__collection-editor-body { display: grid; flex: 1 1 auto; min-height: 0; align-content: start; gap: var(--cvp-primitive-space-3); overflow: auto; padding: var(--cvp-space-4); }
+.rails-list-page__collection-editor-body { display: grid; flex: 1 1 auto; min-height: 0; align-content: start; gap: var(--cvp-space-3); overflow: auto; padding: var(--cvp-space-4); }
 .rails-list-page__back-to-collections { align-self: start; justify-self: start; }
 .rails-list-page__collection-form { display: grid; gap: var(--cvp-space-5); }
 .rails-list-page__collection-editor-footer { position: sticky; bottom: 0; z-index: 1; display: flex; flex: 0 0 auto; align-items: center; justify-content: space-between; gap: var(--cvp-space-3); margin-top: auto; padding: var(--cvp-space-4); background: var(--cvp-color-surface-page); border-top: var(--cvp-border-base-width) solid var(--cvp-color-border-subtle); }

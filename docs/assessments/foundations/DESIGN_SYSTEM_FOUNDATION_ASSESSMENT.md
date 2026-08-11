@@ -1,7 +1,9 @@
 # CVP Design System Foundation Assessment
 
-Status: Architecture proposal - no product code changed  
+Status: Historical architecture assessment
 Date: 2026-08-04
+
+> **Historical context:** This assessment predates the active token implementation. Current token ownership, values, and documentation are defined by [`TOKEN_CATALOG.md`](../../tokens/TOKEN_CATALOG.md), [`CVP_TOKEN_ARCHITECTURE.md`](../../tokens/CVP_TOKEN_ARCHITECTURE.md), and the runtime CSS token files.
 
 ## 1. Executive conclusion
 

@@ -39,9 +39,29 @@ const accentFamilies = [
   { name: 'Danger', role: 'Error and destructive', swatches: [['700', '#991b1b', '--cvp-primitive-red-700'], ['400', '#f87171', '--cvp-primitive-red-400'], ['200', '#fee2e2', '--cvp-primitive-red-200']] },
   { name: 'Success', role: 'Healthy and complete', swatches: [['700', '#14532d', '--cvp-primitive-green-700'], ['400', '#3dc155', '--cvp-primitive-green-400'], ['200', '#86efac', '--cvp-primitive-green-200']] },
   { name: 'Warning', role: 'Caution and review', swatches: [['700', '#92400e', '--cvp-primitive-yellow-700'], ['400', '#f4983b', '--cvp-primitive-yellow-400'], ['200', '#fcd34d', '--cvp-primitive-yellow-200']] },
-  { name: 'Info', role: 'Guidance and links', swatches: [['700', '#1e40af', '--cvp-primitive-sky-700'], ['400', '#60a5fa', '--cvp-primitive-sky-400'], ['200', '#bfdbfe', '--cvp-primitive-sky-200']] },
-  { name: 'Special', role: 'Limited accent callouts', swatches: [['800', '#1f3566', '--cvp-primitive-blue-800'], ['400', '#c084fc', '--cvp-primitive-purple-400'], ['200', '#e9d5ff', '--cvp-primitive-purple-200']] },
+  { name: 'Info', role: 'Guidance and links', swatches: [['700', '#1e40af', '--cvp-primitive-sky-700'], ['400', '#60a5fa', '--cvp-primitive-sky-400'], ['50', '#eff6ff', '--cvp-primitive-sky-50']] },
+  { name: 'Special', role: 'Limited accent callouts', swatches: [['800', '#1f3566', '--cvp-primitive-blue-800'], ['400', '#c084fc', '--cvp-primitive-purple-400'], ['700', '#7e22ce', '--cvp-primitive-purple-700']] },
 ] as const;
+
+type PaletteFamily = {
+  name: string;
+  coverage: 'Full ramp' | 'Role-specific ramp';
+  description: string;
+  tokenPrefix: string;
+  steps: readonly (string | number)[];
+};
+
+const completePaletteFamilies: PaletteFamily[] = [
+  { name: 'Blue', coverage: 'Role-specific ramp', description: 'Primary interactive and brand source values.', tokenPrefix: 'blue', steps: [600, 700, 800, 900] },
+  { name: 'Neutral', coverage: 'Full operational ramp', description: 'The complete surface, border and foreground scale across both themes.', tokenPrefix: 'neutral', steps: [900, 850, 800, 750, 700, 650, 600, 500, 450, 400, 350, 300, 250, 200, 170, 150, 100, 75, 50, 30, 25, 10, 5, 2, 0] },
+  { name: 'Gray', coverage: 'Role-specific ramp', description: 'Light-theme primary text anchor.', tokenPrefix: 'gray', steps: [900] },
+  { name: 'Red', coverage: 'Role-specific ramp', description: 'Error surfaces, borders and foregrounds.', tokenPrefix: 'red', steps: [950, 700, 600, 400, 300, 200, 100] },
+  { name: 'Danger', coverage: 'Role-specific ramp', description: 'Production destructive action emphasis.', tokenPrefix: 'danger', steps: [700, 600, 500] },
+  { name: 'Green', coverage: 'Role-specific ramp', description: 'Success surfaces and foregrounds.', tokenPrefix: 'green', steps: [800, 700, 600, 500, 400, 200, 50] },
+  { name: 'Yellow', coverage: 'Role-specific ramp', description: 'Warning surfaces and foregrounds.', tokenPrefix: 'yellow', steps: [900, 800, 700, 500, 400, 200, 100] },
+  { name: 'Sky', coverage: 'Role-specific ramp', description: 'Info, link and guidance roles.', tokenPrefix: 'sky', steps: [900, 800, 700, 600, 500, 400, 300, 50] },
+  { name: 'Purple', coverage: 'Role-specific ramp', description: 'Limited special-accent callouts.', tokenPrefix: 'purple', steps: [700, 400] },
+];
 
 function ThemePreview({ id, label, note }: (typeof themes)[number]) {
   return (
@@ -139,12 +159,12 @@ export function ColorFoundationPreview() {
     <main className="cvp-color-preview">
       <header className="cvp-color-preview__hero">
         <div>
-          <span className="cvp-color-preview__phase">Foundation 01 · Approval preview</span>
+          <span className="cvp-color-preview__phase">Foundation 01 · implementation palette</span>
           <h1>Color, clarified.</h1>
           <p>
-            A proposed semantic color direction built from the existing CVP project. Royal Blue,
-            Periwinkle and the operational neutral character are preserved; roles, pairings and
-            theme behaviour are made explicit.
+            The approved CVP colour inventory for implementation. It preserves the operational
+            neutral character while keeping colour choice intentionally small, role-based, and
+            consistent across both themes.
           </p>
         </div>
         <div className="cvp-color-preview__legend" role="list" aria-label="Change classification">
@@ -158,18 +178,16 @@ export function ColorFoundationPreview() {
       <section className="cvp-brand-ramp" aria-labelledby="brand-ramp-title">
         <div>
           <span className="cvp-color-preview__phase">Shared brand primitives</span>
-          <h2 id="brand-ramp-title">Royal Blue × Periwinkle</h2>
-          <p>The brand ramp stays recognisably CVP across both themes; semantic use changes by context.</p>
+          <h2 id="brand-ramp-title">CVP Blue</h2>
+          <p>One compact brand source set supports primary and secondary interactive roles across both themes.</p>
         </div>
         <div className="cvp-brand-ramp__swatches">
           {[
-            ['#b4c7ff', '--cvp-primitive-royal-100'], ['#9cb3ff', '--cvp-primitive-royal-200'],
-            ['#7287db', '--cvp-primitive-royal-300'], ['#4b76ff', '--cvp-primitive-royal-400'],
-            ['#3d63dd', '--cvp-primitive-royal-500'], ['#274ddb', '--cvp-primitive-royal-600'],
-            ['#1f3566', '--cvp-primitive-royal-800'],
+            ['#3d63dd', '--cvp-primitive-blue-600'], ['#244cce', '--cvp-primitive-blue-700'],
+            ['#1f3566', '--cvp-primitive-blue-800'], ['#2d4a8e', '--cvp-primitive-blue-900'],
           ].map(([color, token], index) => (
             <div key={color} style={{ backgroundColor: `var(${token})` }}>
-              <span>{[100, 200, 300, 400, 500, 600, 800][index]}</span>
+              <span>{[600, 700, 800, 900][index]}</span>
               <code>{color}</code>
             </div>
           ))}
@@ -216,6 +234,44 @@ export function ColorFoundationPreview() {
             </article>
           ))}
         </div>
+      </section>
+
+      <section className="cvp-palette-section cvp-palette-section--complete" aria-labelledby="complete-palette-title">
+        <header className="cvp-palette-section__header">
+          <div>
+            <span className="cvp-color-preview__phase">Token reference</span>
+            <h2 id="complete-palette-title">Approved primitive palette</h2>
+          </div>
+          <p>
+            Every colour primitive available to semantic tokens. “Role-specific ramp” means the
+            listed steps are deliberate; do not invent missing numeric steps.
+          </p>
+        </header>
+        <div className="cvp-complete-palette">
+          {completePaletteFamilies.map(family => (
+            <article key={family.name}>
+              <header>
+                <div><strong>{family.name}</strong><small>{family.description}</small></div>
+                <span className={family.coverage === 'Full ramp' ? 'is-full' : ''}>{family.coverage}</span>
+              </header>
+              <div className="cvp-complete-palette__swatches">
+                {family.steps.map(step => {
+                  const token = `--cvp-primitive-${family.tokenPrefix}-${step}`;
+                  return (
+                    <span key={token}>
+                      <i aria-hidden="true" style={{ backgroundColor: `var(${token})` }} />
+                      <span><b>{step}</b><code>{token}</code></span>
+                    </span>
+                  );
+                })}
+              </div>
+            </article>
+          ))}
+        </div>
+        <aside className="cvp-palette-rule">
+          <strong>Implementation rule</strong>
+          <p>Components never reference this palette directly. Select a semantic role first, then expose a component token only when the component needs a stable customization contract.</p>
+        </aside>
       </section>
 
       <div className="cvp-color-preview__themes">

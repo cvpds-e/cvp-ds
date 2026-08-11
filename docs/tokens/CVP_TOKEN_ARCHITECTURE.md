@@ -130,7 +130,7 @@ For the full platform vision see [EXPERIENCE_INFRASTRUCTURE.md](EXPERIENCE_INFRA
 
 **Tier 1 — Primitives** are the primary home for raw values. Hex codes, pixel lengths, and unitless numbers live here. Changing a primitive propagates automatically through every semantic and component token that references it. Named palette subsets — focus ring colours, link colours, accent colours — are permitted as primitives when they carry an accessibility or brand-role distinction that must remain theme-independent. These are not semantic tokens; they do not describe how a value is used, only which specific raw value from the palette serves that role.
 
-**Tier 2 — Semantic tokens** carry meaning. They resolve to different values under `[data-theme="light"]` and `[data-theme="dark"]`, so components never need conditional theme logic. Non-colour tokens (spacing, radius, typography, motion, z-index) are theme-independent and defined on `:root`. Composite values — shadows, translucent overlays, opacity-composed colours — may be defined directly in the semantic layer when the full composite expression (not just a single raw part) is what changes by theme and no reusable primitive abstraction exists. Bare hex values must still live in Tier 1.
+**Tier 2 — Semantic tokens** carry meaning. They resolve to different values under `[data-theme="light"]` and `[data-theme="dark"]`, so components never need conditional theme logic. Non-colour tokens (spacing, radius, typography, motion, z-index) are theme-independent and defined on `:root`. Shadows and translucent overlays resolve from named composite primitives, so their approved source values stay centralized in Tier 1. Bare hex values and raw colour expressions never belong in Tier 2.
 
 **Tier 3 — Component tokens** are the customer override surface. A white-label customer changes `--cvp-button-primary-bg` without touching the global `--cvp-color-brand-default`. Each component's full override surface is explicit and discoverable via Storybook.
 
@@ -606,12 +606,9 @@ Every `--tc-*` token mapped to its `--cvp-*` replacement. The alias bridge (`cvp
 
 ### 9.3 Primitive Adoption Recommendation
 
-Semantic tokens reference primitives for all discrete colour, spacing, radius, and motion values. Two categories of value may be defined directly in the semantic layer without an intermediate primitive:
+Semantic tokens reference primitives for all discrete colour, spacing, radius, and motion values. Composite shadows and translucent overlays are also named composite primitives, keeping all approved raw colour expressions in Tier 1. Component-context colour tokens such as `--cvp-color-nav-*`, `--cvp-color-input-*`, and `--cvp-color-modal-*` remain semantic because they are theme-switchable and serve multiple components within their context.
 
-- **Composite values** — shadows, translucent overlays, and opacity compositions where the full expression (not just a single dimension of it) varies by theme. Decomposing these into per-axis primitives adds complexity without meaningful reuse.
-- **Component-context colour tokens** — `--cvp-color-nav-*`, `--cvp-color-input-*`, `--cvp-color-modal-*` and similar groups remain in the semantic layer because they are theme-switchable and serve multiple components within their context.
-
-Bare hex values must always live in Tier 1.
+Bare hex values and raw colour expressions must always live in Tier 1.
 
 ---
 

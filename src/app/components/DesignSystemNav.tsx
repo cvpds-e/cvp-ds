@@ -50,11 +50,13 @@ const NAV_ITEMS = [
   // Overlays & Feedback
   { id: 'modal', label: 'Modal', category: 'Overlays' },
   { id: 'content-browser-modal', label: 'Content Browser Modal', category: 'Overlays' },
+  { id: 'tooltip', label: 'Tooltip', category: 'Overlays' },
   { id: 'toast', label: 'Toast', category: 'Feedback' },
   { id: 'notification-banner', label: 'Notification Banner', category: 'Feedback' },
 
   // Complex Components
   { id: 'rail-content-gallery', label: 'Rail Content Gallery', category: 'Complex' },
+  { id: 'workspace-layout', label: 'Workspace Layout', category: 'Complex' },
   
   // Pages
   { id: 'login-signup', label: 'Login / Sign Up', category: 'Pages' },

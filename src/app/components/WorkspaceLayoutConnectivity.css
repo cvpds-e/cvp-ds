@@ -1,0 +1,11 @@
+/* The divider occupies one visual pixel. Its larger hit target does not create a gap in connected rules. */
+.cvp-workspace-layout__body{grid-template-columns:var(--cvp-workspace-side-panel-width,344px) var(--cvp-border-base-width) minmax(0,1fr)}
+.cvp-workspace-layout__resize-handle{position:relative;z-index:1;background:var(--cvp-workspace-divider-color)}
+.cvp-workspace-layout__resize-handle::before{display:none}
+.cvp-workspace-layout__resize-handle::after{position:absolute;inset:0 calc((var(--cvp-workspace-divider-hit-area,8px) - var(--cvp-border-base-width)) / -2);content:''}
+.cvp-workspace-layout__resize-handle:hover,.cvp-workspace-layout__resize-handle:focus-visible{background:var(--cvp-workspace-divider-color-active)}
+.cvp-workspace-demo__frame{grid-template-columns:var(--cvp-workspace-demo-side) var(--cvp-border-base-width) minmax(0,1fr)}
+.cvp-workspace-demo__resize{position:relative;z-index:1;background:var(--cvp-workspace-divider-color)}
+.cvp-workspace-demo__resize::before{display:none}
+.cvp-workspace-demo__resize::after{position:absolute;inset:0 calc((var(--cvp-workspace-divider-hit-area,8px) - var(--cvp-border-base-width)) / -2);content:''}
+.cvp-workspace-demo__resize:hover,.cvp-workspace-demo__resize:focus-visible{background:var(--cvp-workspace-divider-color-active)}

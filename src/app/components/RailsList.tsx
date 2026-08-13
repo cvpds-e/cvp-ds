@@ -11,6 +11,7 @@ import { TextInput } from './TextInput';
 import { Select } from './Select';
 import { OutlineButton } from './OutlineButton';
 import { Tree, TreeItem } from './Tree';
+import { WorkspaceLayout } from './WorkspaceLayout';
 import './RailsList.css';
 
 const collections: TreeItem[] = [
@@ -88,18 +89,19 @@ export function RailsList() {
     </footer>
   </div>;
 
-  return <div className="rails-list-page">
-    <HeaderNavigation variant="static" brandName="Rail Manager" userName="Jane Doe" userEmail="jane@cvp.example" teams={[{ id: 'content-team', name: 'Content Team' }]} selectedTeamId="content-team" onThemeSwitch={toggleTheme} />
-    <div className="rails-list-page__workspace">
-      <aside className="rails-list-page__sidebar" aria-label="Rail collections navigation">
+  return <WorkspaceLayout className="rails-list-page">
+    <WorkspaceLayout.GlobalHeader><HeaderNavigation variant="static" brandName="Rail Manager" userName="Jane Doe" userEmail="jane@cvp.example" teams={[{ id: 'content-team', name: 'Content Team' }]} selectedTeamId="content-team" onThemeSwitch={toggleTheme} /></WorkspaceLayout.GlobalHeader>
+    <WorkspaceLayout.Body className="rails-list-page__workspace" sidePanelWidth="clamp(320px, 32vw, 640px)" maxSidePanelWidth={640}>
+      <WorkspaceLayout.SidePanel className="rails-list-page__sidebar" aria-label="Rail collections navigation">
         <div className="rails-list-page__sidebar-label">Overview</div>
         {editingCollection ? collectionEditor : <div className="rails-list-page__tree-panel"><div className="rails-list-page__tree-actions"><TextButton variant="secondary" className="rails-list-page__add-collection" icon={<Plus size={18} />} onClick={() => openCollectionEditor()}>Add new rail collection</TextButton><IconButton variant="ghost" size="small" aria-label="Search rail collections"><Search size={16} /></IconButton></div>{tree}</div>}
-      </aside>
-      <main className="rails-list-page__main">
-        <header className="rails-list-page__titlebar"><div><ListFilter size={20} aria-hidden="true" /><h1>Rails List</h1></div><PrimaryButton><Plus size={16} /> Create rail</PrimaryButton></header>
-        <div className="rails-list-page__filters"><Filter triggerVariant="icon-seamless" options={[{ id: 'title', label: 'Title', type: 'text' }, { id: 'rail-type', label: 'Rail type', type: 'multiselect', options: [{ value: 'editorial', label: 'Editorial' }, { value: 'recommended', label: 'Recommended' }] }, { id: 'collection', label: 'Collection', type: 'select', options: [{ value: 'home', label: 'Home' }, { value: 'drama', label: 'Drama' }, { value: 'kids', label: 'Kids' }] }]} activeFilters={filters} onChange={(nextFilters) => { setFilters(nextFilters); if (nextFilters.length <= 2) setMatchAllFilters(true); }} placeholder="Add filter" />{filters.length > 2 && <TextButton className="rails-list-page__match" variant="secondary" aria-label={`Switch to match ${matchAllFilters ? 'any' : 'all'} filters`} onClick={() => setMatchAllFilters((value) => !value)}>{matchAllFilters ? 'Match all filters' : 'Match any filter'}</TextButton>}</div>
+      </WorkspaceLayout.SidePanel>
+      <WorkspaceLayout.ResizeHandle />
+      <WorkspaceLayout.Main className="rails-list-page__main">
+        <WorkspaceLayout.PageHeader className="rails-list-page__titlebar"><div><ListFilter size={20} aria-hidden="true" /><h1>Rails List</h1></div><PrimaryButton><Plus size={16} /> Create rail</PrimaryButton></WorkspaceLayout.PageHeader>
+        <WorkspaceLayout.Toolbar className="rails-list-page__filters"><Filter triggerVariant="icon-seamless" options={[{ id: 'title', label: 'Title', type: 'text' }, { id: 'rail-type', label: 'Rail type', type: 'multiselect', options: [{ value: 'editorial', label: 'Editorial' }, { value: 'recommended', label: 'Recommended' }] }, { id: 'collection', label: 'Collection', type: 'select', options: [{ value: 'home', label: 'Home' }, { value: 'drama', label: 'Drama' }, { value: 'kids', label: 'Kids' }] }]} activeFilters={filters} onChange={(nextFilters) => { setFilters(nextFilters); if (nextFilters.length <= 2) setMatchAllFilters(true); }} placeholder="Add filter" />{filters.length > 2 && <TextButton className="rails-list-page__match" variant="secondary" aria-label={`Switch to match ${matchAllFilters ? 'any' : 'all'} filters`} onClick={() => setMatchAllFilters((value) => !value)}>{matchAllFilters ? 'Match all filters' : 'Match any filter'}</TextButton>}</WorkspaceLayout.Toolbar>
         <Table className="rails-list-page__table" ariaLabel="Rails list" columns={columns} data={rows} selectable expandable sortable showActions={false} totalItems={38} pageSize={38} height="calc(100dvh - 246px)" renderCell={(column, value) => column === 'collection' ? <span className="rails-list-page__collection-tag">{value}</span> : value} />
-      </main>
-    </div>
-  </div>;
+      </WorkspaceLayout.Main>
+    </WorkspaceLayout.Body>
+  </WorkspaceLayout>;
 }

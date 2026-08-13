@@ -12,7 +12,7 @@
 .tree-docs__section-heading span { color: var(--cvp-color-text-link-default); font-family: var(--cvp-font-family-mono); font-size: var(--cvp-font-size-sm); }
 .tree-docs__section-heading h2 { margin: 0; font-size: var(--cvp-font-size-2xl); }
 .tree-docs__section-heading p { max-width: 520px; font-size: var(--cvp-font-size-sm); text-align: end; }
-.tree-docs__product-shell { display: grid; grid-template-columns: minmax(340px, 1.2fr) minmax(280px, .8fr); overflow: hidden; background: var(--cvp-color-surface-subtle); border: var(--cvp-border-base-width) solid var(--cvp-color-border-subtle); border-radius: var(--cvp-radius-lg); }
+.tree-docs__product-shell { display: grid; grid-template-columns: minmax(340px, 1.2fr) minmax(280px, .8fr); overflow: hidden; background: var(--cvp-color-surface-page); border: var(--cvp-border-base-width) solid var(--cvp-color-border-subtle); border-radius: var(--cvp-radius-lg); }
 .tree-docs__panel { min-width: 0; padding: var(--cvp-space-4); background: var(--cvp-color-surface-default); border-inline-end: var(--cvp-border-base-width) solid var(--cvp-color-border-subtle); }
 .tree-docs__panel-header { display: flex; align-items: center; justify-content: space-between; gap: var(--cvp-space-3); padding-bottom: var(--cvp-space-3); color: var(--cvp-color-text-muted); font-size: var(--cvp-font-size-sm); }
 .tree-docs__panel-header > div { display: flex; align-items: center; gap: var(--cvp-space-2); color: var(--cvp-color-text-primary); text-transform: uppercase; }
@@ -26,7 +26,7 @@
 .tree-docs__variant-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--cvp-space-4); }
 .tree-docs__variant-grid article,
 .tree-docs__states,
-.tree-docs__contract-wrap { background: var(--cvp-color-surface-subtle); border: var(--cvp-border-base-width) solid var(--cvp-color-border-subtle); border-radius: var(--cvp-radius-lg); }
+.tree-docs__contract-wrap { background: var(--cvp-color-surface-page); border: var(--cvp-border-base-width) solid var(--cvp-color-border-subtle); border-radius: var(--cvp-radius-lg); }
 .tree-docs__variant-grid article { min-width: 0; padding: var(--cvp-space-4); }
 .tree-docs__card-heading { display: flex; gap: var(--cvp-space-2); margin-bottom: var(--cvp-space-3); }
 .tree-docs__card-heading h3 { margin: 0; font-size: var(--cvp-font-size-lg); }

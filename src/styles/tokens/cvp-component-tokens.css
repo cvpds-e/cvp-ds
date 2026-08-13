@@ -233,6 +233,34 @@
   --cvp-button-icon-remove-color-active: var(--cvp-color-state-danger-text);
 
   /* ===========================================================================
+     TOOLTIP
+     Public:   bg, text, border, radius
+     Internal: shadow, type, inset, offset, motion, maximum width
+  =========================================================================== */
+  --cvp-tooltip-bg:                var(--cvp-color-surface-overlay);
+  --cvp-tooltip-text:              var(--cvp-color-text-primary);
+  --cvp-tooltip-border:            var(--cvp-color-border-default);
+  --cvp-tooltip-border-width:      var(--cvp-border-base-width);
+  --cvp-tooltip-radius:            var(--cvp-shape-control-base);
+  --cvp-tooltip-shadow:            var(--cvp-shadow-md);
+  --cvp-tooltip-padding-x:         var(--cvp-space-3);
+  --cvp-tooltip-padding-y:         var(--cvp-space-2);
+  --cvp-tooltip-offset:            var(--cvp-space-2);
+  --cvp-tooltip-max-width:         calc(var(--cvp-space-12) * 6);
+  --cvp-tooltip-font-family:       var(--cvp-font-family-sans);
+  --cvp-tooltip-font-size:         var(--cvp-font-size-sm);
+  --cvp-tooltip-font-weight:       var(--cvp-font-weight-regular);
+  --cvp-tooltip-line-height:       var(--cvp-line-height-snug);
+  --cvp-tooltip-letter-spacing:    var(--cvp-letter-spacing-normal);
+  --cvp-tooltip-motion-duration:   var(--cvp-motion-duration-fast);
+  --cvp-tooltip-motion-easing:     var(--cvp-motion-easing-standard);
+
+  /* Workspace Layout */
+  --cvp-workspace-divider-color:        var(--cvp-color-border-subtle);
+  --cvp-workspace-divider-color-active: var(--cvp-color-border-brand);
+  --cvp-workspace-divider-hit-area:     var(--cvp-space-2);
+
+  /* ===========================================================================
      BUTTON — ICON WITH TEXT
      Public:   color, border, radius
      Internal: states, focus, disabled, typography, geometry, loading

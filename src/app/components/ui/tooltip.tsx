@@ -4,6 +4,7 @@ import * as React from "react";
 import * as TooltipPrimitive from "@radix-ui/react-tooltip";
 
 import { cn } from "./utils";
+import "../Tooltip.css";
 
 // Helper function to filter out Figma-specific props
 function filterFigmaProps<T extends Record<string, any>>(props: T): Omit<T, `_fg${string}`> {
@@ -59,29 +60,14 @@ function TooltipContent({
       <TooltipPrimitive.Content
         data-slot="tooltip-content"
         sideOffset={sideOffset}
-        style={{
-          backgroundColor: 'var(--cvp-color-surface-overlay)',
-          color: 'var(--cvp-color-text-primary)',
-          fontFamily: 'var(--cvp-font-family-sans)',
-          fontSize: '13px',
-          fontWeight: 400,
-          lineHeight: '20px',
-          letterSpacing: '0.1px',
-          padding: '6px 12px',
-          borderRadius: 'var(--cvp-shape-control-base)',
-          boxShadow: 'var(--cvp-shadow-md)',
-          border: 'var(--cvp-border-container)',
-          zIndex: 9999,
-          maxWidth: 'fit-content',
-          whiteSpace: 'nowrap'
-        }}
         className={cn(
-          "animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 origin-(--radix-tooltip-content-transform-origin)",
+          "cvp-tooltip animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 origin-(--radix-tooltip-content-transform-origin)",
           className,
         )}
         {...cleanProps}
       >
         {children}
+        <TooltipPrimitive.Arrow className="cvp-tooltip__arrow" width={10} height={5} />
       </TooltipPrimitive.Content>
     </TooltipPrimitive.Portal>
   );

@@ -19,7 +19,7 @@ This catalog is the readable index of every active CVP token. It preserves each 
 | --- | --- | ---: |
 | Primitive | `cvp-primitives.css` | 205 |
 | Semantic | `cvp-semantic-tokens.css` | 485 |
-| Component | `cvp-component-tokens.css` | 1203 |
+| Component | `cvp-component-tokens.css` | 1223 |
 
 ## Tier 1 — Primitive tokens
 
@@ -2109,6 +2109,31 @@ Component contracts. Each group is named after the component or shared contract 
 </details>
 
 <details>
+<summary><strong>tooltip</strong> — 17 tokens</summary>
+
+| Token | Value | Scope |
+| --- | --- | --- |
+| `--cvp-tooltip-bg` | `var(--cvp-color-surface-overlay)` | Shared |
+| `--cvp-tooltip-text` | `var(--cvp-color-text-primary)` | Shared |
+| `--cvp-tooltip-border` | `var(--cvp-color-border-default)` | Shared |
+| `--cvp-tooltip-border-width` | `var(--cvp-border-base-width)` | Shared |
+| `--cvp-tooltip-radius` | `var(--cvp-shape-control-base)` | Shared |
+| `--cvp-tooltip-shadow` | `var(--cvp-shadow-md)` | Shared |
+| `--cvp-tooltip-padding-x` | `var(--cvp-space-3)` | Shared |
+| `--cvp-tooltip-padding-y` | `var(--cvp-space-2)` | Shared |
+| `--cvp-tooltip-offset` | `var(--cvp-space-2)` | Shared |
+| `--cvp-tooltip-max-width` | `calc(var(--cvp-space-12) * 6)` | Shared |
+| `--cvp-tooltip-font-family` | `var(--cvp-font-family-sans)` | Shared |
+| `--cvp-tooltip-font-size` | `var(--cvp-font-size-sm)` | Shared |
+| `--cvp-tooltip-font-weight` | `var(--cvp-font-weight-regular)` | Shared |
+| `--cvp-tooltip-line-height` | `var(--cvp-line-height-snug)` | Shared |
+| `--cvp-tooltip-letter-spacing` | `var(--cvp-letter-spacing-normal)` | Shared |
+| `--cvp-tooltip-motion-duration` | `var(--cvp-motion-duration-fast)` | Shared |
+| `--cvp-tooltip-motion-easing` | `var(--cvp-motion-easing-standard)` | Shared |
+
+</details>
+
+<details>
 <summary><strong>tree</strong> — 39 tokens</summary>
 
 | Token | Value | Scope |
@@ -2152,6 +2177,17 @@ Component contracts. Each group is named after the component or shared contract 
 | `--cvp-tree-status-size` | `var(--cvp-space-2)` | Shared |
 | `--cvp-tree-icon-slot-size` | `var(--cvp-font-size-md)` | Shared |
 | `--cvp-tree-disabled-opacity` | `0.48` | Shared |
+
+</details>
+
+<details>
+<summary><strong>workspace</strong> — 3 tokens</summary>
+
+| Token | Value | Scope |
+| --- | --- | --- |
+| `--cvp-workspace-divider-color` | `var(--cvp-color-border-subtle)` | Shared |
+| `--cvp-workspace-divider-color-active` | `var(--cvp-color-border-brand)` | Shared |
+| `--cvp-workspace-divider-hit-area` | `var(--cvp-space-2)` | Shared |
 
 </details>
 

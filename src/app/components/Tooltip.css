@@ -1,0 +1,6 @@
+.cvp-tooltip{z-index:var(--cvp-z-tooltip);max-width:var(--cvp-tooltip-max-width);padding:var(--cvp-tooltip-padding-y) var(--cvp-tooltip-padding-x);color:var(--cvp-tooltip-text);background:var(--cvp-tooltip-bg);border:var(--cvp-tooltip-border-width) solid var(--cvp-tooltip-border);border-radius:var(--cvp-tooltip-radius);box-shadow:var(--cvp-tooltip-shadow);font-family:var(--cvp-tooltip-font-family);font-size:var(--cvp-tooltip-font-size);font-weight:var(--cvp-tooltip-font-weight);line-height:var(--cvp-tooltip-line-height);letter-spacing:var(--cvp-tooltip-letter-spacing);text-wrap:balance;animation:cvp-tooltip-enter var(--cvp-tooltip-motion-duration) var(--cvp-tooltip-motion-easing)}
+.cvp-tooltip[data-state="closed"]{animation:cvp-tooltip-exit var(--cvp-tooltip-motion-duration) var(--cvp-tooltip-motion-easing)}
+.cvp-tooltip__arrow{fill:var(--cvp-tooltip-bg);stroke:var(--cvp-tooltip-border);stroke-width:var(--cvp-tooltip-border-width)}
+@keyframes cvp-tooltip-enter{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
+@keyframes cvp-tooltip-exit{from{opacity:1}to{opacity:0}}
+@media(prefers-reduced-motion:reduce){.cvp-tooltip,.cvp-tooltip[data-state="closed"]{animation:none}}

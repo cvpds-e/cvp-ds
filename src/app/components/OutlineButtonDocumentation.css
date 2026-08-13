@@ -1,4 +1,4 @@
-.cvp-outline-doc__query{display:grid;gap:var(--cvp-spacing-stack-md);margin-top:var(--cvp-spacing-stack-lg);padding:var(--cvp-spacing-inset-lg);background:var(--cvp-color-surface-sunken);border:var(--cvp-border-base);border-radius:var(--cvp-shape-surface-subtle)}
+.cvp-outline-doc__query{display:grid;gap:var(--cvp-spacing-stack-md);margin-top:var(--cvp-spacing-stack-lg);padding:var(--cvp-spacing-inset-lg);background:var(--cvp-color-surface-page);border:var(--cvp-border-base);border-radius:var(--cvp-shape-surface-subtle)}
 .cvp-outline-doc__query h3{margin:0;color:var(--cvp-color-text-primary);font-size:var(--cvp-font-size-lg);line-height:var(--cvp-line-height-snug)}
 .cvp-outline-doc__query p{margin:var(--cvp-spacing-stack-xs) 0 0;color:var(--cvp-color-text-muted);font-size:var(--cvp-font-size-sm);line-height:var(--cvp-line-height-normal)}
 .cvp-outline-doc__query-actions{display:flex;align-items:center;flex-wrap:wrap;gap:var(--cvp-spacing-gap-sm)}

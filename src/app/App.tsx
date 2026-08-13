@@ -52,6 +52,8 @@ import { NotificationBannerDocumentation } from './components/NotificationBanner
 import { AccessibilityAuditProbe } from './components/AccessibilityAuditProbe';
 import { AccessibilityDocumentation } from './components/AccessibilityDocumentation';
 import { TokenArchitectureDocumentation } from './components/TokenArchitectureDocumentation';
+import { TooltipDocumentation } from './components/TooltipDocumentation';
+import { WorkspaceLayoutDocumentation } from './components/WorkspaceLayoutDocumentation';
 import cvpLogoWhite from '../imports/NEW__DARK_.png';
 import cvpLogoBlack from '../imports/NEW__LIGHT_.png';
 import './App.css';
@@ -579,6 +581,8 @@ export default function App() {
         return <ModalDocumentation />;
       case 'content-browser-modal':
         return <ContentBrowserModalDocumentation />;
+      case 'tooltip':
+        return <TooltipDocumentation />;
       case 'segmented':
         return <SegmentedDocumentation />;
       case 'accordion':
@@ -597,6 +601,8 @@ export default function App() {
         return <SegmentQueryConfigurationDocumentation />;
       case 'rail-content-gallery':
         return <RailContentGalleryDocumentation />;
+      case 'workspace-layout':
+        return <WorkspaceLayoutDocumentation />;
       case 'login-signup':
         return <LoginSignUpDocumentation />;
       case 'page-side-nav':

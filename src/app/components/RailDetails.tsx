@@ -13,9 +13,11 @@ import { Select } from './Select';
 import { SearchField } from './SearchField';
 import { SortControl } from './SortControl';
 import { Tabs } from './Tabs';
-import { TextArea } from './TextArea';
 import { TextInput } from './TextInput';
+import { TagFilter } from './TagFilter';
+import { TextButton } from './TextButton';
 import { ToastProvider, useToast } from './Toast';
+import { WorkspaceLayout } from './WorkspaceLayout';
 import './RailDetails.css';
 
 interface RailDetailsProps { railName?: string; totalLabels?: number; }
@@ -40,6 +42,8 @@ function RailDetailsWorkspace({ railName = 'Trending' }: RailDetailsProps) {
   const [querySearch, setQuerySearch] = useState('');
   const [sortField, setSortField] = useState('title');
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('desc');
+  const [airingTypes, setAiringTypes] = useState<string[]>([]);
+  const [showingTypes, setShowingTypes] = useState<string[]>([]);
   const [autoRefresh, setAutoRefresh] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [browserOpen, setBrowserOpen] = useState(false);
@@ -64,26 +68,51 @@ function RailDetailsWorkspace({ railName = 'Trending' }: RailDetailsProps) {
     <div className="rail-details__form-section"><span>Settings</span><TextInput label="Rail name" value={name} onChange={(event) => setName(event.target.value)} /><Select label="Rail status" value={status} onChange={setStatus} options={[{ value: 'active', label: 'Active' }, { value: 'draft', label: 'Draft' }, { value: 'inactive', label: 'Inactive' }]} /><Select label="Rail collection" value={collection} onChange={setCollection} options={[{ value: 'home', label: 'Home' }, { value: 'drama', label: 'Drama' }, { value: 'kids', label: 'Kids' }]} /><div className="rail-details__form-grid"><TextInput label="Rail position" type="number" defaultValue="2" min="1" /><TextInput label="Content slots" type="number" defaultValue="24" min="1" /></div><Select label="Assign to page" defaultValue="home" options={[{ value: 'home', label: 'Home' }, { value: 'discover', label: 'Discover' }, { value: 'kids', label: 'Kids' }]} /></div>
     <div className="rail-details__form-section"><span>Personalisation</span><Select label="Configuration" defaultValue="general" options={[{ value: 'general', label: 'General recommendations' }, { value: 'genre', label: 'Genre affinity' }, { value: 'recent', label: 'Recent activity' }]} helperText="The recommendation model used to populate this rail." /><Checkbox checked={autoRefresh} onChange={() => setAutoRefresh((value) => !value)} label="Automatically refresh content" /></div>
   </div>;
-  const queryPanel = <div className="rail-details__form"><div className="rail-details__form-section"><span>Content query</span><SearchField label="Search content" value={querySearch} onChange={(event) => setQuerySearch(event.target.value)} onClear={() => setQuerySearch('')} placeholder="Search filters…" /><SortControl value={sortField} direction={sortDirection} onChange={setSortField} onDirectionChange={setSortDirection} options={[{ value: 'title', label: 'Title' }, { value: 'year', label: 'Release year' }]} /><Select label="Airing type" defaultValue="all" options={[{ value: 'all', label: 'All airing types' }, { value: 'new', label: 'New' }, { value: 'repeat', label: 'Repeat' }, { value: 'live', label: 'Live' }]} /><Select label="Media format" value={mediaFormat} onChange={setMediaFormat} placeholder="Select format…" options={[{ value: 'movie', label: 'Movie' }, { value: 'series', label: 'Series' }, { value: 'clip', label: 'Clip' }]} /><TextArea label="Query notes" placeholder="Optional notes for editors…" /></div></div>;
+  const hasQueryFilters = Boolean(querySearch || mediaFormat || airingTypes.length || showingTypes.length || sortField !== 'title' || sortDirection !== 'desc');
+  const clearQueryFilters = () => {
+    setQuerySearch('');
+    setMediaFormat('');
+    setAiringTypes([]);
+    setShowingTypes([]);
+    setSortField('title');
+    setSortDirection('desc');
+  };
+  const queryPanel = <div className="rail-details__form">
+    <div className="rail-details__form-section rail-details__query-section">
+      <div className="rail-details__query-heading">
+        <span>Content query</span>
+        {hasQueryFilters && <TextButton variant="secondary" onClick={clearQueryFilters}>Clear all filters</TextButton>}
+      </div>
+      <SearchField label="Search filters" value={querySearch} onChange={(event) => setQuerySearch(event.target.value)} onClear={() => setQuerySearch('')} placeholder="Search content…" />
+      <SortControl value={sortField} direction={sortDirection} onChange={setSortField} onDirectionChange={setSortDirection} options={[{ value: 'title', label: 'Title' }, { value: 'year', label: 'Release year' }]} />
+      <div className="rail-details__query-group" aria-label="Listing filters">
+        <span>Listing filters</span>
+        <TagFilter sections={[{ id: 'airing-type', title: 'Airing type', options: [{ id: 'new', label: 'New' }, { id: 'repeat', label: 'Repeat' }, { id: 'live', label: 'Live' }, { id: 'taped', label: 'Taped' }] }]} selectedOptions={airingTypes} onSelectionChange={setAiringTypes} />
+        <Select label="Media format" value={mediaFormat} onChange={setMediaFormat} placeholder="Select format…" options={[{ value: 'movie', label: 'Movie' }, { value: 'series', label: 'Series' }, { value: 'clip', label: 'Clip' }]} />
+        <TagFilter sections={[{ id: 'showing-type', title: 'Showing type', options: [{ id: 'finale', label: 'Finale' }, { id: 'paid-for', label: 'Paid for' }, { id: 'premiere', label: 'Premiere' }, { id: 'season-finale', label: 'Season finale' }, { id: 'season-premiere', label: 'Season premiere' }] }]} selectedOptions={showingTypes} onSelectionChange={setShowingTypes} />
+      </div>
+    </div>
+  </div>;
 
-  return <div className="rail-details-page">
-    <HeaderNavigation variant="static" brandName="Rail Manager" userName="Jane Doe" userEmail="jane@cvp.example" teams={[{ id: 'editorial', name: 'Editorial Team' }]} selectedTeamId="editorial" onThemeSwitch={toggleTheme} />
-    <div className="rail-details__crumbs"><Breadcrumbs surface="canvas" items={[{ id: 'rails-list', label: 'Rails List' }, { id: 'current', label: name }]} /></div>
-    <div className="rail-details__workspace">
-      <aside className={`rail-details__sidebar ${sidebarOpen ? '' : 'rail-details__sidebar--closed'}`} aria-label="Rail configuration"><div className="rail-details__panel-title"><strong>Rail Manager</strong></div><Tabs ariaLabel="Rail settings" defaultTab="base" tabs={[{ id: 'base', label: 'Base', content: basePanel }, { id: 'query', label: 'Content Query', content: queryPanel }]} /></aside>
-      <main className="rail-details__main">
+  return <WorkspaceLayout className="rail-details-page">
+    <WorkspaceLayout.GlobalHeader><HeaderNavigation variant="static" brandName="Rail Manager" userName="Jane Doe" userEmail="jane@cvp.example" teams={[{ id: 'editorial', name: 'Editorial Team' }]} selectedTeamId="editorial" onThemeSwitch={toggleTheme} /></WorkspaceLayout.GlobalHeader>
+    <WorkspaceLayout.Breadcrumbs className="rail-details__crumbs"><Breadcrumbs surface="canvas" items={[{ id: 'rails-list', label: 'Rails List' }, { id: 'current', label: name }]} /></WorkspaceLayout.Breadcrumbs>
+    <WorkspaceLayout.Body className="rail-details__workspace" sidePanelWidth="344px">
+      <WorkspaceLayout.SidePanel className={`rail-details__sidebar ${sidebarOpen ? '' : 'rail-details__sidebar--closed'}`} aria-label="Rail configuration"><div className="rail-details__panel-title"><strong>Rail Manager</strong></div><Tabs ariaLabel="Rail settings" defaultTab="base" tabs={[{ id: 'base', label: 'Base', content: basePanel }, { id: 'query', label: 'Content Query', content: queryPanel }]} /></WorkspaceLayout.SidePanel>
+      {sidebarOpen && <WorkspaceLayout.ResizeHandle />}
+      <WorkspaceLayout.Main className="rail-details__main">
         <div className="rail-details__preview-bar"><IconButton aria-label={sidebarOpen ? 'Collapse configuration' : 'Open configuration'} aria-expanded={sidebarOpen} onClick={() => setSidebarOpen((value) => !value)}>{sidebarOpen ? <PanelLeftClose size={16} /> : <PanelLeftOpen size={16} />}</IconButton><strong>Content Preview</strong><div><span className="rail-details__type">Editorial</span><span>{name}</span></div></div>
         <div className="rail-details__content">
           {hasEmptyQuery && <NotificationBanner title="No content found" message="No content matches the current query criteria for Movie media format." variant="warning" />}
           <RailContentGallery title={name} showItemCount={false} items={queriedItems} variant="management" emptyMessage={hasEmptyQuery ? 'Try a different media format or adjust the query criteria.' : undefined} emptySlotCount={hasEmptyQuery ? 10 : 0} onAddToEmptySlot={() => setBrowserOpen(true)} onEdit={(item) => addToast({ variant: 'info', title: 'Edit content', description: item.title })} onPin={(item) => addToast({ variant: 'info', title: 'Pin updated', description: item.title })} onDrag={(id, position) => addToast({ variant: 'info', title: 'Order changed', description: `Item ${id} moved to position ${position + 1}.` })} />
           <NotificationBanner title="Preview guide" message="This preview reflects the current rail configuration. Reorder or pin content, then save to publish your changes." variant="info" icon={Sparkles} actionLabel="Review query" onAction={() => setSidebarOpen(true)} />
         </div>
-      </main>
-    </div>
-    <footer className="rail-details__footer"><OutlineButton onClick={duplicate}><Copy size={15} /> Duplicate</OutlineButton><OutlineButton onClick={() => setPreviewOpen((value) => !value)}><Eye size={15} /> {previewOpen ? 'Close preview' : 'Preview'}</OutlineButton><PrimaryButton onClick={save}><Save size={15} /> Save changes</PrimaryButton></footer>
+      </WorkspaceLayout.Main>
+    </WorkspaceLayout.Body>
+    <WorkspaceLayout.Footer className="rail-details__footer"><OutlineButton onClick={duplicate}><Copy size={15} /> Duplicate</OutlineButton><OutlineButton onClick={() => setPreviewOpen((value) => !value)}><Eye size={15} /> {previewOpen ? 'Close preview' : 'Preview'}</OutlineButton><PrimaryButton onClick={save}><Save size={15} /> Save changes</PrimaryButton></WorkspaceLayout.Footer>
     <ContentBrowserModal isOpen={browserOpen} onClose={() => setBrowserOpen(false)} items={initialItems} selectedItems={candidateSelection} onSelectionChange={setCandidateSelection} onConfirm={(ids) => { setItems(initialItems.filter((item) => ids.includes(item.id))); addToast({ variant: 'success', title: 'Content updated', description: `${ids.length} items are now in the rail.` }); }} />
     {previewOpen && <div className="rail-details__preview-mode" role="status">Preview mode is active</div>}
-  </div>;
+  </WorkspaceLayout>;
 }
 
 export function RailDetails(props: RailDetailsProps) { return <ToastProvider><RailDetailsWorkspace {...props} /></ToastProvider>; }

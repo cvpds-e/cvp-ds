@@ -9,7 +9,7 @@
 .notification-banner-docs__section-heading span { color: var(--cvp-color-text-link-default); font-family: var(--cvp-font-family-mono); font-size: var(--cvp-font-size-sm); }
 .notification-banner-docs__section-heading h2 { margin: 0; font-size: var(--cvp-font-size-2xl); }
 .notification-banner-docs__section-heading p { max-width: 560px; font-size: var(--cvp-font-size-sm); text-align: end; }
-.notification-banner-docs__examples, .notification-banner-docs__interaction, .notification-banner-docs__behavior article, .notification-banner-docs__contract-wrap { background: var(--cvp-color-surface-subtle); border: var(--cvp-border-base-width) solid var(--cvp-color-border-subtle); border-radius: var(--cvp-radius-lg); }
+.notification-banner-docs__examples, .notification-banner-docs__interaction, .notification-banner-docs__behavior article, .notification-banner-docs__contract-wrap { background: var(--cvp-color-surface-page); border: var(--cvp-border-base-width) solid var(--cvp-color-border-subtle); border-radius: var(--cvp-radius-lg); }
 .notification-banner-docs__examples { display: grid; gap: var(--cvp-space-3); padding: var(--cvp-space-6); }
 .notification-banner-docs__interaction { padding: var(--cvp-space-6); }
 .notification-banner-docs__restore { display: flex; align-items: center; justify-content: center; gap: var(--cvp-space-3); min-height: 84px; color: var(--cvp-color-text-muted); }

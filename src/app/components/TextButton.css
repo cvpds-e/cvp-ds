@@ -10,6 +10,7 @@
 .cvp-text-button__icon>svg{width:100%;height:100%}
 .cvp-text-button__spinner{width:var(--cvp-button-text-spinner-size);height:var(--cvp-button-text-spinner-size);border:var(--cvp-button-text-spinner-width) solid currentColor;border-right-color:transparent;border-radius:var(--cvp-shape-rounded);animation:cvp-text-button-spin var(--cvp-motion-duration-slow) linear infinite}
 .cvp-text-button--secondary{padding:var(--cvp-button-text-secondary-padding-y) var(--cvp-button-text-secondary-padding-x);color:var(--cvp-button-text-secondary-color);border-radius:var(--cvp-button-text-secondary-radius)}
+.cvp-text-button--secondary .cvp-text-button__icon{margin-inline-start:var(--cvp-button-text-secondary-leading-icon-optical-offset)}
 .cvp-text-button--secondary:hover:not(:disabled):not([aria-disabled="true"]),.cvp-text-button--secondary[data-preview-state="hover"]{color:var(--cvp-button-text-secondary-color-hover);background:var(--cvp-button-text-secondary-bg-hover)}
 .cvp-text-button--toggle{padding:var(--cvp-button-text-toggle-padding-y) var(--cvp-button-text-toggle-padding-x);color:var(--cvp-button-text-toggle-color);border-radius:var(--cvp-button-text-toggle-radius);font-size:var(--cvp-button-text-toggle-font-size)}
 .cvp-text-button--toggle:hover:not(:disabled),.cvp-text-button--toggle[data-preview-state="hover"],.cvp-text-button--toggle[aria-pressed="true"]{background:var(--cvp-button-text-toggle-bg-hover)}

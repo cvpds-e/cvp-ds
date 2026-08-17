@@ -4737,6 +4737,12 @@
       "source": "cvp-component-tokens.css"
     },
     {
+      "name": "--cvp-button-text-secondary-leading-icon-optical-offset",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
       "name": "--cvp-button-text-secondary-radius",
       "tier": "Component",
       "scope": "Shared",

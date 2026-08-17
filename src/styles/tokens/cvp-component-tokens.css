@@ -150,8 +150,9 @@
   --cvp-button-text-secondary-color:       var(--cvp-color-text-muted);
   --cvp-button-text-secondary-bg-hover:    var(--cvp-color-surface-hover);
   --cvp-button-text-secondary-color-hover: var(--cvp-color-text-primary);
-  --cvp-button-text-secondary-padding-x:   calc(var(--cvp-space-1) + var(--cvp-space-100)); /* 2px more than vertical padding */
+  --cvp-button-text-secondary-padding-x:   var(--cvp-space-2); /* 4px more than vertical padding */
   --cvp-button-text-secondary-padding-y:   var(--cvp-space-1);
+  --cvp-button-text-secondary-leading-icon-optical-offset: calc(var(--cvp-space-100) * -1);
   --cvp-button-text-secondary-radius:      var(--cvp-radius-sm);             /* 4px */
 
   /* TEXT — toggle variant */

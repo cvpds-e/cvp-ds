@@ -19,7 +19,7 @@ This catalog is the readable index of every active CVP token. It preserves each 
 | --- | --- | ---: |
 | Primitive | `cvp-primitives.css` | 205 |
 | Semantic | `cvp-semantic-tokens.css` | 485 |
-| Component | `cvp-component-tokens.css` | 1232 |
+| Component | `cvp-component-tokens.css` | 1233 |
 
 ## Tier 1 — Primitive tokens
 
@@ -866,7 +866,7 @@ Component contracts. Each group is named after the component or shared contract 
 </details>
 
 <details>
-<summary><strong>button</strong> — 200 tokens</summary>
+<summary><strong>button</strong> — 201 tokens</summary>
 
 | Token | Value | Scope |
 | --- | --- | --- |
@@ -967,8 +967,9 @@ Component contracts. Each group is named after the component or shared contract 
 | `--cvp-button-text-secondary-color` | `var(--cvp-color-text-muted)` | Shared |
 | `--cvp-button-text-secondary-bg-hover` | `var(--cvp-color-surface-hover)` | Shared |
 | `--cvp-button-text-secondary-color-hover` | `var(--cvp-color-text-primary)` | Shared |
-| `--cvp-button-text-secondary-padding-x` | `calc(var(--cvp-space-1) + var(--cvp-space-100))` | Shared |
+| `--cvp-button-text-secondary-padding-x` | `var(--cvp-space-2)` | Shared |
 | `--cvp-button-text-secondary-padding-y` | `var(--cvp-space-1)` | Shared |
+| `--cvp-button-text-secondary-leading-icon-optical-offset` | `calc(var(--cvp-space-100) * -1)` | Shared |
 | `--cvp-button-text-secondary-radius` | `var(--cvp-radius-sm)` | Shared |
 | `--cvp-button-text-toggle-color` | `var(--cvp-color-text-link-default)` | Shared |
 | `--cvp-button-text-toggle-bg-hover` | `var(--cvp-color-surface-hover)` | Shared |

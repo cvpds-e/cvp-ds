@@ -18,6 +18,14 @@ The gallery composes canonical Checkbox, IconButton, and IconSmallButton compone
 
 The `selectedItems` array and `onSelectionChange` form a controlled selection contract. `loading` and an empty `items` array expose distinct loading and empty states. The forwarded handle retains `scrollLeft()` and `scrollRight()` for parent-owned navigation.
 
+## Header metadata and navigation
+
+- `showItemCount` controls whether the item total is shown.
+- `itemCountPlacement="heading"` is the default for a title-adjacent total.
+- `itemCountPlacement="navigation"` places the total immediately before the previous/next controls; use it when the total describes the whole rail, such as the Rail Details content preview.
+- The total uses the gallery count aliases, which resolve to the same neutral metadata-tag language as Table totals: muted mono text, subtle surface, default border, compact horizontal inset, and no vertical inset.
+- Rail navigation uses the small IconButton contract. Do not add local padding or size overrides to align the total with the controls.
+
 ## Accessibility and interaction
 
 Every media item is a named button. Selectable cards expose `aria-pressed` and use the shared Checkbox state. Pin controls expose their pressed state. Navigation buttons disable at rail boundaries. Missing thumbnails use a meaningful visual placeholder without redundant image announcements.
@@ -26,7 +34,7 @@ Reordering callbacks receive the dragged item ID and zero-based target position.
 
 ## Token contract
 
-Gallery CSS consumes `--cvp-gallery-*` Tier 3 aliases. Text, borders, surfaces, focus, spacing, radius, overlays, and motion resolve through canonical CVP foundations. Child controls continue to consume their own Tier 3 contracts.
+Gallery CSS consumes `--cvp-gallery-*` Tier 3 aliases. Text, borders, surfaces, focus, spacing, radius, overlays, motion, and count metadata resolve through canonical CVP foundations. Child controls continue to consume their own Tier 3 contracts.
 
 ## Pixel-perfect acceptance
 

@@ -8,7 +8,7 @@ import './HeaderNavigationDocumentation.css';
 const rows:ComponentTokenContractRow[]=[
   {role:'Header surface',token:'--cvp-header-bg',source:'--cvp-color-nav-bg',contract:'Theme-resolved global navigation',activation:'Base'},
   {role:'Boundary',token:'--cvp-header-border-bottom',source:'--cvp-color-border-subtle',contract:'Subtle page separation',activation:'Base'},
-  {role:'Control text',token:'--cvp-header-control-text',source:'--cvp-color-text-muted',contract:'4.5:1 minimum',activation:'Selectors'},
+  {role:'Control text',token:'--cvp-header-control-text',source:'--cvp-color-text-primary',contract:'Current selection',activation:'Selectors'},
   {role:'Interaction',token:'--cvp-header-btn-bg-hover',source:'--cvp-color-surface-hover',contract:'Shared subtle feedback',activation:':hover / expanded'},
   {role:'Focus',token:'--cvp-header-focus-ring',source:'--cvp-border-focus-ring',contract:'Canonical visible ring',activation:':focus-visible'},
   {role:'Avatar',token:'--cvp-header-avatar-bg',source:'--cvp-color-brand-default',contract:'Theme-safe identity marker',activation:'User trigger'},

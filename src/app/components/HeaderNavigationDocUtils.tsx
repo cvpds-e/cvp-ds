@@ -68,7 +68,7 @@ export const designTokensData = [
   { property: 'Logo line height', value: '20px', token: '--type-scale-s-line-height' },
   { property: 'Logo letter spacing', value: '0.1px', token: '--type-scale-s-letter-spacing' },
   { property: 'Logo color', value: 'Primary text', token: '--cvp-header-brand-text' },
-  { property: 'Navigation text color', value: 'Muted text', token: '--cvp-header-control-text' },
+  { property: 'Navigation text color', value: 'Primary text', token: '--cvp-header-control-text' },
   { property: 'Navigation hover color', value: 'Primary text', token: '--cvp-header-control-text-hover' },
   { property: 'User text color', value: 'Primary text', token: '--cvp-header-text' },
   { property: 'Dropdown background', value: 'Overlay surface', token: '--cvp-menu-bg' },

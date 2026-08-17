@@ -12,6 +12,7 @@ const tokenRows: ComponentTokenContractRow[] = [
   { role:'Focus', token:'--cvp-button-primary-focus-ring', source:'--cvp-border-focus-ring', contract:'Border + outer halo', activation:':focus-visible' },
   { role:'Disabled surface', token:'--cvp-button-primary-bg-disabled', source:'--cvp-color-surface-disabled', contract:'Theme resolved', activation:':disabled' },
   { role:'Standard height', token:'--cvp-button-primary-height', source:'--cvp-space-8', contract:'32px', activation:'All Primary Buttons' },
+  { role:'Label size', token:'--cvp-button-primary-font-size', source:'--cvp-font-size-sm', contract:'13px', activation:'All Primary Buttons' },
   { role:'Shape', token:'--cvp-button-primary-radius', source:'--cvp-shape-control-compact', contract:'4px', activation:'Small / medium' },
   { role:'Motion', token:'--cvp-motion-duration-fast', source:'--cvp-primitive-duration-fast', contract:'150ms standard easing', activation:'Interactive state change' },
   { role:'Loading indicator', token:'--cvp-button-primary-spinner-size', source:'--cvp-space-4', contract:'16px / 2px stroke', activation:'loading={true}' },

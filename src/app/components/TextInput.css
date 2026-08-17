@@ -12,6 +12,7 @@
   justify-content: space-between;
   gap: var(--cvp-input-label-gap);
 }
+.cvp-text-input__label-group { display: inline-flex; align-items: center; gap: var(--cvp-space-1); }
 
 .cvp-text-input__label {
   color: var(--cvp-color-text-primary);

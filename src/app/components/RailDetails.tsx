@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { Copy, Eye, PanelLeftClose, PanelLeftOpen, Save, Sparkles } from 'lucide-react';
+import { CircleHelp, Copy, Eye, PanelLeftClose, PanelLeftOpen, Save, Sparkles } from 'lucide-react';
 import { Breadcrumbs } from './Breadcrumbs';
-import { Checkbox } from './Checkbox';
 import { ContentBrowserModal } from './ContentBrowserModal';
 import { HeaderNavigation } from './HeaderNavigation';
 import { IconButton } from './IconButton';
@@ -11,11 +10,14 @@ import { PrimaryButton } from './PrimaryButton';
 import { RailContentGallery, RailContentItem } from './RailContentGallery';
 import { Select } from './Select';
 import { SearchField } from './SearchField';
+import { Segmented } from './Segmented';
 import { SortControl } from './SortControl';
 import { Tabs } from './Tabs';
 import { TextInput } from './TextInput';
+import { MultiSelect } from './MultiSelect';
 import { TagFilter } from './TagFilter';
 import { TextButton } from './TextButton';
+import { Tooltip } from './Tooltip';
 import { ToastProvider, useToast } from './Toast';
 import { WorkspaceLayout } from './WorkspaceLayout';
 import './RailDetails.css';
@@ -33,23 +35,38 @@ const initialItems: RailContentItem[] = [
   { id: '8', title: 'Memento', year: '2000', thumbnail: '', position: 8, metadata: { category: 'Thriller', status: 'inactive' } },
 ];
 
+function FilterTooltip({ content }: { content: string }) {
+  return <Tooltip content={content} side="right" align="center"><button className="rail-details__filter-help" type="button" aria-label={content}><CircleHelp size={15} aria-hidden="true" /></button></Tooltip>;
+}
+
 function RailDetailsWorkspace({ railName = 'Trending' }: RailDetailsProps) {
   const { addToast } = useToast();
   const [name, setName] = useState(railName);
   const [status, setStatus] = useState('active');
   const [collection, setCollection] = useState('home');
-  const [mediaFormat, setMediaFormat] = useState('');
-  const [querySearch, setQuerySearch] = useState('');
+  const [mediaFormats, setMediaFormats] = useState<string[]>([]);
+  const [filterSearch, setFilterSearch] = useState('');
   const [sortField, setSortField] = useState('title');
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('desc');
-  const [airingTypes, setAiringTypes] = useState<string[]>([]);
-  const [showingTypes, setShowingTypes] = useState<string[]>([]);
-  const [autoRefresh, setAutoRefresh] = useState(true);
+  const [matchMode, setMatchMode] = useState<'all' | 'any'>('all');
+  const [genres, setGenres] = useState<string[]>([]);
+  const [releaseYear, setReleaseYear] = useState('');
+  const [availability, setAvailability] = useState('');
+  const [anyTitlePrefix, setAnyTitlePrefix] = useState('');
+  const [approved, setApproved] = useState('');
+  const [distributionRights, setDistributionRights] = useState<string[]>([]);
+  const [languages, setLanguages] = useState<string[]>([]);
+  const [isAdult, setIsAdult] = useState('');
+  const [exactTitle, setExactTitle] = useState('');
+  const [titlePrefix, setTitlePrefix] = useState('');
+  const [tvSeason, setTvSeason] = useState('');
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [browserOpen, setBrowserOpen] = useState(false);
   const [previewOpen, setPreviewOpen] = useState(false);
   const [items, setItems] = useState(initialItems);
   const [candidateSelection, setCandidateSelection] = useState<string[]>([]);
+  const showDeferredEditorialFilters = false;
+  const showPreviewGuide = false;
 
   const toggleTheme = () => {
     const root = document.documentElement;
@@ -57,39 +74,75 @@ function RailDetailsWorkspace({ railName = 'Trending' }: RailDetailsProps) {
   };
   const save = () => addToast({ variant: 'success', title: 'Rail saved', description: `${name} and its ${items.length} content items are up to date.` });
   const duplicate = () => addToast({ variant: 'info', title: 'Rail duplicated', description: `A draft copy of ${name} was created.` });
-  const queriedItems = mediaFormat === 'movie' ? [] : items.filter((item) => item.title.toLocaleLowerCase().includes(querySearch.toLocaleLowerCase())).sort((a, b) => {
+  const queriedItems = items.filter((item) => {
+    const normalizedTitle = item.title.toLocaleLowerCase();
+    const category = item.metadata.category?.toLocaleLowerCase() ?? '';
+    const languageByCategory: Record<string, string> = { action: 'en', drama: 'fr', 'sci-fi': 'de', thriller: 'it' };
+    const criteria = [
+      mediaFormats.length ? !mediaFormats.includes('movie') : undefined,
+      genres.length ? genres.includes(category) : undefined,
+      releaseYear ? (releaseYear === 'before-2010' && Number(item.year) < 2010) || (releaseYear === '2010s' && Number(item.year) >= 2010 && Number(item.year) < 2020) || (releaseYear === '2020s' && Number(item.year) >= 2020) : undefined,
+      availability ? (availability === 'available' && item.metadata.status !== 'inactive') || (availability === 'unavailable' && item.metadata.status === 'inactive') : undefined,
+      exactTitle ? normalizedTitle === exactTitle.toLocaleLowerCase() : undefined,
+      titlePrefix ? normalizedTitle.startsWith(titlePrefix.toLocaleLowerCase()) : undefined,
+      anyTitlePrefix ? normalizedTitle.startsWith(anyTitlePrefix.toLocaleLowerCase()) : undefined,
+      approved ? (approved === 'yes' ? item.metadata.status !== 'inactive' : item.metadata.status === 'inactive') : undefined,
+      distributionRights.length ? distributionRights.includes(`package-${item.id}`) : undefined,
+      languages.length ? languages.includes(languageByCategory[category]) : undefined,
+      isAdult ? (isAdult === 'yes' ? item.metadata.status === 'inactive' : item.metadata.status !== 'inactive') : undefined,
+      tvSeason ? (tvSeason === '1' ? Number(item.year) < 2010 : tvSeason === '2' ? Number(item.year) < 2020 : Number(item.year) >= 2020) : undefined,
+    ].filter((criterion): criterion is boolean => criterion !== undefined);
+    return !criteria.length || (matchMode === 'all' ? criteria.every(Boolean) : criteria.some(Boolean));
+  }).sort((a, b) => {
     const valueA = sortField === 'year' ? a.year : a.title;
     const valueB = sortField === 'year' ? b.year : b.title;
     return valueA.localeCompare(valueB) * (sortDirection === 'asc' ? 1 : -1);
   });
-  const hasEmptyQuery = mediaFormat === 'movie';
+  const hasEmptyQuery = queriedItems.length === 0;
 
   const basePanel = <div className="rail-details__form">
     <div className="rail-details__form-section"><span>Settings</span><TextInput label="Rail name" value={name} onChange={(event) => setName(event.target.value)} /><Select label="Rail status" value={status} onChange={setStatus} options={[{ value: 'active', label: 'Active' }, { value: 'draft', label: 'Draft' }, { value: 'inactive', label: 'Inactive' }]} /><Select label="Rail collection" value={collection} onChange={setCollection} options={[{ value: 'home', label: 'Home' }, { value: 'drama', label: 'Drama' }, { value: 'kids', label: 'Kids' }]} /><div className="rail-details__form-grid"><TextInput label="Rail position" type="number" defaultValue="2" min="1" /><TextInput label="Content slots" type="number" defaultValue="24" min="1" /></div><Select label="Assign to page" defaultValue="home" options={[{ value: 'home', label: 'Home' }, { value: 'discover', label: 'Discover' }, { value: 'kids', label: 'Kids' }]} /></div>
-    <div className="rail-details__form-section"><span>Personalisation</span><Select label="Configuration" defaultValue="general" options={[{ value: 'general', label: 'General recommendations' }, { value: 'genre', label: 'Genre affinity' }, { value: 'recent', label: 'Recent activity' }]} helperText="The recommendation model used to populate this rail." /><Checkbox checked={autoRefresh} onChange={() => setAutoRefresh((value) => !value)} label="Automatically refresh content" /></div>
   </div>;
-  const hasQueryFilters = Boolean(querySearch || mediaFormat || airingTypes.length || showingTypes.length || sortField !== 'title' || sortDirection !== 'desc');
+  const hasQueryFilters = Boolean(mediaFormats.length || genres.length || releaseYear || availability || anyTitlePrefix || approved || distributionRights.length || languages.length || isAdult || exactTitle || titlePrefix || tvSeason || sortField !== 'title' || sortDirection !== 'desc');
+  const matchesFilterSearch = (...labels: string[]) => !filterSearch.trim() || labels.some((label) => label.toLocaleLowerCase().includes(filterSearch.trim().toLocaleLowerCase()));
   const clearQueryFilters = () => {
-    setQuerySearch('');
-    setMediaFormat('');
-    setAiringTypes([]);
-    setShowingTypes([]);
+    setMediaFormats([]);
+    setGenres([]);
+    setReleaseYear('');
+    setAvailability('');
+    setAnyTitlePrefix('');
+    setApproved('');
+    setDistributionRights([]);
+    setLanguages([]);
+    setIsAdult('');
+    setExactTitle('');
+    setTitlePrefix('');
+    setTvSeason('');
+    setMatchMode('all');
     setSortField('title');
     setSortDirection('desc');
   };
   const queryPanel = <div className="rail-details__form">
     <div className="rail-details__form-section rail-details__query-section">
-      <div className="rail-details__query-heading">
-        <span>Content query</span>
-        {hasQueryFilters && <TextButton variant="secondary" onClick={clearQueryFilters}>Clear all filters</TextButton>}
+      {hasQueryFilters && <div className="rail-details__query-actions"><TextButton onClick={clearQueryFilters}>Clear all filters</TextButton></div>}
+      <div className="rail-details__query-controls">
+        <SearchField label="Search filters" value={filterSearch} onChange={(event) => setFilterSearch(event.target.value)} onClear={() => setFilterSearch('')} placeholder="Search filters…" />
+        <SortControl value={sortField} direction={sortDirection} onChange={setSortField} onDirectionChange={setSortDirection} options={[{ value: 'title', label: 'Title' }, { value: 'year', label: 'Release year' }]} />
+        <div className="rail-details__match-control"><span>Match filters</span><FilterTooltip content="Choose whether content must match all selected filters or at least one selected filter" /><Segmented ariaLabel="Filter match mode" size="small" value={matchMode} onChange={(value) => setMatchMode(value as 'all' | 'any')} options={[{ value: 'all', label: 'All' }, { value: 'any', label: 'Any' }]} /></div>
       </div>
-      <SearchField label="Search filters" value={querySearch} onChange={(event) => setQuerySearch(event.target.value)} onClear={() => setQuerySearch('')} placeholder="Search content…" />
-      <SortControl value={sortField} direction={sortDirection} onChange={setSortField} onDirectionChange={setSortDirection} options={[{ value: 'title', label: 'Title' }, { value: 'year', label: 'Release year' }]} />
-      <div className="rail-details__query-group" aria-label="Listing filters">
-        <span>Listing filters</span>
-        <TagFilter sections={[{ id: 'airing-type', title: 'Airing type', options: [{ id: 'new', label: 'New' }, { id: 'repeat', label: 'Repeat' }, { id: 'live', label: 'Live' }, { id: 'taped', label: 'Taped' }] }]} selectedOptions={airingTypes} onSelectionChange={setAiringTypes} />
-        <Select label="Media format" value={mediaFormat} onChange={setMediaFormat} placeholder="Select format…" options={[{ value: 'movie', label: 'Movie' }, { value: 'series', label: 'Series' }, { value: 'clip', label: 'Clip' }]} />
-        <TagFilter sections={[{ id: 'showing-type', title: 'Showing type', options: [{ id: 'finale', label: 'Finale' }, { id: 'paid-for', label: 'Paid for' }, { id: 'premiere', label: 'Premiere' }, { id: 'season-finale', label: 'Season finale' }, { id: 'season-premiere', label: 'Season premiere' }] }]} selectedOptions={showingTypes} onSelectionChange={setShowingTypes} />
+      <div className="rail-details__filter-content">
+        {matchesFilterSearch('Program type') && <TagFilter sections={[{ id: 'program-type', title: 'Program type', options: [{ id: 'movie', label: 'Movie' }, { id: 'series', label: 'Series' }] }]} selectedOptions={mediaFormats} onSelectionChange={setMediaFormats} />}
+        {matchesFilterSearch('Tags') && <MultiSelect label="Tags" value={genres} onChange={setGenres} allowCreate={false} placeholder="Select tags…" options={[{ value: 'action', label: 'Action' }, { value: 'drama', label: 'Drama' }, { value: 'sci-fi', label: 'Sci-Fi' }, { value: 'thriller', label: 'Thriller' }]} />}
+        {matchesFilterSearch('Year', 'Release year') && <Select label="Year" labelTooltip={<FilterTooltip content="Filter programs by release year" />} value={releaseYear} onChange={setReleaseYear} placeholder="Select or type a year" options={[{ value: 'before-2010', label: 'Before 2010' }, { value: '2010s', label: '2010–2019' }, { value: '2020s', label: '2020 and later' }]} />}
+        {showDeferredEditorialFilters && matchesFilterSearch('Required availability', 'Availability') && <Select label="Required availability" labelTooltip={<FilterTooltip content="Filter by the availability state required for the program" />} value={availability} onChange={setAvailability} placeholder="Any availability" options={[{ value: 'available', label: 'Available now' }, { value: 'unavailable', label: 'Unavailable' }]} />}
+        {matchesFilterSearch('Title', 'Exact title') && <TextInput label="Title" labelTooltip={<FilterTooltip content="Filter programs by exact title match" />} value={exactTitle} onChange={(event) => setExactTitle(event.target.value)} placeholder="Enter title" />}
+        {showDeferredEditorialFilters && matchesFilterSearch('Title prefix', 'Primary title') && <TextInput label="Title prefix" labelTooltip={<FilterTooltip content="Filter programs whose primary title starts with the given prefix" />} value={titlePrefix} onChange={(event) => setTitlePrefix(event.target.value)} placeholder="Enter title prefix" />}
+        {matchesFilterSearch('Any title prefix') && <TextInput label="Any title prefix" labelTooltip={<FilterTooltip content="Filter programs whose any title starts with the given prefix" />} value={anyTitlePrefix} onChange={(event) => setAnyTitlePrefix(event.target.value)} placeholder="Enter title prefix" />}
+        {matchesFilterSearch('Approved') && <Select label="Approved" labelTooltip={<FilterTooltip content="Filter by whether the program has been approved" />} value={approved} onChange={setApproved} placeholder="Select approval…" options={[{ value: 'yes', label: 'Yes' }, { value: 'no', label: 'No' }]} />}
+        {matchesFilterSearch('Distribution right') && <MultiSelect label="Distribution right" labelTooltip={<FilterTooltip content="Filter by the associated distribution right" />} value={distributionRights} onChange={setDistributionRights} allowCreate={false} placeholder="Select distribution rights…" options={[{ value: 'package-1', label: 'Test Package 1' }, { value: 'package-3', label: 'Test Package 3' }, { value: 'package-4', label: 'Test Package 4' }, { value: 'package-5', label: 'Test Package 5' }, { value: 'package-6', label: 'Test Package 6' }]} />}
+        {matchesFilterSearch('Languages') && <MultiSelect label="Languages" labelTooltip={<FilterTooltip content="Filter by one or more languages associated with the program" />} value={languages} onChange={setLanguages} allowCreate={false} placeholder="Select languages…" options={[{ value: 'en', label: 'English (en)' }, { value: 'es', label: 'Spanish (es)' }, { value: 'fr', label: 'French (fr)' }, { value: 'de', label: 'German (de)' }, { value: 'it', label: 'Italian (it)' }]} />}
+        {showDeferredEditorialFilters && matchesFilterSearch('Is adult', 'Adult') && <Select label="Is adult" labelTooltip={<FilterTooltip content="Filter by whether the program is marked as adult content" />} value={isAdult} onChange={setIsAdult} placeholder="Select audience…" options={[{ value: 'yes', label: 'Yes' }, { value: 'no', label: 'No' }]} />}
+        {showDeferredEditorialFilters && matchesFilterSearch('TV season', 'Season') && <Select label="TV season" labelTooltip={<FilterTooltip content="Filter programs by their associated television season" />} value={tvSeason} onChange={setTvSeason} placeholder="Select TV season…" options={[{ value: '1', label: 'Season 1' }, { value: '2', label: 'Season 2' }, { value: '3', label: 'Season 3' }]} />}
       </div>
     </div>
   </div>;
@@ -97,15 +150,14 @@ function RailDetailsWorkspace({ railName = 'Trending' }: RailDetailsProps) {
   return <WorkspaceLayout className="rail-details-page">
     <WorkspaceLayout.GlobalHeader><HeaderNavigation variant="static" brandName="Rail Manager" userName="Jane Doe" userEmail="jane@cvp.example" teams={[{ id: 'editorial', name: 'Editorial Team' }]} selectedTeamId="editorial" onThemeSwitch={toggleTheme} /></WorkspaceLayout.GlobalHeader>
     <WorkspaceLayout.Breadcrumbs className="rail-details__crumbs"><Breadcrumbs surface="canvas" items={[{ id: 'rails-list', label: 'Rails List' }, { id: 'current', label: name }]} /></WorkspaceLayout.Breadcrumbs>
-    <WorkspaceLayout.Body className="rail-details__workspace" sidePanelWidth="344px">
-      <WorkspaceLayout.SidePanel className={`rail-details__sidebar ${sidebarOpen ? '' : 'rail-details__sidebar--closed'}`} aria-label="Rail configuration"><div className="rail-details__panel-title"><strong>Rail Manager</strong></div><Tabs ariaLabel="Rail settings" defaultTab="base" tabs={[{ id: 'base', label: 'Base', content: basePanel }, { id: 'query', label: 'Content Query', content: queryPanel }]} /></WorkspaceLayout.SidePanel>
-      {sidebarOpen && <WorkspaceLayout.ResizeHandle />}
+    <WorkspaceLayout.Body className={`rail-details__workspace ${sidebarOpen ? '' : 'rail-details__workspace--sidebar-collapsed'}`} sidePanelWidth="344px">
+      {sidebarOpen && <><WorkspaceLayout.SidePanel className="rail-details__sidebar" aria-label="Rail configuration"><div className="rail-details__panel-title"><strong>Rail Manager</strong></div><Tabs ariaLabel="Rail settings" defaultTab="base" tabs={[{ id: 'base', label: 'Base', content: basePanel }, { id: 'query', label: 'Content Query', content: queryPanel }]} /></WorkspaceLayout.SidePanel><WorkspaceLayout.ResizeHandle /></>}
       <WorkspaceLayout.Main className="rail-details__main">
-        <div className="rail-details__preview-bar"><IconButton aria-label={sidebarOpen ? 'Collapse configuration' : 'Open configuration'} aria-expanded={sidebarOpen} onClick={() => setSidebarOpen((value) => !value)}>{sidebarOpen ? <PanelLeftClose size={16} /> : <PanelLeftOpen size={16} />}</IconButton><strong>Content Preview</strong><div><span className="rail-details__type">Editorial</span><span>{name}</span></div></div>
+        <div className="rail-details__preview-bar"><IconButton aria-label={sidebarOpen ? 'Collapse configuration' : 'Open configuration'} aria-expanded={sidebarOpen} onClick={() => setSidebarOpen((value) => !value)}>{sidebarOpen ? <PanelLeftClose size={16} /> : <PanelLeftOpen size={16} />}</IconButton><strong>Content Preview</strong><span className="cvp-status-tag cvp-status-tag--editorial rail-details__preview-tag">Editorial</span></div>
         <div className="rail-details__content">
-          {hasEmptyQuery && <NotificationBanner title="No content found" message="No content matches the current query criteria for Movie media format." variant="warning" />}
-          <RailContentGallery title={name} showItemCount={false} items={queriedItems} variant="management" emptyMessage={hasEmptyQuery ? 'Try a different media format or adjust the query criteria.' : undefined} emptySlotCount={hasEmptyQuery ? 10 : 0} onAddToEmptySlot={() => setBrowserOpen(true)} onEdit={(item) => addToast({ variant: 'info', title: 'Edit content', description: item.title })} onPin={(item) => addToast({ variant: 'info', title: 'Pin updated', description: item.title })} onDrag={(id, position) => addToast({ variant: 'info', title: 'Order changed', description: `Item ${id} moved to position ${position + 1}.` })} />
-          <NotificationBanner title="Preview guide" message="This preview reflects the current rail configuration. Reorder or pin content, then save to publish your changes." variant="info" icon={Sparkles} actionLabel="Review query" onAction={() => setSidebarOpen(true)} />
+          {hasEmptyQuery && <NotificationBanner title="No content found" message="No content matches the current editorial VOD criteria." variant="warning" />}
+          <RailContentGallery title={name} showItemCount itemCountPlacement="navigation" items={queriedItems} variant="management" emptyMessage={hasEmptyQuery ? 'Try a different filter or clear the current criteria.' : undefined} emptySlotCount={hasEmptyQuery ? 10 : 0} onAddToEmptySlot={() => setBrowserOpen(true)} onEdit={(item) => addToast({ variant: 'info', title: 'Edit content', description: item.title })} onPin={(item) => addToast({ variant: 'info', title: 'Pin updated', description: item.title })} onDrag={(id, position) => addToast({ variant: 'info', title: 'Order changed', description: `Item ${id} moved to position ${position + 1}.` })} />
+          {showPreviewGuide && <NotificationBanner title="Preview guide" message="This preview reflects the current rail configuration. Reorder or pin content, then save to publish your changes." variant="info" icon={Sparkles} actionLabel="Review query" onAction={() => setSidebarOpen(true)} />}
         </div>
       </WorkspaceLayout.Main>
     </WorkspaceLayout.Body>

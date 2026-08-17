@@ -48,7 +48,7 @@
   --cvp-button-primary-padding-x-compact: var(--cvp-space-2);               /* 8px */
   --cvp-button-primary-height:        var(--cvp-space-8);                   /* 32px */
   --cvp-button-primary-height-compact:var(--cvp-space-8);                   /* 32px */
-  --cvp-button-primary-font-size:     var(--cvp-font-size-xs);              /* 12px */
+  --cvp-button-primary-font-size:     var(--cvp-font-size-sm);              /* 13px */
   --cvp-button-primary-font-weight:   var(--cvp-font-weight-medium);        /* 500 */
   --cvp-button-primary-line-height:   var(--cvp-line-height-tight);         /* 16px */
   --cvp-button-primary-letter-spacing:var(--cvp-letter-spacing-normal);     /* 0.15px */
@@ -150,8 +150,8 @@
   --cvp-button-text-secondary-color:       var(--cvp-color-text-muted);
   --cvp-button-text-secondary-bg-hover:    var(--cvp-color-surface-hover);
   --cvp-button-text-secondary-color-hover: var(--cvp-color-text-primary);
-  --cvp-button-text-secondary-padding-x:   var(--cvp-space-3);               /* 12px */
-  --cvp-button-text-secondary-padding-y:   var(--cvp-space-1);               /* 6px — kept at 6px via inline */
+  --cvp-button-text-secondary-padding-x:   calc(var(--cvp-space-1) + var(--cvp-space-100)); /* 2px more than vertical padding */
+  --cvp-button-text-secondary-padding-y:   var(--cvp-space-1);
   --cvp-button-text-secondary-radius:      var(--cvp-radius-sm);             /* 4px */
 
   /* TEXT — toggle variant */
@@ -169,6 +169,11 @@
   --cvp-button-text-minimal-inverted-color: var(--cvp-color-text-primary);
   --cvp-button-text-minimal-inverted-color-hover: var(--cvp-color-text-muted);
   --cvp-button-text-minimal-font-size:      var(--cvp-font-size-sm);
+
+  /* TEXT — contextual variant */
+  --cvp-button-text-contextual-color:       var(--cvp-color-text-muted);
+  --cvp-button-text-contextual-color-hover: var(--cvp-color-text-primary);
+  --cvp-button-text-contextual-font-size:   var(--cvp-font-size-sm);
 
   /* TEXT — nav variant */
   --cvp-button-text-nav-color:         var(--cvp-color-nav-text);
@@ -509,6 +514,8 @@
   --cvp-filter-field-gap:           var(--cvp-input-field-gap);
   --cvp-filter-radius:              var(--cvp-input-radius);
   --cvp-filter-font-size:           var(--cvp-input-font-size);
+  --cvp-filter-action-font-size:    var(--cvp-font-size-sm);
+  --cvp-filter-action-line-height:  var(--cvp-line-height-tight);
   --cvp-filter-support-size:        var(--cvp-input-support-size);
   --cvp-filter-transition:          var(--cvp-input-transition);
   --cvp-filter-inner-shadow:        inset 0 1px 0 color-mix(in srgb, var(--cvp-color-text-primary) 3%, transparent);
@@ -811,7 +818,7 @@
   --cvp-header-bg:                         var(--cvp-color-nav-bg);
   --cvp-header-text:                       var(--cvp-color-text-primary);
   --cvp-header-brand-text:                 var(--cvp-color-text-primary);
-  --cvp-header-control-text:               var(--cvp-color-text-muted);
+  --cvp-header-control-text:               var(--cvp-color-text-primary);
   --cvp-header-control-text-hover:         var(--cvp-color-text-primary);
   --cvp-header-border-bottom:              var(--cvp-color-border-subtle);
   --cvp-header-border-width:               var(--cvp-border-base-width);
@@ -1132,9 +1139,9 @@
   --cvp-tag-filter-font-weight-selected:  var(--cvp-font-weight-medium);
   --cvp-tag-filter-line-height:           var(--cvp-line-height-snug);
   --cvp-tag-filter-letter-spacing:        var(--cvp-letter-spacing-normal);
-  --cvp-tag-filter-title-size:            var(--cvp-font-size-lg);
-  --cvp-tag-filter-title-weight:          var(--cvp-font-weight-medium);
-  --cvp-tag-filter-title-line-height:     var(--cvp-line-height-normal);
+  --cvp-tag-filter-title-size:            var(--cvp-input-label-size);
+  --cvp-tag-filter-title-weight:          var(--cvp-input-label-weight);
+  --cvp-tag-filter-title-line-height:     var(--cvp-line-height-snug);
   --cvp-tag-filter-title-letter-spacing:  var(--cvp-letter-spacing-normal);
   --cvp-tag-filter-summary-size:          var(--cvp-font-size-xs);
   --cvp-tag-filter-summary-line-height:   var(--cvp-line-height-tight);
@@ -1295,6 +1302,10 @@
   --cvp-gallery-focus-inset:   var(--cvp-space-1);
   --cvp-gallery-text:          var(--cvp-color-text-primary);
   --cvp-gallery-count-bg:      var(--cvp-color-surface-subtle);
+  --cvp-gallery-count-border:  var(--cvp-color-border-default);
+  --cvp-gallery-count-text:    var(--cvp-color-text-muted);
+  --cvp-gallery-count-padding-x: var(--cvp-space-1);
+  --cvp-gallery-count-radius:  var(--cvp-radius-sm);
   --cvp-gallery-border-width:  var(--cvp-border-base-width);
   --cvp-gallery-item-border:   var(--cvp-color-border-subtle);
   --cvp-gallery-item-border-hover: var(--cvp-color-border-default);

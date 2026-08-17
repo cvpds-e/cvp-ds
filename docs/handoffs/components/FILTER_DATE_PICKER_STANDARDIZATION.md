@@ -19,6 +19,7 @@ Filter composes visible query clauses. It finds a field, collects a lightweight 
 - `triggerVariant="icon"` composes the standardized CVP Icon Button for compact toolbars and exposes an active-filter count badge without duplicating icon-button styling.
 - Disabled state suppresses trigger and clause removal.
 - Uses only registered `--cvp-filter-*` tokens, composed from the canonical input and menu contracts.
+- Search and editor input use `--cvp-filter-font-size`. Every interactive menu row—field options, editor heading, entered-value action, pending values, and apply action—uses the compact `--cvp-filter-action-font-size` / `--cvp-filter-action-line-height` pair, consistent with other 32px actions. Do not introduce a larger type scale inside the add-value flow.
 
 ## Date Picker contract
 

@@ -1,4 +1,5 @@
 import React, { useEffect, useId, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import './Select.css';
 
 export interface SelectOption { value: string; label: string; disabled?: boolean; }
@@ -13,6 +14,8 @@ export interface SelectProps {
   error?: boolean | string;
   helperText?: string;
   label?: string;
+  /** Supplementary, non-essential clarification shown beside the label. */
+  labelTooltip?: React.ReactNode;
   optionalText?: string;
   name?: string;
   id?: string;
@@ -23,7 +26,7 @@ export interface SelectProps {
 }
 
 export function Select({ options, value, defaultValue = '', onChange, placeholder = 'Select an option…', disabled = false,
-  required = false, error = false, helperText, label, optionalText, name, id, size = 'default', variant = 'default', icon: Icon, className = '' }: SelectProps) {
+  required = false, error = false, helperText, label, labelTooltip, optionalText, name, id, size = 'default', variant = 'default', icon: Icon, className = '' }: SelectProps) {
   const generatedId = useId().replace(/:/g, '');
   const selectId = id ?? `select-${generatedId}`;
   const listboxId = `${selectId}-listbox`;
@@ -35,13 +38,20 @@ export function Select({ options, value, defaultValue = '', onChange, placeholde
   const [activeIndex, setActiveIndex] = useState(-1);
   const rootRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
+  const popupRef = useRef<HTMLDivElement>(null);
   const currentValue = value !== undefined ? value : internalValue;
   const selectedIndex = options.findIndex(option => option.value === currentValue);
   const selectedOption = options[selectedIndex];
   const enabledIndices = options.map((option, index) => option.disabled ? -1 : index).filter(index => index >= 0);
+  const [popupPosition, setPopupPosition] = useState({ top: 0, left: 0, width: 0 });
+  const positionPopup = () => {
+    const rect = triggerRef.current?.getBoundingClientRect();
+    if (rect) setPopupPosition({ top: rect.bottom + 4, left: rect.left, width: rect.width });
+  };
 
   const open = () => {
     if (disabled) return;
+    positionPopup();
     setIsOpen(true);
     setActiveIndex(selectedIndex >= 0 && !options[selectedIndex]?.disabled ? selectedIndex : (enabledIndices[0] ?? -1));
   };
@@ -74,13 +84,21 @@ export function Select({ options, value, defaultValue = '', onChange, placeholde
   };
 
   useEffect(() => {
-    const closeOutside = (event: PointerEvent) => { if (!rootRef.current?.contains(event.target as Node)) setIsOpen(false); };
+    const closeOutside = (event: PointerEvent) => { if (!rootRef.current?.contains(event.target as Node) && !popupRef.current?.contains(event.target as Node)) setIsOpen(false); };
     document.addEventListener('pointerdown', closeOutside);
     return () => document.removeEventListener('pointerdown', closeOutside);
   }, []);
 
+  useEffect(() => {
+    if (!isOpen) return;
+    positionPopup();
+    window.addEventListener('resize', positionPopup);
+    window.addEventListener('scroll', positionPopup, true);
+    return () => { window.removeEventListener('resize', positionPopup); window.removeEventListener('scroll', positionPopup, true); };
+  }, [isOpen]);
+
   return <div ref={rootRef} className={['cvp-select', `cvp-select--${size}`, variant === 'button' && 'cvp-select--button', className].filter(Boolean).join(' ')} data-invalid={Boolean(error) || undefined} data-disabled={disabled || undefined}>
-    {label && <div className="cvp-select__label-row"><label id={labelId} htmlFor={selectId} className="cvp-select__label">{label}{required && <span aria-hidden="true">*</span>}</label>{optionalText && <span>{optionalText}</span>}</div>}
+    {label && <div className="cvp-select__label-row"><div className="cvp-select__label-group"><label id={labelId} htmlFor={selectId} className="cvp-select__label">{label}{required && <span aria-hidden="true">*</span>}</label>{labelTooltip}</div>{optionalText && <span>{optionalText}</span>}</div>}
     {name && <input type="hidden" name={name} value={currentValue} />}
     <button ref={triggerRef} id={selectId} type="button" className="cvp-select__trigger" disabled={disabled} onClick={() => isOpen ? setIsOpen(false) : open()} onKeyDown={handleKeyDown}
       role="combobox" aria-controls={isOpen ? listboxId : undefined} aria-expanded={isOpen} aria-haspopup="listbox" aria-labelledby={labelId} aria-label={label ? undefined : selectedOption?.label ?? placeholder}
@@ -89,13 +107,13 @@ export function Select({ options, value, defaultValue = '', onChange, placeholde
       <span className={selectedOption ? 'cvp-select__value' : 'cvp-select__placeholder'}>{selectedOption?.label ?? placeholder}</span>
       <svg className="cvp-select__chevron" aria-hidden="true" viewBox="0 0 12 12"><path d="M3 4.5 6 7.5 9 4.5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
     </button>
-    {isOpen && <div className="cvp-select__popup"><ul id={listboxId} className="cvp-select__listbox" role="listbox" aria-labelledby={labelId}>
+    {isOpen && typeof document !== 'undefined' && createPortal(<div ref={popupRef} className="cvp-select__popup" style={{ position: 'fixed', top: popupPosition.top, left: popupPosition.left, width: popupPosition.width }}><ul id={listboxId} className="cvp-select__listbox" role="listbox" aria-labelledby={labelId}>
       {options.length ? options.map((option, index) => <li id={`${selectId}-option-${index}`} key={option.value} role="option" aria-selected={index === selectedIndex} aria-disabled={option.disabled || undefined}
         className="cvp-select__option" data-active={index === activeIndex || undefined} data-selected={index === selectedIndex || undefined} data-disabled={option.disabled || undefined}
         onMouseEnter={() => !option.disabled && setActiveIndex(index)} onMouseDown={event => { event.preventDefault(); commit(index); }}>
         <span>{option.label}</span>{index === selectedIndex && <span aria-hidden="true">✓</span>}
       </li>) : <li className="cvp-select__empty">No options available</li>}
-    </ul></div>}
+    </ul></div>, document.body)}
     {errorMessage ? <p id={supportId} className="cvp-select__support cvp-select__support--error" role="alert">{errorMessage}</p>
       : helperText ? <p id={supportId} className="cvp-select__support">{helperText}</p> : null}
   </div>;

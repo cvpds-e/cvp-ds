@@ -1,7 +1,7 @@
 import React from 'react';
 import './TextButton.css';
 
-type Variant='default'|'secondary'|'toggle'|'minimal'|'minimal-inverted'|'nav';
+type Variant='default'|'secondary'|'toggle'|'minimal'|'contextual'|'minimal-inverted'|'nav';
 type BaseProps={children:React.ReactNode;variant?:Variant;disabled?:boolean;className?:string;icon?:React.ReactNode;active?:boolean;loading?:boolean;loadingText?:string};
 type ButtonProps=BaseProps&React.ButtonHTMLAttributes<HTMLButtonElement>&{href?:never};
 type LinkProps=BaseProps&React.AnchorHTMLAttributes<HTMLAnchorElement>&{href:string};

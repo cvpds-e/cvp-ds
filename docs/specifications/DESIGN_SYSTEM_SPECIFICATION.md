@@ -1782,7 +1782,7 @@ The primary call-to-action button. Expresses the single most important action on
 | Token | Semantic source |
 |---|---|
 | `--cvp-button-primary-text-disabled` | `--cvp-color-text-disabled` |
-| `--cvp-button-primary-font-size` | `--cvp-font-size-md` |
+| `--cvp-button-primary-font-size` | `--cvp-font-size-sm` |
 | `--cvp-button-primary-font-weight` | `--cvp-font-weight-medium` |
 | `--cvp-button-primary-line-height` | `--cvp-line-height-normal` |
 

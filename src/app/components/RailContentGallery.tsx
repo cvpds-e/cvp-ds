@@ -20,6 +20,7 @@ export interface RailContentGalleryProps {
   items: RailContentItem[];
   variant?: 'management' | 'display' | 'display-grid' | 'display-grid-selectable';
   showItemCount?: boolean;
+  itemCountPlacement?: 'heading' | 'navigation';
   showNavigation?: boolean;
   headerStatus?: string;
   headerDate?: string;
@@ -42,7 +43,7 @@ export interface RailContentGalleryHandle { scrollLeft: () => void; scrollRight:
 const validThumbnail = (value: string) => /^https?:\/\//.test(value?.trim() ?? '');
 
 export const RailContentGallery = forwardRef<RailContentGalleryHandle, RailContentGalleryProps>(function RailContentGallery({
-  title, items, variant = 'display', showItemCount = true, showNavigation = true, headerStatus, headerDate, hideHeader = false,
+  title, items, variant = 'display', showItemCount = true, itemCountPlacement = 'heading', showNavigation = true, headerStatus, headerDate, hideHeader = false,
   onScrollStateChange, onItemClick, onEdit, onPin, onDrag, onSelectionChange, selectedItems = [], loading = false,
   emptyMessage = 'No content has been added to this rail yet.', emptySlotCount = 0, onAddToEmptySlot,
 }, ref) {
@@ -55,6 +56,7 @@ export const RailContentGallery = forwardRef<RailContentGalleryHandle, RailConte
   const selectable = variant === 'display-grid-selectable';
   const management = variant === 'management';
   const hasRailItems = items.length > 0 || emptySlotCount > 0;
+  const itemCount = <span className="cvp-rail-gallery__count">{items.length} {items.length === 1 ? 'item' : 'items'}</span>;
 
   const updateScrollState = () => {
     const node = scroller.current;
@@ -80,7 +82,7 @@ export const RailContentGallery = forwardRef<RailContentGalleryHandle, RailConte
 
   return (
     <section className={`rail-content-gallery cvp-rail-gallery cvp-rail-gallery--${variant}`} aria-label={title}>
-      {!hideHeader && <header className="cvp-rail-gallery__header"><div className="cvp-rail-gallery__heading"><h3>{title}</h3>{showItemCount && <span className="cvp-rail-gallery__count">{items.length} items</span>}{headerStatus && <span className="cvp-rail-gallery__status">{headerStatus}</span>}{headerDate && <span className="cvp-rail-gallery__date">{headerDate}</span>}</div>{showNavigation && !grid && hasRailItems && <div className="cvp-rail-gallery__navigation" role="group" aria-label={`${title} navigation`}><IconButton aria-label="Previous items" disabled={!canLeft} onClick={() => scroll(-1)}><ChevronLeft size={16} /></IconButton><IconButton aria-label="Next items" disabled={!canRight} onClick={() => scroll(1)}><ChevronRight size={16} /></IconButton></div>}</header>}
+      {!hideHeader && <header className="cvp-rail-gallery__header"><div className="cvp-rail-gallery__heading"><h3>{title}</h3>{showItemCount && itemCountPlacement === 'heading' && itemCount}{headerStatus && <span className="cvp-rail-gallery__status">{headerStatus}</span>}{headerDate && <span className="cvp-rail-gallery__date">{headerDate}</span>}</div>{showNavigation && !grid && hasRailItems && <div className="cvp-rail-gallery__navigation" role="group" aria-label={`${title} navigation`}>{showItemCount && itemCountPlacement === 'navigation' && itemCount}<IconButton size="small" aria-label="Previous items" disabled={!canLeft} onClick={() => scroll(-1)}><ChevronLeft size={16} /></IconButton><IconButton size="small" aria-label="Next items" disabled={!canRight} onClick={() => scroll(1)}><ChevronRight size={16} /></IconButton></div>}</header>}
 
       {loading ? <div className="cvp-rail-gallery__state" role="status"><span className="cvp-rail-gallery__spinner" />Loading content…</div> : items.length === 0 && emptySlotCount > 0 ? <div ref={scroller} className="cvp-rail-gallery__items cvp-rail-gallery__items--rail cvp-rail-gallery__empty-slots" aria-label="Empty content slots" onScroll={updateScrollState}>{Array.from({ length: emptySlotCount }, (_, index) => <button key={index} className="cvp-rail-gallery__empty-slot" type="button" onClick={() => onAddToEmptySlot?.(index + 1)} aria-label={`Add content to slot ${index + 1}`}><span className="cvp-rail-gallery__empty-slot-media"><Plus size={16} aria-hidden="true" /><span className="cvp-rail-gallery__position">{index + 1}</span></span><span className="cvp-rail-gallery__empty-slot-label">Empty slot</span></button>)}</div> : items.length === 0 ? <div className="cvp-rail-gallery__state"><Film size={32} aria-hidden="true" /><strong>No content yet</strong><p>{emptyMessage}</p></div> : <div ref={scroller} className={`cvp-rail-gallery__items ${grid ? 'cvp-rail-gallery__items--grid' : 'cvp-rail-gallery__items--rail'}`} onScroll={updateScrollState}>
         {items.map((item, index) => {

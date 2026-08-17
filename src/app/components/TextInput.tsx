@@ -12,6 +12,8 @@ export interface TextInputProps extends Omit<React.InputHTMLAttributes<HTMLInput
   helperText?: string;
   /** Visible, programmatically associated label. */
   label?: string;
+  /** Supplementary, non-essential clarification shown beside the label. */
+  labelTooltip?: React.ReactNode;
   /** Text shown beside the label, for example “Optional”. */
   optionalText?: string;
   /** Class applied to the native input; `className` applies to the field wrapper. */
@@ -24,6 +26,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(({
   error,
   helperText,
   label,
+  labelTooltip,
   optionalText,
   inputClassName,
   className,
@@ -48,10 +51,10 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(({
     >
       {label && (
         <div className="cvp-text-input__label-row">
-          <label htmlFor={inputId} className="cvp-text-input__label">
+          <div className="cvp-text-input__label-group"><label htmlFor={inputId} className="cvp-text-input__label">
             {label}
             {required && <span className="cvp-text-input__required" aria-hidden="true">*</span>}
-          </label>
+          </label>{labelTooltip}</div>
           {optionalText && <span className="cvp-text-input__optional">{optionalText}</span>}
         </div>
       )}

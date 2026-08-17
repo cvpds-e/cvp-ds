@@ -369,7 +369,7 @@ Full component token surface:
 | `--cvp-button-primary-text` | `--cvp-color-text-inverse` | Yes |
 | `--cvp-button-primary-radius` | `--cvp-radius-sm` (4px) | Yes |
 | `--cvp-button-primary-padding-x` | `--cvp-space-4` (16px) | Yes |
-| `--cvp-button-primary-font-size` | `--cvp-font-size-md` (14px) | Rarely |
+| `--cvp-button-primary-font-size` | `--cvp-font-size-sm` (13px) | Rarely |
 
 ### 7.3 Text Input
 

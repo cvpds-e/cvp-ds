@@ -19,7 +19,7 @@ This catalog is the readable index of every active CVP token. It preserves each 
 | --- | --- | ---: |
 | Primitive | `cvp-primitives.css` | 205 |
 | Semantic | `cvp-semantic-tokens.css` | 485 |
-| Component | `cvp-component-tokens.css` | 1223 |
+| Component | `cvp-component-tokens.css` | 1232 |
 
 ## Tier 1 — Primitive tokens
 
@@ -866,7 +866,7 @@ Component contracts. Each group is named after the component or shared contract 
 </details>
 
 <details>
-<summary><strong>button</strong> — 197 tokens</summary>
+<summary><strong>button</strong> — 200 tokens</summary>
 
 | Token | Value | Scope |
 | --- | --- | --- |
@@ -886,7 +886,7 @@ Component contracts. Each group is named after the component or shared contract 
 | `--cvp-button-primary-padding-x-compact` | `var(--cvp-space-2)` | Shared |
 | `--cvp-button-primary-height` | `var(--cvp-space-8)` | Shared |
 | `--cvp-button-primary-height-compact` | `var(--cvp-space-8)` | Shared |
-| `--cvp-button-primary-font-size` | `var(--cvp-font-size-xs)` | Shared |
+| `--cvp-button-primary-font-size` | `var(--cvp-font-size-sm)` | Shared |
 | `--cvp-button-primary-font-weight` | `var(--cvp-font-weight-medium)` | Shared |
 | `--cvp-button-primary-line-height` | `var(--cvp-line-height-tight)` | Shared |
 | `--cvp-button-primary-letter-spacing` | `var(--cvp-letter-spacing-normal)` | Shared |
@@ -967,7 +967,7 @@ Component contracts. Each group is named after the component or shared contract 
 | `--cvp-button-text-secondary-color` | `var(--cvp-color-text-muted)` | Shared |
 | `--cvp-button-text-secondary-bg-hover` | `var(--cvp-color-surface-hover)` | Shared |
 | `--cvp-button-text-secondary-color-hover` | `var(--cvp-color-text-primary)` | Shared |
-| `--cvp-button-text-secondary-padding-x` | `var(--cvp-space-3)` | Shared |
+| `--cvp-button-text-secondary-padding-x` | `calc(var(--cvp-space-1) + var(--cvp-space-100))` | Shared |
 | `--cvp-button-text-secondary-padding-y` | `var(--cvp-space-1)` | Shared |
 | `--cvp-button-text-secondary-radius` | `var(--cvp-radius-sm)` | Shared |
 | `--cvp-button-text-toggle-color` | `var(--cvp-color-text-link-default)` | Shared |
@@ -982,6 +982,9 @@ Component contracts. Each group is named after the component or shared contract 
 | `--cvp-button-text-minimal-inverted-color` | `var(--cvp-color-text-primary)` | Shared |
 | `--cvp-button-text-minimal-inverted-color-hover` | `var(--cvp-color-text-muted)` | Shared |
 | `--cvp-button-text-minimal-font-size` | `var(--cvp-font-size-sm)` | Shared |
+| `--cvp-button-text-contextual-color` | `var(--cvp-color-text-muted)` | Shared |
+| `--cvp-button-text-contextual-color-hover` | `var(--cvp-color-text-primary)` | Shared |
+| `--cvp-button-text-contextual-font-size` | `var(--cvp-font-size-sm)` | Shared |
 | `--cvp-button-text-nav-color` | `var(--cvp-color-nav-text)` | Shared |
 | `--cvp-button-text-nav-color-hover` | `var(--cvp-color-text-primary)` | Shared |
 | `--cvp-button-text-nav-color-active` | `var(--cvp-color-text-primary)` | Shared |
@@ -1233,7 +1236,7 @@ Component contracts. Each group is named after the component or shared contract 
 </details>
 
 <details>
-<summary><strong>filter</strong> — 67 tokens</summary>
+<summary><strong>filter</strong> — 69 tokens</summary>
 
 | Token | Value | Scope |
 | --- | --- | --- |
@@ -1255,6 +1258,8 @@ Component contracts. Each group is named after the component or shared contract 
 | `--cvp-filter-field-gap` | `var(--cvp-input-field-gap)` | Shared |
 | `--cvp-filter-radius` | `var(--cvp-input-radius)` | Shared |
 | `--cvp-filter-font-size` | `var(--cvp-input-font-size)` | Shared |
+| `--cvp-filter-action-font-size` | `var(--cvp-font-size-sm)` | Shared |
+| `--cvp-filter-action-line-height` | `var(--cvp-line-height-tight)` | Shared |
 | `--cvp-filter-support-size` | `var(--cvp-input-support-size)` | Shared |
 | `--cvp-filter-transition` | `var(--cvp-input-transition)` | Shared |
 | `--cvp-filter-inner-shadow` | `inset 0 1px 0 color-mix(in srgb, var(--cvp-color-text-primary) 3%, transparent)` | Shared |
@@ -1308,7 +1313,7 @@ Component contracts. Each group is named after the component or shared contract 
 </details>
 
 <details>
-<summary><strong>gallery</strong> — 43 tokens</summary>
+<summary><strong>gallery</strong> — 47 tokens</summary>
 
 | Token | Value | Scope |
 | --- | --- | --- |
@@ -1321,6 +1326,10 @@ Component contracts. Each group is named after the component or shared contract 
 | `--cvp-gallery-focus-inset` | `var(--cvp-space-1)` | Shared |
 | `--cvp-gallery-text` | `var(--cvp-color-text-primary)` | Shared |
 | `--cvp-gallery-count-bg` | `var(--cvp-color-surface-subtle)` | Shared |
+| `--cvp-gallery-count-border` | `var(--cvp-color-border-default)` | Shared |
+| `--cvp-gallery-count-text` | `var(--cvp-color-text-muted)` | Shared |
+| `--cvp-gallery-count-padding-x` | `var(--cvp-space-1)` | Shared |
+| `--cvp-gallery-count-radius` | `var(--cvp-radius-sm)` | Shared |
 | `--cvp-gallery-border-width` | `var(--cvp-border-base-width)` | Shared |
 | `--cvp-gallery-item-border` | `var(--cvp-color-border-subtle)` | Shared |
 | `--cvp-gallery-item-border-hover` | `var(--cvp-color-border-default)` | Shared |
@@ -1366,7 +1375,7 @@ Component contracts. Each group is named after the component or shared contract 
 | `--cvp-header-bg` | `var(--cvp-color-nav-bg)` | Shared |
 | `--cvp-header-text` | `var(--cvp-color-text-primary)` | Shared |
 | `--cvp-header-brand-text` | `var(--cvp-color-text-primary)` | Shared |
-| `--cvp-header-control-text` | `var(--cvp-color-text-muted)` | Shared |
+| `--cvp-header-control-text` | `var(--cvp-color-text-primary)` | Shared |
 | `--cvp-header-control-text-hover` | `var(--cvp-color-text-primary)` | Shared |
 | `--cvp-header-border-bottom` | `var(--cvp-color-border-subtle)` | Shared |
 | `--cvp-header-border-width` | `var(--cvp-border-base-width)` | Shared |
@@ -2041,9 +2050,9 @@ Component contracts. Each group is named after the component or shared contract 
 | `--cvp-tag-filter-font-weight-selected` | `var(--cvp-font-weight-medium)` | Shared |
 | `--cvp-tag-filter-line-height` | `var(--cvp-line-height-snug)` | Shared |
 | `--cvp-tag-filter-letter-spacing` | `var(--cvp-letter-spacing-normal)` | Shared |
-| `--cvp-tag-filter-title-size` | `var(--cvp-font-size-lg)` | Shared |
-| `--cvp-tag-filter-title-weight` | `var(--cvp-font-weight-medium)` | Shared |
-| `--cvp-tag-filter-title-line-height` | `var(--cvp-line-height-normal)` | Shared |
+| `--cvp-tag-filter-title-size` | `var(--cvp-input-label-size)` | Shared |
+| `--cvp-tag-filter-title-weight` | `var(--cvp-input-label-weight)` | Shared |
+| `--cvp-tag-filter-title-line-height` | `var(--cvp-line-height-snug)` | Shared |
 | `--cvp-tag-filter-title-letter-spacing` | `var(--cvp-letter-spacing-normal)` | Shared |
 | `--cvp-tag-filter-summary-size` | `var(--cvp-font-size-xs)` | Shared |
 | `--cvp-tag-filter-summary-line-height` | `var(--cvp-line-height-tight)` | Shared |

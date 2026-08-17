@@ -44,6 +44,9 @@ function RailDetailsWorkspace({ railName = 'Trending' }: RailDetailsProps) {
   const [name, setName] = useState(railName);
   const [status, setStatus] = useState('active');
   const [collection, setCollection] = useState('home');
+  const [railPosition, setRailPosition] = useState('2');
+  const [contentSlots, setContentSlots] = useState('24');
+  const [assignedPage, setAssignedPage] = useState('home');
   const [mediaFormats, setMediaFormats] = useState<string[]>([]);
   const [filterSearch, setFilterSearch] = useState('');
   const [sortField, setSortField] = useState('title');
@@ -101,9 +104,11 @@ function RailDetailsWorkspace({ railName = 'Trending' }: RailDetailsProps) {
   const hasEmptyQuery = queriedItems.length === 0;
 
   const basePanel = <div className="rail-details__form">
-    <div className="rail-details__form-section"><span>Settings</span><TextInput label="Rail name" value={name} onChange={(event) => setName(event.target.value)} /><Select label="Rail status" value={status} onChange={setStatus} options={[{ value: 'active', label: 'Active' }, { value: 'draft', label: 'Draft' }, { value: 'inactive', label: 'Inactive' }]} /><Select label="Rail collection" value={collection} onChange={setCollection} options={[{ value: 'home', label: 'Home' }, { value: 'drama', label: 'Drama' }, { value: 'kids', label: 'Kids' }]} /><div className="rail-details__form-grid"><TextInput label="Rail position" type="number" defaultValue="2" min="1" /><TextInput label="Content slots" type="number" defaultValue="24" min="1" /></div><Select label="Assign to page" defaultValue="home" options={[{ value: 'home', label: 'Home' }, { value: 'discover', label: 'Discover' }, { value: 'kids', label: 'Kids' }]} /></div>
+    <div className="rail-details__form-section"><span>Settings</span><TextInput label="Rail name" value={name} onChange={(event) => setName(event.target.value)} /><Select label="Rail status" value={status} onChange={setStatus} options={[{ value: 'active', label: 'Active' }, { value: 'draft', label: 'Draft' }, { value: 'inactive', label: 'Inactive' }]} /><Select label="Rail collection" value={collection} onChange={setCollection} options={[{ value: 'home', label: 'Home' }, { value: 'drama', label: 'Drama' }, { value: 'kids', label: 'Kids' }]} /><div className="rail-details__form-grid"><TextInput label="Rail position" type="number" value={railPosition} onChange={(event) => setRailPosition(event.target.value)} min="1" /><TextInput label="Content slots" type="number" value={contentSlots} onChange={(event) => setContentSlots(event.target.value)} min="1" /></div><Select label="Assign to page" value={assignedPage} onChange={setAssignedPage} options={[{ value: 'home', label: 'Home' }, { value: 'discover', label: 'Discover' }, { value: 'kids', label: 'Kids' }]} /></div>
   </div>;
   const hasQueryFilters = Boolean(mediaFormats.length || genres.length || releaseYear || availability || anyTitlePrefix || approved || distributionRights.length || languages.length || isAdult || exactTitle || titlePrefix || tvSeason || sortField !== 'title' || sortDirection !== 'desc');
+  const hasBaseChanges = name !== railName || status !== 'active' || collection !== 'home' || railPosition !== '2' || contentSlots !== '24' || assignedPage !== 'home';
+  const shouldShowSaveFooter = hasBaseChanges || hasQueryFilters || matchMode !== 'all';
   const matchesFilterSearch = (...labels: string[]) => !filterSearch.trim() || labels.some((label) => label.toLocaleLowerCase().includes(filterSearch.trim().toLocaleLowerCase()));
   const clearQueryFilters = () => {
     setMediaFormats([]);
@@ -161,7 +166,7 @@ function RailDetailsWorkspace({ railName = 'Trending' }: RailDetailsProps) {
         </div>
       </WorkspaceLayout.Main>
     </WorkspaceLayout.Body>
-    <WorkspaceLayout.Footer className="rail-details__footer"><OutlineButton onClick={duplicate}><Copy size={15} /> Duplicate</OutlineButton><OutlineButton onClick={() => setPreviewOpen((value) => !value)}><Eye size={15} /> {previewOpen ? 'Close preview' : 'Preview'}</OutlineButton><PrimaryButton onClick={save}><Save size={15} /> Save changes</PrimaryButton></WorkspaceLayout.Footer>
+    {shouldShowSaveFooter && <WorkspaceLayout.Footer className="rail-details__footer"><OutlineButton onClick={duplicate}><Copy size={15} /> Duplicate</OutlineButton><OutlineButton onClick={() => setPreviewOpen((value) => !value)}><Eye size={15} /> {previewOpen ? 'Close preview' : 'Preview'}</OutlineButton><PrimaryButton onClick={save}><Save size={15} /> Save changes</PrimaryButton></WorkspaceLayout.Footer>}
     <ContentBrowserModal isOpen={browserOpen} onClose={() => setBrowserOpen(false)} items={initialItems} selectedItems={candidateSelection} onSelectionChange={setCandidateSelection} onConfirm={(ids) => { setItems(initialItems.filter((item) => ids.includes(item.id))); addToast({ variant: 'success', title: 'Content updated', description: `${ids.length} items are now in the rail.` }); }} />
     {previewOpen && <div className="rail-details__preview-mode" role="status">Preview mode is active</div>}
   </WorkspaceLayout>;

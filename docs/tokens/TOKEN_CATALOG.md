@@ -17,9 +17,9 @@ This catalog is the readable index of every active CVP token. It preserves each 
 
 | Tier | Source file | Definitions |
 | --- | --- | ---: |
-| Primitive | `cvp-primitives.css` | 205 |
-| Semantic | `cvp-semantic-tokens.css` | 485 |
-| Component | `cvp-component-tokens.css` | 1247 |
+| Primitive | `cvp-primitives.css` | 206 |
+| Semantic | `cvp-semantic-tokens.css` | 487 |
+| Component | `cvp-component-tokens.css` | 1255 |
 
 ## Tier 1 — Primitive tokens
 
@@ -43,6 +43,7 @@ Raw colour, spacing, typography, motion, elevation, and opacity values. Do not r
 | `--cvp-primitive-overlay-black-medium` | `rgb(0 0 0 / 0.08)` | Shared |
 | `--cvp-primitive-overlay-black-strong` | `rgb(0 0 0 / 0.15)` | Shared |
 | `--cvp-primitive-overlay-gallery-dark` | `rgb(25 25 27 / 0.75)` | Shared |
+| `--cvp-primitive-overlay-gallery-strong` | `rgb(15 15 18 / 0.92)` | Shared |
 | `--cvp-primitive-overlay-gallery-light` | `rgb(0 0 0 / 0.50)` | Shared |
 | `--cvp-primitive-shadow-dark-soft` | `rgb(0 0 0 / 0.22)` | Shared |
 | `--cvp-primitive-shadow-dark-base` | `rgb(0 0 0 / 0.34)` | Shared |
@@ -261,6 +262,7 @@ Intent-based roles. Theme-specific rows are shown with their scope so the light 
 | `--cvp-color-interactive-overlay-medium` | `var(--cvp-primitive-overlay-white-medium)` | Dark theme |
 | `--cvp-color-interactive-overlay-strong` | `var(--cvp-primitive-overlay-white-strong)` | Dark theme |
 | `--cvp-color-gallery-overlay` | `var(--cvp-primitive-overlay-gallery-dark)` | Dark theme |
+| `--cvp-color-gallery-overlay-hover` | `var(--cvp-primitive-overlay-gallery-strong)` | Dark theme |
 | `--cvp-color-gallery-empty-border` | `var(--cvp-primitive-overlay-white-subtle)` | Dark theme |
 | `--cvp-color-text-primary` | `var(--cvp-primitive-neutral-0)` | Dark theme |
 | `--cvp-color-text-secondary` | `var(--cvp-primitive-neutral-10)` | Dark theme |
@@ -371,6 +373,7 @@ Intent-based roles. Theme-specific rows are shown with their scope so the light 
 | `--cvp-color-interactive-overlay-medium` | `var(--cvp-primitive-overlay-black-medium)` | Light theme |
 | `--cvp-color-interactive-overlay-strong` | `var(--cvp-primitive-overlay-black-strong)` | Light theme |
 | `--cvp-color-gallery-overlay` | `var(--cvp-primitive-overlay-gallery-dark)` | Light theme |
+| `--cvp-color-gallery-overlay-hover` | `var(--cvp-primitive-overlay-gallery-strong)` | Light theme |
 | `--cvp-color-gallery-empty-border` | `var(--cvp-primitive-overlay-black-medium)` | Light theme |
 | `--cvp-color-text-primary` | `var(--cvp-primitive-gray-900)` | Light theme |
 | `--cvp-color-text-secondary` | `var(--cvp-primitive-neutral-400)` | Light theme |
@@ -1021,7 +1024,7 @@ Component contracts. Each group is named after the component or shared contract 
 | `--cvp-button-icon-outline-border` | `var(--cvp-color-interactive-overlay-strong)` | Shared |
 | `--cvp-button-icon-outline-border-hover` | `var(--cvp-color-border-strong)` | Shared |
 | `--cvp-button-icon-gallery-bg` | `var(--cvp-color-gallery-overlay)` | Shared |
-| `--cvp-button-icon-gallery-bg-hover` | `var(--cvp-color-interactive-overlay-medium)` | Shared |
+| `--cvp-button-icon-gallery-bg-hover` | `var(--cvp-color-gallery-overlay-hover)` | Shared |
 | `--cvp-button-icon-gallery-color` | `var(--cvp-color-text-on-brand)` | Shared |
 | `--cvp-button-icon-remove-bg` | `var(--cvp-color-gallery-overlay)` | Shared |
 | `--cvp-button-icon-remove-color` | `var(--cvp-color-text-on-brand)` | Shared |
@@ -1902,7 +1905,7 @@ Component contracts. Each group is named after the component or shared contract 
 </details>
 
 <details>
-<summary><strong>table</strong> — 64 tokens</summary>
+<summary><strong>table</strong> — 72 tokens</summary>
 
 | Token | Value | Scope |
 | --- | --- | --- |
@@ -1950,6 +1953,14 @@ Component contracts. Each group is named after the component or shared contract 
 | `--cvp-table-count-padding-x` | `var(--cvp-space-1)` | Shared |
 | `--cvp-table-count-radius` | `var(--cvp-radius-sm)` | Shared |
 | `--cvp-table-count-separation` | `var(--cvp-space-3)` | Shared |
+| `--cvp-table-rail-type-tag-bg` | `var(--cvp-color-surface-subtle)` | Shared |
+| `--cvp-table-rail-type-tag-border` | `var(--cvp-color-border-default)` | Shared |
+| `--cvp-table-rail-type-tag-radius` | `var(--cvp-radius-sm)` | Shared |
+| `--cvp-table-rail-type-tag-padding-x` | `var(--cvp-space-1)` | Shared |
+| `--cvp-table-rail-type-tag-font-size` | `var(--cvp-font-size-xs)` | Shared |
+| `--cvp-table-rail-type-tag-font-weight` | `var(--cvp-font-weight-semibold)` | Shared |
+| `--cvp-table-rail-type-editorial-text` | `var(--cvp-color-brand-accent)` | Shared |
+| `--cvp-table-rail-type-recommended-text` | `var(--cvp-color-text-link-default)` | Shared |
 | `--cvp-table-control-color` | `var(--cvp-color-icon-subtle)` | Shared |
 | `--cvp-table-control-color-hover` | `var(--cvp-color-icon-default)` | Shared |
 | `--cvp-table-control-color-disabled` | `var(--cvp-color-icon-disabled)` | Shared |

@@ -45,6 +45,7 @@
   --cvp-primitive-overlay-black-medium:        rgb(0 0 0 / 0.08);
   --cvp-primitive-overlay-black-strong:        rgb(0 0 0 / 0.15);
   --cvp-primitive-overlay-gallery-dark:        rgb(25 25 27 / 0.75);
+  --cvp-primitive-overlay-gallery-strong:      rgb(15 15 18 / 0.92);
   --cvp-primitive-overlay-gallery-light:       rgb(0 0 0 / 0.50);
   --cvp-primitive-shadow-dark-soft:            rgb(0 0 0 / 0.22);
   --cvp-primitive-shadow-dark-base:            rgb(0 0 0 / 0.34);

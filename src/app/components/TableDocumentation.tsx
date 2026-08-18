@@ -24,6 +24,7 @@ const tokenRows = [
   ['Row hover', '--cvp-table-row-bg-hover', '--cvp-color-surface-hover', 'Theme resolved', ':hover'],
   ['Selected row', '--cvp-table-row-bg-selected', '--cvp-color-surface-active', 'Neutral selection surface', 'Selection present'],
   ['Row count tag', '--cvp-table-count-bg', '--cvp-color-surface-subtle', 'Muted metadata tag', 'Toolbar summary'],
+  ['Rail type tag', '--cvp-table-rail-type-*', '--cvp-color-surface-subtle / --cvp-color-text-link-default / --cvp-color-brand-accent', 'Recommended blue; Editorial purple', 'Rails List type column'],
   ['Control gap', '--cvp-table-control-gap', '--cvp-space-100', '2px', 'Toolbar and pagination controls'],
   ['Primary text', '--cvp-table-cell-text', '--cvp-color-text-primary', '14px / 20px', 'Primary cells'],
   ['Muted text', '--cvp-table-cell-text-muted', '--cvp-color-text-muted', 'AA pairing', 'Secondary cells'],
@@ -41,7 +42,10 @@ export function TableDocumentation() {
 
   const renderCell = (columnId: string, value: unknown) => {
     if (columnId === 'collection') return <span className="table-collection-tag">{String(value)}</span>;
-    if (columnId === 'type') return <span className={`table-type table-type--${String(value).toLowerCase()}`}>{String(value)}</span>;
+    if (columnId === 'type') {
+      const railType = String(value).toLowerCase();
+      return <span className={`cvp-table__rail-type-tag cvp-table__rail-type-tag--${railType}`}>{String(value)}</span>;
+    }
     return String(value ?? '');
   };
 

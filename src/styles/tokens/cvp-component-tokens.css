@@ -224,7 +224,7 @@
 
   /* ICON — rail gallery overlay variant */
   --cvp-button-icon-gallery-bg:       var(--cvp-color-gallery-overlay);
-  --cvp-button-icon-gallery-bg-hover: var(--cvp-color-interactive-overlay-medium);
+  --cvp-button-icon-gallery-bg-hover: var(--cvp-color-gallery-overlay-hover);
   --cvp-button-icon-gallery-color:    var(--cvp-color-text-on-brand);
 
   /* ICON — compact remove overlay */
@@ -1217,6 +1217,15 @@
   --cvp-table-count-padding-x:  var(--cvp-space-1);
   --cvp-table-count-radius:     var(--cvp-radius-sm);
   --cvp-table-count-separation: var(--cvp-space-3);
+  /* Rail type metadata tag — shared by Rails List and Table documentation. */
+  --cvp-table-rail-type-tag-bg:           var(--cvp-color-surface-subtle);
+  --cvp-table-rail-type-tag-border:       var(--cvp-color-border-default);
+  --cvp-table-rail-type-tag-radius:       var(--cvp-radius-sm);
+  --cvp-table-rail-type-tag-padding-x:    var(--cvp-space-1);
+  --cvp-table-rail-type-tag-font-size:    var(--cvp-font-size-xs);
+  --cvp-table-rail-type-tag-font-weight:  var(--cvp-font-weight-semibold);
+  --cvp-table-rail-type-editorial-text:   var(--cvp-color-brand-accent);
+  --cvp-table-rail-type-recommended-text: var(--cvp-color-text-link-default);
   --cvp-table-control-color:    var(--cvp-color-icon-subtle);
   --cvp-table-control-color-hover: var(--cvp-color-icon-default);
   --cvp-table-control-color-disabled: var(--cvp-color-icon-disabled);

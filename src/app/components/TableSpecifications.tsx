@@ -84,6 +84,15 @@ export function TableSpecifications() {
     { property: 'Padding', value: '0 4px', token: '--cvp-space-1' }
   ];
 
+  const railTypeTagData = [
+    { property: 'Shared surface', value: 'Subtle metadata surface', token: '--cvp-table-rail-type-tag-bg → --cvp-color-surface-subtle' },
+    { property: 'Border', value: 'Theme-resolved default border', token: '--cvp-table-rail-type-tag-border → --cvp-color-border-default' },
+    { property: 'Typography', value: 'Mono 12px semibold uppercase', token: '--cvp-table-rail-type-tag-font-size / --cvp-table-rail-type-tag-font-weight' },
+    { property: 'Recommended', value: 'Link blue semantic', token: '--cvp-table-rail-type-recommended-text → --cvp-color-text-link-default' },
+    { property: 'Editorial', value: 'Brand accent semantic', token: '--cvp-table-rail-type-editorial-text → --cvp-color-brand-accent' },
+    { property: 'Padding', value: '0 4px', token: '--cvp-table-rail-type-tag-padding-x → --cvp-space-1' },
+  ];
+
   const colorsData = [
     { property: 'Background', value: '#ffffff', token: 'table-bg' },
     { property: 'Header Background', value: '#f8f9fa', token: 'table-header-bg' },
@@ -144,6 +153,7 @@ export function TableSpecifications() {
       <SpecificationTable title="Borders" data={bordersData} />
       <SpecificationTable title="States" data={statesData} />
       <SpecificationTable title="Collection Tag" data={collectionTagData} />
+      <SpecificationTable title="Rail Type Tag" data={railTypeTagData} />
       <SpecificationTable title="Colors" data={colorsData} />
       <SpecificationTable title="Icons" data={iconsData} />
       <SpecificationTable title="Resize Handles" data={resizeHandlesData} />

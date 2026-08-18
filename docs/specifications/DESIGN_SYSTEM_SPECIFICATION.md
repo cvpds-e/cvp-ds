@@ -608,7 +608,8 @@ In dark theme, `error` and `danger` use different hues. In light theme they may 
 | `--cvp-color-overlay-scrim` | Modal/dialog backdrop that blocks interaction |
 | `--cvp-color-surface-overlay` | Floating panel surface (dropdown, popover, menu) |
 | `--cvp-color-interactive-overlay` | Translucent hover/active fill on items within a container |
-| `--cvp-color-gallery-overlay` | Contrast-protected dark media thumbnail overlay in both themes |
+| `--cvp-color-gallery-overlay` | Contrast-protected dark media thumbnail control overlay in both themes |
+| `--cvp-color-gallery-overlay-hover` | Stronger contrast-protected gallery-control layer for hover and focus in both themes |
 
 `overlay-scrim` is applied as a `background-color` on a full-viewport backdrop element positioned between the page and the modal. It is not applied to the modal surface itself.
 
@@ -2471,9 +2472,9 @@ Sub-variant tokens are a specification gap pending the `variant` prop redesign.
 |---|---|
 | Production implementation | Complete (forwardRef) |
 | Storybook stories | None |
-| Token migration | Unregistered tokens in use |
+| Token migration | Complete — canonical `--cvp-button-icon-*` contract |
 | Specification confidence | High |
-| Known gaps | Focus uses `:focus` not `:focus-visible` · 28px default size is below 44px touch target · Danger uses hardcoded hex · No loading state |
+| Known gaps | Visible targets are smaller than the 44px touch recommendation; provide adequate spacing or a larger target in touch-heavy contexts |
 
 #### Purpose
 
@@ -2507,16 +2508,16 @@ A square icon-only button. Used for compact actions where a text label is not vi
 | `default` | Transparent bg; dark hover fill |
 | `outline` | Adds 1px semi-transparent border |
 | `ghost` | No border; same as default functionally |
-| `danger` | Icon colour is error red (`#e6494e`); bg/hover unchanged |
-| `rail-gallery` | Semi-transparent dark bg for media overlays |
+| `danger` | Icon colour resolves from the semantic danger role |
+| `rail-gallery` | Stable dark-glass media control surface with a stronger hover/focus layer |
 
 #### Sizes
 
 | Size | Dimension |
 |---|---|
 | `small` | 24×24px |
-| `medium` (default) | 28×28px |
-| `large` | 32×32px |
+| `medium` (default) | 32×32px |
+| `large` | 40×40px |
 
 **Touch target gap:** All three sizes are below the 44×44px WCAG 2.5.5 minimum. An invisible padding extension or wrapper must be used in touch contexts.
 
@@ -2542,16 +2543,16 @@ A square icon-only button. Used for compact actions where a text label is not vi
 
 | Element / property | Default | `danger` variant | `outline` variant |
 |---|---|---|---|
-| Size | 28×28px | 28×28px | 28×28px |
+| Size | 32×32px | 32×32px | 32×32px |
 | Background | `transparent` | `transparent` | `transparent` |
-| Icon colour | `#AFAFB5` | `#e6494e` (hardcoded) | `#AFAFB5` |
-| Hover bg | `#1f1f28` | `#1f1f28` | `#1f1f28` |
-| Hover icon colour | `#fff` | `#e6494e` (unchanged) | `#fff` |
-| Active bg | `rgba(255,255,255,0.15)` | — | — |
-| Active transform | `scale(0.95)` | `scale(0.95)` | `scale(0.95)` |
-| Disabled opacity | `0.5` | `0.5` | `0.5` |
-| Border (outline) | — | — | `1px solid rgba(255,255,255,0.3)` |
-| Focus ring | `box-shadow: 0 0 0 2px #67b3fb` | same | same |
+| Icon colour | `--cvp-button-icon-color` | `--cvp-button-icon-danger-color` | `--cvp-button-icon-color` |
+| Hover bg | `--cvp-button-icon-bg-hover` | `--cvp-button-icon-danger-bg-hover` | `--cvp-button-icon-bg-hover` |
+| Hover icon colour | `--cvp-button-icon-color-hover` | `--cvp-button-icon-danger-color-hover` | `--cvp-button-icon-color-hover` |
+| Active bg | `--cvp-button-icon-bg-active` | `--cvp-button-icon-bg-active` | `--cvp-button-icon-bg-active` |
+| Active transform | `--cvp-button-icon-press-offset` | same | same |
+| Disabled appearance | `--cvp-button-icon-*-disabled` | same | same |
+| Border (outline) | — | — | `--cvp-button-icon-outline-border` |
+| Focus ring | `--cvp-button-icon-focus-ring` | same | same |
 
 ---
 
@@ -2561,11 +2562,11 @@ A square icon-only button. Used for compact actions where a text label is not vi
 
 | Token | Semantic source |
 |---|---|
-| `--cvp-icon-button-color` | `--cvp-color-icon-default` |
-| `--cvp-icon-button-bg-hover` | `--cvp-color-surface-hover` |
-| `--cvp-icon-button-color-hover` | `--cvp-color-text-primary` |
-| `--cvp-icon-button-color-danger` | `--cvp-color-text-danger` |
-| `--cvp-icon-button-color-disabled` | `--cvp-color-icon-disabled` |
+| `--cvp-button-icon-color` | `--cvp-color-icon-subtle` |
+| `--cvp-button-icon-bg-hover` | `--cvp-color-interactive-overlay` |
+| `--cvp-button-icon-danger-color` | `--cvp-color-icon-danger` |
+| `--cvp-button-icon-gallery-bg` | `--cvp-color-gallery-overlay` |
+| `--cvp-button-icon-gallery-bg-hover` | `--cvp-color-gallery-overlay-hover` |
 
 ---
 
@@ -2575,24 +2576,24 @@ A square icon-only button. Used for compact actions where a text label is not vi
 |---|---|---|
 | Default | Muted icon, transparent bg | `<button>` with required `aria-label` |
 | Hover | Bg darkens; icon brightens | No ARIA change |
-| Focus | `box-shadow` ring — **appears on mouse click (bug)** | `:focus` not `:focus-visible` |
+| Focus | Tokenized focus ring | `:focus-visible` only |
 | Active | `scale(0.95)` | No ARIA change |
 | Disabled | `opacity: 0.5`; transparent bg | `disabled` attribute; not focusable |
-| Loading | **Specification gap** | — |
+| Loading | Replaces the glyph with a tokenized spinner | `aria-busy` and disabled to prevent repeat activation |
 
-**Critical accessibility bug:** Focus ring appears on `:focus` (not `:focus-visible`). Every mouse click on the button shows a focus ring. Must be corrected to `:focus-visible`.
+The component uses `:focus-visible`, so pointer interactions do not introduce an unnecessary focus ring.
 
 ---
 
 #### Focus Behaviour
 
-Focus enters via `Tab`. Focus ring is a `box-shadow` which is functionally visible but implements incorrectly (`:focus` not `:focus-visible`). No nested focusable elements.
+Focus enters via `Tab` and is presented with the tokenized `:focus-visible` ring. No nested focusable elements.
 
 ---
 
 #### Disabled and Read-Only
 
-`disabled` attribute applied natively. `opacity: 0.5` used — no dedicated disabled token. Icon colour does not shift to `--cvp-color-icon-disabled`; opacity dims the existing colour instead.
+`disabled` is applied natively. The disabled foreground, background and border resolve from the Icon Button component contract.
 
 ---
 
@@ -2612,9 +2613,9 @@ Focus enters via `Tab`. Focus ring is a `box-shadow` which is functionally visib
 |---|---|
 | Role | Native `<button>` |
 | Accessible name | **Consumer-required** `aria-label` |
-| Focus ring | Present but on `:focus` — bug |
-| Touch target | **Gap:** 24–32px visible; 44px minimum not met |
-| WCAG contrast (danger) | `#e6494e` on `#1f1f28` hover bg — must be audited |
+| Focus ring | Tokenized ring on `:focus-visible` |
+| Touch target | **Guidance:** 24–40px visible; use larger targets or sufficient surrounding space in touch-heavy contexts |
+| WCAG contrast (danger) | Semantic danger glyph uses its theme-resolved Icon Button contract |
 
 ---
 
@@ -2623,10 +2624,10 @@ Focus enters via `Tab`. Focus ring is a `box-shadow` which is functionally visib
 | Story | Notes |
 |---|---|
 | All variants | default / outline / ghost / danger / rail-gallery |
-| All sizes | 24 / 28 / 32px |
+| All sizes | 24 / 32 / 40px |
 | With aria-label | Demonstrates required accessible name |
 | Disabled | |
-| Keyboard navigation | Confirms ring on Tab, not on mouse click |
+| Keyboard navigation | Confirms the ring on Tab |
 | Tooltip paired | `<IconButton>` inside a tooltip |
 | Theme: light and dark | |
 
@@ -2636,11 +2637,7 @@ Focus enters via `Tab`. Focus ring is a `box-shadow` which is functionally visib
 
 | Gap | Severity | Action |
 |---|---|---|
-| `:focus` not `:focus-visible` | Critical | Replace in migration |
-| All sizes below 44px touch target | High | Add invisible padding extension |
-| `danger` icon colour is hardcoded hex | Medium | Replace with `--cvp-color-icon-danger` |
-| `aria-label` not enforced at component level | High | Add prop to interface as required or add PropTypes warning |
-| No loading state | High | Add in migration |
+| Visible targets below 44px | Medium | Use 32px or 40px where possible and preserve separation around 24px compact controls |
 
 ---
 
@@ -2763,13 +2760,13 @@ A card-style button presenting a named action with a supporting icon and a short
 |---|---|
 | Production implementation | Complete |
 | Storybook stories | None |
-| Token migration | Unregistered tokens in use |
+| Token migration | Inherits the canonical Icon Button token contract |
 | Specification confidence | High |
-| Known gaps | `:focus` not `:focus-visible` · Same `mouseDown.preventDefault()` issue as IconButtonWithText · `remove` variant uses hardcoded danger hex |
+| Known gaps | Visible 24px target needs adequate separation; use the 32px Icon Button when space permits |
 
 #### Purpose
 
-A fixed 24×24px icon button. Functionally identical to `IconButton` size `small`, but with additional variants (notably `remove`) and the same problematic mouse-focus suppression pattern. Used in chip/tag removal, gallery thumbnail controls, and compact action rows.
+A fixed 24×24px compatibility alias for `IconButton size="small"`. It shares the same variants, focus behavior, token contract and loading behavior, and is used in chip/tag removal, gallery thumbnail controls, and compact action rows.
 
 #### When to Use
 
@@ -2779,7 +2776,7 @@ A fixed 24×24px icon button. Functionally identical to `IconButton` size `small
 
 #### Relationship to IconButton
 
-`IconSmallButton` is a fixed-24px variant of `IconButton` with one additional variant (`remove`). In a future migration, `IconButton` with `size="small"` and an added `remove` variant should replace this component. Track as a consolidation opportunity.
+`IconSmallButton` delegates to `IconButton size="small"` and exists as a compatibility alias for existing imports. New code may use the canonical Icon Button API directly.
 
 ---
 
@@ -2790,8 +2787,8 @@ A fixed 24×24px icon button. Functionally identical to `IconButton` size `small
 | `default` | Transparent bg, muted icon |
 | `outline` | Thin semi-transparent border |
 | `ghost` | No border |
-| `danger` | Error-red icon colour |
-| `rail-gallery` | Semi-transparent dark bg |
+| `danger` | Semantic danger icon colour |
+| `rail-gallery` | Stable dark-glass media control surface |
 | `remove` | Circular, black bg, white icon; hover turns red; used for removing items from media |
 
 ---
@@ -2813,21 +2810,18 @@ A fixed 24×24px icon button. Functionally identical to `IconButton` size `small
 | Element / property | Default | `remove` variant |
 |---|---|---|
 | Size | 24×24px | 24×24px, `border-radius: 50%` |
-| Background | `transparent` | `rgba(0,0,0,0.75)` with backdrop-filter blur |
-| Icon colour | `#AFAFB5` | `#fff` |
-| Hover bg | `#1f1f28` | Error red (`#e6494e`) |
-| Active scale | `scale(0.9)` | `scale(0.95)` |
-| Hover scale (remove) | — | `scale(1.1)` |
-| Disabled opacity | `0.5` | `0.5` |
-| Focus ring | `box-shadow: 0 0 0 2px #67b3fb` | Same + additional layer |
+| Background | `transparent` | `--cvp-button-icon-remove-bg` |
+| Icon colour | `--cvp-button-icon-color` | `--cvp-button-icon-remove-color` |
+| Hover bg | `--cvp-button-icon-bg-hover` | `--cvp-button-icon-remove-bg-hover` |
+| Active offset | `--cvp-button-icon-press-offset` | same |
+| Disabled appearance | `--cvp-button-icon-*-disabled` | same |
+| Focus ring | `--cvp-button-icon-focus-ring` | same |
 
 ---
 
 #### States, Interaction, Accessibility
 
-Same gaps as `IconButton`: `:focus` not `:focus-visible`; `aria-label` required from consumer; touch target below 44px.
-
-Same `mouseDown.preventDefault()` and post-click blur issues as `IconButtonWithText`.
+The same required accessible-name, `:focus-visible`, disabled and loading contract as Icon Button applies. Preserve separation around compact targets; choose the 32px default control when layout permits.
 
 ---
 
@@ -2835,11 +2829,7 @@ Same `mouseDown.preventDefault()` and post-click blur issues as `IconButtonWithT
 
 | Gap | Severity | Action |
 |---|---|---|
-| `:focus` not `:focus-visible` | Critical | Fix in migration |
-| `mouseDown.preventDefault()` + blur on click | Critical | Remove; use `:focus-visible` |
-| Consolidation with `IconButton size="small"` + `remove` variant | Medium | Plan in migration roadmap |
-| All below 44px touch target | High | Add invisible padding extension |
-| `remove` danger colour hardcoded | Medium | Migrate to `--cvp-color-danger-*` tokens |
+| Visible target below 44px | Medium | Preserve adequate separation and use the 32px default when layout permits |
 
 ---
 
@@ -7669,7 +7659,7 @@ All four variants share the same item anatomy; the variant controls which contro
 19. **Position number badge** — bottom-left of image; 24×24px; `rgba(0,0,0,0.8)` bg; 1-based index from `item.position` or array index.
 20. **Override badge** — bottom-right of image; `"OVERRIDE"` text; amber background (`#f59e0bf2`); appears when item has been edited.
 21. **Action buttons column** — top-right of image; `IconSmallButton` × 2 (Pin, Edit); opacity 0 → 1 on hover / focus.
-22. **Drag handle** — top-left of image; `GripVertical` icon; opacity 0 → 1 on hover.
+22. **Drag handle** — top-left of image; `GripVertical` icon; reveals with edit and delete on hover or keyboard focus, and remains visible on touch.
 
 **Selectable-grid-only overlays:**
 23. **Selection checkbox** — top-left of image; 24×24px; `rgba(0,0,0,0.8)` bg; opacity 0 → 1 on hover; blue bg when selected; always visible when selected.

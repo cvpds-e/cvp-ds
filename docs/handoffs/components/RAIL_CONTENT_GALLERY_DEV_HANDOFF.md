@@ -12,7 +12,7 @@ The gallery composes canonical Checkbox, IconButton, and IconSmallButton compone
 ## Variants
 
 - `display`: horizontal browsing rail.
-- `management`: ordered rail with a consistent vertical information stack: Algorithmic source tag above each title by default, title, then metadata. Pinned items instead use a Manual source tag. The drag indicator sits top-left, position bottom-left, standard small rail-gallery Icon Buttons for edit/delete stack top-right, and a green pin indicator appears bottom-right. Edit and delete use the shared dark-glass default, neutral-overlay hover, radius, and focus treatment; the green pin is the deliberate active-state exception.
+- `management`: ordered rail with a consistent vertical information stack: Algorithmic source tag above each title by default, title, then metadata. Pinned items instead use a Manual source tag. The drag indicator sits top-left, position bottom-left, and drag/edit/delete reveal together only on hover or focus (always visible on touch). Edit and delete share the same small, dark-glass gallery Icon Button surface; delete carries the semantic danger-red glyph without an additional border. A green pin indicator appears bottom-right only for pinned content.
 - `display-grid`: responsive comparison grid.
 - `display-grid-selectable`: grid with controlled selection.
 
@@ -34,7 +34,7 @@ Reordering callbacks receive the dragged item ID and zero-based target position.
 
 ## Token contract
 
-Gallery CSS consumes `--cvp-gallery-*` Tier 3 aliases. Text, borders, surfaces, focus, spacing, radius, overlays, source tags, pin state, motion, and count metadata resolve through canonical CVP foundations. Gallery overlays use the same contrast-protected dark glass treatment in both themes; position numerals use a bold, tabular treatment centered within the overlay square; Algorithmic source uses the bounded neutral surface treatment; Manual source and the active pin resolve through success state tokens. Child controls continue to consume their own Tier 3 contracts.
+Gallery CSS consumes `--cvp-gallery-*` Tier 3 aliases. Text, borders, surfaces, focus, spacing, radius, overlays, source tags, pin state, motion, and count metadata resolve through canonical CVP foundations. Gallery controls use the same contrast-protected dark glass treatment in both themes, with a strong opaque-hover overlay so controls remain legible over arbitrary thumbnails. Delete keeps that shared surface and consumes semantic danger text. Position numerals use a bold, tabular treatment centered within the overlay square; Algorithmic source uses the bounded neutral surface treatment; Manual source and the active pin resolve through success state tokens. Child controls continue to consume their own Tier 3 contracts.
 
 ## Pixel-perfect acceptance
 

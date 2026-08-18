@@ -156,7 +156,14 @@ export function RailsList() {
       <WorkspaceLayout.Main className="rails-list-page__main">
         <WorkspaceLayout.PageHeader className="rails-list-page__titlebar"><div><ListFilter size={20} aria-hidden="true" /><h1>Rails List</h1></div><PrimaryButton onClick={() => setCreateRailOpen(true)}><Plus size={16} /> Create rail</PrimaryButton></WorkspaceLayout.PageHeader>
         <WorkspaceLayout.Toolbar className="rails-list-page__filters"><Filter triggerVariant="icon-seamless" options={[{ id: 'title', label: 'Title', type: 'text' }, { id: 'rail-type', label: 'Rail type', type: 'multiselect', options: [{ value: 'editorial', label: 'Editorial' }, { value: 'recommended', label: 'Recommended' }] }, { id: 'collection', label: 'Collection', type: 'select', options: [{ value: 'home', label: 'Home' }, { value: 'drama', label: 'Drama' }, { value: 'kids', label: 'Kids' }] }]} activeFilters={filters} onChange={(nextFilters) => { setFilters(nextFilters); if (nextFilters.length <= 2) setMatchAllFilters(true); }} placeholder="Add filter" />{filters.length > 2 && <div className="rails-list-page__match"><span>Match</span><TextButton variant="contextual" aria-label={`Switch to match ${matchAllFilters ? 'any' : 'all'} filters`} onClick={() => setMatchAllFilters((value) => !value)}>{matchAllFilters ? 'all filters' : 'any filter'}</TextButton></div>}</WorkspaceLayout.Toolbar>
-        <Table className="rails-list-page__table" ariaLabel="Rails list" columns={columns} data={rails} selectable expandable sortable showActions={false} totalItems={rails.filter((row) => row.kind !== 'group').length} pageSize={38} height="calc(100dvh - 246px)" renderCell={(column, value) => column === 'collection' ? <span className="rails-list-page__collection-tag">{value}</span> : value} />
+        <Table className="rails-list-page__table" ariaLabel="Rails list" columns={columns} data={rails} selectable expandable sortable showActions={false} totalItems={rails.filter((row) => row.kind !== 'group').length} pageSize={38} height="calc(100dvh - 246px)" renderCell={(column, value) => {
+          if (column === 'collection') return <span className="rails-list-page__collection-tag">{value}</span>;
+          if (column === 'type') {
+            const railType = String(value).toLowerCase();
+            return <span className={`cvp-table__rail-type-tag cvp-table__rail-type-tag--${railType}`}>{value}</span>;
+          }
+          return value;
+        }} />
       </WorkspaceLayout.Main>
     </WorkspaceLayout.Body>
     <Modal

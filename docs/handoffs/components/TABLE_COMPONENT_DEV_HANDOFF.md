@@ -13,6 +13,7 @@ The CVP Table is a dense operational data surface. It is designed for management
 - Use `kind: 'group'`, `groupLabel`, and `groupCount` for collapsible section rows.
 - Use `density="compact"` for high-volume operator screens and `density="comfortable"` for review-oriented workflows.
 - Keep `loading` and `emptyMessage` meaningful. Avoid replacing table rows with ambiguous blank space.
+- For a Rails List `type` column, render the supplied `.cvp-table__rail-type-tag` treatment: `--recommended` uses the link semantic and `--editorial` uses the brand-accent semantic. Keep the visible label; colour reinforces the type and must not be the only cue.
 
 ## Token architecture
 
@@ -39,6 +40,7 @@ Customer theming should override Tier 3 component tokens or approved brand seman
 - Hover affects the row surface, not every cell boundary.
 - Destructive actions use the danger semantic and must not dominate until hovered or focused.
 - Compact rows and interactive controls must remain visually centered at every supported density. Selection uses the shared CVP Checkbox component and its theme-aware token contract.
+- Rail type tags share the table's compact metadata geometry (subtle surface, border, mono 12px label and 4px horizontal inset). Recommended is blue and Editorial is purple in both themes through semantic aliases.
 
 ## Product integration
 

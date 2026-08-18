@@ -212,7 +212,7 @@ Where two terms appear similar, the table below documents whether they are synon
 | **error** vs **danger** | Distinct | `error` tokens (`color-state-error-*`, `color-text-error`, `color-icon-error`, `color-border-error`) represent validation and system error feedback — form field errors, API failures, critical alerts. `danger` tokens (`color-state-danger-*`, `color-text-danger`, `color-icon-danger`, `color-border-danger`) represent destructive or high-risk actions such as delete buttons and irreversible operations. In dark theme the two palettes use different hues (red-* vs danger-*). In light theme both resolve to the same value. |
 | **strong** vs **bold** | Distinct | Both describe emphasis levels on the same scale but at different steps. `strong` is a medium-emphasis step (subdued structural borders, secondary dividers). `bold` is a heavier step (prominent rules, high-contrast dividers). `border-strong` is lighter than `border-bold`. |
 | **default** vs **primary** | Distinct by context | For surfaces and brand colours, `default` names the base/unmodified state: `color-surface-default`, `color-brand-default`. For text, `primary` names the top of the typographic hierarchy: `color-text-primary`. `primary` is reserved for hierarchy roles; `default` is reserved for state roles. |
-| **overlay** vs **scrim** | Distinct | `scrim` is a specific type of overlay: a semi-transparent backdrop that blocks interaction with content behind a modal or drawer (`color-overlay-scrim`). Other overlay tokens cover different contexts: `color-surface-overlay` is the surface a floating panel sits on (menus, dropdowns); `color-interactive-overlay` is a translucent fill applied on top of an interactive element for hover/active feedback; `color-gallery-overlay` is a semi-transparent layer over a media thumbnail. |
+| **overlay** vs **scrim** | Distinct | `scrim` is a specific type of overlay: a semi-transparent backdrop that blocks interaction with content behind a modal or drawer (`color-overlay-scrim`). Other overlay tokens cover different contexts: `color-surface-overlay` is the surface a floating panel sits on (menus, dropdowns); `color-interactive-overlay` is a translucent fill applied on top of an interactive element for hover/active feedback; `color-gallery-overlay` is the contrast-protected base control layer over media, while `color-gallery-overlay-hover` is its stronger hover/focus layer. |
 
 ---
 
@@ -254,7 +254,7 @@ Where two terms appear similar, the table below documents whether they are synon
 --cvp-color-state-{error|success|warning|info}-{bg|border|text}
 --cvp-color-overlay-scrim
 --cvp-color-interactive-overlay[-medium|-strong]
---cvp-color-gallery-overlay
+--cvp-color-gallery-overlay[-hover]
 
 --cvp-focus-{ring|border|glow}-color
 --cvp-focus-{ring|glow}-width

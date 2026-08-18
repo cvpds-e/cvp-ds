@@ -449,10 +449,11 @@ button:focus-visible:not(.primary-button):not(.segmented-segment):not(.multi-sel
   --icon-btn-border-radius: var(--radius-sm);
   --icon-btn-outline-border: rgba(255, 255, 255, 0.3);           /* Dark theme outline border */
   --icon-btn-outline-hover-border: rgba(255, 255, 255, 0.5);     /* Dark theme outline hover */
-  --icon-btn-rail-gallery-bg: rgba(25, 25, 27, 0.75);            /* Dark semi-transparent for galleries */
-  --icon-btn-rail-gallery-hover-bg: #19191b;
-  --icon-btn-rail-gallery-focus-bg: #19191b;
-  --icon-btn-rail-gallery-active-bg: #19191b;
+  /* Legacy aliases resolve through the canonical, contrast-safe gallery contract. */
+  --icon-btn-rail-gallery-bg: var(--cvp-color-gallery-overlay);
+  --icon-btn-rail-gallery-hover-bg: var(--cvp-color-gallery-overlay-hover);
+  --icon-btn-rail-gallery-focus-bg: var(--cvp-color-gallery-overlay-hover);
+  --icon-btn-rail-gallery-active-bg: var(--cvp-color-gallery-overlay-hover);
 
   /* Icon Small Button tokens */
   --icon-small-btn-size: 24px;
@@ -466,10 +467,10 @@ button:focus-visible:not(.primary-button):not(.segmented-segment):not(.multi-sel
   --icon-small-btn-border-radius: var(--radius-sm);
   --icon-small-btn-outline-border: rgba(255, 255, 255, 0.3);           /* Dark theme outline border */
   --icon-small-btn-outline-hover-border: rgba(255, 255, 255, 0.5);     /* Dark theme outline hover */
-  --icon-small-btn-rail-gallery-bg: rgba(25, 25, 27, 0.75);            /* Dark semi-transparent for galleries */
-  --icon-small-btn-rail-gallery-hover-bg: #19191b;
-  --icon-small-btn-rail-gallery-focus-bg: #19191b;
-  --icon-small-btn-rail-gallery-active-bg: #19191b;
+  --icon-small-btn-rail-gallery-bg: var(--cvp-color-gallery-overlay);
+  --icon-small-btn-rail-gallery-hover-bg: var(--cvp-color-gallery-overlay-hover);
+  --icon-small-btn-rail-gallery-focus-bg: var(--cvp-color-gallery-overlay-hover);
+  --icon-small-btn-rail-gallery-active-bg: var(--cvp-color-gallery-overlay-hover);
   --icon-small-btn-remove-bg: rgba(0, 0, 0, 0.75);                     /* Dark semi-transparent black */
   --icon-small-btn-remove-color: #fff;                                 /* White text for dark background */
   --icon-small-btn-remove-border: rgba(255, 255, 255, 0.2);

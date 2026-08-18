@@ -18,7 +18,7 @@ const tokenRows:ComponentTokenContractRow[]=[
  {role:'Large target',token:'--cvp-button-icon-size-lg',source:'--cvp-space-800',contract:'40px',activation:'size="large"'},
  {role:'Glyph',token:'--cvp-button-icon-glyph-size',source:'--cvp-space-4',contract:'16px',activation:'All sizes'},
  {role:'Danger',token:'--cvp-button-icon-danger-color',source:'--cvp-color-icon-danger',contract:'Destructive intent',activation:'variant="danger"'},
- {role:'Gallery',token:'--cvp-button-icon-gallery-bg',source:'--cvp-color-gallery-overlay',contract:'Overlay surface',activation:'variant="rail-gallery"'},
+ {role:'Gallery',token:'--cvp-button-icon-gallery-bg / --cvp-button-icon-gallery-bg-hover',source:'--cvp-color-gallery-overlay / --cvp-color-gallery-overlay-hover',contract:'Contrast-safe media control surface',activation:'variant="rail-gallery"'},
 ];
 const states=[['Default',undefined,false,false],['Hover','hover',false,false],['Pressed','active',false,false],['Focus','focus',false,false],['Loading',undefined,false,true],['Disabled',undefined,true,false]] as const;
 

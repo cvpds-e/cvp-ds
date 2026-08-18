@@ -189,10 +189,11 @@ body[data-theme="light"] {
   --icon-btn-active-text: #111827;
   --icon-btn-outline-border: rgba(0, 0, 0, 0.2);           /* Light theme outline border */
   --icon-btn-outline-hover-border: rgba(0, 0, 0, 0.3);      /* Light theme outline hover */
-  --icon-btn-rail-gallery-bg: rgba(255, 255, 255, 0.85);   /* Light semi-transparent for galleries */
-  --icon-btn-rail-gallery-hover-bg: rgba(255, 255, 255, 0.95);
-  --icon-btn-rail-gallery-focus-bg: rgba(255, 255, 255, 0.95);
-  --icon-btn-rail-gallery-active-bg: rgba(255, 255, 255, 1);
+  /* Keep legacy aliases visually consistent over arbitrary media in both themes. */
+  --icon-btn-rail-gallery-bg: var(--cvp-color-gallery-overlay);
+  --icon-btn-rail-gallery-hover-bg: var(--cvp-color-gallery-overlay-hover);
+  --icon-btn-rail-gallery-focus-bg: var(--cvp-color-gallery-overlay-hover);
+  --icon-btn-rail-gallery-active-bg: var(--cvp-color-gallery-overlay-hover);
   
   --icon-small-btn-bg: transparent;
   --icon-small-btn-hover-bg: #f8f9fa;
@@ -202,10 +203,10 @@ body[data-theme="light"] {
   --icon-small-btn-active-text: #111827;
   --icon-small-btn-outline-border: rgba(0, 0, 0, 0.2);           /* Light theme outline border */
   --icon-small-btn-outline-hover-border: rgba(0, 0, 0, 0.3);      /* Light theme outline hover */
-  --icon-small-btn-rail-gallery-bg: rgba(255, 255, 255, 0.85);   /* Light semi-transparent for galleries */
-  --icon-small-btn-rail-gallery-hover-bg: rgba(255, 255, 255, 0.95);
-  --icon-small-btn-rail-gallery-focus-bg: rgba(255, 255, 255, 0.95);
-  --icon-small-btn-rail-gallery-active-bg: rgba(255, 255, 255, 1);
+  --icon-small-btn-rail-gallery-bg: var(--cvp-color-gallery-overlay);
+  --icon-small-btn-rail-gallery-hover-bg: var(--cvp-color-gallery-overlay-hover);
+  --icon-small-btn-rail-gallery-focus-bg: var(--cvp-color-gallery-overlay-hover);
+  --icon-small-btn-rail-gallery-active-bg: var(--cvp-color-gallery-overlay-hover);
   --icon-small-btn-remove-bg: rgba(255, 255, 255, 0.90);         /* Light semi-transparent white */
   --icon-small-btn-remove-color: #1f2937;                         /* Dark gray for light background */
   --icon-small-btn-remove-border: rgba(0, 0, 0, 0.15);

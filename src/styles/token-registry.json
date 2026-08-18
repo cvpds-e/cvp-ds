@@ -7359,6 +7359,12 @@
       "source": "cvp-component-tokens.css"
     },
     {
+      "name": "--cvp-modal-width-compact",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
       "name": "--cvp-modal-width-medium",
       "tier": "Component",
       "scope": "Shared",
@@ -11469,6 +11475,24 @@
       "source": "cvp-component-tokens.css"
     },
     {
+      "name": "--cvp-login-heading-size",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-login-heading-weight",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-login-heading-tracking",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
       "name": "--cvp-login-section-gap",
       "tier": "Component",
       "scope": "Shared",
@@ -11476,6 +11500,12 @@
     },
     {
       "name": "--cvp-login-context-gap",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-login-context-size",
       "tier": "Component",
       "scope": "Shared",
       "source": "cvp-component-tokens.css"
@@ -11512,36 +11542,6 @@
     },
     {
       "name": "--cvp-login-recovery-offset",
-      "tier": "Component",
-      "scope": "Shared",
-      "source": "cvp-component-tokens.css"
-    },
-    {
-      "name": "--cvp-login-error-padding",
-      "tier": "Component",
-      "scope": "Shared",
-      "source": "cvp-component-tokens.css"
-    },
-    {
-      "name": "--cvp-login-error-bg",
-      "tier": "Component",
-      "scope": "Shared",
-      "source": "cvp-component-tokens.css"
-    },
-    {
-      "name": "--cvp-login-error-border",
-      "tier": "Component",
-      "scope": "Shared",
-      "source": "cvp-component-tokens.css"
-    },
-    {
-      "name": "--cvp-login-error-text",
-      "tier": "Component",
-      "scope": "Shared",
-      "source": "cvp-component-tokens.css"
-    },
-    {
-      "name": "--cvp-login-error-radius",
       "tier": "Component",
       "scope": "Shared",
       "source": "cvp-component-tokens.css"

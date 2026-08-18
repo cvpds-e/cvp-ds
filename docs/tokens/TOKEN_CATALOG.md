@@ -1494,7 +1494,7 @@ Component contracts. Each group is named after the component or shared contract 
 </details>
 
 <details>
-<summary><strong>login</strong> — 45 tokens</summary>
+<summary><strong>login</strong> — 44 tokens</summary>
 
 | Token | Value | Scope |
 | --- | --- | --- |
@@ -1506,30 +1506,29 @@ Component contracts. Each group is named after the component or shared contract 
 | `--cvp-login-eyebrow` | `var(--cvp-color-text-link-default)` | Shared |
 | `--cvp-login-link` | `var(--cvp-color-text-link-default)` | Shared |
 | `--cvp-login-link-hover` | `var(--cvp-color-text-link-hover)` | Shared |
-| `--cvp-login-card-bg` | `var(--cvp-color-surface-default)` | Shared |
-| `--cvp-login-card-border` | `var(--cvp-border-container)` | Shared |
-| `--cvp-login-card-shadow` | `var(--cvp-plane-raised-shadow)` | Shared |
-| `--cvp-login-card-width` | `440px` | Shared |
-| `--cvp-login-card-padding` | `var(--cvp-spacing-inset-lg)` | Shared |
+| `--cvp-login-card-bg` | `var(--cvp-modal-bg)` | Shared |
+| `--cvp-login-card-border` | `var(--cvp-modal-border-width) solid var(--cvp-modal-border)` | Shared |
+| `--cvp-login-card-shadow` | `var(--cvp-modal-shadow)` | Shared |
+| `--cvp-login-card-width` | `var(--cvp-modal-width-compact)` | Shared |
+| `--cvp-login-card-padding` | `var(--cvp-modal-padding)` | Shared |
 | `--cvp-login-card-padding-mobile` | `var(--cvp-spacing-inset-md)` | Shared |
-| `--cvp-login-card-radius` | `var(--cvp-shape-overlay-base)` | Shared |
+| `--cvp-login-card-radius` | `var(--cvp-modal-radius)` | Shared |
 | `--cvp-login-brand-gap` | `var(--cvp-spacing-stack-lg)` | Shared |
 | `--cvp-login-logo-width` | `260px` | Shared |
 | `--cvp-login-logo-height` | `48px` | Shared |
 | `--cvp-login-heading-gap` | `var(--cvp-spacing-stack-xs)` | Shared |
+| `--cvp-login-heading-size` | `var(--cvp-font-size-lg)` | Shared |
+| `--cvp-login-heading-weight` | `var(--cvp-font-weight-medium)` | Shared |
+| `--cvp-login-heading-tracking` | `var(--cvp-letter-spacing-normal)` | Shared |
 | `--cvp-login-section-gap` | `var(--cvp-spacing-stack-lg)` | Shared |
 | `--cvp-login-context-gap` | `var(--cvp-spacing-inline-sm)` | Shared |
+| `--cvp-login-context-size` | `var(--cvp-font-size-lg)` | Shared |
 | `--cvp-login-account-width` | `160px` | Shared |
 | `--cvp-login-field-gap` | `var(--cvp-spacing-stack-md)` | Shared |
 | `--cvp-login-password-padding-end` | `48px` | Shared |
 | `--cvp-login-password-toggle-top` | `28px` | Shared |
 | `--cvp-login-password-toggle-right` | `var(--cvp-space-1)` | Shared |
-| `--cvp-login-recovery-offset` | `calc(var(--cvp-spacing-stack-xs) * -1)` | Shared |
-| `--cvp-login-error-padding` | `var(--cvp-spacing-inset-sm)` | Shared |
-| `--cvp-login-error-bg` | `var(--cvp-color-state-error-bg)` | Shared |
-| `--cvp-login-error-border` | `var(--cvp-border-base-width) solid var(--cvp-color-state-error-border)` | Shared |
-| `--cvp-login-error-text` | `var(--cvp-color-state-error-text)` | Shared |
-| `--cvp-login-error-radius` | `var(--cvp-shape-control-base)` | Shared |
+| `--cvp-login-recovery-offset` | `calc(var(--cvp-space-2) * -1)` | Shared |
 | `--cvp-login-divider-gap` | `var(--cvp-spacing-inline-md)` | Shared |
 | `--cvp-login-divider-border` | `var(--cvp-border-divider)` | Shared |
 | `--cvp-login-footer-margin` | `var(--cvp-spacing-stack-xl)` | Shared |
@@ -1615,7 +1614,7 @@ Component contracts. Each group is named after the component or shared contract 
 </details>
 
 <details>
-<summary><strong>modal</strong> — 61 tokens</summary>
+<summary><strong>modal</strong> — 62 tokens</summary>
 
 | Token | Value | Scope |
 | --- | --- | --- |
@@ -1635,6 +1634,7 @@ Component contracts. Each group is named after the component or shared contract 
 | `--cvp-modal-header-font-size` | `var(--cvp-font-size-xl)` | Shared |
 | `--cvp-modal-header-font-weight` | `var(--cvp-font-weight-semibold)` | Shared |
 | `--cvp-modal-width-small` | `400px` | Shared |
+| `--cvp-modal-width-compact` | `480px` | Shared |
 | `--cvp-modal-width-medium` | `var(--cvp-modal-max-width)` | Shared |
 | `--cvp-modal-width-large` | `800px` | Shared |
 | `--cvp-modal-viewport-inset` | `var(--cvp-space-8)` | Shared |

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Building2, Eye, EyeOff } from 'lucide-react';
 import { IconSmallButton } from './IconSmallButton';
+import { NotificationBanner } from './NotificationBanner';
 import { PrimaryButton } from './PrimaryButton';
 import { SecondaryButton } from './SecondaryButton';
 import { Select } from './Select';
@@ -55,18 +56,18 @@ export function LoginSignUp({ initialMode = 'sign-in', allowModeSwitch = true, o
     <div className="cvp-login__brand"><img src={logoUrl ?? logoImage} alt={`${platformName} logo`} /></div>
     <section className="cvp-login__card">
       <header className="cvp-login__heading">
-        <span className="cvp-login__eyebrow">{platformName}</span>
-        <h1 id="cvp-login-title">{isSignUp ? 'Create your account' : 'Welcome back'}</h1>
+        <h1 id="cvp-login-title">{isSignUp ? 'Sign up' : 'Sign in'}</h1>
         <div className="cvp-login__context">
-          <span>{isSignUp ? 'Set up access to' : 'Sign in to'}</span>
+          <span>{isSignUp ? 'Set up your CVP' : 'Access your CVP'}</span>
           <Select value={selectedAccount} onChange={setSelectedAccount} variant="button" size="compact" options={accountOptions} icon={Building2} />
+          <span>account.</span>
         </div>
       </header>
 
       <form className="cvp-login__form" onSubmit={handleSubmit} noValidate>
-        {error && <div className="cvp-login__error" role="alert"><strong>We couldn’t continue.</strong><span>{error}</span></div>}
+        {error && <NotificationBanner title="We couldn’t continue" message={error} variant="error" />}
         {isSignUp && <TextInput label="Full name" autoComplete="name" value={name} onChange={event => setName(event.target.value)} placeholder="Enter your full name" disabled={loading} required />}
-        <TextInput label="Email address" type="email" autoComplete="email" value={email} onChange={event => setEmail(event.target.value)} placeholder="name@company.com" disabled={loading} required />
+        <TextInput label="Email" type="email" autoComplete="email" value={email} onChange={event => setEmail(event.target.value)} placeholder="Enter your email" disabled={loading} required />
         <div className="cvp-login__password">
           <TextInput label="Password" type={showPassword ? 'text' : 'password'} autoComplete={isSignUp ? 'new-password' : 'current-password'} value={password}
             onChange={event => setPassword(event.target.value)} placeholder={isSignUp ? 'Use at least 8 characters' : 'Enter your password'} disabled={loading} required
@@ -79,14 +80,14 @@ export function LoginSignUp({ initialMode = 'sign-in', allowModeSwitch = true, o
       </form>
 
       <div className="cvp-login__divider" aria-hidden="true"><span /><b>or</b><span /></div>
-      <SecondaryButton className="cvp-login__full-action" type="button" onClick={onSSOSignIn} disabled={loading}>Continue with single sign-on</SecondaryButton>
+      <SecondaryButton className="cvp-login__full-action" type="button" onClick={onSSOSignIn} disabled={loading}>Sign In with Single Sign On</SecondaryButton>
       {allowModeSwitch && <p className="cvp-login__switch">{isSignUp ? 'Already have an account?' : 'New to CVP?'} <TextButton type="button" onClick={switchMode} disabled={loading}>{isSignUp ? 'Sign in' : 'Create an account'}</TextButton></p>}
     </section>
 
     <footer className="cvp-login__footer">
       <img src={footerLogo} alt="Comcast Technology Solutions" />
-      <p>© 2026 Comcast Cable Communications Management, LLC.</p>
-      <nav aria-label="Legal"><a href="#privacy">Privacy</a><span aria-hidden="true">•</span><a href="#terms">Terms</a><span aria-hidden="true">•</span><a href="#help">Help</a></nav>
+      <p>© 2010–2025 Comcast Cable Communications Management, LLC. All rights reserved.</p>
+      <nav aria-label="Legal"><a href="#privacy">Privacy Policy</a><span aria-hidden="true">•</span><a href="#terms">Terms &amp; Conditions</a></nav>
     </footer>
   </main>;
 }

@@ -623,7 +623,7 @@ export default function App() {
   return (
     <>
       {activeSection === 'rail-details-full' ? (
-        <RailDetails />
+        <RailDetails initiallyEmpty={new URLSearchParams(window.location.search).get('empty') === '1'} />
       ) : activeSection === 'rails-list-full' ? (
         <RailsList />
       ) : (

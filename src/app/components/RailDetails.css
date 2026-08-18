@@ -28,10 +28,17 @@
 .rail-details__filter-help:focus-visible { outline: 0; box-shadow: var(--cvp-focus-ring); }
 .rail-details__filter-content { display: grid; gap: var(--cvp-space-5); }
 .rail-details__form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--cvp-space-3); }
-.rail-details__main { min-width: 0; min-height: 0; overflow: hidden; background: inherit; }
+.rail-details__main { display: flex; min-width: 0; min-height: 0; flex-direction: column; overflow: hidden; background: inherit; }
 .rail-details__preview-bar { justify-content: flex-start; }
 .rail-details__preview-tag { margin-inline-start: auto; }
-.rail-details__content { display: grid; gap: var(--cvp-space-6); padding: var(--cvp-space-6); }
+.rail-details__content { display: flex; min-height: 0; flex: 1 1 auto; flex-direction: column; gap: var(--cvp-space-6); padding: var(--cvp-space-6); overflow: auto; }
+.rail-details__empty-rail { display: grid; min-height: 0; flex: 1 1 auto; place-items: center; padding-block-end: calc(var(--cvp-space-12) + var(--cvp-space-8)); }
+.rail-details__empty-rail-card { display: grid; width: min(100%, 680px); gap: var(--cvp-space-6); text-align: center; }
+.rail-details__empty-rail-copy { display: grid; gap: var(--cvp-space-2); }
+.rail-details__empty-rail-copy h2, .rail-details__empty-rail-copy p { margin: 0; }
+.rail-details__empty-rail-copy h2 { color: var(--cvp-color-text-primary); font-size: var(--cvp-font-size-xl); line-height: var(--cvp-line-height-tight); }
+.rail-details__empty-rail-copy p { color: var(--cvp-color-text-muted); font-size: var(--cvp-font-size-md); line-height: var(--cvp-line-height-snug); }
+.rail-details__empty-rail-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--cvp-space-4); }
 .rail-details__content-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--cvp-space-4); }
 .rail-details__content-heading h1 { margin: 0 0 var(--cvp-space-1); font-size: var(--cvp-font-size-2xl); }
 .rail-details__content-heading p { margin: 0; color: var(--cvp-color-text-muted); font-size: var(--cvp-font-size-sm); text-transform: capitalize; }

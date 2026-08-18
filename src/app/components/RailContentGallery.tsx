@@ -1,5 +1,5 @@
 import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
-import { ChevronLeft, ChevronRight, Edit2, Film, GripVertical, Pin, Plus } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Edit2, Film, GripVertical, Pin, Plus, Trash2 } from 'lucide-react';
 import { Checkbox } from './Checkbox';
 import { IconButton } from './IconButton';
 import { IconSmallButton } from './IconSmallButton';
@@ -12,7 +12,7 @@ export interface RailContentItem {
   year: string;
   thumbnail: string;
   position?: number;
-  metadata?: { category?: string; duration?: string; status?: 'active' | 'inactive' | 'pinned' };
+  metadata?: { category?: string; duration?: string; status?: 'active' | 'inactive' | 'pinned'; source?: 'algorithmic' | 'manual' };
 }
 
 export interface RailContentGalleryProps {
@@ -26,6 +26,7 @@ export interface RailContentGalleryProps {
   headerDate?: string;
   onItemClick?: (item: RailContentItem) => void;
   onEdit?: (item: RailContentItem) => void;
+  onDelete?: (item: RailContentItem) => void;
   onPin?: (item: RailContentItem) => void;
   onDrag?: (itemId: string, newPosition: number) => void;
   onSelectionChange?: (selectedItems: string[]) => void;
@@ -44,7 +45,7 @@ const validThumbnail = (value: string) => /^https?:\/\//.test(value?.trim() ?? '
 
 export const RailContentGallery = forwardRef<RailContentGalleryHandle, RailContentGalleryProps>(function RailContentGallery({
   title, items, variant = 'display', showItemCount = true, itemCountPlacement = 'heading', showNavigation = true, headerStatus, headerDate, hideHeader = false,
-  onScrollStateChange, onItemClick, onEdit, onPin, onDrag, onSelectionChange, selectedItems = [], loading = false,
+  onScrollStateChange, onItemClick, onEdit, onDelete, onPin, onDrag, onSelectionChange, selectedItems = [], loading = false,
   emptyMessage = 'No content has been added to this rail yet.', emptySlotCount = 0, onAddToEmptySlot,
 }, ref) {
   const scroller = useRef<HTMLDivElement>(null);
@@ -88,16 +89,16 @@ export const RailContentGallery = forwardRef<RailContentGalleryHandle, RailConte
         {items.map((item, index) => {
           const isSelected = selectedItems.includes(item.id);
           const isPinned = pinned.has(item.id);
+          const contentSource = isPinned ? 'manual' : item.metadata?.source ?? 'algorithmic';
           return <article key={item.id} className={`cvp-rail-gallery__item ${isSelected ? 'cvp-rail-gallery__item--selected' : ''} ${draggedId === item.id ? 'cvp-rail-gallery__item--dragging' : ''}`} draggable={management} onDragStart={() => setDraggedId(item.id)} onDragEnd={() => setDraggedId(null)} onDragOver={(event) => event.preventDefault()} onDrop={() => { if (draggedId && draggedId !== item.id) onDrag?.(draggedId, index); setDraggedId(null); }}>
             <div className="cvp-rail-gallery__media">
               <button type="button" className="cvp-rail-gallery__target" aria-label={`${selectable ? (isSelected ? 'Remove' : 'Select') : 'Open'} ${item.title}`} aria-pressed={selectable ? isSelected : undefined} onClick={() => selectable ? toggleSelection(item.id) : onItemClick?.(item)}>
                 {validThumbnail(item.thumbnail) ? <ImageWithFallback src={item.thumbnail} alt="" className="cvp-rail-gallery__image" /> : <span className="cvp-rail-gallery__placeholder"><Film size={28} aria-hidden="true" /></span>}
               </button>
-              {management && <><span className="cvp-rail-gallery__position">{item.position ?? index + 1}</span><span className="cvp-rail-gallery__drag"><GripVertical size={15} aria-hidden="true" /></span><div className="cvp-rail-gallery__actions"><IconSmallButton aria-label={`Edit ${item.title}`} onClick={() => onEdit?.(item)}><Edit2 size={14} /></IconSmallButton><IconSmallButton aria-label={`${isPinned ? 'Unpin' : 'Pin'} ${item.title}`} aria-pressed={isPinned} onClick={() => togglePin(item)}><Pin size={14} /></IconSmallButton></div></>}
+              {management && <><span className="cvp-rail-gallery__position">{item.position ?? index + 1}</span><span className="cvp-rail-gallery__drag"><GripVertical size={16} aria-hidden="true" /></span><div className="cvp-rail-gallery__actions"><IconSmallButton variant="rail-gallery" aria-label={`Edit ${item.title}`} onClick={() => onEdit?.(item)}><Edit2 /></IconSmallButton><IconSmallButton variant="rail-gallery" className="cvp-rail-gallery__delete-control" aria-label={`Delete ${item.title}`} onClick={() => onDelete?.(item)}><Trash2 /></IconSmallButton></div>{isPinned && <IconSmallButton variant="rail-gallery" className="cvp-rail-gallery__pin-control" aria-label={`Unpin ${item.title}`} aria-pressed="true" onClick={() => togglePin(item)}><Pin /></IconSmallButton>}</>}
               {selectable && <Checkbox className="cvp-rail-gallery__checkbox" checked={isSelected} aria-label={`Select ${item.title}`} onChange={() => toggleSelection(item.id)} />}
-              {isPinned && <span className="cvp-rail-gallery__pinned" role="img" aria-label="Pinned"><Pin size={12} aria-hidden="true" /></span>}
             </div>
-            <div className="cvp-rail-gallery__copy"><strong title={item.title}>{item.title}</strong><span>{[item.year, item.metadata?.category, item.metadata?.duration].filter(Boolean).join(' · ')}</span></div>
+            <div className="cvp-rail-gallery__copy"><span className={`cvp-rail-gallery__source-tag cvp-rail-gallery__source-tag--${contentSource}`}>{contentSource === 'manual' ? 'Manual' : 'Algorithmic'}</span><strong className="cvp-rail-gallery__title" title={item.title}>{item.title}</strong><span className="cvp-rail-gallery__meta">{[item.year, item.metadata?.category, item.metadata?.duration].filter(Boolean).join(' · ')}</span></div>
           </article>;
         })}
       </div>}

@@ -28,6 +28,7 @@ Use Multi Select when a user must choose several values from a list long enough 
 - `maxSelection` blocks new choices but still permits removal.
 - Creation is opt-in at the product level; enable it only if arbitrary domain values are valid.
 - The field has a 40px minimum and grows vertically when tags wrap.
+- The popup's selected-count and Clear all action use the shared 13px interactive metadata size (`--cvp-multi-select-meta-font-size`); they do not inherit the smaller support-text size.
 
 ## DOM and interaction contract
 
@@ -41,7 +42,7 @@ Use Multi Select when a user must choose several values from a list long enough 
 
 ## Token architecture
 
-Multi Select uses registered `--cvp-multi-select-*` Tier 3 tokens only. The field inherits the canonical input contract; the popup inherits the menu contract. Component-specific roles govern tags, search sizing, popup dimensions, option padding, and actions.
+Multi Select uses registered `--cvp-multi-select-*` Tier 3 tokens only. The field inherits the canonical input contract; the popup inherits the menu contract. Component-specific roles govern tags, search sizing, popup dimensions, option padding, selected-count metadata, and actions.
 
 The shared semantic input border remains intentionally subtle in both themes. Focus and error states provide the stronger state boundary; field surfaces and labels keep the default control identifiable without an intrusive outline.
 

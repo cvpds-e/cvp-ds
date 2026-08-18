@@ -211,7 +211,9 @@
   --cvp-color-interactive-overlay-strong: var(--cvp-primitive-overlay-black-strong);
 
   /* ── Gallery overlays ──────────────────────────────────────────────────── */
-  --cvp-color-gallery-overlay:      var(--cvp-primitive-overlay-gallery-light);
+  /* Gallery controls sit over arbitrary imagery. Keep the contrast-protected
+     dark glass treatment in both themes so white iconography remains legible. */
+  --cvp-color-gallery-overlay:      var(--cvp-primitive-overlay-gallery-dark);
   --cvp-color-gallery-empty-border: var(--cvp-primitive-overlay-black-medium);
 
   /* ── Text ──────────────────────────────────────────────────────────────── */

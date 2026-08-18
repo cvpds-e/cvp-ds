@@ -608,7 +608,7 @@ In dark theme, `error` and `danger` use different hues. In light theme they may 
 | `--cvp-color-overlay-scrim` | Modal/dialog backdrop that blocks interaction |
 | `--cvp-color-surface-overlay` | Floating panel surface (dropdown, popover, menu) |
 | `--cvp-color-interactive-overlay` | Translucent hover/active fill on items within a container |
-| `--cvp-color-gallery-overlay` | Media thumbnail overlay |
+| `--cvp-color-gallery-overlay` | Contrast-protected dark media thumbnail overlay in both themes |
 
 `overlay-scrim` is applied as a `background-color` on a full-viewport backdrop element positioned between the page and the modal. It is not applied to the modal surface itself.
 
@@ -6150,7 +6150,7 @@ A transient, auto-dismissing notification that appears in the top-right corner o
 | `--cvp-toast-info-bg` | `rgba` on `--cvp-color-surface-overlay` | |
 | `--cvp-toast-info-border` | `--cvp-color-border-default` | |
 | `--cvp-toast-info-text` | `--cvp-color-text-primary` | |
-| `--cvp-toast-info-icon` | `--cvp-color-icon-default` | |
+| `--cvp-toast-info-icon` | `--cvp-color-state-info-text` | Matches the information banner and localized-field available blue |
 
 ---
 
@@ -6307,9 +6307,9 @@ At ≤640px: `min-width: auto; width: 100%` on individual toasts; container uses
 |---|---|
 | Production implementation | Complete |
 | Storybook stories | None |
-| Token migration | No CVP tokens consumed — all values are hardcoded hex, rgba, gradient values, or inline font declarations |
+| Token migration | Complete — canonical Tier 3 `--cvp-notification-banner-*` contract |
 | Specification confidence | High |
-| Known gaps | No CVP tokens · No live region (`role` or `aria-live`) — banner is silent to screen readers unless consumer adds announcement · Theme detection uses `@media (prefers-color-scheme)` not `[data-theme]` — inconsistent with CVP theme system · Font hardcoded to `Inter` · No title truncation |
+| Known gaps | No Storybook story; custom icons must remain semantically appropriate for their banner variant |
 
 #### Purpose
 
@@ -6332,11 +6332,11 @@ A persistent, inline contextual message. Unlike `Toast`, `NotificationBanner` is
 
 #### Anatomy
 
-1. **Root** — `<div class="notification-banner notification-banner--{variant}">` — flex row; 12px padding; 8px border-radius; 1px border.
-2. **Icon** — `<Icon size={16}>` — Lucide icon; `margin-top: 2px`; flex-shrink 0.
-3. **Content** — `<div>` — flex column; flex 1.
-4. **Title** — `<div class="notification-banner__title">` — 12px / 500 / 16px.
-5. **Message** — `<div class="notification-banner__message">` — 12px / 400 / 16px.
+1. **Root** — `<section class="cvp-notification-banner cvp-notification-banner--{variant}">` — tokenized grid, semantic surface, border, radius, and spacing.
+2. **Icon** — `<Icon size={18}>` — Lucide state icon; the default information icon is `Info`, never a sparkle.
+3. **Content** — `<div>` — grid content area with title and message.
+4. **Title** — `<strong class="cvp-notification-banner__title">` — component typography token.
+5. **Message** — `<p class="cvp-notification-banner__message">` — component typography token.
 6. **Dismiss button** — `<button aria-label="Dismiss notification">` — optional; only rendered when `onDismiss` is provided; `X` icon.
 
 ---
@@ -6345,23 +6345,12 @@ A persistent, inline contextual message. Unlike `Toast`, `NotificationBanner` is
 
 | Variant | Icon | Background | Border | Title colour | Message colour |
 |---|---|---|---|---|---|
-| `info` (default) | `Info` | Blue-purple gradient at 10% | `rgba(59,130,246,0.3)` | `#60a5fa` | `oklch(80.9% .105 251.813)` |
-| `success` | `CheckCircle` | Green gradient at 10% | `rgba(16,185,129,0.3)` | `#6ee7b7` | `#d1fae5` |
-| `warning` | `AlertTriangle` | Amber gradient at 10% | `rgba(245,158,11,0.3)` | `#fcd34d` | `#fef3c7` |
-| `error` | `XCircle` | Red gradient at 10% | `rgba(239,68,68,0.3)` | `#fca5a5` | `#fee2e2` |
+| `info` (default) | `Info` | `--cvp-color-state-info-bg` | `--cvp-color-state-info-border` | `--cvp-color-state-info-text` | `--cvp-color-state-info-text` |
+| `success` | `CheckCircle2` | `--cvp-color-state-success-bg` | `--cvp-color-state-success-border` | `--cvp-color-state-success-text` | `--cvp-color-state-success-text` |
+| `warning` | `AlertTriangle` | `--cvp-color-state-warning-bg` | `--cvp-color-state-warning-border` | `--cvp-color-state-warning-text` | `--cvp-color-state-warning-text` |
+| `error` | `CircleAlert` | `--cvp-color-state-danger-bg` | `--cvp-color-state-danger-border` | `--cvp-color-state-danger-text` | `--cvp-color-state-danger-text` |
 
-Light theme values (via `@media (prefers-color-scheme: light)`) differ — darker, more saturated versions of the same hues.
-
-**Token gap:** All colour values are hardcoded. CVP migration targets:
-
-| Current | CVP target |
-|---|---|
-| Info gradient | `--cvp-color-info-surface` |
-| Info border | `--cvp-color-border-info` |
-| Info title | `--cvp-color-text-info` |
-| Success gradient | `--cvp-color-success-surface` |
-| Warning gradient | `--cvp-color-warning-surface` |
-| Error gradient | `--cvp-color-error-surface` |
+The `info` icon resolves through `--cvp-notification-banner-info-icon → --cvp-color-state-info-text`, the same blue used for the localized-field available state. Both themes resolve this mapping through the semantic color layer.
 
 ---
 
@@ -6381,17 +6370,14 @@ Light theme values (via `@media (prefers-color-scheme: light)`) differ — darke
 
 | Element / property | Value |
 |---|---|
-| Border radius | `8px` (hardcoded) |
-| Padding | `12px` (hardcoded) |
-| Icon size | `16px` |
-| Title font size | `12px` / 500 / 16px |
-| Message font size | `12px` / 400 / 16px |
-| Title–message gap | `2px` margin-bottom on title |
-| Dismiss opacity default | `0.6` |
-| Dismiss hover opacity | `1.0` |
-| Dismiss transition | `opacity 0.15s ease` |
-| Dismiss focus ring | `outline: 2px solid #6f8be6; offset 2px` |
-| Font | `"Inter", -apple-system, ...` (hardcoded) |
+| Border radius | `--cvp-notification-banner-radius` |
+| Padding | `--cvp-notification-banner-padding-x/y` |
+| Icon size | `18px` |
+| Title / message | `--cvp-notification-banner-title-font-size` / `--cvp-notification-banner-message-font-size` |
+| Title–message gap | `--cvp-space-1` |
+| Control hover | `--cvp-notification-banner-control-bg-hover` |
+| Focus ring | `--cvp-notification-banner-focus-ring` |
+| Font | `--cvp-font-family-sans` |
 
 ---
 
@@ -6399,7 +6385,7 @@ Light theme values (via `@media (prefers-color-scheme: light)`) differ — darke
 
 | State | Visual | Behaviour | Accessibility |
 |---|---|---|---|
-| Default | Coloured gradient bg; icon; title; message | Static | No ARIA role — **critical gap** |
+| Default | Semantic status surface; state icon; title; message | Static | `role="status"` for info and success; `role="alert"` for warning and error |
 | Dismissible | + dismiss button visible | Click calls `onDismiss`; consumer manages visibility | `aria-label="Dismiss notification"` on button |
 | Dismissed | Component unmounts (consumer-controlled) | — | — |
 
@@ -6407,28 +6393,13 @@ Light theme values (via `@media (prefers-color-scheme: light)`) differ — darke
 
 #### Screen Reader Announcement
 
-**Critical gap:** `NotificationBanner` has no `role` or `aria-live` attribute. When it appears (via conditional rendering in the consumer), screen readers will not announce it unless the consumer wraps it in an `aria-live` region.
-
-**Required fix at consumer level:** Wrap `<NotificationBanner>` in an `aria-live` region:
-```jsx
-<div role="status" aria-live="polite" aria-atomic="true">
-  {showBanner && <NotificationBanner ... />}
-</div>
-```
-
-**Design system fix (preferred):** Add appropriate `role` and `aria-live` to the component based on variant:
-- `error`, `warning`: `role="alert"` (implies `aria-live="assertive"`)
-- `success`, `info`: `role="status"` (implies `aria-live="polite"`)
+The component owns its announcement behavior: `info` and `success` render with `role="status"`; `warning` and `error` render with `role="alert"`. It also uses `aria-atomic="true"` so title and message are announced together.
 
 ---
 
-#### Theme System Inconsistency
+#### Theme behavior
 
-The component uses `@media (prefers-color-scheme: light)` for light theme variants. The CVP system uses `[data-theme="light"]` data attributes. This means:
-- If the user's OS is in dark mode but the app forces `data-theme="light"`, the component renders dark theme colours.
-- The component is not responsive to the CVP theme toggle.
-
-**Fix:** Replace `@media (prefers-color-scheme: light)` blocks with `[data-theme="light"] .notification-banner--*` selectors, matching the rest of CVP.
+Banner variants use semantic state tokens, so dark and light theme values resolve from the active CVP theme without component-level theme selectors.
 
 ---
 
@@ -6455,8 +6426,8 @@ The banner is persistent by design. It remains visible until `onDismiss` is call
 |---|---|
 | Title | Short and imperative; ≤ 60 chars; 500 weight; 12px |
 | Message | 1–2 sentences max; do not wrap over 3 lines at standard widths |
-| Icon | Defaults by variant; override only when default icon is ambiguous in context |
-| Font hardcoding | **Gap:** must use `var(--font-family)` or `var(--cvp-font-family-sans)` |
+| Icon | Defaults by variant; use `Info` for informational content. Overrides must preserve the message’s meaning; do not use AI-associated sparkle icons for generic information. |
+| Typography | Uses the notification-banner component tokens, which inherit the shared CVP font family. |
 
 ---
 
@@ -6484,11 +6455,11 @@ No responsive breakpoints. The banner fills its container width (block-level). O
 | Error | `variant="error"` |
 | With dismiss | `onDismiss={fn}` |
 | Without dismiss | No button |
-| Custom icon | `icon={Sparkles}` |
+| Custom icon | Use only a semantically equivalent icon override |
 | Long message | 3-line message text |
-| Theme: light forced | Document theme system mismatch |
-| Theme: dark forced | |
-| Screen reader gap | No live region documented |
+| Theme: light forced | Verify semantic state token resolution |
+| Theme: dark forced | Verify semantic state token resolution |
+| Screen reader announcement | Verify `role="status"` and `role="alert"` variants |
 
 ---
 
@@ -6496,10 +6467,6 @@ No responsive breakpoints. The banner fills its container width (block-level). O
 
 | Gap | Severity | Action |
 |---|---|---|
-| No `role` or `aria-live` — silent to screen readers | Critical | Add `role="alert"` (error/warning) or `role="status"` (success/info) |
-| Theme uses `prefers-color-scheme` not `[data-theme]` | High | Replace with CVP theme data attribute selectors |
-| All colours hardcoded | High | Migrate to `--cvp-*` tokens |
-| Font hardcoded to `Inter` | Medium | Replace with `var(--font-family)` |
 | No dismiss animation | Low | Add CSS exit transition |
 | No title truncation | Low | Add `overflow: hidden; text-overflow: ellipsis; white-space: nowrap` option |
 

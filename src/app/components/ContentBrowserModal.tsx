@@ -1,11 +1,16 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { ChevronLeft, ChevronRight, Film, Filter, Grid3X3, List, Search, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Film, Filter, Grid3X3, List, Search } from 'lucide-react';
 import { Modal } from './Modal';
-import { Checkbox, CheckboxState } from './Checkbox';
+import { Checkbox } from './Checkbox';
 import { IconButton } from './IconButton';
 import { OutlineButton } from './OutlineButton';
 import { PrimaryButton } from './PrimaryButton';
 import { TextButton } from './TextButton';
+import { SearchField } from './SearchField';
+import { Select } from './Select';
+import { SortControl } from './SortControl';
+import { MultiSelect } from './MultiSelect';
+import { TagFilter } from './TagFilter';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import './ContentBrowserModal.css';
 
@@ -14,6 +19,10 @@ export interface ContentItem {
   title: string;
   year: string;
   genre?: string;
+  /** Canonical editorial programme type. Falls back to Movie for legacy catalog entries. */
+  programType?: 'movie' | 'series';
+  /** Canonical editorial tags. `genre` remains supported for legacy catalog entries. */
+  tags?: string[];
   rating?: string;
   provider?: string;
   thumbnail: string;
@@ -28,7 +37,13 @@ export interface ContentBrowserModalProps {
   selectedItems?: string[];
   onSelectionChange?: (selectedIds: string[]) => void;
   onConfirm?: (selectedIds: string[]) => void;
-  filterOptions?: { genres?: string[]; years?: string[]; ratings?: string[]; providers?: string[] };
+  filterOptions?: {
+    programTypes?: Array<'movie' | 'series'>;
+    tags?: string[];
+    years?: string[];
+    /** Legacy compatibility input. New integrations should provide `tags`. */
+    genres?: string[];
+  };
   loading?: boolean;
   pageSize?: number;
 }
@@ -53,10 +68,11 @@ export function ContentBrowserModal({
   const [searchQuery, setSearchQuery] = useState('');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [filtersOpen, setFiltersOpen] = useState(false);
-  const [genre, setGenre] = useState('');
+  const [programTypes, setProgramTypes] = useState<string[]>([]);
+  const [tags, setTags] = useState<string[]>([]);
   const [year, setYear] = useState('');
-  const [provider, setProvider] = useState('');
   const [sortBy, setSortBy] = useState<'title' | 'year'>('title');
+  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
   const [page, setPage] = useState(1);
 
   const selection = selectedItems ?? internalSelection;
@@ -66,38 +82,33 @@ export function ContentBrowserModal({
   };
 
   const options = {
-    genres: filterOptions.genres ?? unique(items.map((item) => item.genre)),
+    programTypes: filterOptions.programTypes ?? ['movie', 'series'],
+    tags: filterOptions.tags ?? filterOptions.genres ?? unique(items.flatMap((item) => item.tags?.length ? item.tags : [item.genre])),
     years: filterOptions.years ?? unique(items.map((item) => item.year)).reverse(),
-    providers: filterOptions.providers ?? unique(items.map((item) => item.provider)),
   };
 
   const filteredItems = useMemo(() => {
     const query = searchQuery.trim().toLocaleLowerCase();
     return items
-      .filter((item) => !query || `${item.title} ${item.year} ${item.genre ?? ''} ${item.provider ?? ''}`.toLocaleLowerCase().includes(query))
-      .filter((item) => !genre || item.genre === genre)
+      .filter((item) => !query || `${item.title} ${item.year} ${item.programType ?? 'movie'} ${(item.tags?.length ? item.tags : [item.genre]).filter(Boolean).join(' ')}`.toLocaleLowerCase().includes(query))
+      .filter((item) => !programTypes.length || programTypes.includes(item.programType ?? 'movie'))
+      .filter((item) => !tags.length || tags.some((tag) => (item.tags?.length ? item.tags : [item.genre]).includes(tag)))
       .filter((item) => !year || item.year === year)
-      .filter((item) => !provider || item.provider === provider)
-      .sort((a, b) => sortBy === 'year' ? b.year.localeCompare(a.year) : a.title.localeCompare(b.title));
-  }, [genre, items, provider, searchQuery, sortBy, year]);
+      .sort((a, b) => {
+        const result = sortBy === 'year' ? a.year.localeCompare(b.year) : a.title.localeCompare(b.title);
+        return sortDirection === 'asc' ? result : -result;
+      });
+  }, [items, programTypes, searchQuery, sortBy, sortDirection, tags, year]);
 
   const totalPages = Math.max(1, Math.ceil(filteredItems.length / pageSize));
   const pageItems = filteredItems.slice((page - 1) * pageSize, page * pageSize);
-  const selectedData = items.filter((item) => selection.includes(item.id));
-  const pageSelectedCount = pageItems.filter((item) => selection.includes(item.id)).length;
-  const allPageSelected = pageItems.length > 0 && pageSelectedCount === pageItems.length;
-  const pageSelectionState: CheckboxState = pageSelectedCount > 0 && !allPageSelected ? 'indeterminate' : allPageSelected;
-  const hasFilters = Boolean(searchQuery || genre || year || provider);
+  const hasFilters = Boolean(searchQuery || programTypes.length || tags.length || year);
 
-  useEffect(() => setPage(1), [genre, provider, searchQuery, sortBy, year]);
+  useEffect(() => setPage(1), [programTypes, searchQuery, sortBy, sortDirection, tags, year]);
   useEffect(() => { if (page > totalPages) setPage(totalPages); }, [page, totalPages]);
 
   const toggleItem = (id: string) => updateSelection(selection.includes(id) ? selection.filter((value) => value !== id) : [...selection, id]);
-  const togglePage = (checked: CheckboxState) => {
-    const pageIds = new Set(pageItems.map((item) => item.id));
-    updateSelection(checked === true ? [...new Set([...selection, ...pageIds])] : selection.filter((id) => !pageIds.has(id)));
-  };
-  const clearFilters = () => { setSearchQuery(''); setGenre(''); setYear(''); setProvider(''); };
+  const clearFilters = () => { setSearchQuery(''); setProgramTypes([]); setTags([]); setYear(''); };
 
   return (
     <Modal
@@ -110,11 +121,6 @@ export function ContentBrowserModal({
       className="cvp-content-browser__modal"
       footer={
         <div className="cvp-content-browser__footer">
-          <div className="cvp-content-browser__footer-summary" aria-live="polite">
-            <strong>{selection.length}</strong> selected
-            <span aria-hidden="true">·</span>
-            <span>{filteredItems.length} results</span>
-          </div>
           <div className="cvp-content-browser__footer-actions">
             <OutlineButton onClick={onClose}>Cancel</OutlineButton>
             <PrimaryButton disabled={!selection.length} onClick={() => { onConfirm?.(selection); onClose(); }}>Add selected ({selection.length})</PrimaryButton>
@@ -124,11 +130,7 @@ export function ContentBrowserModal({
     >
       <div className="cvp-content-browser">
         <div className="cvp-content-browser__tools">
-          <label className="cvp-content-browser__search">
-            <Search size={16} aria-hidden="true" />
-            <span className="cvp-visually-hidden">Search content</span>
-            <input type="search" value={searchQuery} placeholder="Search title, genre or provider…" onChange={(event) => setSearchQuery(event.target.value)} />
-          </label>
+          <SearchField className="cvp-content-browser__search" label="Search content" value={searchQuery} placeholder="Search title, tags or year…" onChange={(event) => setSearchQuery(event.target.value)} onClear={() => setSearchQuery('')} />
           <div className="cvp-content-browser__tool-actions">
             <div className="cvp-content-browser__view-switch" role="group" aria-label="Content view">
               <IconButton aria-label="Grid view" aria-pressed={viewMode === 'grid'} onClick={() => setViewMode('grid')}><Grid3X3 size={16} /></IconButton>
@@ -140,26 +142,16 @@ export function ContentBrowserModal({
 
         {filtersOpen && (
           <div id="content-browser-filters" className="cvp-content-browser__filters">
-            <label><span>Sort by</span><select value={sortBy} onChange={(event) => setSortBy(event.target.value as 'title' | 'year')}><option value="title">Title</option><option value="year">Newest year</option></select></label>
-            <label><span>Genre</span><select value={genre} onChange={(event) => setGenre(event.target.value)}><option value="">All genres</option>{options.genres.map((value) => <option key={value}>{value}</option>)}</select></label>
-            <label><span>Year</span><select value={year} onChange={(event) => setYear(event.target.value)}><option value="">All years</option>{options.years.map((value) => <option key={value}>{value}</option>)}</select></label>
-            <label><span>Provider</span><select value={provider} onChange={(event) => setProvider(event.target.value)}><option value="">All providers</option>{options.providers.map((value) => <option key={value}>{value}</option>)}</select></label>
+            <SortControl className="cvp-content-browser__filter-control cvp-content-browser__sort" value={sortBy} direction={sortDirection} onChange={(value) => setSortBy(value as 'title' | 'year')} onDirectionChange={setSortDirection} options={[{ value: 'title', label: 'Title' }, { value: 'year', label: 'Year' }]} />
+            <TagFilter className="cvp-content-browser__filter-control" sections={[{ id: 'program-type', title: 'Program type', options: options.programTypes.map((value) => ({ id: value, label: value === 'movie' ? 'Movie' : 'Series' })) }]} selectedOptions={programTypes} onSelectionChange={setProgramTypes} />
+            <MultiSelect className="cvp-content-browser__filter-control" label="Tags" options={options.tags.map((value) => ({ value, label: value }))} value={tags} onChange={setTags} allowCreate={false} placeholder="Select tags…" />
+            <Select className="cvp-content-browser__filter-control" label="Year" value={year} onChange={setYear} placeholder="All years" options={options.years.map((value) => ({ value, label: value }))} />
             <TextButton disabled={!hasFilters} onClick={clearFilters}>Clear filters</TextButton>
           </div>
         )}
 
-        {selectedData.length > 0 && (
-          <div className="cvp-content-browser__selection" aria-label="Selected content">
-            <div className="cvp-content-browser__selection-heading"><strong>Selected</strong><span>{selectedData.length} items</span></div>
-            <div className="cvp-content-browser__selection-list">
-              {selectedData.map((item) => <span className="cvp-content-browser__selection-chip" key={item.id}>{item.title}<button type="button" aria-label={`Remove ${item.title}`} onClick={() => toggleItem(item.id)}><X size={13} /></button></span>)}
-            </div>
-          </div>
-        )}
-
         <div className="cvp-content-browser__results-bar">
-          <span>{loading ? 'Loading content…' : `${filteredItems.length} items`}</span>
-          {pageItems.length > 0 && <Checkbox checked={pageSelectionState} onChange={togglePage} label="Select page" />}
+          {selection.length ? <div className="cvp-content-browser__selection-status" aria-live="polite"><span>{selection.length} selected</span><TextButton onClick={() => updateSelection([])}>Clear</TextButton></div> : <span aria-live="polite">{loading ? 'Loading content…' : `${filteredItems.length} items`}</span>}
         </div>
 
         <div className="cvp-content-browser__results">
@@ -172,12 +164,12 @@ export function ContentBrowserModal({
               {pageItems.map((item) => {
                 const selected = selection.includes(item.id);
                 return (
-                  <article className={`cvp-content-browser__item ${selected ? 'cvp-content-browser__item--selected' : ''}`} key={item.id}>
+                  <article className="cvp-content-browser__item" key={item.id}>
                     <button type="button" className="cvp-content-browser__item-target" aria-pressed={selected} aria-label={`${selected ? 'Remove' : 'Select'} ${item.title}`} onClick={() => toggleItem(item.id)}>
                       <span className="cvp-content-browser__poster">
                         {validThumbnail(item.thumbnail) ? <ImageWithFallback src={item.thumbnail} alt="" className="cvp-content-browser__image" /> : <span className="cvp-content-browser__placeholder"><Film size={28} /></span>}
                       </span>
-                      <span className="cvp-content-browser__item-copy"><strong title={item.title}>{item.title}</strong><span>{[item.year, item.genre, item.provider].filter(Boolean).join(' · ')}</span></span>
+                      <span className="cvp-content-browser__item-copy"><strong title={item.title}>{item.title}</strong><span>{[item.year, ...(item.tags?.length ? item.tags : [item.genre])].filter(Boolean).join(' · ')}</span></span>
                     </button>
                     <Checkbox className="cvp-content-browser__item-checkbox" checked={selected} aria-label={`Select ${item.title}`} onChange={() => toggleItem(item.id)} />
                   </article>

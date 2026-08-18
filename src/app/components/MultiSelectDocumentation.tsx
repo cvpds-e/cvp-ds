@@ -12,6 +12,7 @@ const rows:ComponentTokenContractRow[]=[
  {role:'Placeholder',token:'--cvp-multi-select-placeholder',source:'--cvp-input-placeholder',contract:'4.5:1 minimum',activation:'Empty'},
  {role:'Tag surface',token:'--cvp-multi-select-tag-bg',source:'--cvp-color-brand-default',contract:'Theme-resolved brand',activation:'Selected value'},
  {role:'Tag text',token:'--cvp-multi-select-tag-text',source:'--cvp-color-text-on-brand',contract:'4.5:1 minimum',activation:'Selected value'},
+ {role:'Selection summary',token:'--cvp-multi-select-meta-font-size',source:'--cvp-font-size-sm',contract:'13px interactive metadata',activation:'Open popup'},
  {role:'Popup',token:'--cvp-multi-select-popup-bg',source:'--cvp-menu-bg',contract:'Overlay surface',activation:'Open'},
  {role:'Selected option',token:'--cvp-multi-select-option-selected',source:'--cvp-menu-item-bg-active',contract:'Menu selected surface',activation:'aria-selected=true'},
  {role:'Error',token:'--cvp-multi-select-error',source:'--cvp-input-border-error',contract:'Error boundary',activation:'error'},

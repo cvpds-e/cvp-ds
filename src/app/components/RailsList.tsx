@@ -3,7 +3,9 @@ import { ChevronLeft, ListFilter, Pencil, Plus, Search, Trash2 } from 'lucide-re
 import { Filter, ActiveFilter } from './Filter';
 import { HeaderNavigation } from './HeaderNavigation';
 import { IconButton } from './IconButton';
+import { Modal } from './Modal';
 import { PrimaryButton } from './PrimaryButton';
+import { Segmented } from './Segmented';
 import { Table, TableColumn, TableRow } from './Table';
 import { TextButton } from './TextButton';
 import { TextArea } from './TextArea';
@@ -47,6 +49,7 @@ const rows = [
 
 export function RailsList() {
   const [filters, setFilters] = useState<ActiveFilter[]>([]);
+  const [rails, setRails] = useState<TableRow[]>(rows);
   const [matchAllFilters, setMatchAllFilters] = useState(true);
   const [selectedCollection, setSelectedCollection] = useState('home');
   const [editingCollection, setEditingCollection] = useState<string | null>(null);
@@ -55,6 +58,13 @@ export function RailsList() {
   const [collectionStatus, setCollectionStatus] = useState('enabled');
   const [collectionReference, setCollectionReference] = useState('');
   const [collectionLabels, setCollectionLabels] = useState<Record<string, string>>({});
+  const [createRailOpen, setCreateRailOpen] = useState(false);
+  const [newRailName, setNewRailName] = useState('New Editorial Rail');
+  const [newRailType, setNewRailType] = useState<'editorial' | 'recommended'>('editorial');
+  const [newRailCollection, setNewRailCollection] = useState('home');
+  const [newRailSlots, setNewRailSlots] = useState('10');
+  const [newRailReference, setNewRailReference] = useState('');
+  const [personalizerConfiguration, setPersonalizerConfiguration] = useState('general-recommendations');
   const toggleTheme = () => {
     const root = document.documentElement;
     root.setAttribute('data-theme', root.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
@@ -72,6 +82,52 @@ export function RailsList() {
   const saveCollection = () => {
     if (editingCollection && editingCollection !== 'new' && collectionName.trim()) setCollectionLabels((current) => ({ ...current, [editingCollection]: collectionName.trim() }));
     setEditingCollection(null);
+  };
+  const resetCreateRail = () => {
+    setNewRailName('New Editorial Rail');
+    setNewRailType('editorial');
+    setNewRailCollection('home');
+    setNewRailSlots('10');
+    setNewRailReference('');
+    setPersonalizerConfiguration('general-recommendations');
+  };
+  const closeCreateRail = () => {
+    setCreateRailOpen(false);
+    resetCreateRail();
+  };
+  const createRail = () => {
+    const name = newRailName.trim();
+    if (!name) return;
+    const collection = collections.find((item) => item.id === newRailCollection)?.label ?? 'Home';
+    const newRail: TableRow = {
+      id: `created-${Date.now()}`,
+      title: name,
+      collection,
+      order: 1,
+      type: newRailType === 'editorial' ? 'Editorial' : 'Recommended',
+      updated: 'Just now',
+      expandable: true,
+      contentSlots: Number(newRailSlots) || 10,
+      externalReferenceId: newRailReference || undefined,
+      personalizerConfiguration: newRailType === 'recommended' ? personalizerConfiguration : undefined,
+    };
+    setRails((current) => {
+      const groupIndex = current.findIndex((row) => row.kind === 'group' && row.groupLabel === collection);
+      if (groupIndex < 0) return [...current, newRail];
+      let groupEnd = groupIndex + 1;
+      while (groupEnd < current.length && current[groupEnd].kind !== 'group') groupEnd += 1;
+      const collectionRails = current.slice(groupIndex + 1, groupEnd);
+      newRail.order = collectionRails.length + 1;
+      const group = current[groupIndex];
+      return [
+        ...current.slice(0, groupIndex),
+        { ...group, groupCount: (group.groupCount ?? collectionRails.length) + 1 },
+        ...collectionRails,
+        newRail,
+        ...current.slice(groupEnd),
+      ];
+    });
+    closeCreateRail();
   };
   const collectionEditor = <div className="rails-list-page__collection-editor">
     <div className="rails-list-page__collection-editor-body">
@@ -98,10 +154,33 @@ export function RailsList() {
       </WorkspaceLayout.SidePanel>
       <WorkspaceLayout.ResizeHandle />
       <WorkspaceLayout.Main className="rails-list-page__main">
-        <WorkspaceLayout.PageHeader className="rails-list-page__titlebar"><div><ListFilter size={20} aria-hidden="true" /><h1>Rails List</h1></div><PrimaryButton><Plus size={16} /> Create rail</PrimaryButton></WorkspaceLayout.PageHeader>
+        <WorkspaceLayout.PageHeader className="rails-list-page__titlebar"><div><ListFilter size={20} aria-hidden="true" /><h1>Rails List</h1></div><PrimaryButton onClick={() => setCreateRailOpen(true)}><Plus size={16} /> Create rail</PrimaryButton></WorkspaceLayout.PageHeader>
         <WorkspaceLayout.Toolbar className="rails-list-page__filters"><Filter triggerVariant="icon-seamless" options={[{ id: 'title', label: 'Title', type: 'text' }, { id: 'rail-type', label: 'Rail type', type: 'multiselect', options: [{ value: 'editorial', label: 'Editorial' }, { value: 'recommended', label: 'Recommended' }] }, { id: 'collection', label: 'Collection', type: 'select', options: [{ value: 'home', label: 'Home' }, { value: 'drama', label: 'Drama' }, { value: 'kids', label: 'Kids' }] }]} activeFilters={filters} onChange={(nextFilters) => { setFilters(nextFilters); if (nextFilters.length <= 2) setMatchAllFilters(true); }} placeholder="Add filter" />{filters.length > 2 && <div className="rails-list-page__match"><span>Match</span><TextButton variant="contextual" aria-label={`Switch to match ${matchAllFilters ? 'any' : 'all'} filters`} onClick={() => setMatchAllFilters((value) => !value)}>{matchAllFilters ? 'all filters' : 'any filter'}</TextButton></div>}</WorkspaceLayout.Toolbar>
-        <Table className="rails-list-page__table" ariaLabel="Rails list" columns={columns} data={rows} selectable expandable sortable showActions={false} totalItems={38} pageSize={38} height="calc(100dvh - 246px)" renderCell={(column, value) => column === 'collection' ? <span className="rails-list-page__collection-tag">{value}</span> : value} />
+        <Table className="rails-list-page__table" ariaLabel="Rails list" columns={columns} data={rails} selectable expandable sortable showActions={false} totalItems={rails.filter((row) => row.kind !== 'group').length} pageSize={38} height="calc(100dvh - 246px)" renderCell={(column, value) => column === 'collection' ? <span className="rails-list-page__collection-tag">{value}</span> : value} />
       </WorkspaceLayout.Main>
     </WorkspaceLayout.Body>
+    <Modal
+      isOpen={createRailOpen}
+      onClose={closeCreateRail}
+      title="Create rail"
+      size="medium"
+      className="rails-list-page__create-rail-modal"
+      footer={<><OutlineButton onClick={closeCreateRail}>Cancel</OutlineButton><PrimaryButton onClick={createRail} disabled={!newRailName.trim()}>Create</PrimaryButton></>}
+    >
+      <div className="rails-list-page__create-rail-form">
+        <TextInput label="Rail name" value={newRailName} onChange={(event) => setNewRailName(event.target.value)} required autoFocus />
+        <div className="rails-list-page__create-rail-field">
+          <span className="rails-list-page__create-rail-label">Rail type</span>
+          <Segmented ariaLabel="Rail type" variant="color" fullWidth value={newRailType} onChange={(value) => setNewRailType(value as 'editorial' | 'recommended')} options={[{ value: 'editorial', label: 'Editorial' }, { value: 'recommended', label: 'Recommended' }]} />
+        </div>
+        {newRailType === 'recommended' && <div className="rails-list-page__create-rail-configuration">
+          <Select label="Personalizer configuration" value={personalizerConfiguration} onChange={setPersonalizerConfiguration} options={[{ value: 'general-recommendations', label: 'General recommendations' }, { value: 'continue-watching', label: 'Continue watching' }, { value: 'popular-now', label: 'Popular now' }]} />
+          <TextButton onClick={() => setPersonalizerConfiguration('general-recommendations')}><Plus size={16} aria-hidden="true" />Create new configuration</TextButton>
+        </div>}
+        <Select label="Rail collection" value={newRailCollection} onChange={setNewRailCollection} options={collections.map((collection) => ({ value: collection.id, label: collectionLabels[collection.id] ?? collection.label }))} />
+        <TextInput label="Number of content slots" type="number" min="1" value={newRailSlots} onChange={(event) => setNewRailSlots(event.target.value)} />
+        <TextInput label="External reference ID" optionalText="Advanced" value={newRailReference} onChange={(event) => setNewRailReference(event.target.value)} placeholder="Enter external reference ID" />
+      </div>
+    </Modal>
   </WorkspaceLayout>;
 }

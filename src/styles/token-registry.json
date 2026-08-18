@@ -6213,6 +6213,12 @@
       "source": "cvp-component-tokens.css"
     },
     {
+      "name": "--cvp-multi-select-meta-font-size",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
       "name": "--cvp-multi-select-field-gap",
       "tier": "Component",
       "scope": "Shared",
@@ -7707,24 +7713,6 @@
       "source": "cvp-component-tokens.css"
     },
     {
-      "name": "--cvp-content-browser-selection-bg",
-      "tier": "Component",
-      "scope": "Shared",
-      "source": "cvp-component-tokens.css"
-    },
-    {
-      "name": "--cvp-content-browser-chip-bg",
-      "tier": "Component",
-      "scope": "Shared",
-      "source": "cvp-component-tokens.css"
-    },
-    {
-      "name": "--cvp-content-browser-chip-border",
-      "tier": "Component",
-      "scope": "Shared",
-      "source": "cvp-component-tokens.css"
-    },
-    {
       "name": "--cvp-content-browser-item-bg",
       "tier": "Component",
       "scope": "Shared",
@@ -7737,12 +7725,6 @@
       "source": "cvp-component-tokens.css"
     },
     {
-      "name": "--cvp-content-browser-item-bg-selected",
-      "tier": "Component",
-      "scope": "Shared",
-      "source": "cvp-component-tokens.css"
-    },
-    {
       "name": "--cvp-content-browser-item-border",
       "tier": "Component",
       "scope": "Shared",
@@ -7750,12 +7732,6 @@
     },
     {
       "name": "--cvp-content-browser-item-border-hover",
-      "tier": "Component",
-      "scope": "Shared",
-      "source": "cvp-component-tokens.css"
-    },
-    {
-      "name": "--cvp-content-browser-item-border-selected",
       "tier": "Component",
       "scope": "Shared",
       "source": "cvp-component-tokens.css"
@@ -7798,12 +7774,6 @@
     },
     {
       "name": "--cvp-content-browser-filter-padding",
-      "tier": "Component",
-      "scope": "Shared",
-      "source": "cvp-component-tokens.css"
-    },
-    {
-      "name": "--cvp-content-browser-selection-padding",
       "tier": "Component",
       "scope": "Shared",
       "source": "cvp-component-tokens.css"
@@ -7876,18 +7846,6 @@
     },
     {
       "name": "--cvp-content-browser-item-radius",
-      "tier": "Component",
-      "scope": "Shared",
-      "source": "cvp-component-tokens.css"
-    },
-    {
-      "name": "--cvp-content-browser-chip-height",
-      "tier": "Component",
-      "scope": "Shared",
-      "source": "cvp-component-tokens.css"
-    },
-    {
-      "name": "--cvp-content-browser-chip-radius",
       "tier": "Component",
       "scope": "Shared",
       "source": "cvp-component-tokens.css"
@@ -10755,6 +10713,120 @@
       "source": "cvp-component-tokens.css"
     },
     {
+      "name": "--cvp-gallery-position-font-size",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-gallery-position-font-weight",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-gallery-position-line-height",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-gallery-source-tag-algorithmic-bg",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-gallery-source-tag-algorithmic-text",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-gallery-source-tag-algorithmic-border",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-gallery-source-tag-manual-bg",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-gallery-source-tag-manual-text",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-gallery-source-tag-manual-border",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-gallery-source-tag-border-width",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-gallery-source-tag-padding-x",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-gallery-source-tag-padding-y",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-gallery-source-tag-radius",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-gallery-source-tag-font-size",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-gallery-source-tag-font-weight",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-gallery-source-tag-line-height",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-gallery-pin-indicator-text",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-gallery-pin-indicator-bg",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-gallery-pin-indicator-bg-hover",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
       "name": "--cvp-gallery-drag-opacity",
       "tier": "Component",
       "scope": "Shared",
@@ -10791,6 +10863,12 @@
       "source": "cvp-component-tokens.css"
     },
     {
+      "name": "--cvp-gallery-title-line-height",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
       "name": "--cvp-gallery-meta-font-size",
       "tier": "Component",
       "scope": "Shared",
@@ -10798,6 +10876,12 @@
     },
     {
       "name": "--cvp-gallery-meta-font-weight",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-gallery-meta-line-height",
       "tier": "Component",
       "scope": "Shared",
       "source": "cvp-component-tokens.css"

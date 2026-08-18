@@ -25,7 +25,7 @@ Success and information use `role="status"`; warning and danger use `role="alert
 
 ## Token and theme contract
 
-Toast CSS consumes `--cvp-toast-*` Tier 3 aliases. Status backgrounds, borders, text, and icons resolve through CVP semantic state tokens. Theme switching requires no component selectors or hard-coded colour overrides. Motion respects `prefers-reduced-motion`.
+Toast CSS consumes `--cvp-toast-*` Tier 3 aliases. Status backgrounds, borders, text, and icons resolve through CVP semantic state tokens. The info icon uses `--cvp-toast-info-icon → --cvp-color-state-info-text`, matching the information text and localized-field available blue in both themes. Theme switching requires no component selectors or hard-coded colour overrides. Motion respects `prefers-reduced-motion`.
 
 ## Pixel-perfect acceptance
 

@@ -224,7 +224,7 @@
 
   /* ICON — rail gallery overlay variant */
   --cvp-button-icon-gallery-bg:       var(--cvp-color-gallery-overlay);
-  --cvp-button-icon-gallery-bg-hover: var(--cvp-color-surface-inverse);
+  --cvp-button-icon-gallery-bg-hover: var(--cvp-color-interactive-overlay-medium);
   --cvp-button-icon-gallery-color:    var(--cvp-color-text-on-brand);
 
   /* ICON — compact remove overlay */
@@ -458,6 +458,7 @@
   --cvp-multi-select-label-size:         var(--cvp-input-label-size);
   --cvp-multi-select-label-weight:       var(--cvp-input-label-weight);
   --cvp-multi-select-support-size:       var(--cvp-input-support-size);
+  --cvp-multi-select-meta-font-size:     var(--cvp-font-size-sm);           /* 13px: selected count and clear action */
   --cvp-multi-select-field-gap:          var(--cvp-input-field-gap);
   --cvp-multi-select-transition:         var(--cvp-input-transition);
   --cvp-multi-select-tag-bg:             var(--cvp-color-brand-default);
@@ -725,17 +726,13 @@
   --cvp-content-browser-control-border:  var(--cvp-input-border);
   --cvp-content-browser-control-border-focus: var(--cvp-input-border-focus);
   --cvp-content-browser-focus-ring:      var(--cvp-border-focus-ring);
-  --cvp-content-browser-filter-bg:       var(--cvp-color-surface-subtle);
+  /* Section / color.bg.base.section: navigation and grouped filter region. */
+  --cvp-content-browser-filter-bg:       var(--cvp-color-surface-sunken);
   --cvp-content-browser-filter-active:   var(--cvp-color-brand-default);
-  --cvp-content-browser-selection-bg:    var(--cvp-color-surface-subtle);
-  --cvp-content-browser-chip-bg:         var(--cvp-chip-bg);
-  --cvp-content-browser-chip-border:     var(--cvp-chip-border);
   --cvp-content-browser-item-bg:         var(--cvp-color-surface-default);
   --cvp-content-browser-item-bg-hover:   var(--cvp-color-surface-hover);
-  --cvp-content-browser-item-bg-selected:var(--cvp-color-menu-item-active-bg);
   --cvp-content-browser-item-border:     var(--cvp-color-border-subtle);
   --cvp-content-browser-item-border-hover: var(--cvp-color-border-default);
-  --cvp-content-browser-item-border-selected: var(--cvp-color-brand-default);
   --cvp-content-browser-placeholder-bg:  var(--cvp-color-surface-sunken);
   --cvp-content-browser-placeholder-icon:var(--cvp-color-icon-subtle);
   --cvp-content-browser-checkbox-scrim:  var(--cvp-color-surface-overlay);
@@ -743,7 +740,6 @@
   --cvp-content-browser-control-gap:     var(--cvp-space-1);
   --cvp-content-browser-toolbar-padding: var(--cvp-space-4) var(--cvp-space-6);
   --cvp-content-browser-filter-padding:  var(--cvp-space-4) var(--cvp-space-6);
-  --cvp-content-browser-selection-padding: var(--cvp-space-3) var(--cvp-space-6);
   --cvp-content-browser-content-padding: var(--cvp-space-4);
   --cvp-content-browser-control-height:  var(--cvp-space-8);
   --cvp-content-browser-control-padding-x: var(--cvp-space-3);
@@ -756,8 +752,6 @@
   --cvp-content-browser-item-gap:        var(--cvp-space-3);
   --cvp-content-browser-item-padding:    var(--cvp-space-3);
   --cvp-content-browser-item-radius:     var(--cvp-radius-md);
-  --cvp-content-browser-chip-height:     var(--cvp-space-6);
-  --cvp-content-browser-chip-radius:     var(--cvp-radius-full);
   --cvp-content-browser-font-size:       var(--cvp-font-size-md);
   --cvp-content-browser-meta-font-size:  var(--cvp-font-size-sm);
   --cvp-content-browser-state-min-height: 280px;
@@ -1125,7 +1119,7 @@
   --cvp-tag-filter-border-width:          var(--cvp-border-base-width);
   --cvp-tag-filter-radius:                var(--cvp-shape-control-compact);
   --cvp-tag-filter-section-gap:           var(--cvp-space-8);
-  --cvp-tag-filter-title-gap:             var(--cvp-space-3);
+  --cvp-tag-filter-title-gap:             var(--cvp-input-field-gap);
   --cvp-tag-filter-gap:                   var(--cvp-space-2);
   --cvp-tag-filter-option-gap:            var(--cvp-space-2);
   --cvp-tag-filter-height:                var(--cvp-space-8);
@@ -1320,14 +1314,35 @@
   --cvp-gallery-overlay-text:  var(--cvp-color-text-on-brand);
   --cvp-gallery-overlay-size:  var(--cvp-space-6);
   --cvp-gallery-control-radius: var(--cvp-radius-sm);
+  --cvp-gallery-position-font-size: var(--cvp-font-size-sm);
+  --cvp-gallery-position-font-weight: var(--cvp-font-weight-bold);
+  --cvp-gallery-position-line-height: var(--cvp-line-height-tight);
+  --cvp-gallery-source-tag-algorithmic-bg: var(--cvp-color-surface-subtle);
+  --cvp-gallery-source-tag-algorithmic-text: var(--cvp-color-text-primary);
+  --cvp-gallery-source-tag-algorithmic-border: var(--cvp-color-border-strong);
+  --cvp-gallery-source-tag-manual-bg: var(--cvp-color-state-success-bg);
+  --cvp-gallery-source-tag-manual-text: var(--cvp-color-state-success-text);
+  --cvp-gallery-source-tag-manual-border: var(--cvp-color-state-success-border);
+  --cvp-gallery-source-tag-border-width: var(--cvp-border-base-width);
+  --cvp-gallery-source-tag-padding-x: var(--cvp-space-1);
+  --cvp-gallery-source-tag-padding-y: calc(var(--cvp-space-1) / 2);
+  --cvp-gallery-source-tag-radius: var(--cvp-radius-sm);
+  --cvp-gallery-source-tag-font-size: var(--cvp-font-size-xs);
+  --cvp-gallery-source-tag-font-weight: var(--cvp-font-weight-semibold);
+  --cvp-gallery-source-tag-line-height: var(--cvp-line-height-tight);
+  --cvp-gallery-pin-indicator-text: var(--cvp-color-state-success-text);
+  --cvp-gallery-pin-indicator-bg: var(--cvp-color-state-success-bg);
+  --cvp-gallery-pin-indicator-bg-hover: var(--cvp-color-state-success-border);
   --cvp-gallery-drag-opacity:  0.56;
   --cvp-gallery-hover-scale:   1.03;
   --cvp-gallery-motion-duration: var(--cvp-motion-duration-base);
   --cvp-gallery-motion-easing: var(--cvp-motion-easing-standard);
   --cvp-gallery-title-font-size:   var(--cvp-font-size-sm);                 /* 13px */
   --cvp-gallery-title-font-weight: var(--cvp-font-weight-medium);           /* 500 */
+  --cvp-gallery-title-line-height: var(--cvp-line-height-tight);
   --cvp-gallery-meta-font-size:    var(--cvp-font-size-sm);                 /* 13px */
   --cvp-gallery-meta-font-weight:  var(--cvp-font-weight-regular);          /* 400 */
+  --cvp-gallery-meta-line-height:  var(--cvp-line-height-tight);
   --cvp-gallery-meta-color:        var(--cvp-color-text-muted);
   /* Empty state */
   --cvp-gallery-empty-padding-x:  var(--cvp-space-6);                       /* 24px */
@@ -1362,7 +1377,7 @@
   --cvp-notification-banner-info-bg: var(--cvp-color-state-info-bg);
   --cvp-notification-banner-info-border: var(--cvp-color-state-info-border);
   --cvp-notification-banner-info-text: var(--cvp-color-state-info-text);
-  --cvp-notification-banner-info-icon: var(--cvp-color-icon-default);
+  --cvp-notification-banner-info-icon: var(--cvp-color-state-info-text);
   --cvp-notification-banner-success-bg: var(--cvp-color-state-success-bg);
   --cvp-notification-banner-success-border: var(--cvp-color-state-success-border);
   --cvp-notification-banner-success-text: var(--cvp-color-state-success-text);
@@ -1423,7 +1438,7 @@
   --cvp-toast-info-bg:        var(--cvp-color-state-info-bg);
   --cvp-toast-info-border:    var(--cvp-color-state-info-border);
   --cvp-toast-info-text:      var(--cvp-color-state-info-text);
-  --cvp-toast-info-icon:      var(--cvp-color-icon-default);
+  --cvp-toast-info-icon:      var(--cvp-color-state-info-text);
 
   /* ===========================================================================
      LOGIN / SIGN UP PAGE

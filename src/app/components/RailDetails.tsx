@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CircleHelp, Copy, Eye, PanelLeftClose, PanelLeftOpen, Save, Sparkles } from 'lucide-react';
+import { CircleHelp, PanelLeftClose, PanelLeftOpen, Save } from 'lucide-react';
 import { Breadcrumbs } from './Breadcrumbs';
 import { ContentBrowserModal } from './ContentBrowserModal';
 import { HeaderNavigation } from './HeaderNavigation';
@@ -65,8 +65,8 @@ function RailDetailsWorkspace({ railName = 'Trending' }: RailDetailsProps) {
   const [tvSeason, setTvSeason] = useState('');
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [browserOpen, setBrowserOpen] = useState(false);
-  const [previewOpen, setPreviewOpen] = useState(false);
   const [items, setItems] = useState(initialItems);
+  const [contentDirty, setContentDirty] = useState(false);
   const [candidateSelection, setCandidateSelection] = useState<string[]>([]);
   const showDeferredEditorialFilters = false;
   const showPreviewGuide = false;
@@ -75,8 +75,7 @@ function RailDetailsWorkspace({ railName = 'Trending' }: RailDetailsProps) {
     const root = document.documentElement;
     root.setAttribute('data-theme', root.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
   };
-  const save = () => addToast({ variant: 'success', title: 'Rail saved', description: `${name} and its ${items.length} content items are up to date.` });
-  const duplicate = () => addToast({ variant: 'info', title: 'Rail duplicated', description: `A draft copy of ${name} was created.` });
+  const save = () => { setContentDirty(false); addToast({ variant: 'success', title: 'Rail saved', description: `${name} and its ${items.length} content items are up to date.` }); };
   const queriedItems = items.filter((item) => {
     const normalizedTitle = item.title.toLocaleLowerCase();
     const category = item.metadata.category?.toLocaleLowerCase() ?? '';
@@ -108,7 +107,7 @@ function RailDetailsWorkspace({ railName = 'Trending' }: RailDetailsProps) {
   </div>;
   const hasQueryFilters = Boolean(mediaFormats.length || genres.length || releaseYear || availability || anyTitlePrefix || approved || distributionRights.length || languages.length || isAdult || exactTitle || titlePrefix || tvSeason || sortField !== 'title' || sortDirection !== 'desc');
   const hasBaseChanges = name !== railName || status !== 'active' || collection !== 'home' || railPosition !== '2' || contentSlots !== '24' || assignedPage !== 'home';
-  const shouldShowSaveFooter = hasBaseChanges || hasQueryFilters || matchMode !== 'all';
+  const shouldShowSaveFooter = hasBaseChanges || hasQueryFilters || matchMode !== 'all' || contentDirty;
   const matchesFilterSearch = (...labels: string[]) => !filterSearch.trim() || labels.some((label) => label.toLocaleLowerCase().includes(filterSearch.trim().toLocaleLowerCase()));
   const clearQueryFilters = () => {
     setMediaFormats([]);
@@ -126,6 +125,19 @@ function RailDetailsWorkspace({ railName = 'Trending' }: RailDetailsProps) {
     setMatchMode('all');
     setSortField('title');
     setSortDirection('desc');
+  };
+  const cancelChanges = () => {
+    setName(railName);
+    setStatus('active');
+    setCollection('home');
+    setRailPosition('2');
+    setContentSlots('24');
+    setAssignedPage('home');
+    setItems(initialItems);
+    setContentDirty(false);
+    setFilterSearch('');
+    clearQueryFilters();
+    addToast({ variant: 'info', title: 'Changes discarded', description: 'The rail settings and content query were restored.' });
   };
   const queryPanel = <div className="rail-details__form">
     <div className="rail-details__form-section rail-details__query-section">
@@ -161,14 +173,13 @@ function RailDetailsWorkspace({ railName = 'Trending' }: RailDetailsProps) {
         <div className="rail-details__preview-bar"><IconButton aria-label={sidebarOpen ? 'Collapse configuration' : 'Open configuration'} aria-expanded={sidebarOpen} onClick={() => setSidebarOpen((value) => !value)}>{sidebarOpen ? <PanelLeftClose size={16} /> : <PanelLeftOpen size={16} />}</IconButton><strong>Content Preview</strong><span className="cvp-status-tag cvp-status-tag--editorial rail-details__preview-tag">Editorial</span></div>
         <div className="rail-details__content">
           {hasEmptyQuery && <NotificationBanner title="No content found" message="No content matches the current editorial VOD criteria." variant="warning" />}
-          <RailContentGallery title={name} showItemCount itemCountPlacement="navigation" items={queriedItems} variant="management" emptyMessage={hasEmptyQuery ? 'Try a different filter or clear the current criteria.' : undefined} emptySlotCount={hasEmptyQuery ? 10 : 0} onAddToEmptySlot={() => setBrowserOpen(true)} onEdit={(item) => addToast({ variant: 'info', title: 'Edit content', description: item.title })} onPin={(item) => addToast({ variant: 'info', title: 'Pin updated', description: item.title })} onDrag={(id, position) => addToast({ variant: 'info', title: 'Order changed', description: `Item ${id} moved to position ${position + 1}.` })} />
-          {showPreviewGuide && <NotificationBanner title="Preview guide" message="This preview reflects the current rail configuration. Reorder or pin content, then save to publish your changes." variant="info" icon={Sparkles} actionLabel="Review query" onAction={() => setSidebarOpen(true)} />}
+          <RailContentGallery title={name} showItemCount itemCountPlacement="navigation" items={queriedItems} variant="management" emptyMessage={hasEmptyQuery ? 'Try a different filter or clear the current criteria.' : undefined} emptySlotCount={hasEmptyQuery ? 10 : 0} onAddToEmptySlot={() => setBrowserOpen(true)} onEdit={(item) => { setCandidateSelection([item.id]); setBrowserOpen(true); }} onDelete={(item) => { setItems((current) => current.filter((candidate) => candidate.id !== item.id)); setContentDirty(true); addToast({ variant: 'info', title: 'Content removed', description: item.title }); }} onPin={(item) => { setContentDirty(true); addToast({ variant: 'info', title: 'Pin updated', description: item.title }); }} onDrag={(id, position) => { setContentDirty(true); addToast({ variant: 'info', title: 'Order changed', description: `Item ${id} moved to position ${position + 1}.` }); }} />
+          {showPreviewGuide && <NotificationBanner title="Preview guide" message="This preview reflects the current rail configuration. Reorder or pin content, then save to publish your changes." variant="info" actionLabel="Review query" onAction={() => setSidebarOpen(true)} />}
         </div>
       </WorkspaceLayout.Main>
     </WorkspaceLayout.Body>
-    {shouldShowSaveFooter && <WorkspaceLayout.Footer className="rail-details__footer"><OutlineButton onClick={duplicate}><Copy size={15} /> Duplicate</OutlineButton><OutlineButton onClick={() => setPreviewOpen((value) => !value)}><Eye size={15} /> {previewOpen ? 'Close preview' : 'Preview'}</OutlineButton><PrimaryButton onClick={save}><Save size={15} /> Save changes</PrimaryButton></WorkspaceLayout.Footer>}
-    <ContentBrowserModal isOpen={browserOpen} onClose={() => setBrowserOpen(false)} items={initialItems} selectedItems={candidateSelection} onSelectionChange={setCandidateSelection} onConfirm={(ids) => { setItems(initialItems.filter((item) => ids.includes(item.id))); addToast({ variant: 'success', title: 'Content updated', description: `${ids.length} items are now in the rail.` }); }} />
-    {previewOpen && <div className="rail-details__preview-mode" role="status">Preview mode is active</div>}
+    {shouldShowSaveFooter && <WorkspaceLayout.Footer className="rail-details__footer"><OutlineButton onClick={cancelChanges}>Cancel</OutlineButton><PrimaryButton onClick={save}><Save size={15} /> Save changes</PrimaryButton></WorkspaceLayout.Footer>}
+    <ContentBrowserModal isOpen={browserOpen} onClose={() => setBrowserOpen(false)} items={initialItems} selectedItems={candidateSelection} onSelectionChange={setCandidateSelection} onConfirm={(ids) => { setItems(initialItems.filter((item) => ids.includes(item.id))); setContentDirty(true); addToast({ variant: 'success', title: 'Content updated', description: `${ids.length} items are now in the rail.` }); }} />
   </WorkspaceLayout>;
 }
 

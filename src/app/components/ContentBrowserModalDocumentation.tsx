@@ -5,22 +5,22 @@ import { PrimaryButton } from './PrimaryButton';
 import './ContentBrowserModalDocumentation.css';
 
 const sampleItems: ContentItem[] = [
-  { id: '1', title: 'Spotlight', year: '2026', genre: 'Editorial', rating: 'PG-13', provider: 'CVP', thumbnail: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=640&q=80' },
-  { id: '2', title: 'Trending Now', year: '2026', genre: 'Recommended', rating: 'PG', provider: 'CVP', thumbnail: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=640&q=80' },
-  { id: '3', title: 'Because You Watched', year: '2025', genre: 'Recommended', rating: 'PG-13', provider: 'Partner', thumbnail: 'https://images.unsplash.com/photo-1489599317593-3b62f9a61c5b?auto=format&fit=crop&w=640&q=80' },
-  { id: '4', title: 'New Releases', year: '2026', genre: 'Editorial', rating: 'R', provider: 'CVP', thumbnail: 'https://images.unsplash.com/photo-1478720568477-b0c8b7e0e518?auto=format&fit=crop&w=640&q=80' },
-  { id: '5', title: 'Continue Watching', year: '2024', genre: 'Personalised', rating: 'PG', provider: 'Partner', thumbnail: '' },
-  { id: '6', title: 'Drama Collection', year: '2025', genre: 'Drama', rating: 'PG-13', provider: 'CVP', thumbnail: '' },
-  { id: '7', title: 'Kids Collection', year: '2026', genre: 'Kids', rating: 'U', provider: 'Partner', thumbnail: '' },
-  { id: '8', title: 'Documentary Focus', year: '2024', genre: 'Documentary', rating: 'PG', provider: 'CVP', thumbnail: '' },
+  { id: '1', title: 'Spotlight', year: '2026', programType: 'movie', tags: ['Action', 'Editorial'], rating: 'PG-13', thumbnail: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=640&q=80' },
+  { id: '2', title: 'Trending Now', year: '2026', programType: 'series', tags: ['Drama', 'Editorial'], rating: 'PG', thumbnail: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=640&q=80' },
+  { id: '3', title: 'Because You Watched', year: '2025', programType: 'movie', tags: ['Drama'], rating: 'PG-13', thumbnail: 'https://images.unsplash.com/photo-1489599317593-3b62f9a61c5b?auto=format&fit=crop&w=640&q=80' },
+  { id: '4', title: 'New Releases', year: '2026', programType: 'movie', tags: ['Action'], rating: 'R', thumbnail: 'https://images.unsplash.com/photo-1478720568477-b0c8b7e0e518?auto=format&fit=crop&w=640&q=80' },
+  { id: '5', title: 'Continue Watching', year: '2024', programType: 'series', tags: ['Drama'], rating: 'PG', thumbnail: '' },
+  { id: '6', title: 'Drama Collection', year: '2025', programType: 'series', tags: ['Drama'], rating: 'PG-13', thumbnail: '' },
+  { id: '7', title: 'Kids Collection', year: '2026', programType: 'movie', tags: ['Family'], rating: 'U', thumbnail: '' },
+  { id: '8', title: 'Documentary Focus', year: '2024', programType: 'movie', tags: ['Documentary'], rating: 'PG', thumbnail: '' },
 ];
 
 const tokens = [
   ['Surface', '--cvp-content-browser-item-bg', '--cvp-color-surface-default', 'Theme-resolved surface', 'Result item'],
   ['Control border', '--cvp-content-browser-control-border', '--cvp-input-border', 'Shared form boundary', 'Search / selects'],
+  ['Filter region', '--cvp-content-browser-filter-bg', '--cvp-color-surface-sunken', 'Section / color.bg.base.section', 'Expanded filters'],
+  ['Filter controls', '--cvp-sort-control-* / --cvp-select-* / --cvp-multi-select-* / --cvp-tag-filter-*', 'Canonical component contracts', 'No local control styling', 'Sort and editorial criteria'],
   ['Focus', '--cvp-content-browser-focus-ring', '--cvp-border-focus-ring', 'Border + halo', ':focus-visible'],
-  ['Selection', '--cvp-content-browser-item-bg-selected', '--cvp-color-menu-item-active-bg', 'Theme-resolved selected surface', 'aria-pressed=true'],
-  ['Selected border', '--cvp-content-browser-item-border-selected', '--cvp-color-brand-default', 'Brand boundary', 'aria-pressed=true'],
   ['Checkbox', '--cvp-checkbox-border', '--cvp-input-border', 'Shared input boundary', 'Selection controls'],
   ['Placeholder', '--cvp-content-browser-placeholder-bg', '--cvp-color-surface-sunken', 'Theme-resolved media fallback', 'Missing thumbnail'],
   ['Divider', '--cvp-content-browser-divider', '--cvp-modal-divider', 'Shared overlay divider', 'Regions'],
@@ -53,10 +53,10 @@ export function ContentBrowserModalDocumentation() {
       <section className="content-browser-docs__section" aria-labelledby="content-browser-anatomy">
         <div className="content-browser-docs__section-heading"><div><span>02</span><h2 id="content-browser-anatomy">Anatomy and behavior</h2></div><p>Search remains primary; filters and view controls stay secondary to content selection.</p></div>
         <div className="content-browser-docs__anatomy">
-          <article><Search size={20} /><strong>Search first</strong><p>One field searches title, genre, and provider without nesting controls.</p></article>
-          <article><Filter size={20} /><strong>Progressive filters</strong><p>Optional filters expand in place and expose a clear reset action.</p></article>
+          <article><Search size={20} /><strong>Search first</strong><p>One shared search field finds titles, tags, and years without nesting controls.</p></article>
+          <article><Filter size={20} /><strong>Progressive filters</strong><p>Sort by includes an ascending/descending control; Program type, Tags, and Year reuse canonical field controls with aligned responsive layout.</p></article>
           <article><Grid3X3 size={20} /><strong>Two views</strong><p>Grid and list modes preserve selection, pagination, and metadata.</p></article>
-          <article><CheckSquare size={20} /><strong>Visible selection</strong><p>Selected items remain removable and are summarized before confirmation.</p></article>
+          <article><CheckSquare size={20} /><strong>Quiet selection</strong><p>Checkboxes indicate the selected items; the confirmation button is the single selection count.</p></article>
         </div>
       </section>
 
@@ -64,8 +64,8 @@ export function ContentBrowserModalDocumentation() {
         <div className="content-browser-docs__section-heading"><div><span>03</span><h2 id="content-browser-states">State contract</h2></div></div>
         <div className="content-browser-docs__states">
           <div><strong>Default</strong><span>Search, browse, paginate</span></div>
-          <div><strong>Filtered</strong><span>Active indicator + clear action</span></div>
-          <div><strong>Selected</strong><span>Cards, chips, and footer agree</span></div>
+          <div><strong>Filtered</strong><span>Active criteria + clear action; sorting stays independent</span></div>
+          <div><strong>Selected</strong><span>Checkboxes and confirmation count agree</span></div>
           <div><strong>Empty / loading</strong><span>Purposeful status and recovery</span></div>
         </div>
       </section>
@@ -83,7 +83,7 @@ export function ContentBrowserModalDocumentation() {
         selectedItems={selected}
         onSelectionChange={setSelected}
         onConfirm={(ids) => setLastAdded(ids.length)}
-        filterOptions={{ genres: ['Editorial', 'Recommended', 'Personalised', 'Drama', 'Kids', 'Documentary'], years: ['2026', '2025', '2024'], providers: ['CVP', 'Partner'] }}
+        filterOptions={{ programTypes: ['movie', 'series'], tags: ['Action', 'Drama', 'Editorial', 'Family', 'Documentary'], years: ['2026', '2025', '2024'] }}
       />
     </main>
   );

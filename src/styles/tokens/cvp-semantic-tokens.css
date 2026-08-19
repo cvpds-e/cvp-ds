@@ -92,7 +92,7 @@
   --cvp-color-border-default:  var(--cvp-primitive-neutral-500);  /* #2a2a36 */
   --cvp-color-border-strong:   var(--cvp-primitive-neutral-400);  /* #374151 */
   --cvp-color-border-bold:     var(--cvp-primitive-neutral-50);   /* #bbbbbb */
-  --cvp-color-border-disabled: var(--cvp-primitive-neutral-650);  /* #1f1f28 */
+  --cvp-color-border-disabled: var(--cvp-primitive-neutral-400);  /* #374151 — 3:1+ boundary on disabled surfaces */
   --cvp-color-border-error:    var(--cvp-primitive-red-400);      /* #f87171 */
   --cvp-color-border-brand:    var(--cvp-primitive-blue-600);     /* #3d63dd */
   --cvp-color-border-success:  var(--cvp-primitive-green-400);    /* #3dc155 */
@@ -104,7 +104,7 @@
   --cvp-color-icon-strong:   var(--cvp-primitive-neutral-10);   /* #e5e7eb */
   --cvp-color-icon-muted:    var(--cvp-primitive-neutral-200);  /* #6b7280 */
   --cvp-color-icon-subtle:   var(--cvp-primitive-neutral-75);   /* #AFAFB5 */
-  --cvp-color-icon-disabled: var(--cvp-primitive-neutral-300);  /* #4b5563 */
+  --cvp-color-icon-disabled: var(--cvp-primitive-neutral-100);  /* #a1a1a8 — readable on disabled dark surfaces */
   --cvp-color-icon-inverse:  var(--cvp-primitive-neutral-750);  /* #19191b */
   --cvp-color-icon-brand:    var(--cvp-primitive-blue-600);     /* #3d63dd */
   --cvp-color-icon-error:    var(--cvp-primitive-red-400);      /* #f87171 */
@@ -224,7 +224,7 @@
   --cvp-color-text-muted:       var(--cvp-primitive-neutral-300);  /* #4b5563 — 7.2:1 on white; safe on light sunken surfaces */
   --cvp-color-text-subtle:      var(--cvp-primitive-neutral-200);  /* #6b7280 */
   --cvp-color-text-placeholder: var(--cvp-primitive-neutral-200);  /* #6b7280 — 4.8:1 on white */
-  --cvp-color-text-disabled:    var(--cvp-primitive-neutral-150);  /* #9ca3af */
+  --cvp-color-text-disabled:    var(--cvp-primitive-neutral-300);  /* #4b5563 — readable on disabled light surfaces */
   --cvp-color-text-inverse:     var(--cvp-primitive-neutral-0);    /* #ffffff */
   --cvp-color-text-on-brand:    var(--cvp-primitive-neutral-0);    /* #ffffff */
   --cvp-color-text-on-dark:     var(--cvp-primitive-neutral-0);    /* theme-independent swatch pairing */
@@ -253,7 +253,7 @@
   --cvp-color-border-default:  var(--cvp-primitive-neutral-10);  /* #e5e7eb */
   --cvp-color-border-strong:   var(--cvp-primitive-neutral-25);  /* #d1d5db */
   --cvp-color-border-bold:     var(--cvp-primitive-neutral-50);  /* #bbbbbb */
-  --cvp-color-border-disabled: var(--cvp-primitive-neutral-10);  /* #e5e7eb */
+  --cvp-color-border-disabled: var(--cvp-primitive-neutral-100);  /* #a1a1a8 — perceptible disabled boundary */
   --cvp-color-border-error:    var(--cvp-primitive-red-600);     /* #dc2626 */
   --cvp-color-border-brand:    var(--cvp-primitive-blue-600);    /* #3d63dd */
   --cvp-color-border-success:  var(--cvp-primitive-green-500);   /* #16a34a */
@@ -265,7 +265,7 @@
   --cvp-color-icon-strong:   var(--cvp-primitive-neutral-400);  /* #374151 */
   --cvp-color-icon-muted:    var(--cvp-primitive-neutral-150);  /* #9ca3af */
   --cvp-color-icon-subtle:   var(--cvp-primitive-neutral-150);  /* #9ca3af */
-  --cvp-color-icon-disabled: var(--cvp-primitive-neutral-25);   /* #d1d5db */
+  --cvp-color-icon-disabled: var(--cvp-primitive-neutral-300);  /* #4b5563 — readable on disabled light surfaces */
   --cvp-color-icon-inverse:  var(--cvp-primitive-neutral-0);    /* #ffffff */
   --cvp-color-icon-brand:    var(--cvp-primitive-blue-600);     /* #3d63dd */
   --cvp-color-icon-error:    var(--cvp-primitive-red-600);      /* #dc2626 */
@@ -512,7 +512,9 @@
   --cvp-motion-easing-bounce:   var(--cvp-primitive-easing-bounce);    /* cubic-bezier(0.34,1.56,0.64,1) */
 
   /* ── Opacity ───────────────────────────────────────────────────────────── */
-  --cvp-opacity-disabled:    var(--cvp-primitive-opacity-disabled);     /* 0.5  */
+  /* Disabled colours are contrast-qualified semantic values. Components must
+     not halve their opacity, which would invalidate the light/dark contrast contract. */
+  --cvp-opacity-disabled:    1;
   --cvp-opacity-placeholder: var(--cvp-primitive-opacity-placeholder);  /* 0.6  */
   --cvp-opacity-scrim-light: var(--cvp-primitive-opacity-scrim-light);  /* 0.45 */
   --cvp-opacity-scrim-dark:  var(--cvp-primitive-opacity-scrim-dark);   /* 0.75 */

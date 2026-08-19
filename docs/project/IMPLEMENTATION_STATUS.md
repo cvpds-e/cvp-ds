@@ -128,6 +128,8 @@ Ordered by priority:
 - Full engineering handoff: `docs/handoffs/components/TEXT_INPUT_STANDARDIZATION.md`.
 - Text Area and Select now share the same field anatomy, validation wiring, theme resolution, and density rules; Select also establishes the custom listbox keyboard model.
 - Full engineering handoff: `docs/handoffs/components/TEXT_AREA_SELECT_STANDARDIZATION.md`.
+- Number Input now extends the same `--cvp-input-*` contract for quantities, positions, and limits. Its step controls remain contained within the field and its disabled boundary, value, and icons use opaque, contrast-qualified semantic tokens in both themes.
+- Full engineering handoff: `docs/handoffs/components/NUMBER_INPUT_STANDARDIZATION.md`.
 
 ---
 

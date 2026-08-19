@@ -1,8 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { ChevronLeft, ChevronRight, Film, Filter, Grid3X3, List, Search } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Filter, Search } from 'lucide-react';
 import { Modal } from './Modal';
-import { Checkbox } from './Checkbox';
-import { IconButton } from './IconButton';
 import { OutlineButton } from './OutlineButton';
 import { PrimaryButton } from './PrimaryButton';
 import { TextButton } from './TextButton';
@@ -11,7 +9,7 @@ import { Select } from './Select';
 import { SortControl } from './SortControl';
 import { MultiSelect } from './MultiSelect';
 import { TagFilter } from './TagFilter';
-import { ImageWithFallback } from './figma/ImageWithFallback';
+import { RailContentGallery } from './RailContentGallery';
 import './ContentBrowserModal.css';
 
 export interface ContentItem {
@@ -48,7 +46,6 @@ export interface ContentBrowserModalProps {
   pageSize?: number;
 }
 
-const validThumbnail = (value: string) => /^https?:\/\//.test(value?.trim() ?? '');
 const unique = (values: Array<string | undefined>) => [...new Set(values.filter(Boolean) as string[])].sort();
 
 export function ContentBrowserModal({
@@ -66,7 +63,6 @@ export function ContentBrowserModal({
 }: ContentBrowserModalProps) {
   const [internalSelection, setInternalSelection] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
-  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [programTypes, setProgramTypes] = useState<string[]>([]);
   const [tags, setTags] = useState<string[]>([]);
@@ -132,10 +128,6 @@ export function ContentBrowserModal({
         <div className="cvp-content-browser__tools">
           <SearchField className="cvp-content-browser__search" label="Search content" value={searchQuery} placeholder="Search title, tags or year…" onChange={(event) => setSearchQuery(event.target.value)} onClear={() => setSearchQuery('')} />
           <div className="cvp-content-browser__tool-actions">
-            <div className="cvp-content-browser__view-switch" role="group" aria-label="Content view">
-              <IconButton aria-label="Grid view" aria-pressed={viewMode === 'grid'} onClick={() => setViewMode('grid')}><Grid3X3 size={16} /></IconButton>
-              <IconButton aria-label="List view" aria-pressed={viewMode === 'list'} onClick={() => setViewMode('list')}><List size={16} /></IconButton>
-            </div>
             <OutlineButton aria-expanded={filtersOpen} aria-controls="content-browser-filters" onClick={() => setFiltersOpen((open) => !open)}><Filter size={15} /> Filters {hasFilters && <span className="cvp-content-browser__filter-dot" aria-label="Active filters" />}</OutlineButton>
           </div>
         </div>
@@ -160,22 +152,7 @@ export function ContentBrowserModal({
           ) : filteredItems.length === 0 ? (
             <div className="cvp-content-browser__state"><Search size={28} /><strong>{hasFilters ? 'No matching content' : 'No content available'}</strong><p>{hasFilters ? 'Adjust or clear your filters to see more results.' : 'Content will appear here when it becomes available.'}</p>{hasFilters && <OutlineButton onClick={clearFilters}>Clear filters</OutlineButton>}</div>
           ) : (
-            <div className={`cvp-content-browser__items cvp-content-browser__items--${viewMode}`}>
-              {pageItems.map((item) => {
-                const selected = selection.includes(item.id);
-                return (
-                  <article className="cvp-content-browser__item" key={item.id}>
-                    <button type="button" className="cvp-content-browser__item-target" aria-pressed={selected} aria-label={`${selected ? 'Remove' : 'Select'} ${item.title}`} onClick={() => toggleItem(item.id)}>
-                      <span className="cvp-content-browser__poster">
-                        {validThumbnail(item.thumbnail) ? <ImageWithFallback src={item.thumbnail} alt="" className="cvp-content-browser__image" /> : <span className="cvp-content-browser__placeholder"><Film size={28} /></span>}
-                      </span>
-                      <span className="cvp-content-browser__item-copy"><strong title={item.title}>{item.title}</strong><span>{[item.year, ...(item.tags?.length ? item.tags : [item.genre])].filter(Boolean).join(' · ')}</span></span>
-                    </button>
-                    <Checkbox className="cvp-content-browser__item-checkbox" checked={selected} aria-label={`Select ${item.title}`} onChange={() => toggleItem(item.id)} />
-                  </article>
-                );
-              })}
-            </div>
+            <RailContentGallery title="Content results" hideHeader showNavigation={false} variant="display-grid-selectable" size="compact" showSourceLabels={false} selectedItems={selection} onSelectionChange={updateSelection} items={pageItems.map((item) => ({ id: item.id, title: item.title, year: item.year, thumbnail: item.thumbnail, metadata: { category: item.tags?.[0] ?? item.genre } }))} />
           )}
         </div>
 

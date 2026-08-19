@@ -61,7 +61,7 @@ Built for expert operators managing complex broadcast and OTT workflows. The sys
   --text-secondary:       #374151;
   --text-muted:           #6b7280;
   --text-placeholder:     #9ca3af;
-  --text-disabled:        #9ca3af;
+  --text-disabled:        #4b5563;
   --text-inverse:         #ffffff;
   --text-link:            #2563eb;
   --text-error:           #dc2626;
@@ -74,13 +74,13 @@ Built for expert operators managing complex broadcast and OTT workflows. The sys
   --border-strong:        #d1d5db;
   --border-focus:         #2563eb;
   --border-error:         #dc2626;
-  --border-disabled:      #e5e7eb;
+  --border-disabled:      #a1a1a8;
 
   /* ─── Icons ─── */
   --icon-default:         #6b7280;
   --icon-strong:          #374151;
   --icon-muted:           #9ca3af;
-  --icon-disabled:        #d1d5db;
+  --icon-disabled:        #4b5563;
   --icon-inverse:         #ffffff;
   --icon-error:           #dc2626;
 
@@ -206,13 +206,13 @@ Built for expert operators managing complex broadcast and OTT workflows. The sys
   --border-strong:        #374151;
   --border-focus:         #3b82f6;
   --border-error:         #f87171;
-  --border-disabled:      #1f1f28;
+  --border-disabled:      #374151;
 
   /* ─── Icons ─── */
   --icon-default:         #9ca3af;
   --icon-strong:          #e5e7eb;
   --icon-muted:           #6b7280;
-  --icon-disabled:        #4b5563;
+  --icon-disabled:        #a1a1a8;
   --icon-inverse:         #111827;
   --icon-error:           #f87171;
 
@@ -328,7 +328,7 @@ Built for expert operators managing complex broadcast and OTT workflows. The sys
 | `--text-secondary` | `#374151` | `#e5e7eb` | Subheadings, descriptions |
 | `--text-muted` | `#6b7280` | `#9ca3af` | Metadata, helper text |
 | `--text-placeholder` | `#9ca3af` | `#6b7280` | Input placeholder |
-| `--text-disabled` | `#9ca3af` | `#a1a1a8` | Disabled text |
+| `--text-disabled` | `#4b5563` | `#a1a1a8` | Disabled text |
 | `--text-inverse` | `#ffffff` | `#111827` | Text on colored backgrounds |
 | `--text-link` | `#2563eb` | `#60a5fa` | Hyperlinks |
 | `--text-error` | `#dc2626` | `#f87171` | Validation errors |
@@ -344,7 +344,7 @@ Built for expert operators managing complex broadcast and OTT workflows. The sys
 | `--border-strong` | `#d1d5db` | `#374151` | Emphasized borders |
 | `--border-focus` | `#2563eb` | `#3b82f6` | Focus ring border color |
 | `--border-error` | `#dc2626` | `#f87171` | Error state |
-| `--border-disabled` | `#e5e7eb` | `#1f1f28` | Disabled component border |
+| `--border-disabled` | `#a1a1a8` | `#374151` | Disabled component border |
 
 ### Icons
 
@@ -353,7 +353,7 @@ Built for expert operators managing complex broadcast and OTT workflows. The sys
 | `--icon-default` | `#6b7280` | `#9ca3af` | Standard icons |
 | `--icon-strong` | `#374151` | `#e5e7eb` | Emphasized icons |
 | `--icon-muted` | `#9ca3af` | `#6b7280` | Subtle / secondary icons |
-| `--icon-disabled` | `#d1d5db` | `#4b5563` | Disabled state |
+| `--icon-disabled` | `#4b5563` | `#a1a1a8` | Disabled state |
 | `--icon-inverse` | `#ffffff` | `#111827` | Icons on colored bg |
 | `--icon-error` | `#dc2626` | `#f87171` | Error indicator |
 

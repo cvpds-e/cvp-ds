@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { CircleHelp, Filter, PanelLeftClose, PanelLeftOpen, Plus, Save } from 'lucide-react';
+import { CircleHelp, Filter, Lock, PanelLeftClose, PanelLeftOpen, Plus, Save } from 'lucide-react';
 import { Breadcrumbs } from './Breadcrumbs';
+import { Checkbox } from './Checkbox';
 import { ContentBrowserModal } from './ContentBrowserModal';
 import { HeaderNavigation } from './HeaderNavigation';
 import { IconButton } from './IconButton';
@@ -15,6 +16,7 @@ import { Segmented } from './Segmented';
 import { SortControl } from './SortControl';
 import { Tabs } from './Tabs';
 import { TextInput } from './TextInput';
+import { NumberInput } from './NumberInput';
 import { MultiSelect } from './MultiSelect';
 import { TagFilter } from './TagFilter';
 import { TextButton } from './TextButton';
@@ -40,14 +42,17 @@ function FilterTooltip({ content }: { content: string }) {
   return <Tooltip content={content} side="right" align="center"><button className="rail-details__filter-help" type="button" aria-label={content}><CircleHelp size={15} aria-hidden="true" /></button></Tooltip>;
 }
 
+function ReadOnlyIndicator() {
+  return <Tooltip content="Read only" side="right" align="center"><span className="rail-details__read-only-indicator" role="img" aria-label="Read only"><Lock size={14} aria-hidden="true" /></span></Tooltip>;
+}
+
 function RailDetailsWorkspace({ railName = 'Trending', initiallyEmpty = false }: RailDetailsProps) {
   const { addToast } = useToast();
   const [name, setName] = useState(railName);
-  const [status, setStatus] = useState('active');
   const [collection, setCollection] = useState('home');
-  const [railPosition, setRailPosition] = useState('2');
   const [contentSlots, setContentSlots] = useState('24');
-  const [assignedPage, setAssignedPage] = useState('home');
+  const [guid, setGuid] = useState('trending-editorial-001');
+  const [disabled, setDisabled] = useState(false);
   const [mediaFormats, setMediaFormats] = useState<string[]>([]);
   const [filterSearch, setFilterSearch] = useState('');
   const [sortField, setSortField] = useState('title');
@@ -104,12 +109,19 @@ function RailDetailsWorkspace({ railName = 'Trending', initiallyEmpty = false }:
   });
   const isEmptyRail = items.length === 0;
   const hasEmptyQuery = !isEmptyRail && queriedItems.length === 0;
+  const remainingManualSlots = initiallyEmpty && items.length > 0 ? Math.max(Number(contentSlots) - items.length, 0) : 0;
 
   const basePanel = <div className="rail-details__form">
-    <div className="rail-details__form-section"><TextInput label="Rail name" value={name} onChange={(event) => setName(event.target.value)} /><Select label="Rail status" value={status} onChange={setStatus} options={[{ value: 'active', label: 'Active' }, { value: 'draft', label: 'Draft' }, { value: 'inactive', label: 'Inactive' }]} /><Select label="Rail collection" value={collection} onChange={setCollection} options={[{ value: 'home', label: 'Home' }, { value: 'drama', label: 'Drama' }, { value: 'kids', label: 'Kids' }]} /><div className="rail-details__form-grid"><TextInput label="Rail position" type="number" value={railPosition} onChange={(event) => setRailPosition(event.target.value)} min="1" /><TextInput label="Content slots" type="number" value={contentSlots} onChange={(event) => setContentSlots(event.target.value)} min="1" /></div><Select label="Assign to page" value={assignedPage} onChange={setAssignedPage} options={[{ value: 'home', label: 'Home' }, { value: 'discover', label: 'Discover' }, { value: 'kids', label: 'Kids' }]} /></div>
+    <div className="rail-details__form-section">
+      <TextInput label="Rail name" required value={name} onChange={(event) => setName(event.target.value)} />
+      <Select label="Rail collection" required labelTooltip={<ReadOnlyIndicator />} value={collection} onChange={setCollection} disabled options={[{ value: 'home', label: 'Home screen' }, { value: 'drama', label: 'Drama' }, { value: 'kids', label: 'Kids' }]} />
+      <NumberInput label="Number of content slots" required labelTooltip={<ReadOnlyIndicator />} value={contentSlots === '' ? '' : Number(contentSlots)} onValueChange={(value) => setContentSlots(String(value))} min={1} disabled />
+      <TextInput label="GUID" required value={guid} onChange={(event) => setGuid(event.target.value)} />
+      <Checkbox label="Disable" checked={disabled} onChange={(checked) => setDisabled(checked === true)} />
+    </div>
   </div>;
   const hasQueryFilters = Boolean(mediaFormats.length || genres.length || releaseYear || availability || anyTitlePrefix || approved || distributionRights.length || languages.length || isAdult || exactTitle || titlePrefix || tvSeason || sortField !== 'title' || sortDirection !== 'desc');
-  const hasBaseChanges = name !== railName || status !== 'active' || collection !== 'home' || railPosition !== '2' || contentSlots !== '24' || assignedPage !== 'home';
+  const hasBaseChanges = name !== railName || collection !== 'home' || contentSlots !== '24' || guid !== 'trending-editorial-001' || disabled;
   const shouldShowSaveFooter = hasBaseChanges || hasQueryFilters || matchMode !== 'all' || contentDirty;
   const matchesFilterSearch = (...labels: string[]) => !filterSearch.trim() || labels.some((label) => label.toLocaleLowerCase().includes(filterSearch.trim().toLocaleLowerCase()));
   const clearQueryFilters = () => {
@@ -131,11 +143,10 @@ function RailDetailsWorkspace({ railName = 'Trending', initiallyEmpty = false }:
   };
   const cancelChanges = () => {
     setName(railName);
-    setStatus('active');
     setCollection('home');
-    setRailPosition('2');
     setContentSlots('24');
-    setAssignedPage('home');
+    setGuid('trending-editorial-001');
+    setDisabled(false);
     setItems(initiallyEmpty ? [] : initialItems);
     setContentDirty(false);
     setFilterSearch('');
@@ -183,7 +194,7 @@ function RailDetailsWorkspace({ railName = 'Trending', initiallyEmpty = false }:
       <WorkspaceLayout.Main className="rail-details__main">
         <div className="rail-details__preview-bar"><IconButton aria-label={sidebarOpen ? 'Collapse configuration' : 'Open configuration'} aria-expanded={sidebarOpen} onClick={() => setSidebarOpen((value) => !value)}>{sidebarOpen ? <PanelLeftClose size={16} /> : <PanelLeftOpen size={16} />}</IconButton><strong>Content Preview</strong><span className="cvp-status-tag cvp-status-tag--editorial rail-details__preview-tag">Editorial</span></div>
         <div className="rail-details__content">
-          {isEmptyRail ? <section className="rail-details__empty-rail" aria-labelledby="empty-rail-title"><div className="rail-details__empty-rail-card"><div className="rail-details__empty-rail-copy"><h2 id="empty-rail-title">No content in this rail</h2><p>Add content to this rail using one of the options below.</p></div><div className="rail-details__empty-rail-actions"><IconButtonWithText size="m" icon={<Filter />} text="Add algorithmically" description="Use content query filters to automatically populate this rail." onClick={addAlgorithmically} /><IconButtonWithText size="m" icon={<Plus />} text="Add manually" description="Browse and select individual content items to add." onClick={addManually} /></div></div></section> : <>{hasEmptyQuery && <NotificationBanner title="No content found" message="No content matches the current editorial VOD criteria." variant="warning" />}<RailContentGallery title={name} showItemCount itemCountPlacement="navigation" items={queriedItems} variant="management" emptyMessage={hasEmptyQuery ? 'Try a different filter or clear the current criteria.' : undefined} emptySlotCount={hasEmptyQuery ? 10 : 0} onAddToEmptySlot={addManually} onEdit={(item) => { setCandidateSelection([item.id]); setBrowserOpen(true); }} onDelete={(item) => { setItems((current) => current.filter((candidate) => candidate.id !== item.id)); setContentDirty(true); addToast({ variant: 'info', title: 'Content removed', description: item.title }); }} onPin={(item) => { setContentDirty(true); addToast({ variant: 'info', title: 'Pin updated', description: item.title }); }} onDrag={(id, position) => { setContentDirty(true); addToast({ variant: 'info', title: 'Order changed', description: `Item ${id} moved to position ${position + 1}.` }); }} /></>}
+          {isEmptyRail ? <section className="rail-details__empty-rail" aria-labelledby="empty-rail-title"><div className="rail-details__empty-rail-card"><div className="rail-details__empty-rail-copy"><h2 id="empty-rail-title">No content in this rail</h2><p>Add content to this rail using one of the options below.</p></div><div className="rail-details__empty-rail-actions"><IconButtonWithText size="m" icon={<Filter />} text="Add algorithmically" description="Use content query filters to automatically populate this rail." onClick={addAlgorithmically} /><IconButtonWithText size="m" icon={<Plus />} text="Add manually" description="Browse and select individual content items to add." onClick={addManually} /></div></div></section> : <>{hasEmptyQuery && <NotificationBanner title="No content found" message="No content matches the current editorial VOD criteria." variant="warning" />}<RailContentGallery title={name} showItemCount itemCountPlacement="navigation" items={queriedItems} variant="management" emptyMessage={hasEmptyQuery ? 'Try a different filter or clear the current criteria.' : undefined} emptySlotCount={hasEmptyQuery ? 10 : remainingManualSlots} onAddToEmptySlot={addManually} onEdit={(item) => { setCandidateSelection([item.id]); setBrowserOpen(true); }} onDelete={(item) => { setItems((current) => current.filter((candidate) => candidate.id !== item.id)); setContentDirty(true); addToast({ variant: 'info', title: 'Content removed', description: item.title }); }} onPin={(item) => { setContentDirty(true); addToast({ variant: 'info', title: 'Pin updated', description: item.title }); }} onDrag={(id, position) => { setContentDirty(true); addToast({ variant: 'info', title: 'Order changed', description: `Item ${id} moved to position ${position + 1}.` }); }} /></>}
           {showPreviewGuide && <NotificationBanner title="Preview guide" message="This preview reflects the current rail configuration. Reorder or pin content, then save to publish your changes." variant="info" actionLabel="Review query" onAction={() => setSidebarOpen(true)} />}
         </div>
       </WorkspaceLayout.Main>

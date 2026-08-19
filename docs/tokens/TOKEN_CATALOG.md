@@ -19,7 +19,7 @@ This catalog is the readable index of every active CVP token. It preserves each 
 | --- | --- | ---: |
 | Primitive | `cvp-primitives.css` | 206 |
 | Semantic | `cvp-semantic-tokens.css` | 487 |
-| Component | `cvp-component-tokens.css` | 1255 |
+| Component | `cvp-component-tokens.css` | 1241 |
 
 ## Tier 1 — Primitive tokens
 
@@ -290,7 +290,7 @@ Intent-based roles. Theme-specific rows are shown with their scope so the light 
 | `--cvp-color-border-default` | `var(--cvp-primitive-neutral-500)` | Dark theme |
 | `--cvp-color-border-strong` | `var(--cvp-primitive-neutral-400)` | Dark theme |
 | `--cvp-color-border-bold` | `var(--cvp-primitive-neutral-50)` | Dark theme |
-| `--cvp-color-border-disabled` | `var(--cvp-primitive-neutral-650)` | Dark theme |
+| `--cvp-color-border-disabled` | `var(--cvp-primitive-neutral-400)` | Dark theme |
 | `--cvp-color-border-error` | `var(--cvp-primitive-red-400)` | Dark theme |
 | `--cvp-color-border-brand` | `var(--cvp-primitive-blue-600)` | Dark theme |
 | `--cvp-color-border-success` | `var(--cvp-primitive-green-400)` | Dark theme |
@@ -300,7 +300,7 @@ Intent-based roles. Theme-specific rows are shown with their scope so the light 
 | `--cvp-color-icon-strong` | `var(--cvp-primitive-neutral-10)` | Dark theme |
 | `--cvp-color-icon-muted` | `var(--cvp-primitive-neutral-200)` | Dark theme |
 | `--cvp-color-icon-subtle` | `var(--cvp-primitive-neutral-75)` | Dark theme |
-| `--cvp-color-icon-disabled` | `var(--cvp-primitive-neutral-300)` | Dark theme |
+| `--cvp-color-icon-disabled` | `var(--cvp-primitive-neutral-100)` | Dark theme |
 | `--cvp-color-icon-inverse` | `var(--cvp-primitive-neutral-750)` | Dark theme |
 | `--cvp-color-icon-brand` | `var(--cvp-primitive-blue-600)` | Dark theme |
 | `--cvp-color-icon-error` | `var(--cvp-primitive-red-400)` | Dark theme |
@@ -380,7 +380,7 @@ Intent-based roles. Theme-specific rows are shown with their scope so the light 
 | `--cvp-color-text-muted` | `var(--cvp-primitive-neutral-300)` | Light theme |
 | `--cvp-color-text-subtle` | `var(--cvp-primitive-neutral-200)` | Light theme |
 | `--cvp-color-text-placeholder` | `var(--cvp-primitive-neutral-200)` | Light theme |
-| `--cvp-color-text-disabled` | `var(--cvp-primitive-neutral-150)` | Light theme |
+| `--cvp-color-text-disabled` | `var(--cvp-primitive-neutral-300)` | Light theme |
 | `--cvp-color-text-inverse` | `var(--cvp-primitive-neutral-0)` | Light theme |
 | `--cvp-color-text-on-brand` | `var(--cvp-primitive-neutral-0)` | Light theme |
 | `--cvp-color-text-on-dark` | `var(--cvp-primitive-neutral-0)` | Light theme |
@@ -401,7 +401,7 @@ Intent-based roles. Theme-specific rows are shown with their scope so the light 
 | `--cvp-color-border-default` | `var(--cvp-primitive-neutral-10)` | Light theme |
 | `--cvp-color-border-strong` | `var(--cvp-primitive-neutral-25)` | Light theme |
 | `--cvp-color-border-bold` | `var(--cvp-primitive-neutral-50)` | Light theme |
-| `--cvp-color-border-disabled` | `var(--cvp-primitive-neutral-10)` | Light theme |
+| `--cvp-color-border-disabled` | `var(--cvp-primitive-neutral-100)` | Light theme |
 | `--cvp-color-border-error` | `var(--cvp-primitive-red-600)` | Light theme |
 | `--cvp-color-border-brand` | `var(--cvp-primitive-blue-600)` | Light theme |
 | `--cvp-color-border-success` | `var(--cvp-primitive-green-500)` | Light theme |
@@ -411,7 +411,7 @@ Intent-based roles. Theme-specific rows are shown with their scope so the light 
 | `--cvp-color-icon-strong` | `var(--cvp-primitive-neutral-400)` | Light theme |
 | `--cvp-color-icon-muted` | `var(--cvp-primitive-neutral-150)` | Light theme |
 | `--cvp-color-icon-subtle` | `var(--cvp-primitive-neutral-150)` | Light theme |
-| `--cvp-color-icon-disabled` | `var(--cvp-primitive-neutral-25)` | Light theme |
+| `--cvp-color-icon-disabled` | `var(--cvp-primitive-neutral-300)` | Light theme |
 | `--cvp-color-icon-inverse` | `var(--cvp-primitive-neutral-0)` | Light theme |
 | `--cvp-color-icon-brand` | `var(--cvp-primitive-blue-600)` | Light theme |
 | `--cvp-color-icon-error` | `var(--cvp-primitive-red-600)` | Light theme |
@@ -604,7 +604,7 @@ Intent-based roles. Theme-specific rows are shown with their scope so the light 
 | `--cvp-motion-duration-bounce` | `var(--cvp-primitive-duration-bounce)` | Light theme |
 | `--cvp-motion-easing-standard` | `var(--cvp-primitive-easing-standard)` | Light theme |
 | `--cvp-motion-easing-bounce` | `var(--cvp-primitive-easing-bounce)` | Light theme |
-| `--cvp-opacity-disabled` | `var(--cvp-primitive-opacity-disabled)` | Light theme |
+| `--cvp-opacity-disabled` | `1` | Light theme |
 | `--cvp-opacity-placeholder` | `var(--cvp-primitive-opacity-placeholder)` | Light theme |
 | `--cvp-opacity-scrim-light` | `var(--cvp-primitive-opacity-scrim-light)` | Light theme |
 | `--cvp-opacity-scrim-dark` | `var(--cvp-primitive-opacity-scrim-dark)` | Light theme |
@@ -1139,7 +1139,7 @@ Component contracts. Each group is named after the component or shared contract 
 </details>
 
 <details>
-<summary><strong>content</strong> — 42 tokens</summary>
+<summary><strong>content</strong> — 28 tokens</summary>
 
 | Token | Value | Scope |
 | --- | --- | --- |
@@ -1157,13 +1157,6 @@ Component contracts. Each group is named after the component or shared contract 
 | `--cvp-content-browser-focus-ring` | `var(--cvp-border-focus-ring)` | Shared |
 | `--cvp-content-browser-filter-bg` | `var(--cvp-color-surface-sunken)` | Shared |
 | `--cvp-content-browser-filter-active` | `var(--cvp-color-brand-default)` | Shared |
-| `--cvp-content-browser-item-bg` | `var(--cvp-color-surface-default)` | Shared |
-| `--cvp-content-browser-item-bg-hover` | `var(--cvp-color-surface-hover)` | Shared |
-| `--cvp-content-browser-item-border` | `var(--cvp-color-border-subtle)` | Shared |
-| `--cvp-content-browser-item-border-hover` | `var(--cvp-color-border-default)` | Shared |
-| `--cvp-content-browser-placeholder-bg` | `var(--cvp-color-surface-sunken)` | Shared |
-| `--cvp-content-browser-placeholder-icon` | `var(--cvp-color-icon-subtle)` | Shared |
-| `--cvp-content-browser-checkbox-scrim` | `var(--cvp-color-surface-overlay)` | Shared |
 | `--cvp-content-browser-gap` | `var(--cvp-space-3)` | Shared |
 | `--cvp-content-browser-control-gap` | `var(--cvp-space-1)` | Shared |
 | `--cvp-content-browser-toolbar-padding` | `var(--cvp-space-4) var(--cvp-space-6)` | Shared |
@@ -1175,13 +1168,6 @@ Component contracts. Each group is named after the component or shared contract 
 | `--cvp-content-browser-search-max-width` | `420px` | Shared |
 | `--cvp-content-browser-filter-dot-size` | `var(--cvp-space-2)` | Shared |
 | `--cvp-content-browser-results-bar-height` | `var(--cvp-space-900)` | Shared |
-| `--cvp-content-browser-card-min-width` | `150px` | Shared |
-| `--cvp-content-browser-list-image-width` | `120px` | Shared |
-| `--cvp-content-browser-item-gap` | `var(--cvp-space-3)` | Shared |
-| `--cvp-content-browser-item-padding` | `var(--cvp-space-3)` | Shared |
-| `--cvp-content-browser-item-radius` | `var(--cvp-radius-md)` | Shared |
-| `--cvp-content-browser-font-size` | `var(--cvp-font-size-md)` | Shared |
-| `--cvp-content-browser-meta-font-size` | `var(--cvp-font-size-sm)` | Shared |
 | `--cvp-content-browser-state-min-height` | `280px` | Shared |
 | `--cvp-content-browser-pagination-height` | `var(--cvp-space-900)` | Shared |
 | `--cvp-content-browser-pagination-control-size` | `var(--cvp-space-8)` | Shared |

@@ -10,6 +10,7 @@ import { IconSmallButtonDocumentation } from './components/IconSmallButtonDocume
 import { IconButtonWithTextDocumentation } from './components/IconButtonWithTextDocumentation';
 import { TextButtonDocumentation } from './components/TextButtonDocumentation';
 import { TextInputDocumentation } from './components/TextInputDocumentation';
+import { NumberInputDocumentation } from './components/NumberInputDocumentation';
 import { TextAreaDocumentation } from './components/TextAreaDocumentation';
 import { MiscInputDocumentation } from './components/MiscInputDocumentation';
 import { CheckboxDocumentation } from './components/CheckboxDocumentation';
@@ -549,6 +550,8 @@ export default function App() {
         return <TextButtonDocumentation />;
       case 'text-input':
         return <TextInputDocumentation />;
+      case 'number-input':
+        return <NumberInputDocumentation />;
       case 'text-area':
         return <TextAreaDocumentation />;
       case 'misc-input':

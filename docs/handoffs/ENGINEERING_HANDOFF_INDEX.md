@@ -41,6 +41,7 @@ All implementation paths in this document are relative to `src/app/components/` 
 | Component | Preview | Canonical source | Handoff |
 |---|---|---|---|
 | Text Input | `?page=text-input` | `TextInput.tsx` / `TextInput.css` / `--cvp-input-*` | `docs/handoffs/components/TEXT_INPUT_STANDARDIZATION.md` |
+| Number Input | `?page=number-input` | `NumberInput.tsx` / `NumberInput.css` / `--cvp-input-*` | `docs/handoffs/components/NUMBER_INPUT_STANDARDIZATION.md` |
 | Text Area | `?page=text-area` | `TextArea.tsx` / `TextArea.css` / `--cvp-textarea-*` | `docs/handoffs/components/TEXT_AREA_SELECT_STANDARDIZATION.md` |
 | Misc Input | `?page=misc-input` | `MiscInput.tsx` / `MiscInput.css` / `--cvp-misc-input-*` | `docs/handoffs/components/MISC_INPUT_STANDARDIZATION.md` |
 | Checkbox | `?page=checkbox` | `Checkbox.tsx` / `Checkbox.css` / `--cvp-checkbox-*` | `docs/handoffs/components/CHECKBOX_STANDARDIZATION.md` |
@@ -205,4 +206,3 @@ These do not block the design handoff, but they are required before treating the
 - `docs/handoffs/checkpoints/ENGINEERING_HANDOFF_READINESS.md`
 - `docs/specifications/DESIGN_SYSTEM_COMPONENT_INVENTORY.md`
 - `docs/project/IMPLEMENTATION_STATUS.md`
-

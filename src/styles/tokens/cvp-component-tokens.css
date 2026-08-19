@@ -730,13 +730,6 @@
   /* Section / color.bg.base.section: navigation and grouped filter region. */
   --cvp-content-browser-filter-bg:       var(--cvp-color-surface-sunken);
   --cvp-content-browser-filter-active:   var(--cvp-color-brand-default);
-  --cvp-content-browser-item-bg:         var(--cvp-color-surface-default);
-  --cvp-content-browser-item-bg-hover:   var(--cvp-color-surface-hover);
-  --cvp-content-browser-item-border:     var(--cvp-color-border-subtle);
-  --cvp-content-browser-item-border-hover: var(--cvp-color-border-default);
-  --cvp-content-browser-placeholder-bg:  var(--cvp-color-surface-sunken);
-  --cvp-content-browser-placeholder-icon:var(--cvp-color-icon-subtle);
-  --cvp-content-browser-checkbox-scrim:  var(--cvp-color-surface-overlay);
   --cvp-content-browser-gap:             var(--cvp-space-3);
   --cvp-content-browser-control-gap:     var(--cvp-space-1);
   --cvp-content-browser-toolbar-padding: var(--cvp-space-4) var(--cvp-space-6);
@@ -748,13 +741,6 @@
   --cvp-content-browser-search-max-width: 420px;
   --cvp-content-browser-filter-dot-size: var(--cvp-space-2);
   --cvp-content-browser-results-bar-height: var(--cvp-space-900);
-  --cvp-content-browser-card-min-width:  150px;
-  --cvp-content-browser-list-image-width: 120px;
-  --cvp-content-browser-item-gap:        var(--cvp-space-3);
-  --cvp-content-browser-item-padding:    var(--cvp-space-3);
-  --cvp-content-browser-item-radius:     var(--cvp-radius-md);
-  --cvp-content-browser-font-size:       var(--cvp-font-size-md);
-  --cvp-content-browser-meta-font-size:  var(--cvp-font-size-sm);
   --cvp-content-browser-state-min-height: 280px;
   --cvp-content-browser-pagination-height: var(--cvp-space-900);
   --cvp-content-browser-pagination-control-size: var(--cvp-space-8);

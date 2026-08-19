@@ -28,6 +28,7 @@ const NAV_ITEMS = [
   
   // Form Components
   { id: 'text-input', label: 'Text Input', category: 'Forms' },
+  { id: 'number-input', label: 'Number Input', category: 'Forms' },
   { id: 'text-area', label: 'Text Area', category: 'Forms' },
   { id: 'misc-input', label: 'Misc Input', category: 'Forms' },
   { id: 'checkbox', label: 'Checkbox', category: 'Forms' },

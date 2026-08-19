@@ -10,6 +10,7 @@ import { Table, TableColumn, TableRow } from './Table';
 import { TextButton } from './TextButton';
 import { TextArea } from './TextArea';
 import { TextInput } from './TextInput';
+import { NumberInput } from './NumberInput';
 import { Select } from './Select';
 import { OutlineButton } from './OutlineButton';
 import { Tree, TreeItem } from './Tree';
@@ -185,7 +186,7 @@ export function RailsList() {
           <TextButton onClick={() => setPersonalizerConfiguration('general-recommendations')}><Plus size={16} aria-hidden="true" />Create new configuration</TextButton>
         </div>}
         <Select label="Rail collection" value={newRailCollection} onChange={setNewRailCollection} options={collections.map((collection) => ({ value: collection.id, label: collectionLabels[collection.id] ?? collection.label }))} />
-        <TextInput label="Number of content slots" type="number" min="1" value={newRailSlots} onChange={(event) => setNewRailSlots(event.target.value)} />
+        <NumberInput label="Number of content slots" min={1} value={newRailSlots === '' ? '' : Number(newRailSlots)} onValueChange={(value) => setNewRailSlots(String(value))} />
         <TextInput label="External reference ID" optionalText="Advanced" value={newRailReference} onChange={(event) => setNewRailReference(event.target.value)} placeholder="Enter external reference ID" />
       </div>
     </Modal>

@@ -37,6 +37,9 @@ export interface RailContentGalleryProps {
   emptyMessage?: string;
   emptySlotCount?: number;
   onAddToEmptySlot?: (position: number) => void;
+  size?: 'default' | 'compact';
+  /** Hide placement-source labels when displaying independent browse results. */
+  showSourceLabels?: boolean;
 }
 
 export interface RailContentGalleryHandle { scrollLeft: () => void; scrollRight: () => void; }
@@ -46,7 +49,7 @@ const validThumbnail = (value: string) => /^https?:\/\//.test(value?.trim() ?? '
 export const RailContentGallery = forwardRef<RailContentGalleryHandle, RailContentGalleryProps>(function RailContentGallery({
   title, items, variant = 'display', showItemCount = true, itemCountPlacement = 'heading', showNavigation = true, headerStatus, headerDate, hideHeader = false,
   onScrollStateChange, onItemClick, onEdit, onDelete, onPin, onDrag, onSelectionChange, selectedItems = [], loading = false,
-  emptyMessage = 'No content has been added to this rail yet.', emptySlotCount = 0, onAddToEmptySlot,
+  emptyMessage = 'No content has been added to this rail yet.', emptySlotCount = 0, onAddToEmptySlot, size = 'default', showSourceLabels = true,
 }, ref) {
   const scroller = useRef<HTMLDivElement>(null);
   const [canLeft, setCanLeft] = useState(false);
@@ -82,7 +85,7 @@ export const RailContentGallery = forwardRef<RailContentGalleryHandle, RailConte
   const togglePin = (item: RailContentItem) => { setPinned((current) => { const next = new Set(current); next.has(item.id) ? next.delete(item.id) : next.add(item.id); return next; }); onPin?.(item); };
 
   return (
-    <section className={`rail-content-gallery cvp-rail-gallery cvp-rail-gallery--${variant}`} aria-label={title}>
+    <section className={`rail-content-gallery cvp-rail-gallery cvp-rail-gallery--${variant} cvp-rail-gallery--${size}`} aria-label={title}>
       {!hideHeader && <header className="cvp-rail-gallery__header"><div className="cvp-rail-gallery__heading"><h3>{title}</h3>{showItemCount && itemCountPlacement === 'heading' && itemCount}{headerStatus && <span className="cvp-rail-gallery__status">{headerStatus}</span>}{headerDate && <span className="cvp-rail-gallery__date">{headerDate}</span>}</div>{showNavigation && !grid && hasRailItems && <div className="cvp-rail-gallery__navigation" role="group" aria-label={`${title} navigation`}>{showItemCount && itemCountPlacement === 'navigation' && itemCount}<IconButton size="small" aria-label="Previous items" disabled={!canLeft} onClick={() => scroll(-1)}><ChevronLeft size={16} /></IconButton><IconButton size="small" aria-label="Next items" disabled={!canRight} onClick={() => scroll(1)}><ChevronRight size={16} /></IconButton></div>}</header>}
 
       {loading ? <div className="cvp-rail-gallery__state" role="status"><span className="cvp-rail-gallery__spinner" />Loading content…</div> : items.length === 0 && emptySlotCount > 0 ? <div ref={scroller} className="cvp-rail-gallery__items cvp-rail-gallery__items--rail cvp-rail-gallery__empty-slots" aria-label="Empty content slots" onScroll={updateScrollState}>{Array.from({ length: emptySlotCount }, (_, index) => <button key={index} className="cvp-rail-gallery__empty-slot" type="button" onClick={() => onAddToEmptySlot?.(index + 1)} aria-label={`Add content to slot ${index + 1}`}><span className="cvp-rail-gallery__empty-slot-media"><Plus size={16} aria-hidden="true" /><span className="cvp-rail-gallery__position">{index + 1}</span></span><span className="cvp-rail-gallery__empty-slot-label">Empty slot</span></button>)}</div> : items.length === 0 ? <div className="cvp-rail-gallery__state"><Film size={32} aria-hidden="true" /><strong>No content yet</strong><p>{emptyMessage}</p></div> : <div ref={scroller} className={`cvp-rail-gallery__items ${grid ? 'cvp-rail-gallery__items--grid' : 'cvp-rail-gallery__items--rail'}`} onScroll={updateScrollState}>
@@ -98,8 +101,12 @@ export const RailContentGallery = forwardRef<RailContentGalleryHandle, RailConte
               {management && <><span className="cvp-rail-gallery__position">{item.position ?? index + 1}</span><span className="cvp-rail-gallery__drag"><GripVertical size={16} aria-hidden="true" /></span><div className="cvp-rail-gallery__actions"><IconSmallButton variant="rail-gallery" aria-label={`Edit ${item.title}`} onClick={() => onEdit?.(item)}><Edit2 /></IconSmallButton><IconSmallButton variant="rail-gallery" className="cvp-rail-gallery__delete-control" aria-label={`Delete ${item.title}`} onClick={() => onDelete?.(item)}><Trash2 /></IconSmallButton></div>{isPinned && <IconSmallButton variant="rail-gallery" className="cvp-rail-gallery__pin-control" aria-label={`Unpin ${item.title}`} aria-pressed="true" onClick={() => togglePin(item)}><Pin /></IconSmallButton>}</>}
               {selectable && <Checkbox className="cvp-rail-gallery__checkbox" checked={isSelected} aria-label={`Select ${item.title}`} onChange={() => toggleSelection(item.id)} />}
             </div>
-            <div className="cvp-rail-gallery__copy"><span className={`cvp-rail-gallery__source-tag cvp-rail-gallery__source-tag--${contentSource}`}>{contentSource === 'manual' ? 'Manual' : 'Algorithmic'}</span><strong className="cvp-rail-gallery__title" title={item.title}>{item.title}</strong><span className="cvp-rail-gallery__meta">{[item.year, item.metadata?.category, item.metadata?.duration].filter(Boolean).join(' · ')}</span></div>
+            <div className="cvp-rail-gallery__copy">{showSourceLabels && <span className={`cvp-rail-gallery__source-tag cvp-rail-gallery__source-tag--${contentSource}`}>{contentSource === 'manual' ? 'Manual' : 'Algorithmic'}</span>}<strong className="cvp-rail-gallery__title" title={item.title}>{item.title}</strong><span className="cvp-rail-gallery__meta">{[item.year, item.metadata?.category, item.metadata?.duration].filter(Boolean).join(' · ')}</span></div>
           </article>;
+        })}
+        {Array.from({ length: emptySlotCount }, (_, index) => {
+          const position = items.length + index + 1;
+          return <button key={`empty-slot-${position}`} className="cvp-rail-gallery__empty-slot" type="button" onClick={() => onAddToEmptySlot?.(position)} aria-label={`Add content to slot ${position}`}><span className="cvp-rail-gallery__empty-slot-media"><Plus size={16} aria-hidden="true" /><span className="cvp-rail-gallery__position">{position}</span></span><span className="cvp-rail-gallery__empty-slot-label">Empty slot</span></button>;
         })}
       </div>}
     </section>

@@ -16,13 +16,12 @@ const sampleItems: ContentItem[] = [
 ];
 
 const tokens = [
-  ['Surface', '--cvp-content-browser-item-bg', '--cvp-color-surface-default', 'Theme-resolved surface', 'Result item'],
   ['Control border', '--cvp-content-browser-control-border', '--cvp-input-border', 'Shared form boundary', 'Search / selects'],
   ['Filter region', '--cvp-content-browser-filter-bg', '--cvp-color-surface-sunken', 'Section / color.bg.base.section', 'Expanded filters'],
   ['Filter controls', '--cvp-sort-control-* / --cvp-select-* / --cvp-multi-select-* / --cvp-tag-filter-*', 'Canonical component contracts', 'No local control styling', 'Sort and editorial criteria'],
   ['Focus', '--cvp-content-browser-focus-ring', '--cvp-border-focus-ring', 'Border + halo', ':focus-visible'],
   ['Checkbox', '--cvp-checkbox-border', '--cvp-input-border', 'Shared input boundary', 'Selection controls'],
-  ['Placeholder', '--cvp-content-browser-placeholder-bg', '--cvp-color-surface-sunken', 'Theme-resolved media fallback', 'Missing thumbnail'],
+  ['Result tile', '--cvp-gallery-*', 'Rail Content Gallery', 'Shared compact poster tile', 'Search results'],
   ['Divider', '--cvp-content-browser-divider', '--cvp-modal-divider', 'Shared overlay divider', 'Regions'],
   ['Modal surface', '--cvp-modal-bg', '--cvp-color-surface-default', 'Theme-resolved overlay surface', 'Container / footer'],
   ['Radius', '--cvp-content-browser-item-radius', '--cvp-radius-md', '8px', 'Result item'],
@@ -55,7 +54,7 @@ export function ContentBrowserModalDocumentation() {
         <div className="content-browser-docs__anatomy">
           <article><Search size={20} /><strong>Search first</strong><p>One shared search field finds titles, tags, and years without nesting controls.</p></article>
           <article><Filter size={20} /><strong>Progressive filters</strong><p>Sort by includes an ascending/descending control; Program type, Tags, and Year reuse canonical field controls with aligned responsive layout.</p></article>
-          <article><Grid3X3 size={20} /><strong>Two views</strong><p>Grid and list modes preserve selection, pagination, and metadata.</p></article>
+          <article><Grid3X3 size={20} /><strong>Shared gallery</strong><p>Search results reuse the selectable Rail Content Gallery in its compact portrait-poster layout, preserving selection, pagination, and metadata. Browse results are independent content, so placement-source labels are intentionally hidden.</p></article>
           <article><CheckSquare size={20} /><strong>Quiet selection</strong><p>Checkboxes indicate the selected items; the confirmation button is the single selection count.</p></article>
         </div>
       </section>

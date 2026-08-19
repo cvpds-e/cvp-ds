@@ -29,6 +29,7 @@ Use Multi Select when a user must choose several values from a list long enough 
 - Creation is opt-in at the product level; enable it only if arbitrary domain values are valid.
 - The field has a 40px minimum and grows vertically when tags wrap.
 - The popup's selected-count and Clear all action use the shared 13px interactive metadata size (`--cvp-multi-select-meta-font-size`); they do not inherit the smaller support-text size.
+- The popup opens below by default, flips above the field when space below is limited, and constrains its own scroll region to the viewport so options remain reachable near the bottom of a panel.
 
 ## DOM and interaction contract
 

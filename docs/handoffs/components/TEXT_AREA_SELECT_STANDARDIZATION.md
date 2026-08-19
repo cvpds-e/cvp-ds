@@ -32,6 +32,7 @@ Both components inherit the Text Input conventions for persistent labels, option
 - Arrow keys wrap through enabled options. Home and End move to boundaries. Enter and Space select. Escape closes without selection. Tab closes and advances focus.
 - A named hidden input exposes the selected value to native form submission.
 - Click-away closes the popup; label activation focuses the trigger.
+- Popup placement is viewport-aware: it opens below by default, flips above the trigger when the available lower space cannot contain it, and becomes internally scrollable rather than clipping beyond the viewport.
 - Registered `--cvp-select-*` component tokens compose the shared input and menu token contracts.
 
 | Role | Tier 3 token | Canonical source | Contract | Activation |

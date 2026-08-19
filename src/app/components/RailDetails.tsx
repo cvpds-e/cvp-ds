@@ -60,10 +60,10 @@ function RailDetailsWorkspace({ railName = 'Trending', initiallyEmpty = false }:
   const [matchMode, setMatchMode] = useState<'all' | 'any'>('all');
   const [genres, setGenres] = useState<string[]>([]);
   const [releaseYear, setReleaseYear] = useState('');
-  const [availability, setAvailability] = useState('');
+  const [mediaAvailability, setMediaAvailability] = useState<string[]>([]);
   const [anyTitlePrefix, setAnyTitlePrefix] = useState('');
   const [approved, setApproved] = useState('');
-  const [distributionRights, setDistributionRights] = useState<string[]>([]);
+  const [subscriptionPackages, setSubscriptionPackages] = useState<string[]>([]);
   const [languages, setLanguages] = useState<string[]>([]);
   const [isAdult, setIsAdult] = useState('');
   const [exactTitle, setExactTitle] = useState('');
@@ -91,12 +91,12 @@ function RailDetailsWorkspace({ railName = 'Trending', initiallyEmpty = false }:
       mediaFormats.length ? !mediaFormats.includes('movie') : undefined,
       genres.length ? genres.includes(category) : undefined,
       releaseYear ? (releaseYear === 'before-2010' && Number(item.year) < 2010) || (releaseYear === '2010s' && Number(item.year) >= 2010 && Number(item.year) < 2020) || (releaseYear === '2020s' && Number(item.year) >= 2020) : undefined,
-      availability ? (availability === 'available' && item.metadata.status !== 'inactive') || (availability === 'unavailable' && item.metadata.status === 'inactive') : undefined,
+      mediaAvailability.length ? mediaAvailability.includes(item.metadata.status === 'inactive' ? 'expired' : 'available') : undefined,
       exactTitle ? normalizedTitle === exactTitle.toLocaleLowerCase() : undefined,
       titlePrefix ? normalizedTitle.startsWith(titlePrefix.toLocaleLowerCase()) : undefined,
       anyTitlePrefix ? normalizedTitle.startsWith(anyTitlePrefix.toLocaleLowerCase()) : undefined,
       approved ? (approved === 'yes' ? item.metadata.status !== 'inactive' : item.metadata.status === 'inactive') : undefined,
-      distributionRights.length ? distributionRights.includes(`package-${item.id}`) : undefined,
+      subscriptionPackages.length ? subscriptionPackages.includes(`package-${item.id}`) : undefined,
       languages.length ? languages.includes(languageByCategory[category]) : undefined,
       isAdult ? (isAdult === 'yes' ? item.metadata.status === 'inactive' : item.metadata.status !== 'inactive') : undefined,
       tvSeason ? (tvSeason === '1' ? Number(item.year) < 2010 : tvSeason === '2' ? Number(item.year) < 2020 : Number(item.year) >= 2020) : undefined,
@@ -120,7 +120,7 @@ function RailDetailsWorkspace({ railName = 'Trending', initiallyEmpty = false }:
       <Checkbox label="Disable" checked={disabled} onChange={(checked) => setDisabled(checked === true)} />
     </div>
   </div>;
-  const hasQueryFilters = Boolean(mediaFormats.length || genres.length || releaseYear || availability || anyTitlePrefix || approved || distributionRights.length || languages.length || isAdult || exactTitle || titlePrefix || tvSeason || sortField !== 'title' || sortDirection !== 'desc');
+  const hasQueryFilters = Boolean(mediaFormats.length || genres.length || mediaAvailability.length || releaseYear || anyTitlePrefix || approved || subscriptionPackages.length || languages.length || isAdult || exactTitle || titlePrefix || tvSeason || sortField !== 'title' || sortDirection !== 'desc');
   const hasBaseChanges = name !== railName || collection !== 'home' || contentSlots !== '24' || guid !== 'trending-editorial-001' || disabled;
   const shouldShowSaveFooter = hasBaseChanges || hasQueryFilters || matchMode !== 'all' || contentDirty;
   const matchesFilterSearch = (...labels: string[]) => !filterSearch.trim() || labels.some((label) => label.toLocaleLowerCase().includes(filterSearch.trim().toLocaleLowerCase()));
@@ -128,10 +128,10 @@ function RailDetailsWorkspace({ railName = 'Trending', initiallyEmpty = false }:
     setMediaFormats([]);
     setGenres([]);
     setReleaseYear('');
-    setAvailability('');
+    setMediaAvailability([]);
     setAnyTitlePrefix('');
     setApproved('');
-    setDistributionRights([]);
+    setSubscriptionPackages([]);
     setLanguages([]);
     setIsAdult('');
     setExactTitle('');
@@ -170,15 +170,15 @@ function RailDetailsWorkspace({ railName = 'Trending', initiallyEmpty = false }:
         <div className="rail-details__match-control"><span>Match filters</span><FilterTooltip content="Choose whether content must match all selected filters or at least one selected filter" /><Segmented ariaLabel="Filter match mode" size="small" value={matchMode} onChange={(value) => setMatchMode(value as 'all' | 'any')} options={[{ value: 'all', label: 'All' }, { value: 'any', label: 'Any' }]} /></div>
       </div>
       <div className="rail-details__filter-content">
-        {matchesFilterSearch('Program type') && <TagFilter sections={[{ id: 'program-type', title: 'Program type', options: [{ id: 'movie', label: 'Movie' }, { id: 'series', label: 'Series' }] }]} selectedOptions={mediaFormats} onSelectionChange={setMediaFormats} />}
-        {matchesFilterSearch('Tags') && <MultiSelect label="Tags" value={genres} onChange={setGenres} allowCreate={false} placeholder="Select tags…" options={[{ value: 'action', label: 'Action' }, { value: 'drama', label: 'Drama' }, { value: 'sci-fi', label: 'Sci-Fi' }, { value: 'thriller', label: 'Thriller' }]} />}
+        {matchesFilterSearch('Program type') && <TagFilter sections={[{ id: 'program-type', title: 'Program type', titleTooltip: <FilterTooltip content="Filter content by program type" />, options: [{ id: 'movie', label: 'Movie' }, { id: 'series', label: 'Series' }] }]} selectedOptions={mediaFormats} onSelectionChange={setMediaFormats} />}
+        {matchesFilterSearch('Tags') && <MultiSelect label="Tags" labelTooltip={<FilterTooltip content="Filter content by one or more tags associated with the program" />} value={genres} onChange={setGenres} allowCreate={false} placeholder="Select tags…" options={[{ value: 'action', label: 'Action' }, { value: 'drama', label: 'Drama' }, { value: 'sci-fi', label: 'Sci-Fi' }, { value: 'thriller', label: 'Thriller' }]} />}
+        {matchesFilterSearch('Media availability', 'Available', 'Not yet available', 'Expired', 'Unknown') && <TagFilter sections={[{ id: 'media-availability', title: 'Media availability', titleTooltip: <FilterTooltip content="Filter content by its current availability" />, options: [{ id: 'available', label: 'Available' }, { id: 'notYetAvailable', label: 'Not yet available' }, { id: 'expired', label: 'Expired' }, { id: 'unknown', label: 'Unknown' }] }]} selectedOptions={mediaAvailability} onSelectionChange={setMediaAvailability} />}
         {matchesFilterSearch('Year', 'Release year') && <Select label="Year" labelTooltip={<FilterTooltip content="Filter programs by release year" />} value={releaseYear} onChange={setReleaseYear} placeholder="Select or type a year" options={[{ value: 'before-2010', label: 'Before 2010' }, { value: '2010s', label: '2010–2019' }, { value: '2020s', label: '2020 and later' }]} />}
-        {showDeferredEditorialFilters && matchesFilterSearch('Required availability', 'Availability') && <Select label="Required availability" labelTooltip={<FilterTooltip content="Filter by the availability state required for the program" />} value={availability} onChange={setAvailability} placeholder="Any availability" options={[{ value: 'available', label: 'Available now' }, { value: 'unavailable', label: 'Unavailable' }]} />}
         {matchesFilterSearch('Title', 'Exact title') && <TextInput label="Title" labelTooltip={<FilterTooltip content="Filter programs by exact title match" />} value={exactTitle} onChange={(event) => setExactTitle(event.target.value)} placeholder="Enter title" />}
         {showDeferredEditorialFilters && matchesFilterSearch('Title prefix', 'Primary title') && <TextInput label="Title prefix" labelTooltip={<FilterTooltip content="Filter programs whose primary title starts with the given prefix" />} value={titlePrefix} onChange={(event) => setTitlePrefix(event.target.value)} placeholder="Enter title prefix" />}
         {matchesFilterSearch('Any title prefix') && <TextInput label="Any title prefix" labelTooltip={<FilterTooltip content="Filter programs whose any title starts with the given prefix" />} value={anyTitlePrefix} onChange={(event) => setAnyTitlePrefix(event.target.value)} placeholder="Enter title prefix" />}
         {matchesFilterSearch('Approved') && <Select label="Approved" labelTooltip={<FilterTooltip content="Filter by whether the program has been approved" />} value={approved} onChange={setApproved} placeholder="Select approval…" options={[{ value: 'yes', label: 'Yes' }, { value: 'no', label: 'No' }]} />}
-        {matchesFilterSearch('Distribution right') && <MultiSelect label="Distribution right" labelTooltip={<FilterTooltip content="Filter by the associated distribution right" />} value={distributionRights} onChange={setDistributionRights} allowCreate={false} placeholder="Select distribution rights…" options={[{ value: 'package-1', label: 'Test Package 1' }, { value: 'package-3', label: 'Test Package 3' }, { value: 'package-4', label: 'Test Package 4' }, { value: 'package-5', label: 'Test Package 5' }, { value: 'package-6', label: 'Test Package 6' }]} />}
+        {matchesFilterSearch('Subscription packages', 'Package') && <MultiSelect label="Subscription packages" labelTooltip={<FilterTooltip content="Filter by one or more subscription packages associated with the program" />} value={subscriptionPackages} onChange={setSubscriptionPackages} allowCreate={false} placeholder="Select subscription packages…" options={[{ value: 'package-1', label: 'Test Package 1' }, { value: 'package-3', label: 'Test Package 3' }, { value: 'package-4', label: 'Test Package 4' }, { value: 'package-5', label: 'Test Package 5' }, { value: 'package-6', label: 'Test Package 6' }]} />}
         {matchesFilterSearch('Languages') && <MultiSelect label="Languages" labelTooltip={<FilterTooltip content="Filter by one or more languages associated with the program" />} value={languages} onChange={setLanguages} allowCreate={false} placeholder="Select languages…" options={[{ value: 'en', label: 'English (en)' }, { value: 'es', label: 'Spanish (es)' }, { value: 'fr', label: 'French (fr)' }, { value: 'de', label: 'German (de)' }, { value: 'it', label: 'Italian (it)' }]} />}
         {showDeferredEditorialFilters && matchesFilterSearch('Is adult', 'Adult') && <Select label="Is adult" labelTooltip={<FilterTooltip content="Filter by whether the program is marked as adult content" />} value={isAdult} onChange={setIsAdult} placeholder="Select audience…" options={[{ value: 'yes', label: 'Yes' }, { value: 'no', label: 'No' }]} />}
         {showDeferredEditorialFilters && matchesFilterSearch('TV season', 'Season') && <Select label="TV season" labelTooltip={<FilterTooltip content="Filter programs by their associated television season" />} value={tvSeason} onChange={setTvSeason} placeholder="Select TV season…" options={[{ value: '1', label: 'Season 1' }, { value: '2', label: 'Season 2' }, { value: '3', label: 'Season 3' }]} />}

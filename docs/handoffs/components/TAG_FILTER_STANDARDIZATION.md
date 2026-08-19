@@ -26,3 +26,4 @@ Facet labels use the same typography contract as Select, Text Input, and Multi S
 - `--cvp-tag-filter-title-weight: var(--cvp-input-label-weight)`
 - `--cvp-tag-filter-title-line-height: var(--cvp-line-height-snug)`
 - `--cvp-tag-filter-title-gap: var(--cvp-input-field-gap)` — 4px between the facet label and its tags, matching the shared label-to-control spacing.
+- A facet can provide `titleTooltip` when its filtering meaning needs brief contextual guidance. Place it beside the facet title and use the shared Tooltip component.

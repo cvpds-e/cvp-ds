@@ -43,10 +43,26 @@ export function Select({ options, value, defaultValue = '', onChange, placeholde
   const selectedIndex = options.findIndex(option => option.value === currentValue);
   const selectedOption = options[selectedIndex];
   const enabledIndices = options.map((option, index) => option.disabled ? -1 : index).filter(index => index >= 0);
-  const [popupPosition, setPopupPosition] = useState({ top: 0, left: 0, width: 0 });
+  const [popupPosition, setPopupPosition] = useState({ top: 0, left: 0, width: 0, maxHeight: 0 });
   const positionPopup = () => {
     const rect = triggerRef.current?.getBoundingClientRect();
-    if (rect) setPopupPosition({ top: rect.bottom + 4, left: rect.left, width: rect.width });
+    if (!rect) return;
+
+    const viewportInset = 8;
+    const gap = 4;
+    const spaceAbove = Math.max(0, rect.top - viewportInset - gap);
+    const spaceBelow = Math.max(0, window.innerHeight - rect.bottom - viewportInset - gap);
+    const popupHeight = popupRef.current?.getBoundingClientRect().height || 280;
+    const openUpward = spaceBelow < Math.min(popupHeight, 240) && spaceAbove > spaceBelow;
+    const availableHeight = Math.max(96, openUpward ? spaceAbove : spaceBelow);
+    const renderedHeight = Math.min(popupHeight, availableHeight);
+
+    setPopupPosition({
+      top: openUpward ? rect.top - gap - renderedHeight : rect.bottom + gap,
+      left: rect.left,
+      width: rect.width,
+      maxHeight: availableHeight,
+    });
   };
 
   const open = () => {
@@ -92,9 +108,10 @@ export function Select({ options, value, defaultValue = '', onChange, placeholde
   useEffect(() => {
     if (!isOpen) return;
     positionPopup();
+    const frame = window.requestAnimationFrame(positionPopup);
     window.addEventListener('resize', positionPopup);
     window.addEventListener('scroll', positionPopup, true);
-    return () => { window.removeEventListener('resize', positionPopup); window.removeEventListener('scroll', positionPopup, true); };
+    return () => { window.cancelAnimationFrame(frame); window.removeEventListener('resize', positionPopup); window.removeEventListener('scroll', positionPopup, true); };
   }, [isOpen]);
 
   return <div ref={rootRef} className={['cvp-select', `cvp-select--${size}`, variant === 'button' && 'cvp-select--button', className].filter(Boolean).join(' ')} data-invalid={Boolean(error) || undefined} data-disabled={disabled || undefined}>
@@ -107,7 +124,7 @@ export function Select({ options, value, defaultValue = '', onChange, placeholde
       <span className={selectedOption ? 'cvp-select__value' : 'cvp-select__placeholder'}>{selectedOption?.label ?? placeholder}</span>
       <svg className="cvp-select__chevron" aria-hidden="true" viewBox="0 0 12 12"><path d="M3 4.5 6 7.5 9 4.5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
     </button>
-    {isOpen && typeof document !== 'undefined' && createPortal(<div ref={popupRef} className="cvp-select__popup" style={{ position: 'fixed', top: popupPosition.top, left: popupPosition.left, width: popupPosition.width }}><ul id={listboxId} className="cvp-select__listbox" role="listbox" aria-labelledby={labelId}>
+    {isOpen && typeof document !== 'undefined' && createPortal(<div ref={popupRef} className="cvp-select__popup" style={{ position: 'fixed', top: popupPosition.top, left: popupPosition.left, width: popupPosition.width, maxHeight: popupPosition.maxHeight }}><ul id={listboxId} className="cvp-select__listbox" role="listbox" aria-labelledby={labelId}>
       {options.length ? options.map((option, index) => <li id={`${selectId}-option-${index}`} key={option.value} role="option" aria-selected={index === selectedIndex} aria-disabled={option.disabled || undefined}
         className="cvp-select__option" data-active={index === activeIndex || undefined} data-selected={index === selectedIndex || undefined} data-disabled={option.disabled || undefined}
         onMouseEnter={() => !option.disabled && setActiveIndex(index)} onMouseDown={event => { event.preventDefault(); commit(index); }}>

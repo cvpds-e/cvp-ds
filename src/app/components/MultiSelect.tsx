@@ -1,6 +1,7 @@
 import React,{useEffect,useId,useMemo,useRef,useState}from'react';
 import{createPortal}from'react-dom';
 import{Check,ChevronDown,Plus,X}from'lucide-react';
+import{Pill}from'./Pill';
 import'./MultiSelect.css';
 
 export interface MultiSelectOption{value:string;label:string;disabled?:boolean}
@@ -35,7 +36,7 @@ export function MultiSelect({options,value,defaultValue=[],onChange,id,name,labe
   {label&&<div className="cvp-multi-select__label-row"><label className="cvp-multi-select__label" htmlFor={inputId}>{label}{required&&<span aria-hidden="true"> *</span>}</label>{labelTooltip}</div>}
   <div ref={shellRef} className="cvp-multi-select__shell" onClick={show}>
    <div className="cvp-multi-select__content">
-    {selectedOptions.map(option=><span className="cvp-multi-select__tag" key={option.value}><span>{option.label}</span>{!disabled&&<button type="button" onClick={event=>{event.stopPropagation();remove(option.value)}} aria-label={`Remove ${option.label}`}><X aria-hidden="true"/></button>}</span>)}
+    {selectedOptions.map(option=><Pill className="cvp-multi-select__tag" key={option.value} onRemove={disabled?undefined:()=>remove(option.value)} removeLabel={`Remove ${option.label}`}>{option.label}</Pill>)}
     <input ref={inputRef} id={inputId} className="cvp-multi-select__input" value={query} onChange={event=>{setQuery(event.target.value);setOpen(true)}} onFocus={show} onKeyDown={event=>{if(event.key==='Escape')close();else if(event.key==='ArrowDown'){event.preventDefault();const first=listRef.current?.querySelector<HTMLElement>('[role="option"]:not([aria-disabled="true"])');first?.focus()}else if(event.key==='Enter'&&canCreate){event.preventDefault();create()}else if(event.key==='Backspace'&&!query&&selected.length){remove(selected[selected.length-1])}}} placeholder={selectedOptions.length?'':placeholder} disabled={disabled} required={required&&selected.length===0} role="combobox" aria-expanded={open} aria-controls={listId} aria-haspopup="listbox" aria-autocomplete="list" aria-invalid={hasError||undefined} aria-describedby={[descriptionId,errorId].filter(Boolean).join(' ')||undefined}/>
    </div>
    <div className="cvp-multi-select__controls">{selected.length>0&&!disabled&&<button type="button" onClick={event=>{event.stopPropagation();commit([])}} aria-label="Clear all selections"><X aria-hidden="true"/></button>}<button type="button" className="cvp-multi-select__toggle" onClick={event=>{event.stopPropagation();open?close():show()}} aria-label={open?'Close options':'Open options'} aria-controls={listId} aria-expanded={open} disabled={disabled}><ChevronDown aria-hidden="true"/></button></div>

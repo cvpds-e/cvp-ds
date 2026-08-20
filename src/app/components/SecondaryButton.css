@@ -2,13 +2,12 @@
 .cvp-secondary-button:hover:not(:disabled),.cvp-secondary-button[data-preview-state="hover"]{background:var(--cvp-button-secondary-bg-hover)}
 .cvp-secondary-button:active:not(:disabled),.cvp-secondary-button[data-preview-state="active"]{background:var(--cvp-button-secondary-bg-active);transform:translateY(var(--cvp-button-secondary-press-offset))}
 .cvp-secondary-button:focus-visible,.cvp-secondary-button[data-preview-state="focus"]{box-shadow:var(--cvp-button-secondary-focus-ring)}
-.cvp-secondary-button:disabled{color:var(--cvp-button-secondary-text-disabled);background:var(--cvp-button-secondary-bg-disabled);border-color:var(--cvp-button-secondary-border-disabled);cursor:not-allowed;transform:none}
+.cvp-secondary-button:disabled:not([data-loading]){color:var(--cvp-button-secondary-text-disabled);background:var(--cvp-button-secondary-bg-disabled);border-color:var(--cvp-button-secondary-border-disabled);cursor:not-allowed;transform:none}.cvp-secondary-button[data-loading]{cursor:progress}
 .cvp-secondary-button--compact{min-height:var(--cvp-button-secondary-height-compact);padding-inline:var(--cvp-button-secondary-padding-x-compact)}
 .cvp-secondary-button__label{display:inline-flex;align-items:center;gap:var(--cvp-button-secondary-gap)}
 .cvp-secondary-button__loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:var(--cvp-button-secondary-gap)}
 .cvp-secondary-button[data-loading]{display:inline-grid}
 .cvp-secondary-button[data-loading] .cvp-secondary-button__label{grid-area:1/1;visibility:hidden}
 .cvp-secondary-button[data-loading] .cvp-secondary-button__loading{position:static;grid-area:1/1}
-.cvp-secondary-button__spinner{width:var(--cvp-button-secondary-spinner-size);height:var(--cvp-button-secondary-spinner-size);border:var(--cvp-button-secondary-spinner-width) solid currentColor;border-right-color:transparent;border-radius:var(--cvp-shape-rounded);animation:cvp-secondary-button-spin var(--cvp-motion-duration-slow) linear infinite}
-@keyframes cvp-secondary-button-spin{to{transform:rotate(360deg)}}
-@media(prefers-reduced-motion:reduce){.cvp-secondary-button{transition:none}.cvp-secondary-button__spinner{animation-duration:1.2s}}
+.cvp-secondary-button .cvp-loading-spinner{--cvp-loading-spinner-size-sm:var(--cvp-button-secondary-spinner-size);--cvp-loading-spinner-stroke:var(--cvp-button-secondary-spinner-width)}
+@media(prefers-reduced-motion:reduce){.cvp-secondary-button{transition:none}}

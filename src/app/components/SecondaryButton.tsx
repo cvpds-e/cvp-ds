@@ -1,4 +1,5 @@
 import React from 'react';
+import { LoadingSpinner } from './LoadingSpinner';
 import './SecondaryButton.css';
 
 export interface SecondaryButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -38,7 +39,7 @@ export function SecondaryButton({
   >
     <span className="cvp-secondary-button__label">{children}</span>
     {loading && <span className="cvp-secondary-button__loading" aria-hidden="true">
-      <span className="cvp-secondary-button__spinner" />
+      <LoadingSpinner size="sm" tone="inherit" decorative />
       <span>{loadingText}</span>
     </span>}
   </button>;

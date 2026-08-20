@@ -34,6 +34,7 @@ const NAV_ITEMS = [
   { id: 'checkbox', label: 'Checkbox', category: 'Forms' },
   { id: 'select', label: 'Select', category: 'Forms' },
   { id: 'multi-select', label: 'Multi Select', category: 'Forms' },
+  { id: 'pill', label: 'Pill', category: 'Forms' },
   { id: 'filter', label: 'Filter', category: 'Forms' },
   { id: 'query-controls', label: 'Query Controls', category: 'Forms' },
   { id: 'date-picker', label: 'Date Picker', category: 'Forms' },
@@ -53,6 +54,7 @@ const NAV_ITEMS = [
   { id: 'content-browser-modal', label: 'Content Browser Modal', category: 'Overlays' },
   { id: 'tooltip', label: 'Tooltip', category: 'Overlays' },
   { id: 'skeleton', label: 'Skeleton', category: 'Feedback' },
+  { id: 'loading-spinner', label: 'Loading Spinner', category: 'Feedback' },
   { id: 'toast', label: 'Toast', category: 'Feedback' },
   { id: 'notification-banner', label: 'Notification Banner', category: 'Feedback' },
 

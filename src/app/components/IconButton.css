@@ -2,7 +2,7 @@
 .cvp-icon-button:hover:not(:disabled),.cvp-icon-button[data-preview-state="hover"]{color:var(--cvp-button-icon-color-hover);background:var(--cvp-button-icon-bg-hover)}
 .cvp-icon-button:active:not(:disabled),.cvp-icon-button[data-preview-state="active"]{color:var(--cvp-button-icon-color-active);background:var(--cvp-button-icon-bg-active);transform:translateY(var(--cvp-button-icon-press-offset))}
 .cvp-icon-button:focus-visible,.cvp-icon-button[data-preview-state="focus"]{color:var(--cvp-button-icon-color-hover);box-shadow:var(--cvp-button-icon-focus-ring)}
-.cvp-icon-button:disabled{color:var(--cvp-button-icon-color-disabled);background:var(--cvp-button-icon-bg-disabled);border-color:var(--cvp-button-icon-border-disabled);cursor:not-allowed;transform:none}
+.cvp-icon-button:disabled:not([data-loading]){color:var(--cvp-button-icon-color-disabled);background:var(--cvp-button-icon-bg-disabled);border-color:var(--cvp-button-icon-border-disabled);cursor:not-allowed;transform:none}.cvp-icon-button[data-loading]{cursor:progress}
 .cvp-icon-button--small{width:var(--cvp-button-icon-size-sm);height:var(--cvp-button-icon-size-sm)}
 .cvp-icon-button--large{width:var(--cvp-button-icon-size-lg);height:var(--cvp-button-icon-size-lg)}
 .cvp-icon-button--outline{border-color:var(--cvp-button-icon-outline-border)}
@@ -16,6 +16,5 @@
 .cvp-icon-button--remove:active:not(:disabled),.cvp-icon-button--remove[data-preview-state="active"]{color:var(--cvp-button-icon-remove-color-active);background:var(--cvp-button-icon-remove-bg-active)}
 .cvp-icon-button__content{display:flex;align-items:center;justify-content:center;width:var(--cvp-button-icon-glyph-size);height:var(--cvp-button-icon-glyph-size)}
 .cvp-icon-button__content>svg{width:100%;height:100%}
-.cvp-icon-button__spinner{width:var(--cvp-button-icon-spinner-size);height:var(--cvp-button-icon-spinner-size);border:var(--cvp-button-icon-spinner-width) solid currentColor;border-right-color:transparent;border-radius:var(--cvp-shape-rounded);animation:cvp-icon-button-spin var(--cvp-motion-duration-slow) linear infinite}
-@keyframes cvp-icon-button-spin{to{transform:rotate(360deg)}}
-@media(prefers-reduced-motion:reduce){.cvp-icon-button{transition:none}.cvp-icon-button__spinner{animation-duration:1.2s}}
+.cvp-icon-button .cvp-loading-spinner{--cvp-loading-spinner-size-sm:var(--cvp-button-icon-spinner-size);--cvp-loading-spinner-stroke:var(--cvp-button-icon-spinner-width)}
+@media(prefers-reduced-motion:reduce){.cvp-icon-button{transition:none}}

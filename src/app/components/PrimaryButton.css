@@ -2,13 +2,12 @@
 .cvp-primary-button:hover:not(:disabled),.cvp-primary-button[data-preview-state="hover"]{background:var(--cvp-button-primary-bg-hover)}
 .cvp-primary-button:active:not(:disabled),.cvp-primary-button[data-preview-state="active"]{background:var(--cvp-button-primary-bg-active);transform:translateY(var(--cvp-button-primary-press-offset))}
 .cvp-primary-button:focus-visible,.cvp-primary-button[data-preview-state="focus"]{box-shadow:var(--cvp-button-primary-focus-ring)}
-.cvp-primary-button:disabled{color:var(--cvp-button-primary-text-disabled);background:var(--cvp-button-primary-bg-disabled);border-color:var(--cvp-button-primary-border-disabled);cursor:not-allowed;transform:none}
+.cvp-primary-button:disabled:not([data-loading]){color:var(--cvp-button-primary-text-disabled);background:var(--cvp-button-primary-bg-disabled);border-color:var(--cvp-button-primary-border-disabled);cursor:not-allowed;transform:none}.cvp-primary-button[data-loading]{cursor:progress}
 .cvp-primary-button--compact{min-height:var(--cvp-button-primary-height-compact);padding-inline:var(--cvp-button-primary-padding-x-compact)}
 .cvp-primary-button__label{display:inline-flex;align-items:center;gap:var(--cvp-button-primary-gap)}
 .cvp-primary-button__loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:var(--cvp-button-primary-gap)}
 .cvp-primary-button[data-loading]{display:inline-grid}
 .cvp-primary-button[data-loading] .cvp-primary-button__label{grid-area:1/1;visibility:hidden}
 .cvp-primary-button[data-loading] .cvp-primary-button__loading{position:static;grid-area:1/1}
-.cvp-primary-button__spinner{width:var(--cvp-button-primary-spinner-size);height:var(--cvp-button-primary-spinner-size);border:var(--cvp-button-primary-spinner-width) solid currentColor;border-right-color:transparent;border-radius:var(--cvp-shape-rounded);animation:cvp-primary-button-spin var(--cvp-motion-duration-slow) linear infinite}
-@keyframes cvp-primary-button-spin{to{transform:rotate(360deg)}}
-@media(prefers-reduced-motion:reduce){.cvp-primary-button{transition:none}.cvp-primary-button__spinner{animation-duration:1.2s}}
+.cvp-primary-button .cvp-loading-spinner{--cvp-loading-spinner-size-sm:var(--cvp-button-primary-spinner-size);--cvp-loading-spinner-stroke:var(--cvp-button-primary-spinner-width)}
+@media(prefers-reduced-motion:reduce){.cvp-primary-button{transition:none}}

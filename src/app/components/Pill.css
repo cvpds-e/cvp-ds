@@ -1,0 +1,55 @@
+.cvp-pill {
+  display: inline-flex;
+  flex: 0 1 auto;
+  box-sizing: border-box;
+  width: fit-content;
+  justify-self: start;
+  align-items: center;
+  gap: var(--cvp-pill-context-gap, var(--cvp-pill-gap));
+  height: var(--cvp-pill-context-height, var(--cvp-pill-height));
+  max-width: 100%;
+  padding-inline-start: var(--cvp-pill-context-padding-inline, var(--cvp-pill-padding-inline));
+  padding-inline-end: calc(var(--cvp-pill-context-gap, var(--cvp-pill-gap)) / 2);
+  color: var(--cvp-pill-context-text, var(--cvp-pill-text));
+  background: var(--cvp-pill-context-bg, var(--cvp-pill-bg));
+  border: var(--cvp-border-base-width) solid var(--cvp-pill-context-border, var(--cvp-pill-border));
+  border-radius: var(--cvp-pill-context-radius, var(--cvp-pill-radius));
+  font-size: var(--cvp-pill-context-font-size, var(--cvp-pill-font-size));
+  font-weight: var(--cvp-pill-context-font-weight, var(--cvp-pill-font-weight));
+  line-height: var(--cvp-pill-context-line-height, var(--cvp-pill-line-height));
+  white-space: nowrap;
+  transition: var(--cvp-pill-transition);
+}
+
+.cvp-pill__label {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1;
+}
+
+.cvp-pill__remove {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: var(--cvp-pill-context-remove-target, var(--cvp-pill-remove-target));
+  height: var(--cvp-pill-context-remove-target, var(--cvp-pill-remove-target));
+  padding: 0;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  border-radius: var(--cvp-pill-context-remove-radius, var(--cvp-pill-remove-radius));
+  cursor: pointer;
+}
+
+.cvp-pill__remove svg {
+  width: var(--cvp-pill-context-icon-size, var(--cvp-pill-icon-size));
+  height: var(--cvp-pill-context-icon-size, var(--cvp-pill-icon-size));
+}
+
+.cvp-pill__remove:hover { background: var(--cvp-pill-context-remove-hover, var(--cvp-pill-remove-hover)); }
+.cvp-pill__remove:active { background: var(--cvp-pill-context-remove-active, var(--cvp-pill-remove-active)); }
+.cvp-pill__remove:focus-visible { outline: 0; box-shadow: var(--cvp-pill-context-focus-ring, var(--cvp-pill-focus-ring)); }

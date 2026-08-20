@@ -54,6 +54,7 @@ Primary Button is the reference implementation for the CVP button family. It pre
 
 - `disabled` is present when either `disabled` or `loading` is true.
 - `aria-busy="true"` and `data-loading` are present only while loading.
+- Loading retains the active button surface and uses a decorative shared spinner; disabled is the separate unavailable visual state.
 - `data-disabled` mirrors the unavailable state for diagnostics and styling.
 - `data-preview-state` exists only for documentation snapshots of transient hover, active, and focus states; product code must not set it.
 - The label remains in layout while loading, preventing width changes.

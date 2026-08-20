@@ -27,6 +27,7 @@ import { ContentBrowserModalDocumentation } from './components/ContentBrowserMod
 import { SegmentedDocumentation } from './components/SegmentedDocumentation';
 import { AccordionDocumentation } from './components/AccordionDocumentation';
 import { MultiSelectDocumentation } from './components/MultiSelectDocumentation';
+import { PillDocumentation } from './components/PillDocumentation';
 import { SelectDocumentation } from './components/SelectDocumentation';
 import { TagFilterDocumentation } from './components/TagFilterDocumentation';
 import { ToastDocumentation } from './components/ToastDocumentation';
@@ -51,6 +52,7 @@ import { RailsList } from './components/RailsList';
 import { RailsListDocumentation } from './components/RailsListDocumentation';
 import { NotificationBannerDocumentation } from './components/NotificationBannerDocumentation';
 import { SkeletonDocumentation } from './components/SkeletonDocumentation';
+import { LoadingSpinnerDocumentation } from './components/LoadingSpinnerDocumentation';
 import { AccessibilityAuditProbe } from './components/AccessibilityAuditProbe';
 import { AccessibilityDocumentation } from './components/AccessibilityDocumentation';
 import { TokenArchitectureDocumentation } from './components/TokenArchitectureDocumentation';
@@ -595,12 +597,16 @@ export default function App() {
         return <SelectDocumentation />;
       case 'multi-select':
         return <MultiSelectDocumentation />;
+      case 'pill':
+        return <PillDocumentation />;
       case 'tag-filter':
         return <TagFilterDocumentation />;
       case 'toast':
         return <ToastDocumentation />;
       case 'skeleton':
         return <SkeletonDocumentation />;
+      case 'loading-spinner':
+        return <LoadingSpinnerDocumentation />;
       case 'notification-banner':
         return <NotificationBannerDocumentation />;
       case 'segment-query-config':

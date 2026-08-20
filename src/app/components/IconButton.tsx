@@ -1,4 +1,5 @@
 import React from 'react';
+import { LoadingSpinner } from './LoadingSpinner';
 import './IconButton.css';
 
 export interface IconButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>{
@@ -14,7 +15,7 @@ export const IconButton=React.forwardRef<HTMLButtonElement,IconButtonProps>(({ch
   const unavailable=disabled||loading;
   const classNames=['icon-button','cvp-icon-button',`cvp-icon-button--${size}`,`cvp-icon-button--${variant}`,className].filter(Boolean).join(' ');
   return <button {...props} ref={ref} type={type} className={classNames} disabled={unavailable} aria-label={loading?loadingLabel:props['aria-label']} aria-busy={loading||undefined} data-loading={loading||undefined} data-disabled={unavailable||undefined}>
-    <span className="cvp-icon-button__content" aria-hidden="true">{loading?<span className="cvp-icon-button__spinner"/>:children}</span>
+    <span className="cvp-icon-button__content" aria-hidden="true">{loading?<LoadingSpinner size="sm" tone="inherit" decorative/>:children}</span>
   </button>;
 });
 IconButton.displayName='IconButton';

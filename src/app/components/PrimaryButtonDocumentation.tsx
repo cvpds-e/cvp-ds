@@ -63,7 +63,7 @@ export function PrimaryButtonDocumentation() {
     </section>
 
     <section className="cvp-input-doc__grid">
-      <article className="cvp-input-doc__panel"><header><b>06</b><div><h2>Accessibility contract</h2></div></header><ul><li>Use a native button and a meaningful visible label.</li><li>Keyboard activation remains native with Enter and Space.</li><li>Focus uses the shared non-color-only ring.</li><li>Loading sets <code>aria-busy</code> and prevents repeat activation.</li><li>Reduced motion slows the spinner and removes state transitions.</li></ul></article>
+      <article className="cvp-input-doc__panel"><header><b>06</b><div><h2>Accessibility contract</h2></div></header><ul><li>Use a native button and a meaningful visible label.</li><li>Keyboard activation remains native with Enter and Space.</li><li>Focus uses the shared non-color-only ring.</li><li>Loading sets <code>aria-busy</code> and prevents repeat activation without adopting disabled visual styling.</li><li>Reduced motion uses the spinner’s static partial-indicator fallback.</li></ul></article>
       <article className="cvp-input-doc__panel"><header><b>07</b><div><h2>Usage decisions</h2></div></header><ul><li>Use once per action group or major surface.</li><li>Use Secondary or Outline for supporting actions.</li><li>Do not use Primary for destructive confirmation.</li><li>Prefer short imperative labels such as “Save changes”.</li><li>Use Icon Button when no visible text label is appropriate.</li></ul></article>
     </section>
 

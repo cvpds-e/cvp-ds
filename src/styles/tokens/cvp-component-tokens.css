@@ -432,7 +432,32 @@
   --cvp-select-option-selected:  var(--cvp-menu-item-bg-active);
   --cvp-select-option-selected-text: var(--cvp-menu-item-text-active);
 
-  /* Multi Select extends the shared input and menu contracts. */
+  /* ===========================================================================
+     PILL
+     Public:   bg, text, border
+     Internal: height, padding-inline, gap, radius, type, remove target,
+               interaction, focus ring
+  =========================================================================== */
+  --cvp-pill-height:               var(--cvp-space-6);
+  --cvp-pill-padding-inline:       var(--cvp-space-2);
+  --cvp-pill-gap:                  var(--cvp-space-1);
+  --cvp-pill-radius:               var(--cvp-shape-control-compact);
+  --cvp-pill-font-size:            var(--cvp-font-size-sm);
+  --cvp-pill-font-weight:          var(--cvp-font-weight-regular);
+  --cvp-pill-line-height:          1;
+  --cvp-pill-icon-size:            var(--cvp-space-4);
+  --cvp-pill-remove-target:        var(--cvp-space-5);
+  --cvp-pill-remove-radius:        var(--cvp-shape-control-compact);
+  --cvp-pill-remove-hover:         var(--cvp-color-interactive-overlay);
+  --cvp-pill-remove-active:        var(--cvp-color-interactive-overlay-strong);
+  --cvp-pill-focus-ring:           var(--cvp-input-focus-ring);
+  --cvp-pill-transition:           background-color var(--cvp-motion-duration-fast) var(--cvp-motion-easing-standard), color var(--cvp-motion-duration-fast) var(--cvp-motion-easing-standard), border-color var(--cvp-motion-duration-fast) var(--cvp-motion-easing-standard);
+  --cvp-pill-bg:                   var(--cvp-color-brand-default);
+  --cvp-pill-text:                 var(--cvp-color-text-on-brand);
+  --cvp-pill-border:               transparent;
+
+  /* Multi Select extends the shared input and menu contracts. Selected values
+     compose Pill and retain these compact aliases for field-specific sizing. */
   --cvp-multi-select-bg:                 var(--cvp-input-bg);
   --cvp-multi-select-bg-disabled:        var(--cvp-input-bg-disabled);
   --cvp-multi-select-border:             var(--cvp-input-border);
@@ -461,15 +486,15 @@
   --cvp-multi-select-meta-font-size:     var(--cvp-font-size-sm);           /* 13px: selected count and clear action */
   --cvp-multi-select-field-gap:          var(--cvp-input-field-gap);
   --cvp-multi-select-transition:         var(--cvp-input-transition);
-  --cvp-multi-select-tag-bg:             var(--cvp-color-brand-default);
-  --cvp-multi-select-tag-text:           var(--cvp-color-text-on-brand);
-  --cvp-multi-select-tag-radius:         var(--cvp-shape-control-compact);
-  --cvp-multi-select-tag-height:         var(--cvp-space-6);
-  --cvp-multi-select-tag-padding-x:      var(--cvp-space-2);
-  --cvp-multi-select-tag-gap:            var(--cvp-space-1);
+  --cvp-multi-select-tag-bg:             var(--cvp-pill-bg);
+  --cvp-multi-select-tag-text:           var(--cvp-pill-text);
+  --cvp-multi-select-tag-radius:         var(--cvp-pill-radius);
+  --cvp-multi-select-tag-height:         var(--cvp-pill-height);
+  --cvp-multi-select-tag-padding-x:      var(--cvp-pill-padding-inline);
+  --cvp-multi-select-tag-gap:            var(--cvp-pill-gap);
   --cvp-multi-select-tag-max-width:      calc(var(--cvp-space-12) * 4);
-  --cvp-multi-select-tag-remove-hover:   var(--cvp-color-interactive-overlay);
-  --cvp-multi-select-tag-remove-active:  var(--cvp-color-interactive-overlay-strong);
+  --cvp-multi-select-tag-remove-hover:   var(--cvp-pill-remove-hover);
+  --cvp-multi-select-tag-remove-active:  var(--cvp-pill-remove-active);
   --cvp-multi-select-icon-size:          var(--cvp-space-4);
   --cvp-multi-select-icon-target:        var(--cvp-space-6);
   --cvp-multi-select-clear-icon:         var(--cvp-color-icon-default);
@@ -1152,6 +1177,20 @@
   --cvp-chip-selected-text: var(--cvp-color-text-inverse);
 
   /* ===========================================================================
+     LOADING SPINNER
+     Public:   indicator, track
+     Internal: size, stroke, duration, easing
+  =========================================================================== */
+  --cvp-loading-spinner-size-sm:   var(--cvp-space-4);
+  --cvp-loading-spinner-size-md:   var(--cvp-space-5);
+  --cvp-loading-spinner-size-lg:   var(--cvp-space-6);
+  --cvp-loading-spinner-stroke:    var(--cvp-border-base-width);
+  --cvp-loading-spinner-track:     var(--cvp-color-border-default);
+  --cvp-loading-spinner-indicator: var(--cvp-color-brand-default);
+  --cvp-loading-spinner-duration:  var(--cvp-motion-duration-slow);
+  --cvp-loading-spinner-easing:    linear;
+
+  /* ===========================================================================
      SKELETON
      Public:   bg, highlight
      Internal: radius, line-height, gap, table-row-height, rail-media-ratio,
@@ -1332,7 +1371,8 @@
   --cvp-gallery-item-border:   var(--cvp-color-border-subtle);
   --cvp-gallery-item-border-hover: var(--cvp-color-border-default);
   --cvp-gallery-item-border-selected: var(--cvp-color-brand-default);
-  --cvp-gallery-item-shadow: var(--cvp-elevation-1);
+  /* A soft card lift that remains quieter than the interactive hover elevation. */
+  --cvp-gallery-item-shadow: 0 var(--cvp-primitive-shadow-y-2) var(--cvp-primitive-shadow-blur-6) var(--cvp-primitive-shadow-spread-0) var(--cvp-shadow-color-soft);
   --cvp-gallery-item-shadow-hover: var(--cvp-elevation-2);
   --cvp-gallery-selection-ring: var(--cvp-border-focus-ring);
   --cvp-gallery-focus-ring:    var(--cvp-border-focus-ring);

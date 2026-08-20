@@ -17,7 +17,7 @@ const tokens = [
   ['Text', '--cvp-gallery-text', '--cvp-color-text-primary', 'Theme-resolved foreground', 'Header / item title'],
   ['Metadata', '--cvp-gallery-meta-color', '--cvp-color-text-muted', 'Theme-resolved secondary text', 'Count / item metadata'],
   ['Item boundary', '--cvp-gallery-item-border', '--cvp-color-border-subtle', 'Subtle 1px boundary', 'Media container'],
-  ['Elevation', '--cvp-gallery-item-shadow / --cvp-gallery-item-shadow-hover', '--cvp-elevation-1 / --cvp-elevation-2', 'Subtle separation at rest; raised on hover', 'Populated media tile'],
+  ['Elevation', '--cvp-gallery-item-shadow / --cvp-gallery-item-shadow-hover', 'Soft gallery lift / --cvp-elevation-2', 'A soft, theme-aware card shadow at rest; a stronger lift on hover', 'Populated media tile'],
   ['Selection', '--cvp-gallery-item-border-selected', '--cvp-color-brand-default', 'Brand boundary + focus halo', 'Selected item'],
   ['Checkbox', '--cvp-checkbox-border', '--cvp-input-border', 'Shared Checkbox control with no additional gallery backing', 'Selectable grid'],
   ['Overlay', '--cvp-gallery-overlay-bg / --cvp-button-icon-gallery-bg-hover', '--cvp-color-gallery-overlay / --cvp-color-gallery-overlay-hover', 'Stable dark media control surface with a stronger hover layer', 'Position / controls'],

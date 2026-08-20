@@ -26,13 +26,10 @@
 .cvp-table__toolbar { border-bottom: var(--cvp-table-container-border-width) solid var(--cvp-table-row-border); }
 .cvp-table__pagination { border-top: var(--cvp-table-container-border-width) solid var(--cvp-table-row-border); }
 .cvp-table__toolbar-summary,
-.cvp-table__toolbar-actions,
-.cvp-table__pagination > div { display: flex; align-items: center; gap: var(--cvp-table-control-gap); }
+.cvp-table__toolbar-actions { display: flex; align-items: center; gap: var(--cvp-table-control-gap); }
 .cvp-table__page-size-control { position: relative; }
-.cvp-table__page-size-menu { position: absolute; top: calc(100% + var(--cvp-space-1)); right: 0; z-index: 5; display: grid; min-width: 112px; padding: var(--cvp-space-1); background: var(--cvp-color-surface-raised); border: var(--cvp-border-base-width) solid var(--cvp-color-border-default); border-radius: var(--cvp-radius-md); box-shadow: var(--cvp-shadow-md); }
-.cvp-table__page-size-option { display: flex; align-items: center; min-height: var(--cvp-table-control-size); padding: 0 var(--cvp-space-2); color: var(--cvp-table-cell-text); background: transparent; border: 0; border-radius: var(--cvp-table-control-radius); font: inherit; font-size: var(--cvp-font-size-sm); text-align: start; cursor: pointer; }
-.cvp-table__page-size-option:hover, .cvp-table__page-size-option--selected { background: var(--cvp-table-control-bg-hover); }
-.cvp-table__page-size-option:focus-visible { outline: none; box-shadow: var(--cvp-table-focus-ring); }
+.cvp-table__page-size-menu.cvp-select__popup { position: fixed; right: auto; width: max-content; min-width: var(--cvp-table-menu-fallback-width); }
+.cvp-table__page-size-option { box-sizing: border-box; width: 100%; font-family: inherit; text-align: start; }
 .cvp-table__toolbar-summary { margin-inline-end: var(--cvp-table-count-separation); }
 .cvp-table__count,
 .cvp-table__pagination { font-size: var(--cvp-table-meta-font-size); line-height: var(--cvp-table-meta-line-height); }
@@ -173,8 +170,7 @@
 .cvp-table__expanded-row td { padding: var(--cvp-table-expanded-padding); background: var(--cvp-table-expanded-bg); border-bottom: var(--cvp-table-container-border-width) solid var(--cvp-table-row-border); }
 .cvp-table__status { height: var(--cvp-table-empty-height); padding: var(--cvp-space-8); color: var(--cvp-table-cell-text-muted); background: var(--cvp-table-row-bg); text-align: center; }
 
-.cvp-table__icon-button,
-.cvp-table__pagination-button {
+.cvp-table__icon-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -188,17 +184,13 @@
   cursor: pointer;
 }
 .cvp-table__icon-button--small { width: var(--cvp-table-control-size-small); height: var(--cvp-table-control-size-small); }
-.cvp-table__icon-button:hover,
-.cvp-table__pagination-button:hover:not(:disabled) { color: var(--cvp-table-control-color-hover); background: var(--cvp-table-control-bg-hover); }
+.cvp-table__icon-button:hover { color: var(--cvp-table-control-color-hover); background: var(--cvp-table-control-bg-hover); }
 .cvp-table__icon-button--danger { color: var(--cvp-table-danger-color); }
 .cvp-table__icon-button--danger:hover { color: var(--cvp-table-danger-color-hover); background: var(--cvp-table-danger-bg-hover); }
 .cvp-table__icon-button:focus-visible,
-.cvp-table__pagination-button:focus-visible,
 .cvp-table__sort-button:focus-visible,
 .cvp-table__group-button:focus-visible,
 .cvp-table__text-action:focus-visible { outline: none; box-shadow: var(--cvp-table-focus-ring); }
-.cvp-table__pagination-button:disabled { color: var(--cvp-table-control-color-disabled); cursor: not-allowed; }
-.cvp-table__page-current { display: inline-flex; align-items: center; justify-content: center; min-width: var(--cvp-table-control-size); height: var(--cvp-table-control-size); color: var(--cvp-table-cell-text); background: var(--cvp-table-page-current-bg); border-radius: var(--cvp-table-control-radius); }
 
 .cvp-table__text-action { padding: var(--cvp-space-1); color: var(--cvp-table-link-color); background: transparent; border: 0; border-radius: var(--cvp-table-control-radius); font: inherit; font-size: var(--cvp-font-size-md); cursor: pointer; }
 .cvp-table__text-action:hover { color: var(--cvp-table-link-color-hover); }

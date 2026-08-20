@@ -19,7 +19,7 @@ This catalog is the readable index of every active CVP token. It preserves each 
 | --- | --- | ---: |
 | Primitive | `cvp-primitives.css` | 206 |
 | Semantic | `cvp-semantic-tokens.css` | 487 |
-| Component | `cvp-component-tokens.css` | 1292 |
+| Component | `cvp-component-tokens.css` | 1322 |
 
 ## Tier 1 — Primitive tokens
 
@@ -1823,6 +1823,40 @@ Component contracts. Each group is named after the component or shared contract 
 </details>
 
 <details>
+<summary><strong>pagination</strong> — 26 tokens</summary>
+
+| Token | Value | Scope |
+| --- | --- | --- |
+| `--cvp-pagination-text` | `var(--cvp-color-text-primary)` | Shared |
+| `--cvp-pagination-text-muted` | `var(--cvp-color-text-muted)` | Shared |
+| `--cvp-pagination-control-color` | `var(--cvp-color-icon-subtle)` | Shared |
+| `--cvp-pagination-control-color-hover` | `var(--cvp-color-icon-default)` | Shared |
+| `--cvp-pagination-control-color-disabled` | `var(--cvp-color-icon-disabled)` | Shared |
+| `--cvp-pagination-control-bg-hover` | `var(--cvp-color-surface-hover)` | Shared |
+| `--cvp-pagination-page-field-bg` | `var(--cvp-color-surface-default)` | Shared |
+| `--cvp-pagination-page-field-border` | `var(--cvp-color-border-default)` | Shared |
+| `--cvp-pagination-page-field-border-hover` | `var(--cvp-color-border-strong)` | Shared |
+| `--cvp-pagination-focus-ring` | `var(--cvp-border-focus-ring)` | Shared |
+| `--cvp-pagination-height` | `var(--cvp-space-900)` | Shared |
+| `--cvp-pagination-gap` | `var(--cvp-space-3)` | Shared |
+| `--cvp-pagination-control-gap` | `var(--cvp-space-100)` | Shared |
+| `--cvp-pagination-control-size` | `var(--cvp-space-8)` | Shared |
+| `--cvp-pagination-control-radius` | `var(--cvp-radius-sm)` | Shared |
+| `--cvp-pagination-icon-size` | `var(--cvp-button-icon-glyph-size)` | Shared |
+| `--cvp-pagination-icon-stroke-width` | `var(--cvp-border-strong-width)` | Shared |
+| `--cvp-pagination-page-field-width` | `calc(var(--cvp-space-900) + var(--cvp-space-1))` | Shared |
+| `--cvp-pagination-page-field-padding-x` | `var(--cvp-space-1)` | Shared |
+| `--cvp-pagination-page-field-font-weight` | `var(--cvp-font-weight-medium)` | Shared |
+| `--cvp-pagination-navigation-unit-gap` | `var(--cvp-space-2)` | Shared |
+| `--cvp-pagination-page-count-width` | `calc(var(--cvp-space-7) + var(--cvp-space-1))` | Shared |
+| `--cvp-pagination-font-size` | `var(--cvp-font-size-md)` | Shared |
+| `--cvp-pagination-summary-font-size` | `var(--cvp-font-size-md)` | Shared |
+| `--cvp-pagination-line-height` | `var(--cvp-line-height-snug)` | Shared |
+| `--cvp-pagination-border-width` | `var(--cvp-border-base-width)` | Shared |
+
+</details>
+
+<details>
 <summary><strong>pill</strong> — 17 tokens</summary>
 
 | Token | Value | Scope |
@@ -1951,7 +1985,7 @@ Component contracts. Each group is named after the component or shared contract 
 </details>
 
 <details>
-<summary><strong>table</strong> — 87 tokens</summary>
+<summary><strong>table</strong> — 91 tokens</summary>
 
 | Token | Value | Scope |
 | --- | --- | --- |
@@ -2011,6 +2045,10 @@ Component contracts. Each group is named after the component or shared contract 
 | `--cvp-table-control-color-hover` | `var(--cvp-color-icon-default)` | Shared |
 | `--cvp-table-control-color-disabled` | `var(--cvp-color-icon-disabled)` | Shared |
 | `--cvp-table-control-bg-hover` | `var(--cvp-color-surface-hover)` | Shared |
+| `--cvp-table-menu-viewport-inset` | `5px` | Shared |
+| `--cvp-table-menu-gap` | `var(--cvp-space-1)` | Shared |
+| `--cvp-table-menu-fallback-width` | `calc(var(--cvp-table-control-size) * 3 + var(--cvp-space-4))` | Shared |
+| `--cvp-table-menu-fallback-height` | `calc(var(--cvp-table-control-size) * 5)` | Shared |
 | `--cvp-table-sort-neutral` | `var(--cvp-color-icon-subtle)` | Shared |
 | `--cvp-table-sort-icon-size` | `var(--cvp-button-icon-glyph-size)` | Shared |
 | `--cvp-table-sort-icon-stroke-width` | `var(--cvp-border-strong-width)` | Shared |

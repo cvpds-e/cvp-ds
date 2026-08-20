@@ -45,6 +45,7 @@ const NAV_ITEMS = [
   { id: 'tabs', label: 'Tabs', category: 'Navigation' },
   { id: 'tree', label: 'Tree', category: 'Navigation' },
   { id: 'table', label: 'Table', category: 'Navigation' },
+  { id: 'pagination', label: 'Pagination', category: 'Navigation' },
   { id: 'segmented', label: 'Segmented', category: 'Navigation' },
   { id: 'accordion', label: 'Accordion', category: 'Navigation' },
   { id: 'tag-filter', label: 'Tag Filter', category: 'Navigation' },

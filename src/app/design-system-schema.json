@@ -836,6 +836,36 @@
         }
       }
     },
+    "Pagination": {
+      "type": "object",
+      "description": "Controlled page and row navigator for dense operational collections",
+      "properties": {
+        "currentPage": { "type": "number", "default": 1 },
+        "totalItems": { "type": "number" },
+        "pageSize": { "type": "number", "default": 10 },
+        "itemLabel": { "type": "string", "default": "items" },
+        "onPageChange": { "type": "function" }
+      },
+      "required": ["currentPage", "totalItems", "pageSize"],
+      "visualSpec": {
+        "summary": {
+          "typography": { "fontSize": "14px", "lineHeight": "20px" },
+          "color": "semantic text muted"
+        },
+        "navigation": {
+          "defaultUnit": "page",
+          "alternateUnit": "row",
+          "unitGap": "8px",
+          "controlSize": "32px",
+          "pageField": "36px wide, editable numeric value"
+        },
+        "accessibility": {
+          "landmark": "named navigation",
+          "controls": "native buttons and input with visible focus",
+          "unavailable": "disabled controls remain visible"
+        }
+      }
+    },
     "Tree": {
       "type": "object",
       "description": "Hierarchical tree component",

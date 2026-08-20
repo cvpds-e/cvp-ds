@@ -1207,6 +1207,38 @@
   --cvp-skeleton-motion-easing:    var(--cvp-motion-easing-standard);
 
   /* ===========================================================================
+     PAGINATION
+     Public:   text, control-color, page-field-bg
+     Internal: navigation geometry, field and focus treatment.
+  =========================================================================== */
+  --cvp-pagination-text:                   var(--cvp-color-text-primary);
+  --cvp-pagination-text-muted:             var(--cvp-color-text-muted);
+  --cvp-pagination-control-color:          var(--cvp-color-icon-subtle);
+  --cvp-pagination-control-color-hover:    var(--cvp-color-icon-default);
+  --cvp-pagination-control-color-disabled: var(--cvp-color-icon-disabled);
+  --cvp-pagination-control-bg-hover:       var(--cvp-color-surface-hover);
+  --cvp-pagination-page-field-bg:          var(--cvp-color-surface-default);
+  --cvp-pagination-page-field-border:      var(--cvp-color-border-default);
+  --cvp-pagination-page-field-border-hover: var(--cvp-color-border-strong);
+  --cvp-pagination-focus-ring:             var(--cvp-border-focus-ring);
+  --cvp-pagination-height:                 var(--cvp-space-900);
+  --cvp-pagination-gap:                    var(--cvp-space-3);
+  --cvp-pagination-control-gap:            var(--cvp-space-100);
+  --cvp-pagination-control-size:           var(--cvp-space-8);
+  --cvp-pagination-control-radius:         var(--cvp-radius-sm);
+  --cvp-pagination-icon-size:              var(--cvp-button-icon-glyph-size);
+  --cvp-pagination-icon-stroke-width:      var(--cvp-border-strong-width);
+  --cvp-pagination-page-field-width:       calc(var(--cvp-space-900) + var(--cvp-space-1));
+  --cvp-pagination-page-field-padding-x:   var(--cvp-space-1);
+  --cvp-pagination-page-field-font-weight: var(--cvp-font-weight-medium);
+  --cvp-pagination-navigation-unit-gap:    var(--cvp-space-2);
+  --cvp-pagination-page-count-width:       calc(var(--cvp-space-7) + var(--cvp-space-1));
+  --cvp-pagination-font-size:              var(--cvp-font-size-md);
+  --cvp-pagination-summary-font-size:      var(--cvp-font-size-md);
+  --cvp-pagination-line-height:            var(--cvp-line-height-snug);
+  --cvp-pagination-border-width:           var(--cvp-border-base-width);
+
+  /* ===========================================================================
      TABLE
      Public:   header-bg, row-bg-hover, row-bg-selected, cell-text
      Internal: header-text, header-border, row-bg, row-border, cell-text-muted,
@@ -1271,6 +1303,10 @@
   --cvp-table-control-color-hover: var(--cvp-color-icon-default);
   --cvp-table-control-color-disabled: var(--cvp-color-icon-disabled);
   --cvp-table-control-bg-hover: var(--cvp-color-surface-hover);
+  --cvp-table-menu-viewport-inset: 5px;
+  --cvp-table-menu-gap: var(--cvp-space-1);
+  --cvp-table-menu-fallback-width: calc(var(--cvp-table-control-size) * 3 + var(--cvp-space-4));
+  --cvp-table-menu-fallback-height: calc(var(--cvp-table-control-size) * 5);
   --cvp-table-sort-neutral:     var(--cvp-color-icon-subtle);
   --cvp-table-sort-icon-size:   var(--cvp-button-icon-glyph-size);
   --cvp-table-sort-icon-stroke-width: var(--cvp-border-strong-width);

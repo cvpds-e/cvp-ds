@@ -28,6 +28,7 @@ import { SegmentedDocumentation } from './components/SegmentedDocumentation';
 import { AccordionDocumentation } from './components/AccordionDocumentation';
 import { MultiSelectDocumentation } from './components/MultiSelectDocumentation';
 import { PillDocumentation } from './components/PillDocumentation';
+import { PaginationDocumentation } from './components/PaginationDocumentation';
 import { SelectDocumentation } from './components/SelectDocumentation';
 import { TagFilterDocumentation } from './components/TagFilterDocumentation';
 import { ToastDocumentation } from './components/ToastDocumentation';
@@ -599,6 +600,8 @@ export default function App() {
         return <MultiSelectDocumentation />;
       case 'pill':
         return <PillDocumentation />;
+      case 'pagination':
+        return <PaginationDocumentation />;
       case 'tag-filter':
         return <TagFilterDocumentation />;
       case 'toast':

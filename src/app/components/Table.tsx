@@ -1,9 +1,7 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useId, useMemo, useRef, useState } from 'react';
 import {
   ArrowUpDown,
   ChevronDown,
-  ChevronLeft,
-  ChevronRight,
   ChevronUp,
   Eye,
   GripVertical,
@@ -13,8 +11,10 @@ import {
   Trash2,
 } from 'lucide-react';
 import './Table.css';
+import './Select.css';
 import { Checkbox, CheckboxState } from './Checkbox';
 import { SkeletonTableRows } from './Skeleton';
+import { Pagination } from './Pagination';
 
 export interface TableColumn {
   id: string;
@@ -119,6 +119,12 @@ export function Table({
   const [columnWidths, setColumnWidths] = useState<Record<string, number>>({});
   const [resizingColumn, setResizingColumn] = useState<string | null>(null);
   const [isPageSizeMenuOpen, setIsPageSizeMenuOpen] = useState(false);
+  const [activePageSizeIndex, setActivePageSizeIndex] = useState(-1);
+  const pageSizeControlId = useId().replace(/:/g, '');
+  const pageSizeMenuId = `${pageSizeControlId}-listbox`;
+  const pageSizeTriggerRef = useRef<HTMLButtonElement>(null);
+  const pageSizeMenuRef = useRef<HTMLDivElement>(null);
+  const [pageSizeMenuPosition, setPageSizeMenuPosition] = useState({ top: 0, left: 0, maxHeight: 0 });
 
   const selectableRows = useMemo(
     () => data.filter((row) => row.kind !== 'group' && !row.disabled),
@@ -149,6 +155,75 @@ export function Table({
     setSortDirection(direction);
     onSort?.(column.id, direction);
   };
+
+  const positionPageSizeMenu = () => {
+    const trigger = pageSizeTriggerRef.current;
+    if (!trigger) return;
+    const menuStyles = window.getComputedStyle(trigger);
+    const inset = Number.parseFloat(menuStyles.getPropertyValue('--cvp-table-menu-viewport-inset')) || 5;
+    const gap = Number.parseFloat(menuStyles.getPropertyValue('--cvp-table-menu-gap')) || 4;
+    const triggerRect = trigger.getBoundingClientRect();
+    const fallbackWidth = Number.parseFloat(menuStyles.getPropertyValue('--cvp-table-menu-fallback-width')) || 112;
+    const fallbackHeight = Number.parseFloat(menuStyles.getPropertyValue('--cvp-table-menu-fallback-height')) || 160;
+    const menuWidth = Math.max(triggerRect.width, pageSizeMenuRef.current?.getBoundingClientRect().width ?? fallbackWidth);
+    const menuHeight = pageSizeMenuRef.current?.getBoundingClientRect().height ?? fallbackHeight;
+    const spaceAbove = Math.max(0, triggerRect.top - inset - gap);
+    const spaceBelow = Math.max(0, window.innerHeight - triggerRect.bottom - inset - gap);
+    const openUpward = spaceBelow < Math.min(menuHeight, 240) && spaceAbove > spaceBelow;
+    const maxHeight = Math.max(triggerRect.height * 3, openUpward ? spaceAbove : spaceBelow);
+    const renderedHeight = Math.min(menuHeight, maxHeight);
+    setPageSizeMenuPosition({
+      top: openUpward ? triggerRect.top - gap - renderedHeight : triggerRect.bottom + gap,
+      left: Math.max(inset, Math.min(triggerRect.right - menuWidth, window.innerWidth - menuWidth - inset)),
+      maxHeight,
+    });
+  };
+
+  const openPageSizeMenu = () => {
+    if (!pageSizeOptions?.length) return;
+    positionPageSizeMenu();
+    setActivePageSizeIndex(Math.max(0, pageSizeOptions.indexOf(pageSize)));
+    setIsPageSizeMenuOpen(true);
+  };
+
+  const commitPageSize = (size: number) => {
+    onPageSizeChange?.(size);
+    setIsPageSizeMenuOpen(false);
+    pageSizeTriggerRef.current?.focus();
+  };
+
+  const handlePageSizeKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (!pageSizeOptions?.length) return;
+    if (event.key === 'Escape') { setIsPageSizeMenuOpen(false); return; }
+    if (event.key === 'Tab') { setIsPageSizeMenuOpen(false); return; }
+    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+      event.preventDefault();
+      if (!isPageSizeMenuOpen) { openPageSizeMenu(); return; }
+      setActivePageSizeIndex((index) => (index + (event.key === 'ArrowDown' ? 1 : -1) + pageSizeOptions.length) % pageSizeOptions.length);
+      return;
+    }
+    if (event.key === 'Home' && isPageSizeMenuOpen) { event.preventDefault(); setActivePageSizeIndex(0); return; }
+    if (event.key === 'End' && isPageSizeMenuOpen) { event.preventDefault(); setActivePageSizeIndex(pageSizeOptions.length - 1); return; }
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      if (isPageSizeMenuOpen) commitPageSize(pageSizeOptions[Math.max(0, activePageSizeIndex)]);
+      else openPageSizeMenu();
+    }
+  };
+
+  useEffect(() => {
+    if (!isPageSizeMenuOpen) return;
+    positionPageSizeMenu();
+    const frame = window.requestAnimationFrame(positionPageSizeMenu);
+    window.addEventListener('resize', positionPageSizeMenu);
+    window.addEventListener('scroll', positionPageSizeMenu, true);
+    const closeOutside = (event: PointerEvent) => {
+      const target = event.target as Node;
+      if (!pageSizeTriggerRef.current?.contains(target) && !pageSizeMenuRef.current?.contains(target)) setIsPageSizeMenuOpen(false);
+    };
+    document.addEventListener('pointerdown', closeOutside);
+    return () => { window.cancelAnimationFrame(frame); window.removeEventListener('resize', positionPageSizeMenu); window.removeEventListener('scroll', positionPageSizeMenu, true); document.removeEventListener('pointerdown', closeOutside); };
+  }, [isPageSizeMenuOpen]);
 
   const toggleExpanded = (rowId: string) => {
     if (singleExpand) {
@@ -221,29 +296,38 @@ export function Table({
             {pageSizeOptions && onPageSizeChange && (
               <div className="cvp-table__page-size-control">
                 <button
+                  ref={pageSizeTriggerRef}
                   className="cvp-table__icon-button"
                   type="button"
                   aria-label="Rows per page"
+                  aria-controls={isPageSizeMenuOpen ? pageSizeMenuId : undefined}
                   aria-expanded={isPageSizeMenuOpen}
                   aria-haspopup="listbox"
-                  onClick={() => setIsPageSizeMenuOpen((open) => !open)}
+                  aria-activedescendant={isPageSizeMenuOpen && activePageSizeIndex >= 0 ? `${pageSizeControlId}-option-${activePageSizeIndex}` : undefined}
+                  onClick={() => isPageSizeMenuOpen ? setIsPageSizeMenuOpen(false) : openPageSizeMenu()}
+                  onKeyDown={handlePageSizeKeyDown}
                 >
                   <span aria-hidden="true">{pageSize}</span>
                 </button>
                 {isPageSizeMenuOpen && (
-                  <div className="cvp-table__page-size-menu" role="listbox" aria-label="Rows per page">
-                    {pageSizeOptions.map((size) => (
-                      <button
-                        key={size}
-                        className={`cvp-table__page-size-option ${size === pageSize ? 'cvp-table__page-size-option--selected' : ''}`}
-                        type="button"
-                        role="option"
-                        aria-selected={size === pageSize}
-                        onClick={() => { onPageSizeChange(size); setIsPageSizeMenuOpen(false); }}
-                      >
-                        {size} rows
-                      </button>
-                    ))}
+                  <div ref={pageSizeMenuRef} className="cvp-table__page-size-menu cvp-select__popup" role="presentation" style={{ top: pageSizeMenuPosition.top, left: pageSizeMenuPosition.left, maxHeight: pageSizeMenuPosition.maxHeight }}>
+                    <ul id={pageSizeMenuId} className="cvp-select__listbox" role="listbox" aria-label="Rows per page">
+                      {pageSizeOptions.map((size, index) => (
+                        <li
+                          id={`${pageSizeControlId}-option-${index}`}
+                          key={size}
+                          className="cvp-table__page-size-option cvp-select__option"
+                          role="option"
+                          aria-selected={size === pageSize}
+                          data-active={index === activePageSizeIndex || undefined}
+                          data-selected={size === pageSize || undefined}
+                          onMouseEnter={() => setActivePageSizeIndex(index)}
+                          onMouseDown={(event) => { event.preventDefault(); commitPageSize(size); }}
+                        >
+                          <span>{size} rows</span>{size === pageSize && <span aria-hidden="true">✓</span>}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 )}
               </div>
@@ -380,14 +464,7 @@ export function Table({
       </div>
 
       {showPagination && (
-        <nav className="cvp-table__pagination" aria-label="Table pagination">
-          <span>Page {currentPage} of {totalPages}</span>
-          <div>
-            <button className="cvp-table__pagination-button" type="button" aria-label="Previous page" disabled={currentPage <= 1} onClick={() => onPageChange?.(currentPage - 1)}><ChevronLeft size={16} /></button>
-            <span className="cvp-table__page-current" aria-current="page">{currentPage}</span>
-            <button className="cvp-table__pagination-button" type="button" aria-label="Next page" disabled={currentPage >= totalPages} onClick={() => onPageChange?.(currentPage + 1)}><ChevronRight size={16} /></button>
-          </div>
-        </nav>
+        <Pagination className="cvp-table__pagination" currentPage={currentPage} totalItems={totalItems ?? selectableRows.length} pageSize={pageSize} onPageChange={onPageChange} itemLabel="rows" />
       )}
     </section>
   );

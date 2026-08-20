@@ -26,7 +26,8 @@ const tokenRows = [
   ['Row count tag', '--cvp-table-count-bg', '--cvp-color-surface-subtle', 'Muted metadata tag', 'Toolbar summary'],
   ['Rail type tag', '--cvp-table-rail-type-*', '--cvp-color-surface-subtle / --cvp-color-text-link-default / --cvp-color-brand-accent', 'Recommended blue; Editorial purple', 'Rails List type column'],
   ['Control gap', '--cvp-table-control-gap', '--cvp-space-100', '2px', 'Toolbar and pagination controls'],
-  ['Page-size menu', '--cvp-table-control-*', 'Shared table control tokens', '10 / 20 / 50 rows; elevated menu', 'Rows-per-page trigger'],
+  ['Rows-per-page menu', '--cvp-select-*', 'Shared Select dropdown styling', '10 / 20 / 50 rows; standard selected-option treatment', 'Rows-per-page trigger'],
+  ['Viewport-safe popup', '--cvp-table-menu-viewport-inset', '5px documented table exception', 'At least 5px from every viewport edge', 'Rows-per-page menu'],
   ['Column resize', '--cvp-table-resize-handle-*', '--cvp-color-border-strong / --cvp-color-brand-default', 'Subtle divider; brand while dragging', 'resizable=true'],
   ['Sort indicator', '--cvp-table-sort-icon-*', '--cvp-button-icon-glyph-size', '16px / strong stroke', 'sortable=true'],
   ['Expanded content', '--cvp-table-expanded-*', '--cvp-color-surface-subtle / --cvp-space-*', 'Contained preview surface', 'row.expandedContent + expandable'],
@@ -71,7 +72,7 @@ export function TableDocumentation() {
       <section className="table-docs__section" aria-labelledby="table-product-example">
         <div className="table-docs__section-heading">
           <div><span>01</span><h2 id="table-product-example">Product example</h2></div>
-          <p>Compact by default for operational interfaces; drag the subtle header separators to resize columns. Data rows can expose contained content with <code>expandedContent</code>; set <code>singleExpand</code> when one open preview is the intended workflow. Use <code>freezeLeadingColumns</code> only for consecutive leading utility cells and the primary data column. Everything after that scan path remains in the same table and scrolls horizontally with a thin, theme-aware scrollbar. Sort indicators use the shared 16px icon size, while page-size and refresh stay adjacent to the other table controls.</p>
+          <p>Compact by default for operational interfaces; drag the subtle header separators to resize columns. Data rows can expose contained content with <code>expandedContent</code>; set <code>singleExpand</code> when one open preview is the intended workflow. Use <code>freezeLeadingColumns</code> only for consecutive leading utility cells and the primary data column. Everything after that scan path remains in the same table and scrolls horizontally with a thin, theme-aware scrollbar. Sort indicators use the shared 16px icon size. The compact numeric rows trigger remains in place, while its option list follows the shared Select keyboard, selected-option, and viewport-safe popup contract.</p>
         </div>
         <div className="table-docs__example-shell">
           <div className="table-docs__context-bar">

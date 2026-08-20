@@ -9879,6 +9879,60 @@
       "source": "cvp-component-tokens.css"
     },
     {
+      "name": "--cvp-skeleton-bg",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-skeleton-highlight",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-skeleton-radius",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-skeleton-line-height",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-skeleton-gap",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-skeleton-table-row-height",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-skeleton-rail-media-ratio",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-skeleton-motion-duration",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-skeleton-motion-easing",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
       "name": "--cvp-table-header-bg",
       "tier": "Component",
       "scope": "Shared",
@@ -10233,7 +10287,43 @@
       "source": "cvp-component-tokens.css"
     },
     {
+      "name": "--cvp-table-sort-icon-size",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-table-sort-icon-stroke-width",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
       "name": "--cvp-table-resize-handle",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-table-resize-handle-active",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-table-resize-handle-width",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-table-resize-handle-target-width",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-table-resize-handle-opacity",
       "tier": "Component",
       "scope": "Shared",
       "source": "cvp-component-tokens.css"
@@ -10246,6 +10336,60 @@
     },
     {
       "name": "--cvp-table-actions-column-width",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-table-sticky-column-divider",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-table-sticky-cell-z-index",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-table-sticky-header-z-index",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-table-scrollbar-size",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-table-scrollbar-track",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-table-scrollbar-thumb",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-table-scrollbar-thumb-hover",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-table-scrollbar-thumb-inset",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-table-scrollbar-radius",
       "tier": "Component",
       "scope": "Shared",
       "source": "cvp-component-tokens.css"
@@ -10642,6 +10786,18 @@
     },
     {
       "name": "--cvp-gallery-item-border-selected",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-gallery-item-shadow",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-gallery-item-shadow-hover",
       "tier": "Component",
       "scope": "Shared",
       "source": "cvp-component-tokens.css"

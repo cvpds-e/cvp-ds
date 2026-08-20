@@ -19,7 +19,7 @@ This catalog is the readable index of every active CVP token. It preserves each 
 | --- | --- | ---: |
 | Primitive | `cvp-primitives.css` | 206 |
 | Semantic | `cvp-semantic-tokens.css` | 487 |
-| Component | `cvp-component-tokens.css` | 1241 |
+| Component | `cvp-component-tokens.css` | 1267 |
 
 ## Tier 1 — Primitive tokens
 
@@ -1295,7 +1295,7 @@ Component contracts. Each group is named after the component or shared contract 
 </details>
 
 <details>
-<summary><strong>gallery</strong> — 68 tokens</summary>
+<summary><strong>gallery</strong> — 70 tokens</summary>
 
 | Token | Value | Scope |
 | --- | --- | --- |
@@ -1316,6 +1316,8 @@ Component contracts. Each group is named after the component or shared contract 
 | `--cvp-gallery-item-border` | `var(--cvp-color-border-subtle)` | Shared |
 | `--cvp-gallery-item-border-hover` | `var(--cvp-color-border-default)` | Shared |
 | `--cvp-gallery-item-border-selected` | `var(--cvp-color-brand-default)` | Shared |
+| `--cvp-gallery-item-shadow` | `var(--cvp-elevation-1)` | Shared |
+| `--cvp-gallery-item-shadow-hover` | `var(--cvp-elevation-2)` | Shared |
 | `--cvp-gallery-selection-ring` | `var(--cvp-border-focus-ring)` | Shared |
 | `--cvp-gallery-focus-ring` | `var(--cvp-border-focus-ring)` | Shared |
 | `--cvp-gallery-image-aspect-ratio` | `2 / 3` | Shared |
@@ -1891,7 +1893,24 @@ Component contracts. Each group is named after the component or shared contract 
 </details>
 
 <details>
-<summary><strong>table</strong> — 72 tokens</summary>
+<summary><strong>skeleton</strong> — 9 tokens</summary>
+
+| Token | Value | Scope |
+| --- | --- | --- |
+| `--cvp-skeleton-bg` | `var(--cvp-color-surface-subtle)` | Shared |
+| `--cvp-skeleton-highlight` | `var(--cvp-color-surface-active)` | Shared |
+| `--cvp-skeleton-radius` | `var(--cvp-radius-sm)` | Shared |
+| `--cvp-skeleton-line-height` | `var(--cvp-space-3)` | Shared |
+| `--cvp-skeleton-gap` | `var(--cvp-space-2)` | Shared |
+| `--cvp-skeleton-table-row-height` | `var(--cvp-space-900)` | Shared |
+| `--cvp-skeleton-rail-media-ratio` | `2 / 3` | Shared |
+| `--cvp-skeleton-motion-duration` | `var(--cvp-motion-duration-slow)` | Shared |
+| `--cvp-skeleton-motion-easing` | `var(--cvp-motion-easing-standard)` | Shared |
+
+</details>
+
+<details>
+<summary><strong>table</strong> — 87 tokens</summary>
 
 | Token | Value | Scope |
 | --- | --- | --- |
@@ -1952,9 +1971,24 @@ Component contracts. Each group is named after the component or shared contract 
 | `--cvp-table-control-color-disabled` | `var(--cvp-color-icon-disabled)` | Shared |
 | `--cvp-table-control-bg-hover` | `var(--cvp-color-surface-hover)` | Shared |
 | `--cvp-table-sort-neutral` | `var(--cvp-color-icon-subtle)` | Shared |
+| `--cvp-table-sort-icon-size` | `var(--cvp-button-icon-glyph-size)` | Shared |
+| `--cvp-table-sort-icon-stroke-width` | `var(--cvp-border-strong-width)` | Shared |
 | `--cvp-table-resize-handle` | `var(--cvp-color-border-strong)` | Shared |
+| `--cvp-table-resize-handle-active` | `var(--cvp-color-brand-default)` | Shared |
+| `--cvp-table-resize-handle-width` | `var(--cvp-border-base-width)` | Shared |
+| `--cvp-table-resize-handle-target-width` | `var(--cvp-space-3)` | Shared |
+| `--cvp-table-resize-handle-opacity` | `0.45` | Shared |
 | `--cvp-table-utility-column-width` | `var(--cvp-space-900)` | Shared |
 | `--cvp-table-actions-column-width` | `calc(var(--cvp-space-900) * 2)` | Shared |
+| `--cvp-table-sticky-column-divider` | `var(--cvp-border-base-width) 0 0 var(--cvp-color-border-subtle)` | Shared |
+| `--cvp-table-sticky-cell-z-index` | `3` | Shared |
+| `--cvp-table-sticky-header-z-index` | `5` | Shared |
+| `--cvp-table-scrollbar-size` | `var(--cvp-space-2)` | Shared |
+| `--cvp-table-scrollbar-track` | `var(--cvp-color-surface-subtle)` | Shared |
+| `--cvp-table-scrollbar-thumb` | `var(--cvp-color-border-strong)` | Shared |
+| `--cvp-table-scrollbar-thumb-hover` | `var(--cvp-color-icon-subtle)` | Shared |
+| `--cvp-table-scrollbar-thumb-inset` | `var(--cvp-space-1)` | Shared |
+| `--cvp-table-scrollbar-radius` | `var(--cvp-radius-full)` | Shared |
 | `--cvp-table-checkbox-size` | `var(--cvp-space-4)` | Shared |
 | `--cvp-table-checkbox-accent` | `var(--cvp-color-brand-default)` | Shared |
 | `--cvp-table-page-current-bg` | `var(--cvp-color-surface-active)` | Shared |

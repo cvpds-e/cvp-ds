@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import {
+  ArrowUpDown,
   ChevronDown,
   ChevronLeft,
   ChevronRight,
@@ -7,11 +8,13 @@ import {
   Eye,
   GripVertical,
   MoreHorizontal,
+  RefreshCw,
   Settings,
   Trash2,
 } from 'lucide-react';
 import './Table.css';
 import { Checkbox, CheckboxState } from './Checkbox';
+import { SkeletonTableRows } from './Skeleton';
 
 export interface TableColumn {
   id: string;
@@ -41,6 +44,10 @@ export interface TableProps {
   ariaLabel?: string;
   selectable?: boolean;
   expandable?: boolean;
+  /** Keep only one expanded data row open at a time. */
+  singleExpand?: boolean;
+  /** Keep selection, expansion and the first data column visible while the rest of the table scrolls. */
+  freezeLeadingColumns?: boolean;
   sortable?: boolean;
   resizable?: boolean;
   draggable?: boolean;
@@ -54,12 +61,17 @@ export interface TableProps {
   className?: string;
   height?: string;
   showSettings?: boolean;
+  showViewControl?: boolean;
+  toolbarActions?: React.ReactNode;
   showPagination?: boolean;
   showActions?: boolean;
   pageSize?: number;
+  pageSizeOptions?: number[];
+  onPageSizeChange?: (pageSize: number) => void;
   currentPage?: number;
   totalItems?: number;
   onPageChange?: (page: number) => void;
+  onRefresh?: () => void;
   renderCell?: (columnId: string, value: any, row: TableRow) => React.ReactNode;
 }
 
@@ -70,6 +82,8 @@ export function Table({
   ariaLabel = 'Data table',
   selectable = false,
   expandable = false,
+  singleExpand = false,
+  freezeLeadingColumns = false,
   sortable = false,
   resizable = false,
   draggable = false,
@@ -83,12 +97,17 @@ export function Table({
   className = '',
   height = '500px',
   showSettings = true,
+  showViewControl = true,
+  toolbarActions,
   showPagination = true,
   showActions = true,
   pageSize = 10,
+  pageSizeOptions,
+  onPageSizeChange,
   currentPage = 1,
   totalItems,
   onPageChange,
+  onRefresh,
   renderCell,
 }: TableProps) {
   const [selectedRows, setSelectedRows] = useState<Set<string>>(new Set());
@@ -98,15 +117,15 @@ export function Table({
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
   const [draggedRow, setDraggedRow] = useState<string | null>(null);
   const [columnWidths, setColumnWidths] = useState<Record<string, number>>({});
+  const [resizingColumn, setResizingColumn] = useState<string | null>(null);
+  const [isPageSizeMenuOpen, setIsPageSizeMenuOpen] = useState(false);
 
   const selectableRows = useMemo(
     () => data.filter((row) => row.kind !== 'group' && !row.disabled),
     [data],
   );
   const totalPages = Math.max(1, Math.ceil((totalItems ?? selectableRows.length) / pageSize));
-  const pagedData = totalItems
-    ? data
-    : data.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+  const pagedData = data.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
   const updateSelection = (next: Set<string>) => {
     setSelectedRows(next);
@@ -132,6 +151,10 @@ export function Table({
   };
 
   const toggleExpanded = (rowId: string) => {
+    if (singleExpand) {
+      setExpandedRows((current) => current.has(rowId) ? new Set() : new Set([rowId]));
+      return;
+    }
     const next = new Set(expandedRows);
     next.has(rowId) ? next.delete(rowId) : next.add(rowId);
     setExpandedRows(next);
@@ -148,10 +171,12 @@ export function Table({
     event.stopPropagation();
     const startX = event.clientX;
     const startWidth = event.currentTarget.parentElement?.getBoundingClientRect().width ?? 120;
+    setResizingColumn(column.id);
     const move = (moveEvent: PointerEvent) => {
       setColumnWidths((current) => ({ ...current, [column.id]: Math.max(80, startWidth + moveEvent.clientX - startX) }));
     };
     const stop = () => {
+      setResizingColumn(null);
       document.removeEventListener('pointermove', move);
       document.removeEventListener('pointerup', stop);
     };
@@ -175,7 +200,7 @@ export function Table({
 
   return (
     <section
-      className={`cvp-table cvp-table--${density} ${className}`}
+      className={`cvp-table cvp-table--${density} ${resizingColumn ? 'cvp-table--resizing' : ''} ${freezeLeadingColumns ? 'cvp-table--freeze-leading' : ''} ${selectable ? 'cvp-table--selectable' : ''} ${expandable ? 'cvp-table--expandable' : ''} ${className}`}
       style={{ '--cvp-table-container-height': height } as React.CSSProperties}
       aria-label={ariaLabel}
     >
@@ -192,18 +217,52 @@ export function Table({
             )}
           </div>
           <div className="cvp-table__toolbar-actions">
+            {toolbarActions}
+            {pageSizeOptions && onPageSizeChange && (
+              <div className="cvp-table__page-size-control">
+                <button
+                  className="cvp-table__icon-button"
+                  type="button"
+                  aria-label="Rows per page"
+                  aria-expanded={isPageSizeMenuOpen}
+                  aria-haspopup="listbox"
+                  onClick={() => setIsPageSizeMenuOpen((open) => !open)}
+                >
+                  <span aria-hidden="true">{pageSize}</span>
+                </button>
+                {isPageSizeMenuOpen && (
+                  <div className="cvp-table__page-size-menu" role="listbox" aria-label="Rows per page">
+                    {pageSizeOptions.map((size) => (
+                      <button
+                        key={size}
+                        className={`cvp-table__page-size-option ${size === pageSize ? 'cvp-table__page-size-option--selected' : ''}`}
+                        type="button"
+                        role="option"
+                        aria-selected={size === pageSize}
+                        onClick={() => { onPageSizeChange(size); setIsPageSizeMenuOpen(false); }}
+                      >
+                        {size} rows
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
             <button className="cvp-table__icon-button" type="button" aria-label="Table settings" onClick={() => onRowAction?.('more', { id: 'table-settings' })}>
               <Settings size={16} aria-hidden="true" />
             </button>
-            <button className="cvp-table__icon-button" type="button" aria-label="Change table view" onClick={() => onRowAction?.('open', { id: 'table-view' })}>
+            {onRefresh && <button className="cvp-table__icon-button" type="button" aria-label="Refresh table" onClick={onRefresh}>
+              <RefreshCw size={16} aria-hidden="true" />
+            </button>}
+            {showViewControl && <button className="cvp-table__icon-button" type="button" aria-label="Change table view" onClick={() => onRowAction?.('open', { id: 'table-view' })}>
               <Eye size={16} aria-hidden="true" />
-            </button>
+            </button>}
           </div>
         </div>
       )}
 
       <div className="cvp-table__scroll-region" role="region" tabIndex={0} aria-label="Scrollable table content">
-        <table>
+        <table aria-busy={loading || undefined}>
           {caption && <caption>{caption}</caption>}
           <colgroup>
             {selectable && <col className="cvp-table__col-select" />}
@@ -217,7 +276,7 @@ export function Table({
           <thead>
             <tr>
               {selectable && (
-                <th className="cvp-table__utility-cell" scope="col">
+                <th className="cvp-table__utility-cell cvp-table__utility-cell--select" scope="col">
                   <Checkbox
                     className="cvp-table__checkbox"
                     aria-label="Select all rows"
@@ -226,22 +285,22 @@ export function Table({
                   />
                 </th>
               )}
-              {expandable && <th className="cvp-table__utility-cell" scope="col"><span className="cvp-visually-hidden">Expand</span></th>}
+              {expandable && <th className="cvp-table__utility-cell cvp-table__utility-cell--expand" scope="col"><span className="cvp-visually-hidden">Expand</span></th>}
               {draggable && <th className="cvp-table__utility-cell" scope="col"><span className="cvp-visually-hidden">Reorder</span></th>}
-              {columns.map((column) => {
+              {columns.map((column, columnIndex) => {
                 const canSort = sortable && column.sortable !== false;
                 const active = sortColumn === column.id;
                 return (
                   <th
                     key={column.id}
                     scope="col"
-                    className={`cvp-table__header-cell cvp-table__cell--${column.align ?? 'start'}`}
+                    className={`cvp-table__header-cell cvp-table__cell--${column.align ?? 'start'} ${freezeLeadingColumns && columnIndex === 0 ? 'cvp-table__cell--frozen-primary' : ''}`}
                     aria-sort={active ? (sortDirection === 'asc' ? 'ascending' : 'descending') : undefined}
                   >
                     {canSort ? (
                       <button className="cvp-table__sort-button" type="button" onClick={() => handleSort(column)}>
                         <span>{column.label}</span>
-                        {active ? (sortDirection === 'asc' ? <ChevronUp size={14} /> : <ChevronDown size={14} />) : <span className="cvp-table__sort-neutral" aria-hidden="true">↕</span>}
+                        {active ? (sortDirection === 'asc' ? <ChevronUp className="cvp-table__sort-icon" aria-hidden="true" /> : <ChevronDown className="cvp-table__sort-icon" aria-hidden="true" />) : <ArrowUpDown className="cvp-table__sort-icon cvp-table__sort-neutral" aria-hidden="true" />}
                       </button>
                     ) : column.label}
                     {resizable && column.resizable !== false && (
@@ -254,9 +313,7 @@ export function Table({
             </tr>
           </thead>
           <tbody>
-            {loading && (
-              <tr><td className="cvp-table__status" colSpan={columnCount}>Loading table data…</td></tr>
-            )}
+            {loading && <SkeletonTableRows columns={columnCount} />}
             {!loading && visibleData.length === 0 && (
               <tr><td className="cvp-table__status" colSpan={columnCount}>{emptyMessage}</td></tr>
             )}
@@ -290,18 +347,18 @@ export function Table({
                     }}
                   >
                     {selectable && (
-                      <td className="cvp-table__utility-cell">
+                      <td className="cvp-table__utility-cell cvp-table__utility-cell--select">
                         <Checkbox className="cvp-table__checkbox" aria-label={`Select ${row.title ?? `row ${index + 1}`}`} checked={isSelected} disabled={row.disabled} onChange={(checked: CheckboxState) => handleSelectRow(row.id, checked === true)} />
                       </td>
                     )}
                     {expandable && (
-                      <td className="cvp-table__utility-cell">
+                      <td className="cvp-table__utility-cell cvp-table__utility-cell--expand">
                         {row.expandable && <button className="cvp-table__icon-button cvp-table__icon-button--small" type="button" aria-label={`${isExpanded ? 'Collapse' : 'Expand'} ${row.title ?? 'row'}`} aria-expanded={isExpanded} onClick={() => toggleExpanded(row.id)}>{isExpanded ? <ChevronUp size={15} /> : <ChevronDown size={15} />}</button>}
                       </td>
                     )}
                     {draggable && <td className="cvp-table__utility-cell"><span className="cvp-table__drag-handle" aria-hidden="true"><GripVertical size={15} /></span></td>}
                     {columns.map((column, columnIndex) => (
-                      <td key={column.id} className={`cvp-table__cell cvp-table__cell--${column.align ?? 'start'} ${columnIndex ? 'cvp-table__cell--muted' : ''}`}>
+                      <td key={column.id} className={`cvp-table__cell cvp-table__cell--${column.align ?? 'start'} ${columnIndex ? 'cvp-table__cell--muted' : ''} ${freezeLeadingColumns && columnIndex === 0 ? 'cvp-table__cell--frozen-primary' : ''}`}>
                         {renderCell ? renderCell(column.id, row[column.id], row) : row[column.id]}
                       </td>
                     ))}

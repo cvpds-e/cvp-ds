@@ -26,6 +26,13 @@ const tokenRows = [
   ['Row count tag', '--cvp-table-count-bg', '--cvp-color-surface-subtle', 'Muted metadata tag', 'Toolbar summary'],
   ['Rail type tag', '--cvp-table-rail-type-*', '--cvp-color-surface-subtle / --cvp-color-text-link-default / --cvp-color-brand-accent', 'Recommended blue; Editorial purple', 'Rails List type column'],
   ['Control gap', '--cvp-table-control-gap', '--cvp-space-100', '2px', 'Toolbar and pagination controls'],
+  ['Page-size menu', '--cvp-table-control-*', 'Shared table control tokens', '10 / 20 / 50 rows; elevated menu', 'Rows-per-page trigger'],
+  ['Column resize', '--cvp-table-resize-handle-*', '--cvp-color-border-strong / --cvp-color-brand-default', 'Subtle divider; brand while dragging', 'resizable=true'],
+  ['Sort indicator', '--cvp-table-sort-icon-*', '--cvp-button-icon-glyph-size', '16px / strong stroke', 'sortable=true'],
+  ['Expanded content', '--cvp-table-expanded-*', '--cvp-color-surface-subtle / --cvp-space-*', 'Contained preview surface', 'row.expandedContent + expandable'],
+  ['Loading rows', '--cvp-skeleton-*', 'Shared Skeleton component contract', 'Neutral animated placeholders', 'loading=true'],
+  ['Frozen leading columns', '--cvp-table-sticky-*', '--cvp-color-border-subtle', 'Pinned scan-path boundary and stack order', 'freezeLeadingColumns'],
+  ['Overflow scrollbar', '--cvp-table-scrollbar-*', '--cvp-color-surface-subtle / --cvp-color-border-strong', 'Thin, theme-aware manual scroll affordance', 'Horizontally overflowing tables'],
   ['Primary text', '--cvp-table-cell-text', '--cvp-color-text-primary', '14px / 20px', 'Primary cells'],
   ['Muted text', '--cvp-table-cell-text-muted', '--cvp-color-text-muted', 'AA pairing', 'Secondary cells'],
   ['Selection control', '--cvp-checkbox-border', '--cvp-input-border', 'Shared Checkbox contract', 'selectable=true'],
@@ -36,6 +43,7 @@ const tokenRows = [
 
 export function TableDocumentation() {
   const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
   const [sortState, setSortState] = useState('No active sort');
   const [selection, setSelection] = useState<string[]>([]);
   const rows = useMemo(() => groupedRows, []);
@@ -63,7 +71,7 @@ export function TableDocumentation() {
       <section className="table-docs__section" aria-labelledby="table-product-example">
         <div className="table-docs__section-heading">
           <div><span>01</span><h2 id="table-product-example">Product example</h2></div>
-          <p>Compact by default for operational interfaces; horizontal overflow preserves column integrity.</p>
+          <p>Compact by default for operational interfaces; drag the subtle header separators to resize columns. Data rows can expose contained content with <code>expandedContent</code>; set <code>singleExpand</code> when one open preview is the intended workflow. Use <code>freezeLeadingColumns</code> only for consecutive leading utility cells and the primary data column. Everything after that scan path remains in the same table and scrolls horizontally with a thin, theme-aware scrollbar. Sort indicators use the shared 16px icon size, while page-size and refresh stay adjacent to the other table controls.</p>
         </div>
         <div className="table-docs__example-shell">
           <div className="table-docs__context-bar">
@@ -77,11 +85,14 @@ export function TableDocumentation() {
             data={rows}
             selectable
             expandable
+            freezeLeadingColumns
             sortable
             resizable
             density="compact"
             height="480px"
-            pageSize={20}
+            pageSize={pageSize}
+            pageSizeOptions={[10, 20, 50]}
+            onPageSizeChange={(size) => { setPageSize(size); setCurrentPage(1); }}
             currentPage={currentPage}
             onPageChange={setCurrentPage}
             onSelectionChange={setSelection}
@@ -133,9 +144,9 @@ export function TableDocumentation() {
         </div>
         <div className="table-docs__implementation-grid">
           <article><strong>Use native semantics</strong><p>The component renders table, thead, tbody, th, caption, and aria-sort. Keep interactive behavior inside buttons and inputs.</p></article>
-          <article><strong>Preserve scan paths</strong><p>Do not wrap cell values by default. Use explicit widths and horizontal scrolling for dense operational content.</p></article>
+          <article><strong>Preserve scan paths</strong><p>Do not wrap cell values by default. Use explicit widths and horizontal scrolling for dense operational content. If needed, freeze only the consecutive leading controls and primary column; do not freeze trailing metadata or actions.</p></article>
           <article><strong>Expose real actions</strong><p>Wire onSort, onSelectionChange, onRowAction, and onPageChange. Do not ship controls that only appear actionable.</p></article>
-          <article><strong>Handle every data state</strong><p>Provide loading and empty states, disabled rows where needed, and an accessible label or visible caption.</p></article>
+          <article><strong>Handle every data state</strong><p>Set <code>loading</code> to render shared Skeleton rows, then provide empty states, disabled rows where needed, and an accessible label or visible caption.</p></article>
         </div>
         <p className="table-docs__handoff-note">Full engineering guidance: <code>TABLE_COMPONENT_DEV_HANDOFF.md</code></p>
       </section>

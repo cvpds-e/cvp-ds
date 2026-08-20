@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronLeft, ListFilter, Pencil, Plus, Search, Trash2 } from 'lucide-react';
+import { ChevronLeft, FolderTree, List, Pencil, Plus, Search, Trash2 } from 'lucide-react';
 import { Filter, ActiveFilter } from './Filter';
 import { HeaderNavigation } from './HeaderNavigation';
 import { IconButton } from './IconButton';
@@ -15,6 +15,7 @@ import { Select } from './Select';
 import { OutlineButton } from './OutlineButton';
 import { Tree, TreeItem } from './Tree';
 import { WorkspaceLayout } from './WorkspaceLayout';
+import { RailContentGallery, RailContentItem } from './RailContentGallery';
 import './RailsList.css';
 
 const collections: TreeItem[] = [
@@ -31,26 +32,64 @@ const collections: TreeItem[] = [
 ];
 
 const columns: TableColumn[] = [
-  { id: 'title', label: 'Title', width: '210px', sortable: true },
-  { id: 'collection', label: 'Collection', width: '140px', sortable: true },
-  { id: 'order', label: 'Order', width: '80px', sortable: true },
-  { id: 'type', label: 'Type', width: '140px', sortable: true },
-  { id: 'updated', label: 'Updated', width: '130px', sortable: true },
+  { id: 'title', label: 'Title', width: '250px', minWidth: '200px', sortable: true },
+  { id: 'railId', label: 'ID', width: '112px', sortable: true },
+  { id: 'status', label: 'Rail status', width: '132px', sortable: true },
+    { id: 'collection', label: 'Collection', width: '180px', minWidth: '150px', sortable: true },
+  { id: 'type', label: 'Type', width: '142px', sortable: true },
+  { id: 'updated', label: 'Updated', width: '164px', sortable: true },
+  { id: 'controls', label: 'Controls', width: '82px', align: 'end', sortable: false },
 ];
 
-const collectionRows = (collection: string, titles: string[]): TableRow[] => [
+const railPreviewItems: RailContentItem[] = [
+  { id: 'dark-knight', title: 'The Dark Knight', year: '2008', thumbnail: 'https://images.unsplash.com/photo-1518676590629-3dcbd9c5a5c9?auto=format&fit=crop&w=480&q=80', metadata: { category: 'Action' } },
+  { id: 'inception', title: 'Inception', year: '2010', thumbnail: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=480&q=80', metadata: { category: 'Sci-Fi' } },
+  { id: 'interstellar', title: 'Interstellar', year: '2014', thumbnail: 'https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?auto=format&fit=crop&w=480&q=80', metadata: { category: 'Sci-Fi' } },
+  { id: 'oppenheimer', title: 'Oppenheimer', year: '2023', thumbnail: 'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=480&q=80', metadata: { category: 'Drama' } },
+  { id: 'tenet', title: 'Tenet', year: '2020', thumbnail: 'https://images.unsplash.com/photo-1614728263952-84ea256f9679?auto=format&fit=crop&w=480&q=80', metadata: { category: 'Sci-Fi' } },
+  { id: 'batman-begins', title: 'Batman Begins', year: '2005', thumbnail: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=480&q=80', metadata: { category: 'Action' } },
+];
+
+const railPreview = (title: string, seed: string) => (
+  <div className="rails-list-page__rail-preview">
+    <RailContentGallery
+      title={title}
+      items={railPreviewItems.map((item, index) => ({ ...item, id: `${seed}-${item.id}`, position: index + 1 }))}
+      itemCountPlacement="navigation"
+      showSourceLabels={false}
+      size="compact"
+    />
+  </div>
+);
+
+const collectionRows = (collection: string, titles: string[], startId: number): TableRow[] => [
   { id: `${collection}-group`, kind: 'group', groupLabel: collection === 'Home' ? 'Home' : collection, groupCount: titles.length },
-  ...titles.map((title, index) => ({ id: `${collection}-${index + 1}`, title, collection, order: index + 1, type: index % 2 ? 'Editorial' : 'Recommended', updated: 'Aug 6, 2026', expandable: true })),
+  ...titles.map((title, index) => ({
+    id: `${collection}-${index + 1}`,
+    railId: String(startId + index),
+    status: index === 0 || index === 3 ? 'Active' : 'Inactive',
+    title,
+    collection,
+    type: index % 2 ? 'Editorial' : 'Recommended',
+    updated: `Aug ${17 - Math.min(index, 4)}, 2026 · ${String(11 - index).padStart(2, '0')}:2${index}`,
+    expandable: true,
+    expandedContent: railPreview(title, `${collection}-${index + 1}`),
+  })),
 ];
 
 const rows = [
-  ...collectionRows('Home', ['Spotlight', 'Trending', 'Because You Watched', 'New Releases', 'Continue Watching', 'Trending Now']),
-  ...collectionRows('Drama', ['Drama Collection 1', 'Drama Collection 2', 'Drama Collection 3', 'Drama Collection 4', 'Drama Collection 5']),
+  ...collectionRows('Home', ['Spotlight', 'Trending', 'Because You Watched', 'New Releases', 'Continue Watching', 'Trending Now'], 1550862),
+  ...collectionRows('Drama', ['Drama Collection 1', 'Drama Collection 2', 'Drama Collection 3', 'Drama Collection 4', 'Drama Collection 5'], 1544865),
+  ...collectionRows('Kids', Array.from({ length: 6 }, (_, index) => `Kids Collection ${index + 1}`), 1544876),
+  ...collectionRows('Documentary', Array.from({ length: 5 }, (_, index) => `Documentary ${index + 1}`), 1544882),
 ];
 
 export function RailsList() {
   const [filters, setFilters] = useState<ActiveFilter[]>([]);
   const [rails, setRails] = useState<TableRow[]>(rows);
+  const [tableView, setTableView] = useState<'list' | 'grouped'>('list');
+  const [pageSize, setPageSize] = useState(20);
+  const [currentPage, setCurrentPage] = useState(1);
   const [matchAllFilters, setMatchAllFilters] = useState(true);
   const [selectedCollection, setSelectedCollection] = useState('home');
   const [editingCollection, setEditingCollection] = useState<string | null>(null);
@@ -102,12 +141,14 @@ export function RailsList() {
     const collection = collections.find((item) => item.id === newRailCollection)?.label ?? 'Home';
     const newRail: TableRow = {
       id: `created-${Date.now()}`,
+      railId: String(Date.now()).slice(-7),
+      status: 'Active',
       title: name,
       collection,
-      order: 1,
       type: newRailType === 'editorial' ? 'Editorial' : 'Recommended',
       updated: 'Just now',
       expandable: true,
+      expandedContent: railPreview(name, `created-${name}`),
       contentSlots: Number(newRailSlots) || 10,
       externalReferenceId: newRailReference || undefined,
       personalizerConfiguration: newRailType === 'recommended' ? personalizerConfiguration : undefined,
@@ -118,7 +159,6 @@ export function RailsList() {
       let groupEnd = groupIndex + 1;
       while (groupEnd < current.length && current[groupEnd].kind !== 'group') groupEnd += 1;
       const collectionRails = current.slice(groupIndex + 1, groupEnd);
-      newRail.order = collectionRails.length + 1;
       const group = current[groupIndex];
       return [
         ...current.slice(0, groupIndex),
@@ -129,6 +169,17 @@ export function RailsList() {
       ];
     });
     closeCreateRail();
+  };
+  const removeRail = (railId: string) => {
+    setRails((current) => {
+      const deletedIndex = current.findIndex((row) => row.id === railId);
+      const groupIndex = current.slice(0, deletedIndex).reduce((latest, row, index) => row.kind === 'group' ? index : latest, -1);
+      return current
+        .filter((row) => row.id !== railId)
+        .map((row, index) => index === groupIndex && row.kind === 'group'
+          ? { ...row, groupCount: Math.max(0, (row.groupCount ?? 1) - 1) }
+          : row);
+    });
   };
   const collectionEditor = <div className="rails-list-page__collection-editor">
     <div className="rails-list-page__collection-editor-body">
@@ -155,14 +206,18 @@ export function RailsList() {
       </WorkspaceLayout.SidePanel>
       <WorkspaceLayout.ResizeHandle />
       <WorkspaceLayout.Main className="rails-list-page__main">
-        <WorkspaceLayout.PageHeader className="rails-list-page__titlebar"><div><ListFilter size={20} aria-hidden="true" /><h1>Rails List</h1></div><PrimaryButton onClick={() => setCreateRailOpen(true)}><Plus size={16} /> Create rail</PrimaryButton></WorkspaceLayout.PageHeader>
+        <WorkspaceLayout.PageHeader className="rails-list-page__titlebar"><div><List size={20} aria-hidden="true" /><h1>Rails List</h1></div><PrimaryButton onClick={() => setCreateRailOpen(true)}><Plus size={16} /> Create rail</PrimaryButton></WorkspaceLayout.PageHeader>
         <WorkspaceLayout.Toolbar className="rails-list-page__filters"><Filter triggerVariant="icon-seamless" options={[{ id: 'title', label: 'Title', type: 'text' }, { id: 'rail-type', label: 'Rail type', type: 'multiselect', options: [{ value: 'editorial', label: 'Editorial' }, { value: 'recommended', label: 'Recommended' }] }, { id: 'collection', label: 'Collection', type: 'select', options: [{ value: 'home', label: 'Home' }, { value: 'drama', label: 'Drama' }, { value: 'kids', label: 'Kids' }] }]} activeFilters={filters} onChange={(nextFilters) => { setFilters(nextFilters); if (nextFilters.length <= 2) setMatchAllFilters(true); }} placeholder="Add filter" />{filters.length > 2 && <div className="rails-list-page__match"><span>Match</span><TextButton variant="contextual" aria-label={`Switch to match ${matchAllFilters ? 'any' : 'all'} filters`} onClick={() => setMatchAllFilters((value) => !value)}>{matchAllFilters ? 'all filters' : 'any filter'}</TextButton></div>}</WorkspaceLayout.Toolbar>
-        <Table className="rails-list-page__table" ariaLabel="Rails list" columns={columns} data={rails} selectable expandable sortable showActions={false} totalItems={rails.filter((row) => row.kind !== 'group').length} pageSize={38} height="calc(100dvh - 246px)" renderCell={(column, value) => {
+        <Table className="rails-list-page__table" ariaLabel="Rails list" columns={columns} data={tableView === 'grouped' ? rails : rails.filter((row) => row.kind !== 'group')} selectable expandable singleExpand={tableView === 'list'} freezeLeadingColumns sortable resizable showActions={false} showViewControl={false} totalItems={rails.filter((row) => row.kind !== 'group').length} pageSize={pageSize} pageSizeOptions={[10, 20, 50]} currentPage={currentPage} onPageChange={setCurrentPage} onPageSizeChange={(size) => { setPageSize(size); setCurrentPage(1); }} onRefresh={() => setRails((current) => [...current])} height="calc(100dvh - 246px)" toolbarActions={<div className="rails-list-page__view-controls" role="group" aria-label="Table view"><IconButton variant={tableView === 'list' ? 'outline' : 'ghost'} size="medium" aria-label="List view" aria-pressed={tableView === 'list'} onClick={() => { setTableView('list'); setCurrentPage(1); }}><List size={16} /></IconButton><IconButton variant={tableView === 'grouped' ? 'outline' : 'ghost'} size="medium" aria-label="Grouped view" aria-pressed={tableView === 'grouped'} onClick={() => { setTableView('grouped'); setCurrentPage(1); }}><FolderTree size={16} /></IconButton></div>} renderCell={(column, value, row) => {
+          if (column === 'railId') return <span className="rails-list-page__rail-id">{value}</span>;
+          if (column === 'status') return <span className={`rails-list-page__rail-status rails-list-page__rail-status--${String(value).toLowerCase()}`}>{value}</span>;
+          if (column === 'title') return <span className="rails-list-page__rail-title">{value}</span>;
           if (column === 'collection') return <span className="rails-list-page__collection-tag">{value}</span>;
           if (column === 'type') {
             const railType = String(value).toLowerCase();
             return <span className={`cvp-table__rail-type-tag cvp-table__rail-type-tag--${railType}`}>{value}</span>;
           }
+          if (column === 'controls') return <div className="rails-list-page__row-controls"><IconButton variant="ghost" size="small" aria-label={`Edit ${row.title}`} onClick={() => window.location.assign(`${window.location.pathname}?page=rail-details`)}><Pencil size={15} /></IconButton><IconButton variant="danger" size="small" aria-label={`Delete ${row.title}`} onClick={() => removeRail(row.id)}><Trash2 size={15} /></IconButton></div>;
           return value;
         }} />
       </WorkspaceLayout.Main>

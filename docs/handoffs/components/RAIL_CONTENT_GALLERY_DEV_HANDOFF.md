@@ -34,7 +34,7 @@ Reordering callbacks receive the dragged item ID and zero-based target position.
 
 ## Token contract
 
-Gallery CSS consumes `--cvp-gallery-*` Tier 3 aliases. Text, borders, surfaces, focus, spacing, radius, overlays, source tags, pin state, motion, and count metadata resolve through canonical CVP foundations. Gallery controls use the same contrast-protected dark glass treatment in both themes, with a strong opaque-hover overlay so controls remain legible over arbitrary thumbnails. Delete keeps that shared surface and consumes semantic danger text. Position numerals use a bold, tabular treatment centered within the overlay square; Algorithmic source uses the bounded neutral surface treatment; Manual source and the active pin resolve through success state tokens. Child controls continue to consume their own Tier 3 contracts.
+Gallery CSS consumes `--cvp-gallery-*` Tier 3 aliases. Text, borders, surfaces, focus, spacing, radius, elevation, overlays, source tags, pin state, motion, and count metadata resolve through canonical CVP foundations. Populated media tiles map to elevation 1 at rest and elevation 2 on hover, while empty slots remain flat. Gallery controls use the same contrast-protected dark glass treatment in both themes, with a strong opaque-hover overlay so controls remain legible over arbitrary thumbnails. Delete keeps that shared surface and consumes semantic danger text. Position numerals use a bold, tabular treatment centered within the overlay square; Algorithmic source uses the bounded neutral surface treatment; Manual source and the active pin resolve through success state tokens. Child controls continue to consume their own Tier 3 contracts.
 
 ## Pixel-perfect acceptance
 

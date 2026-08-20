@@ -50,6 +50,7 @@ import { RailDetails } from './components/RailDetails';
 import { RailsList } from './components/RailsList';
 import { RailsListDocumentation } from './components/RailsListDocumentation';
 import { NotificationBannerDocumentation } from './components/NotificationBannerDocumentation';
+import { SkeletonDocumentation } from './components/SkeletonDocumentation';
 import { AccessibilityAuditProbe } from './components/AccessibilityAuditProbe';
 import { AccessibilityDocumentation } from './components/AccessibilityDocumentation';
 import { TokenArchitectureDocumentation } from './components/TokenArchitectureDocumentation';
@@ -598,6 +599,8 @@ export default function App() {
         return <TagFilterDocumentation />;
       case 'toast':
         return <ToastDocumentation />;
+      case 'skeleton':
+        return <SkeletonDocumentation />;
       case 'notification-banner':
         return <NotificationBannerDocumentation />;
       case 'segment-query-config':

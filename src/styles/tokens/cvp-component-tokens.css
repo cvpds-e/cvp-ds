@@ -1152,6 +1152,22 @@
   --cvp-chip-selected-text: var(--cvp-color-text-inverse);
 
   /* ===========================================================================
+     SKELETON
+     Public:   bg, highlight
+     Internal: radius, line-height, gap, table-row-height, rail-media-ratio,
+               motion-duration, motion-easing
+  =========================================================================== */
+  --cvp-skeleton-bg:               var(--cvp-color-surface-subtle);
+  --cvp-skeleton-highlight:        var(--cvp-color-surface-active);
+  --cvp-skeleton-radius:           var(--cvp-radius-sm);
+  --cvp-skeleton-line-height:      var(--cvp-space-3);
+  --cvp-skeleton-gap:              var(--cvp-space-2);
+  --cvp-skeleton-table-row-height: var(--cvp-space-900);
+  --cvp-skeleton-rail-media-ratio: 2 / 3;
+  --cvp-skeleton-motion-duration:  var(--cvp-motion-duration-slow);
+  --cvp-skeleton-motion-easing:    var(--cvp-motion-easing-standard);
+
+  /* ===========================================================================
      TABLE
      Public:   header-bg, row-bg-hover, row-bg-selected, cell-text
      Internal: header-text, header-border, row-bg, row-border, cell-text-muted,
@@ -1217,9 +1233,24 @@
   --cvp-table-control-color-disabled: var(--cvp-color-icon-disabled);
   --cvp-table-control-bg-hover: var(--cvp-color-surface-hover);
   --cvp-table-sort-neutral:     var(--cvp-color-icon-subtle);
+  --cvp-table-sort-icon-size:   var(--cvp-button-icon-glyph-size);
+  --cvp-table-sort-icon-stroke-width: var(--cvp-border-strong-width);
   --cvp-table-resize-handle:    var(--cvp-color-border-strong);
+  --cvp-table-resize-handle-active: var(--cvp-color-brand-default);
+  --cvp-table-resize-handle-width: var(--cvp-border-base-width);
+  --cvp-table-resize-handle-target-width: var(--cvp-space-3);
+  --cvp-table-resize-handle-opacity: 0.45;
   --cvp-table-utility-column-width: var(--cvp-space-900);
   --cvp-table-actions-column-width: calc(var(--cvp-space-900) * 2);
+  --cvp-table-sticky-column-divider: var(--cvp-border-base-width) 0 0 var(--cvp-color-border-subtle);
+  --cvp-table-sticky-cell-z-index: 3;
+  --cvp-table-sticky-header-z-index: 5;
+  --cvp-table-scrollbar-size: var(--cvp-space-2);
+  --cvp-table-scrollbar-track: var(--cvp-color-surface-subtle);
+  --cvp-table-scrollbar-thumb: var(--cvp-color-border-strong);
+  --cvp-table-scrollbar-thumb-hover: var(--cvp-color-icon-subtle);
+  --cvp-table-scrollbar-thumb-inset: var(--cvp-space-1);
+  --cvp-table-scrollbar-radius: var(--cvp-radius-full);
   --cvp-table-checkbox-size:    var(--cvp-space-4);
   --cvp-table-checkbox-accent:  var(--cvp-color-brand-default);
   --cvp-table-page-current-bg:  var(--cvp-color-surface-active);
@@ -1280,7 +1311,7 @@
      RAIL CONTENT GALLERY
      Public:   (none — gallery layout is not a customer theming surface)
      Internal: meta-color, empty-border, empty-icon-color, empty-text-color
-     Local:    item-width, item-radius, item-gap, font sizes/weights,
+     Local:    item-width, item-radius, item-gap, item-shadow, font sizes/weights,
                empty-padding, empty-min-height, empty-gap, empty-radius,
                empty-icon-size, empty-icon-opacity
   =========================================================================== */
@@ -1301,6 +1332,8 @@
   --cvp-gallery-item-border:   var(--cvp-color-border-subtle);
   --cvp-gallery-item-border-hover: var(--cvp-color-border-default);
   --cvp-gallery-item-border-selected: var(--cvp-color-brand-default);
+  --cvp-gallery-item-shadow: var(--cvp-elevation-1);
+  --cvp-gallery-item-shadow-hover: var(--cvp-elevation-2);
   --cvp-gallery-selection-ring: var(--cvp-border-focus-ring);
   --cvp-gallery-focus-ring:    var(--cvp-border-focus-ring);
   --cvp-gallery-image-aspect-ratio: 2 / 3;

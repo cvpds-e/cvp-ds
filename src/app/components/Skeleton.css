@@ -1,0 +1,80 @@
+.cvp-skeleton {
+  position: relative;
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  background: var(--cvp-skeleton-bg);
+  border-radius: var(--cvp-skeleton-radius);
+}
+
+.cvp-skeleton::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, var(--cvp-skeleton-highlight), transparent);
+  content: '';
+  transform: translateX(-100%);
+  animation: cvp-skeleton-shimmer var(--cvp-skeleton-motion-duration) var(--cvp-skeleton-motion-easing) infinite;
+}
+
+.cvp-skeleton--md { border-radius: var(--cvp-radius-md); }
+.cvp-skeleton--lg { border-radius: var(--cvp-radius-lg); }
+.cvp-skeleton--pill { border-radius: var(--cvp-radius-full); }
+
+.cvp-skeleton__sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.cvp-skeleton-table__row { height: var(--cvp-skeleton-table-row-height); }
+.cvp-skeleton-table__cell { vertical-align: middle; }
+.cvp-skeleton-table__cell .cvp-skeleton { width: 76%; }
+.cvp-skeleton-table__cell:first-child .cvp-skeleton { width: 42%; }
+.cvp-skeleton-table__primary { width: 82% !important; }
+
+.cvp-skeleton-rail-cards {
+  width: 100%;
+  gap: var(--cvp-skeleton-gap);
+}
+
+.cvp-skeleton-rail-cards--rail {
+  display: flex;
+  overflow: hidden;
+}
+
+.cvp-skeleton-rail-cards--grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--cvp-gallery-grid-min-width), 1fr));
+}
+
+.cvp-skeleton-rail-cards__card {
+  display: grid;
+  min-width: 0;
+  gap: var(--cvp-skeleton-gap);
+}
+
+.cvp-skeleton-rail-cards--rail .cvp-skeleton-rail-cards__card {
+  flex: 0 0 var(--cvp-gallery-item-width);
+}
+
+
+.cvp-skeleton-rail-cards__media {
+  width: 100%;
+  aspect-ratio: var(--cvp-skeleton-rail-media-ratio);
+}
+
+.cvp-skeleton-rail-cards__copy {
+  display: grid;
+  gap: calc(var(--cvp-skeleton-gap) / 2);
+}
+
+@keyframes cvp-skeleton-shimmer { to { transform: translateX(100%); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .cvp-skeleton::after { animation: none; }
+}

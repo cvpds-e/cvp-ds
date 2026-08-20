@@ -52,6 +52,7 @@ const NAV_ITEMS = [
   { id: 'modal', label: 'Modal', category: 'Overlays' },
   { id: 'content-browser-modal', label: 'Content Browser Modal', category: 'Overlays' },
   { id: 'tooltip', label: 'Tooltip', category: 'Overlays' },
+  { id: 'skeleton', label: 'Skeleton', category: 'Feedback' },
   { id: 'toast', label: 'Toast', category: 'Feedback' },
   { id: 'notification-banner', label: 'Notification Banner', category: 'Feedback' },
 

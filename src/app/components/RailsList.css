@@ -28,7 +28,17 @@
 .rails-list-page__match .cvp-text-button { line-height: inherit; }
 .rails-list-page__table { flex: 1; height: auto !important; border: 0; border-radius: 0; }
 .rails-list-page__table .cvp-table__pagination { position: sticky; bottom: 0; z-index: 3; }
+.rails-list-page__rail-preview { min-width: 0; }
+.rails-list-page__rail-preview .cvp-rail-gallery__heading h3 { font-size: var(--cvp-font-size-sm); }
 .rails-list-page__collection-tag { display: inline-flex; padding: 0 var(--cvp-space-1); color: var(--cvp-color-text-accent-default); background: var(--cvp-color-surface-subtle); border: var(--cvp-border-base-width) solid var(--cvp-color-border-default); border-radius: var(--cvp-radius-sm); font-family: var(--cvp-font-family-mono); font-size: var(--cvp-font-size-xs); font-weight: var(--cvp-font-weight-semibold); line-height: var(--cvp-line-height-tight); text-transform: uppercase; }
+.rails-list-page__rail-id { color: var(--cvp-color-text-primary); font-family: var(--cvp-font-family-mono); font-size: var(--cvp-font-size-sm); font-weight: var(--cvp-font-weight-semibold); }
+.rails-list-page__rail-status { display: inline-flex; align-items: center; font-family: var(--cvp-font-family-mono); font-size: var(--cvp-font-size-xs); font-weight: var(--cvp-font-weight-semibold); line-height: var(--cvp-line-height-tight); letter-spacing: var(--cvp-letter-spacing-wide); text-transform: uppercase; white-space: nowrap; }
+.rails-list-page__rail-status--active { color: var(--cvp-color-text-success); }
+.rails-list-page__rail-status--inactive { color: var(--cvp-color-text-muted); }
+.rails-list-page__rail-title { color: var(--cvp-color-text-primary); font-weight: var(--cvp-font-weight-semibold); }
+.rails-list-page__row-controls { display: inline-flex; align-items: center; justify-content: flex-end; gap: var(--cvp-space-1); width: 100%; }
+.rails-list-page__table .cvp-table__cell:has(.rails-list-page__row-controls) { padding-inline-end: var(--cvp-space-3); }
+.rails-list-page__view-controls { display: inline-flex; align-items: center; gap: var(--cvp-table-control-gap); padding-inline-end: var(--cvp-space-1); border-inline-end: var(--cvp-border-base-width) solid var(--cvp-color-border-subtle); }
 .rails-list-page__table .cvp-table__toolbar { min-height: 40px; padding-inline: var(--cvp-space-4); justify-content: flex-end; }
 .rails-list-page__table .cvp-table__toolbar:has(.cvp-table__text-action) { justify-content: space-between; }
 .rails-list-page__create-rail-form { display: grid; gap: var(--cvp-space-4); }

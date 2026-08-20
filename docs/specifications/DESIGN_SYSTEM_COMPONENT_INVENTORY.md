@@ -99,8 +99,9 @@ The approved scope has been migrated to the CVP primitive → semantic → compo
 |---|---|---|---|---|---|---|
 | Toast | Feedback | `src/app/components/Toast.tsx` | None | Canonical Tier 3 (`--cvp-toast-*`) | `ToastDocumentation.tsx` | Standardized — Missing Story |
 | NotificationBanner | Feedback | `src/app/components/NotificationBanner.tsx` | None | Canonical Tier 3 (`--cvp-notification-banner-*`) | `NotificationBannerDocumentation.tsx` | Standardized — Missing Story |
+| Skeleton | Feedback | `src/app/components/Skeleton.tsx` | `Skeleton.css` | Canonical Tier 3 (`--cvp-skeleton-*`) | `SkeletonDocumentation.tsx`, `docs/handoffs/components/SKELETON_COMPONENT_DEV_HANDOFF.md` | Standardized — Visual + Handoff |
 
-**Aliases / naming notes:** `Toast` is the transient, auto-dismissing notification. `NotificationBanner` is the persistent, full-width contextual message — these are distinct patterns. `ui/sonner.tsx` is a third-party toast primitive also present; the relationship between it and the CVP `Toast` component is unclear (see §6).
+**Aliases / naming notes:** `Toast` is the transient, auto-dismissing notification. `NotificationBanner` is the persistent, full-width contextual message — these are distinct patterns. `Skeleton` is the shared, layout-preserving loading pattern; `Table` and `RailContentGallery` compose its table-row and rail-card helpers. `ui/sonner.tsx` is a third-party toast primitive also present; the relationship between it and the CVP `Toast` component is unclear (see §6).
 
 ---
 
@@ -465,9 +466,9 @@ The following patterns appear across multiple components and should be specified
 
 ### 4.4 Loading States
 
-**Appears in:** LoginSignUp (loading prop), Table (implied by pagination), RailContentGallery  
-**Current state:** `ui/skeleton.tsx` and `ui/progress.tsx` exist as shadcn/ui primitives; `ui/chart.tsx` wraps recharts. No CVP-authored loading/skeleton component exists.  
-**What to specify:** Skeleton pattern, spinner pattern, progress bar, inline loading (button loading state), when to use each.
+**Appears in:** Skeleton, Table (`loading`), RailContentGallery (`loading`), and any composed loading region.
+**Current state:** The CVP `Skeleton` component provides shared line, table-row, and rail-card placeholders through the registered `--cvp-skeleton-*` contract. Table and RailContentGallery use these helpers in their loading states; decorative shapes are hidden from assistive technology and the containing region announces loading status. Reduced-motion users receive a static placeholder.
+**What remains to specify:** Spinner/progress selection, button-level loading treatment, and product-specific asynchronous status copy.
 
 ### 4.5 Empty and Error States
 

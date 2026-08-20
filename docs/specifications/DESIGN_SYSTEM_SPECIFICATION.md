@@ -7,6 +7,8 @@
 
 > **Current implementation note (2026-08-12):** This specification includes historical readiness and migration snapshots. For the current token inventory and validation workflow, use [`TOKEN_CATALOG.md`](../tokens/TOKEN_CATALOG.md) and [`TOKEN_GOVERNANCE.md`](../tokens/TOKEN_GOVERNANCE.md). The registry now exists and `npm run tokens:check` is active; Stylelint usage enforcement remains a future enhancement.
 
+> **Current implementation note (2026-08-20):** The latest component contracts supersede older audit observations in this document. `Skeleton` is now a CVP component with the registered `--cvp-skeleton-*` token family and is composed by Table and Rail Content Gallery loading states. Table now uses semantic table markup with loading and empty states, leading-column freezing, contained horizontal scrolling, visible scrollbar affordance, and column-resize support. Passages below that describe these capabilities as absent are retained as historical audit context, not current requirements.
+
 ---
 
 ## Executive Engineering Handoff
@@ -38,7 +40,7 @@ This document does **not** prescribe internal engineering tooling, test framewor
 |---|---|
 | **Specification completeness** | ✓ All 35 CVP publishable components documented · 14 design patterns documented · 3 internal utilities classified · 46 shadcn/ui primitives catalogued |
 | **Token architecture (Tier 1–2)** | ✓ Complete — `cvp-primitives.css`, `cvp-semantic-tokens.css`, `cvp-alias-bridge.css` delivered |
-| **Token architecture (Tier 3)** | ✓ Complete — `cvp-component-tokens.css` delivered for Button, Input, Avatar, Checkbox, Modal, Dropdown, Nav, Header, Breadcrumbs, Chip, Table, Toast, Rail Gallery |
+| **Token architecture (Tier 3)** | ✓ Complete — `cvp-component-tokens.css` delivered for Button, Input, Avatar, Checkbox, Modal, Dropdown, Nav, Header, Breadcrumbs, Chip, Table, Toast, Skeleton, Rail Gallery |
 | **Component token migration** | ✗ Phase 0 (audit) not started · Phase 2+ not started · All component implementations still reference legacy shorthand or unregistered tokens |
 | **Storybook** | ✗ No `.storybook/` directory · No stories exist for any component |
 | **Automated tests** | ✗ No unit, interaction, or accessibility tests for any CVP component |

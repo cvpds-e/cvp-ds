@@ -62,7 +62,6 @@ function RailDetailsWorkspace({ railName = 'Trending', initiallyEmpty = false }:
   const [releaseYear, setReleaseYear] = useState('');
   const [mediaAvailability, setMediaAvailability] = useState<string[]>([]);
   const [anyTitlePrefix, setAnyTitlePrefix] = useState('');
-  const [approved, setApproved] = useState('');
   const [subscriptionPackages, setSubscriptionPackages] = useState<string[]>([]);
   const [languages, setLanguages] = useState<string[]>([]);
   const [isAdult, setIsAdult] = useState('');
@@ -95,7 +94,6 @@ function RailDetailsWorkspace({ railName = 'Trending', initiallyEmpty = false }:
       exactTitle ? normalizedTitle === exactTitle.toLocaleLowerCase() : undefined,
       titlePrefix ? normalizedTitle.startsWith(titlePrefix.toLocaleLowerCase()) : undefined,
       anyTitlePrefix ? normalizedTitle.startsWith(anyTitlePrefix.toLocaleLowerCase()) : undefined,
-      approved ? (approved === 'yes' ? item.metadata.status !== 'inactive' : item.metadata.status === 'inactive') : undefined,
       subscriptionPackages.length ? subscriptionPackages.includes(`package-${item.id}`) : undefined,
       languages.length ? languages.includes(languageByCategory[category]) : undefined,
       isAdult ? (isAdult === 'yes' ? item.metadata.status === 'inactive' : item.metadata.status !== 'inactive') : undefined,
@@ -120,7 +118,7 @@ function RailDetailsWorkspace({ railName = 'Trending', initiallyEmpty = false }:
       <Checkbox label="Disable" checked={disabled} onChange={(checked) => setDisabled(checked === true)} />
     </div>
   </div>;
-  const hasQueryFilters = Boolean(mediaFormats.length || genres.length || mediaAvailability.length || releaseYear || anyTitlePrefix || approved || subscriptionPackages.length || languages.length || isAdult || exactTitle || titlePrefix || tvSeason || sortField !== 'title' || sortDirection !== 'desc');
+  const hasQueryFilters = Boolean(mediaFormats.length || genres.length || mediaAvailability.length || releaseYear || anyTitlePrefix || subscriptionPackages.length || languages.length || isAdult || exactTitle || titlePrefix || tvSeason || sortField !== 'title' || sortDirection !== 'desc');
   const hasBaseChanges = name !== railName || collection !== 'home' || contentSlots !== '24' || guid !== 'trending-editorial-001' || disabled;
   const shouldShowSaveFooter = hasBaseChanges || hasQueryFilters || matchMode !== 'all' || contentDirty;
   const matchesFilterSearch = (...labels: string[]) => !filterSearch.trim() || labels.some((label) => label.toLocaleLowerCase().includes(filterSearch.trim().toLocaleLowerCase()));
@@ -130,7 +128,6 @@ function RailDetailsWorkspace({ railName = 'Trending', initiallyEmpty = false }:
     setReleaseYear('');
     setMediaAvailability([]);
     setAnyTitlePrefix('');
-    setApproved('');
     setSubscriptionPackages([]);
     setLanguages([]);
     setIsAdult('');
@@ -177,7 +174,6 @@ function RailDetailsWorkspace({ railName = 'Trending', initiallyEmpty = false }:
         {matchesFilterSearch('Title', 'Exact title') && <TextInput label="Title" labelTooltip={<FilterTooltip content="Filter programs by exact title match" />} value={exactTitle} onChange={(event) => setExactTitle(event.target.value)} placeholder="Enter title" />}
         {showDeferredEditorialFilters && matchesFilterSearch('Title prefix', 'Primary title') && <TextInput label="Title prefix" labelTooltip={<FilterTooltip content="Filter programs whose primary title starts with the given prefix" />} value={titlePrefix} onChange={(event) => setTitlePrefix(event.target.value)} placeholder="Enter title prefix" />}
         {matchesFilterSearch('Any title prefix') && <TextInput label="Any title prefix" labelTooltip={<FilterTooltip content="Filter programs whose any title starts with the given prefix" />} value={anyTitlePrefix} onChange={(event) => setAnyTitlePrefix(event.target.value)} placeholder="Enter title prefix" />}
-        {matchesFilterSearch('Approved') && <Select label="Approved" labelTooltip={<FilterTooltip content="Filter by whether the program has been approved" />} value={approved} onChange={setApproved} placeholder="Select approval…" options={[{ value: 'yes', label: 'Yes' }, { value: 'no', label: 'No' }]} />}
         {matchesFilterSearch('Subscription packages', 'Package') && <MultiSelect label="Subscription packages" labelTooltip={<FilterTooltip content="Filter by one or more subscription packages associated with the program" />} value={subscriptionPackages} onChange={setSubscriptionPackages} allowCreate={false} placeholder="Select subscription packages…" options={[{ value: 'package-1', label: 'Test Package 1' }, { value: 'package-3', label: 'Test Package 3' }, { value: 'package-4', label: 'Test Package 4' }, { value: 'package-5', label: 'Test Package 5' }, { value: 'package-6', label: 'Test Package 6' }]} />}
         {matchesFilterSearch('Languages') && <MultiSelect label="Languages" labelTooltip={<FilterTooltip content="Filter by one or more languages associated with the program" />} value={languages} onChange={setLanguages} allowCreate={false} placeholder="Select languages…" options={[{ value: 'en', label: 'English (en)' }, { value: 'es', label: 'Spanish (es)' }, { value: 'fr', label: 'French (fr)' }, { value: 'de', label: 'German (de)' }, { value: 'it', label: 'Italian (it)' }]} />}
         {showDeferredEditorialFilters && matchesFilterSearch('Is adult', 'Adult') && <Select label="Is adult" labelTooltip={<FilterTooltip content="Filter by whether the program is marked as adult content" />} value={isAdult} onChange={setIsAdult} placeholder="Select audience…" options={[{ value: 'yes', label: 'Yes' }, { value: 'no', label: 'No' }]} />}

@@ -1174,7 +1174,7 @@
                header-font-size/weight, body-font-size/weight
      Local:    cell-padding-x, cell-padding-y
   =========================================================================== */
-  --cvp-table-header-bg:        var(--cvp-color-surface-page);
+  --cvp-table-header-bg:        var(--cvp-color-surface-sunken);
   --cvp-table-header-text:      var(--cvp-color-text-secondary);
   --cvp-table-header-border:    var(--cvp-color-border-default);
   --cvp-table-row-bg:           var(--cvp-color-surface-page);

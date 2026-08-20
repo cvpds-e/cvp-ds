@@ -1914,7 +1914,7 @@ Component contracts. Each group is named after the component or shared contract 
 
 | Token | Value | Scope |
 | --- | --- | --- |
-| `--cvp-table-header-bg` | `var(--cvp-color-surface-page)` | Shared |
+| `--cvp-table-header-bg` | `var(--cvp-color-surface-sunken)` | Shared |
 | `--cvp-table-header-text` | `var(--cvp-color-text-secondary)` | Shared |
 | `--cvp-table-header-border` | `var(--cvp-color-border-default)` | Shared |
 | `--cvp-table-row-bg` | `var(--cvp-color-surface-page)` | Shared |

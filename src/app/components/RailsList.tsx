@@ -179,7 +179,7 @@ export function RailsList() {
         <TextInput label="Rail name" value={newRailName} onChange={(event) => setNewRailName(event.target.value)} required autoFocus />
         <div className="rails-list-page__create-rail-field">
           <span className="rails-list-page__create-rail-label">Rail type</span>
-          <Segmented ariaLabel="Rail type" variant="color" fullWidth value={newRailType} onChange={(value) => setNewRailType(value as 'editorial' | 'recommended')} options={[{ value: 'editorial', label: 'Editorial' }, { value: 'recommended', label: 'Recommended' }]} />
+          <Segmented ariaLabel="Rail type" size="small" variant="color" fullWidth value={newRailType} onChange={(value) => setNewRailType(value as 'editorial' | 'recommended')} options={[{ value: 'editorial', label: 'Editorial' }, { value: 'recommended', label: 'Recommended' }]} />
         </div>
         {newRailType === 'recommended' && <div className="rails-list-page__create-rail-configuration">
           <Select label="Personalizer configuration" value={personalizerConfiguration} onChange={setPersonalizerConfiguration} options={[{ value: 'general-recommendations', label: 'General recommendations' }, { value: 'continue-watching', label: 'Continue watching' }, { value: 'popular-now', label: 'Popular now' }]} />

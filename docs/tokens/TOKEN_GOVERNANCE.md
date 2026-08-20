@@ -118,6 +118,10 @@ AAA is the target, not merely aspirational: any new primitive or semantic color 
 
 Contrast ratios must be computed against all surfaces the token is expected to appear on, including the light theme default surface, dark theme default surface, and any elevated or overlay surfaces defined in `cvp-semantic-tokens.css`.
 
+### Boundary roles
+
+`color.border.subtle` is the shared divider role, `color.border.default` is the rest-state control boundary, and `color.border.strong` is the high-emphasis control boundary. Components must not substitute a raw neutral value for one of these roles.
+
 ---
 
 ## Preventing Duplication

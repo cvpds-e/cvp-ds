@@ -68,7 +68,7 @@
   --cvp-color-text-on-brand:    var(--cvp-primitive-neutral-0);    /* #ffffff */
   --cvp-color-text-on-dark:     var(--cvp-primitive-neutral-0);    /* theme-independent swatch pairing */
   --cvp-color-text-on-light:    var(--cvp-primitive-neutral-900);  /* theme-independent swatch pairing */
-  --cvp-color-text-brand:       var(--cvp-primitive-blue-600);     /* #3d63dd */
+  --cvp-color-text-brand:       var(--cvp-primitive-link-default); /* #67b3fb — readable branded foreground on dark surfaces */
 
   /* Accent text — brand-role names, not colour names */
   --cvp-color-text-accent-default:   var(--cvp-primitive-accent-default);   /* #97a9de */
@@ -89,10 +89,10 @@
 
   /* ── Borders ───────────────────────────────────────────────────────────── */
   --cvp-color-border-subtle:   var(--cvp-primitive-neutral-650);  /* #1f1f28 */
-  --cvp-color-border-default:  var(--cvp-primitive-neutral-500);  /* #2a2a36 */
+  --cvp-color-border-default:  var(--cvp-primitive-neutral-600);  /* #2a2a36 */
   --cvp-color-border-strong:   var(--cvp-primitive-neutral-400);  /* #374151 */
   --cvp-color-border-bold:     var(--cvp-primitive-neutral-50);   /* #bbbbbb */
-  --cvp-color-border-disabled: var(--cvp-primitive-neutral-400);  /* #374151 — 3:1+ boundary on disabled surfaces */
+  --cvp-color-border-disabled: var(--cvp-primitive-neutral-400);  /* #374151 */
   --cvp-color-border-error:    var(--cvp-primitive-red-400);      /* #f87171 */
   --cvp-color-border-brand:    var(--cvp-primitive-blue-600);     /* #3d63dd */
   --cvp-color-border-success:  var(--cvp-primitive-green-400);    /* #3dc155 */
@@ -106,7 +106,7 @@
   --cvp-color-icon-subtle:   var(--cvp-primitive-neutral-75);   /* #AFAFB5 */
   --cvp-color-icon-disabled: var(--cvp-primitive-neutral-100);  /* #a1a1a8 — readable on disabled dark surfaces */
   --cvp-color-icon-inverse:  var(--cvp-primitive-neutral-750);  /* #19191b */
-  --cvp-color-icon-brand:    var(--cvp-primitive-blue-600);     /* #3d63dd */
+  --cvp-color-icon-brand:    var(--cvp-primitive-link-default); /* #67b3fb — readable branded icon on dark surfaces */
   --cvp-color-icon-error:    var(--cvp-primitive-red-400);      /* #f87171 */
   --cvp-color-icon-danger:   var(--cvp-primitive-danger-500);   /* #e6494e */
   --cvp-color-icon-success:  var(--cvp-primitive-green-400);    /* #3dc155 */
@@ -157,7 +157,7 @@
   /* ── Component-context colours (navigation, inputs, etc.) ─────────────── */
   /* Navigation — only tokens whose dark/light values differ from a general semantic */
   --cvp-color-nav-bg:             var(--cvp-primitive-neutral-850); /* #0d0d14 — surface-page in dark, surface-raised in light */
-  --cvp-color-nav-border:         var(--cvp-primitive-neutral-650); /* #1f1f28 — border-subtle in dark, border-default in light */
+  --cvp-color-nav-border:         var(--cvp-color-border-default);  /* shared accessible navigation boundary */
   --cvp-color-nav-text:           var(--cvp-primitive-neutral-150); /* #9ca3af — text-muted in dark, text-secondary in light */
   --cvp-color-nav-item-active-bg: var(--cvp-primitive-neutral-650); /* #1f1f28 — surface-hover in dark, surface-active in light */
   --cvp-color-nav-section-label:  var(--cvp-primitive-neutral-300); /* #4b5563 */
@@ -232,9 +232,9 @@
   --cvp-color-text-brand:       var(--cvp-primitive-blue-600);     /* #3d63dd */
 
   /* Accent text */
-  --cvp-color-text-accent-default:   var(--cvp-primitive-accent-default);   /* #97a9de */
-  --cvp-color-text-accent-subtle:    var(--cvp-primitive-accent-subtle);    /* #6f8be6 */
-  --cvp-color-text-accent-subtlest:  var(--cvp-primitive-accent-subtlest);  /* #cdd7f6 */
+  --cvp-color-text-accent-default:   var(--cvp-primitive-blue-600);         /* #3d63dd — readable accent foreground */
+  --cvp-color-text-accent-subtle:    var(--cvp-primitive-blue-600);         /* #3d63dd — readable accent foreground */
+  --cvp-color-text-accent-subtlest:  var(--cvp-primitive-blue-700);         /* #244cce — readable accent foreground */
   --cvp-color-text-accent-muted:     var(--cvp-primitive-blue-800);         /* #1f3566 */
   --cvp-color-text-accent-secondary: var(--cvp-primitive-blue-900);         /* #2d4a8e */
 
@@ -249,11 +249,11 @@
   --cvp-color-text-error:   var(--cvp-primitive-red-700);      /* #991b1b */
 
   /* ── Borders ───────────────────────────────────────────────────────────── */
-  --cvp-color-border-subtle:   var(--cvp-primitive-neutral-5);   /* #f3f4f6 */
+  --cvp-color-border-subtle:   var(--cvp-primitive-neutral-10);  /* #e5e7eb */
   --cvp-color-border-default:  var(--cvp-primitive-neutral-10);  /* #e5e7eb */
-  --cvp-color-border-strong:   var(--cvp-primitive-neutral-25);  /* #d1d5db */
+  --cvp-color-border-strong:   var(--cvp-primitive-neutral-30);  /* #d1d5db */
   --cvp-color-border-bold:     var(--cvp-primitive-neutral-50);  /* #bbbbbb */
-  --cvp-color-border-disabled: var(--cvp-primitive-neutral-100);  /* #a1a1a8 — perceptible disabled boundary */
+  --cvp-color-border-disabled: var(--cvp-primitive-neutral-100);  /* #a1a1a8 */
   --cvp-color-border-error:    var(--cvp-primitive-red-600);     /* #dc2626 */
   --cvp-color-border-brand:    var(--cvp-primitive-blue-600);    /* #3d63dd */
   --cvp-color-border-success:  var(--cvp-primitive-green-500);   /* #16a34a */
@@ -263,7 +263,7 @@
   /* ── Icons ─────────────────────────────────────────────────────────────── */
   --cvp-color-icon-default:  var(--cvp-primitive-neutral-200);  /* #6b7280 */
   --cvp-color-icon-strong:   var(--cvp-primitive-neutral-400);  /* #374151 */
-  --cvp-color-icon-muted:    var(--cvp-primitive-neutral-150);  /* #9ca3af */
+  --cvp-color-icon-muted:    var(--cvp-primitive-neutral-125);  /* #8b91a0 — ≥3:1 muted icon on light surfaces */
   --cvp-color-icon-subtle:   var(--cvp-primitive-neutral-150);  /* #9ca3af */
   --cvp-color-icon-disabled: var(--cvp-primitive-neutral-300);  /* #4b5563 — readable on disabled light surfaces */
   --cvp-color-icon-inverse:  var(--cvp-primitive-neutral-0);    /* #ffffff */
@@ -318,7 +318,7 @@
   /* ── Component-context colours ─────────────────────────────────────────── */
   /* Navigation */
   --cvp-color-nav-bg:             var(--cvp-primitive-neutral-2);   /* #f8f9fa */
-  --cvp-color-nav-border:         var(--cvp-primitive-neutral-10);  /* #e5e7eb */
+  --cvp-color-nav-border:         var(--cvp-color-border-default);  /* shared accessible navigation boundary */
   --cvp-color-nav-text:           var(--cvp-primitive-neutral-400); /* #374151 */
   --cvp-color-nav-item-active-bg: var(--cvp-primitive-neutral-10);  /* #e5e7eb */
   --cvp-color-nav-section-label:  var(--cvp-primitive-neutral-150); /* #9ca3af */

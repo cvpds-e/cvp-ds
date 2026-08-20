@@ -274,7 +274,7 @@ Intent-based roles. Theme-specific rows are shown with their scope so the light 
 | `--cvp-color-text-on-brand` | `var(--cvp-primitive-neutral-0)` | Dark theme |
 | `--cvp-color-text-on-dark` | `var(--cvp-primitive-neutral-0)` | Dark theme |
 | `--cvp-color-text-on-light` | `var(--cvp-primitive-neutral-900)` | Dark theme |
-| `--cvp-color-text-brand` | `var(--cvp-primitive-blue-600)` | Dark theme |
+| `--cvp-color-text-brand` | `var(--cvp-primitive-link-default)` | Dark theme |
 | `--cvp-color-text-accent-default` | `var(--cvp-primitive-accent-default)` | Dark theme |
 | `--cvp-color-text-accent-subtle` | `var(--cvp-primitive-accent-subtle)` | Dark theme |
 | `--cvp-color-text-accent-subtlest` | `var(--cvp-primitive-accent-subtlest)` | Dark theme |
@@ -287,7 +287,7 @@ Intent-based roles. Theme-specific rows are shown with their scope so the light 
 | `--cvp-color-text-warning` | `var(--cvp-primitive-yellow-400)` | Dark theme |
 | `--cvp-color-text-error` | `var(--cvp-primitive-red-400)` | Dark theme |
 | `--cvp-color-border-subtle` | `var(--cvp-primitive-neutral-650)` | Dark theme |
-| `--cvp-color-border-default` | `var(--cvp-primitive-neutral-500)` | Dark theme |
+| `--cvp-color-border-default` | `var(--cvp-primitive-neutral-600)` | Dark theme |
 | `--cvp-color-border-strong` | `var(--cvp-primitive-neutral-400)` | Dark theme |
 | `--cvp-color-border-bold` | `var(--cvp-primitive-neutral-50)` | Dark theme |
 | `--cvp-color-border-disabled` | `var(--cvp-primitive-neutral-400)` | Dark theme |
@@ -302,7 +302,7 @@ Intent-based roles. Theme-specific rows are shown with their scope so the light 
 | `--cvp-color-icon-subtle` | `var(--cvp-primitive-neutral-75)` | Dark theme |
 | `--cvp-color-icon-disabled` | `var(--cvp-primitive-neutral-100)` | Dark theme |
 | `--cvp-color-icon-inverse` | `var(--cvp-primitive-neutral-750)` | Dark theme |
-| `--cvp-color-icon-brand` | `var(--cvp-primitive-blue-600)` | Dark theme |
+| `--cvp-color-icon-brand` | `var(--cvp-primitive-link-default)` | Dark theme |
 | `--cvp-color-icon-error` | `var(--cvp-primitive-red-400)` | Dark theme |
 | `--cvp-color-icon-danger` | `var(--cvp-primitive-danger-500)` | Dark theme |
 | `--cvp-color-icon-success` | `var(--cvp-primitive-green-400)` | Dark theme |
@@ -338,7 +338,7 @@ Intent-based roles. Theme-specific rows are shown with their scope so the light 
 | `--cvp-shadow-lg` | `var(--cvp-elevation-3)` | Dark theme |
 | `--cvp-shadow-modal` | `var(--cvp-elevation-4)` | Dark theme |
 | `--cvp-color-nav-bg` | `var(--cvp-primitive-neutral-850)` | Dark theme |
-| `--cvp-color-nav-border` | `var(--cvp-primitive-neutral-650)` | Dark theme |
+| `--cvp-color-nav-border` | `var(--cvp-color-border-default)` | Dark theme |
 | `--cvp-color-nav-text` | `var(--cvp-primitive-neutral-150)` | Dark theme |
 | `--cvp-color-nav-item-active-bg` | `var(--cvp-primitive-neutral-650)` | Dark theme |
 | `--cvp-color-nav-section-label` | `var(--cvp-primitive-neutral-300)` | Dark theme |
@@ -386,9 +386,9 @@ Intent-based roles. Theme-specific rows are shown with their scope so the light 
 | `--cvp-color-text-on-dark` | `var(--cvp-primitive-neutral-0)` | Light theme |
 | `--cvp-color-text-on-light` | `var(--cvp-primitive-neutral-900)` | Light theme |
 | `--cvp-color-text-brand` | `var(--cvp-primitive-blue-600)` | Light theme |
-| `--cvp-color-text-accent-default` | `var(--cvp-primitive-accent-default)` | Light theme |
-| `--cvp-color-text-accent-subtle` | `var(--cvp-primitive-accent-subtle)` | Light theme |
-| `--cvp-color-text-accent-subtlest` | `var(--cvp-primitive-accent-subtlest)` | Light theme |
+| `--cvp-color-text-accent-default` | `var(--cvp-primitive-blue-600)` | Light theme |
+| `--cvp-color-text-accent-subtle` | `var(--cvp-primitive-blue-600)` | Light theme |
+| `--cvp-color-text-accent-subtlest` | `var(--cvp-primitive-blue-700)` | Light theme |
 | `--cvp-color-text-accent-muted` | `var(--cvp-primitive-blue-800)` | Light theme |
 | `--cvp-color-text-accent-secondary` | `var(--cvp-primitive-blue-900)` | Light theme |
 | `--cvp-color-text-link-default` | `var(--cvp-primitive-sky-600)` | Light theme |
@@ -397,9 +397,9 @@ Intent-based roles. Theme-specific rows are shown with their scope so the light 
 | `--cvp-color-text-success` | `var(--cvp-primitive-green-600)` | Light theme |
 | `--cvp-color-text-warning` | `var(--cvp-primitive-yellow-500)` | Light theme |
 | `--cvp-color-text-error` | `var(--cvp-primitive-red-700)` | Light theme |
-| `--cvp-color-border-subtle` | `var(--cvp-primitive-neutral-5)` | Light theme |
+| `--cvp-color-border-subtle` | `var(--cvp-primitive-neutral-10)` | Light theme |
 | `--cvp-color-border-default` | `var(--cvp-primitive-neutral-10)` | Light theme |
-| `--cvp-color-border-strong` | `var(--cvp-primitive-neutral-25)` | Light theme |
+| `--cvp-color-border-strong` | `var(--cvp-primitive-neutral-30)` | Light theme |
 | `--cvp-color-border-bold` | `var(--cvp-primitive-neutral-50)` | Light theme |
 | `--cvp-color-border-disabled` | `var(--cvp-primitive-neutral-100)` | Light theme |
 | `--cvp-color-border-error` | `var(--cvp-primitive-red-600)` | Light theme |
@@ -409,7 +409,7 @@ Intent-based roles. Theme-specific rows are shown with their scope so the light 
 | `--cvp-color-border-danger` | `var(--cvp-primitive-red-600)` | Light theme |
 | `--cvp-color-icon-default` | `var(--cvp-primitive-neutral-200)` | Light theme |
 | `--cvp-color-icon-strong` | `var(--cvp-primitive-neutral-400)` | Light theme |
-| `--cvp-color-icon-muted` | `var(--cvp-primitive-neutral-150)` | Light theme |
+| `--cvp-color-icon-muted` | `var(--cvp-primitive-neutral-125)` | Light theme |
 | `--cvp-color-icon-subtle` | `var(--cvp-primitive-neutral-150)` | Light theme |
 | `--cvp-color-icon-disabled` | `var(--cvp-primitive-neutral-300)` | Light theme |
 | `--cvp-color-icon-inverse` | `var(--cvp-primitive-neutral-0)` | Light theme |
@@ -449,7 +449,7 @@ Intent-based roles. Theme-specific rows are shown with their scope so the light 
 | `--cvp-shadow-lg` | `var(--cvp-elevation-3)` | Light theme |
 | `--cvp-shadow-modal` | `var(--cvp-elevation-4)` | Light theme |
 | `--cvp-color-nav-bg` | `var(--cvp-primitive-neutral-2)` | Light theme |
-| `--cvp-color-nav-border` | `var(--cvp-primitive-neutral-10)` | Light theme |
+| `--cvp-color-nav-border` | `var(--cvp-color-border-default)` | Light theme |
 | `--cvp-color-nav-text` | `var(--cvp-primitive-neutral-400)` | Light theme |
 | `--cvp-color-nav-item-active-bg` | `var(--cvp-primitive-neutral-10)` | Light theme |
 | `--cvp-color-nav-section-label` | `var(--cvp-primitive-neutral-150)` | Light theme |

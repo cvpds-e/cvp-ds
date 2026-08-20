@@ -1761,7 +1761,7 @@ The primary call-to-action button. Expresses the single most important action on
 | Active transform | `translateY(1px)` | — | Local (fixed) |
 | Transition | `all 0.2s cubic-bezier(0.4, 0, 0.2, 1)` | — | **Gap:** must be specific properties |
 
-**WCAG note (from `docs/specifications/DESIGN.md`):** White (`#ffffff`) on `#3d63dd` = 8.6:1 (AAA). White on disabled background `#1f1f28` — must be verified; current disabled text `#333333` may fail against `#1f1f28`.
+**WCAG note (from `docs/specifications/DESIGN.md`):** White (`#ffffff`) on `#3d63dd` = 5.2:1 (AA). Disabled treatment uses the current readable semantic text and boundary roles.
 
 ---
 
@@ -1877,7 +1877,7 @@ The button is `display: inline-flex` and does not have responsive width behaviou
 | Keyboard | `Tab` to focus; `Enter` or `Space` to activate |
 | Reduced motion | **Gap:** `transition: all` must be replaced with specific properties; `prefers-reduced-motion` block required |
 | Screen reader | Announces button label; disabled state announced as "dimmed" or "unavailable" |
-| WCAG | White on brand blue = 8.6:1 (AAA); disabled exemption applies |
+| WCAG | White on brand blue = 5.2:1 (AA); disabled treatment uses readable semantic roles |
 
 ---
 
@@ -1946,7 +1946,7 @@ The button is `display: inline-flex` and does not have responsive width behaviou
   "states": ["default", "hover", "focus", "active", "disabled"],
   "themes": ["light", "dark"],
   "slots": ["children"],
-  "wcag": { "text-contrast": "8.6:1 (AAA) — white on brand blue", "level": "AAA" }
+  "wcag": { "text-contrast": "5.2:1 (AA) — white on brand blue", "level": "AA" }
 }
 ```
 

@@ -69,7 +69,7 @@ Built for expert operators managing complex broadcast and OTT workflows. The sys
   --text-warning:         #d97706;
 
   /* ─── Borders ─── */
-  --border-subtle:        #f3f4f6;
+  --border-subtle:        #e5e7eb;
   --border-default:       #e5e7eb;
   --border-strong:        #d1d5db;
   --border-focus:         #2563eb;
@@ -79,7 +79,7 @@ Built for expert operators managing complex broadcast and OTT workflows. The sys
   /* ─── Icons ─── */
   --icon-default:         #6b7280;
   --icon-strong:          #374151;
-  --icon-muted:           #9ca3af;
+  --icon-muted:           #8b91a0;
   --icon-disabled:        #4b5563;
   --icon-inverse:         #ffffff;
   --icon-error:           #dc2626;
@@ -339,7 +339,7 @@ Built for expert operators managing complex broadcast and OTT workflows. The sys
 
 | Token | Light | Dark | Use |
 |---|---|---|---|
-| `--border-subtle` | `#f3f4f6` | `#1f1f28` | Hairline dividers |
+| `--border-subtle` | `#e5e7eb` | `#1f1f28` | Shared dividers |
 | `--border-default` | `#e5e7eb` | `#2a2a36` | Standard component borders |
 | `--border-strong` | `#d1d5db` | `#374151` | Emphasized borders |
 | `--border-focus` | `#2563eb` | `#3b82f6` | Focus ring border color |
@@ -381,8 +381,8 @@ Built for expert operators managing complex broadcast and OTT workflows. The sys
 | `text-primary` on `bg-page` | 16.0:1 | 21.0:1 | AAA |
 | `text-secondary` on `bg-surface` | 9.7:1 | 14.7:1 | AAA |
 | `text-muted` on `bg-surface` | 4.7:1 | 4.6:1 | AA |
-| White on `#3d63dd` (primary) | 8.6:1 | 8.6:1 | AAA |
-| White on `#2d4a8e` (secondary) | 7.2:1 | 7.2:1 | AAA |
+| White on `#3d63dd` (primary) | 5.2:1 | 5.2:1 | AA |
+| White on `#2d4a8e` (secondary) | 8.5:1 | 8.5:1 | AAA |
 | `text-link` on `bg-page` | 4.6:1 | 4.5:1 | AA |
 
 ---
@@ -590,7 +590,7 @@ Both values are **identical in light and dark themes.**
 | Disabled | `#a1a1a8` | `#292a2e` | none | `cursor: not-allowed` · `pointer-events: none` |
 
 **Typography:** Inter 14px / 500 / 20px / 0.15px  
-**Contrast:** White on `#3d63dd` = **8.6:1 (AAA)**
+**Contrast:** White on `#3d63dd` = **5.2:1 (AA)**
 
 ---
 
@@ -608,7 +608,7 @@ Both values are **identical in light and dark themes.**
 | Disabled | `#a1a1a8` | `#292a2e` | none |
 
 Same sizing as primary: radius 4px, padding 8px 16px, body-m-medium.  
-**Contrast:** White on `#2d4a8e` = **7.2:1 (AAA)**
+**Contrast:** White on `#2d4a8e` = **8.5:1 (AAA)**
 
 ---
 
@@ -819,7 +819,7 @@ Use for overlay navigation arrows on image carousels.
 | Focus | `rgba(255,255,255,0.10)` | `box-shadow: 0 0 0 2px #67b3fb` · outline: none |
 
 Identical in both themes. Avatar background `#3d63dd` never changes.  
-**Contrast:** White on `#3d63dd` = **8.6:1 (AAA)**
+**Contrast:** White on `#3d63dd` = **5.2:1 (AA)**
 
 ---
 

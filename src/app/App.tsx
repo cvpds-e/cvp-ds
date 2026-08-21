@@ -333,9 +333,9 @@ function OverviewSection() {
           />
         </div>
         
-        <h1 className="overview-section__title">Design System</h1>
+        <h1 className="overview-section__title">CVP Design System</h1>
         <p className="overview-section__description">
-          We're establishing a modern, scalable design system to future-proof CVP's front-end architecture. This system provides a flexible foundation for building consistent, accessible, and workflow-oriented user experiences across products. By standardizing components and interaction patterns, it enables faster development, easier maintenance, and seamless extensibility - empowering teams to adapt quickly to evolving customer needs and deliver tailored editorial and operator tools.
+          A shared foundation of accessible components, design tokens, and interaction patterns for building consistent, efficient editorial and operator workflows across Cloud Video Platform.
         </p>
 
         {/* Design Principles */}

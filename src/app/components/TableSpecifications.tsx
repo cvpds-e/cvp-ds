@@ -75,20 +75,20 @@ export function TableSpecifications() {
   ];
 
   const collectionTagData = [
-    { property: 'Foundation', value: 'Shared categorical metadata component', token: 'Tag' },
-    { property: 'Collection identity', value: 'Neutral by default', token: '--cvp-tag-text → --cvp-color-text-muted' },
+    { property: 'Foundation', value: 'Shared categorical metadata component', token: 'Badge' },
+    { property: 'Collection identity', value: 'Neutral by default', token: '--cvp-badge-text → --cvp-color-text-muted' },
     { property: 'Color rule', value: 'No per-collection color assignment', token: 'Prevents an unbounded identity palette' },
-    { property: 'Semantic tones', value: 'Reserved for shared operational meanings', token: '--cvp-tag-text-info / accent / success / warning' },
-    { property: 'Geometry', value: '24px / 0 8px', token: '--cvp-tag-height / --cvp-tag-padding-x' }
+    { property: 'Semantic tones', value: 'Reserved for shared operational meanings', token: '--cvp-badge-text-info / accent / success / warning' },
+    { property: 'Geometry', value: '24px / 0 8px', token: '--cvp-badge-height / --cvp-badge-padding-x' }
   ];
 
   const railTypeTagData = [
-    { property: 'Shared surface', value: 'Subtle metadata surface', token: '--cvp-tag-bg → --cvp-color-surface-subtle' },
-    { property: 'Border', value: 'Theme-resolved default border', token: '--cvp-tag-border → --cvp-color-border-default' },
-    { property: 'Typography', value: 'Mono 12px semibold uppercase', token: '--cvp-tag-font-size / --cvp-tag-font-weight' },
-    { property: 'Recommended', value: 'Info semantic', token: '--cvp-tag-text-info → --cvp-color-text-link-default' },
-    { property: 'Editorial', value: 'Accent semantic', token: '--cvp-tag-text-accent → --cvp-color-brand-accent' },
-    { property: 'Height and padding', value: '24px / 0 8px', token: '--cvp-tag-height / --cvp-tag-padding-x' },
+    { property: 'Shared surface', value: 'Subtle metadata surface', token: '--cvp-badge-bg → --cvp-color-surface-subtle' },
+    { property: 'Border', value: 'Theme-resolved default border', token: '--cvp-badge-border → --cvp-color-border-default' },
+    { property: 'Typography', value: 'Mono 12px semibold uppercase', token: '--cvp-badge-font-size / --cvp-badge-font-weight' },
+    { property: 'Recommended', value: 'Info semantic', token: '--cvp-badge-text-info → --cvp-color-text-link-default' },
+    { property: 'Editorial', value: 'Accent semantic', token: '--cvp-badge-text-accent → --cvp-color-brand-accent' },
+    { property: 'Height and padding', value: '24px / 0 8px', token: '--cvp-badge-height / --cvp-badge-padding-x' },
   ];
 
   const colorsData = [

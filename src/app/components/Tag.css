@@ -1,5 +1,0 @@
-.cvp-tag { display: inline-flex; align-items: center; box-sizing: border-box; min-height: var(--cvp-tag-height); padding-inline: var(--cvp-tag-padding-x); color: var(--cvp-tag-text); background: var(--cvp-tag-bg); border: var(--cvp-border-base-width) solid var(--cvp-tag-border); border-radius: var(--cvp-tag-radius); font-family: var(--cvp-tag-font-family); font-size: var(--cvp-tag-font-size); font-weight: var(--cvp-tag-font-weight); letter-spacing: var(--cvp-tag-letter-spacing); line-height: var(--cvp-tag-line-height); text-transform: uppercase; white-space: nowrap; }
-.cvp-tag--info { color: var(--cvp-tag-text-info); }
-.cvp-tag--accent { color: var(--cvp-tag-text-accent); }
-.cvp-tag--success { color: var(--cvp-tag-text-success); }
-.cvp-tag--warning { color: var(--cvp-tag-text-warning); }

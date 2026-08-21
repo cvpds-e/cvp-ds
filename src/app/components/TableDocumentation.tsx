@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { Database, Rows3, SlidersHorizontal } from 'lucide-react';
 import { Table, TableRow } from './Table';
-import { Tag } from './Tag';
+import { Badge } from './Badge';
 import { createSampleData, sampleColumns } from './TableSampleData';
 import './TableDocumentation.css';
 
@@ -25,7 +25,7 @@ const tokenRows = [
   ['Row hover', '--cvp-table-row-bg-hover', '--cvp-color-surface-hover', 'Theme resolved', ':hover'],
   ['Selected row', '--cvp-table-row-bg-selected', '--cvp-color-surface-active', 'Neutral selection surface', 'Selection present'],
   ['Row count tag', '--cvp-table-count-bg', '--cvp-color-surface-subtle', 'Muted metadata tag', 'Toolbar summary'],
-  ['Categorical Tag', '--cvp-tag-*', '--cvp-color-surface-subtle / semantic foregrounds', 'Neutral identity; semantic meanings', 'Collection and Rail Type columns'],
+  ['Categorical Badge', '--cvp-badge-*', '--cvp-color-surface-subtle / semantic foregrounds', 'Neutral identity; semantic meanings', 'Collection and Rail Type columns'],
   ['Control gap', '--cvp-table-control-gap', '--cvp-space-100', '2px', 'Toolbar and pagination controls'],
   ['Rows-per-page menu', '--cvp-select-*', 'Shared Select dropdown styling', '10 / 20 / 50 rows; standard selected-option treatment', 'Rows-per-page trigger'],
   ['Viewport-safe popup', '--cvp-table-menu-viewport-inset', '5px documented table exception', 'At least 5px from every viewport edge', 'Rows-per-page menu'],
@@ -52,10 +52,10 @@ export function TableDocumentation() {
 
   const renderCell = (columnId: string, value: unknown) => {
     if (columnId === 'collection') {
-      return <Tag>{String(value)}</Tag>;
+      return <Badge>{String(value)}</Badge>;
     }
     if (columnId === 'type') {
-      return <Tag tone={String(value).toLowerCase() === 'recommended' ? 'info' : 'accent'}>{String(value)}</Tag>;
+      return <Badge tone={String(value).toLowerCase() === 'recommended' ? 'info' : 'accent'}>{String(value)}</Badge>;
     }
     return String(value ?? '');
   };

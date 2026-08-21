@@ -1207,24 +1207,24 @@
   --cvp-skeleton-motion-easing:    var(--cvp-motion-easing-standard);
 
   /* ===========================================================================
-     TAG
+     BADGE
      Non-interactive categorical metadata. Do not use for selected input values.
   =========================================================================== */
-  --cvp-tag-bg:                    var(--cvp-color-surface-subtle);
-  --cvp-tag-border:                var(--cvp-color-border-default);
-  --cvp-tag-text:                  var(--cvp-color-text-muted);
-  --cvp-tag-text-info:             var(--cvp-color-text-link-default);
-  --cvp-tag-text-accent:           var(--cvp-color-brand-accent);
-  --cvp-tag-text-success:          var(--cvp-color-text-success);
-  --cvp-tag-text-warning:          var(--cvp-color-text-warning);
-  --cvp-tag-height:                var(--cvp-space-6);
-  --cvp-tag-padding-x:             var(--cvp-space-2);
-  --cvp-tag-radius:                var(--cvp-radius-sm);
-  --cvp-tag-font-family:           var(--cvp-font-family-mono);
-  --cvp-tag-font-size:             var(--cvp-font-size-xs);
-  --cvp-tag-font-weight:           var(--cvp-font-weight-semibold);
-  --cvp-tag-line-height:           var(--cvp-line-height-tight);
-  --cvp-tag-letter-spacing:        var(--cvp-letter-spacing-wide);
+  --cvp-badge-bg:                  var(--cvp-color-surface-subtle);
+  --cvp-badge-border:              var(--cvp-color-border-default);
+  --cvp-badge-text:                var(--cvp-color-text-muted);
+  --cvp-badge-text-info:           var(--cvp-color-text-link-default);
+  --cvp-badge-text-accent:         var(--cvp-color-brand-accent);
+  --cvp-badge-text-success:        var(--cvp-color-text-success);
+  --cvp-badge-text-warning:        var(--cvp-color-text-warning);
+  --cvp-badge-height:              var(--cvp-space-6);
+  --cvp-badge-padding-x:           var(--cvp-space-2);
+  --cvp-badge-radius:              var(--cvp-radius-sm);
+  --cvp-badge-font-family:         var(--cvp-font-family-mono);
+  --cvp-badge-font-size:           var(--cvp-font-size-xs);
+  --cvp-badge-font-weight:         var(--cvp-font-weight-semibold);
+  --cvp-badge-line-height:         var(--cvp-line-height-tight);
+  --cvp-badge-letter-spacing:      var(--cvp-letter-spacing-wide);
 
   /* ===========================================================================
      STATUS

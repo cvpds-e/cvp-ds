@@ -15,7 +15,7 @@ import { Segmented } from './Segmented';
 import { Select } from './Select';
 import { MultiSelect } from './MultiSelect';
 import { TagFilter } from './TagFilter';
-import { Tag } from './Tag';
+import { Badge } from './Badge';
 import { Toast, ToastProvider, useToast } from './Toast';
 import { Accordion } from './Accordion';
 
@@ -686,7 +686,7 @@ export function ComponentsOverview() {
                 sortable={true}
                 renderCell={(columnId, value) => {
                   if (columnId === 'collection') {
-                    return <Tag>{value}</Tag>;
+                    return <Badge>{value}</Badge>;
                   }
                   return value;
                 }}

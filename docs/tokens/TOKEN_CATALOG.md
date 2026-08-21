@@ -807,6 +807,29 @@ Component contracts. Each group is named after the component or shared contract 
 </details>
 
 <details>
+<summary><strong>badge</strong> — 15 tokens</summary>
+
+| Token | Value | Scope |
+| --- | --- | --- |
+| `--cvp-badge-bg` | `var(--cvp-color-surface-subtle)` | Shared |
+| `--cvp-badge-border` | `var(--cvp-color-border-default)` | Shared |
+| `--cvp-badge-text` | `var(--cvp-color-text-muted)` | Shared |
+| `--cvp-badge-text-info` | `var(--cvp-color-text-link-default)` | Shared |
+| `--cvp-badge-text-accent` | `var(--cvp-color-brand-accent)` | Shared |
+| `--cvp-badge-text-success` | `var(--cvp-color-text-success)` | Shared |
+| `--cvp-badge-text-warning` | `var(--cvp-color-text-warning)` | Shared |
+| `--cvp-badge-height` | `var(--cvp-space-6)` | Shared |
+| `--cvp-badge-padding-x` | `var(--cvp-space-2)` | Shared |
+| `--cvp-badge-radius` | `var(--cvp-radius-sm)` | Shared |
+| `--cvp-badge-font-family` | `var(--cvp-font-family-mono)` | Shared |
+| `--cvp-badge-font-size` | `var(--cvp-font-size-xs)` | Shared |
+| `--cvp-badge-font-weight` | `var(--cvp-font-weight-semibold)` | Shared |
+| `--cvp-badge-line-height` | `var(--cvp-line-height-tight)` | Shared |
+| `--cvp-badge-letter-spacing` | `var(--cvp-letter-spacing-wide)` | Shared |
+
+</details>
+
+<details>
 <summary><strong>breadcrumb</strong> — 54 tokens</summary>
 
 | Token | Value | Scope |
@@ -2137,7 +2160,7 @@ Component contracts. Each group is named after the component or shared contract 
 </details>
 
 <details>
-<summary><strong>tag</strong> — 67 tokens</summary>
+<summary><strong>tag-filter</strong> — 52 tokens</summary>
 
 | Token | Value | Scope |
 | --- | --- | --- |
@@ -2193,21 +2216,6 @@ Component contracts. Each group is named after the component or shared contract 
 | `--cvp-tag-filter-transition-duration` | `var(--cvp-motion-duration-fast)` | Shared |
 | `--cvp-tag-filter-transition-easing` | `var(--cvp-motion-easing-standard)` | Shared |
 | `--cvp-tag-filter-transition` | `color var(--cvp-tag-filter-transition-duration) var(--cvp-tag-filter-transition-easing), background-color var(--cvp-tag-filter-transition-duration) var(--cvp-tag-filter-transition-easing), border-color var(--cvp-tag-filter-transition-duration) var(--cvp-tag-filter-transition-easing), box-shadow var(--cvp-tag-filter-transition-duration) var(--cvp-tag-filter-transition-easing)` | Shared |
-| `--cvp-tag-bg` | `var(--cvp-color-surface-subtle)` | Shared |
-| `--cvp-tag-border` | `var(--cvp-color-border-default)` | Shared |
-| `--cvp-tag-text` | `var(--cvp-color-text-muted)` | Shared |
-| `--cvp-tag-text-info` | `var(--cvp-color-text-link-default)` | Shared |
-| `--cvp-tag-text-accent` | `var(--cvp-color-brand-accent)` | Shared |
-| `--cvp-tag-text-success` | `var(--cvp-color-text-success)` | Shared |
-| `--cvp-tag-text-warning` | `var(--cvp-color-text-warning)` | Shared |
-| `--cvp-tag-height` | `var(--cvp-space-6)` | Shared |
-| `--cvp-tag-padding-x` | `var(--cvp-space-2)` | Shared |
-| `--cvp-tag-radius` | `var(--cvp-radius-sm)` | Shared |
-| `--cvp-tag-font-family` | `var(--cvp-font-family-mono)` | Shared |
-| `--cvp-tag-font-size` | `var(--cvp-font-size-xs)` | Shared |
-| `--cvp-tag-font-weight` | `var(--cvp-font-weight-semibold)` | Shared |
-| `--cvp-tag-line-height` | `var(--cvp-line-height-tight)` | Shared |
-| `--cvp-tag-letter-spacing` | `var(--cvp-letter-spacing-wide)` | Shared |
 
 </details>
 

@@ -41,6 +41,11 @@ function markdownTable(rows) {
   ].join('\n');
 }
 
+function componentGroupName(token) {
+  if (token.name.startsWith('--cvp-tag-filter-')) return 'tag-filter';
+  return token.name.replace(/^--cvp-/, '').split('-')[0];
+}
+
 function buildCatalog() {
   const byTier = Object.groupBy(tokens, token => token.tier);
   const catalog = [
@@ -73,7 +78,7 @@ function buildCatalog() {
     catalog.push(`### ${scope}`, '', markdownTable(rows), '');
   }
   catalog.push('## Tier 3 — Component tokens', '', 'Component contracts. Each group is named after the component or shared contract prefix.', '');
-  const componentGroups = Object.entries(Object.groupBy(byTier.Component, token => token.name.replace(/^--cvp-/, '').split('-')[0])).sort(([a], [b]) => a.localeCompare(b));
+  const componentGroups = Object.entries(Object.groupBy(byTier.Component, componentGroupName)).sort(([a], [b]) => a.localeCompare(b));
   for (const [name, rows] of componentGroups) {
     catalog.push('<details>', `<summary><strong>${name}</strong> — ${rows.length} tokens</summary>`, '', markdownTable(rows), '', '</details>', '');
   }

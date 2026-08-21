@@ -10083,91 +10083,91 @@
       "source": "cvp-component-tokens.css"
     },
     {
-      "name": "--cvp-tag-bg",
+      "name": "--cvp-badge-bg",
       "tier": "Component",
       "scope": "Shared",
       "source": "cvp-component-tokens.css"
     },
     {
-      "name": "--cvp-tag-border",
+      "name": "--cvp-badge-border",
       "tier": "Component",
       "scope": "Shared",
       "source": "cvp-component-tokens.css"
     },
     {
-      "name": "--cvp-tag-text",
+      "name": "--cvp-badge-text",
       "tier": "Component",
       "scope": "Shared",
       "source": "cvp-component-tokens.css"
     },
     {
-      "name": "--cvp-tag-text-info",
+      "name": "--cvp-badge-text-info",
       "tier": "Component",
       "scope": "Shared",
       "source": "cvp-component-tokens.css"
     },
     {
-      "name": "--cvp-tag-text-accent",
+      "name": "--cvp-badge-text-accent",
       "tier": "Component",
       "scope": "Shared",
       "source": "cvp-component-tokens.css"
     },
     {
-      "name": "--cvp-tag-text-success",
+      "name": "--cvp-badge-text-success",
       "tier": "Component",
       "scope": "Shared",
       "source": "cvp-component-tokens.css"
     },
     {
-      "name": "--cvp-tag-text-warning",
+      "name": "--cvp-badge-text-warning",
       "tier": "Component",
       "scope": "Shared",
       "source": "cvp-component-tokens.css"
     },
     {
-      "name": "--cvp-tag-height",
+      "name": "--cvp-badge-height",
       "tier": "Component",
       "scope": "Shared",
       "source": "cvp-component-tokens.css"
     },
     {
-      "name": "--cvp-tag-padding-x",
+      "name": "--cvp-badge-padding-x",
       "tier": "Component",
       "scope": "Shared",
       "source": "cvp-component-tokens.css"
     },
     {
-      "name": "--cvp-tag-radius",
+      "name": "--cvp-badge-radius",
       "tier": "Component",
       "scope": "Shared",
       "source": "cvp-component-tokens.css"
     },
     {
-      "name": "--cvp-tag-font-family",
+      "name": "--cvp-badge-font-family",
       "tier": "Component",
       "scope": "Shared",
       "source": "cvp-component-tokens.css"
     },
     {
-      "name": "--cvp-tag-font-size",
+      "name": "--cvp-badge-font-size",
       "tier": "Component",
       "scope": "Shared",
       "source": "cvp-component-tokens.css"
     },
     {
-      "name": "--cvp-tag-font-weight",
+      "name": "--cvp-badge-font-weight",
       "tier": "Component",
       "scope": "Shared",
       "source": "cvp-component-tokens.css"
     },
     {
-      "name": "--cvp-tag-line-height",
+      "name": "--cvp-badge-line-height",
       "tier": "Component",
       "scope": "Shared",
       "source": "cvp-component-tokens.css"
     },
     {
-      "name": "--cvp-tag-letter-spacing",
+      "name": "--cvp-badge-letter-spacing",
       "tier": "Component",
       "scope": "Shared",
       "source": "cvp-component-tokens.css"

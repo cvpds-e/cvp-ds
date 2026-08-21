@@ -1,0 +1,5 @@
+.cvp-badge { display: inline-flex; align-items: center; box-sizing: border-box; min-height: var(--cvp-badge-height); padding-inline: var(--cvp-badge-padding-x); color: var(--cvp-badge-text); background: var(--cvp-badge-bg); border: var(--cvp-border-base-width) solid var(--cvp-badge-border); border-radius: var(--cvp-badge-radius); font-family: var(--cvp-badge-font-family); font-size: var(--cvp-badge-font-size); font-weight: var(--cvp-badge-font-weight); letter-spacing: var(--cvp-badge-letter-spacing); line-height: var(--cvp-badge-line-height); text-transform: uppercase; white-space: nowrap; }
+.cvp-badge--info { color: var(--cvp-badge-text-info); }
+.cvp-badge--accent { color: var(--cvp-badge-text-accent); }
+.cvp-badge--success { color: var(--cvp-badge-text-success); }
+.cvp-badge--warning { color: var(--cvp-badge-text-warning); }

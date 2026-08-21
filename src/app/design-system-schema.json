@@ -866,7 +866,7 @@
         }
       }
     },
-    "Tag": {
+    "Badge": {
       "type": "object",
       "description": "Non-interactive categorical metadata label",
       "properties": {
@@ -874,7 +874,7 @@
         "children": { "type": "string" }
       },
       "required": ["children"],
-      "visualSpec": { "height": "24px", "typography": "mono 12px semibold uppercase", "tones": "neutral, info, accent, success, warning", "use": "classification, not selection or status" }
+      "visualSpec": { "height": "24px", "typography": "mono 12px semibold uppercase", "tones": "neutral, info, accent, success, warning", "use": "classification, not selection, status, or filtering" }
     },
     "Status": {
       "type": "object",

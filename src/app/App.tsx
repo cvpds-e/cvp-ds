@@ -54,15 +54,15 @@ import { RailsListDocumentation } from './components/RailsListDocumentation';
 import { NotificationBannerDocumentation } from './components/NotificationBannerDocumentation';
 import { SkeletonDocumentation } from './components/SkeletonDocumentation';
 import { LoadingSpinnerDocumentation } from './components/LoadingSpinnerDocumentation';
-import { TagDocumentation } from './components/TagDocumentation';
+import { BadgeDocumentation } from './components/BadgeDocumentation';
 import { StatusDocumentation } from './components/StatusDocumentation';
 import { AccessibilityAuditProbe } from './components/AccessibilityAuditProbe';
 import { AccessibilityDocumentation } from './components/AccessibilityDocumentation';
 import { TokenArchitectureDocumentation } from './components/TokenArchitectureDocumentation';
 import { TooltipDocumentation } from './components/TooltipDocumentation';
 import { WorkspaceLayoutDocumentation } from './components/WorkspaceLayoutDocumentation';
-import cvpLogoWhite from '../imports/NEW__DARK_.png';
-import cvpLogoBlack from '../imports/NEW__LIGHT_.png';
+import cvpLogoWhite from './imports/CloudVideoPlatform_Logo_Horizontal_MonoWhite_RGB.svg';
+import cvpLogoBlack from './imports/CloudVideoPlatform_Logo_Horizontal_MonoBlack_RGB.svg';
 import './App.css';
 
 function OverviewSection() {
@@ -279,12 +279,22 @@ function OverviewSection() {
 
         /* CVP Logo Styles */
         .cvp-logo-container {
-          margin-bottom: 24px;
+          margin-bottom: 14px;
+          position: relative;
+          left: -3px;
+          width: 384px;
+          height: 44px;
+          overflow: hidden;
         }
 
         .cvp-logo {
-          height: 32px;
-          width: auto;
+          /* The supplied horizontal artwork includes a generous export artboard.
+             Crop that artboard without altering the source logo. */
+          display: block;
+          width: 368px;
+          max-width: none;
+          height: auto;
+          margin: -82px 0 0 -34px;
           opacity: 0.9;
         }
 
@@ -612,8 +622,8 @@ export default function App() {
         return <SkeletonDocumentation />;
       case 'loading-spinner':
         return <LoadingSpinnerDocumentation />;
-      case 'tag':
-        return <TagDocumentation />;
+      case 'badge':
+        return <BadgeDocumentation />;
       case 'status':
         return <StatusDocumentation />;
       case 'notification-banner':

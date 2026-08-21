@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CircleHelp, Filter, Lock, PanelLeftClose, PanelLeftOpen, Plus, Save } from 'lucide-react';
+import { CircleHelp, Filter, Lock, PanelLeftClose, PanelLeftOpen, Plus, Save, Trash2 } from 'lucide-react';
 import { Breadcrumbs } from './Breadcrumbs';
 import { Checkbox } from './Checkbox';
 import { ContentBrowserModal } from './ContentBrowserModal';
@@ -18,6 +18,7 @@ import { Tabs } from './Tabs';
 import { TextInput } from './TextInput';
 import { NumberInput } from './NumberInput';
 import { MultiSelect } from './MultiSelect';
+import { Modal } from './Modal';
 import { TagFilter } from './TagFilter';
 import { TextButton } from './TextButton';
 import { Tooltip } from './Tooltip';
@@ -74,6 +75,7 @@ function RailDetailsWorkspace({ railName = 'Trending', initiallyEmpty = false }:
   const [items, setItems] = useState<RailContentItem[]>(() => initiallyEmpty ? [] : initialItems);
   const [contentDirty, setContentDirty] = useState(false);
   const [candidateSelection, setCandidateSelection] = useState<string[]>([]);
+  const [deleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false);
   const showDeferredEditorialFilters = false;
   const showPreviewGuide = false;
 
@@ -82,6 +84,10 @@ function RailDetailsWorkspace({ railName = 'Trending', initiallyEmpty = false }:
     root.setAttribute('data-theme', root.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
   };
   const save = () => { setContentDirty(false); addToast({ variant: 'success', title: 'Rail saved', description: `${name} and its ${items.length} content items are up to date.` }); };
+  const deleteRail = () => {
+    setDeleteConfirmationOpen(false);
+    window.location.assign(`${window.location.pathname}?page=rails-list`);
+  };
   const queriedItems = items.filter((item) => {
     const normalizedTitle = item.title.toLocaleLowerCase();
     const category = item.metadata.category?.toLocaleLowerCase() ?? '';
@@ -116,6 +122,10 @@ function RailDetailsWorkspace({ railName = 'Trending', initiallyEmpty = false }:
       <NumberInput label="Number of content slots" required labelTooltip={<ReadOnlyIndicator />} value={contentSlots === '' ? '' : Number(contentSlots)} onValueChange={(value) => setContentSlots(String(value))} min={1} disabled />
       <TextInput label="GUID" required value={guid} onChange={(event) => setGuid(event.target.value)} />
       <Checkbox label="Disable" checked={disabled} onChange={(checked) => setDisabled(checked === true)} />
+      <section className="rail-details__danger-zone" aria-labelledby="delete-rail-heading">
+        <div><strong id="delete-rail-heading">Delete rail</strong><p>Remove this rail and its configuration permanently.</p></div>
+        <TextButton variant="secondary" className="rail-details__delete-action" icon={<Trash2 size={15} />} onClick={() => setDeleteConfirmationOpen(true)}>Delete rail</TextButton>
+      </section>
     </div>
   </div>;
   const hasQueryFilters = Boolean(mediaFormats.length || genres.length || mediaAvailability.length || releaseYear || anyTitlePrefix || subscriptionPackages.length || languages.length || isAdult || exactTitle || titlePrefix || tvSeason || sortField !== 'title' || sortDirection !== 'desc');
@@ -196,6 +206,9 @@ function RailDetailsWorkspace({ railName = 'Trending', initiallyEmpty = false }:
       </WorkspaceLayout.Main>
     </WorkspaceLayout.Body>
     {shouldShowSaveFooter && <WorkspaceLayout.Footer className="rail-details__footer"><OutlineButton onClick={cancelChanges}>Cancel</OutlineButton><PrimaryButton onClick={save}><Save size={15} /> Save changes</PrimaryButton></WorkspaceLayout.Footer>}
+    <Modal isOpen={deleteConfirmationOpen} onClose={() => setDeleteConfirmationOpen(false)} title={`Delete ${name}?`} description="This permanently removes the rail, its content, and its configuration. This action cannot be undone." tone="danger" footer={<><OutlineButton onClick={() => setDeleteConfirmationOpen(false)}>Cancel</OutlineButton><TextButton variant="secondary" className="rail-details__delete-action rail-details__delete-action--confirm" icon={<Trash2 size={15} />} onClick={deleteRail}>Delete rail</TextButton></>}>
+      <p className="rail-details__delete-confirmation">You are about to delete <strong>{name}</strong>.</p>
+    </Modal>
     <ContentBrowserModal isOpen={browserOpen} onClose={() => setBrowserOpen(false)} items={initialItems} selectedItems={candidateSelection} onSelectionChange={setCandidateSelection} onConfirm={(ids) => { setItems(initialItems.filter((item) => ids.includes(item.id))); setContentDirty(true); addToast({ variant: 'success', title: 'Content updated', description: `${ids.length} items are now in the rail.` }); }} />
   </WorkspaceLayout>;
 }

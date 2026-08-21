@@ -7,7 +7,7 @@ import { Modal } from './Modal';
 import { PrimaryButton } from './PrimaryButton';
 import { Segmented } from './Segmented';
 import { Table, TableColumn, TableRow } from './Table';
-import { Tag } from './Tag';
+import { Badge } from './Badge';
 import { Status } from './Status';
 import { TextButton } from './TextButton';
 import { TextArea } from './TextArea';
@@ -214,9 +214,9 @@ export function RailsList() {
           if (column === 'railId') return <span className="rails-list-page__rail-id">{value}</span>;
           if (column === 'status') return <Status tone={String(value).toLowerCase() === 'active' ? 'success' : 'neutral'}>{value}</Status>;
           if (column === 'title') return <span className="rails-list-page__rail-title">{value}</span>;
-          if (column === 'collection') return <Tag>{value}</Tag>;
+          if (column === 'collection') return <Badge>{value}</Badge>;
           if (column === 'type') {
-            return <Tag tone={String(value).toLowerCase() === 'recommended' ? 'info' : 'accent'}>{value}</Tag>;
+            return <Badge tone={String(value).toLowerCase() === 'recommended' ? 'info' : 'accent'}>{value}</Badge>;
           }
           if (column === 'controls') return <div className="rails-list-page__row-controls"><IconButton variant="ghost" size="small" aria-label={`Edit ${row.title}`} onClick={() => window.location.assign(`${window.location.pathname}?page=rail-details`)}><Pencil size={15} /></IconButton><IconButton variant="danger" size="small" aria-label={`Delete ${row.title}`} onClick={() => removeRail(row.id)}><Trash2 size={15} /></IconButton></div>;
           return value;

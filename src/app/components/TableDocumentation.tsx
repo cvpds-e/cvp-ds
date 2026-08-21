@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { Database, Rows3, SlidersHorizontal } from 'lucide-react';
 import { Table, TableRow } from './Table';
+import { Tag } from './Tag';
 import { createSampleData, sampleColumns } from './TableSampleData';
 import './TableDocumentation.css';
 
@@ -24,7 +25,7 @@ const tokenRows = [
   ['Row hover', '--cvp-table-row-bg-hover', '--cvp-color-surface-hover', 'Theme resolved', ':hover'],
   ['Selected row', '--cvp-table-row-bg-selected', '--cvp-color-surface-active', 'Neutral selection surface', 'Selection present'],
   ['Row count tag', '--cvp-table-count-bg', '--cvp-color-surface-subtle', 'Muted metadata tag', 'Toolbar summary'],
-  ['Rail type tag', '--cvp-table-rail-type-*', '--cvp-color-surface-subtle / --cvp-color-text-link-default / --cvp-color-brand-accent', 'Recommended blue; Editorial purple', 'Rails List type column'],
+  ['Categorical Tag', '--cvp-tag-*', '--cvp-color-surface-subtle / semantic foregrounds', 'Neutral identity; semantic meanings', 'Collection and Rail Type columns'],
   ['Control gap', '--cvp-table-control-gap', '--cvp-space-100', '2px', 'Toolbar and pagination controls'],
   ['Rows-per-page menu', '--cvp-select-*', 'Shared Select dropdown styling', '10 / 20 / 50 rows; standard selected-option treatment', 'Rows-per-page trigger'],
   ['Viewport-safe popup', '--cvp-table-menu-viewport-inset', '5px documented table exception', 'At least 5px from every viewport edge', 'Rows-per-page menu'],
@@ -50,10 +51,11 @@ export function TableDocumentation() {
   const rows = useMemo(() => groupedRows, []);
 
   const renderCell = (columnId: string, value: unknown) => {
-    if (columnId === 'collection') return <span className="table-collection-tag">{String(value)}</span>;
+    if (columnId === 'collection') {
+      return <Tag>{String(value)}</Tag>;
+    }
     if (columnId === 'type') {
-      const railType = String(value).toLowerCase();
-      return <span className={`cvp-table__rail-type-tag cvp-table__rail-type-tag--${railType}`}>{String(value)}</span>;
+      return <Tag tone={String(value).toLowerCase() === 'recommended' ? 'info' : 'accent'}>{String(value)}</Tag>;
     }
     return String(value ?? '');
   };

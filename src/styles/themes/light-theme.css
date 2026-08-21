@@ -622,11 +622,6 @@ body[data-theme="light"] {
      SPECIAL COMPONENTS
      ======================================== */
   
-  /* Collection Tag */
-  --collection-tag-text-color: #16a34a;
-  --collection-tag-bg-color: #dcfce7;
-  --collection-tag-border: 1px solid #86efac;
-  
   /* Status Badges */
   --status-badge-active-bg: #dcfce7;
   --status-badge-active-text: #16a34a;

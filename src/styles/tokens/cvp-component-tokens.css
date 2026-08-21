@@ -1207,6 +1207,40 @@
   --cvp-skeleton-motion-easing:    var(--cvp-motion-easing-standard);
 
   /* ===========================================================================
+     TAG
+     Non-interactive categorical metadata. Do not use for selected input values.
+  =========================================================================== */
+  --cvp-tag-bg:                    var(--cvp-color-surface-subtle);
+  --cvp-tag-border:                var(--cvp-color-border-default);
+  --cvp-tag-text:                  var(--cvp-color-text-muted);
+  --cvp-tag-text-info:             var(--cvp-color-text-link-default);
+  --cvp-tag-text-accent:           var(--cvp-color-brand-accent);
+  --cvp-tag-text-success:          var(--cvp-color-text-success);
+  --cvp-tag-text-warning:          var(--cvp-color-text-warning);
+  --cvp-tag-height:                var(--cvp-space-6);
+  --cvp-tag-padding-x:             var(--cvp-space-2);
+  --cvp-tag-radius:                var(--cvp-radius-sm);
+  --cvp-tag-font-family:           var(--cvp-font-family-mono);
+  --cvp-tag-font-size:             var(--cvp-font-size-xs);
+  --cvp-tag-font-weight:           var(--cvp-font-weight-semibold);
+  --cvp-tag-line-height:           var(--cvp-line-height-tight);
+  --cvp-tag-letter-spacing:        var(--cvp-letter-spacing-wide);
+
+  /* ===========================================================================
+     STATUS
+     Non-interactive lifecycle or health metadata. Color supplements text.
+  =========================================================================== */
+  --cvp-status-text:               var(--cvp-color-text-muted);
+  --cvp-status-text-success:       var(--cvp-color-text-success);
+  --cvp-status-text-warning:       var(--cvp-color-text-warning);
+  --cvp-status-text-danger:        var(--cvp-color-text-danger);
+  --cvp-status-font-family:        var(--cvp-font-family-mono);
+  --cvp-status-font-size:          var(--cvp-font-size-xs);
+  --cvp-status-font-weight:        var(--cvp-font-weight-semibold);
+  --cvp-status-line-height:        var(--cvp-line-height-tight);
+  --cvp-status-letter-spacing:     var(--cvp-letter-spacing-wide);
+
+  /* ===========================================================================
      PAGINATION
      Public:   text, control-color, page-field-bg
      Internal: navigation geometry, field and focus treatment.
@@ -1290,15 +1324,6 @@
   --cvp-table-count-padding-x:  var(--cvp-space-1);
   --cvp-table-count-radius:     var(--cvp-radius-sm);
   --cvp-table-count-separation: var(--cvp-space-3);
-  /* Rail type metadata tag — shared by Rails List and Table documentation. */
-  --cvp-table-rail-type-tag-bg:           var(--cvp-color-surface-subtle);
-  --cvp-table-rail-type-tag-border:       var(--cvp-color-border-default);
-  --cvp-table-rail-type-tag-radius:       var(--cvp-radius-sm);
-  --cvp-table-rail-type-tag-padding-x:    var(--cvp-space-1);
-  --cvp-table-rail-type-tag-font-size:    var(--cvp-font-size-xs);
-  --cvp-table-rail-type-tag-font-weight:  var(--cvp-font-weight-semibold);
-  --cvp-table-rail-type-editorial-text:   var(--cvp-color-brand-accent);
-  --cvp-table-rail-type-recommended-text: var(--cvp-color-text-link-default);
   --cvp-table-control-color:    var(--cvp-color-icon-subtle);
   --cvp-table-control-color-hover: var(--cvp-color-icon-default);
   --cvp-table-control-color-disabled: var(--cvp-color-icon-disabled);

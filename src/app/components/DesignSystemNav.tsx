@@ -46,6 +46,7 @@ const NAV_ITEMS = [
   { id: 'tree', label: 'Tree', category: 'Navigation' },
   { id: 'table', label: 'Table', category: 'Navigation' },
   { id: 'pagination', label: 'Pagination', category: 'Navigation' },
+  { id: 'tag', label: 'Tag', category: 'Navigation' },
   { id: 'segmented', label: 'Segmented', category: 'Navigation' },
   { id: 'accordion', label: 'Accordion', category: 'Navigation' },
   { id: 'tag-filter', label: 'Tag Filter', category: 'Navigation' },
@@ -56,6 +57,7 @@ const NAV_ITEMS = [
   { id: 'tooltip', label: 'Tooltip', category: 'Overlays' },
   { id: 'skeleton', label: 'Skeleton', category: 'Feedback' },
   { id: 'loading-spinner', label: 'Loading Spinner', category: 'Feedback' },
+  { id: 'status', label: 'Status', category: 'Feedback' },
   { id: 'toast', label: 'Toast', category: 'Feedback' },
   { id: 'notification-banner', label: 'Notification Banner', category: 'Feedback' },
 

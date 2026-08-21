@@ -54,6 +54,8 @@ import { RailsListDocumentation } from './components/RailsListDocumentation';
 import { NotificationBannerDocumentation } from './components/NotificationBannerDocumentation';
 import { SkeletonDocumentation } from './components/SkeletonDocumentation';
 import { LoadingSpinnerDocumentation } from './components/LoadingSpinnerDocumentation';
+import { TagDocumentation } from './components/TagDocumentation';
+import { StatusDocumentation } from './components/StatusDocumentation';
 import { AccessibilityAuditProbe } from './components/AccessibilityAuditProbe';
 import { AccessibilityDocumentation } from './components/AccessibilityDocumentation';
 import { TokenArchitectureDocumentation } from './components/TokenArchitectureDocumentation';
@@ -610,6 +612,10 @@ export default function App() {
         return <SkeletonDocumentation />;
       case 'loading-spinner':
         return <LoadingSpinnerDocumentation />;
+      case 'tag':
+        return <TagDocumentation />;
+      case 'status':
+        return <StatusDocumentation />;
       case 'notification-banner':
         return <NotificationBannerDocumentation />;
       case 'segment-query-config':

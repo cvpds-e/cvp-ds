@@ -19,7 +19,7 @@ This catalog is the readable index of every active CVP token. It preserves each 
 | --- | --- | ---: |
 | Primitive | `cvp-primitives.css` | 206 |
 | Semantic | `cvp-semantic-tokens.css` | 487 |
-| Component | `cvp-component-tokens.css` | 1322 |
+| Component | `cvp-component-tokens.css` | 1338 |
 
 ## Tier 1 — Primitive tokens
 
@@ -1985,7 +1985,24 @@ Component contracts. Each group is named after the component or shared contract 
 </details>
 
 <details>
-<summary><strong>table</strong> — 91 tokens</summary>
+<summary><strong>status</strong> — 9 tokens</summary>
+
+| Token | Value | Scope |
+| --- | --- | --- |
+| `--cvp-status-text` | `var(--cvp-color-text-muted)` | Shared |
+| `--cvp-status-text-success` | `var(--cvp-color-text-success)` | Shared |
+| `--cvp-status-text-warning` | `var(--cvp-color-text-warning)` | Shared |
+| `--cvp-status-text-danger` | `var(--cvp-color-text-danger)` | Shared |
+| `--cvp-status-font-family` | `var(--cvp-font-family-mono)` | Shared |
+| `--cvp-status-font-size` | `var(--cvp-font-size-xs)` | Shared |
+| `--cvp-status-font-weight` | `var(--cvp-font-weight-semibold)` | Shared |
+| `--cvp-status-line-height` | `var(--cvp-line-height-tight)` | Shared |
+| `--cvp-status-letter-spacing` | `var(--cvp-letter-spacing-wide)` | Shared |
+
+</details>
+
+<details>
+<summary><strong>table</strong> — 83 tokens</summary>
 
 | Token | Value | Scope |
 | --- | --- | --- |
@@ -2033,14 +2050,6 @@ Component contracts. Each group is named after the component or shared contract 
 | `--cvp-table-count-padding-x` | `var(--cvp-space-1)` | Shared |
 | `--cvp-table-count-radius` | `var(--cvp-radius-sm)` | Shared |
 | `--cvp-table-count-separation` | `var(--cvp-space-3)` | Shared |
-| `--cvp-table-rail-type-tag-bg` | `var(--cvp-color-surface-subtle)` | Shared |
-| `--cvp-table-rail-type-tag-border` | `var(--cvp-color-border-default)` | Shared |
-| `--cvp-table-rail-type-tag-radius` | `var(--cvp-radius-sm)` | Shared |
-| `--cvp-table-rail-type-tag-padding-x` | `var(--cvp-space-1)` | Shared |
-| `--cvp-table-rail-type-tag-font-size` | `var(--cvp-font-size-xs)` | Shared |
-| `--cvp-table-rail-type-tag-font-weight` | `var(--cvp-font-weight-semibold)` | Shared |
-| `--cvp-table-rail-type-editorial-text` | `var(--cvp-color-brand-accent)` | Shared |
-| `--cvp-table-rail-type-recommended-text` | `var(--cvp-color-text-link-default)` | Shared |
 | `--cvp-table-control-color` | `var(--cvp-color-icon-subtle)` | Shared |
 | `--cvp-table-control-color-hover` | `var(--cvp-color-icon-default)` | Shared |
 | `--cvp-table-control-color-disabled` | `var(--cvp-color-icon-disabled)` | Shared |
@@ -2128,7 +2137,7 @@ Component contracts. Each group is named after the component or shared contract 
 </details>
 
 <details>
-<summary><strong>tag</strong> — 52 tokens</summary>
+<summary><strong>tag</strong> — 67 tokens</summary>
 
 | Token | Value | Scope |
 | --- | --- | --- |
@@ -2184,6 +2193,21 @@ Component contracts. Each group is named after the component or shared contract 
 | `--cvp-tag-filter-transition-duration` | `var(--cvp-motion-duration-fast)` | Shared |
 | `--cvp-tag-filter-transition-easing` | `var(--cvp-motion-easing-standard)` | Shared |
 | `--cvp-tag-filter-transition` | `color var(--cvp-tag-filter-transition-duration) var(--cvp-tag-filter-transition-easing), background-color var(--cvp-tag-filter-transition-duration) var(--cvp-tag-filter-transition-easing), border-color var(--cvp-tag-filter-transition-duration) var(--cvp-tag-filter-transition-easing), box-shadow var(--cvp-tag-filter-transition-duration) var(--cvp-tag-filter-transition-easing)` | Shared |
+| `--cvp-tag-bg` | `var(--cvp-color-surface-subtle)` | Shared |
+| `--cvp-tag-border` | `var(--cvp-color-border-default)` | Shared |
+| `--cvp-tag-text` | `var(--cvp-color-text-muted)` | Shared |
+| `--cvp-tag-text-info` | `var(--cvp-color-text-link-default)` | Shared |
+| `--cvp-tag-text-accent` | `var(--cvp-color-brand-accent)` | Shared |
+| `--cvp-tag-text-success` | `var(--cvp-color-text-success)` | Shared |
+| `--cvp-tag-text-warning` | `var(--cvp-color-text-warning)` | Shared |
+| `--cvp-tag-height` | `var(--cvp-space-6)` | Shared |
+| `--cvp-tag-padding-x` | `var(--cvp-space-2)` | Shared |
+| `--cvp-tag-radius` | `var(--cvp-radius-sm)` | Shared |
+| `--cvp-tag-font-family` | `var(--cvp-font-family-mono)` | Shared |
+| `--cvp-tag-font-size` | `var(--cvp-font-size-xs)` | Shared |
+| `--cvp-tag-font-weight` | `var(--cvp-font-weight-semibold)` | Shared |
+| `--cvp-tag-line-height` | `var(--cvp-line-height-tight)` | Shared |
+| `--cvp-tag-letter-spacing` | `var(--cvp-letter-spacing-wide)` | Shared |
 
 </details>
 

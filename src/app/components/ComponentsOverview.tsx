@@ -15,6 +15,7 @@ import { Segmented } from './Segmented';
 import { Select } from './Select';
 import { MultiSelect } from './MultiSelect';
 import { TagFilter } from './TagFilter';
+import { Tag } from './Tag';
 import { Toast, ToastProvider, useToast } from './Toast';
 import { Accordion } from './Accordion';
 
@@ -312,20 +313,6 @@ export function ComponentsOverview() {
           transform: translateX(2px);
         }
 
-        /* Collection Tag Styles */
-        .table-collection-tag {
-          font-family: var(--collection-tag-font-family);
-          font-size: var(--collection-tag-font-size);
-          font-weight: var(--collection-tag-font-weight);
-          line-height: var(--collection-tag-line-height);
-          letter-spacing: var(--collection-tag-letter-spacing);
-          color: var(--collection-tag-text-color);
-          background-color: var(--collection-tag-bg-color);
-          border: var(--collection-tag-border);
-          border-radius: var(--collection-tag-border-radius);
-          padding: var(--collection-tag-padding);
-          display: inline-block;
-        }
       `}</style>
 
       <div className="components-overview">
@@ -699,11 +686,7 @@ export function ComponentsOverview() {
                 sortable={true}
                 renderCell={(columnId, value) => {
                   if (columnId === 'collection') {
-                    return (
-                      <span className="table-collection-tag">
-                        {value}
-                      </span>
-                    );
+                    return <Tag>{value}</Tag>;
                   }
                   return value;
                 }}

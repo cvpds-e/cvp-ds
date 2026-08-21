@@ -7,6 +7,8 @@ import { Modal } from './Modal';
 import { PrimaryButton } from './PrimaryButton';
 import { Segmented } from './Segmented';
 import { Table, TableColumn, TableRow } from './Table';
+import { Tag } from './Tag';
+import { Status } from './Status';
 import { TextButton } from './TextButton';
 import { TextArea } from './TextArea';
 import { TextInput } from './TextInput';
@@ -210,12 +212,11 @@ export function RailsList() {
         <WorkspaceLayout.Toolbar className="rails-list-page__filters"><Filter triggerVariant="icon-seamless" options={[{ id: 'title', label: 'Title', type: 'text' }, { id: 'rail-type', label: 'Rail type', type: 'multiselect', options: [{ value: 'editorial', label: 'Editorial' }, { value: 'recommended', label: 'Recommended' }] }, { id: 'collection', label: 'Collection', type: 'select', options: [{ value: 'home', label: 'Home' }, { value: 'drama', label: 'Drama' }, { value: 'kids', label: 'Kids' }] }]} activeFilters={filters} onChange={(nextFilters) => { setFilters(nextFilters); if (nextFilters.length <= 2) setMatchAllFilters(true); }} placeholder="Add filter" />{filters.length > 2 && <div className="rails-list-page__match"><span>Match</span><TextButton variant="contextual" aria-label={`Switch to match ${matchAllFilters ? 'any' : 'all'} filters`} onClick={() => setMatchAllFilters((value) => !value)}>{matchAllFilters ? 'all filters' : 'any filter'}</TextButton></div>}</WorkspaceLayout.Toolbar>
         <Table className="rails-list-page__table" ariaLabel="Rails list" columns={columns} data={tableView === 'grouped' ? rails : rails.filter((row) => row.kind !== 'group')} selectable expandable singleExpand={tableView === 'list'} freezeLeadingColumns sortable resizable showActions={false} showViewControl={false} totalItems={rails.filter((row) => row.kind !== 'group').length} pageSize={pageSize} pageSizeOptions={[10, 20, 50]} currentPage={currentPage} onPageChange={setCurrentPage} onPageSizeChange={(size) => { setPageSize(size); setCurrentPage(1); }} onRefresh={() => setRails((current) => [...current])} height="calc(100dvh - 246px)" toolbarActions={<div className="rails-list-page__view-controls" role="group" aria-label="Table view"><IconButton variant={tableView === 'list' ? 'outline' : 'ghost'} size="medium" aria-label="List view" aria-pressed={tableView === 'list'} onClick={() => { setTableView('list'); setCurrentPage(1); }}><List size={16} /></IconButton><IconButton variant={tableView === 'grouped' ? 'outline' : 'ghost'} size="medium" aria-label="Grouped view" aria-pressed={tableView === 'grouped'} onClick={() => { setTableView('grouped'); setCurrentPage(1); }}><FolderTree size={16} /></IconButton></div>} renderCell={(column, value, row) => {
           if (column === 'railId') return <span className="rails-list-page__rail-id">{value}</span>;
-          if (column === 'status') return <span className={`rails-list-page__rail-status rails-list-page__rail-status--${String(value).toLowerCase()}`}>{value}</span>;
+          if (column === 'status') return <Status tone={String(value).toLowerCase() === 'active' ? 'success' : 'neutral'}>{value}</Status>;
           if (column === 'title') return <span className="rails-list-page__rail-title">{value}</span>;
-          if (column === 'collection') return <span className="rails-list-page__collection-tag">{value}</span>;
+          if (column === 'collection') return <Tag>{value}</Tag>;
           if (column === 'type') {
-            const railType = String(value).toLowerCase();
-            return <span className={`cvp-table__rail-type-tag cvp-table__rail-type-tag--${railType}`}>{value}</span>;
+            return <Tag tone={String(value).toLowerCase() === 'recommended' ? 'info' : 'accent'}>{value}</Tag>;
           }
           if (column === 'controls') return <div className="rails-list-page__row-controls"><IconButton variant="ghost" size="small" aria-label={`Edit ${row.title}`} onClick={() => window.location.assign(`${window.location.pathname}?page=rail-details`)}><Pencil size={15} /></IconButton><IconButton variant="danger" size="small" aria-label={`Delete ${row.title}`} onClick={() => removeRail(row.id)}><Trash2 size={15} /></IconButton></div>;
           return value;

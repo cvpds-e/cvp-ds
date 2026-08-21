@@ -10083,6 +10083,150 @@
       "source": "cvp-component-tokens.css"
     },
     {
+      "name": "--cvp-tag-bg",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-tag-border",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-tag-text",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-tag-text-info",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-tag-text-accent",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-tag-text-success",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-tag-text-warning",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-tag-height",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-tag-padding-x",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-tag-radius",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-tag-font-family",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-tag-font-size",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-tag-font-weight",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-tag-line-height",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-tag-letter-spacing",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-status-text",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-status-text-success",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-status-text-warning",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-status-text-danger",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-status-font-family",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-status-font-size",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-status-font-weight",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-status-line-height",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-status-letter-spacing",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
       "name": "--cvp-pagination-text",
       "tier": "Component",
       "scope": "Shared",
@@ -10510,54 +10654,6 @@
     },
     {
       "name": "--cvp-table-count-separation",
-      "tier": "Component",
-      "scope": "Shared",
-      "source": "cvp-component-tokens.css"
-    },
-    {
-      "name": "--cvp-table-rail-type-tag-bg",
-      "tier": "Component",
-      "scope": "Shared",
-      "source": "cvp-component-tokens.css"
-    },
-    {
-      "name": "--cvp-table-rail-type-tag-border",
-      "tier": "Component",
-      "scope": "Shared",
-      "source": "cvp-component-tokens.css"
-    },
-    {
-      "name": "--cvp-table-rail-type-tag-radius",
-      "tier": "Component",
-      "scope": "Shared",
-      "source": "cvp-component-tokens.css"
-    },
-    {
-      "name": "--cvp-table-rail-type-tag-padding-x",
-      "tier": "Component",
-      "scope": "Shared",
-      "source": "cvp-component-tokens.css"
-    },
-    {
-      "name": "--cvp-table-rail-type-tag-font-size",
-      "tier": "Component",
-      "scope": "Shared",
-      "source": "cvp-component-tokens.css"
-    },
-    {
-      "name": "--cvp-table-rail-type-tag-font-weight",
-      "tier": "Component",
-      "scope": "Shared",
-      "source": "cvp-component-tokens.css"
-    },
-    {
-      "name": "--cvp-table-rail-type-editorial-text",
-      "tier": "Component",
-      "scope": "Shared",
-      "source": "cvp-component-tokens.css"
-    },
-    {
-      "name": "--cvp-table-rail-type-recommended-text",
       "tier": "Component",
       "scope": "Shared",
       "source": "cvp-component-tokens.css"

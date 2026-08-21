@@ -866,6 +866,26 @@
         }
       }
     },
+    "Tag": {
+      "type": "object",
+      "description": "Non-interactive categorical metadata label",
+      "properties": {
+        "tone": { "type": "string", "enum": ["neutral", "info", "accent", "success", "warning"], "default": "neutral" },
+        "children": { "type": "string" }
+      },
+      "required": ["children"],
+      "visualSpec": { "height": "24px", "typography": "mono 12px semibold uppercase", "tones": "neutral, info, accent, success, warning", "use": "classification, not selection or status" }
+    },
+    "Status": {
+      "type": "object",
+      "description": "Non-interactive lifecycle or health indicator",
+      "properties": {
+        "tone": { "type": "string", "enum": ["neutral", "success", "warning", "danger"], "default": "neutral" },
+        "children": { "type": "string" }
+      },
+      "required": ["children"],
+      "visualSpec": { "typography": "mono 12px semibold uppercase", "use": "lifecycle or health; visible text required" }
+    },
     "Tree": {
       "type": "object",
       "description": "Hierarchical tree component",

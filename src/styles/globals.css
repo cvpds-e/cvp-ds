@@ -863,18 +863,6 @@ button:focus-visible:not(.primary-button):not(.segmented-segment):not(.multi-sel
   --panel-left-header-padding: var(--cvp-spacing-inset-md);
   --panel-collapsible-padding: calc(var(--panel-spacing-unit) * 2);
 
-  /* Collection tag tokens */
-  --collection-tag-font-family: var(--font-family-mono);
-  --collection-tag-font-size: var(--type-scale-s-size);
-  --collection-tag-font-weight: var(--type-scale-s-weight);
-  --collection-tag-line-height: var(--type-scale-s-line-height);
-  --collection-tag-letter-spacing: var(--type-scale-s-letter-spacing);
-  --collection-tag-text-color: #00dbab;
-  --collection-tag-bg-color: #292a2e;
-  --collection-tag-border: var(--cvp-border-base);
-  --collection-tag-border-radius: var(--cvp-shape-control-compact);
-  --collection-tag-padding: var(--cvp-space-100) var(--cvp-spacing-inset-xs);
-
   /* Login / Sign Up component tokens */
   --login-bg-gradient-start: #182848;
   --login-bg-gradient-end: #4b6cb7;

@@ -1,0 +1,4 @@
+.cvp-status { display: inline-flex; align-items: center; color: var(--cvp-status-text); font-family: var(--cvp-status-font-family); font-size: var(--cvp-status-font-size); font-weight: var(--cvp-status-font-weight); letter-spacing: var(--cvp-status-letter-spacing); line-height: var(--cvp-status-line-height); text-transform: uppercase; white-space: nowrap; }
+.cvp-status--success { color: var(--cvp-status-text-success); }
+.cvp-status--warning { color: var(--cvp-status-text-warning); }
+.cvp-status--danger { color: var(--cvp-status-text-danger); }

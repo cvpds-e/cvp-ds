@@ -769,6 +769,8 @@
   --cvp-content-browser-state-min-height: 280px;
   --cvp-content-browser-pagination-height: var(--cvp-space-900);
   --cvp-content-browser-pagination-control-size: var(--cvp-space-8);
+  --cvp-content-browser-result-card-width: 112px;
+  --cvp-content-browser-result-card-gap: var(--cvp-space-3);
 
   /* ===========================================================================
      DROPDOWN MENU

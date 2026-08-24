@@ -19,7 +19,7 @@ This catalog is the readable index of every active CVP token. It preserves each 
 | --- | --- | ---: |
 | Primitive | `cvp-primitives.css` | 206 |
 | Semantic | `cvp-semantic-tokens.css` | 487 |
-| Component | `cvp-component-tokens.css` | 1338 |
+| Component | `cvp-component-tokens.css` | 1340 |
 
 ## Tier 1 — Primitive tokens
 
@@ -1162,7 +1162,7 @@ Component contracts. Each group is named after the component or shared contract 
 </details>
 
 <details>
-<summary><strong>content</strong> — 28 tokens</summary>
+<summary><strong>content</strong> — 30 tokens</summary>
 
 | Token | Value | Scope |
 | --- | --- | --- |
@@ -1194,6 +1194,8 @@ Component contracts. Each group is named after the component or shared contract 
 | `--cvp-content-browser-state-min-height` | `280px` | Shared |
 | `--cvp-content-browser-pagination-height` | `var(--cvp-space-900)` | Shared |
 | `--cvp-content-browser-pagination-control-size` | `var(--cvp-space-8)` | Shared |
+| `--cvp-content-browser-result-card-width` | `112px` | Shared |
+| `--cvp-content-browser-result-card-gap` | `var(--cvp-space-3)` | Shared |
 
 </details>
 

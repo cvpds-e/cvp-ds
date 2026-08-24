@@ -22,6 +22,7 @@ const tokens = [
   ['Focus', '--cvp-content-browser-focus-ring', '--cvp-border-focus-ring', 'Border + halo', ':focus-visible'],
   ['Checkbox', '--cvp-checkbox-border', '--cvp-input-border', 'Shared input boundary', 'Selection controls'],
   ['Result tile', '--cvp-gallery-*', 'Rail Content Gallery', 'Shared compact poster tile', 'Search results'],
+  ['Result density', '--cvp-content-browser-result-card-width / --cvp-content-browser-result-card-gap', '112px / --cvp-space-3', 'Eight compact results fit a default-width modal row', 'Content Browser results only'],
   ['Divider', '--cvp-content-browser-divider', '--cvp-modal-divider', 'Shared overlay divider', 'Regions'],
   ['Modal surface', '--cvp-modal-bg', '--cvp-color-surface-default', 'Theme-resolved overlay surface', 'Container / footer'],
   ['Radius', '--cvp-content-browser-item-radius', '--cvp-radius-md', '8px', 'Result item'],

@@ -7923,6 +7923,18 @@
       "source": "cvp-component-tokens.css"
     },
     {
+      "name": "--cvp-content-browser-result-card-width",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-content-browser-result-card-gap",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
       "name": "--cvp-menu-bg",
       "tier": "Component",
       "scope": "Shared",

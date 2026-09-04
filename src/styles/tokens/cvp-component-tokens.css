@@ -764,6 +764,7 @@
   --cvp-content-browser-control-padding-x: var(--cvp-space-3);
   --cvp-content-browser-control-radius:  var(--cvp-radius-sm);
   --cvp-content-browser-search-max-width: 420px;
+  --cvp-content-browser-program-type-min-width: calc(var(--cvp-space-12) * 4);
   --cvp-content-browser-filter-dot-size: var(--cvp-space-2);
   --cvp-content-browser-results-bar-height: var(--cvp-space-900);
   --cvp-content-browser-state-min-height: 280px;

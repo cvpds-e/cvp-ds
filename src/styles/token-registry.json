@@ -7893,6 +7893,12 @@
       "source": "cvp-component-tokens.css"
     },
     {
+      "name": "--cvp-content-browser-program-type-min-width",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
       "name": "--cvp-content-browser-filter-dot-size",
       "tier": "Component",
       "scope": "Shared",

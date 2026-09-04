@@ -135,9 +135,9 @@ export function ContentBrowserModal({
         {filtersOpen && (
           <div id="content-browser-filters" className="cvp-content-browser__filters">
             <SortControl className="cvp-content-browser__filter-control cvp-content-browser__sort" value={sortBy} direction={sortDirection} onChange={(value) => setSortBy(value as 'title' | 'year')} onDirectionChange={setSortDirection} options={[{ value: 'title', label: 'Title' }, { value: 'year', label: 'Year' }]} />
-            <TagFilter className="cvp-content-browser__filter-control" sections={[{ id: 'program-type', title: 'Program type', options: options.programTypes.map((value) => ({ id: value, label: value === 'movie' ? 'Movie' : 'Series' })) }]} selectedOptions={programTypes} onSelectionChange={setProgramTypes} />
             <MultiSelect className="cvp-content-browser__filter-control" label="Tags" options={options.tags.map((value) => ({ value, label: value }))} value={tags} onChange={setTags} allowCreate={false} placeholder="Select tags…" />
             <Select className="cvp-content-browser__filter-control" label="Year" value={year} onChange={setYear} placeholder="All years" options={options.years.map((value) => ({ value, label: value }))} />
+            <TagFilter className="cvp-content-browser__filter-control" sections={[{ id: 'program-type', title: 'Program type', options: options.programTypes.map((value) => ({ id: value, label: value === 'movie' ? 'Movie' : 'Series' })) }]} selectedOptions={programTypes} onSelectionChange={setProgramTypes} />
             <TextButton disabled={!hasFilters} onClick={clearFilters}>Clear filters</TextButton>
           </div>
         )}

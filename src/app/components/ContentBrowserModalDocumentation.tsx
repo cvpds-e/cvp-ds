@@ -54,7 +54,7 @@ export function ContentBrowserModalDocumentation() {
         <div className="content-browser-docs__section-heading"><div><span>02</span><h2 id="content-browser-anatomy">Anatomy and behavior</h2></div><p>Search remains primary; filters and view controls stay secondary to content selection.</p></div>
         <div className="content-browser-docs__anatomy">
           <article><Search size={20} /><strong>Search first</strong><p>One shared search field finds titles, tags, and years without nesting controls.</p></article>
-          <article><Filter size={20} /><strong>Progressive filters</strong><p>Sort by includes an ascending/descending control; Program type, Tags, and Year reuse canonical field controls. Program type values stay on one row when space permits, then the filter grid reflows at narrower widths.</p></article>
+          <article><Filter size={20} /><strong>Progressive filters</strong><p>Sort by includes an ascending/descending control; Tags and Year use canonical field controls. Program type is the final optional criterion, immediately before Clear filters; its values stay on one row when space permits, then the filter grid reflows at narrower widths.</p></article>
           <article><Grid3X3 size={20} /><strong>Shared gallery</strong><p>Search results reuse the selectable Rail Content Gallery in its compact portrait-poster layout, preserving selection, pagination, and metadata. Browse results are independent content, so placement-source labels are intentionally hidden.</p></article>
           <article><CheckSquare size={20} /><strong>Quiet selection</strong><p>Checkboxes indicate the selected items; the confirmation button is the single selection count.</p></article>
         </div>

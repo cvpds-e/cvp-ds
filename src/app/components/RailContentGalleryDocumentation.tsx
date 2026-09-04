@@ -23,7 +23,7 @@ const tokens = [
   ['Overlay', '--cvp-gallery-overlay-bg / --cvp-button-icon-gallery-bg-hover', '--cvp-color-gallery-overlay / --cvp-color-gallery-overlay-hover', 'Stable dark media control surface with a stronger hover layer', 'Position / controls'],
   ['Card actions', '--cvp-button-icon-gallery-* / --cvp-button-icon-danger-color', '--cvp-color-gallery-overlay / --cvp-color-gallery-overlay-hover / --cvp-color-icon-danger', 'Shared 24px Icon Button: reveal on hover or focus; stable dark overlay supports every thumbnail, with a semantic-red delete glyph', 'Edit / delete'],
   ['Position', '--cvp-gallery-position-*', '--cvp-font-size-sm / --cvp-font-weight-bold', 'Centered, tabular numeral within its overlay square', 'Management tile, bottom-left'],
-  ['Content source', '--cvp-gallery-source-tag-*', '--cvp-color-surface-subtle / --cvp-color-state-success-*', 'Algorithmic by default; Manual when pinned', 'First line above title and metadata'],
+  ['Content source Badge', '--cvp-badge-source-*', '--cvp-color-surface-subtle / --cvp-color-state-success-*', 'Algorithmic by default; Manual when pinned', 'First line above title and metadata'],
   ['Pinned indicator', '--cvp-gallery-pin-indicator-*', '--cvp-color-state-success-*', 'Green, contrast-safe active pin state', 'Pinned management tile, bottom-right'],
   ['Placeholder', '--cvp-gallery-placeholder-bg', '--cvp-color-surface-sunken', 'Theme-resolved fallback', 'Missing thumbnail'],
   ['Focus', '--cvp-gallery-focus-ring', '--cvp-border-focus-ring', 'Border + halo', 'Item :focus-visible'],

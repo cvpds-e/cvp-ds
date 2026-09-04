@@ -1219,6 +1219,12 @@
   --cvp-badge-text-accent:         var(--cvp-color-brand-accent);
   --cvp-badge-text-success:        var(--cvp-color-text-success);
   --cvp-badge-text-warning:        var(--cvp-color-text-warning);
+  --cvp-badge-source-algorithmic-bg: var(--cvp-color-surface-subtle);
+  --cvp-badge-source-algorithmic-text: var(--cvp-color-text-primary);
+  --cvp-badge-source-algorithmic-border: var(--cvp-color-border-strong);
+  --cvp-badge-source-manual-bg:    var(--cvp-color-state-success-bg);
+  --cvp-badge-source-manual-text:  var(--cvp-color-state-success-text);
+  --cvp-badge-source-manual-border: var(--cvp-color-state-success-border);
   --cvp-badge-height:              var(--cvp-space-6);
   --cvp-badge-padding-x:           var(--cvp-space-2);
   --cvp-badge-radius:              var(--cvp-radius-sm);
@@ -1227,6 +1233,11 @@
   --cvp-badge-font-weight:         var(--cvp-font-weight-semibold);
   --cvp-badge-line-height:         var(--cvp-line-height-tight);
   --cvp-badge-letter-spacing:      var(--cvp-letter-spacing-wide);
+  --cvp-badge-source-padding-x:    var(--cvp-space-1);
+  --cvp-badge-source-padding-y:    calc(var(--cvp-space-1) / 2);
+  --cvp-badge-source-font-size:    var(--cvp-font-size-xs);
+  --cvp-badge-source-font-weight:  var(--cvp-font-weight-semibold);
+  --cvp-badge-source-line-height:  var(--cvp-line-height-tight);
 
   /* ===========================================================================
      STATUS
@@ -1449,19 +1460,6 @@
   --cvp-gallery-position-font-size: var(--cvp-font-size-sm);
   --cvp-gallery-position-font-weight: var(--cvp-font-weight-bold);
   --cvp-gallery-position-line-height: var(--cvp-line-height-tight);
-  --cvp-gallery-source-tag-algorithmic-bg: var(--cvp-color-surface-subtle);
-  --cvp-gallery-source-tag-algorithmic-text: var(--cvp-color-text-primary);
-  --cvp-gallery-source-tag-algorithmic-border: var(--cvp-color-border-strong);
-  --cvp-gallery-source-tag-manual-bg: var(--cvp-color-state-success-bg);
-  --cvp-gallery-source-tag-manual-text: var(--cvp-color-state-success-text);
-  --cvp-gallery-source-tag-manual-border: var(--cvp-color-state-success-border);
-  --cvp-gallery-source-tag-border-width: var(--cvp-border-base-width);
-  --cvp-gallery-source-tag-padding-x: var(--cvp-space-1);
-  --cvp-gallery-source-tag-padding-y: calc(var(--cvp-space-1) / 2);
-  --cvp-gallery-source-tag-radius: var(--cvp-radius-sm);
-  --cvp-gallery-source-tag-font-size: var(--cvp-font-size-xs);
-  --cvp-gallery-source-tag-font-weight: var(--cvp-font-weight-semibold);
-  --cvp-gallery-source-tag-line-height: var(--cvp-line-height-tight);
   --cvp-gallery-pin-indicator-text: var(--cvp-color-state-success-text);
   --cvp-gallery-pin-indicator-bg: var(--cvp-color-state-success-bg);
   --cvp-gallery-pin-indicator-bg-hover: var(--cvp-color-state-success-border);

@@ -3,3 +3,6 @@
 .cvp-badge--accent { color: var(--cvp-badge-text-accent); }
 .cvp-badge--success { color: var(--cvp-badge-text-success); }
 .cvp-badge--warning { color: var(--cvp-badge-text-warning); }
+.cvp-badge--content-source { min-height: 0; padding: var(--cvp-badge-source-padding-y) var(--cvp-badge-source-padding-x); border-color: transparent; font-family: var(--cvp-font-family-sans); font-size: var(--cvp-badge-source-font-size); font-weight: var(--cvp-badge-source-font-weight); letter-spacing: normal; line-height: var(--cvp-badge-source-line-height); text-transform: none; }
+.cvp-badge--content-source.cvp-badge--algorithmic { color: var(--cvp-badge-source-algorithmic-text); background: var(--cvp-badge-source-algorithmic-bg); border-color: var(--cvp-badge-source-algorithmic-border); }
+.cvp-badge--content-source.cvp-badge--manual { color: var(--cvp-badge-source-manual-text); background: var(--cvp-badge-source-manual-bg); border-color: var(--cvp-badge-source-manual-border); }

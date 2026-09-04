@@ -23,6 +23,7 @@ const tokens = [
   ['Checkbox', '--cvp-checkbox-border', '--cvp-input-border', 'Shared input boundary', 'Selection controls'],
   ['Result tile', '--cvp-gallery-*', 'Rail Content Gallery', 'Shared compact poster tile', 'Search results'],
   ['Result density', '--cvp-content-browser-result-card-width / --cvp-content-browser-result-card-gap', '112px / --cvp-space-3', 'Eight compact results fit a default-width modal row', 'Content Browser results only'],
+  ['Program type width', '--cvp-content-browser-program-type-min-width', '--cvp-space-12 × 4', '192px; Movie and Series never stack', 'Expanded filters'],
   ['Divider', '--cvp-content-browser-divider', '--cvp-modal-divider', 'Shared overlay divider', 'Regions'],
   ['Modal surface', '--cvp-modal-bg', '--cvp-color-surface-default', 'Theme-resolved overlay surface', 'Container / footer'],
   ['Radius', '--cvp-content-browser-item-radius', '--cvp-radius-md', '8px', 'Result item'],
@@ -54,7 +55,7 @@ export function ContentBrowserModalDocumentation() {
         <div className="content-browser-docs__section-heading"><div><span>02</span><h2 id="content-browser-anatomy">Anatomy and behavior</h2></div><p>Search remains primary; filters and view controls stay secondary to content selection.</p></div>
         <div className="content-browser-docs__anatomy">
           <article><Search size={20} /><strong>Search first</strong><p>One shared search field finds titles, tags, and years without nesting controls.</p></article>
-          <article><Filter size={20} /><strong>Progressive filters</strong><p>Sort by includes an ascending/descending control; Tags and Year use canonical field controls. Program type is the final optional criterion, immediately before Clear filters; its values stay on one row when space permits, then the filter grid reflows at narrower widths.</p></article>
+          <article><Filter size={20} /><strong>Progressive filters</strong><p>Sort by includes an ascending/descending control; Tags and Year use canonical field controls. Every field label shares a top baseline; Program type is the final optional criterion, immediately before Clear filters. Its values stay on one row when space permits, then the filter grid reflows at narrower widths.</p></article>
           <article><Grid3X3 size={20} /><strong>Shared gallery</strong><p>Search results reuse the selectable Rail Content Gallery in its compact portrait-poster layout, preserving selection, pagination, and metadata. Browse results are independent content, so placement-source labels are intentionally hidden.</p></article>
           <article><CheckSquare size={20} /><strong>Quiet selection</strong><p>Checkboxes indicate the selected items; the confirmation button is the single selection count.</p></article>
         </div>

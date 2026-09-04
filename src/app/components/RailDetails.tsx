@@ -26,7 +26,7 @@ import { ToastProvider, useToast } from './Toast';
 import { WorkspaceLayout } from './WorkspaceLayout';
 import './RailDetails.css';
 
-interface RailDetailsProps { railName?: string; totalLabels?: number; initiallyEmpty?: boolean; }
+interface RailDetailsProps { railName?: string; totalLabels?: number; initiallyEmpty?: boolean; queryLocked?: boolean; }
 
 const initialItems: RailContentItem[] = [
   { id: '1', title: 'The Dark Knight', year: '2008', thumbnail: 'https://images.unsplash.com/photo-1518676590629-3dcbd9c5a5c9?auto=format&fit=crop&w=480&q=80', position: 1, metadata: { category: 'Action', status: 'active' } },
@@ -47,11 +47,13 @@ function ReadOnlyIndicator() {
   return <Tooltip content="Read only" side="right" align="center"><span className="rail-details__read-only-indicator" role="img" aria-label="Read only"><Lock size={14} aria-hidden="true" /></span></Tooltip>;
 }
 
-function RailDetailsWorkspace({ railName = 'Trending', initiallyEmpty = false }: RailDetailsProps) {
+function RailDetailsWorkspace({ railName = 'Trending', initiallyEmpty = false, queryLocked = false }: RailDetailsProps) {
   const { addToast } = useToast();
+  const initialContentSlots = queryLocked ? '3' : '24';
+  const initialRailItems = initiallyEmpty ? [] : queryLocked ? initialItems.slice(0, 3).map((item) => ({ ...item, metadata: { ...item.metadata, status: 'pinned' } })) : initialItems;
   const [name, setName] = useState(railName);
   const [collection, setCollection] = useState('home');
-  const [contentSlots, setContentSlots] = useState('24');
+  const [contentSlots, setContentSlots] = useState(initialContentSlots);
   const [guid, setGuid] = useState('trending-editorial-001');
   const [disabled, setDisabled] = useState(false);
   const [mediaFormats, setMediaFormats] = useState<string[]>([]);
@@ -69,10 +71,10 @@ function RailDetailsWorkspace({ railName = 'Trending', initiallyEmpty = false }:
   const [exactTitle, setExactTitle] = useState('');
   const [titlePrefix, setTitlePrefix] = useState('');
   const [tvSeason, setTvSeason] = useState('');
-  const [activeTab, setActiveTab] = useState('base');
+  const [activeTab, setActiveTab] = useState(queryLocked ? 'query' : 'base');
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [browserOpen, setBrowserOpen] = useState(false);
-  const [items, setItems] = useState<RailContentItem[]>(() => initiallyEmpty ? [] : initialItems);
+  const [items, setItems] = useState<RailContentItem[]>(() => initialRailItems);
   const [contentDirty, setContentDirty] = useState(false);
   const [candidateSelection, setCandidateSelection] = useState<string[]>([]);
   const [deleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false);
@@ -151,10 +153,10 @@ function RailDetailsWorkspace({ railName = 'Trending', initiallyEmpty = false }:
   const cancelChanges = () => {
     setName(railName);
     setCollection('home');
-    setContentSlots('24');
+    setContentSlots(initialContentSlots);
     setGuid('trending-editorial-001');
     setDisabled(false);
-    setItems(initiallyEmpty ? [] : initialItems);
+    setItems(initialRailItems);
     setContentDirty(false);
     setFilterSearch('');
     clearQueryFilters();
@@ -169,7 +171,10 @@ function RailDetailsWorkspace({ railName = 'Trending', initiallyEmpty = false }:
     setBrowserOpen(true);
   };
   const queryPanel = <div className="rail-details__form">
-    <div className="rail-details__form-section rail-details__query-section">
+    {queryLocked && <NotificationBanner className="rail-details__query-lock-banner" title="Query filters unavailable" message="All available slots are occupied by manual content. To use the content query filters, free up at least one slot by removing a manual item." variant="info" />}
+    <div className={`rail-details__form-section rail-details__query-section ${queryLocked ? 'rail-details__query-section--locked' : ''}`}>
+      <div className="rail-details__query-lockable" aria-label={queryLocked ? 'Content query unavailable because all slots are manual' : undefined}>
+        <div className="rail-details__query-lockable-content" aria-hidden={queryLocked || undefined} inert={queryLocked ? '' : undefined}>
       {hasQueryFilters && <div className="rail-details__query-actions"><TextButton onClick={clearQueryFilters}>Clear all filters</TextButton></div>}
       <div className="rail-details__query-controls">
         <SearchField label="Search filters" value={filterSearch} onChange={(event) => setFilterSearch(event.target.value)} onClear={() => setFilterSearch('')} placeholder="Search filters…" />
@@ -188,6 +193,9 @@ function RailDetailsWorkspace({ railName = 'Trending', initiallyEmpty = false }:
         {matchesFilterSearch('Languages') && <MultiSelect label="Languages" labelTooltip={<FilterTooltip content="Filter by one or more languages associated with the program" />} value={languages} onChange={setLanguages} allowCreate={false} placeholder="Select languages…" options={[{ value: 'en', label: 'English (en)' }, { value: 'es', label: 'Spanish (es)' }, { value: 'fr', label: 'French (fr)' }, { value: 'de', label: 'German (de)' }, { value: 'it', label: 'Italian (it)' }]} />}
         {showDeferredEditorialFilters && matchesFilterSearch('Is adult', 'Adult') && <Select label="Is adult" labelTooltip={<FilterTooltip content="Filter by whether the program is marked as adult content" />} value={isAdult} onChange={setIsAdult} placeholder="Select audience…" options={[{ value: 'yes', label: 'Yes' }, { value: 'no', label: 'No' }]} />}
         {showDeferredEditorialFilters && matchesFilterSearch('TV season', 'Season') && <Select label="TV season" labelTooltip={<FilterTooltip content="Filter programs by their associated television season" />} value={tvSeason} onChange={setTvSeason} placeholder="Select TV season…" options={[{ value: '1', label: 'Season 1' }, { value: '2', label: 'Season 2' }, { value: '3', label: 'Season 3' }]} />}
+      </div>
+        </div>
+        {queryLocked && <div className="rail-details__query-lock-overlay" aria-hidden="true"><Lock size={18} /><strong>Content query unavailable</strong><span>All available slots are filled with manual content.</span></div>}
       </div>
     </div>
   </div>;

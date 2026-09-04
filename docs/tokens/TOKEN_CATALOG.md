@@ -19,7 +19,7 @@ This catalog is the readable index of every active CVP token. It preserves each 
 | --- | --- | ---: |
 | Primitive | `cvp-primitives.css` | 206 |
 | Semantic | `cvp-semantic-tokens.css` | 487 |
-| Component | `cvp-component-tokens.css` | 1340 |
+| Component | `cvp-component-tokens.css` | 1338 |
 
 ## Tier 1 — Primitive tokens
 
@@ -807,7 +807,7 @@ Component contracts. Each group is named after the component or shared contract 
 </details>
 
 <details>
-<summary><strong>badge</strong> — 15 tokens</summary>
+<summary><strong>badge</strong> — 26 tokens</summary>
 
 | Token | Value | Scope |
 | --- | --- | --- |
@@ -818,6 +818,12 @@ Component contracts. Each group is named after the component or shared contract 
 | `--cvp-badge-text-accent` | `var(--cvp-color-brand-accent)` | Shared |
 | `--cvp-badge-text-success` | `var(--cvp-color-text-success)` | Shared |
 | `--cvp-badge-text-warning` | `var(--cvp-color-text-warning)` | Shared |
+| `--cvp-badge-source-algorithmic-bg` | `var(--cvp-color-surface-subtle)` | Shared |
+| `--cvp-badge-source-algorithmic-text` | `var(--cvp-color-text-primary)` | Shared |
+| `--cvp-badge-source-algorithmic-border` | `var(--cvp-color-border-strong)` | Shared |
+| `--cvp-badge-source-manual-bg` | `var(--cvp-color-state-success-bg)` | Shared |
+| `--cvp-badge-source-manual-text` | `var(--cvp-color-state-success-text)` | Shared |
+| `--cvp-badge-source-manual-border` | `var(--cvp-color-state-success-border)` | Shared |
 | `--cvp-badge-height` | `var(--cvp-space-6)` | Shared |
 | `--cvp-badge-padding-x` | `var(--cvp-space-2)` | Shared |
 | `--cvp-badge-radius` | `var(--cvp-radius-sm)` | Shared |
@@ -826,6 +832,11 @@ Component contracts. Each group is named after the component or shared contract 
 | `--cvp-badge-font-weight` | `var(--cvp-font-weight-semibold)` | Shared |
 | `--cvp-badge-line-height` | `var(--cvp-line-height-tight)` | Shared |
 | `--cvp-badge-letter-spacing` | `var(--cvp-letter-spacing-wide)` | Shared |
+| `--cvp-badge-source-padding-x` | `var(--cvp-space-1)` | Shared |
+| `--cvp-badge-source-padding-y` | `calc(var(--cvp-space-1) / 2)` | Shared |
+| `--cvp-badge-source-font-size` | `var(--cvp-font-size-xs)` | Shared |
+| `--cvp-badge-source-font-weight` | `var(--cvp-font-weight-semibold)` | Shared |
+| `--cvp-badge-source-line-height` | `var(--cvp-line-height-tight)` | Shared |
 
 </details>
 
@@ -1320,7 +1331,7 @@ Component contracts. Each group is named after the component or shared contract 
 </details>
 
 <details>
-<summary><strong>gallery</strong> — 70 tokens</summary>
+<summary><strong>gallery</strong> — 57 tokens</summary>
 
 | Token | Value | Scope |
 | --- | --- | --- |
@@ -1355,19 +1366,6 @@ Component contracts. Each group is named after the component or shared contract 
 | `--cvp-gallery-position-font-size` | `var(--cvp-font-size-sm)` | Shared |
 | `--cvp-gallery-position-font-weight` | `var(--cvp-font-weight-bold)` | Shared |
 | `--cvp-gallery-position-line-height` | `var(--cvp-line-height-tight)` | Shared |
-| `--cvp-gallery-source-tag-algorithmic-bg` | `var(--cvp-color-surface-subtle)` | Shared |
-| `--cvp-gallery-source-tag-algorithmic-text` | `var(--cvp-color-text-primary)` | Shared |
-| `--cvp-gallery-source-tag-algorithmic-border` | `var(--cvp-color-border-strong)` | Shared |
-| `--cvp-gallery-source-tag-manual-bg` | `var(--cvp-color-state-success-bg)` | Shared |
-| `--cvp-gallery-source-tag-manual-text` | `var(--cvp-color-state-success-text)` | Shared |
-| `--cvp-gallery-source-tag-manual-border` | `var(--cvp-color-state-success-border)` | Shared |
-| `--cvp-gallery-source-tag-border-width` | `var(--cvp-border-base-width)` | Shared |
-| `--cvp-gallery-source-tag-padding-x` | `var(--cvp-space-1)` | Shared |
-| `--cvp-gallery-source-tag-padding-y` | `calc(var(--cvp-space-1) / 2)` | Shared |
-| `--cvp-gallery-source-tag-radius` | `var(--cvp-radius-sm)` | Shared |
-| `--cvp-gallery-source-tag-font-size` | `var(--cvp-font-size-xs)` | Shared |
-| `--cvp-gallery-source-tag-font-weight` | `var(--cvp-font-weight-semibold)` | Shared |
-| `--cvp-gallery-source-tag-line-height` | `var(--cvp-line-height-tight)` | Shared |
 | `--cvp-gallery-pin-indicator-text` | `var(--cvp-color-state-success-text)` | Shared |
 | `--cvp-gallery-pin-indicator-bg` | `var(--cvp-color-state-success-bg)` | Shared |
 | `--cvp-gallery-pin-indicator-bg-hover` | `var(--cvp-color-state-success-border)` | Shared |

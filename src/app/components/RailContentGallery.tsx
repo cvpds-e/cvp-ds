@@ -1,6 +1,7 @@
 import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight, Edit2, Film, GripVertical, Pin, Plus, Trash2 } from 'lucide-react';
 import { Checkbox } from './Checkbox';
+import { Badge } from './Badge';
 import { IconButton } from './IconButton';
 import { IconSmallButton } from './IconSmallButton';
 import { ImageWithFallback } from './figma/ImageWithFallback';
@@ -102,7 +103,7 @@ export const RailContentGallery = forwardRef<RailContentGalleryHandle, RailConte
               {management && <><span className="cvp-rail-gallery__position">{item.position ?? index + 1}</span><span className="cvp-rail-gallery__drag"><GripVertical size={16} aria-hidden="true" /></span><div className="cvp-rail-gallery__actions"><IconSmallButton variant="rail-gallery" aria-label={`Edit ${item.title}`} onClick={() => onEdit?.(item)}><Edit2 /></IconSmallButton><IconSmallButton variant="rail-gallery" className="cvp-rail-gallery__delete-control" aria-label={`Delete ${item.title}`} onClick={() => onDelete?.(item)}><Trash2 /></IconSmallButton></div>{isPinned && <IconSmallButton variant="rail-gallery" className="cvp-rail-gallery__pin-control" aria-label={`Unpin ${item.title}`} aria-pressed="true" onClick={() => togglePin(item)}><Pin /></IconSmallButton>}</>}
               {selectable && <Checkbox className="cvp-rail-gallery__checkbox" checked={isSelected} aria-label={`Select ${item.title}`} onChange={() => toggleSelection(item.id)} />}
             </div>
-            <div className="cvp-rail-gallery__copy">{showSourceLabels && <span className={`cvp-rail-gallery__source-tag cvp-rail-gallery__source-tag--${contentSource}`}>{contentSource === 'manual' ? 'Manual' : 'Algorithmic'}</span>}<strong className="cvp-rail-gallery__title" title={item.title}>{item.title}</strong><span className="cvp-rail-gallery__meta">{[item.year, item.metadata?.category, item.metadata?.duration].filter(Boolean).join(' · ')}</span></div>
+            <div className="cvp-rail-gallery__copy">{showSourceLabels && <Badge variant="content-source" tone={contentSource}>{contentSource === 'manual' ? 'Manual' : 'Algorithmic'}</Badge>}<strong className="cvp-rail-gallery__title" title={item.title}>{item.title}</strong><span className="cvp-rail-gallery__meta">{[item.year, item.metadata?.category, item.metadata?.duration].filter(Boolean).join(' · ')}</span></div>
           </article>;
         })}
         {Array.from({ length: emptySlotCount }, (_, index) => {

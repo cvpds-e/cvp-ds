@@ -24,6 +24,7 @@ import { TextButton } from './TextButton';
 import { Tooltip } from './Tooltip';
 import { ToastProvider, useToast } from './Toast';
 import { WorkspaceLayout } from './WorkspaceLayout';
+import { UnsavedChangesFooter } from './UnsavedChangesFooter';
 import './RailDetails.css';
 
 interface RailDetailsProps { railName?: string; totalLabels?: number; initiallyEmpty?: boolean; queryLocked?: boolean; }
@@ -131,7 +132,7 @@ function RailDetailsWorkspace({ railName = 'Trending', initiallyEmpty = false, q
     </div>
   </div>;
   const hasQueryFilters = Boolean(mediaFormats.length || genres.length || mediaAvailability.length || releaseYear || anyTitlePrefix || subscriptionPackages.length || languages.length || isAdult || exactTitle || titlePrefix || tvSeason || sortField !== 'title' || sortDirection !== 'desc');
-  const hasBaseChanges = name !== railName || collection !== 'home' || contentSlots !== '24' || guid !== 'trending-editorial-001' || disabled;
+  const hasBaseChanges = name !== railName || collection !== 'home' || contentSlots !== initialContentSlots || guid !== 'trending-editorial-001' || disabled;
   const shouldShowSaveFooter = hasBaseChanges || hasQueryFilters || matchMode !== 'all' || contentDirty;
   const matchesFilterSearch = (...labels: string[]) => !filterSearch.trim() || labels.some((label) => label.toLocaleLowerCase().includes(filterSearch.trim().toLocaleLowerCase()));
   const clearQueryFilters = () => {
@@ -204,7 +205,7 @@ function RailDetailsWorkspace({ railName = 'Trending', initiallyEmpty = false, q
     <WorkspaceLayout.GlobalHeader><HeaderNavigation variant="static" brandName="Rail Manager" userName="Jane Doe" userEmail="jane@cvp.example" teams={[{ id: 'editorial', name: 'Editorial Team' }]} selectedTeamId="editorial" onThemeSwitch={toggleTheme} /></WorkspaceLayout.GlobalHeader>
     <WorkspaceLayout.Breadcrumbs className="rail-details__crumbs"><Breadcrumbs surface="canvas" items={[{ id: 'rails-list', label: 'Rails List' }, { id: 'current', label: name }]} /></WorkspaceLayout.Breadcrumbs>
     <WorkspaceLayout.Body className={`rail-details__workspace ${sidebarOpen ? '' : 'rail-details__workspace--sidebar-collapsed'}`} sidePanelWidth="344px">
-      {sidebarOpen && <><WorkspaceLayout.SidePanel className="rail-details__sidebar" aria-label="Rail configuration"><div className="rail-details__panel-title"><strong>Rail Manager</strong></div><Tabs ariaLabel="Rail settings" activeTab={activeTab} onTabChange={setActiveTab} tabs={[{ id: 'base', label: 'Base', content: basePanel }, { id: 'query', label: 'Content Query', content: queryPanel }]} /></WorkspaceLayout.SidePanel><WorkspaceLayout.ResizeHandle /></>}
+      {sidebarOpen && <><WorkspaceLayout.SidePanel className="rail-details__sidebar" aria-label="Rail configuration"><div className="rail-details__panel-title"><strong>Rail Manager</strong></div><Tabs ariaLabel="Rail settings" activeTab={activeTab} onTabChange={setActiveTab} tabs={[{ id: 'base', label: 'Base', content: basePanel }, { id: 'query', label: 'Content Query', content: queryPanel }]} />{shouldShowSaveFooter && <UnsavedChangesFooter onSave={save} onCancel={cancelChanges} />}</WorkspaceLayout.SidePanel><WorkspaceLayout.ResizeHandle /></>}
       <WorkspaceLayout.Main className="rail-details__main">
         <div className="rail-details__preview-bar"><IconButton aria-label={sidebarOpen ? 'Collapse configuration' : 'Open configuration'} aria-expanded={sidebarOpen} onClick={() => setSidebarOpen((value) => !value)}>{sidebarOpen ? <PanelLeftClose size={16} /> : <PanelLeftOpen size={16} />}</IconButton><strong>Content Preview</strong><span className="cvp-status-tag cvp-status-tag--editorial rail-details__preview-tag">Editorial</span></div>
         <div className="rail-details__content">
@@ -213,7 +214,7 @@ function RailDetailsWorkspace({ railName = 'Trending', initiallyEmpty = false, q
         </div>
       </WorkspaceLayout.Main>
     </WorkspaceLayout.Body>
-    {shouldShowSaveFooter && <WorkspaceLayout.Footer className="rail-details__footer"><OutlineButton onClick={cancelChanges}>Cancel</OutlineButton><PrimaryButton onClick={save}><Save size={15} /> Save changes</PrimaryButton></WorkspaceLayout.Footer>}
+    {shouldShowSaveFooter && !sidebarOpen && <WorkspaceLayout.Footer className="rail-details__footer"><OutlineButton onClick={cancelChanges}>Cancel</OutlineButton><PrimaryButton onClick={save}><Save size={15} /> Save changes</PrimaryButton></WorkspaceLayout.Footer>}
     <Modal isOpen={deleteConfirmationOpen} onClose={() => setDeleteConfirmationOpen(false)} title={`Delete ${name}?`} description="This permanently removes the rail, its content, and its configuration. This action cannot be undone." tone="danger" footer={<><OutlineButton onClick={() => setDeleteConfirmationOpen(false)}>Cancel</OutlineButton><TextButton variant="secondary" className="rail-details__delete-action rail-details__delete-action--confirm" icon={<Trash2 size={15} />} onClick={deleteRail}>Delete rail</TextButton></>}>
       <p className="rail-details__delete-confirmation">You are about to delete <strong>{name}</strong>.</p>
     </Modal>

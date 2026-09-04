@@ -18,6 +18,7 @@ import { OutlineButton } from './OutlineButton';
 import { Tree, TreeItem } from './Tree';
 import { WorkspaceLayout } from './WorkspaceLayout';
 import { RailContentGallery, RailContentItem } from './RailContentGallery';
+import { UnsavedChangesFooter } from './UnsavedChangesFooter';
 import './RailsList.css';
 
 const collections: TreeItem[] = [
@@ -99,6 +100,7 @@ export function RailsList() {
   const [collectionDescription, setCollectionDescription] = useState('');
   const [collectionStatus, setCollectionStatus] = useState('enabled');
   const [collectionReference, setCollectionReference] = useState('');
+  const [collectionInitialValues, setCollectionInitialValues] = useState({ name: '', description: '', status: 'enabled', reference: '' });
   const [collectionLabels, setCollectionLabels] = useState<Record<string, string>>({});
   const [createRailOpen, setCreateRailOpen] = useState(false);
   const [newRailName, setNewRailName] = useState('New Editorial Rail');
@@ -113,14 +115,22 @@ export function RailsList() {
   };
   const openCollectionEditor = (item?: TreeItem) => {
     const isNew = !item;
+    const nextValues = {
+      name: isNew ? '' : collectionLabels[item.id] ?? item.label,
+      description: isNew ? '' : `${item.label} rail collection for curated programming.`,
+      status: 'enabled',
+      reference: isNew ? '' : `65cdc98c9-e1fdcc7931968-${item.id}`,
+    };
     setEditingCollection(isNew ? 'new' : item.id);
-    setCollectionName(isNew ? '' : collectionLabels[item.id] ?? item.label);
-    setCollectionDescription(isNew ? '' : `${item.label} rail collection for curated programming.`);
-    setCollectionStatus('enabled');
-    setCollectionReference(isNew ? '' : `65cdc98c9-e1fdcc7931968-${item.id}`);
+    setCollectionInitialValues(nextValues);
+    setCollectionName(nextValues.name);
+    setCollectionDescription(nextValues.description);
+    setCollectionStatus(nextValues.status);
+    setCollectionReference(nextValues.reference);
   };
   const tree = <Tree data={collections.map((item) => ({ ...item, label: collectionLabels[item.id] ?? item.label }))} selectedId={selectedCollection} initialExpanded={['home', 'drama', 'kids']} ariaLabel="Rail collections" onSelect={(item) => { setSelectedCollection(item.id); if (item.type === 'category') openCollectionEditor(item); }} renderActions={(item) => item.type === 'category' ? <IconButton variant="ghost" size="small" aria-label={`Edit ${item.label} rail collection`} onClick={(event) => { event.stopPropagation(); openCollectionEditor(item); }}><Pencil size={15} /></IconButton> : null} />;
   const isNewCollection = editingCollection === 'new';
+  const hasCollectionChanges = Boolean(editingCollection) && (collectionName !== collectionInitialValues.name || collectionDescription !== collectionInitialValues.description || collectionStatus !== collectionInitialValues.status || collectionReference !== collectionInitialValues.reference);
   const saveCollection = () => {
     if (editingCollection && editingCollection !== 'new' && collectionName.trim()) setCollectionLabels((current) => ({ ...current, [editingCollection]: collectionName.trim() }));
     setEditingCollection(null);
@@ -192,11 +202,9 @@ export function RailsList() {
         <Select label="Status" value={collectionStatus} onChange={setCollectionStatus} options={[{ value: 'enabled', label: 'Enabled' }, { value: 'disabled', label: 'Disabled' }]} />
         <TextInput label="External Reference ID" optionalText="Advanced" value={collectionReference} onChange={(event) => setCollectionReference(event.target.value)} />
       </div>
+      {!isNewCollection && <TextButton variant="secondary" className="rails-list-page__collection-delete" icon={<Trash2 size={15} />} onClick={() => setEditingCollection(null)}>Delete rail collection</TextButton>}
     </div>
-    <footer className="rails-list-page__collection-editor-footer">
-      {!isNewCollection && <IconButton variant="danger" size="small" aria-label={`Delete ${collectionName || 'rail collection'}`} onClick={() => setEditingCollection(null)}><Trash2 size={16} /></IconButton>}
-      <div><OutlineButton onClick={() => setEditingCollection(null)}>Cancel</OutlineButton><PrimaryButton onClick={saveCollection} disabled={!collectionName.trim()}>Save</PrimaryButton></div>
-    </footer>
+    {hasCollectionChanges && <UnsavedChangesFooter onSave={saveCollection} onCancel={() => setEditingCollection(null)} saveDisabled={!collectionName.trim()} />}
   </div>;
 
   return <WorkspaceLayout className="rails-list-page">

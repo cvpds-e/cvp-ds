@@ -1,0 +1,5 @@
+.cvp-unsaved-changes-footer { position: sticky; bottom: 0; z-index: var(--cvp-z-sticky); display: grid; flex: 0 0 auto; gap: var(--cvp-space-3); margin-top: auto; padding: var(--cvp-space-4); background: var(--cvp-color-surface-page); border-top: var(--cvp-border-base-width) solid var(--cvp-color-border-brand); }
+.cvp-unsaved-changes-footer__status { display: flex; align-items: center; gap: var(--cvp-space-2); color: var(--cvp-color-text-primary); font-size: var(--cvp-font-size-sm); line-height: var(--cvp-line-height-snug); }
+.cvp-unsaved-changes-footer__status > span { flex: 0 0 auto; width: var(--cvp-space-2); height: var(--cvp-space-2); background: var(--cvp-color-state-warning-text); border-radius: var(--cvp-shape-rounded); }
+.cvp-unsaved-changes-footer__actions { display: grid; gap: var(--cvp-space-2); }
+.cvp-unsaved-changes-footer__actions .cvp-primary-button, .cvp-unsaved-changes-footer__actions .cvp-outline-button { width: 100%; justify-content: center; }

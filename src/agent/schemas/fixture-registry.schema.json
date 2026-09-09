@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://cvp.internal/design-system/fixture-registry.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "themes", "viewports", "fixtures"],
+  "properties": {
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "themes": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "enum": ["light", "dark"] } },
+    "viewports": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "width", "height"],
+        "properties": {
+          "id": { "type": "string" },
+          "width": { "type": "integer", "minimum": 320 },
+          "height": { "type": "integer", "minimum": 480 }
+        }
+      }
+    },
+    "fixtures": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "assetId", "route", "heading", "states"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+          "assetId": { "type": "string" },
+          "route": { "type": "string", "pattern": "^\\?page=" },
+          "heading": { "type": "string" },
+          "states": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } }
+        }
+      }
+    }
+  }
+}

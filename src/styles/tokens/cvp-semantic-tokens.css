@@ -357,6 +357,7 @@
   --cvp-space-4:  var(--cvp-primitive-space-4);   /* 16px */
   --cvp-space-5:  var(--cvp-primitive-space-5);   /* 20px */
   --cvp-space-6:  var(--cvp-primitive-space-6);   /* 24px */
+  --cvp-space-7:  var(--cvp-primitive-space-7);   /* 28px */
   --cvp-space-8:  var(--cvp-primitive-space-8);   /* 32px */
   --cvp-space-12: var(--cvp-primitive-space-12);  /* 48px */
   --cvp-space-100: var(--cvp-primitive-space-100);
@@ -524,6 +525,7 @@
   --cvp-z-sticky:   var(--cvp-primitive-z-sticky);    /* 10   */
   --cvp-z-navigation:var(--cvp-primitive-z-navigation);
   --cvp-z-dropdown: var(--cvp-primitive-z-dropdown);
+  --cvp-z-tooltip:  var(--cvp-primitive-z-tooltip);
   --cvp-z-overlay:  var(--cvp-primitive-z-overlay);
   --cvp-z-modal:    var(--cvp-primitive-z-modal);
   --cvp-z-toast:    var(--cvp-primitive-z-toast);

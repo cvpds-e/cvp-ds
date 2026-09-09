@@ -2,6 +2,7 @@ import React, { useEffect, useId, useMemo, useRef, useState } from 'react';
 import {
   ArrowUpDown,
   ChevronDown,
+  ChevronRight,
   ChevronUp,
   Eye,
   GripVertical,

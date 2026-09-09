@@ -273,6 +273,12 @@
       "source": "cvp-primitives.css"
     },
     {
+      "name": "--cvp-primitive-neutral-125",
+      "tier": "Primitive",
+      "scope": "Shared",
+      "source": "cvp-primitives.css"
+    },
+    {
       "name": "--cvp-primitive-neutral-100",
       "tier": "Primitive",
       "scope": "Shared",
@@ -574,6 +580,12 @@
     },
     {
       "name": "--cvp-primitive-space-6",
+      "tier": "Primitive",
+      "scope": "Shared",
+      "source": "cvp-primitives.css"
+    },
+    {
+      "name": "--cvp-primitive-space-7",
       "tier": "Primitive",
       "scope": "Shared",
       "source": "cvp-primitives.css"
@@ -1096,6 +1108,12 @@
     },
     {
       "name": "--cvp-primitive-z-dropdown",
+      "tier": "Primitive",
+      "scope": "Shared",
+      "source": "cvp-primitives.css"
+    },
+    {
+      "name": "--cvp-primitive-z-tooltip",
       "tier": "Primitive",
       "scope": "Shared",
       "source": "cvp-primitives.css"
@@ -2571,6 +2589,12 @@
       "source": "cvp-semantic-tokens.css"
     },
     {
+      "name": "--cvp-space-7",
+      "tier": "Semantic",
+      "scope": "Light theme",
+      "source": "cvp-semantic-tokens.css"
+    },
+    {
       "name": "--cvp-space-8",
       "tier": "Semantic",
       "scope": "Light theme",
@@ -3424,6 +3448,12 @@
     },
     {
       "name": "--cvp-z-dropdown",
+      "tier": "Semantic",
+      "scope": "Light theme",
+      "source": "cvp-semantic-tokens.css"
+    },
+    {
+      "name": "--cvp-z-tooltip",
       "tier": "Semantic",
       "scope": "Light theme",
       "source": "cvp-semantic-tokens.css"
@@ -6178,6 +6208,102 @@
     },
     {
       "name": "--cvp-pill-border",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-pill-context-gap",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-pill-context-height",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-pill-context-padding-inline",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-pill-context-text",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-pill-context-bg",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-pill-context-border",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-pill-context-radius",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-pill-context-font-size",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-pill-context-font-weight",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-pill-context-line-height",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-pill-context-remove-target",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-pill-context-remove-radius",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-pill-context-icon-size",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-pill-context-remove-hover",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-pill-context-remove-active",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-pill-context-focus-ring",
       "tier": "Component",
       "scope": "Shared",
       "source": "cvp-component-tokens.css"

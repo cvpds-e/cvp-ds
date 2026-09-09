@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://cvp.internal/design-system/candidate-component.schema.json",
+  "title": "CVP candidate component manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "id", "name", "owner", "requirement", "rationale", "alternativesConsidered", "api", "accessibility", "evidence", "review"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "name": { "type": "string", "minLength": 1 },
+    "owner": { "type": "string", "minLength": 1 },
+    "requirement": { "type": "string", "minLength": 1 },
+    "rationale": { "type": "string", "minLength": 1 },
+    "alternativesConsidered": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["assetId", "reasonRejected"],
+        "properties": {
+          "assetId": { "type": "string" },
+          "reasonRejected": { "type": "string" }
+        }
+      }
+    },
+    "api": {
+      "type": "object",
+      "required": ["props", "variants", "states"],
+      "properties": {
+        "props": { "type": "array", "items": { "type": "string" } },
+        "variants": { "type": "array", "items": { "type": "string" } },
+        "states": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "tokens": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+    "accessibility": {
+      "type": "object",
+      "required": ["semantics", "keyboard", "announcements", "manualChecks"],
+      "properties": {
+        "semantics": { "type": "array", "items": { "type": "string" } },
+        "keyboard": { "type": "array", "items": { "type": "string" } },
+        "announcements": { "type": "array", "items": { "type": "string" } },
+        "manualChecks": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["examples", "tests", "visualFixtures"],
+      "properties": {
+        "examples": { "type": "array", "items": { "type": "string" } },
+        "tests": { "type": "array", "items": { "type": "string" } },
+        "visualFixtures": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "review": {
+      "type": "object",
+      "required": ["status"],
+      "properties": {
+        "status": { "enum": ["draft", "design-review", "engineering-review", "approved", "rejected"] },
+        "decisionRecord": { "type": "string" }
+      }
+    }
+  }
+}

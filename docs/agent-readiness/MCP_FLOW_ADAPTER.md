@@ -2,6 +2,8 @@
 
 The repository exposes a local, read-only MCP server over stdio. It is a protocol adapter over the deterministic design-system tools; it does not duplicate registry or governance logic.
 
+Engineers connecting this server to Flow/SCAPE should follow the complete [Flow/SCAPE connection walkthrough](./FLOWSCAPE_WALKTHROUGH.md).
+
 ## Run locally
 
 ```bash

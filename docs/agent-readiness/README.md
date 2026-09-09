@@ -46,6 +46,7 @@ Lifecycle is independent of classification. A `pattern` can be approved while re
 Deterministic discovery, gap classification, provenance, and compliance commands are documented in `docs/agent-readiness/TOOLS.md`.
 
 The local, read-only Flow/SCAPE integration surface is documented in `docs/agent-readiness/MCP_FLOW_ADAPTER.md`.
+The engineer setup and acceptance procedure is documented in `docs/agent-readiness/FLOWSCAPE_WALKTHROUGH.md`.
 
 ## Validation
 

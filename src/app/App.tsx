@@ -656,7 +656,7 @@ export default function App() {
       {activeSection === 'rail-details-full' ? (
         <RailDetails initiallyEmpty={new URLSearchParams(window.location.search).get('empty') === '1'} queryLocked={new URLSearchParams(window.location.search).get('locked') === '1'} />
       ) : activeSection === 'rails-list-full' ? (
-        <RailsList />
+        <RailsList initialState={new URLSearchParams(window.location.search).get('state') === 'empty' ? 'empty' : 'populated'} />
       ) : (
         <div className="app">
           <DesignSystemNav

@@ -4,7 +4,7 @@ import { ContentBrowserModal, ContentItem } from './ContentBrowserModal';
 import { PrimaryButton } from './PrimaryButton';
 import './ContentBrowserModalDocumentation.css';
 
-const sampleItems: ContentItem[] = [
+const sampleItemSeeds: ContentItem[] = [
   { id: '1', title: 'Spotlight', year: '2026', programType: 'movie', tags: ['Action', 'Editorial'], rating: 'PG-13', thumbnail: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=640&q=80' },
   { id: '2', title: 'Trending Now', year: '2026', programType: 'series', tags: ['Drama', 'Editorial'], rating: 'PG', thumbnail: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=640&q=80' },
   { id: '3', title: 'Because You Watched', year: '2025', programType: 'movie', tags: ['Drama'], rating: 'PG-13', thumbnail: 'https://images.unsplash.com/photo-1489599317593-3b62f9a61c5b?auto=format&fit=crop&w=640&q=80' },
@@ -15,6 +15,11 @@ const sampleItems: ContentItem[] = [
   { id: '8', title: 'Documentary Focus', year: '2024', programType: 'movie', tags: ['Documentary'], rating: 'PG', thumbnail: '' },
 ];
 
+const sampleItems: ContentItem[] = Array.from({ length: 20 }, (_, index) => {
+  const source = sampleItemSeeds[index % sampleItemSeeds.length];
+  return { ...source, id: `${source.id}-${index + 1}`, title: index < sampleItemSeeds.length ? source.title : `${source.title} ${index + 1}` };
+});
+
 const tokens = [
   ['Control border', '--cvp-content-browser-control-border', '--cvp-input-border', 'Shared form boundary', 'Search / selects'],
   ['Filter region', '--cvp-content-browser-filter-bg', '--cvp-color-surface-sunken', 'Section / color.bg.base.section', 'Expanded filters'],
@@ -22,7 +27,7 @@ const tokens = [
   ['Focus', '--cvp-content-browser-focus-ring', '--cvp-border-focus-ring', 'Border + halo', ':focus-visible'],
   ['Checkbox', '--cvp-checkbox-border', '--cvp-input-border', 'Shared input boundary', 'Selection controls'],
   ['Result tile', '--cvp-gallery-*', 'Rail Content Gallery', 'Shared compact poster tile', 'Search results'],
-  ['Result density', '--cvp-content-browser-result-card-width / --cvp-content-browser-result-card-gap', '112px / --cvp-space-3', 'Eight compact results fit a default-width modal row', 'Content Browser results only'],
+  ['Result density', '--cvp-content-browser-result-card-width / --cvp-content-browser-result-card-gap', '92px / --cvp-space-3', '20 results per page; responsive grid counts always divide evenly into 20', 'Content Browser results only'],
   ['Program type width', '--cvp-content-browser-program-type-min-width', '--cvp-space-12 × 4', '192px; Movie and Series never stack', 'Expanded filters'],
   ['Divider', '--cvp-content-browser-divider', '--cvp-modal-divider', 'Shared overlay divider', 'Regions'],
   ['Modal surface', '--cvp-modal-bg', '--cvp-color-surface-default', 'Theme-resolved overlay surface', 'Container / footer'],
@@ -56,7 +61,7 @@ export function ContentBrowserModalDocumentation() {
         <div className="content-browser-docs__anatomy">
           <article><Search size={20} /><strong>Search first</strong><p>One shared search field finds titles, tags, and years without nesting controls.</p></article>
           <article><Filter size={20} /><strong>Progressive filters</strong><p>Sort by includes an ascending/descending control; Tags and Year use canonical field controls. Every field label shares a top baseline; Program type is the final optional criterion, immediately before Clear filters. Its values stay on one row when space permits, then the filter grid reflows at narrower widths.</p></article>
-          <article><Grid3X3 size={20} /><strong>Shared gallery</strong><p>Search results reuse the selectable Rail Content Gallery in its compact portrait-poster layout, preserving selection, pagination, and metadata. Browse results are independent content, so placement-source labels are intentionally hidden.</p></article>
+          <article><Grid3X3 size={20} /><strong>Shared gallery</strong><p>Search results reuse the selectable Rail Content Gallery in its compact portrait-poster layout. Pages contain 20 results, and responsive column counts divide evenly into that total so a full page never implies unused tile slots. Browse results are independent content, so placement-source labels are intentionally hidden.</p></article>
           <article><CheckSquare size={20} /><strong>Quiet selection</strong><p>Checkboxes indicate the selected items; the confirmation button is the single selection count.</p></article>
         </div>
       </section>

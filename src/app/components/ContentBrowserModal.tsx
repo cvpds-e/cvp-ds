@@ -59,7 +59,7 @@ export function ContentBrowserModal({
   onConfirm,
   filterOptions = {},
   loading = false,
-  pageSize = 12,
+  pageSize = 20,
 }: ContentBrowserModalProps) {
   const [internalSelection, setInternalSelection] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState('');

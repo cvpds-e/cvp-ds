@@ -1206,7 +1206,7 @@ Component contracts. Each group is named after the component or shared contract 
 | `--cvp-content-browser-state-min-height` | `280px` | Shared |
 | `--cvp-content-browser-pagination-height` | `var(--cvp-space-900)` | Shared |
 | `--cvp-content-browser-pagination-control-size` | `var(--cvp-space-8)` | Shared |
-| `--cvp-content-browser-result-card-width` | `112px` | Shared |
+| `--cvp-content-browser-result-card-width` | `92px` | Shared |
 | `--cvp-content-browser-result-card-gap` | `var(--cvp-space-3)` | Shared |
 
 </details>

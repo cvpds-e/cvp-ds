@@ -1,0 +1,52 @@
+{
+  "version": "1.0.0",
+  "patterns": [
+    {
+      "id": "management-list-workspace",
+      "name": "Management list workspace",
+      "lifecycle": "approved",
+      "intents": ["manage a collection", "search filter and edit records", "bulk operations"],
+      "required": ["workspace-layout", "search-field", "filter", "table", "pagination", "primary-button"],
+      "optional": ["badge", "status", "sort-control", "skeleton", "loading-spinner", "notification-banner"],
+      "reference": "rails-list",
+      "constraints": ["Keep primary actions visible", "Preserve a stable scan path at constrained widths", "Provide loading, empty, populated, and error states"]
+    },
+    {
+      "id": "list-detail-editor",
+      "name": "List and detail editor",
+      "lifecycle": "approved",
+      "intents": ["browse and edit an item", "configure a selected record", "split pane workflow"],
+      "required": ["workspace-layout", "breadcrumbs", "tabs", "text-input", "primary-button", "outline-button"],
+      "optional": ["tree", "notification-banner", "unsaved-changes-footer", "rail-content-gallery"],
+      "reference": "rail-details",
+      "constraints": ["Announce unsaved state", "Keep save and cancel actions available", "Retain keyboard order when panes resize"]
+    },
+    {
+      "id": "create-edit-modal",
+      "name": "Create or edit modal",
+      "lifecycle": "approved",
+      "intents": ["create a record", "edit settings", "confirm structured input"],
+      "required": ["modal", "text-input", "primary-button", "outline-button"],
+      "optional": ["select", "multi-select", "checkbox", "number-input", "date-picker", "notification-banner"],
+      "constraints": ["Use a visible title", "Associate descriptions and errors", "Return focus to the invoking control", "Keep one primary submit action"]
+    },
+    {
+      "id": "content-selection",
+      "name": "Content selection",
+      "lifecycle": "approved",
+      "intents": ["browse content", "select media", "attach items to a rail"],
+      "required": ["content-browser-modal", "search-field", "filter", "pagination"],
+      "optional": ["tree", "pill", "skeleton", "status"],
+      "constraints": ["Expose selection state without color alone", "Preserve selection while paging only when explicitly supported", "Provide empty and loading states"]
+    },
+    {
+      "id": "authentication-entry",
+      "name": "Authentication entry",
+      "lifecycle": "approved",
+      "intents": ["sign in", "create an account", "recover access"],
+      "required": ["login-sign-up"],
+      "optional": ["notification-banner", "loading-spinner"],
+      "constraints": ["Do not invent authentication behavior", "Use platform identity and error contracts", "Keep validation errors associated with fields"]
+    }
+  ]
+}

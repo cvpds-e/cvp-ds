@@ -85,6 +85,7 @@
   --cvp-primitive-neutral-200: #6b7280;
   --cvp-primitive-neutral-170: #6b6b78;
   --cvp-primitive-neutral-150: #9ca3af;
+  --cvp-primitive-neutral-125: #8b91a0;
   --cvp-primitive-neutral-100: #a1a1a8;
   --cvp-primitive-neutral-75:  #afafb5;
   --cvp-primitive-neutral-50:  #bbbbbb;
@@ -170,6 +171,7 @@
   --cvp-primitive-space-4:  16px;
   --cvp-primitive-space-5:  20px;
   --cvp-primitive-space-6:  24px;
+  --cvp-primitive-space-7:  28px;
   --cvp-primitive-space-8:  32px;
   --cvp-primitive-space-12: 48px;
 
@@ -290,6 +292,7 @@
   --cvp-primitive-z-sticky:   10;
   --cvp-primitive-z-navigation:100;
   --cvp-primitive-z-dropdown: 400;
+  --cvp-primitive-z-tooltip: 500;
   --cvp-primitive-z-overlay:  800;
   --cvp-primitive-z-modal:    900;
   --cvp-primitive-z-toast:    1000;

@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://cvp.internal/design-system/prototype-provenance.schema.json",
+  "title": "CVP prototype provenance",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "designSystem", "assets", "validation"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "designSystem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["registryVersion", "gitCommit"],
+      "properties": {
+        "packageVersion": { "type": "string" },
+        "registryVersion": { "type": "string" },
+        "gitCommit": { "type": "string", "minLength": 7 }
+      }
+    },
+    "assets": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["approved", "candidates", "local", "patterns"],
+      "properties": {
+        "approved": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+        "candidates": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+        "local": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+        "patterns": { "type": "array", "uniqueItems": true, "items": { "type": "string" } }
+      }
+    },
+    "exceptions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["description", "rationale"],
+        "properties": {
+          "description": { "type": "string" },
+          "rationale": { "type": "string" },
+          "files": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "validation": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["command", "status"],
+        "properties": {
+          "command": { "type": "string" },
+          "status": { "enum": ["passed", "failed", "not-run", "manual-review"] },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+    "generator": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string" },
+        "version": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      }
+    }
+  }
+}

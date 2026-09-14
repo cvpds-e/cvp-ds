@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "1.0.0",
+  "designSystem": {
+    "packageVersion": "0.0.1",
+    "registryVersion": "1.0.0",
+    "gitCommit": "REPLACE_WITH_COMMIT_SHA"
+  },
+  "assets": {
+    "approved": ["primary-button", "text-input"],
+    "candidates": [],
+    "local": [],
+    "patterns": []
+  },
+  "exceptions": [],
+  "validation": [
+    { "command": "npm run build", "status": "not-run" },
+    { "command": "npm run verify:agent", "status": "not-run", "notes": "Run in the source design-system repository when local or candidate assets are introduced." }
+  ]
+}

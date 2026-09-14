@@ -17,9 +17,9 @@ This catalog is the readable index of every active CVP token. It preserves each 
 
 | Tier | Source file | Definitions |
 | --- | --- | ---: |
-| Primitive | `cvp-primitives.css` | 206 |
-| Semantic | `cvp-semantic-tokens.css` | 487 |
-| Component | `cvp-component-tokens.css` | 1339 |
+| Primitive | `cvp-primitives.css` | 209 |
+| Semantic | `cvp-semantic-tokens.css` | 489 |
+| Component | `cvp-component-tokens.css` | 1355 |
 
 ## Tier 1 — Primitive tokens
 
@@ -72,6 +72,7 @@ Raw colour, spacing, typography, motion, elevation, and opacity values. Do not r
 | `--cvp-primitive-neutral-200` | `#6b7280` | Shared |
 | `--cvp-primitive-neutral-170` | `#6b6b78` | Shared |
 | `--cvp-primitive-neutral-150` | `#9ca3af` | Shared |
+| `--cvp-primitive-neutral-125` | `#8b91a0` | Shared |
 | `--cvp-primitive-neutral-100` | `#a1a1a8` | Shared |
 | `--cvp-primitive-neutral-75` | `#afafb5` | Shared |
 | `--cvp-primitive-neutral-50` | `#bbbbbb` | Shared |
@@ -123,6 +124,7 @@ Raw colour, spacing, typography, motion, elevation, and opacity values. Do not r
 | `--cvp-primitive-space-4` | `16px` | Shared |
 | `--cvp-primitive-space-5` | `20px` | Shared |
 | `--cvp-primitive-space-6` | `24px` | Shared |
+| `--cvp-primitive-space-7` | `28px` | Shared |
 | `--cvp-primitive-space-8` | `32px` | Shared |
 | `--cvp-primitive-space-12` | `48px` | Shared |
 | `--cvp-primitive-space-100` | `2px` | Shared |
@@ -210,6 +212,7 @@ Raw colour, spacing, typography, motion, elevation, and opacity values. Do not r
 | `--cvp-primitive-z-sticky` | `10` | Shared |
 | `--cvp-primitive-z-navigation` | `100` | Shared |
 | `--cvp-primitive-z-dropdown` | `400` | Shared |
+| `--cvp-primitive-z-tooltip` | `500` | Shared |
 | `--cvp-primitive-z-overlay` | `800` | Shared |
 | `--cvp-primitive-z-modal` | `900` | Shared |
 | `--cvp-primitive-z-toast` | `1000` | Shared |
@@ -469,6 +472,7 @@ Intent-based roles. Theme-specific rows are shown with their scope so the light 
 | `--cvp-space-4` | `var(--cvp-primitive-space-4)` | Light theme |
 | `--cvp-space-5` | `var(--cvp-primitive-space-5)` | Light theme |
 | `--cvp-space-6` | `var(--cvp-primitive-space-6)` | Light theme |
+| `--cvp-space-7` | `var(--cvp-primitive-space-7)` | Light theme |
 | `--cvp-space-8` | `var(--cvp-primitive-space-8)` | Light theme |
 | `--cvp-space-12` | `var(--cvp-primitive-space-12)` | Light theme |
 | `--cvp-space-100` | `var(--cvp-primitive-space-100)` | Light theme |
@@ -612,6 +616,7 @@ Intent-based roles. Theme-specific rows are shown with their scope so the light 
 | `--cvp-z-sticky` | `var(--cvp-primitive-z-sticky)` | Light theme |
 | `--cvp-z-navigation` | `var(--cvp-primitive-z-navigation)` | Light theme |
 | `--cvp-z-dropdown` | `var(--cvp-primitive-z-dropdown)` | Light theme |
+| `--cvp-z-tooltip` | `var(--cvp-primitive-z-tooltip)` | Light theme |
 | `--cvp-z-overlay` | `var(--cvp-primitive-z-overlay)` | Light theme |
 | `--cvp-z-modal` | `var(--cvp-primitive-z-modal)` | Light theme |
 | `--cvp-z-toast` | `var(--cvp-primitive-z-toast)` | Light theme |
@@ -1881,7 +1886,7 @@ Component contracts. Each group is named after the component or shared contract 
 </details>
 
 <details>
-<summary><strong>pill</strong> — 17 tokens</summary>
+<summary><strong>pill</strong> — 33 tokens</summary>
 
 | Token | Value | Scope |
 | --- | --- | --- |
@@ -1902,6 +1907,22 @@ Component contracts. Each group is named after the component or shared contract 
 | `--cvp-pill-bg` | `var(--cvp-color-brand-default)` | Shared |
 | `--cvp-pill-text` | `var(--cvp-color-text-on-brand)` | Shared |
 | `--cvp-pill-border` | `transparent` | Shared |
+| `--cvp-pill-context-gap` | `var(--cvp-pill-gap)` | Shared |
+| `--cvp-pill-context-height` | `var(--cvp-pill-height)` | Shared |
+| `--cvp-pill-context-padding-inline` | `var(--cvp-pill-padding-inline)` | Shared |
+| `--cvp-pill-context-text` | `var(--cvp-pill-text)` | Shared |
+| `--cvp-pill-context-bg` | `var(--cvp-pill-bg)` | Shared |
+| `--cvp-pill-context-border` | `var(--cvp-pill-border)` | Shared |
+| `--cvp-pill-context-radius` | `var(--cvp-pill-radius)` | Shared |
+| `--cvp-pill-context-font-size` | `var(--cvp-pill-font-size)` | Shared |
+| `--cvp-pill-context-font-weight` | `var(--cvp-pill-font-weight)` | Shared |
+| `--cvp-pill-context-line-height` | `var(--cvp-pill-line-height)` | Shared |
+| `--cvp-pill-context-remove-target` | `var(--cvp-pill-remove-target)` | Shared |
+| `--cvp-pill-context-remove-radius` | `var(--cvp-pill-remove-radius)` | Shared |
+| `--cvp-pill-context-icon-size` | `var(--cvp-pill-icon-size)` | Shared |
+| `--cvp-pill-context-remove-hover` | `var(--cvp-pill-remove-hover)` | Shared |
+| `--cvp-pill-context-remove-active` | `var(--cvp-pill-remove-active)` | Shared |
+| `--cvp-pill-context-focus-ring` | `var(--cvp-pill-focus-ring)` | Shared |
 
 </details>
 

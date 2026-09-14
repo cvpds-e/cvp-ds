@@ -455,6 +455,23 @@
   --cvp-pill-bg:                   var(--cvp-color-brand-default);
   --cvp-pill-text:                 var(--cvp-color-text-on-brand);
   --cvp-pill-border:               transparent;
+  /* Context aliases are approved override inputs for composed controls. */
+  --cvp-pill-context-gap:          var(--cvp-pill-gap);
+  --cvp-pill-context-height:       var(--cvp-pill-height);
+  --cvp-pill-context-padding-inline: var(--cvp-pill-padding-inline);
+  --cvp-pill-context-text:         var(--cvp-pill-text);
+  --cvp-pill-context-bg:           var(--cvp-pill-bg);
+  --cvp-pill-context-border:       var(--cvp-pill-border);
+  --cvp-pill-context-radius:       var(--cvp-pill-radius);
+  --cvp-pill-context-font-size:    var(--cvp-pill-font-size);
+  --cvp-pill-context-font-weight:  var(--cvp-pill-font-weight);
+  --cvp-pill-context-line-height:  var(--cvp-pill-line-height);
+  --cvp-pill-context-remove-target: var(--cvp-pill-remove-target);
+  --cvp-pill-context-remove-radius: var(--cvp-pill-remove-radius);
+  --cvp-pill-context-icon-size:    var(--cvp-pill-icon-size);
+  --cvp-pill-context-remove-hover: var(--cvp-pill-remove-hover);
+  --cvp-pill-context-remove-active: var(--cvp-pill-remove-active);
+  --cvp-pill-context-focus-ring:   var(--cvp-pill-focus-ring);
 
   /* Multi Select extends the shared input and menu contracts. Selected values
      compose Pill and retain these compact aliases for field-specific sizing. */

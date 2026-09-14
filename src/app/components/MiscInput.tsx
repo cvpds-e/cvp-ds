@@ -3,7 +3,7 @@ import{Check,Copy}from'lucide-react';
 import{IconButton}from'./IconButton';
 import'./MiscInput.css';
 
-export interface MiscInputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>,'size'|'prefix'>{
+export interface MiscInputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>,'size'|'prefix'|'onCopy'>{
  variant?:'default'|'error'|'warning'|'success';error?:string;warning?:string;success?:string;helperText?:string;label?:string;required?:boolean;showCharacterCount?:boolean;prefixElement?:React.ReactNode;suffixElement?:React.ReactNode;fieldPrefix?:string;showCopy?:boolean;onCopy?:(value:string)=>void;inputClassName?:string;
 }
 

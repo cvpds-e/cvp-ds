@@ -1,0 +1,15 @@
+{
+  "version": "1.0.0",
+  "themes": ["dark", "light"],
+  "viewports": [
+    { "id": "desktop", "width": 1440, "height": 1000 },
+    { "id": "tablet", "width": 768, "height": 900 }
+  ],
+  "fixtures": [
+    { "id": "tabs", "assetId": "tabs", "route": "?page=tabs", "heading": "Tabs", "states": ["default", "keyboard-focus", "disabled"] },
+    { "id": "modal", "assetId": "modal", "route": "?page=modal", "heading": "Modal", "states": ["default", "open", "focus-trap"] },
+    { "id": "pagination", "assetId": "pagination", "route": "?page=pagination", "heading": "Pagination", "states": ["first", "middle", "last", "empty"] },
+    { "id": "rails-list", "assetId": "rails-list", "route": "?page=rails-list", "heading": "Rails List", "states": ["list", "grouped", "expanded", "loading"] },
+    { "id": "rail-details", "assetId": "rail-details", "route": "?page=rail-details", "heading": "Rail Details", "states": ["saved", "unsaved", "query-locked"] }
+  ]
+}

@@ -49,6 +49,7 @@ import { LayoutFoundationPreview } from './components/LayoutFoundationPreview';
 import { PageSideNavDocumentation } from './components/PageSideNavDocumentation';
 import { RailDetailsDocumentation } from './components/RailDetailsDocumentation';
 import { RailDetails } from './components/RailDetails';
+import { PersonalizedRailDetails } from './components/PersonalizedRailDetails';
 import { RailsList } from './components/RailsList';
 import { RailsListDocumentation } from './components/RailsListDocumentation';
 import { NotificationBannerDocumentation } from './components/NotificationBannerDocumentation';
@@ -494,7 +495,7 @@ export default function App() {
   });
 
   useEffect(() => {
-    if (activeSection !== 'rails-list-full' && activeSection !== 'rail-details-full') return;
+    if (activeSection !== 'rails-list-full' && activeSection !== 'rail-details-full' && activeSection !== 'personalized-rail-details-full') return;
     const theme = new URLSearchParams(window.location.search).get('theme');
     const resolvedTheme = theme === 'light' ? 'light' : 'dark';
     document.documentElement.toggleAttribute('data-theme', resolvedTheme === 'light');
@@ -646,6 +647,8 @@ export default function App() {
         return null; // handled below as full-page
       case 'rail-details-full':
         return null; // handled below as full-page
+      case 'personalized-rail-details-full':
+        return null; // handled below as full-page
       default:
         return <OverviewSection />;
     }
@@ -655,6 +658,8 @@ export default function App() {
     <>
       {activeSection === 'rail-details-full' ? (
         <RailDetails initiallyEmpty={new URLSearchParams(window.location.search).get('empty') === '1'} queryLocked={new URLSearchParams(window.location.search).get('locked') === '1'} />
+      ) : activeSection === 'personalized-rail-details-full' ? (
+        <PersonalizedRailDetails />
       ) : activeSection === 'rails-list-full' ? (
         <RailsList initialState={new URLSearchParams(window.location.search).get('state') === 'empty' ? 'empty' : 'populated'} />
       ) : (

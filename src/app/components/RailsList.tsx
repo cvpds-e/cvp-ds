@@ -322,7 +322,7 @@ export function RailsList({ initialState = 'populated' }: RailsListProps) {
           if (column === 'type') {
             return <Badge tone={String(value).toLowerCase() === 'recommended' ? 'info' : 'accent'}>{value}</Badge>;
           }
-          if (column === 'controls') return <div className="rails-list-page__row-controls"><IconButton variant="ghost" size="small" aria-label={`Edit ${row.title}`} onClick={() => window.location.assign(`${window.location.pathname}?page=rail-details`)}><Pencil size={15} /></IconButton><IconButton variant="danger" size="small" aria-label={`Delete ${row.title}`} onClick={() => removeRail(row.id)}><Trash2 size={15} /></IconButton></div>;
+          if (column === 'controls') return <div className="rails-list-page__row-controls"><IconButton variant="ghost" size="small" aria-label={`Edit ${row.title}`} onClick={() => window.location.assign(`${window.location.pathname}?page=${row.type === 'Recommended' ? 'personalized-rail-details-full' : 'rail-details-full'}`)}><Pencil size={15} /></IconButton><IconButton variant="danger" size="small" aria-label={`Delete ${row.title}`} onClick={() => removeRail(row.id)}><Trash2 size={15} /></IconButton></div>;
           return value;
         }} />}
       </WorkspaceLayout.Main>

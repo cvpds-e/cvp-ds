@@ -6093,6 +6093,18 @@
       "source": "cvp-component-tokens.css"
     },
     {
+      "name": "--cvp-select-popup-z",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-select-popup-modal-z",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
       "name": "--cvp-select-option-hover",
       "tier": "Component",
       "scope": "Shared",
@@ -9741,6 +9753,120 @@
       "source": "cvp-component-tokens.css"
     },
     {
+      "name": "--cvp-choice-card-bg",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-choice-card-bg-hover",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-choice-card-bg-selected",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-choice-card-bg-disabled",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-choice-card-border",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-choice-card-border-hover",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-choice-card-border-selected",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-choice-card-text",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-choice-card-description",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-choice-card-selected-accent",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-choice-card-text-disabled",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-choice-card-icon",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-choice-card-icon-disabled",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-choice-card-required",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-choice-card-focus-ring",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-choice-card-border-width",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-choice-card-radius",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-choice-card-min-height",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-choice-card-transition",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
       "name": "--cvp-tag-filter-text",
       "tier": "Component",
       "scope": "Shared",
@@ -10264,6 +10390,12 @@
     },
     {
       "name": "--cvp-badge-text-warning",
+      "tier": "Component",
+      "scope": "Shared",
+      "source": "cvp-component-tokens.css"
+    },
+    {
+      "name": "--cvp-badge-text-live",
       "tier": "Component",
       "scope": "Shared",
       "source": "cvp-component-tokens.css"

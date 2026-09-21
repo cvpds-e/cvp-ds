@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { ChevronLeft, FolderPlus, FolderTree, List, Pencil, Plus, Search, Trash2 } from 'lucide-react';
+import { ChevronLeft, Film, FolderPlus, FolderTree, Layers3, List, ListChecks, Pencil, Plus, Radio, RadioTower, Search, Sparkles, Trash2, Tv } from 'lucide-react';
 import { Filter, ActiveFilter } from './Filter';
 import { HeaderNavigation } from './HeaderNavigation';
 import { IconButton } from './IconButton';
 import { Modal } from './Modal';
 import { PrimaryButton } from './PrimaryButton';
-import { Segmented } from './Segmented';
+import { ChoiceCardGroup } from './ChoiceCardGroup';
 import { Table, TableColumn, TableRow } from './Table';
 import { Badge } from './Badge';
 import { Status } from './Status';
@@ -111,6 +111,8 @@ const defaultPersonalizerConfigurations: PersonalizerConfiguration[] = [
 ];
 
 export type RailsListInitialState = 'populated' | 'empty';
+type RailContentType = 'program' | 'station' | 'live' | 'live-program';
+type RailType = 'generic' | 'personalized' | 'hybrid';
 
 interface RailsListProps {
   initialState?: RailsListInitialState;
@@ -133,11 +135,11 @@ export function RailsList({ initialState = 'populated' }: RailsListProps) {
   const [collectionInitialValues, setCollectionInitialValues] = useState({ name: '', description: '', status: 'enabled', reference: '' });
   const [collectionLabels, setCollectionLabels] = useState<Record<string, string>>({});
   const [createRailOpen, setCreateRailOpen] = useState(false);
-  const [newRailName, setNewRailName] = useState('New Editorial Rail');
-  const [newRailType, setNewRailType] = useState<'editorial' | 'recommended'>('editorial');
-  const [newRailCollection, setNewRailCollection] = useState(initialState === 'empty' ? '' : 'home');
+  const [newRailName, setNewRailName] = useState('');
+  const [newRailContentType, setNewRailContentType] = useState<RailContentType>('program');
+  const [newRailType, setNewRailType] = useState<RailType>('generic');
+  const [newRailCollection, setNewRailCollection] = useState('');
   const [newRailSlots, setNewRailSlots] = useState('10');
-  const [newRailReference, setNewRailReference] = useState('');
   const [personalizerConfiguration, setPersonalizerConfiguration] = useState('general-recommendations');
   const [personalizerConfigurations, setPersonalizerConfigurations] = useState<PersonalizerConfiguration[]>(defaultPersonalizerConfigurations);
   const [configurationOpen, setConfigurationOpen] = useState(false);
@@ -194,11 +196,11 @@ export function RailsList({ initialState = 'populated' }: RailsListProps) {
     setEditingCollection(null);
   };
   const resetCreateRail = () => {
-    setNewRailName('New Editorial Rail');
-    setNewRailType('editorial');
-    setNewRailCollection('home');
+    setNewRailName('');
+    setNewRailContentType('program');
+    setNewRailType('generic');
+    setNewRailCollection('');
     setNewRailSlots('10');
-    setNewRailReference('');
     setPersonalizerConfiguration('general-recommendations');
   };
   const closeCreateRail = () => {
@@ -253,13 +255,13 @@ export function RailsList({ initialState = 'populated' }: RailsListProps) {
       status: 'Active',
       title: name,
       collection,
-      type: newRailType === 'editorial' ? 'Editorial' : 'Recommended',
+      type: newRailType === 'generic' ? 'Generic' : newRailType === 'personalized' ? 'Personalized' : 'Hybrid',
       updated: 'Just now',
       expandable: true,
       expandedContent: railPreview(name, `created-${name}`),
       contentSlots: Number(newRailSlots) || 10,
-      externalReferenceId: newRailReference || undefined,
-      personalizerConfiguration: newRailType === 'recommended' ? personalizerConfiguration : undefined,
+      contentType: newRailContentType,
+      personalizerConfiguration: newRailType !== 'generic' ? personalizerConfiguration : undefined,
     };
     setRails((current) => {
       const groupIndex = current.findIndex((row) => row.kind === 'group' && row.groupLabel === collection);
@@ -320,9 +322,9 @@ export function RailsList({ initialState = 'populated' }: RailsListProps) {
           if (column === 'title') return <span className="rails-list-page__rail-title">{value}</span>;
           if (column === 'collection') return <Badge>{value}</Badge>;
           if (column === 'type') {
-            return <Badge tone={String(value).toLowerCase() === 'recommended' ? 'info' : 'accent'}>{value}</Badge>;
+            return <Badge tone={['recommended', 'personalized', 'hybrid'].includes(String(value).toLowerCase()) ? 'info' : 'accent'}>{value}</Badge>;
           }
-          if (column === 'controls') return <div className="rails-list-page__row-controls"><IconButton variant="ghost" size="small" aria-label={`Edit ${row.title}`} onClick={() => window.location.assign(`${window.location.pathname}?page=${row.type === 'Recommended' ? 'personalized-rail-details-full' : 'rail-details-full'}`)}><Pencil size={15} /></IconButton><IconButton variant="danger" size="small" aria-label={`Delete ${row.title}`} onClick={() => removeRail(row.id)}><Trash2 size={15} /></IconButton></div>;
+          if (column === 'controls') return <div className="rails-list-page__row-controls"><IconButton variant="ghost" size="small" aria-label={`Edit ${row.title}`} onClick={() => window.location.assign(`${window.location.pathname}?page=${['Recommended', 'Personalized', 'Hybrid'].includes(String(row.type)) ? 'personalized-rail-details-full' : 'rail-details-full'}`)}><Pencil size={15} /></IconButton><IconButton variant="danger" size="small" aria-label={`Delete ${row.title}`} onClick={() => removeRail(row.id)}><Trash2 size={15} /></IconButton></div>;
           return value;
         }} />}
       </WorkspaceLayout.Main>
@@ -330,23 +332,45 @@ export function RailsList({ initialState = 'populated' }: RailsListProps) {
     <Modal
       isOpen={createRailOpen}
       onClose={closeCreateRail}
-      title="Create rail"
-      size="medium"
+      title="Create Rail"
+      size="large"
       className="rails-list-page__create-rail-modal"
-      footer={<><OutlineButton onClick={closeCreateRail}>Cancel</OutlineButton><PrimaryButton onClick={createRail} disabled={!newRailName.trim() || !hasCollections}>Create</PrimaryButton></>}
+      footer={<><OutlineButton onClick={closeCreateRail}>Cancel</OutlineButton><PrimaryButton onClick={createRail} disabled={!newRailName.trim() || !newRailCollection || Number(newRailSlots) < 1}>Create Rail</PrimaryButton></>}
     >
       <div className="rails-list-page__create-rail-form">
-        <TextInput label="Rail name" value={newRailName} onChange={(event) => setNewRailName(event.target.value)} required autoFocus />
-        <div className="rails-list-page__create-rail-field">
-          <span className="rails-list-page__create-rail-label">Rail type</span>
-          <Segmented ariaLabel="Rail type" size="small" variant="color" fullWidth value={newRailType} onChange={(value) => setNewRailType(value as 'editorial' | 'recommended')} options={[{ value: 'editorial', label: 'Editorial' }, { value: 'recommended', label: 'Recommended' }]} />
-        </div>
-        {newRailType === 'recommended' && <div className="rails-list-page__create-rail-configuration">
+        <ChoiceCardGroup
+          label="Content Type"
+          helperText="What kind of content will this rail show?"
+          required
+          value={newRailContentType}
+          onChange={(value) => setNewRailContentType(value as RailContentType)}
+          options={[
+            { value: 'program', label: 'Program Rail', description: 'VOD / On-Demand', icon: <Film /> },
+            { value: 'station', label: 'Station Rail', description: 'Channel / Network', icon: <RadioTower /> },
+            { value: 'live', label: 'Live Now', description: 'Currently airing', icon: <Radio />, badge: <Badge tone="live">Live</Badge> },
+            { value: 'live-program', label: 'Live Now + Program', description: 'Live and VOD combined', icon: <Tv /> },
+          ]}
+        />
+        <ChoiceCardGroup
+          label="Rail Type"
+          required
+          columns={3}
+          value={newRailType}
+          onChange={(value) => setNewRailType(value as RailType)}
+          options={[
+            { value: 'generic', label: 'Generic', description: 'Non-personalized, manually curated editorial content', icon: <ListChecks />, badge: <Badge>Default</Badge> },
+            { value: 'personalized', label: 'Personalized', description: 'Fully algorithm-driven, tailored to each viewer', icon: <Sparkles /> },
+            { value: 'hybrid', label: 'Hybrid', description: 'Blends manual curation with personalization signals', icon: <Layers3 /> },
+          ]}
+        />
+        {newRailType !== 'generic' && <div className="rails-list-page__create-rail-configuration">
           <div className="rails-list-page__select-with-action"><Select label="Personalizer configuration" value={personalizerConfiguration} onChange={setPersonalizerConfiguration} options={personalizerConfigurations.map(({ value, label }) => ({ value, label }))} /><Tooltip content="Create personalizer configuration"><IconButton size="medium" aria-label="Create personalizer configuration" onClick={() => setConfigurationOpen(true)}><Plus size={16} /></IconButton></Tooltip></div>
         </div>}
-        <div className="rails-list-page__select-with-action"><Select label="Rail collection" value={newRailCollection} onChange={setNewRailCollection} disabled={!hasCollections} placeholder="No collections available" options={collectionItems.map((collection) => ({ value: collection.id, label: collectionLabels[collection.id] ?? collection.label }))} /><Tooltip content="Create rail collection"><IconButton size="medium" aria-label="Create rail collection" onClick={() => setNewCollectionOpen(true)}><Plus size={16} /></IconButton></Tooltip></div>
-        <NumberInput label="Number of content slots" min={1} value={newRailSlots === '' ? '' : Number(newRailSlots)} onValueChange={(value) => setNewRailSlots(String(value))} />
-        <TextInput label="External reference ID" optionalText="Advanced" value={newRailReference} onChange={(event) => setNewRailReference(event.target.value)} placeholder="Enter external reference ID" />
+        <div className="rails-list-page__create-rail-fields">
+          <TextInput label="Rail Name" value={newRailName} onChange={(event) => setNewRailName(event.target.value)} placeholder="Enter rail name" required />
+          <div className="rails-list-page__select-with-action"><Select label="Rail Collection" value={newRailCollection} onChange={setNewRailCollection} disabled={!hasCollections} placeholder={hasCollections ? 'Select rail collection' : 'No collections available'} required options={collectionItems.map((collection) => ({ value: collection.id, label: collectionLabels[collection.id] ?? collection.label }))} /><Tooltip content="Create rail collection"><IconButton size="medium" aria-label="Create rail collection" onClick={() => setNewCollectionOpen(true)}><Plus size={16} /></IconButton></Tooltip></div>
+          <NumberInput label="Number of Content Slots" min={1} value={newRailSlots === '' ? '' : Number(newRailSlots)} onValueChange={(value) => setNewRailSlots(String(value))} required />
+        </div>
       </div>
     </Modal>
     <Modal isOpen={configurationOpen} onClose={closePersonalizerConfiguration} title="New personalizer configuration" description="This configuration will be applied to the new rail." size="large" className="rails-list-page__configuration-modal" bodyClassName="rails-list-page__configuration-modal-body" footer={<><OutlineButton onClick={closePersonalizerConfiguration}><ChevronLeft size={16} aria-hidden="true" /> Back</OutlineButton><PrimaryButton onClick={createPersonalizerConfiguration} disabled={!configurationName.trim()}>Save &amp; select</PrimaryButton></>}>

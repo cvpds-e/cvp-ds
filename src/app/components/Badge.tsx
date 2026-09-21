@@ -1,10 +1,11 @@
 import React from 'react';
 import './Badge.css';
 
-export type BadgeTone = 'neutral' | 'info' | 'accent' | 'success' | 'warning' | 'algorithmic' | 'manual';
+export type BadgeTone = 'neutral' | 'info' | 'accent' | 'success' | 'warning' | 'live' | 'algorithmic' | 'manual';
 export type BadgeVariant = 'default' | 'content-source';
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
+  /** `algorithmic` and `manual` are reserved for the `content-source` variant. */
   tone?: BadgeTone;
   /** Use `content-source` for how an item entered a rail: Algorithmic or Manual. */
   variant?: BadgeVariant;

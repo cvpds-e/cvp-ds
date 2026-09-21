@@ -14,6 +14,7 @@ import { NumberInputDocumentation } from './components/NumberInputDocumentation'
 import { TextAreaDocumentation } from './components/TextAreaDocumentation';
 import { MiscInputDocumentation } from './components/MiscInputDocumentation';
 import { CheckboxDocumentation } from './components/CheckboxDocumentation';
+import { ChoiceCardGroupDocumentation } from './components/ChoiceCardGroupDocumentation';
 import { ToggleDocumentation } from './components/ToggleDocumentation';
 import { FilterDocumentation } from './components/FilterDocumentation';
 import { QueryControlsDocumentation } from './components/QueryControlsDocumentation';
@@ -575,6 +576,8 @@ export default function App() {
         return <MiscInputDocumentation />;
       case 'checkbox':
         return <CheckboxDocumentation />;
+      case 'choice-card-group':
+        return <ChoiceCardGroupDocumentation />;
       case 'toggle':
         return <ToggleDocumentation />;
       case 'filter':

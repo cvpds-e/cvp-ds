@@ -33,6 +33,7 @@ const NAV_ITEMS = [
   { id: 'text-area', label: 'Text Area', category: 'Forms' },
   { id: 'misc-input', label: 'Misc Input', category: 'Forms' },
   { id: 'checkbox', label: 'Checkbox', category: 'Forms' },
+  { id: 'choice-card-group', label: 'Choice Card Group', category: 'Forms' },
   { id: 'select', label: 'Select', category: 'Forms' },
   { id: 'multi-select', label: 'Multi Select', category: 'Forms' },
   { id: 'pill', label: 'Pill', category: 'Forms' },

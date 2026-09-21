@@ -4,6 +4,7 @@ export { Accordion } from '../app/components/Accordion';
 export { Badge } from '../app/components/Badge';
 export { Breadcrumbs } from '../app/components/Breadcrumbs';
 export { Checkbox } from '../app/components/Checkbox';
+export { ChoiceCardGroup } from '../app/components/ChoiceCardGroup';
 export { DatePicker } from '../app/components/DatePicker';
 export { Filter } from '../app/components/Filter';
 export { HeaderNavigation } from '../app/components/HeaderNavigation';

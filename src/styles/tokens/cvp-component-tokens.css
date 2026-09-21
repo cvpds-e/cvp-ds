@@ -428,6 +428,8 @@
   --cvp-select-popup-min-width:  var(--cvp-layout-pane-nav-width);
   --cvp-select-popup-max-width:  var(--cvp-layout-pane-supporting-min-width);
   --cvp-select-popup-max-height: calc(var(--cvp-space-12) * 6.25);          /* 300px */
+   --cvp-select-popup-z:          var(--cvp-z-dropdown);
+   --cvp-select-popup-modal-z:    calc(var(--cvp-z-modal) + 1);
   --cvp-select-option-hover:     var(--cvp-menu-item-bg-hover);
   --cvp-select-option-selected:  var(--cvp-menu-item-bg-active);
   --cvp-select-option-selected-text: var(--cvp-menu-item-text-active);
@@ -1118,6 +1120,32 @@
   --cvp-segmented-transition:            color var(--cvp-segmented-transition-duration) var(--cvp-segmented-transition-easing), background-color var(--cvp-segmented-transition-duration) var(--cvp-segmented-transition-easing), box-shadow var(--cvp-segmented-transition-duration) var(--cvp-segmented-transition-easing);
 
   /* ===========================================================================
+     CHOICE CARD GROUP
+     Public:   surface, text, border, selection, radius
+     Internal: focus, disabled, typography, motion
+     Local:    card height and spacing
+  =========================================================================== */
+  --cvp-choice-card-bg:                  var(--cvp-color-surface-page);
+  --cvp-choice-card-bg-hover:            var(--cvp-color-surface-hover);
+  --cvp-choice-card-bg-selected:         var(--cvp-color-state-info-bg);
+  --cvp-choice-card-bg-disabled:         var(--cvp-color-surface-disabled);
+  --cvp-choice-card-border:              var(--cvp-color-border-default);
+  --cvp-choice-card-border-hover:        var(--cvp-color-border-strong);
+  --cvp-choice-card-border-selected:     var(--cvp-color-border-brand);
+  --cvp-choice-card-text:                var(--cvp-color-text-primary);
+  --cvp-choice-card-description:         var(--cvp-color-text-muted);
+  --cvp-choice-card-selected-accent:     var(--cvp-color-text-link-default);
+  --cvp-choice-card-text-disabled:       var(--cvp-color-text-disabled);
+  --cvp-choice-card-icon:                var(--cvp-color-icon-muted);
+  --cvp-choice-card-icon-disabled:       var(--cvp-color-icon-disabled);
+  --cvp-choice-card-required:            var(--cvp-color-text-danger);
+  --cvp-choice-card-focus-ring:          var(--cvp-border-focus-ring);
+  --cvp-choice-card-border-width:        var(--cvp-border-base-width);
+  --cvp-choice-card-radius:              var(--cvp-radius-md);
+  --cvp-choice-card-min-height:          116px;
+  --cvp-choice-card-transition:          background-color var(--cvp-motion-duration-fast) var(--cvp-motion-easing-standard), border-color var(--cvp-motion-duration-fast) var(--cvp-motion-easing-standard), box-shadow var(--cvp-motion-duration-fast) var(--cvp-motion-easing-standard);
+
+  /* ===========================================================================
      TAG FILTER
      Public:   option, selected, disabled, border, radius
      Internal: section hierarchy, focus, remove cue, typography, motion
@@ -1237,6 +1265,7 @@
   --cvp-badge-text-accent:         var(--cvp-color-brand-accent);
   --cvp-badge-text-success:        var(--cvp-color-text-success);
   --cvp-badge-text-warning:        var(--cvp-color-text-warning);
+   --cvp-badge-text-live:           var(--cvp-color-text-danger);
   --cvp-badge-source-algorithmic-bg: var(--cvp-color-surface-subtle);
   --cvp-badge-source-algorithmic-text: var(--cvp-color-text-primary);
   --cvp-badge-source-algorithmic-border: var(--cvp-color-border-strong);

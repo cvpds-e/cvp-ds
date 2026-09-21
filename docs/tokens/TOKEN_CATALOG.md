@@ -19,7 +19,7 @@ This catalog is the readable index of every active CVP token. It preserves each 
 | --- | --- | ---: |
 | Primitive | `cvp-primitives.css` | 209 |
 | Semantic | `cvp-semantic-tokens.css` | 489 |
-| Component | `cvp-component-tokens.css` | 1355 |
+| Component | `cvp-component-tokens.css` | 1377 |
 
 ## Tier 1 — Primitive tokens
 
@@ -812,7 +812,7 @@ Component contracts. Each group is named after the component or shared contract 
 </details>
 
 <details>
-<summary><strong>badge</strong> — 26 tokens</summary>
+<summary><strong>badge</strong> — 27 tokens</summary>
 
 | Token | Value | Scope |
 | --- | --- | --- |
@@ -823,6 +823,7 @@ Component contracts. Each group is named after the component or shared contract 
 | `--cvp-badge-text-accent` | `var(--cvp-color-brand-accent)` | Shared |
 | `--cvp-badge-text-success` | `var(--cvp-color-text-success)` | Shared |
 | `--cvp-badge-text-warning` | `var(--cvp-color-text-warning)` | Shared |
+| `--cvp-badge-text-live` | `var(--cvp-color-text-danger)` | Shared |
 | `--cvp-badge-source-algorithmic-bg` | `var(--cvp-color-surface-subtle)` | Shared |
 | `--cvp-badge-source-algorithmic-text` | `var(--cvp-color-text-primary)` | Shared |
 | `--cvp-badge-source-algorithmic-border` | `var(--cvp-color-border-strong)` | Shared |
@@ -1174,6 +1175,33 @@ Component contracts. Each group is named after the component or shared contract 
 | `--cvp-chip-font-weight` | `var(--cvp-font-weight-regular)` | Shared |
 | `--cvp-chip-selected-bg` | `var(--cvp-color-brand-default)` | Shared |
 | `--cvp-chip-selected-text` | `var(--cvp-color-text-inverse)` | Shared |
+
+</details>
+
+<details>
+<summary><strong>choice</strong> — 19 tokens</summary>
+
+| Token | Value | Scope |
+| --- | --- | --- |
+| `--cvp-choice-card-bg` | `var(--cvp-color-surface-page)` | Shared |
+| `--cvp-choice-card-bg-hover` | `var(--cvp-color-surface-hover)` | Shared |
+| `--cvp-choice-card-bg-selected` | `var(--cvp-color-state-info-bg)` | Shared |
+| `--cvp-choice-card-bg-disabled` | `var(--cvp-color-surface-disabled)` | Shared |
+| `--cvp-choice-card-border` | `var(--cvp-color-border-default)` | Shared |
+| `--cvp-choice-card-border-hover` | `var(--cvp-color-border-strong)` | Shared |
+| `--cvp-choice-card-border-selected` | `var(--cvp-color-border-brand)` | Shared |
+| `--cvp-choice-card-text` | `var(--cvp-color-text-primary)` | Shared |
+| `--cvp-choice-card-description` | `var(--cvp-color-text-muted)` | Shared |
+| `--cvp-choice-card-selected-accent` | `var(--cvp-color-text-link-default)` | Shared |
+| `--cvp-choice-card-text-disabled` | `var(--cvp-color-text-disabled)` | Shared |
+| `--cvp-choice-card-icon` | `var(--cvp-color-icon-muted)` | Shared |
+| `--cvp-choice-card-icon-disabled` | `var(--cvp-color-icon-disabled)` | Shared |
+| `--cvp-choice-card-required` | `var(--cvp-color-text-danger)` | Shared |
+| `--cvp-choice-card-focus-ring` | `var(--cvp-border-focus-ring)` | Shared |
+| `--cvp-choice-card-border-width` | `var(--cvp-border-base-width)` | Shared |
+| `--cvp-choice-card-radius` | `var(--cvp-radius-md)` | Shared |
+| `--cvp-choice-card-min-height` | `116px` | Shared |
+| `--cvp-choice-card-transition` | `background-color var(--cvp-motion-duration-fast) var(--cvp-motion-easing-standard), border-color var(--cvp-motion-duration-fast) var(--cvp-motion-easing-standard), box-shadow var(--cvp-motion-duration-fast) var(--cvp-motion-easing-standard)` | Shared |
 
 </details>
 
@@ -1983,7 +2011,7 @@ Component contracts. Each group is named after the component or shared contract 
 </details>
 
 <details>
-<summary><strong>select</strong> — 22 tokens</summary>
+<summary><strong>select</strong> — 24 tokens</summary>
 
 | Token | Value | Scope |
 | --- | --- | --- |
@@ -2006,6 +2034,8 @@ Component contracts. Each group is named after the component or shared contract 
 | `--cvp-select-popup-min-width` | `var(--cvp-layout-pane-nav-width)` | Shared |
 | `--cvp-select-popup-max-width` | `var(--cvp-layout-pane-supporting-min-width)` | Shared |
 | `--cvp-select-popup-max-height` | `calc(var(--cvp-space-12) * 6.25)` | Shared |
+| `--cvp-select-popup-z` | `var(--cvp-z-dropdown)` | Shared |
+| `--cvp-select-popup-modal-z` | `calc(var(--cvp-z-modal) + 1)` | Shared |
 | `--cvp-select-option-hover` | `var(--cvp-menu-item-bg-hover)` | Shared |
 | `--cvp-select-option-selected` | `var(--cvp-menu-item-bg-active)` | Shared |
 | `--cvp-select-option-selected-text` | `var(--cvp-menu-item-text-active)` | Shared |

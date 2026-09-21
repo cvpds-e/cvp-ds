@@ -7,6 +7,7 @@ import { IconSmallButton } from './IconSmallButton';
 import { TextInput } from './TextInput';
 import { MiscInput } from './MiscInput';
 import { Checkbox } from './Checkbox';
+import { ChoiceCardGroup } from './ChoiceCardGroup';
 import { Modal } from './Modal';
 import { Tree } from './Tree';
 import { Table } from './Table';
@@ -634,6 +635,27 @@ export function ComponentsOverview() {
               </div>
             </div>
             <a href="?page=modal" className="component-link">
+              View Documentation
+              <span className="arrow-icon">→</span>
+            </a>
+          </div>
+
+          {/* Choice Card Group */}
+          <div className="component-card">
+            <div className="component-header">
+              <h3 className="component-title">Choice Card Group</h3>
+            </div>
+            <div className="component-preview">
+              <ChoiceCardGroup
+                label="Content source"
+                options={[
+                  { value: 'editorial', label: 'Editorial', description: 'Manually curated' },
+                  { value: 'personalized', label: 'Personalized', description: 'Algorithm-driven' }
+                ]}
+                defaultValue="editorial"
+              />
+            </div>
+            <a href="?page=choice-card-group" className="component-link">
               View Documentation
               <span className="arrow-icon">→</span>
             </a>

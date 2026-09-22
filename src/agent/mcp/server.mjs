@@ -54,7 +54,7 @@ export function createDesignSystemMcpServer({ workspaceRoot = process.env.CVP_MC
 
   server.registerTool('get_component_contract', {
     title: 'Get component contract',
-    description: 'Return lifecycle, source, usage, fixture, and pattern metadata for one CVP component.',
+    description: 'Return lifecycle, source, usage, specification, fixture, and pattern metadata for one CVP component.',
     inputSchema: z.object({ identifier: z.string().min(1) }),
     annotations: readOnlyAnnotations,
   }, async ({ identifier }) => result(await getComponentContract(identifier) ?? { found: false, identifier }));

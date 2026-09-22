@@ -8,6 +8,7 @@
     "build": "npm run tokens:check && vite build",
     "dev": "vite",
     "agent:check": "node scripts/validate-agent-readiness.mjs",
+    "specs:audit": "node scripts/validate-agent-readiness.mjs",
     "ds:tool": "node scripts/design-system-agent.mjs",
     "mcp:start": "node src/agent/mcp/server.mjs",
     "test": "vitest run",

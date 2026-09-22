@@ -1142,7 +1142,7 @@
   --cvp-choice-card-focus-ring:          var(--cvp-border-focus-ring);
   --cvp-choice-card-border-width:        var(--cvp-border-base-width);
   --cvp-choice-card-radius:              var(--cvp-radius-md);
-  --cvp-choice-card-min-height:          116px;
+  --cvp-choice-card-min-height:          72px;
   --cvp-choice-card-transition:          background-color var(--cvp-motion-duration-fast) var(--cvp-motion-easing-standard), border-color var(--cvp-motion-duration-fast) var(--cvp-motion-easing-standard), box-shadow var(--cvp-motion-duration-fast) var(--cvp-motion-easing-standard);
 
   /* ===========================================================================

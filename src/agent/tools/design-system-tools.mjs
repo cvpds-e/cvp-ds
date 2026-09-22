@@ -15,13 +15,14 @@ const includesTerm = (haystack, term) => haystack.has(term) || [...haystack].som
 
 export async function loadAgentData(root = moduleRoot) {
   const load = async (relativePath) => JSON.parse(await readFile(path.join(root, relativePath), 'utf8'));
-  const [components, patterns, fixtures, provenanceSchema] = await Promise.all([
+  const [components, patterns, fixtures, specifications, provenanceSchema] = await Promise.all([
     load('src/agent/registry/components.json'),
     load('src/agent/registry/patterns.json'),
     load('src/agent/registry/fixtures.json'),
+    load('src/agent/registry/component-specifications.json'),
     load('src/agent/schemas/prototype-provenance.schema.json'),
   ]);
-  return { root, components, patterns, fixtures, provenanceSchema };
+  return { root, components, patterns, fixtures, specifications, provenanceSchema };
 }
 
 function searchableComponent(component) {
@@ -68,6 +69,7 @@ export async function getComponentContract(identifier, { root } = {}) {
   return {
     ...component,
     public: component.lifecycle === 'approved' && component.classification === 'component',
+    specification: data.specifications.specifications.find((specification) => specification.assetId === component.id) ?? null,
     fixtures: data.fixtures.fixtures.filter((fixture) => fixture.assetId === component.id),
     usedByPatterns: data.patterns.patterns.filter((pattern) => [...pattern.required, ...(pattern.optional ?? [])].includes(component.id)).map((pattern) => pattern.id),
   };

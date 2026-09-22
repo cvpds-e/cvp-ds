@@ -1200,7 +1200,7 @@ Component contracts. Each group is named after the component or shared contract 
 | `--cvp-choice-card-focus-ring` | `var(--cvp-border-focus-ring)` | Shared |
 | `--cvp-choice-card-border-width` | `var(--cvp-border-base-width)` | Shared |
 | `--cvp-choice-card-radius` | `var(--cvp-radius-md)` | Shared |
-| `--cvp-choice-card-min-height` | `116px` | Shared |
+| `--cvp-choice-card-min-height` | `72px` | Shared |
 | `--cvp-choice-card-transition` | `background-color var(--cvp-motion-duration-fast) var(--cvp-motion-easing-standard), border-color var(--cvp-motion-duration-fast) var(--cvp-motion-easing-standard), box-shadow var(--cvp-motion-duration-fast) var(--cvp-motion-easing-standard)` | Shared |
 
 </details>

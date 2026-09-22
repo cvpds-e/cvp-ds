@@ -1,0 +1,20 @@
+{
+  "version": "1.0.0",
+  "specifications": [
+    {
+      "assetId": "choice-card-group",
+      "status": "reference",
+      "owner": "Design System team",
+      "markdown": "docs/component-specifications/choice-card-group.md",
+      "purpose": "Present a small mutually exclusive set of richly described choices.",
+      "useWhen": ["A single choice needs descriptive comparison."],
+      "doNotUseWhen": ["Multiple selection is required.", "A compact label-only view switch is sufficient."],
+      "api": { "props": ["label", "options", "value", "defaultValue", "onChange", "helperText", "required", "disabled", "columns", "className"], "variants": ["two-column", "three-column"], "states": ["default", "selected", "disabled", "required"] },
+      "behavior": { "keyboard": ["Arrow keys select adjacent enabled choices.", "Home and End select the boundary choices."], "responsive": ["Three columns stack below 600px.", "Two columns stack below 460px.", "Compact density is the default contract."] },
+      "accessibility": { "semantics": ["Named radiogroup with radio options."], "naming": ["Label, helper text, and required state are associated with the group."], "focus": ["One enabled option participates in the tab order and exposes a visible focus ring."], "manualChecks": ["Verify long content, theme contrast, reflow, and product-context target size."] },
+      "tokens": { "prefix": "--cvp-choice-card-", "themes": ["light", "dark"] },
+      "evidence": { "examples": ["src/app/components/ChoiceCardGroupDocumentation.tsx"], "tests": ["src/app/components/ChoiceCardGroup.test.tsx"], "visual": "Documentation route exists; a dedicated visual fixture remains a tracked rollout gap." },
+      "limitations": ["Single selection only.", "Only two and three-column layouts are supported."]
+    }
+  ]
+}

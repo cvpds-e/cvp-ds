@@ -17,6 +17,11 @@ describe('design system discovery tools', () => {
     expect(contract?.source).toBe('src/app/components/Segmented.tsx');
   });
 
+  it('returns the completed specification where one is available', async () => {
+    const contract = await getComponentContract('ChoiceCardGroup');
+    expect(contract?.specification).toMatchObject({ assetId: 'choice-card-group', status: 'reference' });
+  });
+
   it('finds an approved management composition', async () => {
     const results = await searchPatterns('search filter and edit records');
     expect(results[0]?.id).toBe('management-list-workspace');

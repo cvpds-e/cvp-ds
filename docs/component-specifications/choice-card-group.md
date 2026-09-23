@@ -4,7 +4,7 @@
 
 - Lifecycle: `approved`
 - Owner: Design System team
-- Last reviewed: 2026-09-22
+- Last reviewed: 2026-09-23
 - Related registry ID: `choice-card-group`
 
 ## Purpose and decisions
@@ -33,7 +33,7 @@ Use a concise label and keep descriptions parallel. `columns` supports two or th
 
 The first enabled option is selected when no controlled value or valid default is supplied. Pointer selection, Arrow keys, Home, and End select and focus an enabled option. Disabled options cannot be selected. Three-column groups stack below 600px; two-column groups stack below 460px.
 
-The shared component uses the compact card density: 72px minimum card height, compact option padding, and compact icon and supporting-text sizing. Consumers should not override those dimensions locally without a reviewed accessibility and content-fit reason.
+The shared component uses a subtle compact density: 64px minimum card height, a leading radio indicator, compact option padding, and compact icon and supporting-text sizing. The selected surface stays neutral while its brand border and filled radio dot preserve a clear state. Consumers should not override those dimensions locally without a reviewed accessibility and content-fit reason.
 
 ## Accessibility
 
@@ -41,7 +41,7 @@ The shared component uses the compact card density: 72px minimum card height, co
 - Helper text and required state are programmatically associated with the group.
 - Roving tab focus exposes one enabled option in the tab order.
 - Arrow keys move and select; Home and End move to the first and last enabled options.
-- Selected state is communicated with a check icon and programmatic state, not colour alone.
+- Selected state is communicated with a filled radio indicator, boundary change, and programmatic state, not colour alone.
 - Manually verify long labels/descriptions, keyboard order after reflow, focus visibility, contrast in both themes, and touch target suitability for the product context.
 
 ## Visual and token contract

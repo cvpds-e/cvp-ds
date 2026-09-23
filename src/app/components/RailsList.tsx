@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronLeft, Film, FolderPlus, FolderTree, Layers3, List, ListChecks, Pencil, Plus, Radio, RadioTower, Search, Sparkles, Trash2, Tv } from 'lucide-react';
+import { ChevronLeft, Film, FolderPlus, FolderTree, List, Pencil, Plus, Radio, RadioTower, Search, Trash2, Tv } from 'lucide-react';
 import { Filter, ActiveFilter } from './Filter';
 import { HeaderNavigation } from './HeaderNavigation';
 import { IconButton } from './IconButton';
@@ -339,8 +339,8 @@ export function RailsList({ initialState = 'populated' }: RailsListProps) {
     >
       <div className="rails-list-page__create-rail-form">
         <ChoiceCardGroup
-          label="Content Type"
-          helperText="What kind of content will this rail show?"
+          label="1. Content type"
+          helperText="Choose what viewers will see in this rail."
           required
           value={newRailContentType}
           onChange={(value) => setNewRailContentType(value as RailContentType)}
@@ -352,21 +352,23 @@ export function RailsList({ initialState = 'populated' }: RailsListProps) {
           ]}
         />
         <ChoiceCardGroup
-          label="Rail Type"
+          label="2. Rail behavior"
+          helperText="Choose how content will be selected."
           required
           columns={3}
           value={newRailType}
           onChange={(value) => setNewRailType(value as RailType)}
           options={[
-            { value: 'generic', label: 'Generic', description: 'Non-personalized, manually curated editorial content', icon: <ListChecks />, badge: <Badge>Default</Badge> },
-            { value: 'personalized', label: 'Personalized', description: 'Fully algorithm-driven, tailored to each viewer', icon: <Sparkles /> },
-            { value: 'hybrid', label: 'Hybrid', description: 'Blends manual curation with personalization signals', icon: <Layers3 /> },
+            { value: 'generic', label: 'Generic', description: 'Manually curated' },
+            { value: 'personalized', label: 'Personalized', description: 'Tailored to each viewer' },
+            { value: 'hybrid', label: 'Hybrid', description: 'Curation with personalization' },
           ]}
         />
         {newRailType !== 'generic' && <div className="rails-list-page__create-rail-configuration">
           <div className="rails-list-page__select-with-action"><Select label="Personalizer configuration" value={personalizerConfiguration} onChange={setPersonalizerConfiguration} options={personalizerConfigurations.map(({ value, label }) => ({ value, label }))} /><Tooltip content="Create personalizer configuration"><IconButton size="medium" aria-label="Create personalizer configuration" onClick={() => setConfigurationOpen(true)}><Plus size={16} /></IconButton></Tooltip></div>
         </div>}
         <div className="rails-list-page__create-rail-fields">
+          <div className="rails-list-page__create-rail-section-heading"><strong>3. Rail details</strong><span>Name the rail and choose where it belongs.</span></div>
           <TextInput label="Rail Name" value={newRailName} onChange={(event) => setNewRailName(event.target.value)} placeholder="Enter rail name" required />
           <div className="rails-list-page__select-with-action"><Select label="Rail Collection" value={newRailCollection} onChange={setNewRailCollection} disabled={!hasCollections} placeholder={hasCollections ? 'Select rail collection' : 'No collections available'} required options={collectionItems.map((collection) => ({ value: collection.id, label: collectionLabels[collection.id] ?? collection.label }))} /><Tooltip content="Create rail collection"><IconButton size="medium" aria-label="Create rail collection" onClick={() => setNewCollectionOpen(true)}><Plus size={16} /></IconButton></Tooltip></div>
           <NumberInput label="Number of Content Slots" min={1} value={newRailSlots === '' ? '' : Number(newRailSlots)} onValueChange={(value) => setNewRailSlots(String(value))} required />

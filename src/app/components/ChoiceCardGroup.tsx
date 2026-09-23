@@ -1,5 +1,4 @@
 import React, { KeyboardEvent, useEffect, useId, useRef, useState } from 'react';
-import { CheckCircle2 } from 'lucide-react';
 import './ChoiceCardGroup.css';
 
 export interface ChoiceCardOption {
@@ -94,13 +93,15 @@ export function ChoiceCardGroup({
           onClick={() => select(option.value)}
           onKeyDown={(event) => handleKeyDown(event, index)}
         >
-          <span className="cvp-choice-card-group__option-top">
+          <span className="cvp-choice-card-group__indicator" aria-hidden="true"><span /></span>
+          <span className="cvp-choice-card-group__content">
+            <span className="cvp-choice-card-group__title-row">
             {option.icon && <span className="cvp-choice-card-group__icon" aria-hidden="true">{option.icon}</span>}
+              <strong>{option.label}</strong>
             {option.badge && <span className="cvp-choice-card-group__badge">{option.badge}</span>}
-            {selected && <CheckCircle2 className="cvp-choice-card-group__check" size={18} aria-hidden="true" />}
+            </span>
+            {option.description && <span className="cvp-choice-card-group__description">{option.description}</span>}
           </span>
-          <strong>{option.label}</strong>
-          {option.description && <span className="cvp-choice-card-group__description">{option.description}</span>}
         </button>;
       })}
     </div>

@@ -1066,7 +1066,7 @@
       "required": ["label", "options"],
       "visualSpec": {
         "layout": "two or three equal responsive columns",
-        "selection": "brand boundary, selected surface, and check icon",
+        "selection": "brand boundary, subtle neutral surface, and filled radio indicator",
         "content": "optional icon, badge, and description",
         "accessibility": "named radiogroup, radio state, roving tab stop, Arrow/Home/End navigation, helper description, required state",
         "tokenPrefix": "--cvp-choice-card-"

@@ -1185,7 +1185,7 @@ Component contracts. Each group is named after the component or shared contract 
 | --- | --- | --- |
 | `--cvp-choice-card-bg` | `var(--cvp-color-surface-page)` | Shared |
 | `--cvp-choice-card-bg-hover` | `var(--cvp-color-surface-hover)` | Shared |
-| `--cvp-choice-card-bg-selected` | `var(--cvp-color-state-info-bg)` | Shared |
+| `--cvp-choice-card-bg-selected` | `var(--cvp-color-surface-subtle)` | Shared |
 | `--cvp-choice-card-bg-disabled` | `var(--cvp-color-surface-disabled)` | Shared |
 | `--cvp-choice-card-border` | `var(--cvp-color-border-default)` | Shared |
 | `--cvp-choice-card-border-hover` | `var(--cvp-color-border-strong)` | Shared |
@@ -1200,7 +1200,7 @@ Component contracts. Each group is named after the component or shared contract 
 | `--cvp-choice-card-focus-ring` | `var(--cvp-border-focus-ring)` | Shared |
 | `--cvp-choice-card-border-width` | `var(--cvp-border-base-width)` | Shared |
 | `--cvp-choice-card-radius` | `var(--cvp-radius-md)` | Shared |
-| `--cvp-choice-card-min-height` | `72px` | Shared |
+| `--cvp-choice-card-min-height` | `64px` | Shared |
 | `--cvp-choice-card-transition` | `background-color var(--cvp-motion-duration-fast) var(--cvp-motion-easing-standard), border-color var(--cvp-motion-duration-fast) var(--cvp-motion-easing-standard), box-shadow var(--cvp-motion-duration-fast) var(--cvp-motion-easing-standard)` | Shared |
 
 </details>

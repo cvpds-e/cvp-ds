@@ -16,6 +16,10 @@ Loader communicates indeterminate progress for a local action or compact pending
 - A small region is pending and its final layout is not the primary information.
 - A loading button needs an inherited-color progress indicator.
 
+Choose the type according to whether progress can be measured:
+
+- **Indeterminate:** use when the operation is active but its completion percentage is unknown. Loader does not provide a determinate progress type.
+
 Choose the size according to the pending region:
 
 - **Small:** use inside compact controls or tightly constrained pending regions.

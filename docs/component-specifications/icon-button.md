@@ -4,7 +4,7 @@ classification: component
 lifecycle: approved
 specificationStatus: draft
 ---
-# Icon Button
+# IconButton
 
 ## Purpose
 

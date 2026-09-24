@@ -38,6 +38,6 @@ Account for these group and option states:
 
 ## When not to use
 
-- Users may select more than one option; use Checkbox or Multi Select.
+- Users may select more than one option; use Checkbox or PillsInput.
 - Short labels provide enough information to choose; use Select or Segmented Control.
 - The option set is too large to compare at once; use Select.

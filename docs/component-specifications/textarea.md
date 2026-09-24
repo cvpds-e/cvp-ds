@@ -43,6 +43,6 @@ Account for these field states:
 
 ## When not to use
 
-- The value fits on one line; use Text Input.
-- The value is numeric; use Number Input.
-- Users choose from predefined options; use Select or Multi Select.
+- The value fits on one line; use Input.
+- The value is numeric; use NumberInput.
+- Users choose from predefined options; use Select or PillsInput.

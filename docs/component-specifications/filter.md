@@ -29,7 +29,7 @@ Choose the value path according to the field data:
 - **Select:** present a governed list when exactly one value is needed.
 - **Multi-select:** present a governed list when several values may form one clause.
 - **Boolean:** add the enabled clause immediately without opening a value editor.
-- **Date:** offer lightweight relative-date presets; use Date Picker for a custom calendar date or timeframe.
+- **Date:** offer lightweight relative-date presets; use Calender or RangeCalender for a custom date or timeframe.
 
 Use each trigger's implemented density consistently:
 
@@ -47,5 +47,5 @@ Account for these filter states:
 ## When not to use
 
 - One free-text query is sufficient; use Search Field.
-- A small set of visible tags provides all necessary choices; use Tag Filter.
+- A small set of visible tags provides all necessary choices; use TagsSelect.
 - Filtering requires advanced AND or OR expressions; use a dedicated query-building workflow.

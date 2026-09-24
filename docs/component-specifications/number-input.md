@@ -4,7 +4,7 @@ classification: component
 lifecycle: approved
 specificationStatus: draft
 ---
-# Number Input
+# NumberInput
 
 ## Purpose
 
@@ -45,6 +45,6 @@ Account for these field states:
 
 ## When not to use
 
-- Digits represent an identifier, code, phone number, or other text; use Text Input.
+- Digits represent an identifier, code, phone number, or other text; use Input.
 - Users select from a short predefined numeric set; use Select or Segmented Control.
 - The value cannot be meaningfully incremented or decremented.

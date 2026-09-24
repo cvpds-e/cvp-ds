@@ -33,6 +33,6 @@ Account for these search states:
 
 ## When not to use
 
-- The field collects general text rather than a query; use Text Input.
-- Users select from known values instead of entering free text; use Select or Multi Select.
+- The field collects general text rather than a query; use Input.
+- Users select from known values instead of entering free text; use Select or PillsInput.
 - Filtering requires several structured conditions; use Filter.

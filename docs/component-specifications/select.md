@@ -38,7 +38,7 @@ Account for these select states:
 
 ## When not to use
 
-- Users may choose multiple values; use Multi Select.
+- Users may choose multiple values; use PillsInput.
 - A short option set should remain visible; use Segmented Control or Choice Card Group.
-- Users enter arbitrary free-form text; use Text Input.
+- Users enter arbitrary free-form text; use Input.
 - Native platform presentation is sufficient and custom popup behavior is unnecessary; use a native select control.

@@ -4,7 +4,7 @@ classification: component
 lifecycle: approved
 specificationStatus: draft
 ---
-# Text Button
+# TextButton
 
 ## Purpose
 

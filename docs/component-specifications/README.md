@@ -21,30 +21,39 @@ Do not copy props, code examples, token tables, or implementation behavior into 
 
 ## Storybook-aligned inventory
 
-The following requested Storybook components have approved public implementations and aligned specifications:
+The following specifications use the supplied Storybook labels. This alignment is limited to Markdown guidance; implementation exports and registries may continue to use their existing symbols until a separate code migration is approved.
+
+Files retained under older implementation IDs are compatibility redirects required by the current registry. They do not define separate component guidance.
 
 - [Accordion](accordion.md)
 - [Badge](badge.md)
 - [Banner](banner.md)
 - [Breadcrumb](breadcrumb.md)
-- Buttons: [Text Button](text-button.md) and [Icon Button](icon-button.md)
+- Buttons: [TextButton](text-button.md), [IconButton](icon-button.md), and [Button](button.md)
+- Calendar: [Calender](calender.md) and [RangeCalender](range-calender.md)
 - [Checkbox](checkbox.md)
+- [DateTime Field](date-time-field.md)
+- [DateTime Range Field](date-time-range-field.md)
+- [Input](input.md)
 - [Loader](loader.md)
 - [Modal](modal.md)
-- [Number Input](number-input.md)
+- [NumberInput](number-input.md)
 - [Pagination](pagination.md)
 - [Segmented Control](segmented-control.md)
 - [Pills](pills.md)
+- [PillsInput](pills-input.md)
 - [Select](select.md)
 - [Skeleton](skeleton.md)
+- [Splitter](splitter.md)
 - [Table](table.md)
 - [Tabs](tabs.md)
+- [TagsSelect](tags-select.md)
 - [Textarea](textarea.md)
 - [Toast](toast.md)
 - [Tooltip](tooltip.md)
 - [Tree](tree.md)
 
-No specification was generated for requested items without one unambiguous public implementation: AspectRatio, Button, ButtonGroup, ButtonMenu, Calendar, RangeCalendar, DateTime Field, DateTime Range Field, Flex, FormControl, Grid, Icon, Image, Input, PasswordInput, OptionList, PillsInput, Popover, Splitter, and TagsSelect. Primitive-only or overlapping internal implementations must not be presented as approved public components.
+No specification was generated for requested items without an existing model to map: AspectRatio, ButtonGroup, ButtonMenu, Flex, FormControl, Grid, Icon, Image, PasswordInput, OptionList, and Popover. Primitive-only implementations must not be presented as approved public components.
 
 ## Authoring guidance
 

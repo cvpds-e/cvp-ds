@@ -8,7 +8,7 @@ specificationStatus: draft
 
 ## Purpose
 
-Pills is the compact selected-value primitive used by Multi Select and other composed controls that need a consistent representation of chosen items.
+Pills is the compact selected-value primitive used by PillsInput and other composed controls that need a consistent representation of chosen items.
 
 ## When to use
 

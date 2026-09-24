@@ -40,5 +40,5 @@ Account for these action states:
 ## When not to use
 
 - A familiar icon communicates the action without ambiguity; use Icon Button.
-- No icon is needed; use Primary Button, Secondary Button, or Text Button.
+- No icon is needed; use Button or TextButton.
 - The supporting explanation is too long to fit comfortably in an action control; place guidance beside the control instead.

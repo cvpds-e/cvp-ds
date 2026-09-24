@@ -46,4 +46,4 @@ Choose the group action layout according to the prototype scope:
 
 - New production filtering is being built; use an approved filtering component or a reviewed product-specific solution.
 - One free-text query is sufficient; use Search Field.
-- Users only need a small set of predefined filters; use Filter or Tag Filter.
+- Users only need a small set of predefined filters; use Filter or TagsSelect.

@@ -19,7 +19,24 @@ describe('design system discovery tools', () => {
 
   it('returns the completed specification where one is available', async () => {
     const contract = await getComponentContract('ChoiceCardGroup');
-    expect(contract?.specification).toMatchObject({ assetId: 'choice-card-group', status: 'reference' });
+    expect(contract?.specification).toMatchObject({
+      assetId: 'choice-card-group',
+      status: 'complete',
+      api: { importPath: '@cvp/design-system' },
+    });
+    expect(contract?.specification.api.props).toHaveLength(10);
+    expect(contract?.specification.tokens.items).toHaveLength(19);
+  });
+
+  it('returns the Multi Select reference contract', async () => {
+    const contract = await getComponentContract('MultiSelect');
+    expect(contract?.specification).toMatchObject({
+      assetId: 'multi-select',
+      status: 'reference',
+      api: { importPath: '@cvp/design-system' },
+    });
+    expect(contract?.specification.api.props).toHaveLength(18);
+    expect(contract?.specification.tokens.items).toHaveLength(63);
   });
 
   it('finds an approved management composition', async () => {

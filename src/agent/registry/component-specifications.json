@@ -1,20 +1,904 @@
 {
-  "version": "1.0.0",
+  "version": "1.2.0",
   "specifications": [
     {
       "assetId": "choice-card-group",
-      "status": "reference",
+      "status": "complete",
       "owner": "Design System team",
       "markdown": "docs/component-specifications/choice-card-group.md",
       "purpose": "Present a small mutually exclusive set of richly described choices.",
-      "useWhen": ["A single choice needs descriptive comparison."],
-      "doNotUseWhen": ["Multiple selection is required.", "A compact label-only view switch is sufficient."],
-      "api": { "props": ["label", "options", "value", "defaultValue", "onChange", "helperText", "required", "disabled", "columns", "className"], "variants": ["two-column", "three-column"], "states": ["default", "selected", "disabled", "required"] },
-      "behavior": { "keyboard": ["Arrow keys select adjacent enabled choices.", "Home and End select the boundary choices."], "responsive": ["Three columns stack below 600px.", "Two columns stack below 460px.", "Compact density is the default contract."] },
-      "accessibility": { "semantics": ["Named radiogroup with radio options."], "naming": ["Label, helper text, and required state are associated with the group."], "focus": ["One enabled option participates in the tab order and exposes a visible focus ring."], "manualChecks": ["Verify long content, theme contrast, reflow, and product-context target size."] },
-      "tokens": { "prefix": "--cvp-choice-card-", "themes": ["light", "dark"] },
-      "evidence": { "examples": ["src/app/components/ChoiceCardGroupDocumentation.tsx"], "tests": ["src/app/components/ChoiceCardGroup.test.tsx"], "visual": "Documentation route exists; a dedicated visual fixture remains a tracked rollout gap." },
-      "limitations": ["Single selection only.", "Only two and three-column layouts are supported."]
+      "useWhen": [
+        "A single choice needs descriptive comparison."
+      ],
+      "doNotUseWhen": [
+        "Multiple selection is required.",
+        "A compact label-only view switch is sufficient."
+      ],
+      "api": {
+        "importPath": "@cvp/design-system",
+        "types": [
+          {
+            "name": "ChoiceCardOption",
+            "definition": "interface ChoiceCardOption { value: string; label: string; description?: string; icon?: React.ReactNode; badge?: React.ReactNode; disabled?: boolean; }"
+          },
+          {
+            "name": "ChoiceCardGroupProps",
+            "definition": "interface ChoiceCardGroupProps { label: string; options: ChoiceCardOption[]; value?: string; defaultValue?: string; onChange?: (value: string) => void; helperText?: string; required?: boolean; disabled?: boolean; columns?: 2 | 3; className?: string; }"
+          }
+        ],
+        "props": [
+          {
+            "name": "label",
+            "type": "string",
+            "required": true,
+            "description": "Visible group label and accessible name."
+          },
+          {
+            "name": "options",
+            "type": "ChoiceCardOption[]",
+            "required": true,
+            "description": "Two to five stable mutually exclusive options; an empty array renders nothing."
+          },
+          {
+            "name": "value",
+            "type": "string",
+            "required": false,
+            "description": "Controlled selection that must match an enabled option value."
+          },
+          {
+            "name": "defaultValue",
+            "type": "string",
+            "required": false,
+            "default": "first enabled option",
+            "description": "Initial uncontrolled selection; ignored when value is supplied."
+          },
+          {
+            "name": "onChange",
+            "type": "(value: string) => void",
+            "required": false,
+            "description": "Called after pointer or keyboard selection."
+          },
+          {
+            "name": "helperText",
+            "type": "string",
+            "required": false,
+            "description": "Guidance associated to the radiogroup with aria-describedby."
+          },
+          {
+            "name": "required",
+            "type": "boolean",
+            "required": false,
+            "default": "false",
+            "description": "Adds the required marker and aria-required but performs no form validation."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "required": false,
+            "default": "false",
+            "description": "Disables every option and exposes aria-disabled."
+          },
+          {
+            "name": "columns",
+            "type": "2 | 3",
+            "required": false,
+            "default": "2",
+            "description": "Desktop grid column count."
+          },
+          {
+            "name": "className",
+            "type": "string",
+            "required": false,
+            "default": "''",
+            "description": "Class added to the component root; not a token replacement mechanism."
+          }
+        ],
+        "variants": [
+          "columns=2",
+          "columns=3"
+        ],
+        "states": [
+          "default",
+          "hover",
+          "focus-visible",
+          "selected",
+          "disabled",
+          "required"
+        ],
+        "controlledUsage": [
+          "Use value with onChange for controlled state.",
+          "Use defaultValue without value for uncontrolled state.",
+          "Do not pass value and defaultValue together."
+        ]
+      },
+      "behavior": {
+        "selection": [
+          "The first enabled option is selected when no controlled value or valid default exists.",
+          "Pointer activation selects an enabled option.",
+          "Disabled options cannot be selected."
+        ],
+        "validation": [
+          "required adds a marker and aria-required only.",
+          "The component does not block submission or expose aria-invalid or an error-message API.",
+          "The parent owns business validation for controlled usage."
+        ],
+        "keyboard": [
+          "Arrow keys select adjacent enabled choices and wrap at boundaries.",
+          "Home and End select the first and last enabled choices."
+        ],
+        "responsive": [
+          "columns=2 renders two equal desktop columns and columns=3 renders three.",
+          "At viewport widths of 600px or less, columns=3 stacks to one column.",
+          "At viewport widths of 460px or less, all groups stack to one column.",
+          "No canonical breakpoint tokens exist; 600px and 460px are component-local constants."
+        ]
+      },
+      "accessibility": {
+        "semantics": [
+          "A named radiogroup contains button elements with the radio role."
+        ],
+        "naming": [
+          "aria-labelledby, aria-describedby, and aria-required associate the visible label, helper text, and required state."
+        ],
+        "focus": [
+          "One enabled radio participates in the tab order and exposes a visible focus ring."
+        ],
+        "manualChecks": [
+          "Verify long content, theme contrast, reflow, and product-context target size."
+        ]
+      },
+      "tokens": {
+        "prefix": "--cvp-choice-card-",
+        "themes": [
+          "light",
+          "dark"
+        ],
+        "items": [
+          {
+            "name": "--cvp-choice-card-bg",
+            "purpose": "Default option surface",
+            "resolvesTo": "var(--cvp-color-surface-page)",
+            "scope": "public"
+          },
+          {
+            "name": "--cvp-choice-card-bg-hover",
+            "purpose": "Hover surface",
+            "resolvesTo": "var(--cvp-color-surface-hover)",
+            "scope": "public"
+          },
+          {
+            "name": "--cvp-choice-card-bg-selected",
+            "purpose": "Selected surface",
+            "resolvesTo": "var(--cvp-color-surface-subtle)",
+            "scope": "public"
+          },
+          {
+            "name": "--cvp-choice-card-bg-disabled",
+            "purpose": "Disabled surface",
+            "resolvesTo": "var(--cvp-color-surface-disabled)",
+            "scope": "internal"
+          },
+          {
+            "name": "--cvp-choice-card-border",
+            "purpose": "Default boundary",
+            "resolvesTo": "var(--cvp-color-border-default)",
+            "scope": "public"
+          },
+          {
+            "name": "--cvp-choice-card-border-hover",
+            "purpose": "Hover boundary",
+            "resolvesTo": "var(--cvp-color-border-strong)",
+            "scope": "public"
+          },
+          {
+            "name": "--cvp-choice-card-border-selected",
+            "purpose": "Selected boundary",
+            "resolvesTo": "var(--cvp-color-border-brand)",
+            "scope": "public"
+          },
+          {
+            "name": "--cvp-choice-card-text",
+            "purpose": "Primary option text",
+            "resolvesTo": "var(--cvp-color-text-primary)",
+            "scope": "public"
+          },
+          {
+            "name": "--cvp-choice-card-description",
+            "purpose": "Description text",
+            "resolvesTo": "var(--cvp-color-text-muted)",
+            "scope": "public"
+          },
+          {
+            "name": "--cvp-choice-card-selected-accent",
+            "purpose": "Selected radio fill",
+            "resolvesTo": "var(--cvp-color-text-link-default)",
+            "scope": "public"
+          },
+          {
+            "name": "--cvp-choice-card-text-disabled",
+            "purpose": "Disabled text",
+            "resolvesTo": "var(--cvp-color-text-disabled)",
+            "scope": "internal"
+          },
+          {
+            "name": "--cvp-choice-card-icon",
+            "purpose": "Default icon",
+            "resolvesTo": "var(--cvp-color-icon-muted)",
+            "scope": "public"
+          },
+          {
+            "name": "--cvp-choice-card-icon-disabled",
+            "purpose": "Disabled icon",
+            "resolvesTo": "var(--cvp-color-icon-disabled)",
+            "scope": "internal"
+          },
+          {
+            "name": "--cvp-choice-card-required",
+            "purpose": "Required marker",
+            "resolvesTo": "var(--cvp-color-text-danger)",
+            "scope": "public"
+          },
+          {
+            "name": "--cvp-choice-card-focus-ring",
+            "purpose": "Keyboard focus ring",
+            "resolvesTo": "var(--cvp-border-focus-ring)",
+            "scope": "internal"
+          },
+          {
+            "name": "--cvp-choice-card-border-width",
+            "purpose": "Boundary width",
+            "resolvesTo": "var(--cvp-border-base-width)",
+            "scope": "public"
+          },
+          {
+            "name": "--cvp-choice-card-radius",
+            "purpose": "Option radius",
+            "resolvesTo": "var(--cvp-radius-md)",
+            "scope": "public"
+          },
+          {
+            "name": "--cvp-choice-card-min-height",
+            "purpose": "Compact option minimum height",
+            "resolvesTo": "64px",
+            "scope": "local"
+          },
+          {
+            "name": "--cvp-choice-card-transition",
+            "purpose": "State transition",
+            "resolvesTo": "background-color var(--cvp-motion-duration-fast) var(--cvp-motion-easing-standard), border-color var(--cvp-motion-duration-fast) var(--cvp-motion-easing-standard), box-shadow var(--cvp-motion-duration-fast) var(--cvp-motion-easing-standard)",
+            "scope": "internal"
+          }
+        ]
+      },
+      "evidence": {
+        "examples": [
+          "src/app/components/ChoiceCardGroupDocumentation.tsx"
+        ],
+        "tests": [
+          "src/app/components/ChoiceCardGroup.test.tsx"
+        ],
+        "visual": "Documentation route exists; a dedicated visual fixture remains a tracked rollout gap."
+      },
+      "limitations": [
+        "Single selection only.",
+        "Only two and three-column layouts are supported.",
+        "No built-in invalid or error state.",
+        "No native form-submission value."
+      ]
+    },
+    {
+      "assetId": "multi-select",
+      "status": "reference",
+      "owner": "Design System team",
+      "markdown": "docs/component-specifications/multi-select.md",
+      "purpose": "Let people search and choose multiple values from one field with removable pills.",
+      "useWhen": [
+        "Multiple values may be selected from a set too long for visible checkboxes.",
+        "Search or individually removable selected values materially improve the task."
+      ],
+      "doNotUseWhen": [
+        "Exactly one value is allowed.",
+        "A short option set can remain visible as checkboxes.",
+        "Values perform navigation rather than form selection."
+      ],
+      "api": {
+        "importPath": "@cvp/design-system",
+        "types": [
+          {
+            "name": "MultiSelectOption",
+            "definition": "interface MultiSelectOption { value: string; label: string; disabled?: boolean; }"
+          },
+          {
+            "name": "MultiSelectProps",
+            "definition": "interface MultiSelectProps { options: MultiSelectOption[]; value?: string[]; defaultValue?: string[]; onChange?: (values: string[]) => void; id?: string; name?: string; label?: string; labelTooltip?: React.ReactNode; description?: string; placeholder?: string; maxSelection?: number; disabled?: boolean; required?: boolean; error?: boolean | string; className?: string; allowCreate?: boolean; onCreateOption?: (newOption: MultiSelectOption) => void; previewState?: 'hover' | 'focus' | 'open' | 'clear-hover'; }"
+          }
+        ],
+        "props": [
+          {
+            "name": "options",
+            "type": "MultiSelectOption[]",
+            "required": true,
+            "description": "Stable choices with unique string values; duplicate values resolve to the first option."
+          },
+          {
+            "name": "value",
+            "type": "string[]",
+            "required": false,
+            "description": "Controlled selection; do not combine with defaultValue."
+          },
+          {
+            "name": "defaultValue",
+            "type": "string[]",
+            "required": false,
+            "default": "[]",
+            "description": "Initial uncontrolled selection."
+          },
+          {
+            "name": "onChange",
+            "type": "(values: string[]) => void",
+            "required": false,
+            "description": "Receives the complete next selection."
+          },
+          {
+            "name": "id",
+            "type": "string",
+            "required": false,
+            "default": "generated ID",
+            "description": "Input ID and base for associated element IDs."
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "required": false,
+            "description": "Emits one hidden input per selected value."
+          },
+          {
+            "name": "label",
+            "type": "string",
+            "required": false,
+            "description": "Visible combobox label; otherwise provide an external label targeting id."
+          },
+          {
+            "name": "labelTooltip",
+            "type": "React.ReactNode",
+            "required": false,
+            "description": "Content adjacent to the label; never the only accessible label."
+          },
+          {
+            "name": "description",
+            "type": "string",
+            "required": false,
+            "description": "Support text associated through aria-describedby."
+          },
+          {
+            "name": "placeholder",
+            "type": "string",
+            "required": false,
+            "default": "Select options...",
+            "description": "Shown only when no selected pills exist."
+          },
+          {
+            "name": "maxSelection",
+            "type": "number",
+            "required": false,
+            "default": "unlimited",
+            "description": "Positive selection limit that disables unselected options and creation when reached."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "required": false,
+            "default": "false",
+            "description": "Disables input, controls, selection, creation, and removal."
+          },
+          {
+            "name": "required",
+            "type": "boolean",
+            "required": false,
+            "default": "false",
+            "description": "Applies native required to the search input while selection is empty."
+          },
+          {
+            "name": "error",
+            "type": "boolean | string",
+            "required": false,
+            "default": "false",
+            "description": "Sets aria-invalid; a string also renders an associated alert."
+          },
+          {
+            "name": "className",
+            "type": "string",
+            "required": false,
+            "default": "''",
+            "description": "Class added to the root; not a token replacement mechanism."
+          },
+          {
+            "name": "allowCreate",
+            "type": "boolean",
+            "required": false,
+            "default": "true",
+            "description": "Allows creation for a unique non-empty query while below the limit."
+          },
+          {
+            "name": "onCreateOption",
+            "type": "(newOption: MultiSelectOption) => void",
+            "required": false,
+            "description": "Receives the internally created option."
+          },
+          {
+            "name": "previewState",
+            "type": "'hover' | 'focus' | 'open' | 'clear-hover'",
+            "required": false,
+            "description": "Documentation-only visual fixture control; do not use in product code."
+          }
+        ],
+        "variants": [
+          "closed vocabulary",
+          "creatable",
+          "limited selection"
+        ],
+        "states": [
+          "default",
+          "hover",
+          "focus",
+          "open",
+          "populated",
+          "disabled",
+          "required",
+          "invalid",
+          "maximum reached",
+          "empty results"
+        ],
+        "controlledUsage": [
+          "Use value with onChange for controlled state.",
+          "Use defaultValue without value for uncontrolled state.",
+          "Do not pass value and defaultValue together.",
+          "For persistent controlled creation, update both parent-owned options and value from onCreateOption and onChange."
+        ]
+      },
+      "behavior": {
+        "selection": [
+          "Enabled options toggle independently and selected values render as removable pills.",
+          "Clear all empties the selection; Select all selects enabled filtered options up to maxSelection.",
+          "Creation trims the query and uses it as both value and label when no case-insensitive label match exists.",
+          "The field grows vertically when selected pills wrap."
+        ],
+        "validation": [
+          "required uses native input constraint validation only while the selection is empty.",
+          "error sets aria-invalid and a string error renders an associated alert.",
+          "The product owns error timing, failed-submission focus, and domain validation."
+        ],
+        "keyboard": [
+          "Arrow Down moves from the input to the first enabled option.",
+          "Arrow keys move through enabled options and wrap; Enter or Space toggles the focused option.",
+          "Escape closes the popup and option Escape returns focus to the input.",
+          "Enter creates an available query and Backspace on an empty query removes the last value."
+        ],
+        "responsive": [
+          "Selected pills wrap and the field grows without media-query breakpoints.",
+          "The fixed-position portal matches field width and flips above when usable space above exceeds space below.",
+          "Popup positioning preserves an 8px viewport inset and 4px field gap.",
+          "No canonical responsive breakpoint tokens are used."
+        ]
+      },
+      "accessibility": {
+        "semantics": [
+          "A combobox controls a portaled multi-select listbox whose options expose aria-selected and aria-disabled."
+        ],
+        "naming": [
+          "A visible or external label names the input; description and string error text compose aria-describedby."
+        ],
+        "focus": [
+          "Input, pill removal, clear, toggle, create, bulk action, and enabled options remain keyboard reachable with visible focus."
+        ],
+        "manualChecks": [
+          "Verify selection announcements, portal reading order, translated content, zoom and reflow, touch targets, and light/dark contrast."
+        ]
+      },
+      "tokens": {
+        "prefix": "--cvp-multi-select-",
+        "themes": [
+          "light",
+          "dark"
+        ],
+        "items": [
+          {
+            "name": "--cvp-multi-select-bg",
+            "resolvesTo": "var(--cvp-input-bg)",
+            "purpose": "bg role",
+            "scope": "public"
+          },
+          {
+            "name": "--cvp-multi-select-bg-disabled",
+            "resolvesTo": "var(--cvp-input-bg-disabled)",
+            "purpose": "bg disabled role",
+            "scope": "internal"
+          },
+          {
+            "name": "--cvp-multi-select-border",
+            "resolvesTo": "var(--cvp-input-border)",
+            "purpose": "border role",
+            "scope": "public"
+          },
+          {
+            "name": "--cvp-multi-select-border-width",
+            "resolvesTo": "var(--cvp-input-border-width)",
+            "purpose": "border width role",
+            "scope": "public"
+          },
+          {
+            "name": "--cvp-multi-select-border-hover",
+            "resolvesTo": "var(--cvp-input-border-hover)",
+            "purpose": "border hover role",
+            "scope": "public"
+          },
+          {
+            "name": "--cvp-multi-select-border-focus",
+            "resolvesTo": "var(--cvp-input-border-focus)",
+            "purpose": "border focus role",
+            "scope": "public"
+          },
+          {
+            "name": "--cvp-multi-select-border-disabled",
+            "resolvesTo": "var(--cvp-input-border-disabled)",
+            "purpose": "border disabled role",
+            "scope": "internal"
+          },
+          {
+            "name": "--cvp-multi-select-focus-ring",
+            "resolvesTo": "var(--cvp-input-focus-ring)",
+            "purpose": "focus ring role",
+            "scope": "public"
+          },
+          {
+            "name": "--cvp-multi-select-text",
+            "resolvesTo": "var(--cvp-input-text)",
+            "purpose": "text role",
+            "scope": "public"
+          },
+          {
+            "name": "--cvp-multi-select-text-disabled",
+            "resolvesTo": "var(--cvp-input-text-disabled)",
+            "purpose": "text disabled role",
+            "scope": "internal"
+          },
+          {
+            "name": "--cvp-multi-select-placeholder",
+            "resolvesTo": "var(--cvp-input-placeholder)",
+            "purpose": "placeholder role",
+            "scope": "public"
+          },
+          {
+            "name": "--cvp-multi-select-label",
+            "resolvesTo": "var(--cvp-color-text-primary)",
+            "purpose": "label role",
+            "scope": "public"
+          },
+          {
+            "name": "--cvp-multi-select-support",
+            "resolvesTo": "var(--cvp-color-text-muted)",
+            "purpose": "support role",
+            "scope": "public"
+          },
+          {
+            "name": "--cvp-multi-select-error",
+            "resolvesTo": "var(--cvp-input-border-error)",
+            "purpose": "error role",
+            "scope": "public"
+          },
+          {
+            "name": "--cvp-multi-select-error-text",
+            "resolvesTo": "var(--cvp-color-text-error)",
+            "purpose": "error text role",
+            "scope": "public"
+          },
+          {
+            "name": "--cvp-multi-select-icon",
+            "resolvesTo": "var(--cvp-color-icon-subtle)",
+            "purpose": "icon role",
+            "scope": "internal"
+          },
+          {
+            "name": "--cvp-multi-select-min-height",
+            "resolvesTo": "var(--cvp-input-height)",
+            "purpose": "min height role",
+            "scope": "public"
+          },
+          {
+            "name": "--cvp-multi-select-padding-x",
+            "resolvesTo": "var(--cvp-input-padding-x)",
+            "purpose": "padding x role",
+            "scope": "internal"
+          },
+          {
+            "name": "--cvp-multi-select-padding-y",
+            "resolvesTo": "var(--cvp-space-1)",
+            "purpose": "padding y role",
+            "scope": "internal"
+          },
+          {
+            "name": "--cvp-multi-select-radius",
+            "resolvesTo": "var(--cvp-input-radius)",
+            "purpose": "radius role",
+            "scope": "public"
+          },
+          {
+            "name": "--cvp-multi-select-font-size",
+            "resolvesTo": "var(--cvp-input-font-size)",
+            "purpose": "font size role",
+            "scope": "internal"
+          },
+          {
+            "name": "--cvp-multi-select-line-height",
+            "resolvesTo": "var(--cvp-input-line-height)",
+            "purpose": "line height role",
+            "scope": "internal"
+          },
+          {
+            "name": "--cvp-multi-select-label-size",
+            "resolvesTo": "var(--cvp-input-label-size)",
+            "purpose": "label size role",
+            "scope": "internal"
+          },
+          {
+            "name": "--cvp-multi-select-label-weight",
+            "resolvesTo": "var(--cvp-input-label-weight)",
+            "purpose": "label weight role",
+            "scope": "internal"
+          },
+          {
+            "name": "--cvp-multi-select-support-size",
+            "resolvesTo": "var(--cvp-input-support-size)",
+            "purpose": "support size role",
+            "scope": "internal"
+          },
+          {
+            "name": "--cvp-multi-select-meta-font-size",
+            "resolvesTo": "var(--cvp-font-size-sm)",
+            "purpose": "meta font size role",
+            "scope": "internal"
+          },
+          {
+            "name": "--cvp-multi-select-field-gap",
+            "resolvesTo": "var(--cvp-input-field-gap)",
+            "purpose": "field gap role",
+            "scope": "internal"
+          },
+          {
+            "name": "--cvp-multi-select-transition",
+            "resolvesTo": "var(--cvp-input-transition)",
+            "purpose": "transition role",
+            "scope": "internal"
+          },
+          {
+            "name": "--cvp-multi-select-tag-bg",
+            "resolvesTo": "var(--cvp-pill-bg)",
+            "purpose": "tag bg role",
+            "scope": "public"
+          },
+          {
+            "name": "--cvp-multi-select-tag-text",
+            "resolvesTo": "var(--cvp-pill-text)",
+            "purpose": "tag text role",
+            "scope": "public"
+          },
+          {
+            "name": "--cvp-multi-select-tag-radius",
+            "resolvesTo": "var(--cvp-pill-radius)",
+            "purpose": "tag radius role",
+            "scope": "internal"
+          },
+          {
+            "name": "--cvp-multi-select-tag-height",
+            "resolvesTo": "var(--cvp-pill-height)",
+            "purpose": "tag height role",
+            "scope": "internal"
+          },
+          {
+            "name": "--cvp-multi-select-tag-padding-x",
+            "resolvesTo": "var(--cvp-pill-padding-inline)",
+            "purpose": "tag padding x role",
+            "scope": "internal"
+          },
+          {
+            "name": "--cvp-multi-select-tag-gap",
+            "resolvesTo": "var(--cvp-pill-gap)",
+            "purpose": "tag gap role",
+            "scope": "internal"
+          },
+          {
+            "name": "--cvp-multi-select-tag-max-width",
+            "resolvesTo": "calc(var(--cvp-space-12) * 4)",
+            "purpose": "tag max width role",
+            "scope": "internal"
+          },
+          {
+            "name": "--cvp-multi-select-tag-remove-hover",
+            "resolvesTo": "var(--cvp-pill-remove-hover)",
+            "purpose": "tag remove hover role",
+            "scope": "internal"
+          },
+          {
+            "name": "--cvp-multi-select-tag-remove-active",
+            "resolvesTo": "var(--cvp-pill-remove-active)",
+            "purpose": "tag remove active role",
+            "scope": "internal"
+          },
+          {
+            "name": "--cvp-multi-select-icon-size",
+            "resolvesTo": "var(--cvp-space-4)",
+            "purpose": "icon size role",
+            "scope": "internal"
+          },
+          {
+            "name": "--cvp-multi-select-icon-target",
+            "resolvesTo": "var(--cvp-space-6)",
+            "purpose": "icon target role",
+            "scope": "internal"
+          },
+          {
+            "name": "--cvp-multi-select-clear-icon",
+            "resolvesTo": "var(--cvp-color-icon-default)",
+            "purpose": "clear icon role",
+            "scope": "internal"
+          },
+          {
+            "name": "--cvp-multi-select-clear-icon-hover",
+            "resolvesTo": "var(--cvp-color-text-primary)",
+            "purpose": "clear icon hover role",
+            "scope": "internal"
+          },
+          {
+            "name": "--cvp-multi-select-clear-icon-active",
+            "resolvesTo": "var(--cvp-color-text-primary)",
+            "purpose": "clear icon active role",
+            "scope": "internal"
+          },
+          {
+            "name": "--cvp-multi-select-clear-bg",
+            "resolvesTo": "transparent",
+            "purpose": "clear bg role",
+            "scope": "internal"
+          },
+          {
+            "name": "--cvp-multi-select-clear-bg-hover",
+            "resolvesTo": "var(--cvp-color-surface-hover)",
+            "purpose": "clear bg hover role",
+            "scope": "internal"
+          },
+          {
+            "name": "--cvp-multi-select-clear-bg-active",
+            "resolvesTo": "var(--cvp-color-surface-active)",
+            "purpose": "clear bg active role",
+            "scope": "internal"
+          },
+          {
+            "name": "--cvp-multi-select-clear-border",
+            "resolvesTo": "transparent",
+            "purpose": "clear border role",
+            "scope": "internal"
+          },
+          {
+            "name": "--cvp-multi-select-clear-border-hover",
+            "resolvesTo": "var(--cvp-color-border-strong)",
+            "purpose": "clear border hover role",
+            "scope": "internal"
+          },
+          {
+            "name": "--cvp-multi-select-search-min-width",
+            "resolvesTo": "calc(var(--cvp-space-12) * 2)",
+            "purpose": "search min width role",
+            "scope": "internal"
+          },
+          {
+            "name": "--cvp-multi-select-popup-bg",
+            "resolvesTo": "var(--cvp-menu-bg)",
+            "purpose": "popup bg role",
+            "scope": "public"
+          },
+          {
+            "name": "--cvp-multi-select-popup-text",
+            "resolvesTo": "var(--cvp-menu-item-text)",
+            "purpose": "popup text role",
+            "scope": "public"
+          },
+          {
+            "name": "--cvp-multi-select-popup-border",
+            "resolvesTo": "var(--cvp-menu-border)",
+            "purpose": "popup border role",
+            "scope": "public"
+          },
+          {
+            "name": "--cvp-multi-select-popup-radius",
+            "resolvesTo": "var(--cvp-menu-radius)",
+            "purpose": "popup radius role",
+            "scope": "internal"
+          },
+          {
+            "name": "--cvp-multi-select-popup-shadow",
+            "resolvesTo": "var(--cvp-menu-shadow)",
+            "purpose": "popup shadow role",
+            "scope": "internal"
+          },
+          {
+            "name": "--cvp-multi-select-popup-max-height",
+            "resolvesTo": "calc(var(--cvp-space-12) * 5)",
+            "purpose": "popup max height role",
+            "scope": "internal"
+          },
+          {
+            "name": "--cvp-multi-select-option-hover",
+            "resolvesTo": "var(--cvp-menu-item-bg-hover)",
+            "purpose": "option hover role",
+            "scope": "public"
+          },
+          {
+            "name": "--cvp-multi-select-option-selected",
+            "resolvesTo": "var(--cvp-menu-item-bg-active)",
+            "purpose": "option selected role",
+            "scope": "public"
+          },
+          {
+            "name": "--cvp-multi-select-option-selected-text",
+            "resolvesTo": "var(--cvp-menu-item-text-active)",
+            "purpose": "option selected text role",
+            "scope": "public"
+          },
+          {
+            "name": "--cvp-multi-select-option-padding-x",
+            "resolvesTo": "var(--cvp-space-3)",
+            "purpose": "option padding x role",
+            "scope": "internal"
+          },
+          {
+            "name": "--cvp-multi-select-option-padding-y",
+            "resolvesTo": "var(--cvp-space-2)",
+            "purpose": "option padding y role",
+            "scope": "internal"
+          },
+          {
+            "name": "--cvp-multi-select-option-radius",
+            "resolvesTo": "var(--cvp-shape-control-compact)",
+            "purpose": "option radius role",
+            "scope": "internal"
+          },
+          {
+            "name": "--cvp-multi-select-meta",
+            "resolvesTo": "var(--cvp-color-text-muted)",
+            "purpose": "meta role",
+            "scope": "internal"
+          },
+          {
+            "name": "--cvp-multi-select-action",
+            "resolvesTo": "var(--cvp-color-text-link-default)",
+            "purpose": "action role",
+            "scope": "public"
+          },
+          {
+            "name": "--cvp-multi-select-action-hover",
+            "resolvesTo": "var(--cvp-color-text-link-hover)",
+            "purpose": "action hover role",
+            "scope": "public"
+          }
+        ]
+      },
+      "evidence": {
+        "examples": [
+          "src/app/components/MultiSelectDocumentation.tsx"
+        ],
+        "tests": [
+          "Gap: no MultiSelect behavior test exists."
+        ],
+        "visual": "Documentation route exists; no dedicated visual fixture is registered."
+      },
+      "limitations": [
+        "Multiple string values only; use Select for single selection.",
+        "Large option sets are not virtualized.",
+        "Selection changes are not announced through a live region.",
+        "Created options do not persist outside mounted component state.",
+        "The popup is portaled to document.body.",
+        "previewState is documentation-only and unsupported in product code."
+      ]
     }
   ]
 }

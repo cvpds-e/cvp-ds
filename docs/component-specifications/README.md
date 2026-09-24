@@ -6,7 +6,7 @@ Every asset in the canonical registry has a Markdown file here. Draft files are 
 
 ## Definition of done
 
-An asset may be promoted to `approved` only when its machine specification is valid and its human specification covers purpose, use and non-use decisions, API, states, responsive behavior, accessibility, tokens, evidence, ownership, and known limitations. A component also needs implementation evidence: examples, automated behavior tests, visual coverage or an explicit visual-review exception, and a recorded release decision.
+An asset may be promoted to `approved` only when its machine specification is valid and its human specification covers purpose, use and non-use decisions, literal TypeScript API, canonical import, defaults, controlled and uncontrolled usage, validation ownership, states, responsive behavior, accessibility, enumerated tokens, evidence, ownership, and known limitations. A component also needs implementation evidence: compiling examples, automated behavior tests, visual coverage or an explicit visual-review exception, and a recorded release decision.
 
 ## Rollout sequence
 

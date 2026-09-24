@@ -3,30 +3,349 @@
   "$id": "https://cvp.internal/design-system/component-specification-registry.schema.json",
   "type": "object",
   "additionalProperties": false,
-  "required": ["version", "specifications"],
+  "required": [
+    "version",
+    "specifications"
+  ],
   "properties": {
-    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
     "specifications": {
       "type": "array",
       "uniqueItems": true,
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["assetId", "status", "owner", "markdown", "purpose", "useWhen", "doNotUseWhen", "api", "behavior", "accessibility", "tokens", "evidence", "limitations"],
+        "required": [
+          "assetId",
+          "status",
+          "owner",
+          "markdown",
+          "purpose",
+          "useWhen",
+          "doNotUseWhen",
+          "api",
+          "behavior",
+          "accessibility",
+          "tokens",
+          "evidence",
+          "limitations"
+        ],
         "properties": {
-          "assetId": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
-          "status": { "enum": ["draft", "reference", "complete"] },
-          "owner": { "type": "string", "minLength": 1 },
-          "markdown": { "type": "string", "pattern": "^docs/component-specifications/.+\\.md$" },
-          "purpose": { "type": "string", "minLength": 1 },
-          "useWhen": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
-          "doNotUseWhen": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
-          "api": { "type": "object", "required": ["props", "variants", "states"], "properties": { "props": { "type": "array", "minItems": 1, "items": { "type": "string" } }, "variants": { "type": "array", "items": { "type": "string" } }, "states": { "type": "array", "minItems": 1, "items": { "type": "string" } } } },
-          "behavior": { "type": "object", "required": ["keyboard", "responsive"], "properties": { "keyboard": { "type": "array", "minItems": 1, "items": { "type": "string" } }, "responsive": { "type": "array", "minItems": 1, "items": { "type": "string" } } } },
-          "accessibility": { "type": "object", "required": ["semantics", "naming", "focus", "manualChecks"], "properties": { "semantics": { "type": "array", "minItems": 1, "items": { "type": "string" } }, "naming": { "type": "array", "minItems": 1, "items": { "type": "string" } }, "focus": { "type": "array", "minItems": 1, "items": { "type": "string" } }, "manualChecks": { "type": "array", "minItems": 1, "items": { "type": "string" } } } },
-          "tokens": { "type": "object", "required": ["prefix", "themes"], "properties": { "prefix": { "type": "string", "pattern": "^--cvp-" }, "themes": { "type": "array", "minItems": 1, "items": { "type": "string" } } } },
-          "evidence": { "type": "object", "required": ["examples", "tests", "visual"], "properties": { "examples": { "type": "array", "minItems": 1, "items": { "type": "string" } }, "tests": { "type": "array", "minItems": 1, "items": { "type": "string" } }, "visual": { "type": "string", "minLength": 1 } } },
-          "limitations": { "type": "array", "minItems": 1, "items": { "type": "string" } }
+          "assetId": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "status": {
+            "enum": [
+              "draft",
+              "reference",
+              "complete"
+            ]
+          },
+          "owner": {
+            "type": "string",
+            "minLength": 1
+          },
+          "markdown": {
+            "type": "string",
+            "pattern": "^docs/component-specifications/.+\\.md$"
+          },
+          "purpose": {
+            "type": "string",
+            "minLength": 1
+          },
+          "useWhen": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "doNotUseWhen": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "api": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "importPath",
+              "types",
+              "props",
+              "variants",
+              "states",
+              "controlledUsage"
+            ],
+            "properties": {
+              "importPath": {
+                "type": "string",
+                "minLength": 1
+              },
+              "types": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "name",
+                    "definition"
+                  ],
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "definition": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  }
+                }
+              },
+              "props": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "name",
+                    "type",
+                    "required",
+                    "description"
+                  ],
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "type": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "required": {
+                      "type": "boolean"
+                    },
+                    "description": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "default": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "variants": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "states": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "controlledUsage": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          },
+          "behavior": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "selection",
+              "validation",
+              "keyboard",
+              "responsive"
+            ],
+            "properties": {
+              "selection": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "validation": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "keyboard": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "responsive": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          },
+          "accessibility": {
+            "type": "object",
+            "required": [
+              "semantics",
+              "naming",
+              "focus",
+              "manualChecks"
+            ],
+            "properties": {
+              "semantics": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string"
+                }
+              },
+              "naming": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string"
+                }
+              },
+              "focus": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string"
+                }
+              },
+              "manualChecks": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "tokens": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "prefix",
+              "themes",
+              "items"
+            ],
+            "properties": {
+              "prefix": {
+                "type": "string",
+                "pattern": "^--cvp-"
+              },
+              "themes": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "items": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "name",
+                    "purpose",
+                    "resolvesTo",
+                    "scope"
+                  ],
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "pattern": "^--cvp-"
+                    },
+                    "purpose": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "resolvesTo": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "scope": {
+                      "type": "string",
+                      "enum": [
+                        "public",
+                        "internal",
+                        "local"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "evidence": {
+            "type": "object",
+            "required": [
+              "examples",
+              "tests",
+              "visual"
+            ],
+            "properties": {
+              "examples": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string"
+                }
+              },
+              "tests": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string"
+                }
+              },
+              "visual": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "limitations": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            }
+          }
         }
       }
     }

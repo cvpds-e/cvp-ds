@@ -1000,7 +1000,7 @@
         }
       }
     },
-    "Breadcrumbs": {
+    "Breadcrumb": {
       "type": "object",
       "description": "Breadcrumb navigation component",
       "properties": {

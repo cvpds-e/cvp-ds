@@ -98,7 +98,7 @@ export function TextInputDocumentation() {
 
       <section className="cvp-input-doc__grid">
         <article className="cvp-input-doc__panel"><header><b>06</b><div><h2>Accessibility contract</h2></div></header><ul><li>Use a persistent visible label.</li><li>Native <code>required</code>, <code>disabled</code>, and <code>readOnly</code> semantics are preserved.</li><li>Errors set <code>aria-invalid</code> and announce through <code>role="alert"</code>.</li><li>Focus is visible without relying on color alone.</li><li>Instructions appear before submission whenever possible.</li></ul></article>
-        <article className="cvp-input-doc__panel"><header><b>07</b><div><h2>Usage decisions</h2></div></header><ul><li>Use Text Area for multi-line answers.</li><li>Do not encode formatting rules only in a placeholder.</li><li>Validate on blur or submission, not on every keystroke.</li><li>Keep the entered value when validation fails.</li><li>Explain disabled fields in surrounding content.</li></ul></article>
+        <article className="cvp-input-doc__panel"><header><b>07</b><div><h2>Usage decisions</h2></div></header><ul><li>Use Textarea for multi-line answers.</li><li>Do not encode formatting rules only in a placeholder.</li><li>Validate on blur or submission, not on every keystroke.</li><li>Keep the entered value when validation fails.</li><li>Explain disabled fields in surrounding content.</li></ul></article>
       </section>
 
       <footer className="cvp-input-doc__footer"><span>CVP component architecture</span><p>Canonical tokens · Light/dark · Keyboard · Validation · Responsive</p></footer>

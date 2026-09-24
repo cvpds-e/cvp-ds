@@ -8,11 +8,5 @@ specificationStatus: draft
 
 ## Purpose
 TODO
-## Usage
-TODO
-## API and states
-TODO
-## Accessibility
-TODO
-## Evidence
+## When to use
 TODO

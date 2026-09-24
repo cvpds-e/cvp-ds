@@ -13,8 +13,8 @@ describe('design system discovery tools', () => {
 
   it('returns traceable component contracts', async () => {
     const contract = await getComponentContract('SegmentedControl');
-    expect(contract).toMatchObject({ id: 'segmented', public: true });
-    expect(contract?.source).toBe('src/app/components/Segmented.tsx');
+    expect(contract).toMatchObject({ id: 'segmented-control', public: true });
+    expect(contract?.source).toBe('src/app/components/SegmentedControl.tsx');
   });
 
   it('returns the completed specification where one is available', async () => {

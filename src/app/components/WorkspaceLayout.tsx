@@ -28,7 +28,7 @@ function GlobalHeader({ className, children, ...props }: WorkspaceSlotProps) {
   return <header className={classes('cvp-workspace-layout__global-header', className)} {...props}>{children}</header>;
 }
 
-function Breadcrumbs({ className, children, ...props }: WorkspaceSlotProps) {
+function Breadcrumb({ className, children, ...props }: WorkspaceSlotProps) {
   return <div className={classes('cvp-workspace-layout__breadcrumbs', className)} {...props}>{children}</div>;
 }
 
@@ -77,7 +77,7 @@ function Footer({ className, children, ...props }: WorkspaceSlotProps) {
 }
 
 WorkspaceLayout.GlobalHeader = GlobalHeader;
-WorkspaceLayout.Breadcrumbs = Breadcrumbs;
+WorkspaceLayout.Breadcrumb = Breadcrumb;
 WorkspaceLayout.Body = Body;
 WorkspaceLayout.SidePanel = SidePanel;
 WorkspaceLayout.Main = Main;

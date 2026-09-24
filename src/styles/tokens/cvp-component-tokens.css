@@ -706,7 +706,6 @@
   --cvp-modal-backdrop-blur: blur(8px);
   --cvp-modal-header-font-size:    var(--cvp-font-size-xl);                /* 18px */
   --cvp-modal-header-font-weight:  var(--cvp-font-weight-semibold);        /* 600 */
-  --cvp-modal-width-small:    400px;
   --cvp-modal-width-compact:  480px;
   --cvp-modal-width-medium:   var(--cvp-modal-max-width);
   --cvp-modal-width-large:    800px;

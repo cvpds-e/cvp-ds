@@ -1,7 +1,7 @@
 import React, { forwardRef, useId, useState } from 'react';
-import './TextArea.css';
+import './Textarea.css';
 
-export interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   variant?: 'default' | 'error';
   error?: string;
   helperText?: string;
@@ -12,7 +12,7 @@ export interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextArea
   textareaClassName?: string;
 }
 
-export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(({
+export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(({
   variant = 'default', error, helperText, label, optionalText,
   showCharacterCount = false, resize = 'vertical', rows = 4,
   className, textareaClassName, id, required = false, disabled = false,
@@ -43,4 +43,4 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(({
       : helperText ? <p id={supportId} className="cvp-textarea__support">{helperText}</p> : null}
   </div>;
 });
-TextArea.displayName = 'TextArea';
+Textarea.displayName = 'Textarea';

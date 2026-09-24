@@ -1,13 +1,13 @@
 import React from 'react';
 import { AlertTriangle, CheckCircle2, CircleAlert, Info, X } from 'lucide-react';
-import './NotificationBanner.css';
+import './Banner.css';
 
-export type NotificationBannerVariant = 'info' | 'warning' | 'success' | 'error';
+export type BannerVariant = 'info' | 'warning' | 'success' | 'error';
 
-export interface NotificationBannerProps {
+export interface BannerProps {
   title: string;
   message: string;
-  variant?: NotificationBannerVariant;
+  variant?: BannerVariant;
   icon?: React.ComponentType<{ size?: number; className?: string; 'aria-hidden'?: boolean }>;
   onDismiss?: () => void;
   actionLabel?: string;
@@ -17,7 +17,7 @@ export interface NotificationBannerProps {
 
 const icons = { info: Info, warning: AlertTriangle, success: CheckCircle2, error: CircleAlert };
 
-export function NotificationBanner({ title, message, variant = 'info', icon: CustomIcon, onDismiss, actionLabel, onAction, className = '' }: NotificationBannerProps) {
+export function Banner({ title, message, variant = 'info', icon: CustomIcon, onDismiss, actionLabel, onAction, className = '' }: BannerProps) {
   const Icon = CustomIcon ?? icons[variant];
   const urgent = variant === 'warning' || variant === 'error';
   return (

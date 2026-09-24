@@ -507,7 +507,7 @@ export function LayoutDocumentation() {
           <h2 className="layout-docs__section-title">Layout Examples</h2>
           
           <div className="layout-docs__example">
-            <h3 className="layout-docs__example-title">Split Panel with Breadcrumbs</h3>
+            <h3 className="layout-docs__example-title">Split Panel with Breadcrumb</h3>
             <p className="layout-docs__example-description">
               Right panel with breadcrumbs navigation instead of panel header, ideal for hierarchical content navigation.
             </p>
@@ -523,7 +523,7 @@ export function LayoutDocumentation() {
                   </button>
                 )
               }}
-              rightPanelBreadcrumbs={[
+              rightPanelBreadcrumb={[
                 { id: '1', label: 'Projects', onClick: () => console.log('Projects') },
                 { id: '2', label: 'Design System', onClick: () => console.log('Design System') },
                 { id: '3', label: 'Components', onClick: () => console.log('Components') },

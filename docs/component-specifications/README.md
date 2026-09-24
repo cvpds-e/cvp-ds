@@ -1,19 +1,61 @@
 # Component specifications
 
-This directory is the human-readable contract layer for reusable CVP assets. It complements, rather than replaces, the implementation, component registry, tokens, examples, tests, and visual evidence.
+This directory contains the human-authored product guidance for reusable CVP components. Each component specification answers three questions:
 
-Every asset in the canonical registry has a Markdown file here. Draft files are intentionally incomplete and must never be interpreted by an agent as approved usage guidance; the structured specification registry is the authority for completed agent-ready contracts.
+- What is the component for?
+- When should a consuming application use it?
+- When should a consuming application choose another component or pattern?
 
-## Definition of done
+This follows the concise purpose and "When To Use" model used by references such as [Ant Design's Button documentation](https://ant.design/components/button). Every component in the canonical registry has one Markdown file here. Draft `TODO` content is not approved guidance.
 
-An asset may be promoted to `approved` only when its machine specification is valid and its human specification covers purpose, use and non-use decisions, literal TypeScript API, canonical import, defaults, controlled and uncontrolled usage, validation ownership, states, responsive behavior, accessibility, enumerated tokens, evidence, ownership, and known limitations. A component also needs implementation evidence: compiling examples, automated behavior tests, visual coverage or an explicit visual-review exception, and a recorded release decision.
+## Source of truth
 
-## Rollout sequence
+- These Markdown files own component purpose and selection guidance.
+- Exported TypeScript owns props, types, defaults, and composition contracts.
+- Runtime implementations and tests own behavior and accessibility semantics.
+- Documentation components and fixtures own examples.
+- `src/styles/token-registry.json` owns generated token reference data.
+- `src/agent/registry/component-specifications.json` owns the machine-readable component contract.
 
-1. Start with the shared primitives used by the most patterns.
-2. Complete the Markdown and machine specification together.
-3. Add or link examples, tests, visual evidence, and accessibility review.
-4. Run `npm run agent:check` and `npm run specs:audit`.
-5. Review with Design and Engineering before changing an asset's lifecycle.
+Do not copy props, code examples, token tables, or implementation behavior into these files. Generate those details from the codebase so they cannot drift from the shipped component.
 
-The complete reference is [Choice Card Group](choice-card-group.md). New specifications start from [the template](COMPONENT_SPEC_TEMPLATE.md).
+## Storybook-aligned inventory
+
+The following requested Storybook components have approved public implementations and aligned specifications:
+
+- [Accordion](accordion.md)
+- [Badge](badge.md)
+- [Banner](banner.md)
+- [Breadcrumb](breadcrumb.md)
+- Buttons: [Text Button](text-button.md) and [Icon Button](icon-button.md)
+- [Checkbox](checkbox.md)
+- [Loader](loader.md)
+- [Modal](modal.md)
+- [Number Input](number-input.md)
+- [Pagination](pagination.md)
+- [Segmented Control](segmented-control.md)
+- [Pills](pills.md)
+- [Select](select.md)
+- [Skeleton](skeleton.md)
+- [Table](table.md)
+- [Tabs](tabs.md)
+- [Textarea](textarea.md)
+- [Toast](toast.md)
+- [Tooltip](tooltip.md)
+- [Tree](tree.md)
+
+No specification was generated for requested items without one unambiguous public implementation: AspectRatio, Button, ButtonGroup, ButtonMenu, Calendar, RangeCalendar, DateTime Field, DateTime Range Field, Flex, FormControl, Grid, Icon, Image, Input, PasswordInput, OptionList, PillsInput, Popover, Splitter, and TagsSelect. Primitive-only or overlapping internal implementations must not be presented as approved public components.
+
+## Authoring guidance
+
+Every component specification must use the frontmatter keys and section order shown in [the template](COMPONENT_SPEC_TEMPLATE.md):
+
+1. `assetId`, `classification`, `lifecycle`, and `specificationStatus` frontmatter.
+2. One component title.
+3. `## Purpose` with a short statement in user and product language.
+4. `## When to use` with concrete selection guidance and decision-relevant variants or states.
+5. `## When not to use` with nearby alternatives for unsuitable situations.
+
+Keep exhaustive props, defaults, examples, and implementation behavior out of the file. Review guidance with Design and Engineering before changing lifecycle metadata, then run `npm run agent:check` and `npm run specs:audit`.
+
+New specifications start from [the template](COMPONENT_SPEC_TEMPLATE.md). Consuming applications must also follow the [Design System Consumption Standards](../DESIGN_SYSTEM_CONSUMPTION_STANDARDS.md).

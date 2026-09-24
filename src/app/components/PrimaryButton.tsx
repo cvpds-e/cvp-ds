@@ -1,5 +1,5 @@
 import React from 'react';
-import { LoadingSpinner } from './LoadingSpinner';
+import { Loader } from './Loader';
 import './PrimaryButton.css';
 
 export interface PrimaryButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -39,7 +39,7 @@ export function PrimaryButton({
   >
     <span className="cvp-primary-button__label">{children}</span>
     {loading && <span className="cvp-primary-button__loading" aria-hidden="true">
-      <LoadingSpinner size="sm" tone="inherit" decorative />
+      <Loader size="sm" tone="inherit" decorative />
       <span>{loadingText}</span>
     </span>}
   </button>;

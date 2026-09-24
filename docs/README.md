@@ -4,6 +4,8 @@ Use this directory as the entry point for design-system decisions and engineerin
 
 ## Start here
 
+- [Design System Consumption Standards](DESIGN_SYSTEM_CONSUMPTION_STANDARDS.md) — application-level design principles and usage requirements
+- [Component Specifications](component-specifications/README.md) — component purpose and selection guidance
 - [Engineering Handoff Index](handoffs/ENGINEERING_HANDOFF_INDEX.md) — implementation routes, source priority, and acceptance guidance
 - [Design System Specification](specifications/DESIGN_SYSTEM_SPECIFICATION.md) — canonical component behavior and visual specification
 - [Component Inventory](specifications/DESIGN_SYSTEM_COMPONENT_INVENTORY.md) — component coverage and readiness

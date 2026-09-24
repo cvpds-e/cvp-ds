@@ -126,8 +126,8 @@ Ordered by priority:
 - Replaced random IDs with React `useId`, restored native `required`, composed consumer and internal descriptions, and standardized error semantics.
 - Documented default, hover, focus, filled, read-only, required, invalid, and disabled states; compact/default density; and nested light/dark theme parity.
 - Full engineering handoff: `docs/handoffs/components/TEXT_INPUT_STANDARDIZATION.md`.
-- Text Area and Select now share the same field anatomy, validation wiring, theme resolution, and density rules; Select also establishes the custom listbox keyboard model.
-- Full engineering handoff: `docs/handoffs/components/TEXT_AREA_SELECT_STANDARDIZATION.md`.
+- Textarea and Select now share the same field anatomy, validation wiring, theme resolution, and density rules; Select also establishes the custom listbox keyboard model.
+- Full engineering handoff: `docs/handoffs/components/TEXTAREA_SELECT_STANDARDIZATION.md`.
 - Number Input now extends the same `--cvp-input-*` contract for quantities, positions, and limits. Its step controls remain contained within the field and its disabled boundary, value, and icons use opaque, contrast-qualified semantic tokens in both themes.
 - Full engineering handoff: `docs/handoffs/components/NUMBER_INPUT_STANDARDIZATION.md`.
 

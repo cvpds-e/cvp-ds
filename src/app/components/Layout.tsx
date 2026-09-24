@@ -1,6 +1,6 @@
 import React, { useState, useRef, useCallback } from 'react';
 import { MoreHorizontal, Settings } from 'lucide-react';
-import { Breadcrumbs, BreadcrumbItem } from './Breadcrumbs';
+import { Breadcrumb, BreadcrumbItem } from './Breadcrumb';
 
 export interface PanelHeaderProps {
   title: string;
@@ -16,7 +16,7 @@ export interface LayoutProps {
   rightPanel?: React.ReactNode;
   leftPanelHeader?: PanelHeaderProps;
   rightPanelHeader?: PanelHeaderProps;
-  rightPanelBreadcrumbs?: BreadcrumbItem[];
+  rightPanelBreadcrumb?: BreadcrumbItem[];
   leftPanelWidth?: number; // percentage for desktop
   rightPanelWidth?: number; // percentage for desktop
   gap?: string;
@@ -53,7 +53,7 @@ export function Layout({
   rightPanel,
   leftPanelHeader,
   rightPanelHeader,
-  rightPanelBreadcrumbs,
+  rightPanelBreadcrumb,
   leftPanelWidth = 30,
   rightPanelWidth = 70,
   gap = '0.5rem',
@@ -259,7 +259,7 @@ export function Layout({
           width: calc(100% + 2 * var(--panel-collapsible-padding));
         }
 
-        /* Navigation Segmented component styling */
+        /* Navigation SegmentedControl component styling */
         .panel__content .panel-nav-segmented {
           margin-left: calc(-1 * var(--panel-collapsible-padding));
           margin-right: calc(-1 * var(--panel-collapsible-padding));
@@ -442,8 +442,8 @@ export function Layout({
                   isLeftPanel={false}
                 />
               )}
-              {rightPanelBreadcrumbs && (
-                <Breadcrumbs items={rightPanelBreadcrumbs} />
+              {rightPanelBreadcrumb && (
+                <Breadcrumb items={rightPanelBreadcrumb} />
               )}
               <div className="panel__content">
                 {rightPanel}

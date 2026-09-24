@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Activity, ArrowLeft, ChevronRight, CircleDot, Network, PanelLeftClose, PanelLeftOpen, Plus, Save, Sparkles, TimerReset, Trash2, TrendingUp } from 'lucide-react';
-import { Breadcrumbs } from './Breadcrumbs';
+import { Breadcrumb } from './Breadcrumb';
 import { HeaderNavigation } from './HeaderNavigation';
 import { IconButton } from './IconButton';
 import { MultiSelect } from './MultiSelect';
@@ -204,7 +204,7 @@ function PersonalizedRailDetailsWorkspace() {
 
   return <WorkspaceLayout className="personalized-rail-details-page">
     <WorkspaceLayout.GlobalHeader><HeaderNavigation variant="static" brandName="Rail Manager" userName="Jane Doe" userEmail="jane@cvp.example" teams={[{ id: 'content-team', name: 'Content Team' }]} selectedTeamId="content-team" onThemeSwitch={toggleTheme} /></WorkspaceLayout.GlobalHeader>
-    <WorkspaceLayout.Breadcrumbs className="personalized-rail-details__crumbs"><Breadcrumbs surface="canvas" items={[{ id: 'rails-list', label: 'Rails List' }, { id: 'current', label: name }]} /></WorkspaceLayout.Breadcrumbs>
+    <WorkspaceLayout.Breadcrumb className="personalized-rail-details__crumbs"><Breadcrumb surface="canvas" items={[{ id: 'rails-list', label: 'Rails List' }, { id: 'current', label: name }]} /></WorkspaceLayout.Breadcrumb>
     <WorkspaceLayout.Body className={`personalized-rail-details__workspace ${sidebarOpen ? '' : 'personalized-rail-details__workspace--sidebar-collapsed'}`} sidePanelWidth="clamp(390px, 30vw, 500px)" maxSidePanelWidth={560}>
       {sidebarOpen && <><WorkspaceLayout.SidePanel className="personalized-rail-details__sidebar" aria-label="Personalized rail configuration"><div className="personalized-rail-details__mobile-panel-bar"><strong>Rail configuration</strong><IconButton aria-label="Close configuration" onClick={() => setSidebarOpen(false)}><PanelLeftClose size={16} /></IconButton></div><Tabs ariaLabel="Personalized rail settings" activeTab={activeTab} onTabChange={(tab) => { setActiveTab(tab); if (tab === 'configuration') setEditingConfigurationId(null); }} tabs={[{ id: 'base', label: 'Base', content: basePanel }, { id: 'configuration', label: 'Personalizer configurations', content: configurationPanel }]} />{activeTab === 'base' && hasChanges && <UnsavedChangesFooter onSave={save} onCancel={reset} />}</WorkspaceLayout.SidePanel><WorkspaceLayout.ResizeHandle /></>}
       <WorkspaceLayout.Main className="personalized-rail-details__main">

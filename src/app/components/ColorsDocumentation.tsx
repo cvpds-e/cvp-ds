@@ -874,9 +874,9 @@ export function ColorsDocumentation() {
           </div>
         </section>
 
-        {/* Breadcrumbs */}
+        {/* Breadcrumb */}
         <section className="colors-docs__section">
-          <h2>Interactive: Breadcrumbs</h2>
+          <h2>Interactive: Breadcrumb</h2>
           <p className="colors-docs__section-description">
             Colors for breadcrumb navigation components.
           </p>

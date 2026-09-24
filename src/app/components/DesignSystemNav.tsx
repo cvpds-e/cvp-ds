@@ -30,26 +30,26 @@ const NAV_ITEMS = [
   // Form Components
   { id: 'text-input', label: 'Text Input', category: 'Forms' },
   { id: 'number-input', label: 'Number Input', category: 'Forms' },
-  { id: 'text-area', label: 'Text Area', category: 'Forms' },
+  { id: 'textarea', label: 'Textarea', category: 'Forms' },
   { id: 'misc-input', label: 'Misc Input', category: 'Forms' },
   { id: 'checkbox', label: 'Checkbox', category: 'Forms' },
   { id: 'choice-card-group', label: 'Choice Card Group', category: 'Forms' },
   { id: 'select', label: 'Select', category: 'Forms' },
   { id: 'multi-select', label: 'Multi Select', category: 'Forms' },
-  { id: 'pill', label: 'Pill', category: 'Forms' },
+  { id: 'pills', label: 'Pills', category: 'Forms' },
   { id: 'filter', label: 'Filter', category: 'Forms' },
   { id: 'query-controls', label: 'Query Controls', category: 'Forms' },
   { id: 'date-picker', label: 'Date Picker', category: 'Forms' },
   
   // Navigation & Layout
-  { id: 'breadcrumbs', label: 'Breadcrumbs', category: 'Navigation' },
+  { id: 'breadcrumb', label: 'Breadcrumb', category: 'Navigation' },
   { id: 'header-navigation', label: 'Header Navigation', category: 'Navigation' },
   { id: 'tabs', label: 'Tabs', category: 'Navigation' },
   { id: 'tree', label: 'Tree', category: 'Navigation' },
   { id: 'table', label: 'Table', category: 'Navigation' },
   { id: 'pagination', label: 'Pagination', category: 'Navigation' },
   { id: 'badge', label: 'Badge', category: 'Navigation' },
-  { id: 'segmented', label: 'Segmented', category: 'Navigation' },
+  { id: 'segmented-control', label: 'Segmented Control', category: 'Navigation' },
   { id: 'accordion', label: 'Accordion', category: 'Navigation' },
   { id: 'tag-filter', label: 'Tag Filter', category: 'Navigation' },
   
@@ -58,10 +58,10 @@ const NAV_ITEMS = [
   { id: 'content-browser-modal', label: 'Content Browser Modal', category: 'Overlays' },
   { id: 'tooltip', label: 'Tooltip', category: 'Overlays' },
   { id: 'skeleton', label: 'Skeleton', category: 'Feedback' },
-  { id: 'loading-spinner', label: 'Loading Spinner', category: 'Feedback' },
+  { id: 'loader', label: 'Loader', category: 'Feedback' },
   { id: 'status', label: 'Status', category: 'Feedback' },
   { id: 'toast', label: 'Toast', category: 'Feedback' },
-  { id: 'notification-banner', label: 'Notification Banner', category: 'Feedback' },
+  { id: 'banner', label: 'Banner', category: 'Feedback' },
 
   // Complex Components
   { id: 'rail-content-gallery', label: 'Rail Content Gallery', category: 'Complex' },

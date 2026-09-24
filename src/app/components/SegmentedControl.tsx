@@ -1,14 +1,14 @@
 import React, { KeyboardEvent, useEffect, useRef, useState } from 'react';
-import './Segmented.css';
+import './SegmentedControl.css';
 
-export interface SegmentedOption { value:string; label:React.ReactNode; disabled?:boolean; icon?:React.ReactNode }
-export interface SegmentedProps {
- options:SegmentedOption[]; value?:string; defaultValue?:string; onChange?:(value:string)=>void;
+export interface SegmentedControlOption { value:string; label:React.ReactNode; disabled?:boolean; icon?:React.ReactNode }
+export interface SegmentedControlProps {
+ options:SegmentedControlOption[]; value?:string; defaultValue?:string; onChange?:(value:string)=>void;
  size?:'small'|'medium'|'large'; variant?:'default'|'color'; className?:string;
  ariaLabel?:string; disabled?:boolean; fullWidth?:boolean;
 }
 
-export function Segmented({options,value,defaultValue,onChange,size='medium',variant='default',className='',ariaLabel='View options',disabled=false,fullWidth=false}:SegmentedProps){
+export function SegmentedControl({options,value,defaultValue,onChange,size='medium',variant='default',className='',ariaLabel='View options',disabled=false,fullWidth=false}:SegmentedControlProps){
  const firstEnabled=options.find(option=>!option.disabled)?.value??'';
  const[internal,setInternal]=useState(defaultValue&&options.some(option=>option.value===defaultValue&&!option.disabled)?defaultValue:firstEnabled);
  const current=value??internal;

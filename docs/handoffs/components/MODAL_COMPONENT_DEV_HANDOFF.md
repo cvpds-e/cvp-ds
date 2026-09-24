@@ -8,7 +8,7 @@ Use Modal for focused tasks, confirmations, and short multi-step settings that m
 
 - `isOpen` and `onClose` are controlled by the consumer.
 - Provide `title`, or provide `ariaLabel` when using a custom/no-title header.
-- Use `size="small"` for confirmations, `medium` for standard tasks, and `large` for complex or tabbed settings.
+- Use `size="medium"` for confirmations and standard tasks, and `large` for complex or tabbed settings.
 - Use `tone="danger"` only when the primary decision is destructive.
 - `closeOnBackdrop` and `closeOnEscape` default to true. Disable backdrop dismissal when accidental closure would lose meaningful work.
 - `maxWidth` remains available for exceptional product-specific layouts; prefer the size contract.

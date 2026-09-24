@@ -12,7 +12,7 @@ import { Modal } from './Modal';
 import { Tree } from './Tree';
 import { Table } from './Table';
 import { Layout } from './Layout';
-import { Segmented } from './Segmented';
+import { SegmentedControl } from './SegmentedControl';
 import { Select } from './Select';
 import { MultiSelect } from './MultiSelect';
 import { TagFilter } from './TagFilter';
@@ -756,13 +756,13 @@ export function ComponentsOverview() {
             </a>
           </div>
 
-          {/* Segmented */}
+          {/* SegmentedControl */}
           <div className="component-card">
             <div className="component-header">
-              <h3 className="component-title">Segmented</h3>
+              <h3 className="component-title">SegmentedControl</h3>
             </div>
             <div className="component-preview">
-              <Segmented
+              <SegmentedControl
                 options={[
                   { value: 'first', label: 'First' },
                   { value: 'second', label: 'Second' },
@@ -772,7 +772,7 @@ export function ComponentsOverview() {
                 size="small"
               />
             </div>
-            <a href="?page=segmented" className="component-link">
+            <a href="?page=segmented-control" className="component-link">
               View Documentation
               <span className="arrow-icon">→</span>
             </a>

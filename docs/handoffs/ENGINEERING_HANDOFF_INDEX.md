@@ -42,26 +42,26 @@ All implementation paths in this document are relative to `src/app/components/` 
 |---|---|---|---|
 | Text Input | `?page=text-input` | `TextInput.tsx` / `TextInput.css` / `--cvp-input-*` | `docs/handoffs/components/TEXT_INPUT_STANDARDIZATION.md` |
 | Number Input | `?page=number-input` | `NumberInput.tsx` / `NumberInput.css` / `--cvp-input-*` | `docs/handoffs/components/NUMBER_INPUT_STANDARDIZATION.md` |
-| Text Area | `?page=text-area` | `TextArea.tsx` / `TextArea.css` / `--cvp-textarea-*` | `docs/handoffs/components/TEXT_AREA_SELECT_STANDARDIZATION.md` |
+| Textarea | `?page=text-area` | `Textarea.tsx` / `Textarea.css` / `--cvp-textarea-*` | `docs/handoffs/components/TEXTAREA_SELECT_STANDARDIZATION.md` |
 | Misc Input | `?page=misc-input` | `MiscInput.tsx` / `MiscInput.css` / `--cvp-misc-input-*` | `docs/handoffs/components/MISC_INPUT_STANDARDIZATION.md` |
 | Checkbox | `?page=checkbox` | `Checkbox.tsx` / `Checkbox.css` / `--cvp-checkbox-*` | `docs/handoffs/components/CHECKBOX_STANDARDIZATION.md` |
-| Select | `?page=select` | `Select.tsx` / `Select.css` / `--cvp-select-*` | `docs/handoffs/components/TEXT_AREA_SELECT_STANDARDIZATION.md` |
+| Select | `?page=select` | `Select.tsx` / `Select.css` / `--cvp-select-*` | `docs/handoffs/components/TEXTAREA_SELECT_STANDARDIZATION.md` |
 | Multi Select | `?page=multi-select` | `MultiSelect.tsx` / `MultiSelect.css` / `--cvp-multi-select-*` | `docs/handoffs/components/MULTI_SELECT_STANDARDIZATION.md` |
 | Filter | `?page=filter` | `Filter.tsx` / `Filter.css` / `--cvp-filter-*` | `docs/handoffs/components/FILTER_DATE_PICKER_STANDARDIZATION.md` |
 | Date Picker | `?page=date-picker` | `DatePicker.tsx` / `DatePicker.css` / `--cvp-date-picker-*` | `docs/handoffs/components/FILTER_DATE_PICKER_STANDARDIZATION.md` |
 
-Text Input is the reference field anatomy. Text Area, Select, Misc Input, Multi Select, Filter, and Date Picker must preserve its label, description, validation, border, focus, density, and theme conventions unless their documented interaction model requires an explicit specialization.
+Text Input is the reference field anatomy. Textarea, Select, Misc Input, Multi Select, Filter, and Date Picker must preserve its label, description, validation, border, focus, density, and theme conventions unless their documented interaction model requires an explicit specialization.
 
 ### Navigation and data display
 
 | Component | Preview | Canonical source | Handoff |
 |---|---|---|---|
-| Breadcrumbs | `?page=breadcrumbs` | `Breadcrumbs.tsx` / `Breadcrumbs.css` / `--cvp-breadcrumb-*` | `docs/handoffs/components/BREADCRUMBS_STANDARDIZATION.md` |
+| Breadcrumb | `?page=breadcrumbs` | `Breadcrumb.tsx` / `Breadcrumb.css` / `--cvp-breadcrumb-*` | `docs/handoffs/components/BREADCRUMB_STANDARDIZATION.md` |
 | Header Navigation | `?page=header-navigation` | `HeaderNavigation.tsx` / `HeaderNavigation.css` / `--cvp-header-*` | `docs/handoffs/components/HEADER_NAVIGATION_STANDARDIZATION.md` |
 | Tabs | `?page=tabs` | `Tabs.tsx` / `Tabs.css` / `--cvp-tabs-*` | `docs/handoffs/components/TABS_STANDARDIZATION.md` |
 | Tree | `?page=tree` | `Tree.tsx` / `Tree.css` / `--cvp-tree-*` | `docs/handoffs/components/TREE_COMPONENT_DEV_HANDOFF.md` |
 | Table | `?page=table` | `Table.tsx` / `Table.css` / `--cvp-table-*` | `docs/handoffs/components/TABLE_COMPONENT_DEV_HANDOFF.md` |
-| Segmented | `?page=segmented` | `Segmented.tsx` / `Segmented.css` / `--cvp-segmented-*` | `docs/handoffs/components/SEGMENTED_STANDARDIZATION.md` |
+| SegmentedControl | `?page=segmented` | `SegmentedControl.tsx` / `SegmentedControl.css` / `--cvp-segmented-*` | `docs/handoffs/components/SEGMENTED_CONTROL_STANDARDIZATION.md` |
 | Accordion | `?page=accordion` | `Accordion.tsx` / `Accordion.css` / `--cvp-accordion-*` | `docs/handoffs/components/ACCORDION_STANDARDIZATION.md` |
 | Tag Filter | `?page=tag-filter` | `TagFilter.tsx` / `TagFilter.css` / `--cvp-tag-filter-*` | `docs/handoffs/components/TAG_FILTER_STANDARDIZATION.md` |
 
@@ -72,7 +72,7 @@ Text Input is the reference field anatomy. Text Area, Select, Misc Input, Multi 
 | Modal | `?page=modal` | `Modal.tsx` / `Modal.css` / `--cvp-modal-*` | `docs/handoffs/components/MODAL_COMPONENT_DEV_HANDOFF.md` |
 | Content Browser Modal | `?page=content-browser-modal` | `ContentBrowserModal.tsx` / CSS / `--cvp-content-browser-*` | `docs/handoffs/components/CONTENT_BROWSER_MODAL_DEV_HANDOFF.md` |
 | Toast | `?page=toast` | `Toast.tsx` / `Toast.css` / `--cvp-toast-*` | `docs/handoffs/components/TOAST_COMPONENT_DEV_HANDOFF.md` |
-| Notification Banner | `?page=notification-banner` | `NotificationBanner.tsx` / CSS / `--cvp-notification-banner-*` | `docs/handoffs/components/NOTIFICATION_BANNER_DEV_HANDOFF.md` |
+| Banner | `?page=notification-banner` | `Banner.tsx` / CSS / `--cvp-notification-banner-*` | `docs/handoffs/components/BANNER_DEV_HANDOFF.md` |
 | Rail Content Gallery | `?page=rail-content-gallery` | `RailContentGallery.tsx` / CSS / `--cvp-gallery-*` | `docs/handoffs/components/RAIL_CONTENT_GALLERY_DEV_HANDOFF.md` |
 | Login / Sign Up | `?page=login-signup` | `LoginSignUp.tsx` / CSS / `--cvp-login-*` | `docs/handoffs/components/LOGIN_SIGN_UP_DEV_HANDOFF.md` |
 | Rail Details | `?page=rail-details` | `RailDetails.tsx` / `RailDetails.css` | composed-page visual acceptance reference |

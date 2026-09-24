@@ -1,4 +1,4 @@
-# CVP Text Area and Select — Standardization Handoff
+# CVP Textarea and Select — Standardization Handoff
 
 **Status:** Ready for implementation  
 **Updated:** 2026-08-04  
@@ -8,7 +8,7 @@
 
 Both components inherit the Text Input conventions for persistent labels, optional/required status, helper and error placement, component-token usage, focus indication, disabled styling, light/dark themes, and reduced-motion behavior.
 
-## Text Area
+## Textarea
 
 - Uses the native `textarea`; default vertical resizing is retained.
 - Supports none, vertical, horizontal, and both-axis resize modes.

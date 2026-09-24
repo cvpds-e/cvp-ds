@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Building2, Eye, EyeOff } from 'lucide-react';
 import { IconSmallButton } from './IconSmallButton';
-import { NotificationBanner } from './NotificationBanner';
+import { Banner } from './Banner';
 import { PrimaryButton } from './PrimaryButton';
 import { SecondaryButton } from './SecondaryButton';
 import { Select } from './Select';
@@ -65,7 +65,7 @@ export function LoginSignUp({ initialMode = 'sign-in', allowModeSwitch = true, o
       </header>
 
       <form className="cvp-login__form" onSubmit={handleSubmit} noValidate>
-        {error && <NotificationBanner title="We couldn’t continue" message={error} variant="error" />}
+        {error && <Banner title="We couldn’t continue" message={error} variant="error" />}
         {isSignUp && <TextInput label="Full name" autoComplete="name" value={name} onChange={event => setName(event.target.value)} placeholder="Enter your full name" disabled={loading} required />}
         <TextInput label="Email" type="email" autoComplete="email" value={email} onChange={event => setEmail(event.target.value)} placeholder="Enter your email" disabled={loading} required />
         <div className="cvp-login__password">

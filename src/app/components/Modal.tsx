@@ -17,7 +17,7 @@ export interface ModalProps {
   description?: string;
   children?: React.ReactNode;
   maxWidth?: string;
-  size?: 'small' | 'medium' | 'large';
+  size?: 'medium' | 'large';
   tone?: 'default' | 'danger';
   showCloseButton?: boolean;
   closeOnBackdrop?: boolean;

@@ -10,7 +10,7 @@ import { Table, TableColumn, TableRow } from './Table';
 import { Badge } from './Badge';
 import { Status } from './Status';
 import { TextButton } from './TextButton';
-import { TextArea } from './TextArea';
+import { Textarea } from './Textarea';
 import { TextInput } from './TextInput';
 import { NumberInput } from './NumberInput';
 import { Select } from './Select';
@@ -296,7 +296,7 @@ export function RailsList({ initialState = 'populated' }: RailsListProps) {
       <TextButton variant="secondary" className="rails-list-page__back-to-collections" icon={<ChevronLeft size={16} />} onClick={() => setEditingCollection(null)}>Back to Rail Collections</TextButton>
       <div className="rails-list-page__collection-form">
         <TextInput label="Title" value={collectionName} onChange={(event) => setCollectionName(event.target.value)} required />
-        <TextArea label="Description" value={collectionDescription} onChange={(event) => setCollectionDescription(event.target.value)} rows={4} resize="vertical" />
+        <Textarea label="Description" value={collectionDescription} onChange={(event) => setCollectionDescription(event.target.value)} rows={4} resize="vertical" />
         <Select label="Status" value={collectionStatus} onChange={setCollectionStatus} options={[{ value: 'enabled', label: 'Enabled' }, { value: 'disabled', label: 'Disabled' }]} />
         <TextInput label="External Reference ID" optionalText="Advanced" value={collectionReference} onChange={(event) => setCollectionReference(event.target.value)} />
       </div>
@@ -393,7 +393,7 @@ export function RailsList({ initialState = 'populated' }: RailsListProps) {
     <Modal isOpen={newCollectionOpen} onClose={closeNewCollection} title="New rail collection" description="This collection will be selected for the new rail." size="medium" className="rails-list-page__collection-modal" footer={<><OutlineButton onClick={closeNewCollection}><ChevronLeft size={16} aria-hidden="true" /> Back</OutlineButton><PrimaryButton onClick={createNewCollection} disabled={!newCollectionTitle.trim()}>Save &amp; select</PrimaryButton></>}>
       <div className="rails-list-page__collection-modal-form">
         <TextInput label="Title" value={newCollectionTitle} onChange={(event) => setNewCollectionTitle(event.target.value)} required autoFocus />
-        <TextArea label="Description" value={newCollectionDescription} onChange={(event) => setNewCollectionDescription(event.target.value)} rows={4} resize="vertical" />
+        <Textarea label="Description" value={newCollectionDescription} onChange={(event) => setNewCollectionDescription(event.target.value)} rows={4} resize="vertical" />
         <Select label="Status" value={newCollectionStatus} onChange={setNewCollectionStatus} options={[{ value: 'enabled', label: 'Enabled' }, { value: 'disabled', label: 'Disabled' }]} />
         <TextInput label="External reference ID" optionalText="Advanced" value={newCollectionReference} onChange={(event) => setNewCollectionReference(event.target.value)} />
       </div>

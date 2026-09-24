@@ -136,7 +136,7 @@ Built for expert operators managing complex broadcast and OTT workflows. The sys
   --nav-item-active-bg:   #e5e7eb;
   --nav-section-label:    #9ca3af;
 
-  /* ─── Breadcrumbs ─── */
+  /* ─── Breadcrumb ─── */
   --breadcrumb-bg:        #f3f4f6;
   --breadcrumb-text:      #6b7280;
   --breadcrumb-active:    #111827;
@@ -268,7 +268,7 @@ Built for expert operators managing complex broadcast and OTT workflows. The sys
   --nav-item-active-bg:   #1f1f28;
   --nav-section-label:    #4b5563;
 
-  /* ─── Breadcrumbs ─── */
+  /* ─── Breadcrumb ─── */
   --breadcrumb-bg:        #1f1f28;
   --breadcrumb-text:      #9ca3af;
   --breadcrumb-active:    #ffffff;
@@ -946,7 +946,7 @@ Icon color: light `#6b7280` · dark `#9ca3af`
 
 ---
 
-### Breadcrumbs
+### Breadcrumb
 
 **Purpose:** Location awareness in hierarchical navigation.
 

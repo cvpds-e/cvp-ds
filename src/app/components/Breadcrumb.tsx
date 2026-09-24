@@ -1,6 +1,6 @@
 import React, { useEffect, useId, useRef, useState } from 'react';
 import { ArrowLeft, ChevronDown, ChevronRight } from 'lucide-react';
-import './Breadcrumbs.css';
+import './Breadcrumb.css';
 
 export interface DropdownItemOption {
   id: string;
@@ -21,7 +21,7 @@ export interface BreadcrumbItem {
   dropdown?: DropdownItemOption[];
 }
 
-export interface BreadcrumbsProps {
+export interface BreadcrumbProps {
   items: BreadcrumbItem[];
   separator?: React.ReactNode;
   className?: string;
@@ -29,7 +29,7 @@ export interface BreadcrumbsProps {
   surface?: 'default' | 'canvas';
 }
 
-export function Breadcrumbs({ items, separator, className = '', ariaLabel = 'Breadcrumb', surface = 'default' }: BreadcrumbsProps) {
+export function Breadcrumb({ items, separator, className = '', ariaLabel = 'Breadcrumb', surface = 'default' }: BreadcrumbProps) {
   const [openDropdownId, setOpenDropdownId] = useState<string | null>(null);
   const rootRef = useRef<HTMLElement | null>(null);
   const menuRefs = useRef<Record<string, HTMLUListElement | null>>({});

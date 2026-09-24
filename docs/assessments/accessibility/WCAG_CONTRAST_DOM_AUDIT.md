@@ -14,7 +14,7 @@ Standard: WCAG 2.0/2.1/2.2 Level A and AA automated rules
 - Elevation
 - Layout
 - Text Input
-- Text Area
+- Textarea
 - Select
 - Primary Button
 - Secondary Button

@@ -1,18 +1,18 @@
 import React from 'react';
-import './LoadingSpinner.css';
+import './Loader.css';
 
-export type LoadingSpinnerSize = 'sm' | 'md' | 'lg';
-export type LoadingSpinnerTone = 'default' | 'inherit';
+export type LoaderSize = 'sm' | 'md' | 'lg';
+export type LoaderTone = 'default' | 'inherit';
 
-export interface LoadingSpinnerProps extends Omit<React.HTMLAttributes<HTMLSpanElement>, 'children'> {
-  size?: LoadingSpinnerSize;
-  tone?: LoadingSpinnerTone;
+export interface LoaderProps extends Omit<React.HTMLAttributes<HTMLSpanElement>, 'children'> {
+  size?: LoaderSize;
+  tone?: LoaderTone;
   label?: string;
   decorative?: boolean;
 }
 
 /** Indeterminate progress for a local action or a small pending region. */
-export function LoadingSpinner({ size = 'md', tone = 'default', label = 'Loading', decorative = false, className = '', ...props }: LoadingSpinnerProps) {
+export function Loader({ size = 'md', tone = 'default', label = 'Loading', decorative = false, className = '', ...props }: LoaderProps) {
   return (
     <span
       {...props}

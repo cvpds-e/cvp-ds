@@ -33,7 +33,7 @@ Use Multi Select when a user must choose several values from a list long enough 
 
 ## Selected-value composition
 
-Multi Select renders each selected value with the shared `Pill` component. Multi Select owns selection state, limits, search, count metadata, and the option menu; Pill owns the compact value presentation and its named removal action. The existing `--cvp-multi-select-tag-*` aliases are forwarded to Pill so the field keeps its established compact sizing.
+Multi Select renders each selected value with the shared `Pills` component. Multi Select owns selection state, limits, search, count metadata, and the option menu; Pills owns the compact value presentation and its named removal action. The existing `--cvp-multi-select-tag-*` aliases are forwarded to Pills so the field keeps its established compact sizing.
 
 ## DOM and interaction contract
 
@@ -47,7 +47,7 @@ Multi Select renders each selected value with the shared `Pill` component. Multi
 
 ## Token architecture
 
-Multi Select uses registered `--cvp-multi-select-*` Tier 3 tokens only. The field inherits the canonical input contract; the popup inherits the menu contract; selected values use the shared Pill contract. Component-specific roles govern compact tag sizing, search sizing, popup dimensions, option padding, selected-count metadata, and actions.
+Multi Select uses registered `--cvp-multi-select-*` Tier 3 tokens only. The field inherits the canonical input contract; the popup inherits the menu contract; selected values use the shared Pills contract. Component-specific roles govern compact tag sizing, search sizing, popup dimensions, option padding, selected-count metadata, and actions.
 
 The shared semantic input border remains intentionally subtle in both themes. Focus and error states provide the stronger state boundary; field surfaces and labels keep the default control identifiable without an intrusive outline.
 

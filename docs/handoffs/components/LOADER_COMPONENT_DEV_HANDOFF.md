@@ -1,8 +1,8 @@
-# Loading Spinner
+# Loader
 
 ## Purpose
 
-Loading Spinner communicates indeterminate progress for a local action or compact pending region.
+Loader communicates indeterminate progress for a local action or compact pending region.
 
 ## Use
 

@@ -40,7 +40,7 @@ This document does **not** prescribe internal engineering tooling, test framewor
 |---|---|
 | **Specification completeness** | ✓ All 35 CVP publishable components documented · 14 design patterns documented · 3 internal utilities classified · 46 shadcn/ui primitives catalogued |
 | **Token architecture (Tier 1–2)** | ✓ Complete — `cvp-primitives.css`, `cvp-semantic-tokens.css`, `cvp-alias-bridge.css` delivered |
-| **Token architecture (Tier 3)** | ✓ Complete — `cvp-component-tokens.css` delivered for Button, Input, Avatar, Checkbox, Modal, Dropdown, Nav, Header, Breadcrumbs, Chip, Table, Toast, Skeleton, Rail Gallery |
+| **Token architecture (Tier 3)** | ✓ Complete — `cvp-component-tokens.css` delivered for Button, Input, Avatar, Checkbox, Modal, Dropdown, Nav, Header, Breadcrumb, Chip, Table, Toast, Skeleton, Rail Gallery |
 | **Component token migration** | ✗ Phase 0 (audit) not started · Phase 2+ not started · All component implementations still reference legacy shorthand or unregistered tokens |
 | **Storybook** | ✗ No `.storybook/` directory · No stories exist for any component |
 | **Automated tests** | ✗ No unit, interaction, or accessibility tests for any CVP component |
@@ -473,7 +473,7 @@ Raw pixel values (e.g. `padding: 6px 8px`) are only acceptable as Local implemen
 | `--cvp-radius-md` | Standard cards, modals, dropdowns |
 | `--cvp-radius-lg` | Large cards, panels |
 | `--cvp-radius-xl` | Floating containers |
-| `--cvp-radius-full` | Pill/avatar shapes |
+| `--cvp-radius-full` | Pills/avatar shapes |
 
 Interactive components (buttons, inputs) use `--cvp-radius-sm` by default unless the component specification states otherwise.
 
@@ -539,7 +539,7 @@ Use `:focus-visible`, not `:focus`. This ensures keyboard users see the ring whi
 | Inline with heading text (L) | 20px | |
 | Icon button (default) | 20px | |
 | Icon button (small) | 16px | |
-| Status / feedback icons | 20px | Toast, NotificationBanner |
+| Status / feedback icons | 20px | Toast, Banner |
 | Navigation icons | 20px | HeaderNavigation, PageSideNav |
 
 Icons must use `currentColor` for their fill/stroke so they inherit the text token colour of their parent. Do not hardcode icon colours. Use `--cvp-color-icon-*` tokens for icons that require a colour distinct from the surrounding text.
@@ -741,8 +741,8 @@ Single-step destructive actions (no confirmation) are only permitted when the ac
 
 - Show a loading indicator immediately on action trigger (do not wait for the response to arrive).
 - Disable the triggering element during the async operation to prevent double-submission.
-- On success: restore the element state; show a Toast or NotificationBanner confirming the action.
-- On failure: restore the element state; show an error Toast or NotificationBanner; do not silently swallow the error.
+- On success: restore the element state; show a Toast or Banner confirming the action.
+- On failure: restore the element state; show an error Toast or Banner; do not silently swallow the error.
 - If the operation takes more than 10 seconds, provide a way to cancel it.
 
 ### 5.14 Escape Behaviour
@@ -849,7 +849,7 @@ When an element needs supplementary information beyond its name (e.g. a helper t
 | Tab list | `Tab` into list; `←`/`→` to move between tabs; `Tab` to move into panel |
 | Accordion | `Tab` to each trigger; `Enter` or `Space` to expand/collapse |
 | Menu / dropdown | `Tab` or `Enter`/`Space` to open; `↑`/`↓` to move; `Enter` to select; `Escape` to close |
-| Segmented control | `Tab` into group; `←`/`→` to move between options |
+| SegmentedControl control | `Tab` into group; `←`/`→` to move between options |
 | Modal | `Tab` / `Shift+Tab` within trap; `Escape` to close |
 | Tree | `Tab` into tree; `↑`/`↓` to move; `→` to expand; `←` to collapse; `Enter` to select |
 | Table with selection | `Tab` into table; `Space` to select row; `Shift+click` for range selection |
@@ -1387,7 +1387,7 @@ Not applicable / [describe how error state is entered, displayed, and cleared; A
 Describe how this component is intended to be used alongside other components:
 
 - **Used inside:** [e.g. Modal, FilterGroup, Layout]
-- **Contains:** [e.g. PrimaryButton, TextInput, Breadcrumbs]
+- **Contains:** [e.g. PrimaryButton, TextInput, Breadcrumb]
 - **Must not be nested inside:** [e.g. another Modal; reason]
 - **Related patterns:** [e.g. Validation — see §4 Shared Patterns]
 
@@ -2839,9 +2839,9 @@ The same required accessible-name, `:focus-visible`, disabled and loading contra
 
 > **Family-wide token migration note.** All Form Control components define their styling via inline `<style>` blocks using custom tokens (`--surface-raised`, `--border-default`, `--text-primary`, `--destructive`, `--type-scale-m-size`) that map to old shorthand or are hardcoded fallbacks. These are not registered in `cvp-component-tokens.css`. The migration target tokens are the `--cvp-input-*`, `--cvp-checkbox-*` etc. tokens already defined in `cvp-component-tokens.css`.
 
-> **Family-wide implementation gap — random ID generation.** `TextInput` and `TextArea` generate element IDs using `Math.random().toString(36)`. This is server-side rendering (SSR) unsafe — IDs will differ between server render and client hydration, breaking `htmlFor` associations. Replace with a stable `useId()` hook (React 18+) before production use.
+> **Family-wide implementation gap — random ID generation.** `TextInput` and `Textarea` generate element IDs using `Math.random().toString(36)`. This is server-side rendering (SSR) unsafe — IDs will differ between server render and client hydration, breaking `htmlFor` associations. Replace with a stable `useId()` hook (React 18+) before production use.
 
-> **Family-wide implementation gap — `:focus` vs `:focus-visible`.** `TextInput`, `TextArea`, `Select`, and `MultiSelect` use `:focus` for focus ring styling (all focus events, including pointer). Only `Checkbox`, `Toggle`, and `Segmented` correctly use `:focus-visible` on the hidden native input. Correct in migration.
+> **Family-wide implementation gap — `:focus` vs `:focus-visible`.** `TextInput`, `Textarea`, `Select`, and `MultiSelect` use `:focus` for focus ring styling (all focus events, including pointer). Only `Checkbox`, `Toggle`, and `SegmentedControl` correctly use `:focus-visible` on the hidden native input. Correct in migration.
 
 ---
 
@@ -2866,7 +2866,7 @@ A single-line text input with label, helper text, and error message support. The
 
 #### When Not to Use
 
-- Multi-line text — use `TextArea`.
+- Multi-line text — use `Textarea`.
 - Inputs with prefix/suffix/copy controls — use `MiscInput`.
 - Numeric input, date input, password input — use appropriate `<input type>` with this component as the base (currently a specification gap: no dedicated Number, Date, or Password variant exists).
 
@@ -3055,7 +3055,7 @@ The input is `width: 100%` and fills its container. At 320px viewport the input 
 
 ---
 
-### TextArea
+### Textarea
 
 | Dimension | Status |
 |---|---|
@@ -3197,7 +3197,7 @@ An enhanced single-line input supporting four validation states, prefix/suffix s
 #### When Not to Use
 
 - Simple text fields — use `TextInput`.
-- Multi-line text — use `TextArea`.
+- Multi-line text — use `Textarea`.
 
 ---
 
@@ -3360,7 +3360,7 @@ A single-selection dropdown. Custom implementation using `role="combobox"` and `
 #### When Not to Use
 
 - Multiple selections — use `MultiSelect`.
-- Very short lists (2–3 options) — consider radio buttons or `Segmented`.
+- Very short lists (2–3 options) — consider radio buttons or `SegmentedControl`.
 - Free-text entry with suggestions — consider a combobox with search.
 
 ---
@@ -3686,7 +3686,7 @@ A binary selection control with optional indeterminate state. Supports label and
 
 - Mutually exclusive choices — use Radio group.
 - A single on/off toggle that takes effect immediately — use `Toggle`.
-- Segmented multi-option views — use `Segmented`.
+- SegmentedControl multi-option views — use `SegmentedControl`.
 
 ---
 
@@ -3879,7 +3879,7 @@ A switch control for binary on/off settings that take immediate effect. Distingu
 #### When Not to Use
 
 - Form submission values — use `Checkbox`.
-- Selecting from a set of options — use `Segmented` or Radio.
+- Selecting from a set of options — use `SegmentedControl` or Radio.
 - Settings that require confirmation before applying — use a `Checkbox` + submit button pattern.
 
 ---
@@ -4033,7 +4033,7 @@ Identical pattern to Checkbox: hidden input receives keyboard focus; `:focus-vis
 
 ---
 
-### Segmented
+### SegmentedControl
 
 | Dimension | Status |
 |---|---|
@@ -4173,7 +4173,7 @@ Roving tabindex is configured but arrow key navigation is missing. The container
 
 | Requirement | Implementation |
 |---|---|
-| Role | `tablist` + `tab` — semantically appropriate for Segmented use |
+| Role | `tablist` + `tab` — semantically appropriate for SegmentedControl use |
 | `aria-selected` | Set correctly |
 | `aria-controls` | Present (`panel-{value}`) — but no corresponding panel elements exist in the component. Panels are expected to be rendered by the parent. |
 | Arrow key navigation | **Missing — WCAG violation** |
@@ -4214,11 +4214,11 @@ Roving tabindex is configured but arrow key navigation is missing. The container
 
 ## Part C — Navigation and Wayfinding
 
-> **Family scope.** The CVP Navigation family comprises four publishable components: `HeaderNavigation`, `PageSideNav`, `Breadcrumbs`, and `Tabs`. `DesignSystemNav` exists in the repository but is an internal documentation-site component only and is excluded from the publishable specification. `Accordion` and `Tree` are classified as Data Display in the component inventory (Pass 6) but serve wayfinding functions; they are documented in Part D (Data Display). `Segmented` was documented in Part B (Form Controls) as it is classified there.
+> **Family scope.** The CVP Navigation family comprises four publishable components: `HeaderNavigation`, `PageSideNav`, `Breadcrumb`, and `Tabs`. `DesignSystemNav` exists in the repository but is an internal documentation-site component only and is excluded from the publishable specification. `Accordion` and `Tree` are classified as Data Display in the component inventory (Pass 6) but serve wayfinding functions; they are documented in Part D (Data Display). `SegmentedControl` was documented in Part B (Form Controls) as it is classified there.
 
-> **Family-wide token migration note.** All Navigation components define their styling via inline `<style>` blocks. Token coverage is mixed: `HeaderNavigation` partially consumes `--cvp-color-nav-*` tokens (from the semantic layer); `PageSideNav`, `Breadcrumbs`, and `Tabs` use unregistered component-level tokens referencing old shorthand tokens (`--bg-base`, `--text-secondary`, `--border-default`, `--icon-muted`, `--text-primary`, `--bg-hover`, `--muted`, `--focus-ring`, etc.). These old shorthand tokens are not part of the canonical CVP three-tier architecture and must be migrated to `--cvp-*` tokens in Phase 2.
+> **Family-wide token migration note.** All Navigation components define their styling via inline `<style>` blocks. Token coverage is mixed: `HeaderNavigation` partially consumes `--cvp-color-nav-*` tokens (from the semantic layer); `PageSideNav`, `Breadcrumb`, and `Tabs` use unregistered component-level tokens referencing old shorthand tokens (`--bg-base`, `--text-secondary`, `--border-default`, `--icon-muted`, `--text-primary`, `--bg-hover`, `--muted`, `--focus-ring`, etc.). These old shorthand tokens are not part of the canonical CVP three-tier architecture and must be migrated to `--cvp-*` tokens in Phase 2.
 
-> **Family-wide gap — click-outside keyboard pattern.** `HeaderNavigation`, `Breadcrumbs`, and PageSideNav dropdown menus close on external `mousedown` events but do not close on external `pointerdown` or `touchstart`. On mobile, some taps produce no `mousedown` — menus may not close. All dropdown close handlers should use `pointerdown` instead of `mousedown`, or use a React portal with a transparent backdrop element.
+> **Family-wide gap — click-outside keyboard pattern.** `HeaderNavigation`, `Breadcrumb`, and PageSideNav dropdown menus close on external `mousedown` events but do not close on external `pointerdown` or `touchstart`. On mobile, some taps produce no `mousedown` — menus may not close. All dropdown close handlers should use `pointerdown` instead of `mousedown`, or use a React portal with a transparent backdrop element.
 
 > **Family-wide gap — `transition: all`.** `HeaderNavigation` and `PageSideNav` both use `transition: all 150ms ease` or `transition: all 0.2s ease`. Replace with explicit property lists.
 
@@ -4783,7 +4783,7 @@ Badges display a string or number. They do not have a semantic `aria-label` — 
 
 ---
 
-### Breadcrumbs
+### Breadcrumb
 
 | Dimension | Status |
 |---|---|
@@ -4977,7 +4977,7 @@ At ≤768px: gap and item-gap reduce from 8px to 6px and 4px respectively. No tr
 #### Composition
 
 - Typically placed inside a page header `<div>`, below the `HeaderNavigation` and above the main content area.
-- Uses the `Layout` component's `rightPanelBreadcrumbs` prop to inject breadcrumbs into the panel header.
+- Uses the `Layout` component's `rightPanelBreadcrumb` prop to inject breadcrumbs into the panel header.
 - Does not communicate with `PageSideNav` — active state is managed separately.
 
 ---
@@ -5040,8 +5040,8 @@ A horizontally scrollable tab strip with associated content panels. Each tab con
 #### When Not to Use
 
 - Page-level navigation between pages — use `PageSideNav` or `HeaderNavigation`.
-- Binary toggle — use `Toggle` or `Segmented`.
-- Very few options (2) — use `Segmented` for a more compact treatment.
+- Binary toggle — use `Toggle` or `SegmentedControl`.
+- Very few options (2) — use `SegmentedControl` for a more compact treatment.
 
 ---
 
@@ -5477,7 +5477,7 @@ The following components listed in the brief's potential component list were sea
 | Mobile Navigation | Not implemented | Responsive collapse exists in HeaderNavigation but no mobile drawer |
 | App Switcher | Integrated | Part of HeaderNavigation account dropdown — not a standalone component |
 | Account Menu | Integrated | Part of HeaderNavigation user dropdown — not a standalone component |
-| Back Link | Pattern only | Implemented as the first item in `Breadcrumbs` with ArrowLeft icon |
+| Back Link | Pattern only | Implemented as the first item in `Breadcrumb` with ArrowLeft icon |
 | DesignSystemNav | Internal only | Not a publishable component |
 
 All absent components are **Specification gaps** pending design and implementation.
@@ -5493,7 +5493,7 @@ All absent components are **Specification gaps** pending design and implementati
 > **Family scope.** The CVP publishable component set for this pass comprises:
 > - **Overlays:** `Modal`, `ContentBrowserModal`
 > - **Disclosure:** `Accordion` (documented in Part C — Navigation, §Accordion)
-> - **Feedback:** `Toast`, `NotificationBanner`
+> - **Feedback:** `Toast`, `Banner`
 >
 > The following shadcn/ui and Radix primitives are installed in `src/app/components/ui/` and are available as composition primitives but are **not CVP-styled components**: `Dialog`, `Drawer`, `Sheet`, `Popover`, `Tooltip`, `HoverCard`, `Alert`, `Badge`, `Progress`, `Skeleton`, `Collapsible`, and `Sonner`. They are documented in a summary table at the end of this section. They do not receive full §10-template specifications in this pass.
 >
@@ -5509,7 +5509,7 @@ All absent components are **Specification gaps** pending design and implementati
 
 > **Family-wide overlay gap — `prefers-reduced-motion`.** No overlay or feedback component implements a `@media (prefers-reduced-motion: reduce)` block. All entrance/exit animations play regardless of system preference.
 
-> **Family-wide token migration note.** CVP Modal and Toast use unregistered component-level tokens (`--modal-*`, `--toast-*`) with mostly hardcoded fallback values. `cvp-component-tokens.css` defines `--cvp-modal-*` tokens as the migration target. NotificationBanner uses entirely hardcoded hex values with no token references.
+> **Family-wide token migration note.** CVP Modal and Toast use unregistered component-level tokens (`--modal-*`, `--toast-*`) with mostly hardcoded fallback values. `cvp-component-tokens.css` defines `--cvp-modal-*` tokens as the migration target. Banner uses entirely hardcoded hex values with no token references.
 
 ---
 
@@ -5537,7 +5537,7 @@ A full-screen-backdrop blocking overlay (modal dialog). Prevents interaction wit
 
 #### When Not to Use
 
-- Simple informational messages — use `NotificationBanner` or `Toast`.
+- Simple informational messages — use `Banner` or `Toast`.
 - Non-blocking supplementary information — use `Popover` or `Tooltip`.
 - Navigation — modals must not replace page navigation.
 - Content that can be shown inline — modals add cognitive overhead.
@@ -6031,7 +6031,7 @@ A transient, auto-dismissing notification that appears in the top-right corner o
 #### When Not to Use
 
 - Errors that block the user from continuing — use an inline error or Modal.
-- Information that must persist until acknowledged — use `NotificationBanner`.
+- Information that must persist until acknowledged — use `Banner`.
 - Status that the user needs to read before they can act — do not auto-dismiss.
 - More than 3 toasts visible at once — queue or throttle additions.
 
@@ -6293,7 +6293,7 @@ At ≤640px: `min-width: auto; width: 100%` on individual toasts; container uses
 
 ---
 
-### NotificationBanner
+### Banner
 
 | Dimension | Status |
 |---|---|
@@ -6305,7 +6305,7 @@ At ≤640px: `min-width: auto; width: 100%` on individual toasts; container uses
 
 #### Purpose
 
-A persistent, inline contextual message. Unlike `Toast`, `NotificationBanner` is not transient — it remains visible until explicitly dismissed or the containing component unmounts. Used to communicate page-level or section-level status that the user must be aware of before proceeding.
+A persistent, inline contextual message. Unlike `Toast`, `Banner` is not transient — it remains visible until explicitly dismissed or the containing component unmounts. Used to communicate page-level or section-level status that the user must be aware of before proceeding.
 
 #### When to Use
 
@@ -6486,7 +6486,7 @@ The following feedback primitives are installed in `src/app/components/ui/` and 
 | Loading placeholder for content | `Skeleton` (shadcn) |
 | Toast using the Sonner API | `Sonner`/`Toaster` (shadcn) |
 | Product notification toast | `Toast` (CVP) |
-| Persistent contextual message | `NotificationBanner` (CVP) |
+| Persistent contextual message | `Banner` (CVP) |
 
 **Skeleton accessibility gap:** `Skeleton` has no ARIA attributes. The parent element must use `aria-busy="true"` and `aria-label="Loading…"` while skeleton content is displayed. When real content replaces the skeleton, `aria-busy` must be removed.
 
@@ -6513,10 +6513,10 @@ The following components listed in the brief's potential component list do not e
 | `Expandable Panel` | Not implemented | No file found |
 | `Collapsible Section` | Not standalone CVP | Use `Accordion` |
 | `Alert` | Not standalone CVP | Shadcn primitive (`ui/alert.tsx`) available |
-| `Banner` | Alias of `NotificationBanner` (CVP) | Documented above |
+| `Banner` | Alias of `Banner` (CVP) | Documented above |
 | `Inline Message` | Specification gap | No standalone component; see `MiscInput` validation messages |
 | `Snackbar` | Alias of `Toast` (CVP) | Documented above |
-| `Notification` | Alias of `NotificationBanner` (CVP) | Documented above |
+| `Notification` | Alias of `Banner` (CVP) | Documented above |
 | `Status Indicator` | Not implemented | No standalone component |
 | `Badge` | Not standalone CVP | Shadcn primitive (`ui/badge.tsx`) available |
 | `Progress Bar` | Not standalone CVP | Shadcn/Radix primitive (`ui/progress.tsx`) available |
@@ -7588,7 +7588,7 @@ The complete absence of tree roles means screen readers announce the tree as a s
 >
 > **Family-wide notes:**
 > - All domain components use legacy shorthand tokens (`--bg-page`, `--border-default`, `--text-primary`, `--icon-muted`) or unregistered component tokens. No domain component has completed Phase 2 token migration.
-> - `RailDetails` is a **page-level composition**, not a reusable primitive. It assembles `Breadcrumbs`, `Tabs`, `NotificationBanner`, `PrimaryButton`, `OutlineButton`, and `TextButton` with product-specific layout CSS. It should be treated as a product-layer pattern, not a published design system component.
+> - `RailDetails` is a **page-level composition**, not a reusable primitive. It assembles `Breadcrumb`, `Tabs`, `Banner`, `PrimaryButton`, `OutlineButton`, and `TextButton` with product-specific layout CSS. It should be treated as a product-layer pattern, not a published design system component.
 > - Editorial workflow state (draft, staged, live, expired, scheduled) is represented in `RailDetails` via hardcoded badge text (`"Active"`, `"Editorial"`, `"CAR-002"`). No programmatic status model exists in the component — status is consumer-defined string content.
 
 ---
@@ -7932,7 +7932,7 @@ The component itself has no responsive breakpoints. The grid variants rely on `a
 | Storybook stories | None |
 | Token migration | Legacy tokens throughout (`--bg-page`, `--bg-surface`, `--border-default`, `--text-primary`, `--text-secondary`, `--text-muted`, `--icon-muted`, `--bg-hover`, `--border-subtle`, `--border-strong`, `--bg-surface-raised`); badge tokens (`--chip-bg`, `--state-success-bg`, `--state-info-bg`) are unregistered |
 | Specification confidence | High |
-| Classification | **Product-layer page composition.** This is not a reusable primitive — it is an opinionated layout assembling `Breadcrumbs`, `Tabs`, `NotificationBanner`, `PrimaryButton`, `OutlineButton`, `TextButton`, and domain-specific rail preview elements. Design system changes to composed components propagate automatically. |
+| Classification | **Product-layer page composition.** This is not a reusable primitive — it is an opinionated layout assembling `Breadcrumb`, `Tabs`, `Banner`, `PrimaryButton`, `OutlineButton`, `TextButton`, and domain-specific rail preview elements. Design system changes to composed components propagate automatically. |
 
 #### Purpose
 
@@ -7942,7 +7942,7 @@ The editorial management view for a single Rail object. Provides a three-region 
 
 ```
 ┌─────────────────────────────────────────────────┐
-│  Sidebar (200px)  │  Breadcrumbs nav bar (44px) │
+│  Sidebar (200px)  │  Breadcrumb nav bar (44px) │
 │  Rail Manager     │─────────────────────────────│
 │  [Base] [Config]  │  Content header              │
 │                   │  Title · Badges · Metadata   │
@@ -7951,7 +7951,7 @@ The editorial management view for a single Rail object. Provides a three-region 
 │  · Content Query  │  Content area (scrollable)   │
 │  · Rails Colls    │  · Content Preview rail      │
 │  · Query Items    │  · Add content button         │
-│                   │  · NotificationBanner        │
+│                   │  · Banner        │
 │  Config tab:      │                              │
 │  · Listing Filters│                              │
 │  · Showing Type   │                              │
@@ -8052,7 +8052,7 @@ The sidebar uses the CVP `Tabs` component (Base / Configuration tabs). All secti
 | Badge elements | `<span>` elements | No ARIA role; correct for decorative status chips |
 | Sidebar `<aside>` | Used correctly | No `aria-label` on `<aside>` |
 | Tabs | CVP `Tabs` component | Inherits Tabs keyboard model |
-| Breadcrumbs | CVP `Breadcrumbs` component | Inherits Breadcrumbs ARIA |
+| Breadcrumb | CVP `Breadcrumb` component | Inherits Breadcrumb ARIA |
 | Action buttons | CVP `PrimaryButton`, `OutlineButton` | No handlers — not testable |
 | Team dropdown | Custom `<button>` | Uses `:focus` not `:focus-visible` — **gap** |
 | Content preview images | `<img alt={title}>` | Correct |
@@ -8813,7 +8813,7 @@ A two-panel horizontal layout with an optional resizable divider. Provides left-
 6. **Panel header title** — 14px / 600 weight / `var(--foreground)`.
 7. **Panel toggle button** — `<button>` — `ChevronLeft`/`ChevronRight` icon; 28×28px; shows when `showToggle={true}`.
 8. **Panel actions** — `<div class="layout__panel-header-actions">` — arbitrary ReactNode slot.
-9. **Breadcrumbs** — rendered in right panel header when `rightPanelBreadcrumbs` is non-empty.
+9. **Breadcrumb** — rendered in right panel header when `rightPanelBreadcrumb` is non-empty.
 10. **Panel content** — `<div class="layout__panel-content">` — `overflow: auto`; custom webkit scrollbar.
 
 ---
@@ -8826,7 +8826,7 @@ A two-panel horizontal layout with an optional resizable divider. Provides left-
 | `rightPanel` | `ReactNode` | — | Right panel content |
 | `leftPanelHeader` | `PanelHeaderProps` | — | Header config for left panel |
 | `rightPanelHeader` | `PanelHeaderProps` | — | Header config for right panel |
-| `rightPanelBreadcrumbs` | `BreadcrumbItem[]` | — | Breadcrumb trail in right panel header |
+| `rightPanelBreadcrumb` | `BreadcrumbItem[]` | — | Breadcrumb trail in right panel header |
 | `leftPanelWidth` | `number` | `30` | Left panel width (%) on desktop |
 | `rightPanelWidth` | `number` | `70` | Right panel width (%) on desktop |
 | `gap` | `string` | `'0.5rem'` | Gap between panels |
@@ -8904,7 +8904,7 @@ When `resizable={true}`, the resizer element listens to `mousedown` to begin a d
 | Panel headers | Plain `<div>` | Should be `<header>` element |
 | Panel toggle | `<button>` | Needs `aria-expanded`, `aria-controls` |
 | Resizer handle | No `role` or keyboard | Add `role="separator"`, keyboard resize |
-| Breadcrumbs | `CVP Breadcrumbs` component | Inherits Breadcrumbs ARIA |
+| Breadcrumb | `CVP Breadcrumb` component | Inherits Breadcrumb ARIA |
 
 ---
 
@@ -9114,21 +9114,21 @@ This recommendation requires a Phase 2 migration task. Until migration, both fil
 | IconSmallButton | Actions | Part A | ✗ | `IconSmallButton.tsx` | ✗ | Unregistered | Spec gap: should be `size` prop on `IconButton` |
 | IconButtonWithText | Actions | Part A | ✗ | `IconButtonWithText.tsx` | ✗ | Unregistered | No CVP token counterpart; no Storybook |
 | TextInput | Form Controls | Part B | ✗ | `TextInput.tsx` | ✗ | Unregistered `--text-input-*` | No Storybook; token migration pending |
-| TextArea | Form Controls | Part B | ✗ | `TextArea.tsx` | ✗ | Unregistered | No Storybook |
+| Textarea | Form Controls | Part B | ✗ | `Textarea.tsx` | ✗ | Unregistered | No Storybook |
 | MiscInput | Form Controls | Part B | ✗ | `MiscInput.tsx` | ✗ | Legacy + hardcoded | TextInput/MiscInput overlap unresolved (OQ-3) |
 | Select | Form Controls | Part B | ✗ | `Select.tsx` | ✗ | Unregistered | No Storybook |
 | MultiSelect | Form Controls | Part B | ✗ | `MultiSelect.tsx` | ✗ | Unregistered | No Storybook; `multiple` mode gap |
 | Checkbox | Form Controls | Part B | ✗ | `Checkbox.tsx` | ✗ | Unregistered `--checkbox-*` | No Storybook |
 | Toggle | Form Controls | Part B | ✗ | `Toggle.tsx` | ✗ | Unregistered `--toggle-*` | No Storybook |
-| Segmented | Form Controls | Part B | ✗ | `Segmented.tsx` | ✗ | Unregistered `--segmented-*` | No Storybook |
+| SegmentedControl | Form Controls | Part B | ✗ | `SegmentedControl.tsx` | ✗ | Unregistered `--segmented-*` | No Storybook |
 | HeaderNavigation | Navigation | Part C | ✗ | `HeaderNavigation.tsx` | ✗ | Partial CVP sem | No Storybook; responsive gap |
 | PageSideNav | Navigation | Part C | ✗ | `PageSideNav.tsx` | ✗ | Unregistered | No Storybook; collapsed state gap |
-| Breadcrumbs | Navigation | Part C | ✗ | `Breadcrumbs.tsx` | ✗ | Unregistered `--breadcrumb-*` | No Storybook |
+| Breadcrumb | Navigation | Part C | ✗ | `Breadcrumb.tsx` | ✗ | Unregistered `--breadcrumb-*` | No Storybook |
 | Tabs | Navigation | Part C | ✗ | `Tabs.tsx` | ✗ | Unregistered `--tabs-*` | No Storybook |
 | Modal | Overlays | Part D | ✗ | `Modal.tsx` | ✗ | Unregistered `--modal-*` | No focus trap; no initial focus; no focus restoration |
 | ContentBrowserModal | Overlays | Part D + Part F addendum | ✗ | `ContentBrowserModal.tsx` | ✗ | Unknown | Product-layer; selection strip remove button has no `aria-label` |
 | Toast | Feedback | Part D | ✗ | `Toast.tsx` | ✗ | Unregistered `--toast-*` | Variant tokens undefined (invisible without consumer tokens); timer non-pause WCAG violation |
-| NotificationBanner | Feedback | Part D | ✗ | `NotificationBanner.tsx` | ✗ | Unregistered `--notification-banner--*` | `prefers-color-scheme` vs `[data-theme]` mismatch; missing `role`/`aria-live` |
+| Banner | Feedback | Part D | ✗ | `Banner.tsx` | ✗ | Unregistered `--notification-banner--*` | `prefers-color-scheme` vs `[data-theme]` mismatch; missing `role`/`aria-live` |
 | Table | Data Display | Part E | ✗ | `Table.tsx` | ✗ | Unregistered `--table-*` | No semantic HTML (`<table>`/`<th>`/`<td>`); no ARIA role equivalents; indeterminate checkbox gap |
 | Accordion | Data Display | Accordion addendum (after Part F) | ✗ | `Accordion.tsx` | ✗ | Unregistered `--accordion-*` | Height animation broken; content ARIA missing |
 | Tree | Data Display | Part E | ✗ | `Tree.tsx` + 4 sub-files | ✗ | Inline tokens | No `role="tree"`; no keyboard navigation; completely inaccessible |
@@ -9166,7 +9166,7 @@ These 46 primitives live in `src/app/components/ui/`. They are available as buil
 | aspect-ratio | ✗ | Utility primitive |
 | avatar | ~ | Used in `HeaderNavigation` |
 | badge | ✗ | Not CVP-styled; no CVP badge component |
-| breadcrumb | ✗ | CVP `Breadcrumbs.tsx` is the canonical component |
+| breadcrumb | ✗ | CVP `Breadcrumb.tsx` is the canonical component |
 | button | ✗ | CVP `PrimaryButton` etc. are the canonical buttons |
 | calendar | ✗ | Not CVP-styled; no CVP calendar |
 | card | ✗ | Not CVP-styled; no CVP card component |
@@ -9202,9 +9202,9 @@ These 46 primitives live in `src/app/components/ui/`. They are available as buil
 | switch | ✗ | CVP `Toggle.tsx` is canonical |
 | table | ✗ | CVP `Table.tsx` is canonical (though it uses `<div>` not `<table>`) |
 | tabs | ✗ | CVP `Tabs.tsx` is canonical |
-| textarea | ✗ | CVP `TextArea.tsx` is canonical |
+| textarea | ✗ | CVP `Textarea.tsx` is canonical |
 | toggle | ✗ | CVP `Toggle.tsx` is canonical |
-| toggle-group | ✗ | CVP `Segmented.tsx` covers this use case |
+| toggle-group | ✗ | CVP `SegmentedControl.tsx` covers this use case |
 | tooltip | ~ | Mentioned in Part D as available primitive |
 
 ---
@@ -9270,21 +9270,21 @@ Every CVP publishable component receives one final status classification. This c
 | IconSmallButton | Requires design decision — should be `size` prop on `IconButton`, not separate component |
 | IconButtonWithText | Requires design decision — no CVP token counterpart; no Storybook; OQ-pending |
 | TextInput | Ready with documented assumptions — token migration required |
-| TextArea | Ready with documented assumptions — token migration required |
+| Textarea | Ready with documented assumptions — token migration required |
 | MiscInput | Requires design decision — boundary with `TextInput` unresolved (OQ-3) |
 | Select | Ready with documented assumptions — token migration required |
 | MultiSelect | Ready with documented assumptions — `multiple` mode gap |
 | Checkbox | Ready for engineering — most complete CVP form component |
 | Toggle | Ready with documented assumptions — token migration required |
-| Segmented | Ready with documented assumptions — token migration required |
+| SegmentedControl | Ready with documented assumptions — token migration required |
 | HeaderNavigation | Requires implementation investigation — `--cvp-color-surface-selected` vs `--cvp-color-surface-active` token inconsistency |
 | PageSideNav | Ready with documented assumptions — collapsed state gap; token migration required |
-| Breadcrumbs | Ready for engineering — correct ARIA; token migration required |
+| Breadcrumb | Ready for engineering — correct ARIA; token migration required |
 | Tabs | Ready with documented assumptions — keyboard model partially implemented |
 | Modal | Requires accessibility validation — no focus trap; WCAG 2.4.3 failure; OQ-1 (rendering strategy) |
 | ContentBrowserModal | Requires design decision — product-layer classification; selection strip ARIA gap |
 | Toast | Requires accessibility validation — timer not paused; `role="alert"` on non-urgent variants; token inconsistency (`danger` maps to `error` tokens) |
-| NotificationBanner | Requires accessibility validation — `prefers-color-scheme` vs `[data-theme]` mismatch; missing `role`/`aria-live` |
+| Banner | Requires accessibility validation — `prefers-color-scheme` vs `[data-theme]` mismatch; missing `role`/`aria-live` |
 | Table | Requires implementation investigation — no semantic HTML; complete WCAG 1.3.1 failure; must choose Option A (rewrite with `<table>`) or Option B (ARIA roles) before proceeding |
 | Accordion | Requires implementation investigation — height animation broken; ARIA content region gap |
 | Tree | Requires implementation investigation — no ARIA tree pattern; no keyboard navigation; WCAG 4.1.2 failure |
@@ -9330,8 +9330,8 @@ Every CVP publishable component receives one final status classification. This c
 | **P1** | Navigation Shell | No skip-to-main link | Add `<a href="#main-content" class="skip-link">Skip to main content</a>` as first focusable element | Engineering | Accessibility (WCAG 2.4.1) |
 | **P1** | Navigation Shell | Mobile navigation absent at ≤768px | Implement hamburger + Sheet/Drawer overlay; `PageSideNav` collapses to a drawer | Engineering + Product Design | Responsive, Accessibility |
 | **P1** | HeaderNavigation | Dropdown `--cvp-color-surface-selected` token does not exist — architecture defines `--cvp-color-surface-active` | Correct token name in specification and component implementation | Design Systems | Token, visual regression |
-| **P1** | NotificationBanner | Uses `prefers-color-scheme` media query for theming instead of `[data-theme]` attribute | Replace media query with `[data-theme="dark"]` selector | Engineering | Visual regression, theme |
-| **P1** | NotificationBanner | Missing `role` and `aria-live` attributes — stateless banner not announced to AT | Add `role="status"` + `aria-live="polite"` (or `role="alert"` for error variants) | Engineering | Accessibility (WCAG 4.1.3) |
+| **P1** | Banner | Uses `prefers-color-scheme` media query for theming instead of `[data-theme]` attribute | Replace media query with `[data-theme="dark"]` selector | Engineering | Visual regression, theme |
+| **P1** | Banner | Missing `role` and `aria-live` attributes — stateless banner not announced to AT | Add `role="status"` + `aria-live="polite"` (or `role="alert"` for error variants) | Engineering | Accessibility (WCAG 4.1.3) |
 | **P1** | SegmentQueryConfiguration | Filter ID collision on remove-then-add — IDs generated as string index | Replace with `crypto.randomUUID()` | Engineering | Engineering |
 | **P1** | SegmentQueryConfiguration | `initialConfig` ignored after mount (derived state anti-pattern) | Document `key` prop pattern or add `onReset` callback | Engineering | Engineering |
 | **P2** | All components | `prefers-reduced-motion` not respected — all animations fire unconditionally | Add `@media (prefers-reduced-motion: reduce)` overrides to all component stylesheets | Engineering | Accessibility (WCAG 2.3.3), responsive |
@@ -9784,7 +9784,7 @@ No CVP loading/skeleton component exists. `ui/skeleton.tsx` (shadcn) is availabl
 #### State Coordination
 
 Loading state must propagate from the form/page root downward to every interactive child:
-- All `TextInput`, `TextArea`, `Select`, `MultiSelect`, `Checkbox`, `Toggle` → `disabled`.
+- All `TextInput`, `Textarea`, `Select`, `MultiSelect`, `Checkbox`, `Toggle` → `disabled`.
 - All `PrimaryButton`, `OutlineButton`, `TextButton` → `disabled`.
 - The loading source should be a single `isLoading` boolean at the form root, not managed per-field.
 
@@ -9891,9 +9891,9 @@ All focus management gaps are documented in Part D §Modal. Until the focus trap
 
 ### P.7 Save and Publish
 
-**Components used:** `PrimaryButton` (Save Changes) · `OutlineButton` (Preview, Duplicate) · `NotificationBanner` · `Toast`
+**Components used:** `PrimaryButton` (Save Changes) · `OutlineButton` (Preview, Duplicate) · `Banner` · `Toast`
 
-**See also:** Part G §RailDetails, Part D §NotificationBanner, Part D §Toast
+**See also:** Part G §RailDetails, Part D §Banner, Part D §Toast
 
 #### Purpose
 
@@ -9920,7 +9920,7 @@ Content header (flex row)
 | Clean (no unsaved changes) | "Save Changes" disabled | Duplicate, Preview |
 | Dirty (unsaved changes present) | "Save Changes" enabled | All three |
 | Saving | "Save Changes" loading; all buttons disabled | None |
-| Saved | NotificationBanner or Toast confirmation | Duplicate, Preview, Save (disabled) |
+| Saved | Banner or Toast confirmation | Duplicate, Preview, Save (disabled) |
 | Save failed | Error Toast or inline error | All three; save re-enabled |
 
 **Gap:** `RailDetails` has no unsaved-changes detection. The "Save Changes" button is always visible but has no `onClick` handler. The dirty/clean state distinction is not implemented.
@@ -9975,7 +9975,7 @@ After clicking "Save Changes":
 
 - Save button fires `onSave` callback.
 - Loading state disables all action buttons.
-- On save success: `NotificationBanner` or Toast appears with success message.
+- On save success: `Banner` or Toast appears with success message.
 - On save failure: error shown; save button re-enabled.
 - Duplicate fires `onDuplicate`; opens duplicate in new context.
 - Preview fires `onPreview`; opens a view-only rendering.
@@ -10132,9 +10132,9 @@ A "Filters ↑/↓" button with `ChevronUp`/`ChevronDown` icon toggles a filter 
 
 ### P.10 Master-Detail Layout
 
-**Components used:** `Layout` · `Tabs` · `Accordion` · `Breadcrumbs` · `PrimaryButton` · `OutlineButton`
+**Components used:** `Layout` · `Tabs` · `Accordion` · `Breadcrumb` · `PrimaryButton` · `OutlineButton`
 
-**See also:** Part G §Layout, Part C §Tabs, Part C §Breadcrumbs
+**See also:** Part G §Layout, Part C §Tabs, Part C §Breadcrumb
 
 #### Purpose
 
@@ -10151,7 +10151,7 @@ Application shell
     │   ├── Tabs (Base | Configuration)
     │   └── Tab content (Accordion sections)
     └── Content panel (flex-1, Layout right panel)
-        ├── Breadcrumbs (top of panel)
+        ├── Breadcrumb (top of panel)
         ├── Content header
         │   ├── h1 title
         │   ├── Status badges
@@ -10159,7 +10159,7 @@ Application shell
         │   └── Action buttons (Duplicate, Preview, Save)
         └── Content body
             ├── RailContentGallery (display variant)
-            └── NotificationBanner
+            └── Banner
 ```
 
 #### Selection Coordination
@@ -10196,9 +10196,9 @@ In a canonical master-detail pattern, selecting an item in the left panel update
 
 ### P.11 Navigation Shell
 
-**Components used:** `HeaderNavigation` · `PageSideNav` · `Breadcrumbs` · `Layout`
+**Components used:** `HeaderNavigation` · `PageSideNav` · `Breadcrumb` · `Layout`
 
-**See also:** Part C §HeaderNavigation, Part C §PageSideNav, Part C §Breadcrumbs, Part G §Layout
+**See also:** Part C §HeaderNavigation, Part C §PageSideNav, Part C §Breadcrumb, Part G §Layout
 
 #### Purpose
 
@@ -10218,7 +10218,7 @@ Provide persistent global navigation (horizontal top bar + optional vertical sid
     │   ├── PageSideNav (fixed left; 240px; full height)
     │   │   └── sections[] with items, icons, badges
     │   └── Main content (flex: 1; margin-left = sidebar width)
-    │       ├── Breadcrumbs (top of each content page)
+    │       ├── Breadcrumb (top of each content page)
     │       └── Page content
     └── Toast region (fixed, bottom-right)
 ```
@@ -10334,7 +10334,7 @@ When `ContentBrowserModal` is used to add items to a rail, the selected IDs must
 
 ### P.13 Editorial Configuration
 
-**Components used:** `Tabs` · `Accordion` · `Select` · `Toggle` · `Segmented` · `TextInput` · `PrimaryButton`
+**Components used:** `Tabs` · `Accordion` · `Select` · `Toggle` · `SegmentedControl` · `TextInput` · `PrimaryButton`
 
 **See also:** Part C §Tabs, Accordion addendum, Part B §Select, Part G §RailDetails
 

@@ -1,10 +1,10 @@
-# Segmented Standardization
+# SegmentedControl Standardization
 
-Segmented now follows the CVP navigation-family component contract.
+SegmentedControl now follows the CVP navigation-family component contract.
 
 ## Semantic correction
 
-Segmented represents a mutually exclusive choice without associated tab panels. It therefore uses `radiogroup` and `radio` semantics instead of `tablist` and `tab`.
+SegmentedControl represents a mutually exclusive choice without associated tab panels. It therefore uses `radiogroup` and `radio` semantics instead of `tablist` and `tab`.
 
 ## Supported behavior
 

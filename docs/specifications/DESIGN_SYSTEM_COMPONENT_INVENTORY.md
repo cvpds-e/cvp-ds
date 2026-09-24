@@ -56,15 +56,15 @@ The approved scope has been migrated to the CVP primitive → semantic → compo
 | Component | Family | Implementation | Storybook | Token coverage | Behaviour documented | Status |
 |---|---|---|---|---|---|---|
 | TextInput | Form Controls | `src/app/components/TextInput.tsx` | `TextInput.css` | `--cvp-input-*` | `TextInputDocumentation.tsx` | Standardized — reference form contract |
-| TextArea | Form Controls | `src/app/components/TextArea.tsx` | `TextArea.css` | `--cvp-textarea-*` → shared input semantics | `TextAreaDocumentation.tsx` | Standardized — Visual + Handoff |
+| Textarea | Form Controls | `src/app/components/Textarea.tsx` | `Textarea.css` | `--cvp-textarea-*` → shared input semantics | `TextareaDocumentation.tsx` | Standardized — Visual + Handoff |
 | MiscInput | Form Controls | `src/app/components/MiscInput.tsx` | `MiscInput.css` | `--cvp-misc-input-*` → `--cvp-input-*` | `MiscInputDocumentation.tsx` | Standardized — Visual + Handoff |
 | Select | Form Controls | `src/app/components/Select.tsx` | `Select.css` | `--cvp-select-*` → shared input/menu semantics | `SelectDocumentation.tsx` | Standardized — Visual + Handoff |
 | MultiSelect | Form Controls | `src/app/components/MultiSelect.tsx` | Label + combobox + multi-select listbox | `--cvp-multi-select-*` registered Tier 3 contract | `MultiSelectDocumentation.tsx`, `docs/handoffs/components/MULTI_SELECT_STANDARDIZATION.md` | Standardized — Visual + engineering handoff |
 | Checkbox | Form Controls | `src/app/components/Checkbox.tsx` | Native input + label; fieldset/legend for groups | `--cvp-checkbox-*` registered Tier 3 contract | `CheckboxDocumentation.tsx`, `docs/handoffs/components/CHECKBOX_STANDARDIZATION.md` | Standardized — Visual + engineering handoff |
 | Toggle | Form Controls | `src/app/components/Toggle.tsx` | None | Deferred | `ToggleDocumentation.tsx` | Deferred — hidden from navigation |
-| Segmented | Form Controls | `src/app/components/Segmented.tsx` | `Segmented.css` | `--cvp-segmented-*` | `SegmentedDocumentation.tsx`, `docs/handoffs/components/SEGMENTED_STANDARDIZATION.md` | Standardized — Visual + Handoff |
+| SegmentedControl | Form Controls | `src/app/components/SegmentedControl.tsx` | `SegmentedControl.css` | `--cvp-segmented-*` | `SegmentedControlDocumentation.tsx`, `docs/handoffs/components/SEGMENTED_CONTROL_STANDARDIZATION.md` | Standardized — Visual + Handoff |
 
-**Aliases / naming notes:** `TextInput` is the canonical single-line input. `MiscInput` is a richer variant with prefix/suffix slots, character count, copy button, and four validation states — it is not an alias; it is a distinct, more capable component. These two should be reconciled: either `MiscInput` supersedes `TextInput` or they occupy different complexity tiers. `Segmented` is the component name in code; `SegmentedControl` appears in some documentation — canonical name is `Segmented`. `Toggle` maps to what `cvp-component-tokens.css` does not yet cover; the shadcn/ui layer has a separate `ui/switch.tsx` and `ui/toggle.tsx` — these are primitives, not CVP-styled components.
+**Aliases / naming notes:** `TextInput` is the canonical single-line input. `MiscInput` is a richer variant with prefix/suffix slots, character count, copy button, and four validation states — it is not an alias; it is a distinct, more capable component. These two should be reconciled: either `MiscInput` supersedes `TextInput` or they occupy different complexity tiers. `SegmentedControl` is the component name in code; `SegmentedControl` appears in some documentation — canonical name is `SegmentedControl`. `Toggle` maps to what `cvp-component-tokens.css` does not yet cover; the shadcn/ui layer has a separate `ui/switch.tsx` and `ui/toggle.tsx` — these are primitives, not CVP-styled components.
 
 ---
 
@@ -74,11 +74,11 @@ The approved scope has been migrated to the CVP primitive → semantic → compo
 |---|---|---|---|---|---|---|
 | HeaderNavigation | Navigation | `src/app/components/HeaderNavigation.tsx` | `HeaderNavigation.css` | `--cvp-header-*` | `HeaderNavigationDocumentation.tsx` | Standardized — Visual + Handoff |
 | PageSideNav | Navigation | `src/app/components/PageSideNav.tsx` | None | Deferred | `PageSideNavDocumentation.tsx` | Deferred — hidden from navigation |
-| Breadcrumbs | Navigation | `src/app/components/Breadcrumbs.tsx` | `Breadcrumbs.css` | `--cvp-breadcrumb-*` | `BreadcrumbsDocumentation.tsx`, `docs/handoffs/components/BREADCRUMBS_STANDARDIZATION.md` | Standardized — Visual + Handoff |
+| Breadcrumb | Navigation | `src/app/components/Breadcrumb.tsx` | `Breadcrumb.css` | `--cvp-breadcrumb-*` | `BreadcrumbDocumentation.tsx`, `docs/handoffs/components/BREADCRUMB_STANDARDIZATION.md` | Standardized — Visual + Handoff |
 | Tabs | Navigation | `src/app/components/Tabs.tsx` | `Tabs.css` | `--cvp-tabs-*` | `TabsDocumentation.tsx`, `docs/handoffs/components/TABS_STANDARDIZATION.md` | Standardized — Visual + Handoff |
 | DesignSystemNav | Navigation | `src/app/components/DesignSystemNav.tsx` | None | Unknown | None | Unclear — internal use only |
 
-**Aliases / naming notes:** `PageSideNav` is the CVP custom sidebar; `ui/sidebar.tsx` is the shadcn/ui primitive. These are distinct. `Breadcrumbs` (CVP) vs `ui/breadcrumb.tsx` (shadcn) — same distinction. `DesignSystemNav` appears to be an internal demo/navigation component, not a publishable design system component.
+**Aliases / naming notes:** `PageSideNav` is the CVP custom sidebar; `ui/sidebar.tsx` is the shadcn/ui primitive. These are distinct. `Breadcrumb` (CVP) vs `ui/breadcrumb.tsx` (shadcn) — same distinction. `DesignSystemNav` appears to be an internal demo/navigation component, not a publishable design system component.
 
 ---
 
@@ -98,10 +98,10 @@ The approved scope has been migrated to the CVP primitive → semantic → compo
 | Component | Family | Implementation | Storybook | Token coverage | Behaviour documented | Status |
 |---|---|---|---|---|---|---|
 | Toast | Feedback | `src/app/components/Toast.tsx` | None | Canonical Tier 3 (`--cvp-toast-*`) | `ToastDocumentation.tsx` | Standardized — Missing Story |
-| NotificationBanner | Feedback | `src/app/components/NotificationBanner.tsx` | None | Canonical Tier 3 (`--cvp-notification-banner-*`) | `NotificationBannerDocumentation.tsx` | Standardized — Missing Story |
+| Banner | Feedback | `src/app/components/Banner.tsx` | None | Canonical Tier 3 (`--cvp-notification-banner-*`) | `BannerDocumentation.tsx` | Standardized — Missing Story |
 | Skeleton | Feedback | `src/app/components/Skeleton.tsx` | `Skeleton.css` | Canonical Tier 3 (`--cvp-skeleton-*`) | `SkeletonDocumentation.tsx`, `docs/handoffs/components/SKELETON_COMPONENT_DEV_HANDOFF.md` | Standardized — Visual + Handoff |
 
-**Aliases / naming notes:** `Toast` is the transient, auto-dismissing notification. `NotificationBanner` is the persistent, full-width contextual message — these are distinct patterns. `Skeleton` is the shared, layout-preserving loading pattern; `Table` and `RailContentGallery` compose its table-row and rail-card helpers. `ui/sonner.tsx` is a third-party toast primitive also present; the relationship between it and the CVP `Toast` component is unclear (see §6).
+**Aliases / naming notes:** `Toast` is the transient, auto-dismissing notification. `Banner` is the persistent, full-width contextual message — these are distinct patterns. `Skeleton` is the shared, layout-preserving loading pattern; `Table` and `RailContentGallery` compose its table-row and rail-card helpers. `ui/sonner.tsx` is a third-party toast primitive also present; the relationship between it and the CVP `Toast` component is unclear (see §6).
 
 ---
 
@@ -192,10 +192,10 @@ The following 46 components live in `src/app/components/ui/` and are unmodified 
 | Family | Components | Notes |
 |---|---|---|
 | Actions | PrimaryButton, SecondaryButton, OutlineButton, TextButton, IconButton, IconButtonWithText, IconSmallButton | 7 components; 4 button variants + 3 icon-button variants |
-| Form Controls | TextInput, TextArea, MiscInput, Select, MultiSelect, Checkbox, Toggle, Segmented | 8 components; MiscInput/TextInput overlap needs resolution |
-| Navigation | HeaderNavigation, PageSideNav, Breadcrumbs, Tabs, DesignSystemNav | 5 components; DesignSystemNav is internal only |
+| Form Controls | TextInput, Textarea, MiscInput, Select, MultiSelect, Checkbox, Toggle, SegmentedControl | 8 components; MiscInput/TextInput overlap needs resolution |
+| Navigation | HeaderNavigation, PageSideNav, Breadcrumb, Tabs, DesignSystemNav | 5 components; DesignSystemNav is internal only |
 | Overlays | Modal, ContentBrowserModal | 2 components; ContentBrowserModal extends Modal |
-| Feedback | Toast, NotificationBanner | 2 distinct patterns (transient vs. persistent) |
+| Feedback | Toast, Banner | 2 distinct patterns (transient vs. persistent) |
 | Data Display | Table, Accordion, Tree | 3 components; Tree has 5 compound parts |
 | Filtering and Search | Filter, FilterGroup, TagFilter | 3 components; all unregistered in token files |
 | Media and Editorial | RailContentGallery, RailDetails | 2 product-specific components |
@@ -272,7 +272,7 @@ The following 46 components live in `src/app/components/ui/` and are unmodified 
 | Controlled | Yes (`checked` + `onChange`) and uncontrolled (`defaultChecked`) |
 | Theme behaviour | Partial — unregistered tokens |
 
-### Form Controls — Segmented
+### Form Controls — SegmentedControl
 
 | Dimension | Values |
 |---|---|
@@ -322,7 +322,7 @@ The following 46 components live in `src/app/components/ui/` and are unmodified 
 | Controlled | Yes (`activeTab` + `onChange`) |
 | Theme behaviour | Partial — unregistered tokens |
 
-### Navigation — Breadcrumbs
+### Navigation — Breadcrumb
 
 | Dimension | Values |
 |---|---|
@@ -361,7 +361,7 @@ The following 46 components live in `src/app/components/ui/` and are unmodified 
 | Features | auto-dismiss (`duration`) · manual close (`onClose`) |
 | Theme behaviour | Complete — registered Tier 3 variant tokens for both themes |
 
-### Feedback — NotificationBanner
+### Feedback — Banner
 
 | Dimension | Values |
 |---|---|
@@ -453,7 +453,7 @@ The following patterns appear across multiple components and should be specified
 
 ### 4.2 Validation States
 
-**Appears in:** TextInput, MiscInput, TextArea, Checkbox, Select, MultiSelect  
+**Appears in:** TextInput, MiscInput, Textarea, Checkbox, Select, MultiSelect
 **Variants:** `default` · `error` · `warning` · `success`  
 **Current state:** Inconsistent. TextInput supports `default | error`. MiscInput supports all four. No unified validation token group in `cvp-component-tokens.css`.  
 **What to specify:** State colours per variant, message text position, icon usage, ARIA attributes (`aria-invalid`, `aria-describedby`), priority when multiple states co-exist.
@@ -484,7 +484,7 @@ The following patterns appear across multiple components and should be specified
 
 ### 4.7 Overflow Behaviour
 
-**Appears in:** Breadcrumbs (`maxVisible` + dropdown), Table (horizontal scroll), Filter (chip overflow), HeaderNavigation (responsive collapse), PageSideNav (collapsed state)  
+**Appears in:** Breadcrumb (`maxVisible` + dropdown), Table (horizontal scroll), Filter (chip overflow), HeaderNavigation (responsive collapse), PageSideNav (collapsed state)
 **Current state:** Each component handles overflow independently with no shared pattern.  
 **What to specify:** Truncation with tooltip, ellipsis menu (`…`), dropdown overflow, responsive collapse thresholds.
 
@@ -547,20 +547,20 @@ Proposed sequence for `docs/specifications/DESIGN_SYSTEM_SPECIFICATION.md`. Grou
 
 14. **Form control shared anatomy** — label, helper text, error message, required indicator; applies to all below
 15. **TextInput** — full spec
-16. **TextArea** — delta from TextInput
+16. **Textarea** — delta from TextInput
 17. **MiscInput** — full spec (prefix/suffix, copy, character count); note relationship to TextInput
 18. **Select** — full spec
 19. **MultiSelect** — delta from Select; chip pattern
 20. **Checkbox** — full spec; indeterminate state
 21. **Toggle** — full spec; indeterminate state; size variants
-22. **Segmented** — full spec; size and colour variants
+22. **SegmentedControl** — full spec; size and colour variants
 
 ### Pass 4 — Navigation
 
 23. **Navigation overview** — when to use each navigation component
 24. **HeaderNavigation** — full spec; responsive behaviour
 25. **PageSideNav** — full spec; sections; badge; collapsed state
-26. **Breadcrumbs** — full spec; overflow dropdown
+26. **Breadcrumb** — full spec; overflow dropdown
 27. **Tabs** — full spec; tab + panel anatomy
 
 ### Pass 5 — Filtering and Search
@@ -580,7 +580,7 @@ Proposed sequence for `docs/specifications/DESIGN_SYSTEM_SPECIFICATION.md`. Grou
 ### Pass 7 — Feedback
 
 36. **Toast** — full spec; four variants; auto-dismiss; positioning
-37. **NotificationBanner** — full spec; four variants; dismissible
+37. **Banner** — full spec; four variants; dismissible
 38. **Shared Patterns: Empty and Error States** — inline, card, and full-page forms
 
 ### Pass 8 — Data Display

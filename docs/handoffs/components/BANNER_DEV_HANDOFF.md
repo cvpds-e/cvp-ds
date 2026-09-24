@@ -1,13 +1,13 @@
-# Notification Banner — developer handoff
+# Banner — developer handoff
 
 ## Canonical implementation
 
-- Component: `src/app/components/NotificationBanner.tsx`
-- Component styles: `src/app/components/NotificationBanner.css`
+- Component: `src/app/components/Banner.tsx`
+- Component styles: `src/app/components/Banner.css`
 - Tier 3 aliases: `src/styles/tokens/cvp-component-tokens.css`
-- Visual audit: `src/app/components/NotificationBannerDocumentation.tsx`
+- Visual audit: `src/app/components/BannerDocumentation.tsx`
 
-Notification Banner is persistent and remains in document flow. Use Toast for brief action feedback and Modal for blocking decisions.
+Banner is persistent and remains in document flow. Use Toast for brief action feedback and Modal for blocking decisions.
 
 ## API
 

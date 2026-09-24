@@ -4,6 +4,19 @@ import { describe, expect, it, vi } from 'vitest';
 import { Modal } from './Modal';
 
 describe('Modal', () => {
+  it('uses medium and large as the governed surface sizes', () => {
+    const { rerender } = render(<Modal isOpen onClose={() => undefined} title="Default modal" />);
+
+    expect(screen.getByRole('dialog', { name: 'Default modal' })).toHaveStyle({
+      '--cvp-modal-instance-width': 'var(--cvp-modal-width-medium)',
+    });
+
+    rerender(<Modal isOpen onClose={() => undefined} title="Large modal" size="large" />);
+    expect(screen.getByRole('dialog', { name: 'Large modal' })).toHaveStyle({
+      '--cvp-modal-instance-width': 'var(--cvp-modal-width-large)',
+    });
+  });
+
   it('exposes dialog semantics and closes with Escape', async () => {
     const user = userEvent.setup();
     const onClose = vi.fn();

@@ -248,7 +248,7 @@ Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Ca
 
 ## Component Specifications
 
-### NotificationBanner Component
+### Banner Component
 
 #### Layout Structure
 ```
@@ -296,7 +296,7 @@ Container (Auto-layout: Horizontal)
 
 ---
 
-### NotificationBanner Variants
+### Banner Variants
 
 #### Dark Theme Variants
 
@@ -526,17 +526,17 @@ These are useful for buttons, labels, and emphasis.
 
 ---
 
-### Part 3: Creating NotificationBanner Component
+### Part 3: Creating Banner Component
 
 #### Step 1: Set Up Component Page
-1. Create a new page: "🔔 Notification Banner"
+1. Create a new page: "🔔 Banner"
 2. Create a frame: 1200×800px for working space
 
 #### Step 2: Create Base Structure (Info Variant)
 1. **Create Container Frame**:
    - Press `F` for Frame tool
    - Draw a frame approximately 400px wide
-   - Name it: "NotificationBanner"
+   - Name it: "Banner"
    - Set Auto Layout: Horizontal (Shift+A)
    - Padding: 12px all sides
    - Gap: 8px
@@ -610,17 +610,17 @@ These are useful for buttons, labels, and emphasis.
    - Set opacity to 100%
 
 #### Step 6: Create Component
-1. Select the entire NotificationBanner frame
+1. Select the entire Banner frame
 2. Press Ctrl+Alt+K (Windows) or Cmd+Option+K (Mac)
 3. This creates a component
-4. Name it: "NotificationBanner / Info"
+4. Name it: "Banner / Info"
 
 #### Step 7: Create Variants
 Now create the other 3 variants (Success, Warning, Error):
 
 **For Each Variant:**
 1. Duplicate the Info component (Ctrl+D / Cmd+D)
-2. Rename (e.g., "NotificationBanner / Success")
+2. Rename (e.g., "Banner / Success")
 3. Update the background gradient:
    - **Success**: Stop 1: `rgba(16, 185, 129, 0.1)`, Stop 2: `rgba(5, 150, 105, 0.1)`
    - **Warning**: Stop 1: `rgba(245, 158, 11, 0.1)`, Stop 2: `rgba(251, 146, 60, 0.1)`
@@ -641,7 +641,7 @@ Now create the other 3 variants (Success, Warning, Error):
 8. Update sample text to match the variant
 
 #### Step 8: Combine as Variants
-1. Select all 4 NotificationBanner components
+1. Select all 4 Banner components
 2. Right-click → "Combine as variants"
 3. Figma will create a component set
 4. In the properties panel, rename the variant property to "Variant"
@@ -665,7 +665,7 @@ Now create the other 3 variants (Success, Warning, Error):
 
 #### Step 10: Create Light Theme Variants (Optional)
 1. Duplicate the entire component set
-2. Rename: "NotificationBanner / Light"
+2. Rename: "Banner / Light"
 3. For each variant, update colors following the "Light Theme Variants" section
 4. Key differences:
    - Background gradient opacity: 0.08 (instead of 0.1)
@@ -708,7 +708,7 @@ Create any other effect styles your design system needs:
    - List of pages and what they contain
 
 #### Step 2: Create Usage Examples
-1. On the NotificationBanner page, create a section: "Examples"
+1. On the Banner page, create a section: "Examples"
 2. Place instances of each variant
 3. Add annotations showing:
    - Padding values
@@ -737,13 +737,13 @@ Create any other effect styles your design system needs:
 
 #### Step 1: Test Component Instances
 1. Create test frames on a new page
-2. Place instances of NotificationBanner component
+2. Place instances of Banner component
 3. Switch between variants
 4. Verify all colors, spacing, and typography match specifications
 
 #### Step 2: Test Responsiveness
 1. Create frames at different widths: 320px, 768px, 1024px
-2. Place NotificationBanner instances
+2. Place Banner instances
 3. Verify the message text wraps properly
 4. Ensure the component maintains proper padding and gap
 
@@ -780,7 +780,7 @@ If you notice any differences between the web app and Figma:
 - [ ] Optional weight variations (4 additional)
 
 ### Components to Create
-- [ ] NotificationBanner (4 variants: Info, Success, Warning, Error)
+- [ ] Banner (4 variants: Info, Success, Warning, Error)
 - [ ] Optional: Light theme variants (4 additional)
 
 ### Effect Styles to Create
@@ -829,7 +829,7 @@ Expand your design system by creating other components:
 - Form inputs (Text, Select, Checkbox, Toggle)
 - Tables
 - Navigation items
-- Breadcrumbs
+- Breadcrumb
 - Modals
 - Cards
 
@@ -887,7 +887,7 @@ If you encounter any issues during recreation:
 
 ## Appendix: Component States & Interactions
 
-### NotificationBanner States
+### Banner States
 - **Default**: Standard appearance as specified
 - **Hover (Dismiss button)**: Opacity changes from 0.6 to 1.0
 - **Dismissible**: Shows X button when onDismiss prop provided

@@ -65,8 +65,7 @@ export function ModalDocumentation() {
       <section className="modal-docs__section" aria-labelledby="modal-sizes">
         <div className="modal-docs__section-heading"><div><span>03</span><h2 id="modal-sizes">Size contract</h2></div></div>
         <div className="modal-docs__size-grid">
-          <div><span className="modal-docs__size modal-docs__size--small" /><strong>Small · 400px</strong><small>Confirmations and short notices</small></div>
-          <div><span className="modal-docs__size modal-docs__size--medium" /><strong>Medium · 600px</strong><small>Default forms and focused tasks</small></div>
+          <div><span className="modal-docs__size modal-docs__size--medium" /><strong>Medium · 600px</strong><small>Confirmations, forms, and focused tasks</small></div>
           <div><span className="modal-docs__size modal-docs__size--large" /><strong>Large · 800px</strong><small>Tabbed and complex configuration</small></div>
         </div>
       </section>
@@ -81,7 +80,7 @@ export function ModalDocumentation() {
         <div className="modal-docs__form"><TextInput id="modal-collection-name" label="Collection name" placeholder="Enter a descriptive name" /><Checkbox id="modal-publish" label="Publish immediately" description="The collection will be visible after creation." /></div>
       </Modal>
 
-      <Modal isOpen={demo === 'confirm'} onClose={() => setDemo(null)} title="Delete collection?" description="This removes the collection from the rail and cannot be undone." size="small" tone="danger" footer={<><OutlineButton onClick={() => setDemo(null)}>Cancel</OutlineButton><button className="modal-docs__danger-button" type="button" onClick={() => setDemo(null)}>Delete collection</button></>}>
+      <Modal isOpen={demo === 'confirm'} onClose={() => setDemo(null)} title="Delete collection?" description="This removes the collection from the rail and cannot be undone." tone="danger" footer={<><OutlineButton onClick={() => setDemo(null)}>Cancel</OutlineButton><button className="modal-docs__danger-button" type="button" onClick={() => setDemo(null)}>Delete collection</button></>}>
         <div className="modal-docs__warning"><AlertTriangle size={20} aria-hidden="true" /><p><strong>Drama Collection 2</strong> and its current ordering will be permanently removed.</p></div>
       </Modal>
 

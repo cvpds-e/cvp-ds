@@ -11,7 +11,7 @@ import { IconButtonWithTextDocumentation } from './components/IconButtonWithText
 import { TextButtonDocumentation } from './components/TextButtonDocumentation';
 import { TextInputDocumentation } from './components/TextInputDocumentation';
 import { NumberInputDocumentation } from './components/NumberInputDocumentation';
-import { TextAreaDocumentation } from './components/TextAreaDocumentation';
+import { TextareaDocumentation } from './components/TextareaDocumentation';
 import { MiscInputDocumentation } from './components/MiscInputDocumentation';
 import { CheckboxDocumentation } from './components/CheckboxDocumentation';
 import { ChoiceCardGroupDocumentation } from './components/ChoiceCardGroupDocumentation';
@@ -25,17 +25,17 @@ import { TableDocumentation } from './components/TableDocumentation';
 import { LayoutDocumentation } from './components/LayoutDocumentation';
 import { ModalDocumentation } from './components/ModalDocumentation';
 import { ContentBrowserModalDocumentation } from './components/ContentBrowserModalDocumentation';
-import { SegmentedDocumentation } from './components/SegmentedDocumentation';
+import { SegmentedControlDocumentation } from './components/SegmentedControlDocumentation';
 import { AccordionDocumentation } from './components/AccordionDocumentation';
 import { MultiSelectDocumentation } from './components/MultiSelectDocumentation';
-import { PillDocumentation } from './components/PillDocumentation';
+import { PillsDocumentation } from './components/PillsDocumentation';
 import { PaginationDocumentation } from './components/PaginationDocumentation';
 import { SelectDocumentation } from './components/SelectDocumentation';
 import { TagFilterDocumentation } from './components/TagFilterDocumentation';
 import { ToastDocumentation } from './components/ToastDocumentation';
 import { SegmentQueryConfigurationDocumentation } from './components/SegmentQueryConfigurationDocumentation';
 import { RailContentGalleryDocumentation } from './components/RailContentGalleryDocumentation';
-import { BreadcrumbsDocumentation } from './components/BreadcrumbsDocumentation';
+import { BreadcrumbDocumentation } from './components/BreadcrumbDocumentation';
 import { HeaderNavigationDocumentation } from './components/HeaderNavigationDocumentation';
 import { TabsDocumentation } from './components/TabsDocumentation';
 import { DisabledStateDemo } from './components/DisabledStateDemo';
@@ -53,9 +53,9 @@ import { RailDetails } from './components/RailDetails';
 import { PersonalizedRailDetails } from './components/PersonalizedRailDetails';
 import { RailsList } from './components/RailsList';
 import { RailsListDocumentation } from './components/RailsListDocumentation';
-import { NotificationBannerDocumentation } from './components/NotificationBannerDocumentation';
+import { BannerDocumentation } from './components/BannerDocumentation';
 import { SkeletonDocumentation } from './components/SkeletonDocumentation';
-import { LoadingSpinnerDocumentation } from './components/LoadingSpinnerDocumentation';
+import { LoaderDocumentation } from './components/LoaderDocumentation';
 import { BadgeDocumentation } from './components/BadgeDocumentation';
 import { StatusDocumentation } from './components/StatusDocumentation';
 import { AccessibilityAuditProbe } from './components/AccessibilityAuditProbe';
@@ -570,8 +570,8 @@ export default function App() {
         return <TextInputDocumentation />;
       case 'number-input':
         return <NumberInputDocumentation />;
-      case 'text-area':
-        return <TextAreaDocumentation />;
+      case 'textarea':
+        return <TextareaDocumentation />;
       case 'misc-input':
         return <MiscInputDocumentation />;
       case 'checkbox':
@@ -588,8 +588,8 @@ export default function App() {
         return <DatePickerDocumentation />;
       case 'filter-group':
         return <FilterGroupDocumentation />;
-      case 'breadcrumbs':
-        return <BreadcrumbsDocumentation />;
+      case 'breadcrumb':
+        return <BreadcrumbDocumentation />;
       case 'header-navigation':
         return <HeaderNavigationDocumentation />;
       case 'tabs':
@@ -606,16 +606,16 @@ export default function App() {
         return <ContentBrowserModalDocumentation />;
       case 'tooltip':
         return <TooltipDocumentation />;
-      case 'segmented':
-        return <SegmentedDocumentation />;
+      case 'segmented-control':
+        return <SegmentedControlDocumentation />;
       case 'accordion':
         return <AccordionDocumentation />;
       case 'select':
         return <SelectDocumentation />;
       case 'multi-select':
         return <MultiSelectDocumentation />;
-      case 'pill':
-        return <PillDocumentation />;
+      case 'pills':
+        return <PillsDocumentation />;
       case 'pagination':
         return <PaginationDocumentation />;
       case 'tag-filter':
@@ -624,14 +624,14 @@ export default function App() {
         return <ToastDocumentation />;
       case 'skeleton':
         return <SkeletonDocumentation />;
-      case 'loading-spinner':
-        return <LoadingSpinnerDocumentation />;
+      case 'loader':
+        return <LoaderDocumentation />;
       case 'badge':
         return <BadgeDocumentation />;
       case 'status':
         return <StatusDocumentation />;
-      case 'notification-banner':
-        return <NotificationBannerDocumentation />;
+      case 'banner':
+        return <BannerDocumentation />;
       case 'segment-query-config':
         return <SegmentQueryConfigurationDocumentation />;
       case 'rail-content-gallery':

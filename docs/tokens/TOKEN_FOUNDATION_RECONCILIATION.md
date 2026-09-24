@@ -40,7 +40,7 @@ Layout begins on this reconciled graph. Its raw breakpoints and dimensions will 
 ## Completed scope — 4 August 2026
 
 The implemented Color, Typography, Spacing, Radius, Border, Elevation, and Layout
-previews now consume the canonical token graph for color. Text Input, Text Area,
+previews now consume the canonical token graph for color. Text Input, Textarea,
 and Select were included in the same reconciliation.
 
 - Removed 297 legacy hex declarations from the six pre-Layout foundation preview

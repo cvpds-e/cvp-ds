@@ -1,20 +1,20 @@
 import React from 'react';
 import { X } from 'lucide-react';
-import './Pill.css';
+import './Pills.css';
 
-export interface PillProps extends React.HTMLAttributes<HTMLSpanElement> {
+export interface PillsProps extends React.HTMLAttributes<HTMLSpanElement> {
   onRemove?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   removeLabel?: string;
 }
 
 /** The selected-value primitive used by MultiSelect and composed controls. */
-export function Pill({
+export function Pills({
   children,
   onRemove,
   removeLabel = 'Remove value',
   className = '',
   ...props
-}: PillProps) {
+}: PillsProps) {
   return (
     <span
       {...props}

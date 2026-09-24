@@ -1,6 +1,6 @@
-# Breadcrumbs Standardization
+# Breadcrumb Standardization
 
-Breadcrumbs now follows the established CVP component checkpoint conventions.
+Breadcrumb now follows the established CVP component checkpoint conventions.
 
 ## Contract
 

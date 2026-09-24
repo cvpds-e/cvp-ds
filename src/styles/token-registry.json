@@ -7611,12 +7611,6 @@
       "source": "cvp-component-tokens.css"
     },
     {
-      "name": "--cvp-modal-width-small",
-      "tier": "Component",
-      "scope": "Shared",
-      "source": "cvp-component-tokens.css"
-    },
-    {
       "name": "--cvp-modal-width-compact",
       "tier": "Component",
       "scope": "Shared",

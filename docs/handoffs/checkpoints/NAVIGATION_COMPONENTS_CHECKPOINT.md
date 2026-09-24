@@ -4,11 +4,11 @@ Status: complete for the current scope.
 
 ## Included
 
-- Breadcrumbs
+- Breadcrumb
 - Header Navigation
 - Tabs
 - Accordion
-- Segmented
+- SegmentedControl
 - Tag Filter
 - Table
 - Tree
@@ -26,7 +26,7 @@ Status: complete for the current scope.
 
 ## Reconciliation corrections
 
-- Segmented large height now composes registered CVP spacing tokens instead of referencing an undefined spacing alias.
+- SegmentedControl large height now composes registered CVP spacing tokens instead of referencing an undefined spacing alias.
 - Tree disclosure hover now resolves through the registered interactive-overlay semantic.
 - Tree status and Editorial metadata resolve through registered success and purple accent semantics.
 - Table destructive hover resolves through the registered danger-state semantic.

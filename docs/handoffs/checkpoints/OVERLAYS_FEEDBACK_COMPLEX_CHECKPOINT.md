@@ -5,7 +5,7 @@ Date: 2026-08-05
 ## Scope completed
 
 - Overlays: Modal and Content Browser Modal
-- Feedback: Toast and Notification Banner
+- Feedback: Toast and Banner
 - Complex/data patterns: Table, Tree, and Rail Content Gallery
 - Integration audit: Rail Details page
 
@@ -29,7 +29,7 @@ Documentation pages expose the canonical source and Token Contract so the previe
 - Confirmed light/dark styling resolves through semantic tokens rather than duplicated component rules.
 - Replaced two invalid documentation spacing references with the canonical spacing scale.
 - Replaced the obsolete Text Input tertiary-text reference with the canonical muted-text semantic token.
-- Updated the component inventory to reflect the registered Modal, Content Browser, Toast, and Notification Banner contracts.
+- Updated the component inventory to reflect the registered Modal, Content Browser, Toast, and Banner contracts.
 
 ## Deferred components
 

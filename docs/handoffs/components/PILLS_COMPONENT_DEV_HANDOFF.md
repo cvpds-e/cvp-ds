@@ -1,8 +1,8 @@
-# Pill
+# Pills
 
 ## Purpose
 
-Pill is the compact primitive for a selected value. It is the same selected-value treatment used by Multi Select, separated only so other composed controls can reuse it.
+Pills is the compact primitive for a selected value. It is the same selected-value treatment used by Multi Select, separated only so other composed controls can reuse it.
 
 Pills retain their intrinsic content width. They must not stretch to fill a parent container.
 
@@ -12,7 +12,7 @@ Pills retain their intrinsic content width. They must not stretch to fill a pare
 
 ## Composition boundary
 
-Pill owns only the visible value and its optional remove action. The parent control owns selection state, search, menus, limits, validation, and announcements. Do not use Pill as a primary action or substitute it for a status-only badge or tag.
+Pills owns only the visible value and its optional remove action. The parent control owns selection state, search, menus, limits, validation, and announcements. Do not use Pills as a primary action or substitute it for a status-only badge or tag.
 
 ## Accessibility
 

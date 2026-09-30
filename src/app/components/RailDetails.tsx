@@ -124,6 +124,7 @@ function RailDetailsWorkspace({ railName = 'Trending', initiallyEmpty = false, q
       <Select label="Rail collection" required labelTooltip={<ReadOnlyIndicator />} value={collection} onChange={setCollection} disabled options={[{ value: 'home', label: 'Home screen' }, { value: 'drama', label: 'Drama' }, { value: 'kids', label: 'Kids' }]} />
       <NumberInput label="Number of content slots" required labelTooltip={<ReadOnlyIndicator />} value={contentSlots === '' ? '' : Number(contentSlots)} onValueChange={(value) => setContentSlots(String(value))} min={1} disabled />
       <TextInput label="GUID" required value={guid} onChange={(event) => setGuid(event.target.value)} />
+      <TextInput label="Rail Audience URL" labelTooltip={<ReadOnlyIndicator />} value="https://audience.cvp.example/rails/trending" readOnly disabled />
       <Checkbox label="Disable" checked={disabled} onChange={(checked) => setDisabled(checked === true)} />
       <section className="rail-details__danger-zone" aria-labelledby="delete-rail-heading">
         <div><strong id="delete-rail-heading">Delete rail</strong><p>Remove this rail and its configuration permanently.</p></div>

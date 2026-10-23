@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, ChevronRight, Lock, PanelLeftClose, PanelLeftOpen, Plus, Save, Trash2 } from 'lucide-react';
+import { ArrowLeft, ChevronRight, Clapperboard, Lock, PanelLeftClose, PanelLeftOpen, Plus, Save, SlidersHorizontal, Sparkles, Trash2 } from 'lucide-react';
 import { Breadcrumb } from './Breadcrumb';
 import { Checkbox } from './Checkbox';
 import { HeaderNavigation } from './HeaderNavigation';
@@ -61,14 +61,7 @@ interface PersonalizerConfiguration {
   maximumRuntime: string;
 }
 
-const initialConfigurations: PersonalizerConfiguration[] = [
-  { id: 'general-recommendations', name: 'General Recommendations', strategy: 'general-recommendations', contentTypes: ['movie', 'series'], genres: ['action', 'drama', 'comedy'], castMembers: [], audienceRatings: [], keywords: [], languages: ['english'], minimumRuntime: '', maximumRuntime: '' },
-  { id: 'trending-content', name: 'Trending Content', strategy: 'trending', contentTypes: ['movie', 'series'], genres: ['action', 'drama'], castMembers: [], audienceRatings: [], keywords: [], languages: ['english'], minimumRuntime: '', maximumRuntime: '' },
-  { id: 'similar-content', name: 'Similar Content', strategy: 'because-you-watched', contentTypes: ['movie'], genres: ['thriller', 'sci-fi', 'horror'], castMembers: [], audienceRatings: [], keywords: [], languages: ['english'], minimumRuntime: '', maximumRuntime: '' },
-  { id: 'user-behavior', name: 'User Behavior', strategy: 'popular', contentTypes: ['series'], genres: ['drama', 'crime'], castMembers: [], audienceRatings: [], keywords: [], languages: ['english'], minimumRuntime: '', maximumRuntime: '' },
-  { id: 'custom-config-1', name: 'Custom Config 1', strategy: 'recently-added', contentTypes: ['movie', 'series'], genres: [], castMembers: [], audienceRatings: [], keywords: [], languages: [], minimumRuntime: '', maximumRuntime: '' },
-  { id: 'custom-config-2', name: 'Custom Config 2', strategy: 'continue-watching', contentTypes: ['series'], genres: ['animation', 'fantasy'], castMembers: [], audienceRatings: [], keywords: [], languages: [], minimumRuntime: '', maximumRuntime: '' },
-];
+const initialConfigurations: PersonalizerConfiguration[] = [];
 
 const strategyLabels: Record<string, string> = {
   'general-recommendations': 'General Recommendations',
@@ -91,7 +84,7 @@ function PersonalizedRailDetailsWorkspace() {
   const [collection, setCollection] = useState('home');
   const [position, setPosition] = useState<number | ''>(2);
   const [contentSlots, setContentSlots] = useState<number | ''>(24);
-  const [configuration, setConfiguration] = useState('general-recommendations');
+  const [configuration, setConfiguration] = useState('');
   const [externalReferenceId, setExternalReferenceId] = useState('65cdc98c9-e1fdcc7931968');
   const [disabled, setDisabled] = useState(false);
   const [personalizerConfigurations, setPersonalizerConfigurations] = useState(initialConfigurations);
@@ -112,10 +105,10 @@ function PersonalizedRailDetailsWorkspace() {
   const [deleteRailConfirmationOpen, setDeleteRailConfirmationOpen] = useState(false);
   const [deleteConfigurationConfirmationOpen, setDeleteConfigurationConfirmationOpen] = useState(false);
 
-  const hasChanges = name !== 'Spotlight' || collection !== 'home' || position !== 2 || contentSlots !== 24 || configuration !== 'general-recommendations' || externalReferenceId !== '65cdc98c9-e1fdcc7931968' || disabled;
+  const hasChanges = name !== 'Spotlight' || collection !== 'home' || position !== 2 || contentSlots !== 24 || configuration !== '' || externalReferenceId !== '65cdc98c9-e1fdcc7931968' || disabled;
   const reset = () => {
     setName('Spotlight'); setCollection('home'); setPosition(2); setContentSlots(24);
-    setConfiguration('general-recommendations'); setExternalReferenceId('65cdc98c9-e1fdcc7931968'); setDisabled(false);
+    setConfiguration(''); setExternalReferenceId('65cdc98c9-e1fdcc7931968'); setDisabled(false);
   };
   const save = () => addToast({ variant: 'success', title: 'Rail saved', description: `${name} is using General recommendations.` });
   const deleteRail = () => {
@@ -156,7 +149,7 @@ function PersonalizedRailDetailsWorkspace() {
     if (!editingConfigurationId || editingConfigurationId === 'new') return;
     const deletedName = configurationName;
     setPersonalizerConfigurations((current) => current.filter((item) => item.id !== editingConfigurationId));
-    if (configuration === editingConfigurationId) setConfiguration('general-recommendations');
+    if (configuration === editingConfigurationId) setConfiguration('');
     setEditingConfigurationId(null);
     setConfigurationDirty(false);
     addToast({ variant: 'info', title: 'Configuration deleted', description: deletedName });
@@ -168,10 +161,10 @@ function PersonalizedRailDetailsWorkspace() {
     <NumberInput label="Rail position" value={position} onValueChange={setPosition} min={1} />
     <NumberInput label="Number of content slots" value={contentSlots} onValueChange={setContentSlots} min={1} />
     <Select label="Personalizer configuration" value={configuration} onChange={setConfiguration} helperText="The ML configuration powering recommendations for this rail." options={personalizerConfigurations.map((item) => ({ value: item.id, label: item.name }))} />
-    <article className="personalized-rail-details__configuration-card">
+    {selectedRailConfiguration ? <article className="personalized-rail-details__configuration-card">
       <div className="personalized-rail-details__configuration-heading"><strong>{selectedRailConfiguration.name}</strong><p>{strategyLabels[selectedRailConfiguration.strategy]}</p></div>
       <dl><div><dt>Content types</dt><dd>{formatValues(selectedRailConfiguration.contentTypes) || 'Any'}</dd></div><div><dt>Genres</dt><dd>{formatValues(selectedRailConfiguration.genres) || 'Any'}</dd></div><div><dt>Languages</dt><dd>{formatValues(selectedRailConfiguration.languages) || 'Any'}</dd></div><div><dt>Last updated</dt><dd>2026-04-28</dd></div></dl>
-    </article>
+    </article> : <p className="personalized-rail-details__configuration-empty">No personalizer configuration is assigned. Create one in Personalizer configurations to power this rail.</p>}
     <div className="personalized-rail-details__configuration-link"><p><strong>Want to tweak the parameters?</strong> Head to Personalizer Configurations to edit this config or create new ones.</p><TextButton variant="secondary" onClick={() => { setActiveTab('configuration'); setEditingConfigurationId(null); }}>Open <ChevronRight size={14} /></TextButton></div>
     <TextInput label="External reference ID" optionalText="Advanced" value={externalReferenceId} onChange={(event) => setExternalReferenceId(event.target.value)} />
     <TextInput label="Rail Audience URL" labelTooltip={<ReadOnlyIndicator />} value="https://audience.cvp.example/rails/spotlight" readOnly disabled />
@@ -181,7 +174,7 @@ function PersonalizedRailDetailsWorkspace() {
 
   const markConfigurationDirty = <Value,>(setter: React.Dispatch<React.SetStateAction<Value>>) => (value: Value) => { setter(value); setConfigurationDirty(true); };
   const configurationPanel = editingConfigurationId ? <div className="personalized-rail-details__configuration-editor">
-    <header className="personalized-rail-details__editor-heading"><IconButton variant="ghost" size="small" aria-label="Back to personalizer configurations" onClick={() => { setEditingConfigurationId(null); setConfigurationDirty(false); }}><ArrowLeft size={16} /></IconButton><div><strong>{configurationName || 'New configuration'}</strong><span>Edit configuration parameters</span></div></header>
+    <header className="personalized-rail-details__editor-heading"><IconButton variant="ghost" size="small" aria-label="Back to personalizer configurations" onClick={() => { setEditingConfigurationId(null); setConfigurationDirty(false); }}><ArrowLeft size={16} /></IconButton><strong>{configurationName || 'New configuration'}</strong></header>
     <div className="personalized-rail-details__form"><div className="personalized-rail-details__form-section">
       <TextInput label="Configuration name" value={configurationName} onChange={(event) => { setConfigurationName(event.target.value); setConfigurationDirty(true); }} required />
       <Select label="Recommendation strategy" value={strategy} onChange={markConfigurationDirty(setStrategy)} helperText="Defines the recommendation source used by this rail." options={Object.entries(strategyLabels).map(([value, label]) => ({ value, label }))} />
@@ -198,9 +191,14 @@ function PersonalizedRailDetailsWorkspace() {
     </div></div>
     {configurationDirty && <UnsavedChangesFooter onSave={saveConfiguration} onCancel={() => { setEditingConfigurationId(null); setConfigurationDirty(false); }} saveDisabled={!configurationName.trim()} />}
   </div> : <div className="personalized-rail-details__configuration-list">
-    <div className="personalized-rail-details__list-heading"><div><strong>Personalizer configurations</strong><p>Manage ML models and recommendation algorithms</p></div><PrimaryButton onClick={() => openConfiguration()}><Plus size={15} /> New configuration</PrimaryButton></div>
-    <div className="personalized-rail-details__configuration-items">{personalizerConfigurations.map((item) => <button key={item.id} type="button" className="personalized-rail-details__configuration-item" onClick={() => openConfiguration(item)}><span className="personalized-rail-details__configuration-copy"><strong>{item.name}</strong><small>Strategy: {strategyLabels[item.strategy]}</small><small>Types: {formatValues(item.contentTypes)}</small>{item.genres.length > 0 && <small>Genres: {formatValues(item.genres)}</small>}</span><ChevronRight size={16} aria-hidden="true" /></button>)}</div>
-    <p className="personalized-rail-details__list-tip"><strong>Tip:</strong> Select a configuration to view details and edit parameters, or create a new one to set up custom recommendation logic.</p>
+    <div className="personalized-rail-details__list-heading"><div><strong>Personalizer configurations</strong><p>Manage ML models and recommendation algorithms</p></div>{personalizerConfigurations.length > 0 && <PrimaryButton onClick={() => openConfiguration()}><Plus size={15} /> New configuration</PrimaryButton>}</div>
+    {personalizerConfigurations.length > 0 ? <><div className="personalized-rail-details__configuration-items">{personalizerConfigurations.map((item) => <button key={item.id} type="button" className="personalized-rail-details__configuration-item" onClick={() => openConfiguration(item)}><span className="personalized-rail-details__configuration-copy"><strong>{item.name}</strong><small>Strategy: {strategyLabels[item.strategy]}</small><small>Types: {formatValues(item.contentTypes)}</small>{item.genres.length > 0 && <small>Genres: {formatValues(item.genres)}</small>}</span><ChevronRight size={16} aria-hidden="true" /></button>)}</div><p className="personalized-rail-details__list-tip"><strong>Tip:</strong> Select a configuration to view details and edit parameters, or create a new one to set up custom recommendation logic.</p></> : <section className="personalized-rail-details__list-empty" aria-labelledby="personalizer-empty-title">
+      <div className="personalized-rail-details__empty-visual" aria-hidden="true">
+        <span className="personalized-rail-details__empty-node"><Clapperboard size={20} /></span><span className="personalized-rail-details__empty-path"><i /><i /><i /></span><span className="personalized-rail-details__empty-node personalized-rail-details__empty-node--model"><SlidersHorizontal size={20} /></span><span className="personalized-rail-details__empty-path"><i /><i /><i /></span><span className="personalized-rail-details__empty-node personalized-rail-details__empty-node--result"><Sparkles size={20} /></span>
+      </div>
+      <div className="personalized-rail-details__empty-copy"><h2 id="personalizer-empty-title">Build your first personalizer</h2><p>Choose a recommendation strategy and tune content filters for this rail.</p></div>
+      <PrimaryButton onClick={() => openConfiguration()}><Plus size={15} /> New configuration</PrimaryButton>
+    </section>}
   </div>;
 
   return <WorkspaceLayout className="personalized-rail-details-page">

@@ -10,6 +10,7 @@
     { "id": "modal", "assetId": "modal", "route": "?page=modal", "heading": "Modal", "states": ["default", "open", "focus-trap"] },
     { "id": "pagination", "assetId": "pagination", "route": "?page=pagination", "heading": "Pagination", "states": ["first", "middle", "last", "empty"] },
     { "id": "rails-list", "assetId": "rails-list", "route": "?page=rails-list", "heading": "Rails List", "states": ["list", "grouped", "expanded", "loading"] },
-    { "id": "rail-details", "assetId": "rail-details", "route": "?page=rail-details", "heading": "Rail Details", "states": ["saved", "unsaved", "query-locked"] }
+    { "id": "rail-details", "assetId": "rail-details", "route": "?page=rail-details", "heading": "Rail Details", "states": ["saved", "unsaved", "query-locked"] },
+    { "id": "station-rail-details", "assetId": "station-rail-details", "route": "?page=rail-details-full&railEntityType=Station", "heading": "Featured stations", "states": ["saved", "unsaved", "empty", "validation-error", "manual-selections", "location-override"] }
   ]
 }

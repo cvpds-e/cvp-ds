@@ -42,6 +42,10 @@ export interface RailContentGalleryProps {
   size?: 'default' | 'compact';
   /** Hide placement-source labels when displaying independent browse results. */
   showSourceLabels?: boolean;
+  /** Station artwork uses square logo tiles instead of programme posters. */
+  mediaVariant?: 'poster' | 'station';
+  /** Non-interactive artwork; the gallery retains its accessible target and navigation. */
+  renderMedia?: (item: RailContentItem) => React.ReactNode;
 }
 
 export interface RailContentGalleryHandle { scrollLeft: () => void; scrollRight: () => void; }
@@ -51,7 +55,7 @@ const validThumbnail = (value: string) => /^https?:\/\//.test(value?.trim() ?? '
 export const RailContentGallery = forwardRef<RailContentGalleryHandle, RailContentGalleryProps>(function RailContentGallery({
   title, items, variant = 'display', showItemCount = true, itemCountPlacement = 'heading', showNavigation = true, headerStatus, headerDate, hideHeader = false,
   onScrollStateChange, onItemClick, onEdit, onDelete, onPin, onDrag, onSelectionChange, selectedItems = [], loading = false,
-  emptyMessage = 'No content has been added to this rail yet.', emptySlotCount = 0, onAddToEmptySlot, size = 'default', showSourceLabels = true,
+  emptyMessage = 'No content has been added to this rail yet.', emptySlotCount = 0, onAddToEmptySlot, size = 'default', showSourceLabels = true, mediaVariant = 'poster', renderMedia,
 }, ref) {
   const scroller = useRef<HTMLDivElement>(null);
   const [canLeft, setCanLeft] = useState(false);
@@ -87,7 +91,7 @@ export const RailContentGallery = forwardRef<RailContentGalleryHandle, RailConte
   const togglePin = (item: RailContentItem) => { setPinned((current) => { const next = new Set(current); next.has(item.id) ? next.delete(item.id) : next.add(item.id); return next; }); onPin?.(item); };
 
   return (
-    <section className={`rail-content-gallery cvp-rail-gallery cvp-rail-gallery--${variant} cvp-rail-gallery--${size}`} aria-label={title}>
+    <section className={`rail-content-gallery cvp-rail-gallery cvp-rail-gallery--${variant} cvp-rail-gallery--${size}${mediaVariant === 'station' ? ' cvp-rail-gallery--station' : ''}`} aria-label={title}>
       {!hideHeader && <header className="cvp-rail-gallery__header"><div className="cvp-rail-gallery__heading"><h3>{title}</h3>{showItemCount && itemCountPlacement === 'heading' && itemCount}{headerStatus && <span className="cvp-rail-gallery__status">{headerStatus}</span>}{headerDate && <span className="cvp-rail-gallery__date">{headerDate}</span>}</div>{showNavigation && !grid && hasRailItems && <div className="cvp-rail-gallery__navigation" role="group" aria-label={`${title} navigation`}>{showItemCount && itemCountPlacement === 'navigation' && itemCount}<IconButton size="small" aria-label="Previous items" disabled={!canLeft} onClick={() => scroll(-1)}><ChevronLeft size={16} /></IconButton><IconButton size="small" aria-label="Next items" disabled={!canRight} onClick={() => scroll(1)}><ChevronRight size={16} /></IconButton></div>}</header>}
 
       {loading ? <div className="cvp-rail-gallery__loading" role="status"><span className="cvp-skeleton__sr-only">Loading content…</span><SkeletonRailCards count={grid ? 6 : 7} layout={grid ? 'grid' : 'rail'} compact={size === 'compact'} /></div> : items.length === 0 && emptySlotCount > 0 ? <div ref={scroller} className="cvp-rail-gallery__items cvp-rail-gallery__items--rail cvp-rail-gallery__empty-slots" aria-label="Empty content slots" onScroll={updateScrollState}>{Array.from({ length: emptySlotCount }, (_, index) => <button key={index} className="cvp-rail-gallery__empty-slot" type="button" onClick={() => onAddToEmptySlot?.(index + 1)} aria-label={`Add content to slot ${index + 1}`}><span className="cvp-rail-gallery__empty-slot-media"><Plus size={16} aria-hidden="true" /><span className="cvp-rail-gallery__position">{index + 1}</span></span><span className="cvp-rail-gallery__empty-slot-label">Empty slot</span></button>)}</div> : items.length === 0 ? <div className="cvp-rail-gallery__state"><Film size={32} aria-hidden="true" /><strong>No content yet</strong><p>{emptyMessage}</p></div> : <div ref={scroller} className={`cvp-rail-gallery__items ${grid ? 'cvp-rail-gallery__items--grid' : 'cvp-rail-gallery__items--rail'}`} onScroll={updateScrollState}>
@@ -98,7 +102,7 @@ export const RailContentGallery = forwardRef<RailContentGalleryHandle, RailConte
           return <article key={item.id} className={`cvp-rail-gallery__item ${isSelected ? 'cvp-rail-gallery__item--selected' : ''} ${draggedId === item.id ? 'cvp-rail-gallery__item--dragging' : ''}`} draggable={management} onDragStart={() => setDraggedId(item.id)} onDragEnd={() => setDraggedId(null)} onDragOver={(event) => event.preventDefault()} onDrop={() => { if (draggedId && draggedId !== item.id) onDrag?.(draggedId, index); setDraggedId(null); }}>
             <div className="cvp-rail-gallery__media">
               <button type="button" className="cvp-rail-gallery__target" aria-label={`${selectable ? (isSelected ? 'Remove' : 'Select') : 'Open'} ${item.title}`} aria-pressed={selectable ? isSelected : undefined} onClick={() => selectable ? toggleSelection(item.id) : onItemClick?.(item)}>
-                {validThumbnail(item.thumbnail) ? <ImageWithFallback src={item.thumbnail} alt="" className="cvp-rail-gallery__image" /> : <span className="cvp-rail-gallery__placeholder"><Film size={28} aria-hidden="true" /></span>}
+                {renderMedia ? renderMedia(item) : validThumbnail(item.thumbnail) ? <ImageWithFallback src={item.thumbnail} alt="" className="cvp-rail-gallery__image" /> : <span className="cvp-rail-gallery__placeholder"><Film size={28} aria-hidden="true" /></span>}
               </button>
               {management && <><span className="cvp-rail-gallery__position">{item.position ?? index + 1}</span><span className="cvp-rail-gallery__drag"><GripVertical size={16} aria-hidden="true" /></span><div className="cvp-rail-gallery__actions"><IconSmallButton variant="rail-gallery" aria-label={`Edit ${item.title}`} onClick={() => onEdit?.(item)}><Edit2 /></IconSmallButton><IconSmallButton variant="rail-gallery" className="cvp-rail-gallery__delete-control" aria-label={`Delete ${item.title}`} onClick={() => onDelete?.(item)}><Trash2 /></IconSmallButton></div>{isPinned && <IconSmallButton variant="rail-gallery" className="cvp-rail-gallery__pin-control" aria-label={`Unpin ${item.title}`} aria-pressed="true" onClick={() => togglePin(item)}><Pin /></IconSmallButton>}</>}
               {selectable && <Checkbox className="cvp-rail-gallery__checkbox" checked={isSelected} aria-label={`Select ${item.title}`} onChange={() => toggleSelection(item.id)} />}

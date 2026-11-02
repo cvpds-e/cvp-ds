@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { ChevronLeft, Film, FolderPlus, FolderTree, List, Pencil, Plus, Radio, RadioTower, Search, Trash2, Tv } from 'lucide-react';
 import { Filter, ActiveFilter } from './Filter';
 import { HeaderNavigation } from './HeaderNavigation';
@@ -22,6 +22,8 @@ import { Tooltip } from './Tooltip';
 import { WorkspaceLayout } from './WorkspaceLayout';
 import { RailContentGallery, RailContentItem } from './RailContentGallery';
 import { UnsavedChangesFooter } from './UnsavedChangesFooter';
+import { Banner } from './Banner';
+import { defaultStationRail, deleteStationRail, readStationRails, saveStationRail, StationRail } from './stationRails';
 import './RailsList.css';
 
 const collections: TreeItem[] = [
@@ -67,6 +69,27 @@ const railPreview = (title: string, seed: string) => (
     />
   </div>
 );
+
+const stationRow = (rail: StationRail): TableRow => ({
+  id: rail.id, railId: rail.id, title: rail.name, collection: rail.collection,
+  status: rail.disabled ? 'Inactive' : 'Active', type: 'Station', updated: 'Browser demo',
+  contentType: 'station', contentSlots: rail.contentSlots,
+});
+
+function insertRail(current: TableRow[], rail: TableRow): TableRow[] {
+  const groupIndex = current.findIndex((row) => row.kind === 'group' && row.groupLabel === rail.collection);
+  if (groupIndex < 0) return [...current, rail];
+  let groupEnd = groupIndex + 1;
+  while (groupEnd < current.length && current[groupEnd].kind !== 'group') groupEnd += 1;
+  const group = current[groupIndex];
+  return [
+    ...current.slice(0, groupIndex),
+    { ...group, groupCount: (group.groupCount ?? groupEnd - groupIndex - 1) + 1 },
+    ...current.slice(groupIndex + 1, groupEnd),
+    rail,
+    ...current.slice(groupEnd),
+  ];
+}
 
 const collectionRows = (collection: string, titles: string[], startId: number): TableRow[] => [
   { id: `${collection}-group`, kind: 'group', groupLabel: collection === 'Home' ? 'Home' : collection, groupCount: titles.length },
@@ -119,8 +142,13 @@ interface RailsListProps {
 }
 
 export function RailsList({ initialState = 'populated' }: RailsListProps) {
+  const [stationState] = useState(() => {
+    try { return { rails: readStationRails().map(stationRow), error: '' }; }
+    catch (error) { return { rails: [], error: `Unable to load saved station rails: ${error instanceof Error ? error.message : 'Storage unavailable'}` }; }
+  });
+  const [stationError, setStationError] = useState(stationState.error);
   const [filters, setFilters] = useState<ActiveFilter[]>([]);
-  const [rails, setRails] = useState<TableRow[]>(initialState === 'populated' ? rows : []);
+  const [rails, setRails] = useState<TableRow[]>(initialState === 'populated' ? stationState.rails.reduce(insertRail, rows) : []);
   const [collectionItems, setCollectionItems] = useState<TreeItem[]>(initialState === 'empty' ? [] : collections);
   const [tableView, setTableView] = useState<'list' | 'grouped'>('list');
   const [pageSize, setPageSize] = useState(20);
@@ -195,18 +223,18 @@ export function RailsList({ initialState = 'populated' }: RailsListProps) {
     }
     setEditingCollection(null);
   };
-  const resetCreateRail = () => {
+  const resetCreateRail = useCallback(() => {
     setNewRailName('');
     setNewRailContentType('program');
     setNewRailType('generic');
     setNewRailCollection('');
     setNewRailSlots('10');
     setPersonalizerConfiguration('general-recommendations');
-  };
-  const closeCreateRail = () => {
+  }, []);
+  const closeCreateRail = useCallback(() => {
     setCreateRailOpen(false);
     resetCreateRail();
-  };
+  }, [resetCreateRail]);
   const openCreateRail = () => setCreateRailOpen(true);
   const resetPersonalizerConfiguration = () => {
     setConfigurationName('');
@@ -249,7 +277,15 @@ export function RailsList({ initialState = 'populated' }: RailsListProps) {
     const name = newRailName.trim();
     if (!name) return;
     const collection = collectionItems.find((item) => item.id === newRailCollection)?.label ?? 'Home';
-    const newRail: TableRow = {
+    let station: StationRail | undefined;
+    if (newRailContentType === 'station') {
+      try {
+        station = { ...structuredClone(defaultStationRail), id: `station-${Date.now()}`, name, collection, contentSlots: Number(newRailSlots) };
+        saveStationRail(station);
+        setStationError('');
+      } catch (error) { setStationError(`Unable to create station rail: ${error instanceof Error ? error.message : 'Storage unavailable'}`); return; }
+    }
+    const newRail: TableRow = station ? stationRow(station) : {
       id: `created-${Date.now()}`,
       railId: String(Date.now()).slice(-7),
       status: 'Active',
@@ -263,24 +299,16 @@ export function RailsList({ initialState = 'populated' }: RailsListProps) {
       contentType: newRailContentType,
       personalizerConfiguration: newRailType !== 'generic' ? personalizerConfiguration : undefined,
     };
-    setRails((current) => {
-      const groupIndex = current.findIndex((row) => row.kind === 'group' && row.groupLabel === collection);
-      if (groupIndex < 0) return [...current, newRail];
-      let groupEnd = groupIndex + 1;
-      while (groupEnd < current.length && current[groupEnd].kind !== 'group') groupEnd += 1;
-      const collectionRails = current.slice(groupIndex + 1, groupEnd);
-      const group = current[groupIndex];
-      return [
-        ...current.slice(0, groupIndex),
-        { ...group, groupCount: (group.groupCount ?? collectionRails.length) + 1 },
-        ...collectionRails,
-        newRail,
-        ...current.slice(groupEnd),
-      ];
-    });
+    const nextRails = insertRail(rails, newRail);
+    setRails(nextRails);
+    setCurrentPage(Math.floor(nextRails.filter((row) => row.kind !== 'group').findIndex((row) => row.id === newRail.id) / pageSize) + 1);
     closeCreateRail();
   };
   const removeRail = (railId: string) => {
+    if (rails.find((row) => row.id === railId)?.contentType === 'station') {
+      try { deleteStationRail(railId); setStationError(''); }
+      catch (error) { setStationError(`Unable to delete station rail: ${error instanceof Error ? error.message : 'Storage unavailable'}`); return; }
+    }
     setRails((current) => {
       const deletedIndex = current.findIndex((row) => row.id === railId);
       const groupIndex = current.slice(0, deletedIndex).reduce((latest, row, index) => row.kind === 'group' ? index : latest, -1);
@@ -315,6 +343,7 @@ export function RailsList({ initialState = 'populated' }: RailsListProps) {
       <WorkspaceLayout.ResizeHandle />
       <WorkspaceLayout.Main className="rails-list-page__main">
         <WorkspaceLayout.PageHeader className="rails-list-page__titlebar"><div><List size={20} aria-hidden="true" /><h1>Rails List</h1></div><PrimaryButton onClick={openCreateRail}><Plus size={16} /> Create rail</PrimaryButton></WorkspaceLayout.PageHeader>
+        {stationError && !createRailOpen && <Banner title="Station rail error" message={stationError} variant="error" />}
         {hasRails && <WorkspaceLayout.Toolbar className="rails-list-page__filters"><Filter triggerVariant="icon-seamless" options={[{ id: 'title', label: 'Title', type: 'text' }, { id: 'rail-type', label: 'Rail type', type: 'multiselect', options: [{ value: 'editorial', label: 'Editorial' }, { value: 'recommended', label: 'Recommended' }] }, { id: 'collection', label: 'Collection', type: 'select', options: [{ value: 'home', label: 'Home' }, { value: 'drama', label: 'Drama' }, { value: 'kids', label: 'Kids' }] }]} activeFilters={filters} onChange={(nextFilters) => { setFilters(nextFilters); if (nextFilters.length <= 2) setMatchAllFilters(true); }} placeholder="Add filter" />{filters.length > 2 && <div className="rails-list-page__match"><span>Match</span><TextButton variant="contextual" aria-label={`Switch to match ${matchAllFilters ? 'any' : 'all'} filters`} onClick={() => setMatchAllFilters((value) => !value)}>{matchAllFilters ? 'all filters' : 'any filter'}</TextButton></div>}</WorkspaceLayout.Toolbar>}
         {!hasRails ? <section className="rails-list-page__empty-state" aria-labelledby="rails-list-empty-title"><div className="rails-list-page__empty-copy"><h2 id="rails-list-empty-title">Create your first rail</h2><p>{hasCollections ? 'Rails will appear here as you build them for your collections.' : 'Your rails will appear here. Start by creating a rail collection in the panel on the left.'}</p></div><PrimaryButton onClick={openCreateRail}><Plus size={16} /> Create rail</PrimaryButton><div className="rails-list-page__empty-preview" aria-hidden="true"><div className="rails-list-page__empty-preview-rail"><div><i /><span /><em /></div><section>{Array.from({ length: 5 }, (_, index) => <b key={index} />)}</section></div><div className="rails-list-page__empty-preview-rail rails-list-page__empty-preview-rail--secondary"><div><i /><span /><em /></div><section>{Array.from({ length: 4 }, (_, index) => <b key={index} />)}</section></div></div>{!hasCollections && <span className="rails-list-page__empty-hint">Choose “Create rail collection” in the next step to get started.</span>}</section> : <Table className="rails-list-page__table" ariaLabel="Rails list" columns={columns} data={tableView === 'grouped' ? rails : rails.filter((row) => row.kind !== 'group')} selectable expandable singleExpand={tableView === 'list'} freezeLeadingColumns sortable resizable showActions={false} showViewControl={false} totalItems={rails.filter((row) => row.kind !== 'group').length} pageSize={pageSize} pageSizeOptions={[10, 20, 50]} currentPage={currentPage} onPageChange={setCurrentPage} onPageSizeChange={(size) => { setPageSize(size); setCurrentPage(1); }} onRefresh={() => setRails((current) => [...current])} height="calc(100dvh - 246px)" toolbarActions={<div className="rails-list-page__view-controls" role="group" aria-label="Table view"><IconButton variant={tableView === 'list' ? 'outline' : 'ghost'} size="medium" aria-label="List view" aria-pressed={tableView === 'list'} onClick={() => { setTableView('list'); setCurrentPage(1); }}><List size={16} /></IconButton><IconButton variant={tableView === 'grouped' ? 'outline' : 'ghost'} size="medium" aria-label="Grouped view" aria-pressed={tableView === 'grouped'} onClick={() => { setTableView('grouped'); setCurrentPage(1); }}><FolderTree size={16} /></IconButton></div>} renderCell={(column, value, row) => {
           if (column === 'railId') return <span className="rails-list-page__rail-id">{value}</span>;
@@ -324,7 +353,7 @@ export function RailsList({ initialState = 'populated' }: RailsListProps) {
           if (column === 'type') {
             return <Badge tone={['recommended', 'personalized', 'hybrid'].includes(String(value).toLowerCase()) ? 'info' : 'accent'}>{value}</Badge>;
           }
-          if (column === 'controls') return <div className="rails-list-page__row-controls"><IconButton variant="ghost" size="small" aria-label={`Edit ${row.title}`} onClick={() => window.location.assign(`${window.location.pathname}?page=${['Recommended', 'Personalized', 'Hybrid'].includes(String(row.type)) ? 'personalized-rail-details-full' : 'rail-details-full'}`)}><Pencil size={15} /></IconButton><IconButton variant="danger" size="small" aria-label={`Delete ${row.title}`} onClick={() => removeRail(row.id)}><Trash2 size={15} /></IconButton></div>;
+          if (column === 'controls') return <div className="rails-list-page__row-controls"><IconButton variant="ghost" size="small" aria-label={`Edit ${row.title}`} onClick={() => window.location.assign(`${window.location.pathname}?page=${row.contentType === 'station' ? `rail-details-full&railEntityType=Station&id=${encodeURIComponent(row.id)}` : ['Recommended', 'Personalized', 'Hybrid'].includes(String(row.type)) ? 'personalized-rail-details-full' : 'rail-details-full'}&theme=${document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark'}`)}><Pencil size={15} /></IconButton><IconButton variant="danger" size="small" aria-label={`Delete ${row.title}`} onClick={() => removeRail(row.id)}><Trash2 size={15} /></IconButton></div>;
           return value;
         }} />}
       </WorkspaceLayout.Main>
@@ -338,12 +367,13 @@ export function RailsList({ initialState = 'populated' }: RailsListProps) {
       footer={<><OutlineButton onClick={closeCreateRail}>Cancel</OutlineButton><PrimaryButton onClick={createRail} disabled={!newRailName.trim() || !newRailCollection || Number(newRailSlots) < 1}>Create Rail</PrimaryButton></>}
     >
       <div className="rails-list-page__create-rail-form">
+        {stationError && <Banner title="Station rail error" message={stationError} variant="error" />}
         <ChoiceCardGroup
           label="1. Content type"
           helperText="Choose what viewers will see in this rail."
           required
           value={newRailContentType}
-          onChange={(value) => setNewRailContentType(value as RailContentType)}
+          onChange={(value) => { setNewRailContentType(value as RailContentType); if (value === 'station') setNewRailType('generic'); }}
           options={[
             { value: 'program', label: 'Program Rail', description: 'VOD / On-Demand', icon: <Film /> },
             { value: 'station', label: 'Station Rail', description: 'Channel / Network', icon: <RadioTower /> },
@@ -353,15 +383,15 @@ export function RailsList({ initialState = 'populated' }: RailsListProps) {
         />
         <ChoiceCardGroup
           label="2. Rail behavior"
-          helperText="Choose how content will be selected."
+          helperText={newRailContentType === 'station' ? 'Station rails support generic editorial curation only. Entity type and behavior cannot change after creation.' : 'Choose how content will be selected.'}
           required
           columns={3}
           value={newRailType}
           onChange={(value) => setNewRailType(value as RailType)}
           options={[
             { value: 'generic', label: 'Generic', description: 'Manually curated' },
-            { value: 'personalized', label: 'Personalized', description: 'Tailored to each viewer' },
-            { value: 'hybrid', label: 'Hybrid', description: 'Curation with personalization' },
+            { value: 'personalized', label: 'Personalized', description: 'Tailored to each viewer', disabled: newRailContentType === 'station' },
+            { value: 'hybrid', label: 'Hybrid', description: 'Curation with personalization', disabled: newRailContentType === 'station' },
           ]}
         />
         {newRailType !== 'generic' && <div className="rails-list-page__create-rail-configuration">

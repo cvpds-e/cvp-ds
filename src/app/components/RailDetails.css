@@ -9,7 +9,8 @@
 .rail-details-page .rail-details__sidebar { display: flex; min-width: 0; min-height: 0; flex-direction: column; overflow: hidden; background: inherit; border-inline-end: var(--cvp-border-base-width) solid var(--cvp-color-border-subtle); transition: width var(--cvp-motion-duration-base) var(--cvp-motion-easing-standard); }
 .rail-details__workspace--sidebar-collapsed { grid-template-columns: minmax(0, 1fr); }
 .rail-details__panel-title, .rail-details__preview-bar { display: flex; min-height: 48px; align-items: center; gap: var(--cvp-space-3); padding-inline: var(--cvp-space-4); background: inherit; border-bottom: var(--cvp-border-base-width) solid var(--cvp-color-border-subtle); }
-.rail-details__panel-title { justify-content: space-between; }
+.rail-details__panel-title { flex: 0 0 auto; justify-content: space-between; }
+.rail-details__panel-title h2 { margin: 0; font: inherit; font-weight: var(--cvp-font-weight-semibold); }
 .rail-details__sidebar .cvp-tabs { display: flex; min-height: 0; flex: 1 1 auto; flex-direction: column; }
 .rail-details__sidebar .cvp-tabs__list { flex: 0 0 auto; padding-inline: 0; background: transparent; }
 .rail-details__sidebar .cvp-tabs, .rail-details__sidebar .cvp-tabs__panel, .rail-details__sidebar .rail-details__form, .rail-details__sidebar .rail-details__form-section { background: transparent; }

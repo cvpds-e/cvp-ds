@@ -22,6 +22,12 @@ Use the inline layout as one coordinated sorting decision:
 - **Sort field:** provide a concise set of fields whose labels match the attributes visible in the collection.
 - **Direction control:** place the direction beside the field selector so both parts of the active ordering remain visible.
 
+Keep the selector and direction control on the same row, with the direction
+aligned to the right. The label may sit above them in compact panels. Only
+when the control itself is 14rem (224px at the default root size) or narrower
+should the direction move below the selector; it remains right-aligned.
+Respond to available container space rather than the viewport alone.
+
 Choose the direction according to the intended ordering:
 
 - **Ascending:** order values from lower to higher, earlier to later, or A to Z.

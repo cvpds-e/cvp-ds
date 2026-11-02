@@ -10,6 +10,7 @@ describe('PersonalizedRailDetails', () => {
     const user = userEvent.setup();
     render(<PersonalizedRailDetails />);
 
+    expect(screen.getByRole('heading', { name: 'Settings', level: 2 })).toBeVisible();
     expect(screen.getByText('No personalizer configuration is assigned. Create one in Personalizer configurations to power this rail.')).toBeVisible();
 
     await user.click(screen.getByRole('tab', { name: 'Personalizer configurations' }));

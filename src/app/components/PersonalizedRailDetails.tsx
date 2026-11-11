@@ -4,15 +4,14 @@ import { Breadcrumb } from './Breadcrumb';
 import { Checkbox } from './Checkbox';
 import { HeaderNavigation } from './HeaderNavigation';
 import { IconButton } from './IconButton';
-import { MultiSelect } from './MultiSelect';
 import { Modal } from './Modal';
 import { NumberInput } from './NumberInput';
 import { OutlineButton } from './OutlineButton';
+import { PersonalizerFilterBuilder, PersonalizerFilterClause } from './PersonalizerFilterBuilder';
 import { PrimaryButton } from './PrimaryButton';
 import { RailContentGallery, RailContentItem } from './RailContentGallery';
 import { Select } from './Select';
 import { Tabs } from './Tabs';
-import { TagFilter } from './TagFilter';
 import { TextButton } from './TextButton';
 import { TextInput } from './TextInput';
 import { ToastProvider, useToast } from './Toast';
@@ -51,14 +50,7 @@ interface PersonalizerConfiguration {
   id: string;
   name: string;
   strategy: string;
-  contentTypes: string[];
-  genres: string[];
-  castMembers: string[];
-  audienceRatings: string[];
-  keywords: string[];
-  languages: string[];
-  minimumRuntime: string;
-  maximumRuntime: string;
+  filters: PersonalizerFilterClause[];
 }
 
 const initialConfigurations: PersonalizerConfiguration[] = [];
@@ -71,8 +63,6 @@ const strategyLabels: Record<string, string> = {
   'recently-added': 'Recently Added',
   'continue-watching': 'Continue Watching',
 };
-
-const formatValues = (values: string[]) => values.map((value) => value.replace(/(^|-)(\w)/g, (_, separator, letter) => `${separator ? ' ' : ''}${letter.toUpperCase()}`)).join(', ');
 
 function ReadOnlyIndicator() {
   return <Tooltip content="Read only" side="right" align="center"><span className="personalized-rail-details__read-only-indicator" role="img" aria-label="Read only"><Lock size={14} aria-hidden="true" /></span></Tooltip>;
@@ -91,14 +81,7 @@ function PersonalizedRailDetailsWorkspace() {
   const [editingConfigurationId, setEditingConfigurationId] = useState<string | 'new' | null>(null);
   const [configurationName, setConfigurationName] = useState('');
   const [strategy, setStrategy] = useState('general-recommendations');
-  const [contentTypes, setContentTypes] = useState<string[]>(['movie', 'series']);
-  const [genres, setGenres] = useState<string[]>([]);
-  const [castMembers, setCastMembers] = useState<string[]>([]);
-  const [audienceRatings, setAudienceRatings] = useState<string[]>([]);
-  const [keywords, setKeywords] = useState<string[]>([]);
-  const [languages, setLanguages] = useState<string[]>([]);
-  const [minimumRuntime, setMinimumRuntime] = useState('');
-  const [maximumRuntime, setMaximumRuntime] = useState('');
+  const [filters, setFilters] = useState<PersonalizerFilterClause[]>([{ id: 'content-type', field: 'content-type', operator: 'IN', values: ['movie', 'series'] }]);
   const [configurationDirty, setConfigurationDirty] = useState(false);
   const [activeTab, setActiveTab] = useState('base');
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -124,21 +107,14 @@ function PersonalizedRailDetailsWorkspace() {
     setEditingConfigurationId(item?.id ?? 'new');
     setConfigurationName(item?.name ?? '');
     setStrategy(item?.strategy ?? 'general-recommendations');
-    setContentTypes(item?.contentTypes ?? ['movie', 'series']);
-    setGenres(item?.genres ?? []);
-    setCastMembers(item?.castMembers ?? []);
-    setAudienceRatings(item?.audienceRatings ?? []);
-    setKeywords(item?.keywords ?? []);
-    setLanguages(item?.languages ?? []);
-    setMinimumRuntime(item?.minimumRuntime ?? '');
-    setMaximumRuntime(item?.maximumRuntime ?? '');
+    setFilters(item?.filters ?? [{ id: 'content-type', field: 'content-type', operator: 'IN', values: ['movie', 'series'] }]);
     setConfigurationDirty(!item);
   };
   const saveConfiguration = () => {
     const trimmedName = configurationName.trim();
     if (!trimmedName || !editingConfigurationId) return;
     const id = editingConfigurationId === 'new' ? `configuration-${Date.now()}` : editingConfigurationId;
-    const nextConfiguration: PersonalizerConfiguration = { id, name: trimmedName, strategy, contentTypes, genres, castMembers, audienceRatings, keywords, languages, minimumRuntime, maximumRuntime };
+    const nextConfiguration: PersonalizerConfiguration = { id, name: trimmedName, strategy, filters };
     setPersonalizerConfigurations((current) => editingConfigurationId === 'new' ? [...current, nextConfiguration] : current.map((item) => item.id === id ? nextConfiguration : item));
     if (editingConfigurationId === 'new') setConfiguration(id);
     setEditingConfigurationId(null);
@@ -163,7 +139,7 @@ function PersonalizedRailDetailsWorkspace() {
     <Select label="Personalizer configuration" value={configuration} onChange={setConfiguration} helperText="The ML configuration powering recommendations for this rail." options={personalizerConfigurations.map((item) => ({ value: item.id, label: item.name }))} />
     {selectedRailConfiguration ? <article className="personalized-rail-details__configuration-card">
       <div className="personalized-rail-details__configuration-heading"><strong>{selectedRailConfiguration.name}</strong><p>{strategyLabels[selectedRailConfiguration.strategy]}</p></div>
-      <dl><div><dt>Content types</dt><dd>{formatValues(selectedRailConfiguration.contentTypes) || 'Any'}</dd></div><div><dt>Genres</dt><dd>{formatValues(selectedRailConfiguration.genres) || 'Any'}</dd></div><div><dt>Languages</dt><dd>{formatValues(selectedRailConfiguration.languages) || 'Any'}</dd></div><div><dt>Last updated</dt><dd>2026-04-28</dd></div></dl>
+      <dl><div><dt>Filters</dt><dd>{selectedRailConfiguration.filters.length} active</dd></div><div><dt>Exclusions</dt><dd>{selectedRailConfiguration.filters.filter((filter) => filter.operator === 'NOT_IN').length}</dd></div><div><dt>Last updated</dt><dd>2026-04-28</dd></div></dl>
     </article> : <p className="personalized-rail-details__configuration-empty">No personalizer configuration is assigned. Create one in Personalizer configurations to power this rail.</p>}
     <div className="personalized-rail-details__configuration-link"><p><strong>Want to tweak the parameters?</strong> Head to Personalizer Configurations to edit this config or create new ones.</p><TextButton variant="secondary" onClick={() => { setActiveTab('configuration'); setEditingConfigurationId(null); }}>Open <ChevronRight size={14} /></TextButton></div>
     <TextInput label="External reference ID" optionalText="Advanced" value={externalReferenceId} onChange={(event) => setExternalReferenceId(event.target.value)} />
@@ -178,21 +154,14 @@ function PersonalizedRailDetailsWorkspace() {
     <div className="personalized-rail-details__form"><div className="personalized-rail-details__form-section">
       <TextInput label="Configuration name" value={configurationName} onChange={(event) => { setConfigurationName(event.target.value); setConfigurationDirty(true); }} required />
       <Select label="Recommendation strategy" value={strategy} onChange={markConfigurationDirty(setStrategy)} helperText="Defines the recommendation source used by this rail." options={Object.entries(strategyLabels).map(([value, label]) => ({ value, label }))} />
-      <section className="personalized-rail-details__filter-heading" aria-labelledby="personalized-configuration-filtering-title"><div><span>Content filtering</span><p id="personalized-configuration-filtering-title">Filter recommendations on top of the selected strategy.</p></div></section>
-      <TagFilter sections={[{ id: 'content-type', title: 'What type of content?', options: [{ id: 'movie', label: 'Movies' }, { id: 'series', label: 'Series' }] }]} selectedOptions={contentTypes} onSelectionChange={markConfigurationDirty(setContentTypes)} />
-      <MultiSelect label="Genres to include" value={genres} onChange={markConfigurationDirty(setGenres)} placeholder="Add genres…" options={[{ value: 'action', label: 'Action' }, { value: 'drama', label: 'Drama' }, { value: 'comedy', label: 'Comedy' }, { value: 'documentary', label: 'Documentary' }, { value: 'thriller', label: 'Thriller' }, { value: 'sci-fi', label: 'Sci-Fi' }, { value: 'horror', label: 'Horror' }, { value: 'crime', label: 'Crime' }, { value: 'animation', label: 'Animation' }, { value: 'fantasy', label: 'Fantasy' }]} />
-      <MultiSelect label="Featuring cast members" value={castMembers} onChange={markConfigurationDirty(setCastMembers)} placeholder="Add cast members…" options={[{ value: 'viola-davis', label: 'Viola Davis' }, { value: 'pedro-pascal', label: 'Pedro Pascal' }, { value: 'zendaya', label: 'Zendaya' }]} />
-      <TagFilter sections={[{ id: 'audience-rating', title: 'Audience rating', options: [{ id: 'g', label: 'G' }, { id: 'pg', label: 'PG' }, { id: 'pg-13', label: 'PG-13' }, { id: 'r', label: 'R' }, { id: 'nc-17', label: 'NC-17' }] }]} selectedOptions={audienceRatings} onSelectionChange={markConfigurationDirty(setAudienceRatings)} />
-      <MultiSelect label="Match keywords" value={keywords} onChange={markConfigurationDirty(setKeywords)} placeholder="Add keywords…" allowCreate options={[]} />
-      <MultiSelect label="Available in languages" value={languages} onChange={markConfigurationDirty(setLanguages)} placeholder="Add languages…" options={[{ value: 'english', label: 'English' }, { value: 'spanish', label: 'Spanish' }, { value: 'french', label: 'French' }, { value: 'german', label: 'German' }]} />
-      <div className="personalized-rail-details__runtime"><NumberInput label="Minimum runtime" value={minimumRuntime === '' ? '' : Number(minimumRuntime)} onValueChange={(value) => { setMinimumRuntime(String(value)); setConfigurationDirty(true); }} min={0} placeholder="Min (min)" /><span>to</span><NumberInput label="Maximum runtime" value={maximumRuntime === '' ? '' : Number(maximumRuntime)} onValueChange={(value) => { setMaximumRuntime(String(value)); setConfigurationDirty(true); }} min={0} placeholder="Max (min)" /></div>
-      <p className="personalized-rail-details__runtime-help">Duration range in minutes. Leave blank for no limit.</p>
+      <section className="personalized-rail-details__filter-heading"><span>Content filtering</span></section>
+      <PersonalizerFilterBuilder clauses={filters} onChange={markConfigurationDirty(setFilters)} />
       {editingConfigurationId !== 'new' && <section className="personalized-rail-details__danger-zone" aria-labelledby="delete-personalizer-configuration-heading"><div><strong id="delete-personalizer-configuration-heading">Delete configuration</strong><p>Remove this personalizer configuration permanently.</p></div><TextButton variant="secondary" className="personalized-rail-details__delete-action" icon={<Trash2 size={15} />} onClick={() => setDeleteConfigurationConfirmationOpen(true)}>Delete configuration</TextButton></section>}
     </div></div>
     {configurationDirty && <UnsavedChangesFooter onSave={saveConfiguration} onCancel={() => { setEditingConfigurationId(null); setConfigurationDirty(false); }} saveDisabled={!configurationName.trim()} />}
   </div> : <div className="personalized-rail-details__configuration-list">
     <div className="personalized-rail-details__list-heading"><div><strong>Personalizer configurations</strong><p>Manage ML models and recommendation algorithms</p></div>{personalizerConfigurations.length > 0 && <PrimaryButton onClick={() => openConfiguration()}><Plus size={15} /> New configuration</PrimaryButton>}</div>
-    {personalizerConfigurations.length > 0 ? <><div className="personalized-rail-details__configuration-items">{personalizerConfigurations.map((item) => <button key={item.id} type="button" className="personalized-rail-details__configuration-item" onClick={() => openConfiguration(item)}><span className="personalized-rail-details__configuration-copy"><strong>{item.name}</strong><small>Strategy: {strategyLabels[item.strategy]}</small><small>Types: {formatValues(item.contentTypes)}</small>{item.genres.length > 0 && <small>Genres: {formatValues(item.genres)}</small>}</span><ChevronRight size={16} aria-hidden="true" /></button>)}</div><p className="personalized-rail-details__list-tip"><strong>Tip:</strong> Select a configuration to view details and edit parameters, or create a new one to set up custom recommendation logic.</p></> : <section className="personalized-rail-details__list-empty" aria-labelledby="personalizer-empty-title">
+    {personalizerConfigurations.length > 0 ? <><div className="personalized-rail-details__configuration-items">{personalizerConfigurations.map((item) => <button key={item.id} type="button" className="personalized-rail-details__configuration-item" onClick={() => openConfiguration(item)}><span className="personalized-rail-details__configuration-copy"><strong>{item.name}</strong><small>Strategy: {strategyLabels[item.strategy]}</small><small>Filters: {item.filters.length} active · {item.filters.filter((filter) => filter.operator === 'NOT_IN').length} excluding</small></span><ChevronRight size={16} aria-hidden="true" /></button>)}</div><p className="personalized-rail-details__list-tip"><strong>Tip:</strong> Select a configuration to view details and edit parameters, or create a new one to set up custom recommendation logic.</p></> : <section className="personalized-rail-details__list-empty" aria-labelledby="personalizer-empty-title">
       <div className="personalized-rail-details__empty-visual" aria-hidden="true">
         <span className="personalized-rail-details__empty-node"><Clapperboard size={20} /></span><span className="personalized-rail-details__empty-path"><i /><i /><i /></span><span className="personalized-rail-details__empty-node personalized-rail-details__empty-node--model"><SlidersHorizontal size={20} /></span><span className="personalized-rail-details__empty-path"><i /><i /><i /></span><span className="personalized-rail-details__empty-node personalized-rail-details__empty-node--result"><Sparkles size={20} /></span>
       </div>

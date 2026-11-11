@@ -19,6 +19,8 @@ describe('PersonalizedRailDetails', () => {
     expect(screen.getByText('Choose a recommendation strategy and tune content filters for this rail.')).toBeVisible();
     await user.click(screen.getByRole('button', { name: 'New configuration' }));
     expect(screen.getByRole('textbox', { name: 'Configuration name' })).toBeVisible();
+    expect(screen.getByRole('combobox', { name: 'Operator' })).toHaveTextContent('IN · matches any');
+    expect(screen.getByText('Include', { selector: 'strong' })).toBeVisible();
     expect(screen.queryByText('Edit configuration parameters')).not.toBeInTheDocument();
   });
 });

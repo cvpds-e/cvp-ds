@@ -81,7 +81,7 @@ function PersonalizedRailDetailsWorkspace() {
   const [editingConfigurationId, setEditingConfigurationId] = useState<string | 'new' | null>(null);
   const [configurationName, setConfigurationName] = useState('');
   const [strategy, setStrategy] = useState('general-recommendations');
-  const [filters, setFilters] = useState<PersonalizerFilterClause[]>([{ id: 'content-type', field: 'content-type', operator: 'IN', values: ['movie', 'series'] }]);
+  const [filters, setFilters] = useState<PersonalizerFilterClause[]>([{ id: 'content-type', field: 'content-type', operator: 'in', values: ['movie', 'series'] }]);
   const [configurationDirty, setConfigurationDirty] = useState(false);
   const [activeTab, setActiveTab] = useState('base');
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -107,7 +107,7 @@ function PersonalizedRailDetailsWorkspace() {
     setEditingConfigurationId(item?.id ?? 'new');
     setConfigurationName(item?.name ?? '');
     setStrategy(item?.strategy ?? 'general-recommendations');
-    setFilters(item?.filters ?? [{ id: 'content-type', field: 'content-type', operator: 'IN', values: ['movie', 'series'] }]);
+    setFilters(item?.filters ?? [{ id: 'content-type', field: 'content-type', operator: 'in', values: ['movie', 'series'] }]);
     setConfigurationDirty(!item);
   };
   const saveConfiguration = () => {
@@ -139,7 +139,7 @@ function PersonalizedRailDetailsWorkspace() {
     <Select label="Personalizer configuration" value={configuration} onChange={setConfiguration} helperText="The ML configuration powering recommendations for this rail." options={personalizerConfigurations.map((item) => ({ value: item.id, label: item.name }))} />
     {selectedRailConfiguration ? <article className="personalized-rail-details__configuration-card">
       <div className="personalized-rail-details__configuration-heading"><strong>{selectedRailConfiguration.name}</strong><p>{strategyLabels[selectedRailConfiguration.strategy]}</p></div>
-      <dl><div><dt>Filters</dt><dd>{selectedRailConfiguration.filters.length} active</dd></div><div><dt>Exclusions</dt><dd>{selectedRailConfiguration.filters.filter((filter) => filter.operator === 'NOT_IN').length}</dd></div><div><dt>Last updated</dt><dd>2026-04-28</dd></div></dl>
+      <dl><div><dt>Filters</dt><dd>{selectedRailConfiguration.filters.length} active</dd></div><div><dt>Exclusions</dt><dd>{selectedRailConfiguration.filters.filter((filter) => filter.operator === 'not_in').length}</dd></div><div><dt>Last updated</dt><dd>2026-04-28</dd></div></dl>
     </article> : <p className="personalized-rail-details__configuration-empty">No personalizer configuration is assigned. Create one in Personalizer configurations to power this rail.</p>}
     <div className="personalized-rail-details__configuration-link"><p><strong>Want to tweak the parameters?</strong> Head to Personalizer Configurations to edit this config or create new ones.</p><TextButton variant="secondary" onClick={() => { setActiveTab('configuration'); setEditingConfigurationId(null); }}>Open <ChevronRight size={14} /></TextButton></div>
     <TextInput label="External reference ID" optionalText="Advanced" value={externalReferenceId} onChange={(event) => setExternalReferenceId(event.target.value)} />
@@ -161,7 +161,7 @@ function PersonalizedRailDetailsWorkspace() {
     {configurationDirty && <UnsavedChangesFooter onSave={saveConfiguration} onCancel={() => { setEditingConfigurationId(null); setConfigurationDirty(false); }} saveDisabled={!configurationName.trim()} />}
   </div> : <div className="personalized-rail-details__configuration-list">
     <div className="personalized-rail-details__list-heading"><div><strong>Personalizer configurations</strong><p>Manage ML models and recommendation algorithms</p></div>{personalizerConfigurations.length > 0 && <PrimaryButton onClick={() => openConfiguration()}><Plus size={15} /> New configuration</PrimaryButton>}</div>
-    {personalizerConfigurations.length > 0 ? <><div className="personalized-rail-details__configuration-items">{personalizerConfigurations.map((item) => <button key={item.id} type="button" className="personalized-rail-details__configuration-item" onClick={() => openConfiguration(item)}><span className="personalized-rail-details__configuration-copy"><strong>{item.name}</strong><small>Strategy: {strategyLabels[item.strategy]}</small><small>Filters: {item.filters.length} active · {item.filters.filter((filter) => filter.operator === 'NOT_IN').length} excluding</small></span><ChevronRight size={16} aria-hidden="true" /></button>)}</div><p className="personalized-rail-details__list-tip"><strong>Tip:</strong> Select a configuration to view details and edit parameters, or create a new one to set up custom recommendation logic.</p></> : <section className="personalized-rail-details__list-empty" aria-labelledby="personalizer-empty-title">
+    {personalizerConfigurations.length > 0 ? <><div className="personalized-rail-details__configuration-items">{personalizerConfigurations.map((item) => <button key={item.id} type="button" className="personalized-rail-details__configuration-item" onClick={() => openConfiguration(item)}><span className="personalized-rail-details__configuration-copy"><strong>{item.name}</strong><small>Strategy: {strategyLabels[item.strategy]}</small><small>Filters: {item.filters.length} active · {item.filters.filter((filter) => filter.operator === 'not_in').length} excluding</small></span><ChevronRight size={16} aria-hidden="true" /></button>)}</div><p className="personalized-rail-details__list-tip"><strong>Tip:</strong> Select a configuration to view details and edit parameters, or create a new one to set up custom recommendation logic.</p></> : <section className="personalized-rail-details__list-empty" aria-labelledby="personalizer-empty-title">
       <div className="personalized-rail-details__empty-visual" aria-hidden="true">
         <span className="personalized-rail-details__empty-node"><Clapperboard size={20} /></span><span className="personalized-rail-details__empty-path"><i /><i /><i /></span><span className="personalized-rail-details__empty-node personalized-rail-details__empty-node--model"><SlidersHorizontal size={20} /></span><span className="personalized-rail-details__empty-path"><i /><i /><i /></span><span className="personalized-rail-details__empty-node personalized-rail-details__empty-node--result"><Sparkles size={20} /></span>
       </div>

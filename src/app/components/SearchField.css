@@ -8,3 +8,6 @@
 .cvp-search-field .cvp-icon-button { flex: 0 0 auto; margin-inline-end: calc(var(--cvp-space-2) * -1); }
 .cvp-search-field[data-disabled], .cvp-search-field:has(input:disabled) { color: var(--cvp-input-text-disabled); background: var(--cvp-input-bg-disabled); border-color: var(--cvp-input-border-disabled); }
 .cvp-search-field__input:disabled { cursor: not-allowed; }
+@media (prefers-reduced-motion: reduce) {
+  .cvp-search-field { transition: none; }
+}

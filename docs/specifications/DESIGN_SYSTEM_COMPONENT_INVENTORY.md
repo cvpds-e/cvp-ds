@@ -11,7 +11,17 @@
 
 The approved scope has been migrated to the CVP primitive → semantic → component token architecture and verified through its live documentation pages. Deferred and internal components remain outside that guarantee and are identified explicitly below.
 
-**Storybook remains an engineering-infrastructure gap.** `src/stories/` does not exist, so isolated prop fixtures and automated visual regression are not yet part of the repository. The documentation application is the current visual review surface; `docs/handoffs/ENGINEERING_HANDOFF_INDEX.md` is the authoritative implementation entry point.
+**Storybook remains an engineering-infrastructure gap.** `src/stories/` does not
+exist. The documentation application is the supported equivalent, with Playwright
+fixtures and focused responsive/interaction tests under `tests/visual/`.
+`docs/handoffs/ENGINEERING_HANDOFF_INDEX.md` is the engineering entry point.
+
+The [November architecture assessment](../assessments/DESIGN_SYSTEM_ARCHITECTURE_AUDIT.md)
+adds a capability-based coverage matrix and supersedes historical readiness
+claims where implementation or test evidence differs. The
+[public primitive contract](PRIMITIVES.md) covers the additive content/layout APIs
+and elevated internal Radix wrappers; the legacy inventory below remains useful
+for existing component families and handoff links.
 
 ---
 

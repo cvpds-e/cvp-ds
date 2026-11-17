@@ -51,6 +51,7 @@ for (const component of registry.components ?? []) {
   if (!classifications.has(component.classification)) errors.push(`${component.id}: invalid classification ${component.classification}`);
   if (!component.source || !(await exists(component.source))) errors.push(`${component.id}: missing source ${component.source ?? '<missing>'}`);
   if (component.documentation && !(await exists(component.documentation))) errors.push(`${component.id}: missing documentation ${component.documentation}`);
+  if (component.stylesheet && !(await exists(component.stylesheet))) errors.push(`${component.id}: missing stylesheet ${component.stylesheet}`);
   if (!(await exists(`docs/component-specifications/${component.id}.md`))) errors.push(`${component.id}: missing component specification stub`);
   if (!Array.isArray(component.tags) || component.tags.length === 0) errors.push(`${component.id}: discovery tags are required`);
   if (!Array.isArray(component.accessibility) || component.accessibility.length === 0) errors.push(`${component.id}: accessibility contract is required`);

@@ -63,12 +63,16 @@ import { AccessibilityAuditProbe } from './components/AccessibilityAuditProbe';
 import { AccessibilityDocumentation } from './components/AccessibilityDocumentation';
 import { TokenArchitectureDocumentation } from './components/TokenArchitectureDocumentation';
 import { TooltipDocumentation } from './components/TooltipDocumentation';
+import { PrimitivesDocumentation } from './components/PrimitivesDocumentation';
+import { DesignSystemCatalogDocumentation } from './components/DesignSystemCatalogDocumentation';
+import { PrimitiveDocumentation, PRIMITIVE_EXAMPLES } from './components/PrimitiveDocumentation';
+import { FoundationDocumentation, FOUNDATION_DETAILS } from './components/FoundationDocumentation';
 import { WorkspaceLayoutDocumentation } from './components/WorkspaceLayoutDocumentation';
 import cvpLogoWhite from './imports/CloudVideoPlatform_Logo_Horizontal_MonoWhite_RGB.svg';
 import cvpLogoBlack from './imports/CloudVideoPlatform_Logo_Horizontal_MonoBlack_RGB.svg';
 import './App.css';
 
-function OverviewSection() {
+function OverviewSection({ principlesOnly = false }: { principlesOnly?: boolean }) {
   return (
     <>
       <style>{`
@@ -321,7 +325,7 @@ function OverviewSection() {
       `}</style>
 
       <div className="overview-section">
-        <div className="cvp-logo-container">
+        {!principlesOnly && <div className="cvp-logo-container">
           {/* White logo for dark theme */}
           <img 
             src={cvpLogoWhite} 
@@ -334,12 +338,14 @@ function OverviewSection() {
             alt="Cloud Video Platform" 
             className="cvp-logo cvp-logo--light"
           />
-        </div>
+        </div>}
         
-        <h1 className="overview-section__title">CVP Design System</h1>
+        <h1 className="overview-section__title">{principlesOnly ? 'Design Principles' : 'CVP Design System'}</h1>
         <p className="overview-section__description">
           A shared foundation of accessible components, design tokens, and interaction patterns for building consistent, efficient editorial and operator workflows across Cloud Video Platform.
         </p>
+
+        {!principlesOnly && <DesignSystemCatalogDocumentation embedded />}
 
         {/* Design Principles */}
         <div className="design-principles">
@@ -530,9 +536,17 @@ export default function App() {
   };
 
   const renderContent = () => {
+    if (Object.hasOwn(PRIMITIVE_EXAMPLES, activeSection)) {
+      return <PrimitiveDocumentation key={activeSection} id={activeSection} />;
+    }
+    if (Object.hasOwn(FOUNDATION_DETAILS, activeSection)) {
+      return <FoundationDocumentation id={activeSection} />;
+    }
     switch (activeSection) {
       case 'overview':
         return <OverviewSection />;
+      case 'principles':
+        return <OverviewSection principlesOnly />;
       case 'colors':
         return <ColorFoundationPreview />;
       case 'typography':
@@ -551,7 +565,11 @@ export default function App() {
         return <AccessibilityDocumentation />;
       case 'token-architecture':
         return <TokenArchitectureDocumentation />;
+      case 'primitives':
+        return <PrimitivesDocumentation />;
       case 'components':
+        return <DesignSystemCatalogDocumentation />;
+      case 'components-preview':
         return <ComponentsOverview />;
       case 'primary-button':
         return <ComponentDocumentation activeComponent="primary-button" />;
@@ -585,6 +603,9 @@ export default function App() {
         return <FilterDocumentation />;
       case 'query-controls':
         return <QueryControlsDocumentation />;
+      case 'search-field':
+      case 'sort-control':
+        return <QueryControlsDocumentation key={activeSection} control={activeSection} />;
       case 'date-picker':
         return <DatePickerDocumentation />;
       case 'filter-group':
@@ -644,6 +665,7 @@ export default function App() {
       case 'page-side-nav':
         return <PageSideNavDocumentation />;
       case 'rail-details':
+      case 'personalized-rail-details':
         return <RailDetailsDocumentation />;
       case 'station-rail-details':
         return <RailDetailsDocumentation />;
@@ -664,7 +686,9 @@ export default function App() {
 
   return (
     <>
-      {activeSection === 'rail-details-full' ? (
+      {activeSection === 'primitives-full' ? (
+        <main><PrimitivesDocumentation theme={new URLSearchParams(window.location.search).get('theme') === 'light' ? 'light' : 'dark'} /></main>
+      ) : activeSection === 'rail-details-full' ? (
         new URLSearchParams(window.location.search).get('railEntityType') === 'Station' ? <StationRailDetails /> : <RailDetails initiallyEmpty={new URLSearchParams(window.location.search).get('empty') === '1'} queryLocked={new URLSearchParams(window.location.search).get('locked') === '1'} />
       ) : activeSection === 'personalized-rail-details-full' ? (
         <PersonalizedRailDetails />
@@ -680,6 +704,7 @@ export default function App() {
           />
           <ThemeSwitcher />
           <main className="app__main">
+            <a className="app__catalog-link" href="?page=components">Browse design system</a>
             {renderContent()}
           </main>
         </div>

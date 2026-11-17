@@ -9,7 +9,7 @@ export interface PrimaryButtonProps extends React.ButtonHTMLAttributes<HTMLButto
   loadingText?: string;
 }
 
-export function PrimaryButton({
+export const PrimaryButton = React.forwardRef<HTMLButtonElement, PrimaryButtonProps>(({
   children,
   variant = 'default',
   loading = false,
@@ -18,7 +18,7 @@ export function PrimaryButton({
   disabled = false,
   type = 'button',
   ...props
-}: PrimaryButtonProps) {
+}, ref) => {
   const unavailable = disabled || loading;
   const classNames = [
     'primary-button',
@@ -29,6 +29,7 @@ export function PrimaryButton({
 
   return <button
     {...props}
+    ref={ref}
     type={type}
     className={classNames}
     disabled={unavailable}
@@ -43,4 +44,5 @@ export function PrimaryButton({
       <span>{loadingText}</span>
     </span>}
   </button>;
-}
+});
+PrimaryButton.displayName = 'PrimaryButton';

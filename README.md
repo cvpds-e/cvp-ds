@@ -31,6 +31,13 @@ npm run build
 
 Start engineering implementation from the [Engineering Handoff Index](docs/handoffs/ENGINEERING_HANDOFF_INDEX.md). For the complete documentation map, see [docs/README.md](docs/README.md).
 
+Compose from the [public primitives](docs/specifications/PRIMITIVES.md) before
+creating new controls. Open **Primitives** in the documentation app for interactive
+examples. The [architecture assessment](docs/assessments/DESIGN_SYSTEM_ARCHITECTURE_AUDIT.md)
+records coverage and remaining work. On Node 26, run tests with
+`NODE_OPTIONS=--no-experimental-webstorage npm test` to avoid its experimental
+global storage overriding jsdom's browser storage.
+
 ## Token entry points
 
 The runtime token graph is loaded through `src/styles/index.css`:

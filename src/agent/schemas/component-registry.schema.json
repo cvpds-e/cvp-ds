@@ -19,7 +19,14 @@
           "name": { "type": "string", "pattern": "^[A-Z][A-Za-z0-9]+$" },
           "aliases": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
           "classification": { "enum": ["component", "pattern", "page", "utility"] },
-          "lifecycle": { "enum": ["approved", "candidate", "local", "deferred", "deprecated", "internal"] },
+          "lifecycle": { "enum": ["approved", "candidate", "local", "deferred", "deprecated", "internal"]           },
+          "layer": {
+            "enum": ["primitive", "component", "pattern", "template"]
+          },
+          "stylesheet": {
+            "type": "string",
+            "pattern": "^src/.*\\.css$"
+          },
           "family": { "type": "string", "minLength": 1 },
           "source": { "type": "string", "pattern": "^src/" },
           "documentation": { "type": "string" },

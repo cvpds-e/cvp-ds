@@ -4,60 +4,76 @@ import * as React from "react";
 import * as SliderPrimitive from "@radix-ui/react-slider";
 
 import { cn } from "./utils";
+import "./primitives.css";
 
-function Slider({
+export interface SliderProps extends React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root> {
+  /** Accessible names for range thumbs, in value order. */
+  thumbLabels?: string[];
+}
+
+const Slider = React.forwardRef<React.ComponentRef<typeof SliderPrimitive.Root>, SliderProps>(({
   className,
   defaultValue,
   value,
   min = 0,
   max = 100,
+  disabled = false,
+  name,
+  thumbLabels,
+  "aria-label": ariaLabel,
+  "aria-labelledby": labelledBy,
+  "aria-describedby": describedBy,
+  "aria-invalid": invalid,
   ...props
-}: React.ComponentProps<typeof SliderPrimitive.Root>) {
+}, ref) => {
   const _values = React.useMemo(
     () =>
       Array.isArray(value)
         ? value
         : Array.isArray(defaultValue)
           ? defaultValue
-          : [min, max],
-    [value, defaultValue, min, max],
+          : [min],
+    [value, defaultValue, min],
   );
 
+  // Radix's generated slider inputs do not inherit disabled.
   return (
     <SliderPrimitive.Root
       data-slot="slider"
-      defaultValue={defaultValue}
+      ref={ref}
+      defaultValue={defaultValue ?? [min]}
       value={value}
       min={min}
       max={max}
-      className={cn(
-        "relative flex w-full touch-none items-center select-none data-[disabled]:opacity-50 data-[orientation=vertical]:h-full data-[orientation=vertical]:min-h-44 data-[orientation=vertical]:w-auto data-[orientation=vertical]:flex-col",
-        className,
-      )}
+      disabled={disabled}
+      name={disabled ? undefined : name}
+      className={cn("cvp-slider", className)}
       {...props}
     >
       <SliderPrimitive.Track
         data-slot="slider-track"
-        className={cn(
-          "bg-muted relative grow overflow-hidden rounded-full data-[orientation=horizontal]:h-4 data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-1.5",
-        )}
+        className="cvp-slider__track"
       >
         <SliderPrimitive.Range
           data-slot="slider-range"
-          className={cn(
-            "bg-primary absolute data-[orientation=horizontal]:h-full data-[orientation=vertical]:w-full",
-          )}
+          className="cvp-slider__range"
         />
       </SliderPrimitive.Track>
       {Array.from({ length: _values.length }, (_, index) => (
         <SliderPrimitive.Thumb
           data-slot="slider-thumb"
           key={index}
-          className="border-primary bg-background ring-ring/50 block size-4 shrink-0 rounded-full border shadow-sm transition-[color,box-shadow] hover:ring-4 focus-visible:ring-4 focus-visible:outline-hidden disabled:pointer-events-none disabled:opacity-50"
+          className="cvp-slider__thumb"
+          aria-label={thumbLabels?.[index] ?? ariaLabel}
+          aria-labelledby={thumbLabels?.[index] ? undefined : labelledBy}
+          aria-describedby={describedBy}
+          aria-invalid={invalid}
+          aria-disabled={disabled || undefined}
         />
       ))}
     </SliderPrimitive.Root>
   );
-}
+});
+Slider.displayName = "Slider";
 
 export { Slider };

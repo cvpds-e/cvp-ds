@@ -1,0 +1,17 @@
+.cvp-catalog { padding-block: var(--cvp-spacing-section-sm); min-width: 0; color: var(--cvp-color-text-primary); }
+.cvp-catalog__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--cvp-layout-pane-supporting-min-width)), 1fr)); gap: var(--cvp-spacing-gap-md); padding: 0; margin: 0; list-style: none; }
+.cvp-catalog__grid > li { min-width: 0; }
+.cvp-catalog__card { display: flex; flex-direction: column; gap: var(--cvp-spacing-stack-sm); height: 100%; box-sizing: border-box; padding: var(--cvp-spacing-inset-md); background: var(--cvp-color-surface-raised); border: var(--cvp-border-base-width) solid var(--cvp-color-border-strong); border-radius: var(--cvp-radius-md); text-decoration: none; overflow-wrap: anywhere; }
+.cvp-catalog__card > span { color: var(--cvp-color-text-secondary); font-size: var(--cvp-font-size-sm); }
+.cvp-catalog__card:hover { background: var(--cvp-color-surface-hover); }
+.cvp-catalog__availability { text-transform: capitalize; }
+.cvp-catalog-detail { padding-block: var(--cvp-spacing-section-sm); min-width: 0; }
+.cvp-catalog-detail__preview { min-width: 0; padding: var(--cvp-spacing-inset-md); background: var(--cvp-color-surface-raised); border: var(--cvp-border-base-width) solid var(--cvp-color-border-strong); border-radius: var(--cvp-radius-md); }
+.cvp-catalog-detail pre { margin: 0; padding: var(--cvp-spacing-inset-md); max-width: 100%; overflow-x: auto; white-space: pre-wrap; overflow-wrap: anywhere; color: var(--cvp-color-text-primary); background: var(--cvp-color-surface-sunken); border-radius: var(--cvp-radius-md); }
+.cvp-catalog-detail code { overflow-wrap: anywhere; }
+.cvp-catalog-detail__media { max-width: var(--cvp-layout-pane-supporting-min-width); }
+.cvp-catalog-detail__scroll { height: var(--cvp-space-1300); }
+.cvp-catalog-detail__list { padding-inline-start: var(--cvp-spacing-inset-lg); }
+.cvp-catalog-detail__tokens { display: grid; gap: var(--cvp-spacing-stack-sm); }
+.cvp-catalog-detail__tokens dt { font-weight: var(--cvp-font-weight-semibold); overflow-wrap: anywhere; }
+.cvp-catalog-detail__tokens dd { margin: 0 0 var(--cvp-spacing-stack-sm); color: var(--cvp-color-text-secondary); overflow-wrap: anywhere; }

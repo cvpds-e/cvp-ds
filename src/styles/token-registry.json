@@ -1257,6 +1257,36 @@
       "source": "cvp-primitives.css"
     },
     {
+      "name": "--cvp-primitive-icon-stroke-width",
+      "tier": "Primitive",
+      "scope": "Shared",
+      "source": "cvp-primitives.css"
+    },
+    {
+      "name": "--cvp-primitive-aspect-square",
+      "tier": "Primitive",
+      "scope": "Shared",
+      "source": "cvp-primitives.css"
+    },
+    {
+      "name": "--cvp-primitive-aspect-video",
+      "tier": "Primitive",
+      "scope": "Shared",
+      "source": "cvp-primitives.css"
+    },
+    {
+      "name": "--cvp-primitive-aspect-portrait",
+      "tier": "Primitive",
+      "scope": "Shared",
+      "source": "cvp-primitives.css"
+    },
+    {
+      "name": "--cvp-primitive-border-style-solid",
+      "tier": "Primitive",
+      "scope": "Shared",
+      "source": "cvp-primitives.css"
+    },
+    {
       "name": "--cvp-focus-ring-color",
       "tier": "Semantic",
       "scope": "Dark theme",
@@ -1900,6 +1930,18 @@
     },
     {
       "name": "--cvp-color-border-danger",
+      "tier": "Semantic",
+      "scope": "Light theme",
+      "source": "cvp-semantic-tokens.css"
+    },
+    {
+      "name": "--cvp-color-border-interactive",
+      "tier": "Semantic",
+      "scope": "Dark theme",
+      "source": "cvp-semantic-tokens.css"
+    },
+    {
+      "name": "--cvp-color-border-interactive",
       "tier": "Semantic",
       "scope": "Light theme",
       "source": "cvp-semantic-tokens.css"
@@ -3472,6 +3514,66 @@
     },
     {
       "name": "--cvp-z-toast",
+      "tier": "Semantic",
+      "scope": "Light theme",
+      "source": "cvp-semantic-tokens.css"
+    },
+    {
+      "name": "--cvp-target-size-minimum",
+      "tier": "Semantic",
+      "scope": "Light theme",
+      "source": "cvp-semantic-tokens.css"
+    },
+    {
+      "name": "--cvp-target-size-comfortable",
+      "tier": "Semantic",
+      "scope": "Light theme",
+      "source": "cvp-semantic-tokens.css"
+    },
+    {
+      "name": "--cvp-icon-size-small",
+      "tier": "Semantic",
+      "scope": "Light theme",
+      "source": "cvp-semantic-tokens.css"
+    },
+    {
+      "name": "--cvp-icon-size-medium",
+      "tier": "Semantic",
+      "scope": "Light theme",
+      "source": "cvp-semantic-tokens.css"
+    },
+    {
+      "name": "--cvp-icon-size-large",
+      "tier": "Semantic",
+      "scope": "Light theme",
+      "source": "cvp-semantic-tokens.css"
+    },
+    {
+      "name": "--cvp-icon-stroke-width",
+      "tier": "Semantic",
+      "scope": "Light theme",
+      "source": "cvp-semantic-tokens.css"
+    },
+    {
+      "name": "--cvp-aspect-ratio-square",
+      "tier": "Semantic",
+      "scope": "Light theme",
+      "source": "cvp-semantic-tokens.css"
+    },
+    {
+      "name": "--cvp-aspect-ratio-video",
+      "tier": "Semantic",
+      "scope": "Light theme",
+      "source": "cvp-semantic-tokens.css"
+    },
+    {
+      "name": "--cvp-aspect-ratio-portrait",
+      "tier": "Semantic",
+      "scope": "Light theme",
+      "source": "cvp-semantic-tokens.css"
+    },
+    {
+      "name": "--cvp-border-style-default",
       "tier": "Semantic",
       "scope": "Light theme",
       "source": "cvp-semantic-tokens.css"

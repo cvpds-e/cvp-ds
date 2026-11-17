@@ -4,21 +4,33 @@ import * as React from "react";
 import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area";
 
 import { cn } from "./utils";
+import "./primitives.css";
 
-function ScrollArea({
+export interface ScrollAreaProps extends React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.Root> {
+  viewportProps?: React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.Viewport>;
+  viewportRef?: React.Ref<React.ComponentRef<typeof ScrollAreaPrimitive.Viewport>>;
+}
+
+const ScrollArea = React.forwardRef<React.ComponentRef<typeof ScrollAreaPrimitive.Root>, ScrollAreaProps>(({
   className,
   children,
+  viewportProps,
+  viewportRef,
   ...props
-}: React.ComponentProps<typeof ScrollAreaPrimitive.Root>) {
+}, ref) => {
   return (
     <ScrollAreaPrimitive.Root
       data-slot="scroll-area"
-      className={cn("relative", className)}
+      ref={ref}
+      className={cn("cvp-scroll-area", className)}
       {...props}
     >
       <ScrollAreaPrimitive.Viewport
+        {...viewportProps}
+        ref={viewportRef}
         data-slot="scroll-area-viewport"
-        className="focus-visible:ring-ring/50 size-full rounded-[inherit] transition-[color,box-shadow] outline-none focus-visible:ring-[3px] focus-visible:outline-1"
+        tabIndex={viewportProps?.tabIndex ?? 0}
+        className={cn("cvp-scroll-area__viewport", viewportProps?.className)}
       >
         {children}
       </ScrollAreaPrimitive.Viewport>
@@ -26,33 +38,29 @@ function ScrollArea({
       <ScrollAreaPrimitive.Corner />
     </ScrollAreaPrimitive.Root>
   );
-}
+});
+ScrollArea.displayName = "ScrollArea";
 
-function ScrollBar({
+const ScrollBar = React.forwardRef<React.ComponentRef<typeof ScrollAreaPrimitive.ScrollAreaScrollbar>, React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.ScrollAreaScrollbar>>(({
   className,
   orientation = "vertical",
   ...props
-}: React.ComponentProps<typeof ScrollAreaPrimitive.ScrollAreaScrollbar>) {
+}, ref) => {
   return (
     <ScrollAreaPrimitive.ScrollAreaScrollbar
       data-slot="scroll-area-scrollbar"
+      ref={ref}
       orientation={orientation}
-      className={cn(
-        "flex touch-none p-px transition-colors select-none",
-        orientation === "vertical" &&
-          "h-full w-2.5 border-l border-l-transparent",
-        orientation === "horizontal" &&
-          "h-2.5 flex-col border-t border-t-transparent",
-        className,
-      )}
+      className={cn("cvp-scroll-area__scrollbar", className)}
       {...props}
     >
       <ScrollAreaPrimitive.ScrollAreaThumb
         data-slot="scroll-area-thumb"
-        className="bg-border relative flex-1 rounded-full"
+        className="cvp-scroll-area__thumb"
       />
     </ScrollAreaPrimitive.ScrollAreaScrollbar>
   );
-}
+});
+ScrollBar.displayName = "ScrollBar";
 
 export { ScrollArea, ScrollBar };

@@ -156,15 +156,24 @@ for (const theme of ['dark', 'light']) {
   });
 }
 
-test('personalized Settings keeps its mobile close and reopen actions', async ({ page }) => {
-  await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto('/?page=personalized-rail-details-full&theme=dark');
-  await expect(page.getByRole('heading', { name: 'Settings', level: 2 })).toBeVisible();
-  await page.getByRole('button', { name: 'Close configuration', exact: true }).click();
-  await expect(page.getByRole('heading', { name: 'Settings', level: 2 })).toHaveCount(0);
-  await page.getByRole('button', { name: 'Open configuration', exact: true }).click();
-  await expect(page.getByRole('heading', { name: 'Settings', level: 2 })).toBeVisible();
-});
+for (const theme of ['dark', 'light']) {
+  test(`personalized Settings keeps its mobile close and reopen actions · ${theme}`, async ({ page }) => {
+    for (const width of [320, 390]) {
+      await page.setViewportSize({ width, height: 844 });
+      await page.goto(`/?page=personalized-rail-details-full&theme=${theme}`);
+      await expect(page.getByRole('heading', { name: 'Settings', level: 2 })).toBeVisible();
+      const close = page.getByRole('button', { name: 'Close configuration', exact: true });
+      const header = (await page.locator('.cvp-header').boundingBox())!;
+      expect((await close.boundingBox())!.y).toBeGreaterThanOrEqual(header.y + header.height);
+      await page.getByRole('combobox', { name: 'Rail collection', exact: true }).click();
+      await page.getByRole('option', { name: 'Home', exact: true }).click();
+      await close.click();
+      await expect(page.getByRole('heading', { name: 'Settings', level: 2 })).toHaveCount(0);
+      await page.getByRole('button', { name: 'Open configuration', exact: true }).click();
+      await expect(page.getByRole('heading', { name: 'Settings', level: 2 })).toBeVisible();
+    }
+  });
+}
 
 test('Rail Details showcases station variants without a separate navigation page', async ({ page }) => {
   await page.goto('/?page=rail-details');

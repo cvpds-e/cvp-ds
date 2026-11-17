@@ -320,4 +320,10 @@
   --cvp-primitive-layout-columns-sm: 4;
   --cvp-primitive-layout-columns-md: 8;
   --cvp-primitive-layout-columns-lg: 12;
+
+  --cvp-primitive-icon-stroke-width: 2;
+  --cvp-primitive-aspect-square: 1;
+  --cvp-primitive-aspect-video: 16 / 9;
+  --cvp-primitive-aspect-portrait: 2 / 3;
+  --cvp-primitive-border-style-solid: solid;
 }

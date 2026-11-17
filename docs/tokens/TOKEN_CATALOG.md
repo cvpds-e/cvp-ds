@@ -17,8 +17,8 @@ This catalog is the readable index of every active CVP token. It preserves each 
 
 | Tier | Source file | Definitions |
 | --- | --- | ---: |
-| Primitive | `cvp-primitives.css` | 209 |
-| Semantic | `cvp-semantic-tokens.css` | 489 |
+| Primitive | `cvp-primitives.css` | 214 |
+| Semantic | `cvp-semantic-tokens.css` | 501 |
 | Component | `cvp-component-tokens.css` | 1376 |
 
 ## Tier 1 — Primitive tokens
@@ -236,6 +236,11 @@ Raw colour, spacing, typography, motion, elevation, and opacity values. Do not r
 | `--cvp-primitive-layout-columns-sm` | `4` | Shared |
 | `--cvp-primitive-layout-columns-md` | `8` | Shared |
 | `--cvp-primitive-layout-columns-lg` | `12` | Shared |
+| `--cvp-primitive-icon-stroke-width` | `2` | Shared |
+| `--cvp-primitive-aspect-square` | `1` | Shared |
+| `--cvp-primitive-aspect-video` | `16 / 9` | Shared |
+| `--cvp-primitive-aspect-portrait` | `2 / 3` | Shared |
+| `--cvp-primitive-border-style-solid` | `solid` | Shared |
 
 ## Tier 2 — Semantic tokens
 
@@ -299,6 +304,7 @@ Intent-based roles. Theme-specific rows are shown with their scope so the light 
 | `--cvp-color-border-success` | `var(--cvp-primitive-green-400)` | Dark theme |
 | `--cvp-color-border-warning` | `var(--cvp-primitive-yellow-400)` | Dark theme |
 | `--cvp-color-border-danger` | `var(--cvp-primitive-danger-500)` | Dark theme |
+| `--cvp-color-border-interactive` | `var(--cvp-color-icon-default)` | Dark theme |
 | `--cvp-color-icon-default` | `var(--cvp-primitive-neutral-150)` | Dark theme |
 | `--cvp-color-icon-strong` | `var(--cvp-primitive-neutral-10)` | Dark theme |
 | `--cvp-color-icon-muted` | `var(--cvp-primitive-neutral-200)` | Dark theme |
@@ -410,6 +416,7 @@ Intent-based roles. Theme-specific rows are shown with their scope so the light 
 | `--cvp-color-border-success` | `var(--cvp-primitive-green-500)` | Light theme |
 | `--cvp-color-border-warning` | `var(--cvp-primitive-yellow-500)` | Light theme |
 | `--cvp-color-border-danger` | `var(--cvp-primitive-red-600)` | Light theme |
+| `--cvp-color-border-interactive` | `var(--cvp-color-icon-default)` | Light theme |
 | `--cvp-color-icon-default` | `var(--cvp-primitive-neutral-200)` | Light theme |
 | `--cvp-color-icon-strong` | `var(--cvp-primitive-neutral-400)` | Light theme |
 | `--cvp-color-icon-muted` | `var(--cvp-primitive-neutral-125)` | Light theme |
@@ -620,6 +627,16 @@ Intent-based roles. Theme-specific rows are shown with their scope so the light 
 | `--cvp-z-overlay` | `var(--cvp-primitive-z-overlay)` | Light theme |
 | `--cvp-z-modal` | `var(--cvp-primitive-z-modal)` | Light theme |
 | `--cvp-z-toast` | `var(--cvp-primitive-z-toast)` | Light theme |
+| `--cvp-target-size-minimum` | `var(--cvp-space-6)` | Light theme |
+| `--cvp-target-size-comfortable` | `var(--cvp-space-800)` | Light theme |
+| `--cvp-icon-size-small` | `var(--cvp-space-4)` | Light theme |
+| `--cvp-icon-size-medium` | `var(--cvp-space-5)` | Light theme |
+| `--cvp-icon-size-large` | `var(--cvp-space-6)` | Light theme |
+| `--cvp-icon-stroke-width` | `var(--cvp-primitive-icon-stroke-width)` | Light theme |
+| `--cvp-aspect-ratio-square` | `var(--cvp-primitive-aspect-square)` | Light theme |
+| `--cvp-aspect-ratio-video` | `var(--cvp-primitive-aspect-video)` | Light theme |
+| `--cvp-aspect-ratio-portrait` | `var(--cvp-primitive-aspect-portrait)` | Light theme |
+| `--cvp-border-style-default` | `var(--cvp-primitive-border-style-solid)` | Light theme |
 | `--cvp-spacing-stack-xs` | `var(--cvp-space-200)` | Light theme |
 | `--cvp-spacing-stack-sm` | `var(--cvp-space-300)` | Light theme |
 | `--cvp-spacing-stack-md` | `var(--cvp-space-500)` | Light theme |

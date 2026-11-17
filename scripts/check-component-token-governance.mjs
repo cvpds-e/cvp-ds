@@ -9,10 +9,12 @@ const tokenRegistry = await readJson('src/styles/token-registry.json');
 const knownTokens = new Set(tokenRegistry.tokens.map((token) => token.name));
 const errors = [];
 let checkedFiles = 0;
+const checkedStyles = new Set();
 
 for (const component of registry.components.filter((entry) => entry.lifecycle === 'approved' && entry.classification === 'component')) {
-  const cssPath = component.source.replace(/\.tsx$/, '.css');
-  if (!(await exists(cssPath))) continue;
+  const cssPath = component.stylesheet ?? component.source.replace(/\.tsx$/, '.css');
+  if (checkedStyles.has(cssPath) || !(await exists(cssPath))) continue;
+  checkedStyles.add(cssPath);
   checkedFiles += 1;
   const css = await readFile(path.join(root, cssPath), 'utf8');
   const executableCss = css.replace(/\/\*[\s\S]*?\*\//g, '');

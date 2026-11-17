@@ -1,0 +1,5 @@
+.cvp-primitives-doc { width: 100%; min-width: 0; padding-block: var(--cvp-spacing-section-sm); background: var(--cvp-color-surface-page); color: var(--cvp-color-text-primary); font-family: var(--cvp-font-family-sans); }
+.cvp-primitives-doc__media { max-width: var(--cvp-layout-pane-supporting-min-width); background: var(--cvp-color-surface-sunken); border-radius: var(--cvp-radius-md); }
+.cvp-primitives-doc__media .cvp-image { width: 100%; height: 100%; object-fit: cover; }
+.cvp-primitives-doc__scroll { height: var(--cvp-space-1300); padding: var(--cvp-spacing-inset-sm); border: var(--cvp-border-base-width) var(--cvp-border-style-default) var(--cvp-color-border-strong); border-radius: var(--cvp-radius-md); }
+.cvp-primitives-doc footer { border-top: var(--cvp-border-base-width) var(--cvp-border-style-default) var(--cvp-color-border-strong); padding-block-start: var(--cvp-spacing-stack-md); }

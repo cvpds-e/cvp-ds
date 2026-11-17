@@ -9,7 +9,7 @@ export interface SecondaryButtonProps extends React.ButtonHTMLAttributes<HTMLBut
   loadingText?: string;
 }
 
-export function SecondaryButton({
+export const SecondaryButton = React.forwardRef<HTMLButtonElement, SecondaryButtonProps>(({
   children,
   variant = 'default',
   loading = false,
@@ -18,7 +18,7 @@ export function SecondaryButton({
   disabled = false,
   type = 'button',
   ...props
-}: SecondaryButtonProps) {
+}, ref) => {
   const unavailable = disabled || loading;
   const classNames = [
     'secondary-button',
@@ -29,6 +29,7 @@ export function SecondaryButton({
 
   return <button
     {...props}
+    ref={ref}
     type={type}
     className={classNames}
     disabled={unavailable}
@@ -43,4 +44,5 @@ export function SecondaryButton({
       <span>{loadingText}</span>
     </span>}
   </button>;
-}
+});
+SecondaryButton.displayName = 'SecondaryButton';

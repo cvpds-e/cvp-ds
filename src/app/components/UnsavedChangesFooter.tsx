@@ -4,7 +4,7 @@ import { OutlineButton } from './OutlineButton';
 import { PrimaryButton } from './PrimaryButton';
 import './UnsavedChangesFooter.css';
 
-interface UnsavedChangesFooterProps {
+export interface UnsavedChangesFooterProps {
   onSave: () => void;
   onCancel: () => void;
   saveDisabled?: boolean;

@@ -1,10 +1,14 @@
 ---
 assetId: aspect-ratio
 classification: component
+layer: primitive
 lifecycle: approved
 specificationStatus: draft
 ---
 # AspectRatio
+
+The existing Radix wrapper is now exported from the public entry point.
+See [public contracts and examples](../specifications/PRIMITIVES.md#layout).
 
 ## Purpose
 
